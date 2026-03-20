@@ -1,210 +1,186 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
+    "hero_banner_Ywt4bV": {
+      "type": "hero-banner",
+      "name": "Hero Banner",
+      "settings": {
+        "overlay_color": "#1a6fb5",
+        "overlay_opacity": 40,
+        "heading": "NEVER HAVE BAD BREATH",
+        "heading_color": "#ffffff",
+        "subheading": "SmartMouth™ is the only mouthwash scientifically proven to eliminate & prevent bad breath for 24 hours with just 2 rinses a day.",
+        "text_color": "#ffffff",
+        "button_label_1": "New & Improved Pour",
+        "button_url_1": "",
+        "button_bg_1": "#2ecc40",
+        "button_text_1": "#ffffff",
+        "button_label_2": "View Products",
+        "button_url_2": "",
+        "button_bg_2": "#0066cc",
+        "button_text_2": "#ffffff"
+      }
+    },
+    "new_improved_pour_FGBwYw": {
+      "type": "new-improved-pour",
+      "name": "New & Improved Pour",
+      "settings": {
+        "heading": "NEW & IMPROVED POUR",
+        "heading_color": "#1a1a1a",
+        "description": "<p>We just upgraded our bottle! Now with individual snap-top closures, SmartMouth is easier than ever to open and use – no more assembly needed! Same 24-hour fresh breath, with just 2 rinses a day. Now with effortless convenience!</p>",
+        "text_color": "#555555",
+        "button_label": "Shop Now",
+        "button_url": "",
+        "button_bg": "#0066cc",
+        "button_text_color": "#ffffff",
+        "video_url": "",
+        "background_color": "#ffffff"
+      }
+    },
+    "testimonials_f9M64d": {
+      "type": "testimonials",
       "blocks": {
-        "heading": {
-          "type": "heading",
+        "testimonial_LKhygV": {
+          "type": "testimonial",
           "settings": {
-            "heading": "Image banner",
-            "heading_size": "h0"
+            "quote": "I just want to say thank you for this amazing product. For years I have struggled with dry mouth due to my autoimmune disease. In just 24 hours, I saw a major improvement. Now I feel confident in pursuing my dreams. Your products are truly a lifesaver. I will be a customer for life!",
+            "author": "Nikia"
           }
         },
-        "text": {
-          "type": "text",
+        "testimonial_MqpRt7": {
+          "type": "testimonial",
           "settings": {
-            "text": "Give customers details about the banner image(s) or content on the template.",
-            "text_style": "body"
+            "quote": "I love SmartMouth and have been using it for years. As a cigar smoker, it's important to know that this fantastic mouthwash exists. Now they've improved their dispensing system. Awesome family owned company, which I love supporting.",
+            "author": "Alan"
           }
         },
-        "button": {
-          "type": "buttons",
+        "testimonial_LVNNa4": {
+          "type": "testimonial",
           "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "quote": "You win… I tried to not have fresh breath after rinsing with SmartMouth by eating garlic, onions, fermented beans, pepperoni, and coffee. But my breath was fresh again after an hour of eating those things. I am a fan for life.",
+            "author": "Mika"
           }
         }
       },
       "block_order": [
-        "heading",
-        "text",
-        "button"
+        "testimonial_LKhygV",
+        "testimonial_MqpRt7",
+        "testimonial_LVNNa4"
       ],
+      "name": "Testimonials",
       "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "desktop_content_position": "bottom-center",
-        "show_text_box": false,
-        "desktop_content_alignment": "center",
-        "color_scheme": "scheme-3",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": false,
-        "show_text_below": false
+        "heading": "What People Are Saying About SmartMouth™",
+        "heading_color": "#ffffff",
+        "text_color": "#ffffff",
+        "background_color": "#1a8c3a",
+        "show_stars": true,
+        "star_color": "#FFD700",
+        "reviews_button_label": "Read More Reviews",
+        "reviews_button_url": "",
+        "button_bg": "#ffffff",
+        "button_text_color": "#1a8c3a"
       }
     },
-    "rich_text": {
-      "type": "rich-text",
+    "newsletter_bar_YGYGJb": {
+      "type": "newsletter-bar",
+      "name": "Newsletter Bar",
+      "settings": {
+        "heading": "Sign up today for coupons, offers and updates!",
+        "heading_color": "#ffffff",
+        "subtext": "At SmartMouth™, we love saving you from bad breath, but we also love saving you money.",
+        "text_color": "#d4edda",
+        "background_color": "#1a8c3a",
+        "placeholder": "Enter your email address",
+        "button_label": "Subscribe",
+        "button_bg": "#ffffff",
+        "button_text_color": "#1a8c3a",
+        "success_message": "Thanks for subscribing!"
+      }
+    },
+    "how_it_works_XmyJcH": {
+      "type": "how-it-works",
       "blocks": {
-        "heading": {
-          "type": "heading",
+        "solution_card_qaKWHw": {
+          "type": "solution_card",
           "settings": {
-            "heading": "Talk about your brand",
-            "heading_size": "h1"
+            "label": "Solution 1",
+            "label_bg": "#333333",
+            "label_color": "#ffffff",
+            "card_heading": "Instantly Eliminates Existing Sulfur Gas",
+            "card_text": "(AKA Bad Breath)",
+            "card_bg": "#00994d",
+            "card_text_color": "#ffffff"
           }
         },
-        "text": {
-          "type": "text",
+        "solution_card_AkDrDA": {
+          "type": "solution_card",
           "settings": {
-            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.<\/p>"
+            "label": "Solution 2",
+            "label_bg": "#333333",
+            "label_color": "#ffffff",
+            "card_heading": "Activates Billions of Zinc Ions to Block Germs & Prevent New Bad Breath",
+            "card_text": "(AKA Bad Breath)",
+            "card_bg": "#007a3d",
+            "card_text_color": "#ffffff"
           }
         }
       },
       "block_order": [
-        "heading",
-        "text"
+        "solution_card_qaKWHw",
+        "solution_card_AkDrDA"
       ],
+      "name": "How It Works",
       "settings": {
-        "color_scheme": "scheme-1",
-        "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 0
+        "heading": "How It Works",
+        "heading_color": "#1a1a1a",
+        "background_color": "#e8f4e8"
       }
     },
-    "featured_collection": {
-      "type": "featured-collection",
-      "settings": {
-        "title": "Featured products",
-        "heading_size": "h2",
-        "collection": "all",
-        "products_to_show": 8,
-        "columns_desktop": 4,
-        "color_scheme": "scheme-1",
-        "show_view_all": false,
-        "swipe_on_mobile": false,
-        "image_ratio": "adapt",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "columns_mobile": "2",
-        "padding_top": 28,
-        "padding_bottom": 36
-      }
-    },
-    "collage": {
-      "type": "collage",
+    "science_section_gbrCX6": {
+      "type": "science-section",
       "blocks": {
-        "collection-0": {
-          "type": "collection",
+        "text_block_FURKQ8": {
+          "type": "text_block",
           "settings": {
-            "collection": ""
+            "block_heading": "Sulfur Gas: The real cause of bad breath",
+            "block_text": "<p>When the bacteria in our mouth eat protein particles found in saliva, they release stinky sulfur gas AKA bad breath.</p>"
           }
         },
-        "product": {
-          "type": "product",
+        "text_block_WBWTiR": {
+          "type": "text_block",
           "settings": {
-            "product": "",
-            "second_image": false
-          }
-        },
-        "collection-1": {
-          "type": "collection",
-          "settings": {
-            "collection": ""
+            "block_heading": "Our Smart-Zinc Technology: The real solution to bad breath",
+            "block_text": "<p>When our Sulfur Eliminating Solution and Zinc Activating Solution combine, they block germs from consuming protein — preventing bad breath for 24 hours with just two rinses a day.</p>"
           }
         }
       },
       "block_order": [
-        "collection-0",
-        "product",
-        "collection-1"
+        "text_block_FURKQ8",
+        "text_block_WBWTiR"
       ],
+      "name": "Science Section",
       "settings": {
-        "heading": "Multimedia collage",
-        "heading_size": "h2",
-        "desktop_layout": "left",
-        "mobile_layout": "collage",
-        "color_scheme": "scheme-1",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
-    "video": {
-      "type": "video",
-      "settings": {
-        "heading": "",
-        "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
-        "heading_size": "h1",
-        "description": "",
-        "full_width": false,
-        "color_scheme": "scheme-1",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
-    "multicolumn": {
-      "type": "multicolumn",
-      "blocks": {
-        "column1": {
-          "type": "column",
-          "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column2": {
-          "type": "column",
-          "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column3": {
-          "type": "column",
-          "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
-            "link_label": "",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "column1",
-        "column2",
-        "column3"
-      ],
-      "settings": {
-        "title": "",
-        "heading_size": "h1",
-        "image_width": "third",
-        "image_ratio": "adapt",
-        "columns_desktop": 3,
-        "column_alignment": "center",
-        "background_style": "none",
-        "button_label": "",
-        "button_link": "",
-        "swipe_on_mobile": false,
-        "color_scheme": "scheme-1",
-        "columns_mobile": "1",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "heading": "SmartMouth™ Science",
+        "heading_color": "#ffffff",
+        "text_color": "#e0f5e0",
+        "background_color": "#1a8c3a"
       }
     }
   },
   "order": [
-    "image_banner",
-    "rich_text",
-    "featured_collection",
-    "collage",
-    "video",
-    "multicolumn"
+    "hero_banner_Ywt4bV",
+    "new_improved_pour_FGBwYw",
+    "testimonials_f9M64d",
+    "newsletter_bar_YGYGJb",
+    "how_it_works_XmyJcH",
+    "science_section_gbrCX6"
   ]
 }
