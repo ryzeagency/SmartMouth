@@ -1,0 +1,147 @@
+{{ 'section-featured-products.css' | asset_url | stylesheet_tag }}
+
+<section class="featured-products" style="background-color: {{ section.settings.background_color }};">
+  <div class="featured-products__container page-width">
+    {% if section.settings.heading != blank %}
+      <h2 class="featured-products__heading" style="color: {{ section.settings.heading_color }};">
+        {{ section.settings.heading }}
+      </h2>
+    {% endif %}
+
+    {% if section.settings.collection != blank %}
+      <div class="featured-products__grid">
+        {% for product in collections[section.settings.collection].products limit: section.settings.products_to_show %}
+          <div class="featured-products__card">
+            <a href="{{ product.url }}" class="featured-products__card-link">
+              <div class="featured-products__image-wrapper">
+                {% if product.featured_image != blank %}
+                  <img
+                    src="{{ product.featured_image | image_url: width: 400 }}"
+                    alt="{{ product.featured_image.alt | default: product.title }}"
+                    loading="lazy"
+                    width="400"
+                    height="400"
+                    class="featured-products__image"
+                  >
+                {% else %}
+                  {{ 'product-1' | placeholder_svg_tag: 'featured-products__placeholder' }}
+                {% endif %}
+              </div>
+              <div class="featured-products__info">
+                <h3 class="featured-products__title">{{ product.title }}</h3>
+                <p class="featured-products__price">{{ product.price | money }}</p>
+              </div>
+            </a>
+            <form method="post" action="/cart/add">
+              <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+              <button type="submit" class="featured-products__atc-btn" style="background-color: {{ section.settings.button_bg }};color: {{ section.settings.button_text_color }};">
+                {{ section.settings.button_label }}
+              </button>
+            </form>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="featured-products__grid">
+        {% for i in (1..4) %}
+          <div class="featured-products__card">
+            <div class="featured-products__image-wrapper">
+              {{ 'product-1' | placeholder_svg_tag: 'featured-products__placeholder' }}
+            </div>
+            <div class="featured-products__info">
+              <h3 class="featured-products__title">Product Title</h3>
+              <p class="featured-products__price">$19.99</p>
+            </div>
+            <button class="featured-products__atc-btn" style="background-color: {{ section.settings.button_bg }};color: {{ section.settings.button_text_color }};" disabled>
+              {{ section.settings.button_label }}
+            </button>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {% if section.settings.view_all_label != blank %}
+      <div class="featured-products__view-all">
+        <a href="{{ section.settings.view_all_url }}" class="featured-products__view-all-btn" style="color: {{ section.settings.heading_color }};">
+          {{ section.settings.view_all_label }} →
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured Products",
+  "tag": "section",
+  "class": "section-featured-products",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Featured Products"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "label": "Products to show",
+      "min": 2,
+      "max": 8,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Add to cart label",
+      "default": "Add to Cart"
+    },
+    {
+      "type": "color",
+      "id": "button_bg",
+      "label": "Button background",
+      "default": "#0066cc"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "view_all_label",
+      "label": "View all label",
+      "default": "View All Products"
+    },
+    {
+      "type": "url",
+      "id": "view_all_url",
+      "label": "View all link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Products"
+    }
+  ]
+}
+{% endschema %}

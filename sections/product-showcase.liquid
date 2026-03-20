@@ -1,0 +1,98 @@
+{{ 'section-product-showcase.css' | asset_url | stylesheet_tag }}
+
+<section class="product-showcase" style="background-color: {{ section.settings.background_color }};">
+  <div class="product-showcase__container page-width">
+    {% if section.settings.logo_image != blank %}
+      <div class="product-showcase__logo">
+        <img
+          src="{{ section.settings.logo_image | image_url: width: 200 }}"
+          alt="{{ section.settings.logo_image.alt | default: 'Brand logo' }}"
+          loading="lazy"
+          width="200"
+          height="100"
+        >
+      </div>
+    {% endif %}
+
+    <div class="product-showcase__media-wrapper">
+      {% if section.settings.video_url != blank %}
+        <video
+          class="product-showcase__video"
+          autoplay
+          loop
+          muted
+          playsinline
+          {% if section.settings.poster_image != blank %}
+            poster="{{ section.settings.poster_image | image_url: width: 800 }}"
+          {% endif %}
+        >
+          <source src="{{ section.settings.video_url }}" type="video/mp4">
+        </video>
+      {% elsif section.settings.poster_image != blank %}
+        <img
+          src="{{ section.settings.poster_image | image_url: width: 800 }}"
+          alt="{{ section.settings.poster_image.alt | default: 'Product showcase' }}"
+          loading="lazy"
+          width="800"
+          height="600"
+          class="product-showcase__image"
+        >
+      {% endif %}
+
+      {% if section.settings.caption != blank %}
+        <div class="product-showcase__caption" style="color: {{ section.settings.caption_color }};">
+          {{ section.settings.caption }}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Showcase",
+  "tag": "section",
+  "class": "section-product-showcase",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_image",
+      "label": "Brand logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "poster_image",
+      "label": "Product image / Video poster"
+    },
+    {
+      "type": "text",
+      "id": "video_url",
+      "label": "Video URL (mp4)",
+      "info": "Direct link to mp4 video"
+    },
+    {
+      "type": "text",
+      "id": "caption",
+      "label": "Caption",
+      "default": "Doctor Recommended. Two rinses a day."
+    },
+    {
+      "type": "color",
+      "id": "caption_color",
+      "label": "Caption color",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Showcase"
+    }
+  ]
+}
+{% endschema %}

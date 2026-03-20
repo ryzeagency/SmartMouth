@@ -1,0 +1,109 @@
+{{ 'section-featured-in.css' | asset_url | stylesheet_tag }}
+
+<section class="featured-in" style="background-color: {{ section.settings.background_color }};">
+  <div class="featured-in__container page-width">
+    {% if section.settings.heading != blank %}
+      <h2 class="featured-in__heading" style="color: {{ section.settings.heading_color }};">
+        {{ section.settings.heading }}
+      </h2>
+    {% endif %}
+
+    <div class="featured-in__logos">
+      {% for block in section.blocks %}
+        <div class="featured-in__logo-item" {{ block.shopify_attributes }}>
+          {% if block.settings.link != blank %}<a href="{{ block.settings.link }}" target="_blank" rel="noopener">{% endif %}
+            {% if block.settings.logo != blank %}
+              <img
+                src="{{ block.settings.logo | image_url: width: 200 }}"
+                alt="{{ block.settings.logo.alt | default: block.settings.name }}"
+                loading="lazy"
+                width="200"
+                height="60"
+                class="featured-in__logo-img"
+              >
+            {% elsif block.settings.name != blank %}
+              <span class="featured-in__logo-text" style="color: {{ section.settings.heading_color }};">
+                {{ block.settings.name }}
+              </span>
+            {% endif %}
+          {% if block.settings.link != blank %}</a>{% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured In Logos",
+  "tag": "section",
+  "class": "section-featured-in",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "As Featured in"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo image"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Publication name",
+          "default": "GQ"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link (optional)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured In Logos",
+      "blocks": [
+        {
+          "type": "logo",
+          "settings": { "name": "GQ" }
+        },
+        {
+          "type": "logo",
+          "settings": { "name": "Today" }
+        },
+        {
+          "type": "logo",
+          "settings": { "name": "Yahoo!" }
+        },
+        {
+          "type": "logo",
+          "settings": { "name": "Men's Journal" }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,195 @@
+{{ 'section-hero-banner.css' | asset_url | stylesheet_tag }}
+
+<section class="hero-banner" id="hero-banner">
+  <div class="hero-banner__background">
+    {% if section.settings.background_image != blank %}
+      <img
+        src="{{ section.settings.background_image | image_url: width: 1920 }}"
+        alt="{{ section.settings.background_image.alt | default: section.settings.heading }}"
+        loading="eager"
+        width="1920"
+        height="800"
+        class="hero-banner__bg-image"
+      >
+    {% endif %}
+    <div class="hero-banner__overlay" style="background-color: {{ section.settings.overlay_color }};opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};"></div>
+  </div>
+
+  <div class="hero-banner__container page-width">
+    <div class="hero-banner__content">
+      {% if section.settings.heading != blank %}
+        <h1 class="hero-banner__heading" style="color: {{ section.settings.heading_color }};">
+          {{ section.settings.heading }}
+        </h1>
+      {% endif %}
+
+      {% if section.settings.subheading != blank %}
+        <p class="hero-banner__subheading" style="color: {{ section.settings.text_color }};">
+          {{ section.settings.subheading }}
+        </p>
+      {% endif %}
+
+      <div class="hero-banner__buttons">
+        {% if section.settings.button_label_1 != blank %}
+          <a
+            href="{{ section.settings.button_url_1 }}"
+            class="hero-banner__btn hero-banner__btn--primary"
+            style="background-color: {{ section.settings.button_bg_1 }};color: {{ section.settings.button_text_1 }};"
+          >
+            {{ section.settings.button_label_1 }}
+          </a>
+        {% endif %}
+
+        {% if section.settings.button_label_2 != blank %}
+          <a
+            href="{{ section.settings.button_url_2 }}"
+            class="hero-banner__btn hero-banner__btn--secondary"
+            style="background-color: {{ section.settings.button_bg_2 }};color: {{ section.settings.button_text_2 }};"
+          >
+            {{ section.settings.button_label_2 }}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+
+    {% if section.settings.product_image != blank %}
+      <div class="hero-banner__product">
+        <img
+          src="{{ section.settings.product_image | image_url: width: 600 }}"
+          alt="{{ section.settings.product_image.alt | default: 'Product image' }}"
+          loading="eager"
+          width="600"
+          height="600"
+          class="hero-banner__product-image"
+        >
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero Banner",
+  "tag": "section",
+  "class": "section-hero-banner",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image"
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay color",
+      "default": "#1a6fb5"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 40,
+      "unit": "%"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "NEVER HAVE BAD BREATH"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "SmartMouth™ is the only mouthwash scientifically proven to eliminate & prevent bad breath for 24 hours with just 2 rinses a day."
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image",
+      "label": "Product image"
+    },
+    {
+      "type": "header",
+      "content": "Button 1"
+    },
+    {
+      "type": "text",
+      "id": "button_label_1",
+      "label": "Button label",
+      "default": "New & Improved Pour"
+    },
+    {
+      "type": "url",
+      "id": "button_url_1",
+      "label": "Button link"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_1",
+      "label": "Button background",
+      "default": "#2ecc40"
+    },
+    {
+      "type": "color",
+      "id": "button_text_1",
+      "label": "Button text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Button 2"
+    },
+    {
+      "type": "text",
+      "id": "button_label_2",
+      "label": "Button label",
+      "default": "View Products"
+    },
+    {
+      "type": "url",
+      "id": "button_url_2",
+      "label": "Button link"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_2",
+      "label": "Button background",
+      "default": "#0066cc"
+    },
+    {
+      "type": "color",
+      "id": "button_text_2",
+      "label": "Button text color",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Banner"
+    }
+  ]
+}
+{% endschema %}

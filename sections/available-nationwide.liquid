@@ -1,0 +1,170 @@
+{{ 'section-available-nationwide.css' | asset_url | stylesheet_tag }}
+
+<section class="available-nationwide" style="background-color: {{ section.settings.background_color }};">
+  <div class="available-nationwide__container page-width">
+    {% if section.settings.heading != blank %}
+      <h2 class="available-nationwide__heading" style="color: {{ section.settings.heading_color }};">
+        {{ section.settings.heading }}
+      </h2>
+    {% endif %}
+
+    {% if section.settings.description != blank %}
+      <p class="available-nationwide__description" style="color: {{ section.settings.text_color }};">
+        {{ section.settings.description }}
+      </p>
+    {% endif %}
+
+    <div class="available-nationwide__buttons">
+      {% if section.settings.button_label_1 != blank %}
+        <a
+          href="{{ section.settings.button_url_1 }}"
+          class="available-nationwide__btn available-nationwide__btn--primary"
+          style="background-color: {{ section.settings.button_bg_1 }};color: {{ section.settings.button_text_1 }};"
+        >
+          {{ section.settings.button_label_1 }}
+        </a>
+      {% endif %}
+
+      {% if section.settings.button_label_2 != blank %}
+        <a
+          href="{{ section.settings.button_url_2 }}"
+          class="available-nationwide__btn available-nationwide__btn--secondary"
+          style="background-color: {{ section.settings.button_bg_2 }};color: {{ section.settings.button_text_2 }};"
+          target="_blank"
+          rel="noopener"
+        >
+          {% if section.settings.show_amazon_icon %}
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:6px;">
+              <path d="M.045 18.02c.07-.116.36-.074.49-.012 2.26 1.07 4.688 1.592 7.198 1.592 2.67 0 5.223-.626 7.458-1.76.164-.084.328.06.246.204-.826 1.45-3.37 4.91-9.56 4.91C3.09 22.95.65 21.07.045 18.14v-.12z"/>
+              <path d="M6.394 14.09c0 .96.072 1.76.216 2.38.144.624.36 1.14.648 1.55.288.41.502.67.648.78.144.108.288.168.432.168.216 0 .504-.168.864-.504.36-.336.72-.504 1.08-.504.288 0 .576.108.864.324.288.216.432.54.432.972 0 .648-.36 1.248-1.08 1.8-.72.552-1.656.828-2.808.828-.936 0-1.728-.252-2.376-.756-.648-.504-1.152-1.14-1.512-1.908-.36-.768-.612-1.62-.756-2.556-.144-.936-.216-1.896-.216-2.88 0-2.16.468-3.924 1.404-5.292.936-1.368 2.34-2.052 4.212-2.052 1.224 0 2.22.384 2.988 1.152.768.768 1.152 1.764 1.152 2.988 0 1.296-.396 2.352-1.188 3.168-.792.816-2.028 1.344-3.708 1.584-.36.072-.612.108-.756.108-.144 0-.288-.024-.432-.072z"/>
+            </svg>
+          {% endif %}
+          {{ section.settings.button_label_2 }}
+        </a>
+      {% endif %}
+    </div>
+
+    {% if section.settings.products_image != blank %}
+      <div class="available-nationwide__products-image">
+        <img
+          src="{{ section.settings.products_image | image_url: width: 900 }}"
+          alt="{{ section.settings.products_image.alt | default: 'Product lineup' }}"
+          loading="lazy"
+          width="900"
+          height="400"
+          class="available-nationwide__image"
+        >
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Available Nationwide",
+  "tag": "section",
+  "class": "section-available-nationwide",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "SmartMouth is available on Amazon and in stores Nationwide"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Purchase SmartMouth™ mouthwash and oral care products from regional and national retailers near you. So you can be sure — no matter where you go — bad breath doesn't follow."
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#555555"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Button 1"
+    },
+    {
+      "type": "text",
+      "id": "button_label_1",
+      "label": "Button label",
+      "default": "Where To Buy"
+    },
+    {
+      "type": "url",
+      "id": "button_url_1",
+      "label": "Button link"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_1",
+      "label": "Button background",
+      "default": "#2ecc40"
+    },
+    {
+      "type": "color",
+      "id": "button_text_1",
+      "label": "Button text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Button 2"
+    },
+    {
+      "type": "text",
+      "id": "button_label_2",
+      "label": "Button label",
+      "default": "Buy On Amazon"
+    },
+    {
+      "type": "url",
+      "id": "button_url_2",
+      "label": "Button link"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_2",
+      "label": "Button background",
+      "default": "#FF9900"
+    },
+    {
+      "type": "color",
+      "id": "button_text_2",
+      "label": "Button text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_amazon_icon",
+      "label": "Show Amazon icon on button 2",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "products_image",
+      "label": "Product group image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Available Nationwide"
+    }
+  ]
+}
+{% endschema %}

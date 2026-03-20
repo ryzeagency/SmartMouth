@@ -1,0 +1,124 @@
+{{ 'section-newsletter-bar.css' | asset_url | stylesheet_tag }}
+
+<section class="newsletter-bar" style="background-color: {{ section.settings.background_color }};">
+  <div class="newsletter-bar__container page-width">
+    {% if section.settings.heading != blank %}
+      <h2 class="newsletter-bar__heading" style="color: {{ section.settings.heading_color }};">
+        {{ section.settings.heading }}
+      </h2>
+    {% endif %}
+
+    {% if section.settings.subtext != blank %}
+      <p class="newsletter-bar__subtext" style="color: {{ section.settings.text_color }};">
+        {{ section.settings.subtext }}
+      </p>
+    {% endif %}
+
+    {% form 'customer', class: 'newsletter-bar__form' %}
+      {% if form.errors %}
+        <div class="newsletter-bar__error">{{ form.errors | default_errors }}</div>
+      {% endif %}
+
+      {% if form.posted_successfully? %}
+        <p class="newsletter-bar__success" style="color: {{ section.settings.heading_color }};">
+          {{ section.settings.success_message }}
+        </p>
+      {% else %}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <div class="newsletter-bar__input-group">
+          <input
+            type="email"
+            name="contact[email]"
+            placeholder="{{ section.settings.placeholder }}"
+            required
+            class="newsletter-bar__input"
+            autocomplete="email"
+            aria-label="Email address"
+          >
+          <button
+            type="submit"
+            class="newsletter-bar__submit"
+            style="background-color: {{ section.settings.button_bg }};color: {{ section.settings.button_text_color }};"
+          >
+            {{ section.settings.button_label }}
+          </button>
+        </div>
+      {% endif %}
+    {% endform %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Newsletter Bar",
+  "tag": "section",
+  "class": "section-newsletter-bar",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Sign up today for coupons, offers and updates!"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "At SmartMouth™, we love saving you from bad breath, but we also love saving you money."
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#d4edda"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#1a8c3a"
+    },
+    {
+      "type": "text",
+      "id": "placeholder",
+      "label": "Input placeholder",
+      "default": "Enter your email address"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Subscribe"
+    },
+    {
+      "type": "color",
+      "id": "button_bg",
+      "label": "Button background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#1a8c3a"
+    },
+    {
+      "type": "text",
+      "id": "success_message",
+      "label": "Success message",
+      "default": "Thanks for subscribing!"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Newsletter Bar"
+    }
+  ]
+}
+{% endschema %}

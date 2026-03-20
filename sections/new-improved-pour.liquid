@@ -1,0 +1,134 @@
+{{ 'section-new-improved-pour.css' | asset_url | stylesheet_tag }}
+
+<section class="new-pour" id="new-pour">
+  <div class="new-pour__container page-width">
+    <div class="new-pour__content">
+      {% if section.settings.heading != blank %}
+        <h2 class="new-pour__heading" style="color: {{ section.settings.heading_color }};">
+          {{ section.settings.heading }}
+        </h2>
+      {% endif %}
+
+      {% if section.settings.description != blank %}
+        <div class="new-pour__description" style="color: {{ section.settings.text_color }};">
+          {{ section.settings.description }}
+        </div>
+      {% endif %}
+
+      {% if section.settings.button_label != blank %}
+        <a
+          href="{{ section.settings.button_url }}"
+          class="new-pour__btn"
+          style="background-color: {{ section.settings.button_bg }};color: {{ section.settings.button_text_color }};"
+        >
+          {{ section.settings.button_label }}
+        </a>
+      {% endif %}
+    </div>
+
+    {% if section.settings.video_url != blank or section.settings.image != blank %}
+      <div class="new-pour__media">
+        {% if section.settings.video_url != blank %}
+          <video
+            class="new-pour__video"
+            autoplay
+            loop
+            muted
+            playsinline
+            poster="{{ section.settings.image | image_url: width: 600 }}"
+          >
+            <source src="{{ section.settings.video_url }}" type="video/mp4">
+          </video>
+        {% elsif section.settings.image != blank %}
+          <img
+            src="{{ section.settings.image | image_url: width: 600 }}"
+            alt="{{ section.settings.image.alt | default: section.settings.heading }}"
+            loading="lazy"
+            width="600"
+            height="400"
+            class="new-pour__image"
+          >
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "New & Improved Pour",
+  "tag": "section",
+  "class": "section-new-pour",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "NEW & IMPROVED POUR"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>We just upgraded our bottle! Now with individual snap-top closures, SmartMouth is easier than ever to open and use – no more assembly needed! Same 24-hour fresh breath, with just 2 rinses a day. Now with effortless convenience!</p>"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#555555"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button link"
+    },
+    {
+      "type": "color",
+      "id": "button_bg",
+      "label": "Button background",
+      "default": "#0066cc"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image / Video poster"
+    },
+    {
+      "type": "text",
+      "id": "video_url",
+      "label": "Video URL (mp4)",
+      "info": "Paste a direct link to an mp4 video file"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Section background",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "New & Improved Pour"
+    }
+  ]
+}
+{% endschema %}
