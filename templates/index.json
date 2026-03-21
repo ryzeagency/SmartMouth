@@ -68,12 +68,39 @@
         "subheading_2": "Our Smart-Zinc Technology: The real solution to bad breath",
         "text_2": "When our Sulfur Eliminating Solution and Zinc Activating Solution combine, they block germs from consuming protein — preventing bad breath for 24 hours with just two rinses a day"
       }
+    },
+    "smart_mouth_full_image_tVyDnQ": {
+      "type": "smart-mouth-full-image",
+      "name": "Full Width Image",
+      "settings": {
+        "image": "shopify://shop_images/How-it-works-v1-w-title-scaled.png",
+        "contained_layout": false,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "smartmouth_image_right_wCDRNN": {
+      "type": "smartmouth-image-right",
+      "name": "Custom Image with Text",
+      "settings": {
+        "bg_color": "#0073c8",
+        "text_color": "#ffffff",
+        "layout": "right",
+        "image": "shopify://shop_images/smartmouth-bottledesign-img.jpg",
+        "main_heading": "The Bottle Design",
+        "subheading_1": "",
+        "text_1": "It may look quirky, but the patented SmartMouth™ dual chamber bottle is scientifically designed to harness the power of both bad breath fighting solutions, which combine to unleash the power of zinc ion activation every time you pour.",
+        "subheading_2": "",
+        "text_2": ""
+      }
     }
   },
   "order": [
     "hero_banner_Ywt4bV",
     "new_improved_pour_FGBwYw",
     "product_showcase_PHgFDU",
-    "smartmouth_image_right_fYgdmF"
+    "smartmouth_image_right_fYgdmF",
+    "smart_mouth_full_image_tVyDnQ",
+    "smartmouth_image_right_wCDRNN"
   ]
 }
