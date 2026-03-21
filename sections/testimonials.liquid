@@ -1,111 +1,105 @@
-{{ 'section-testimonials.css' | asset_url | stylesheet_tag }}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
-<section class="testimonials" style="background-color: {{ section.settings.background_color }};">
-  <div class="testimonials__container page-width">
-    {% if section.settings.heading != blank %}
-      <h2 class="testimonials__heading" style="color: {{ section.settings.heading_color }};">
-        {{ section.settings.heading }}
-      </h2>
-    {% endif %}
+<section class="testimonial-slider-section" style="--bg-color: {{ section.settings.bg_color }}; --text-color: {{ section.settings.text_color }};">
+  
+  {% if section.settings.heading != blank %}
+    <h2 class="testimonial-slider__main-heading">{{ section.settings.heading }}</h2>
+  {% endif %}
 
-    {% if section.settings.show_stars %}
-      <div class="testimonials__stars">
-        {% for i in (1..5) %}
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="{{ section.settings.star_color }}" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-          </svg>
+  <div class="testimonial-slider__container">
+    
+    <div class="swiper swiper-testimonial-{{ section.id }}">
+      <div class="swiper-wrapper">
+        
+        {% for block in section.blocks %}
+          <div class="swiper-slide" {{ block.shopify_attributes }}>
+            
+            <svg class="testimonial-slider__quote-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+              <path d="M448 224h-64v-24c0-30.9 25.1-56 56-56h16c22.1 0 40-17.9 40-40V72c0-22.1-17.9-40-40-40h-16c-92.6 0-168 75.4-168 168v216c0 35.3 28.7 64 64 64h112c35.3 0 64-28.7 64-64V288c0-35.3-28.7-64-64-64zm32 192c0 17.7-14.3 32-32 32H336c-17.7 0-32-14.3-32-32V200c0-75.1 60.9-136 136-136h16c4.4 0 8 3.6 8 8v32c0 4.4-3.6 8-8 8h-16c-48.6 0-88 39.4-88 88v56h96c17.7 0 32 14.3 32 32v128zM176 224h-64v-24c0-30.9 25.1-56 56-56h16c22.1 0 40-17.9 40-40V72c0-22.1-17.9-40-40-40h-16C75.4 32 0 107.4 0 200v216c0 35.3 28.7 64 64 64h112c35.3 0 64-28.7 64-64V288c0-35.3-28.7-64-64-64zm32 192c0 17.7-14.3 32-32 32H64c-17.7 0-32-14.3-32-32V200c0-75.1 60.9-136 136-136h16c4.4 0 8 3.6 8 8v32c0 4.4-3.6 8-8 8h-16c-48.6 0-88 39.4-88 88v56h96c17.7 0 32 14.3 32 32v128z"/>
+            </svg>
+
+            <div class="testimonial-slider__stars">
+              {% for i in (1..5) %}
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                  <path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/>
+                </svg>
+              {% endfor %}
+            </div>
+
+            {% if block.settings.quote != blank %}
+              <div class="testimonial-slider__text">
+                {{ block.settings.quote }}
+              </div>
+            {% endif %}
+
+            {% if block.settings.author != blank %}
+              <cite class="testimonial-slider__author">— {{ block.settings.author }}</cite>
+            {% endif %}
+
+          </div>
         {% endfor %}
-      </div>
-    {% endif %}
 
-    <div class="testimonials__slider" id="testimonials-slider">
-      {% for block in section.blocks %}
-        <div class="testimonials__slide {% if forloop.first %}testimonials__slide--active{% endif %}" data-slide="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
-          {% if block.settings.quote != blank %}
-            <blockquote class="testimonials__quote" style="color: {{ section.settings.text_color }};">
-              "{{ block.settings.quote }}"
-            </blockquote>
-          {% endif %}
-          {% if block.settings.author != blank %}
-            <cite class="testimonials__author" style="color: {{ section.settings.text_color }};">
-              — {{ block.settings.author }}
-            </cite>
-          {% endif %}
-        </div>
-      {% endfor %}
+      </div>
+      
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+
     </div>
 
-    {% if section.blocks.size > 1 %}
-      <div class="testimonials__nav">
-        <button class="testimonials__arrow testimonials__arrow--prev" aria-label="Previous testimonial" style="color: {{ section.settings.text_color }};">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
-        </button>
-        <div class="testimonials__dots">
-          {% for block in section.blocks %}
-            <button class="testimonials__dot {% if forloop.first %}testimonials__dot--active{% endif %}" data-dot="{{ forloop.index0 }}" aria-label="Go to slide {{ forloop.index }}" style="background-color: {{ section.settings.text_color }};"></button>
-          {% endfor %}
-        </div>
-        <button class="testimonials__arrow testimonials__arrow--next" aria-label="Next testimonial" style="color: {{ section.settings.text_color }};">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
-        </button>
-      </div>
-    {% endif %}
-
-    {% if section.settings.reviews_button_label != blank %}
-      <div class="testimonials__cta">
-        <a
-          href="{{ section.settings.reviews_button_url }}"
-          class="testimonials__cta-btn"
-          style="background-color: {{ section.settings.button_bg }};color: {{ section.settings.button_text_color }};"
-        >
-          {{ section.settings.reviews_button_label }}
-        </a>
-      </div>
-    {% endif %}
   </div>
+
+  {% if section.settings.button_label != blank %}
+    <div class="testimonial-slider__btn-wrapper">
+      <a 
+        href="{{ section.settings.button_url }}" 
+        class="testimonial-slider__btn"
+        style="background-color: {{ section.settings.button_bg }}; color: {{ section.settings.button_text }};"
+      >
+        {{ section.settings.button_label }}
+      </a>
+    </div>
+  {% endif %}
+
 </section>
 
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer="defer"></script>
+
 <script>
-  (function() {
-    const slider = document.getElementById('testimonials-slider');
-    if (!slider) return;
-    const section = slider.closest('.testimonials');
-    const slides = slider.querySelectorAll('.testimonials__slide');
-    const dots = section.querySelectorAll('.testimonials__dot');
-    const prevBtn = section.querySelector('.testimonials__arrow--prev');
-    const nextBtn = section.querySelector('.testimonials__arrow--next');
-    let current = 0;
-    const total = slides.length;
-
-    function goTo(index) {
-      slides[current].classList.remove('testimonials__slide--active');
-      if (dots[current]) dots[current].classList.remove('testimonials__dot--active');
-      current = (index + total) % total;
-      slides[current].classList.add('testimonials__slide--active');
-      if (dots[current]) dots[current].classList.add('testimonials__dot--active');
-    }
-
-    if (prevBtn) prevBtn.addEventListener('click', function() { goTo(current - 1); });
-    if (nextBtn) nextBtn.addEventListener('click', function() { goTo(current + 1); });
-    dots.forEach(function(dot) {
-      dot.addEventListener('click', function() { goTo(parseInt(this.dataset.dot)); });
+  document.addEventListener("DOMContentLoaded", function() {
+    const swiper = new Swiper('.swiper-testimonial-{{ section.id }}', {
+      loop: true,
+      autoHeight: true,
+      spaceBetween: 30,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: true,
+      },
     });
-
-    // Auto-rotate
-    let autoplay = setInterval(function() { goTo(current + 1); }, 6000);
-    section.addEventListener('mouseenter', function() { clearInterval(autoplay); });
-    section.addEventListener('mouseleave', function() {
-      autoplay = setInterval(function() { goTo(current + 1); }, 6000);
-    });
-  })();
+  });
 </script>
 
 {% schema %}
 {
-  "name": "Testimonials",
+  "name": "Testimonial Slider",
   "tag": "section",
-  "class": "section-testimonials",
+  "class": "section-testimonial-slider",
   "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#006bba"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    },
     {
       "type": "text",
       "id": "heading",
@@ -113,57 +107,31 @@
       "default": "What People Are Saying About SmartMouth™"
     },
     {
-      "type": "color",
-      "id": "heading_color",
-      "label": "Heading color",
-      "default": "#ffffff"
-    },
-    {
-      "type": "color",
-      "id": "text_color",
-      "label": "Text color",
-      "default": "#ffffff"
-    },
-    {
-      "type": "color",
-      "id": "background_color",
-      "label": "Background color",
-      "default": "#1a8c3a"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_stars",
-      "label": "Show star rating",
-      "default": true
-    },
-    {
-      "type": "color",
-      "id": "star_color",
-      "label": "Star color",
-      "default": "#FFD700"
+      "type": "header",
+      "content": "Button"
     },
     {
       "type": "text",
-      "id": "reviews_button_label",
-      "label": "Button label",
-      "default": "Read More Reviews"
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "READ MORE REVIEWS"
     },
     {
       "type": "url",
-      "id": "reviews_button_url",
-      "label": "Button link"
+      "id": "button_url",
+      "label": "Button Link"
     },
     {
       "type": "color",
       "id": "button_bg",
-      "label": "Button background",
-      "default": "#ffffff"
+      "label": "Button Background Color",
+      "default": "#008035"
     },
     {
       "type": "color",
-      "id": "button_text_color",
-      "label": "Button text color",
-      "default": "#1a8c3a"
+      "id": "button_text",
+      "label": "Button Text Color",
+      "default": "#ffffff"
     }
   ],
   "blocks": [
@@ -174,21 +142,21 @@
         {
           "type": "textarea",
           "id": "quote",
-          "label": "Quote",
-          "default": "You win… I tried to not have fresh breath after rinsing with SmartMouth by eating garlic, onions, fermented beans, pepperoni, and coffee. But my breath was fresh again after an hour of eating those things. I am a fan for life."
+          "label": "Quote Text",
+          "default": "I love SmartMouth and have been using it for years. As a cigar smoker, it’s important to know that this fantastic mouthwash exists. Now they’ve improved their dispensing system. Awesome family owned company, which I love supporting."
         },
         {
           "type": "text",
           "id": "author",
-          "label": "Author name",
-          "default": "Mika"
+          "label": "Author Name",
+          "default": "Alan"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Testimonials",
+      "name": "Testimonial Slider",
       "blocks": [
         {
           "type": "testimonial",
@@ -200,7 +168,7 @@
         {
           "type": "testimonial",
           "settings": {
-            "quote": "I love SmartMouth and have been using it for years. As a cigar smoker, it's important to know that this fantastic mouthwash exists. Now they've improved their dispensing system. Awesome family owned company, which I love supporting.",
+            "quote": "I love SmartMouth and have been using it for years. As a cigar smoker, it’s important to know that this fantastic mouthwash exists. Now they’ve improved their dispensing system. Awesome family owned company, which I love supporting.",
             "author": "Alan"
           }
         },

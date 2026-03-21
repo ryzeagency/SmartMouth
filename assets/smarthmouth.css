@@ -394,3 +394,135 @@
     max-height: 80px;
   }
 }
+
+.testimonial-slider-section {
+  padding: 4rem 1.5rem;
+  background-color: var(--bg-color, #0073c8);
+  color: var(--text-color, #ffffff);
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .testimonial-slider-section {
+    padding: 6rem 2rem;
+  }
+}
+
+.testimonial-slider__container {
+  max-width: 900px; /* Constrains the width of the text so it's readable */
+  margin: 0 auto;
+  position: relative;
+}
+
+.testimonial-slider__main-heading {
+  font-family: inherit;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0 0 3rem 0;
+  color: inherit;
+}
+
+@media (min-width: 768px) {
+  .testimonial-slider__main-heading {
+    font-size: 2.2rem;
+  }
+}
+
+.testimonial-slider__quote-icon {
+  width: 32px;
+  height: 32px;
+  margin: 0 auto 1.5rem auto;
+  display: block;
+  fill: currentColor;
+}
+
+.testimonial-slider__stars {
+  display: flex;
+  justify-content: center;
+  gap: 0.25rem;
+  margin-bottom: 1.5rem;
+  color: #ff9900; /* Amazon-style orange for stars */
+}
+
+.testimonial-slider__stars svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.testimonial-slider__text {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  font-weight: 500;
+  margin: 0 0 1.5rem 0;
+}
+
+@media (min-width: 768px) {
+  .testimonial-slider__text {
+    font-size: 1.25rem;
+  }
+}
+
+.testimonial-slider__author {
+  font-size: 0.95rem;
+  font-style: normal;
+  font-weight: 400;
+  opacity: 0.9;
+}
+
+/* --- SWIPER NAVIGATION CUSTOMIZATION --- */
+.testimonial-slider__container .swiper-button-next,
+.testimonial-slider__container .swiper-button-prev {
+  color: inherit;
+  width: 40px;
+  height: 40px;
+  margin-top: -20px; /* Centers the arrows perfectly vertically */
+}
+
+.testimonial-slider__container .swiper-button-next::after,
+.testimonial-slider__container .swiper-button-prev::after {
+  font-size: 24px; /* Makes the default Swiper arrows slightly smaller and cleaner */
+  font-weight: 300;
+}
+
+/* Hide arrows on mobile for a cleaner look, user can just swipe */
+@media (max-width: 767px) {
+  .testimonial-slider__container .swiper-button-next,
+  .testimonial-slider__container .swiper-button-prev {
+    display: none;
+  }
+}
+
+/* Move arrows outside the text content on desktop */
+@media (min-width: 768px) {
+  .testimonial-slider__container .swiper-button-prev {
+    left: -50px;
+  }
+  .testimonial-slider__container .swiper-button-next {
+    right: -50px;
+  }
+}
+
+/* --- BUTTON STYLING --- */
+.testimonial-slider__btn-wrapper {
+  margin-top: 3rem;
+}
+
+.testimonial-slider__btn {
+  display: inline-block;
+  padding: 12px 32px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.testimonial-slider__btn:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
