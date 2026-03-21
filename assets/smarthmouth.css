@@ -1,1 +1,129 @@
 
+.hero-banner {
+  position: relative;
+  min-height: 500px;
+  display: flex;
+  align-items: flex-end; /* Aligns content to the bottom */
+  overflow: hidden;
+  padding: 3rem 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .hero-banner {
+    min-height: 700px;
+    padding: 5rem 4rem;
+  }
+}
+
+.hero-banner__background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.hero-banner__bg-image,
+.hero-banner__bg-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.hero-banner__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.hero-banner__container {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.hero-banner__content {
+  max-width: 550px;
+  margin-bottom: 2rem;
+}
+
+.hero-banner__heading {
+  font-family: inherit;
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 0 0 1rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+@media (min-width: 768px) {
+  .hero-banner__heading {
+    font-size: 3.2rem;
+  }
+}
+
+.hero-banner__subheading {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  margin: 0 0 2rem 0;
+  font-weight: 500;
+}
+
+.hero-banner__buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.hero-banner__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 28px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.hero-banner__btn:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+.hero-banner__product {
+  max-width: 45%;
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .hero-banner__product {
+    display: block;
+  }
+}
+
+.hero-banner__product-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
