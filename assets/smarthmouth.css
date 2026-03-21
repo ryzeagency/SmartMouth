@@ -195,3 +195,17 @@
   transform: translateY(-2px);
   opacity: 0.9;
 }
+
+.full-width-video-section {
+  width: 100%;
+  overflow: hidden;
+  line-height: 0; /* Removes the tiny default gap below media elements */
+  display: block;
+}
+
+.full-width-video-section video {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
