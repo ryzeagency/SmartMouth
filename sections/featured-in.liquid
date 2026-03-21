@@ -1,44 +1,56 @@
-{{ 'section-featured-in.css' | asset_url | stylesheet_tag }}
+{{ 'section-logo-list.css' | asset_url | stylesheet_tag }}
 
-<section class="featured-in" style="background-color: {{ section.settings.background_color }};">
-  <div class="featured-in__container page-width">
+<section class="logo-list-section" style="--bg-color: {{ section.settings.bg_color }};">
+  <div class="logo-list__container">
+    
     {% if section.settings.heading != blank %}
-      <h2 class="featured-in__heading" style="color: {{ section.settings.heading_color }};">
+      <h2 class="logo-list__heading" style="--heading-color: {{ section.settings.heading_color }};">
         {{ section.settings.heading }}
       </h2>
     {% endif %}
 
-    <div class="featured-in__logos">
+    <div class="logo-list__grid">
       {% for block in section.blocks %}
-        <div class="featured-in__logo-item" {{ block.shopify_attributes }}>
-          {% if block.settings.link != blank %}<a href="{{ block.settings.link }}" target="_blank" rel="noopener">{% endif %}
-            {% if block.settings.logo != blank %}
-              <img
-                src="{{ block.settings.logo | image_url: width: 200 }}"
-                alt="{{ block.settings.logo.alt | default: block.settings.name }}"
-                loading="lazy"
-                width="200"
-                height="60"
-                class="featured-in__logo-img"
-              >
-            {% elsif block.settings.name != blank %}
-              <span class="featured-in__logo-text" style="color: {{ section.settings.heading_color }};">
-                {{ block.settings.name }}
-              </span>
-            {% endif %}
-          {% if block.settings.link != blank %}</a>{% endif %}
+        <div class="logo-list__item" {{ block.shopify_attributes }}>
+          {% if block.settings.link != blank %}
+            <a href="{{ block.settings.link }}" class="logo-list__link" target="_blank" rel="noopener noreferrer">
+          {% endif %}
+
+          {% if block.settings.image != blank %}
+            <img
+              src="{{ block.settings.image | image_url: width: 400 }}"
+              alt="{{ block.settings.image.alt | default: 'Featured in publisher logo' | escape }}"
+              loading="lazy"
+              width="{{ block.settings.image.width }}"
+              height="{{ block.settings.image.height }}"
+              class="logo-list__image"
+            >
+          {% else %}
+            {{ 'image' | placeholder_svg_tag: 'placeholder-svg logo-list__image' }}
+          {% endif %}
+
+          {% if block.settings.link != blank %}
+            </a>
+          {% endif %}
         </div>
       {% endfor %}
     </div>
+
   </div>
 </section>
 
 {% schema %}
 {
-  "name": "Featured In Logos",
+  "name": "Logo List",
   "tag": "section",
-  "class": "section-featured-in",
+  "class": "section-logo-list",
   "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
     {
       "type": "text",
       "id": "heading",
@@ -48,14 +60,8 @@
     {
       "type": "color",
       "id": "heading_color",
-      "label": "Heading color",
-      "default": "#1a1a1a"
-    },
-    {
-      "type": "color",
-      "id": "background_color",
-      "label": "Background color",
-      "default": "#ffffff"
+      "label": "Heading Color",
+      "default": "#333333"
     }
   ],
   "blocks": [
@@ -65,43 +71,26 @@
       "settings": [
         {
           "type": "image_picker",
-          "id": "logo",
-          "label": "Logo image"
-        },
-        {
-          "type": "text",
-          "id": "name",
-          "label": "Publication name",
-          "default": "GQ"
+          "id": "image",
+          "label": "Logo Image"
         },
         {
           "type": "url",
           "id": "link",
-          "label": "Link (optional)"
+          "label": "Link (Optional)",
+          "info": "Links the logo to the featured article."
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Featured In Logos",
+      "name": "Logo List",
       "blocks": [
-        {
-          "type": "logo",
-          "settings": { "name": "GQ" }
-        },
-        {
-          "type": "logo",
-          "settings": { "name": "Today" }
-        },
-        {
-          "type": "logo",
-          "settings": { "name": "Yahoo!" }
-        },
-        {
-          "type": "logo",
-          "settings": { "name": "Men's Journal" }
-        }
+        { "type": "logo" },
+        { "type": "logo" },
+        { "type": "logo" },
+        { "type": "logo" }
       ]
     }
   ]
