@@ -496,10 +496,12 @@
 /* Move arrows outside the text content on desktop */
 @media (min-width: 768px) {
   .testimonial-slider__container .swiper-button-prev {
-    left: -50px;
+    left: 0;
+    display: block;
   }
   .testimonial-slider__container .swiper-button-next {
-    right: -50px;
+    right: 0;
+    display: block;
   }
 }
 
