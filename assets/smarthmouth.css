@@ -317,3 +317,80 @@
   max-width: var(--page-width, 1400px);
   margin: 0 auto;
 }
+
+.logo-list-section {
+  padding: 4rem 1.5rem;
+  background-color: var(--bg-color, #ffffff);
+}
+
+@media (min-width: 768px) {
+  .logo-list-section {
+    padding: 5rem 2rem;
+  }
+}
+
+.logo-list__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.logo-list__heading {
+  font-family: inherit;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 3rem 0;
+  color: var(--heading-color, #1a1a1a);
+}
+
+@media (min-width: 768px) {
+  .logo-list__heading {
+    font-size: 1.8rem;
+    margin: 0 0 4rem 0;
+  }
+}
+
+.logo-list__grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+@media (min-width: 768px) {
+  .logo-list__grid {
+    gap: 5rem; /* Wider spacing on desktop */
+  }
+}
+
+.logo-list__item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-list__link {
+  display: block;
+  transition: opacity 0.2s ease;
+}
+
+.logo-list__link:hover {
+  opacity: 0.7;
+}
+
+.logo-list__image {
+  width: 100%;
+  max-width: 130px; /* Constrains logo size on mobile */
+  height: auto;
+  max-height: 60px; /* Prevents logos from being too tall */
+  object-fit: contain;
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .logo-list__image {
+    max-width: 180px; /* Allows logos to be larger on desktop */
+    max-height: 80px;
+  }
+}
