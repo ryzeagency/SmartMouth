@@ -529,3 +529,91 @@
   transform: translateY(-2px);
   opacity: 0.9;
 }
+
+.where-to-buy-section {
+  padding: 4rem 1.5rem;
+  background-color: var(--bg-color, #fafafa);
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .where-to-buy-section {
+    padding: 6rem 2rem;
+  }
+}
+
+.where-to-buy__container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.where-to-buy__heading {
+  font-family: inherit;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0 0 1.5rem 0;
+  color: var(--heading-color, #1a1a1a);
+  line-height: 1.2;
+}
+
+@media (min-width: 768px) {
+  .where-to-buy__heading {
+    font-size: 2.2rem;
+  }
+}
+
+.where-to-buy__text {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-color, #555555);
+  margin: 0 auto 2.5rem auto;
+  max-width: 700px;
+}
+
+.where-to-buy__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 4rem;
+}
+
+.where-to-buy__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 32px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.where-to-buy__btn:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+.where-to-buy__btn-icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  fill: currentColor;
+}
+
+.where-to-buy__image-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.where-to-buy__image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
