@@ -53,11 +53,27 @@
         "padding_top": 0,
         "padding_bottom": 0
       }
+    },
+    "smartmouth_image_right_fYgdmF": {
+      "type": "smartmouth-image-right",
+      "name": "Custom Image with Text",
+      "settings": {
+        "bg_color": "#0073c8",
+        "text_color": "#ffffff",
+        "layout": "right",
+        "image": "shopify://shop_images/SmartMouth-Science_5098cac0-e97a-4b62-a934-cd4b7b256fee.jpg",
+        "main_heading": "SmartMouth™ Science",
+        "subheading_1": "Sulfur Gas: The real cause of bad breath",
+        "text_1": "When the bacteria in our mouth eat protein particles found in saliva, they release stinky sulfur gas AKA bad breath",
+        "subheading_2": "Our Smart-Zinc Technology: The real solution to bad breath",
+        "text_2": "When our Sulfur Eliminating Solution and Zinc Activating Solution combine, they block germs from consuming protein — preventing bad breath for 24 hours with just two rinses a day"
+      }
     }
   },
   "order": [
     "hero_banner_Ywt4bV",
     "new_improved_pour_FGBwYw",
-    "product_showcase_PHgFDU"
+    "product_showcase_PHgFDU",
+    "smartmouth_image_right_fYgdmF"
   ]
 }
