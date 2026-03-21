@@ -298,3 +298,22 @@
   margin: 0;
   opacity: 0.9; /* Softens the paragraph text slightly compared to headings */
 }
+
+.full-width-image-section {
+  width: 100%;
+  display: block;
+  line-height: 0; /* Removes the default gap below images */
+}
+
+.full-width-image-section__img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* Optional wrapper if you want to constrain it to the page width instead of edge-to-edge */
+.full-width-image-section--contained {
+  max-width: var(--page-width, 1400px);
+  margin: 0 auto;
+}
