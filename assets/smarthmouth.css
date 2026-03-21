@@ -617,3 +617,111 @@
   display: block;
   object-fit: contain;
 }
+
+.newsletter-banner {
+  padding: 3rem 1.5rem;
+  background-color: var(--bg-color, #0073c8);
+  color: var(--text-color, #ffffff);
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .newsletter-banner {
+    padding: 4rem 2rem;
+  }
+}
+
+.newsletter-banner__container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.newsletter-banner__heading {
+  font-family: inherit;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 1rem 0;
+  color: inherit;
+  letter-spacing: 0.5px;
+}
+
+@media (min-width: 768px) {
+  .newsletter-banner__heading {
+    font-size: 2.2rem;
+  }
+}
+
+.newsletter-banner__text {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0 auto;
+  max-width: 700px;
+  opacity: 0.95;
+}
+
+@media (min-width: 768px) {
+  .newsletter-banner__text {
+    font-size: 1.1rem;
+  }
+}
+
+/* Optional Email Form Styling */
+.newsletter-banner__form-wrapper {
+  margin-top: 2rem;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.newsletter-banner__form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+@media (min-width: 600px) {
+  .newsletter-banner__form {
+    flex-direction: row;
+  }
+}
+
+.newsletter-banner__input {
+  flex: 1;
+  padding: 14px 20px;
+  border: 1px solid transparent;
+  border-radius: 50px; /* Pill shape */
+  font-size: 1rem;
+  outline: none;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.newsletter-banner__input:focus {
+  border-color: #222;
+}
+
+.newsletter-banner__btn {
+  padding: 14px 28px;
+  background-color: #1a1a1a;
+  color: #ffffff;
+  border: none;
+  border-radius: 50px; /* Pill shape */
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.newsletter-banner__btn:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+.newsletter-banner__success {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  font-weight: 600;
+}
