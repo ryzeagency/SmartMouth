@@ -70,14 +70,22 @@
       loop: true,
       autoHeight: true,
       spaceBetween: 30,
+
+      // 1. Auto-slide every 5 seconds (5000 milliseconds)
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false, // Ensures autoplay continues after clicking an arrow
+        pauseOnMouseEnter: true      // Pauses the timer if the user hovers to read a quote
+      },
+
+      // 2. Left and Right arrows
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
       },
-      autoplay: {
-        delay: 5000,
-        disableOnInteraction: true,
-      },
+      
+      // Optional: Add some smooth transition speed (in milliseconds)
+      speed: 600
     });
   });
 </script>
