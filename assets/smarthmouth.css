@@ -338,7 +338,7 @@
 
 @media (min-width: 768px) {
   .logo-list__heading {
-    font-size: 1.8rem;
+    font-size: 30px;
     margin: 0 0 4rem 0;
   }
 }
@@ -409,7 +409,7 @@
 
 .testimonial-slider__main-heading {
   font-family: inherit;
-  font-size: 1.8rem;
+  font-size: 30px;
   font-weight: 700;
   margin: 0 0 3rem 0;
   color: inherit;
@@ -541,7 +541,7 @@
 
 .where-to-buy__heading {
   font-family: inherit;
-  font-size: 1.8rem;
+  font-size: 30px;
   font-weight: 700;
   margin: 0 0 1.5rem 0;
   color: var(--heading-color, #1a1a1a);
