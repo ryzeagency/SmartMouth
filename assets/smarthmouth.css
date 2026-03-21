@@ -1,4 +1,3 @@
-
 .hero-banner {
   position: relative;
   min-height: 500px;
@@ -78,7 +77,7 @@
 }
 
 .hero-banner__subheading {
-  font-size: 1.1rem;
+  font-size: 14px;
   line-height: 1.5;
   margin: 0 0 2rem 0;
   font-weight: 500;
@@ -98,7 +97,7 @@
   border-radius: 50px;
   text-decoration: none;
   font-weight: 700;
-  font-size: 0.8rem;
+  font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 1px;
   transition: transform 0.2s ease, opacity 0.2s ease;
@@ -164,17 +163,11 @@
 }
 
 .custom-text-section__text {
-  font-size: 1.1rem;
+  font-size: 14px;
   line-height: 1.6;
   margin: 0 auto 2.5rem auto;
   font-weight: 500;
   max-width: 750px;
-}
-
-@media (min-width: 768px) {
-  .custom-text-section__text {
-    font-size: 1.25rem;
-  }
 }
 
 .custom-text-section__btn {
@@ -183,7 +176,7 @@
   border-radius: 50px; /* Pill shape */
   text-decoration: none;
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 1px;
   transition: transform 0.2s ease, opacity 0.2s ease;
@@ -286,14 +279,14 @@
 }
 
 .custom-image-text__subheading {
-  font-size: 1.1rem;
+  font-size: 14px;
   font-weight: 700;
   margin: 0 0 0.5rem 0;
   line-height: 1.4;
 }
 
 .custom-image-text__text {
-  font-size: 0.95rem;
+  font-size: 14px;
   line-height: 1.6;
   margin: 0;
   opacity: 0.9; /* Softens the paragraph text slightly compared to headings */
@@ -451,7 +444,7 @@
 }
 
 .testimonial-slider__text {
-  font-size: 1.1rem;
+  font-size: 14px;
   line-height: 1.6;
   font-weight: 500;
   margin: 0 0 1.5rem 0;
@@ -459,13 +452,12 @@
 
 @media (min-width: 768px) {
   .testimonial-slider__text {
-    font-size: 1.25rem;
     padding: 0 50px;
   }
 }
 
 .testimonial-slider__author {
-  font-size: 0.95rem;
+  font-size: 14px;
   font-style: normal;
   font-weight: 400;
   opacity: 0.9;
@@ -517,7 +509,7 @@
   border-radius: 50px;
   text-decoration: none;
   font-weight: 600;
-  font-size: 0.85rem;
+  font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 1px;
   transition: transform 0.2s ease, opacity 0.2s ease;
@@ -563,7 +555,7 @@
 }
 
 .where-to-buy__text {
-  font-size: 1rem;
+  font-size: 14px;
   line-height: 1.6;
   color: var(--text-color, #555555);
   margin: 0 auto 2.5rem auto;
@@ -586,7 +578,7 @@
   border-radius: 50px;
   text-decoration: none;
   font-weight: 700;
-  font-size: 0.85rem;
+  font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   transition: transform 0.2s ease, opacity 0.2s ease;
@@ -652,17 +644,11 @@
 }
 
 .newsletter-banner__text {
-  font-size: 0.95rem;
+  font-size: 14px;
   line-height: 1.6;
   margin: 0 auto;
   max-width: 700px;
   opacity: 0.95;
-}
-
-@media (min-width: 768px) {
-  .newsletter-banner__text {
-    font-size: 1.1rem;
-  }
 }
 
 /* Optional Email Form Styling */
@@ -690,7 +676,7 @@
   padding: 14px 20px;
   border: 1px solid transparent;
   border-radius: 50px; /* Pill shape */
-  font-size: 1rem;
+  font-size: 14px;
   outline: none;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
@@ -706,7 +692,7 @@
   border: none;
   border-radius: 50px; /* Pill shape */
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 1px;
   cursor: pointer;
