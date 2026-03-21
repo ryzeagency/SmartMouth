@@ -460,6 +460,7 @@
 @media (min-width: 768px) {
   .testimonial-slider__text {
     font-size: 1.25rem;
+    padding: 0 50px;
   }
 }
 
