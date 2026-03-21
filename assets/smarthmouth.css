@@ -77,7 +77,7 @@
 }
 
 .hero-banner__subheading {
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.5;
   margin: 0 0 2rem 0;
   font-weight: 500;
@@ -97,7 +97,7 @@
   border-radius: 50px;
   text-decoration: none;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 16px;
   text-transform: uppercase;
   letter-spacing: 1px;
   transition: transform 0.2s ease, opacity 0.2s ease;
@@ -163,7 +163,7 @@
 }
 
 .custom-text-section__text {
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.6;
   margin: 0 auto 2.5rem auto;
   font-weight: 500;
@@ -172,11 +172,11 @@
 
 .custom-text-section__btn {
   display: inline-block;
-  padding: 14px 36px;
+  padding: 16px 36px;
   border-radius: 50px; /* Pill shape */
   text-decoration: none;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 16px;
   text-transform: uppercase;
   letter-spacing: 1px;
   transition: transform 0.2s ease, opacity 0.2s ease;
@@ -279,14 +279,14 @@
 }
 
 .custom-image-text__subheading {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
   margin: 0 0 0.5rem 0;
   line-height: 1.4;
 }
 
 .custom-image-text__text {
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.6;
   margin: 0;
   opacity: 0.9; /* Softens the paragraph text slightly compared to headings */
@@ -444,7 +444,7 @@
 }
 
 .testimonial-slider__text {
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.6;
   font-weight: 500;
   margin: 0 0 1.5rem 0;
@@ -457,7 +457,7 @@
 }
 
 .testimonial-slider__author {
-  font-size: 14px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 400;
   opacity: 0.9;
@@ -509,7 +509,7 @@
   border-radius: 50px;
   text-decoration: none;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 16px;
   text-transform: uppercase;
   letter-spacing: 1px;
   transition: transform 0.2s ease, opacity 0.2s ease;
@@ -555,7 +555,7 @@
 }
 
 .where-to-buy__text {
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.6;
   color: var(--text-color, #555555);
   margin: 0 auto 2.5rem auto;
@@ -578,7 +578,7 @@
   border-radius: 50px;
   text-decoration: none;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 16px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   transition: transform 0.2s ease, opacity 0.2s ease;
@@ -644,7 +644,7 @@
 }
 
 .newsletter-banner__text {
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.6;
   margin: 0 auto;
   max-width: 700px;
@@ -673,10 +673,10 @@
 
 .newsletter-banner__input {
   flex: 1;
-  padding: 14px 20px;
+  padding: 16px 20px;
   border: 1px solid transparent;
   border-radius: 50px; /* Pill shape */
-  font-size: 14px;
+  font-size: 16px;
   outline: none;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
@@ -686,13 +686,13 @@
 }
 
 .newsletter-banner__btn {
-  padding: 14px 28px;
+  padding: 16px 28px;
   background-color: #1a1a1a;
   color: #ffffff;
   border: none;
   border-radius: 50px; /* Pill shape */
   font-weight: 700;
-  font-size: 14px;
+  font-size: 16px;
   text-transform: uppercase;
   letter-spacing: 1px;
   cursor: pointer;
