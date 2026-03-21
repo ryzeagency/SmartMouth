@@ -93,6 +93,51 @@
         "subheading_2": "",
         "text_2": ""
       }
+    },
+    "featured_in_PARDxd": {
+      "type": "featured-in",
+      "blocks": {
+        "logo_7dkCBz": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/GQ-Emblem.png",
+            "link": ""
+          }
+        },
+        "logo_FcknJt": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/Today-logo.png",
+            "link": ""
+          }
+        },
+        "logo_fjrRVz": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/Yahoo-y-logo.png",
+            "link": ""
+          }
+        },
+        "logo_khGwk4": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/MJ.png",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "logo_7dkCBz",
+        "logo_FcknJt",
+        "logo_fjrRVz",
+        "logo_khGwk4"
+      ],
+      "name": "Logo List",
+      "settings": {
+        "bg_color": "#ffffff",
+        "heading": "As Featured in",
+        "heading_color": "#333333"
+      }
     }
   },
   "order": [
@@ -101,6 +146,7 @@
     "product_showcase_PHgFDU",
     "smartmouth_image_right_fYgdmF",
     "smart_mouth_full_image_tVyDnQ",
-    "smartmouth_image_right_wCDRNN"
+    "smartmouth_image_right_wCDRNN",
+    "featured_in_PARDxd"
   ]
 }
