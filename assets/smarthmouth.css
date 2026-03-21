@@ -62,7 +62,7 @@
 
 .hero-banner__heading {
   font-family: inherit;
-  font-size: 2.5rem;
+  font-size: 30px;
   font-weight: 700;
   line-height: 1.1;
   margin: 0 0 1rem 0;
@@ -165,7 +165,7 @@
 .custom-text-section__text {
   font-size: 16px;
   line-height: 1.6;
-  margin: 0 auto 2.5rem auto;
+  margin: 0 auto 30px auto;
   font-weight: 500;
   max-width: 750px;
 }
@@ -266,7 +266,7 @@
 
 @media (min-width: 768px) {
   .custom-image-text__main-heading {
-    font-size: 2.5rem;
+    font-size: 30px;
   }
 }
 
@@ -348,7 +348,7 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 2.5rem;
+  gap: 30px;
 }
 
 @media (min-width: 768px) {
@@ -558,7 +558,7 @@
   font-size: 16px;
   line-height: 1.6;
   color: var(--text-color, #555555);
-  margin: 0 auto 2.5rem auto;
+  margin: 0 auto 30px auto;
   max-width: 700px;
 }
 
