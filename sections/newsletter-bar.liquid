@@ -1,59 +1,74 @@
-{{ 'section-newsletter-bar.css' | asset_url | stylesheet_tag }}
+{{ 'section-newsletter-banner.css' | asset_url | stylesheet_tag }}
 
-<section class="newsletter-bar" style="background-color: {{ section.settings.background_color }};">
-  <div class="newsletter-bar__container page-width">
+<section class="newsletter-banner" style="--bg-color: {{ section.settings.bg_color }}; --text-color: {{ section.settings.text_color }};">
+  <div class="newsletter-banner__container">
+    
     {% if section.settings.heading != blank %}
-      <h2 class="newsletter-bar__heading" style="color: {{ section.settings.heading_color }};">
-        {{ section.settings.heading }}
-      </h2>
+      <h2 class="newsletter-banner__heading">{{ section.settings.heading }}</h2>
     {% endif %}
 
-    {% if section.settings.subtext != blank %}
-      <p class="newsletter-bar__subtext" style="color: {{ section.settings.text_color }};">
-        {{ section.settings.subtext }}
-      </p>
+    {% if section.settings.text != blank %}
+      <div class="newsletter-banner__text">
+        {{ section.settings.text }}
+      </div>
     {% endif %}
 
-    {% form 'customer', class: 'newsletter-bar__form' %}
-      {% if form.errors %}
-        <div class="newsletter-bar__error">{{ form.errors | default_errors }}</div>
-      {% endif %}
+    {% if section.settings.show_form %}
+      <div class="newsletter-banner__form-wrapper">
+        {% form 'customer', class: 'newsletter-banner__form' %}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          
+          {%- if form.posted_successfully? -%}
+            <div class="newsletter-banner__success" tabindex="-1" autofocus>
+              Thanks for subscribing! Keep an eye on your inbox.
+            </div>
+          {%- else -%}
+            <input
+              id="NewsletterForm--{{ section.id }}"
+              type="email"
+              name="contact[email]"
+              class="newsletter-banner__input"
+              value="{{ form.email }}"
+              aria-required="true"
+              autocorrect="off"
+              autocapitalize="off"
+              autocomplete="email"
+              {% if form.errors %}
+                autofocus
+                aria-invalid="true"
+              {% endif %}
+              placeholder="Enter your email"
+              required
+            >
+            <button type="submit" class="newsletter-banner__btn" name="commit" id="Subscribe">
+              Subscribe
+            </button>
+          {%- endif -%}
+        {% endform %}
+      </div>
+    {% endif %}
 
-      {% if form.posted_successfully? %}
-        <p class="newsletter-bar__success" style="color: {{ section.settings.heading_color }};">
-          {{ section.settings.success_message }}
-        </p>
-      {% else %}
-        <input type="hidden" name="contact[tags]" value="newsletter">
-        <div class="newsletter-bar__input-group">
-          <input
-            type="email"
-            name="contact[email]"
-            placeholder="{{ section.settings.placeholder }}"
-            required
-            class="newsletter-bar__input"
-            autocomplete="email"
-            aria-label="Email address"
-          >
-          <button
-            type="submit"
-            class="newsletter-bar__submit"
-            style="background-color: {{ section.settings.button_bg }};color: {{ section.settings.button_text_color }};"
-          >
-            {{ section.settings.button_label }}
-          </button>
-        </div>
-      {% endif %}
-    {% endform %}
   </div>
 </section>
 
 {% schema %}
 {
-  "name": "Newsletter Bar",
+  "name": "Newsletter Banner",
   "tag": "section",
-  "class": "section-newsletter-bar",
+  "class": "section-newsletter-banner",
   "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#0073c8"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    },
     {
       "type": "text",
       "id": "heading",
@@ -61,63 +76,26 @@
       "default": "Sign up today for coupons, offers and updates!"
     },
     {
-      "type": "color",
-      "id": "heading_color",
-      "label": "Heading color",
-      "default": "#ffffff"
-    },
-    {
-      "type": "text",
-      "id": "subtext",
+      "type": "textarea",
+      "id": "text",
       "label": "Subtext",
       "default": "At SmartMouth™, we love saving you from bad breath, but we also love saving you money."
     },
     {
-      "type": "color",
-      "id": "text_color",
-      "label": "Text color",
-      "default": "#d4edda"
+      "type": "header",
+      "content": "Email Form"
     },
     {
-      "type": "color",
-      "id": "background_color",
-      "label": "Background color",
-      "default": "#1a8c3a"
-    },
-    {
-      "type": "text",
-      "id": "placeholder",
-      "label": "Input placeholder",
-      "default": "Enter your email address"
-    },
-    {
-      "type": "text",
-      "id": "button_label",
-      "label": "Button label",
-      "default": "Subscribe"
-    },
-    {
-      "type": "color",
-      "id": "button_bg",
-      "label": "Button background",
-      "default": "#ffffff"
-    },
-    {
-      "type": "color",
-      "id": "button_text_color",
-      "label": "Button text color",
-      "default": "#1a8c3a"
-    },
-    {
-      "type": "text",
-      "id": "success_message",
-      "label": "Success message",
-      "default": "Thanks for subscribing!"
+      "type": "checkbox",
+      "id": "show_form",
+      "label": "Show email input form",
+      "info": "Displays a working Shopify newsletter sign-up field below the text.",
+      "default": false
     }
   ],
   "presets": [
     {
-      "name": "Newsletter Bar"
+      "name": "Newsletter Banner"
     }
   ]
 }
