@@ -229,7 +229,7 @@
                 </div>
               {%- when 'amazon_review_badge' -%}
                 <div class="product__code-output" {{ block.shopify_attributes }}>
-                  {{ block.settings.review_badge_code }}
+                  {{ product.metafields.custom.product_amazon_customer_reviews.value }}
                 </div>
               {%- when 'quantity_selector' -%}
                 <div
