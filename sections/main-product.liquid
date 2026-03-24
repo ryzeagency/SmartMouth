@@ -227,6 +227,10 @@
                     </div>
                   </details>
                 </div>
+              {%- when 'amazon_review_bdage' -%}
+                <div class="product__code-output" {{ block.shopify_attributes }}>
+                  {{ block.settings.review_badge_code }}
+                </div>
               {%- when 'quantity_selector' -%}
                 <div
                   id="Quantity-Form-{{ section.id }}"
