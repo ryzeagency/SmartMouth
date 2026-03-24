@@ -187,12 +187,24 @@
         "text": "At SmartMouth™, we love saving you from bad breath, but we also love saving you money.",
         "show_form": false
       }
+    },
+    "product_customer_review_zzHYdM": {
+      "type": "product-customer-review",
+      "name": "Amazon Reviews",
+      "settings": {
+        "heading": "Customer Reviews",
+        "text_alignment": "center",
+        "background_color": "#ffffff",
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
     }
   },
   "order": [
     "main",
     "product_mouthwash_info_EEaENx",
     "related-products",
+    "product_customer_review_zzHYdM",
     "available_in_HNwh3d",
     "newsletter_bar_6KkmKA"
   ]
