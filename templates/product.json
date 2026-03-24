@@ -23,6 +23,12 @@
           "type": "title",
           "settings": {}
         },
+        "amazon_review_badge_nRYLJj": {
+          "type": "amazon_review_badge",
+          "settings": {
+            "review_badge_code": "<p>{{ product.metafields.custom.product_amazon_customer_reviews | metafield_tag }}</p>"
+          }
+        },
         "caption": {
           "type": "text",
           "settings": {
@@ -93,6 +99,7 @@
       "block_order": [
         "vendor",
         "title",
+        "amazon_review_badge_nRYLJj",
         "caption",
         "price",
         "variant_picker",
