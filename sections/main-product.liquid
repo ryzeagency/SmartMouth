@@ -227,7 +227,7 @@
                     </div>
                   </details>
                 </div>
-              {%- when 'amazon_review_bdage' -%}
+              {%- when 'amazon_review_badge' -%}
                 <div class="product__code-output" {{ block.shopify_attributes }}>
                   {{ block.settings.review_badge_code }}
                 </div>
@@ -959,6 +959,18 @@
           "id": "custom_liquid",
           "label": "t:sections.custom-liquid.settings.custom_liquid.label",
           "info": "t:sections.custom-liquid.settings.custom_liquid.info"
+        }
+      ]
+    },
+    {
+      "type": "amazon_review_badge",
+      "name": "Amazon Badge Code",
+      "settings": [
+        {
+          "type": "liquid",
+          "id": "review_badge_code",
+          "label": "Amazon Bdadge Code",
+          "info": "Put your amazon badge code and script here"
         }
       ]
     },
