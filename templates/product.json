@@ -122,7 +122,20 @@
         "hide_variants": true,
         "enable_video_looping": false,
         "padding_top": 36,
-        "padding_bottom": 12
+        "padding_bottom": 76
+      }
+    },
+    "product_mouthwash_info_EEaENx": {
+      "type": "product-mouthwash-info",
+      "name": "Mouthwash Product Info",
+      "settings": {
+        "p1_title": "The Science Behind Fresh Breath",
+        "p1_text": "<p>SmartMouth™ is not your ordinary mouthwash for bad breath. What sets it apart is our patented zinc ion technology, contained within our Original Activated Breath Rinse. This technology activates as you mix Solution 1 and Solution 2, producing a powerful zinc ion solution scientifically proven to neutralize the sulfur gases that cause bad breath. By addressing bad breath at its source, SmartMouth™ ensures that once your breath is fresh, it remains that way throughout the day and night.</p><p>When it comes to bad breath prevention mouthwash, SmartMouth™ stands unrivaled. Our commitment to quality and science-backed solutions means that each bottle of SmartMouth™ Original Activated Breath Rinse is designed to give you confidence in every smile and conversation.</p>",
+        "p1_image": "shopify://shop_images/before-after-mouthwash.jpg",
+        "p2_image": "shopify://shop_images/How-it-works-v1-w-title-scaled.png",
+        "p3_image": "shopify://shop_images/fresh-breath-that-lasts.jpg",
+        "p3_title": "Fresh Breath That Lasts",
+        "p3_text": "<p>Our commitment to innovation and quality means you’re getting a product that’s been carefully crafted to meet your needs. The patented zinc ion technology in SmartMouth™ Dry Mouth Relief Mouthwash is the result of rigorous research and a deep understanding of oral health science.</p><p>Don’t let dry mouth hold you back any longer. Discover the refreshing, moisturizing relief of SmartMouth™ Dry Mouth Activated Oral Rinse and step into a world of comfort and confidence. Try it today and feel the immediate difference it makes.</p>"
       }
     },
     "related-products": {
@@ -141,30 +154,6 @@
         "show_rating": false,
         "padding_top": 36,
         "padding_bottom": 28
-      }
-    },
-    "product_mouthwash_info_EEaENx": {
-      "type": "product-mouthwash-info",
-      "name": "Mouthwash Product Info",
-      "settings": {
-        "p1_title": "The Science Behind Fresh Breath",
-        "p1_text": "<p>SmartMouth™ is not your ordinary mouthwash for bad breath. What sets it apart is our patented zinc ion technology, contained within our Original Activated Breath Rinse. This technology activates as you mix Solution 1 and Solution 2, producing a powerful zinc ion solution scientifically proven to neutralize the sulfur gases that cause bad breath. By addressing bad breath at its source, SmartMouth™ ensures that once your breath is fresh, it remains that way throughout the day and night.</p><p>When it comes to bad breath prevention mouthwash, SmartMouth™ stands unrivaled. Our commitment to quality and science-backed solutions means that each bottle of SmartMouth™ Original Activated Breath Rinse is designed to give you confidence in every smile and conversation.</p>",
-        "p1_image": "shopify://shop_images/before-after-mouthwash.jpg",
-        "p2_image": "shopify://shop_images/How-it-works-v1-w-title-scaled.png",
-        "p3_image": "shopify://shop_images/fresh-breath-that-lasts.jpg",
-        "p3_title": "Fresh Breath That Lasts",
-        "p3_text": "<p>Our commitment to innovation and quality means you’re getting a product that’s been carefully crafted to meet your needs. The patented zinc ion technology in SmartMouth™ Dry Mouth Relief Mouthwash is the result of rigorous research and a deep understanding of oral health science.</p><p>Don’t let dry mouth hold you back any longer. Discover the refreshing, moisturizing relief of SmartMouth™ Dry Mouth Activated Oral Rinse and step into a world of comfort and confidence. Try it today and feel the immediate difference it makes.</p>"
-      }
-    },
-    "newsletter_bar_6KkmKA": {
-      "type": "newsletter-bar",
-      "name": "Newsletter Banner",
-      "settings": {
-        "bg_color": "#0073c8",
-        "text_color": "#ffffff",
-        "heading": "Sign up today for coupons, offers and updates!",
-        "text": "At SmartMouth™, we love saving you from bad breath, but we also love saving you money.",
-        "show_form": false
       }
     },
     "available_in_HNwh3d": {
@@ -186,6 +175,17 @@
         "button_bg_2": "#008035",
         "button_text_2": "#ffffff",
         "image": "shopify://shop_images/smartmouth-groupproduct-img.png"
+      }
+    },
+    "newsletter_bar_6KkmKA": {
+      "type": "newsletter-bar",
+      "name": "Newsletter Banner",
+      "settings": {
+        "bg_color": "#0073c8",
+        "text_color": "#ffffff",
+        "heading": "Sign up today for coupons, offers and updates!",
+        "text": "At SmartMouth™, we love saving you from bad breath, but we also love saving you money.",
+        "show_form": false
       }
     }
   },
