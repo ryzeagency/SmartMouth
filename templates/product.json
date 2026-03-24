@@ -61,7 +61,7 @@
           "settings": {
             "heading": "Ingredients",
             "icon": "leaf",
-            "content": "",
+            "content": "{{ product.metafields.custom.product_ingredients | metafield_tag }}",
             "page": ""
           }
         },
@@ -70,7 +70,7 @@
           "settings": {
             "heading": "Benefits",
             "icon": "heart",
-            "content": "",
+            "content": "{{ product.metafields.custom.product_benefits | metafield_tag }}",
             "page": ""
           }
         },
@@ -79,7 +79,7 @@
           "settings": {
             "heading": "Directions",
             "icon": "question_mark",
-            "content": "",
+            "content": "{{ product.metafields.custom.product_directions | metafield_tag }}",
             "page": ""
           }
         },
