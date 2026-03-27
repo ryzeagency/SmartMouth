@@ -49,6 +49,10 @@
           "type": "quantity_selector",
           "settings": {}
         },
+        "loop_subscriptions_loop_widget_ndmjpf": {
+          "type": "shopify://apps/loop-subscriptions/blocks/loop_widget/267a7c64-5cb3-4552-b817-5485165f0a0b",
+          "settings": {}
+        },
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
@@ -102,6 +106,7 @@
         "price",
         "variant_picker",
         "quantity_selector",
+        "loop_subscriptions_loop_widget_ndmjpf",
         "buy_buttons",
         "description",
         "collapsible-row-0",
@@ -156,6 +161,17 @@
         "padding_bottom": 28
       }
     },
+    "product_customer_review_zzHYdM": {
+      "type": "product-customer-review",
+      "name": "Amazon Reviews",
+      "settings": {
+        "heading": "Customer Reviews",
+        "text_alignment": "center",
+        "background_color": "#ffffff",
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
     "available_in_HNwh3d": {
       "type": "available-in",
       "name": "Where to Buy",
@@ -186,17 +202,6 @@
         "heading": "Sign up today for coupons, offers and updates!",
         "text": "At SmartMouth™, we love saving you from bad breath, but we also love saving you money.",
         "show_form": false
-      }
-    },
-    "product_customer_review_zzHYdM": {
-      "type": "product-customer-review",
-      "name": "Amazon Reviews",
-      "settings": {
-        "heading": "Customer Reviews",
-        "text_alignment": "center",
-        "background_color": "#ffffff",
-        "padding_top": 48,
-        "padding_bottom": 48
       }
     }
   },
