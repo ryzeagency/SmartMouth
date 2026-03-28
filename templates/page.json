@@ -84,7 +84,7 @@
       "name": "t:sections.image-with-text.presets.name",
       "settings": {
         "image": "shopify://shop_images/6-SmartMouth-Original-Mouthwash-16oz-scaled_4f72cc74-e109-4c2f-9528-49419ca6cbfc.jpg",
-        "height": "medium",
+        "height": "adapt",
         "desktop_image_width": "medium",
         "layout": "image_first",
         "image_behavior": "none",
