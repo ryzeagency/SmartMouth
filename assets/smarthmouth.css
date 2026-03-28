@@ -1,3 +1,16 @@
+.page-section-title {
+    padding: 75px;
+    background-color: #0073c8;
+    text-align: center;
+}
+
+.page-section-title h1 {
+    margin-bottom: 0;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
 .hero-banner {
   position: relative;
   min-height: 500px;
