@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -6,9 +15,93 @@
         "padding_top": 28,
         "padding_bottom": 28
       }
+    },
+    "rich_text_gfbgxz": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_brxa6r": {
+          "type": "heading",
+          "settings": {
+            "heading": "The SmartMouth Story",
+            "heading_size": "h1"
+          }
+        },
+        "text_GHFAEh": {
+          "type": "text",
+          "settings": {
+            "text": "<p>For more than two decades, SmartMouth has worked to make bad breath a thing of the past. Learn about our history, our founder and our leadership.<br/><br/></p>"
+          }
+        },
+        "button_4jBPtt": {
+          "type": "button",
+          "settings": {
+            "button_label": "Button label",
+            "button_link": "",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_brxa6r",
+        "text_GHFAEh",
+        "button_4jBPtt"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "image_with_text_tPTBkf": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_N4dyqd": {
+          "type": "heading",
+          "settings": {
+            "heading": "Your Partner in Bad Breath Prevention",
+            "heading_size": "h1"
+          }
+        },
+        "text_G748zV": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Since 1993, SmartMouth™ Oral Health Laboratories has led the charge against bad breath. It was at this time that our founder, Dr. Marvin Cohen, recognized the need for a long-lasting solution to bad breath.</p><p>Dr. Cohen was a leading authority on the etiology of halitosis, which is the study of the origin and diagnosis of bad breath. His many years of research on the cause of bad breath led to the creation of our patented zinc ion activated technology.</p><p>Dr. Cohen’s vast knowledge of bad breath led him to understand that most fresh breath products only provided temporary solutions to breath issues. Nothing on the market addressed the underlying issue of eliminating sulfur gas production.</p><p>He knew that preventing bad breath required a smarter approach, and SmartMouth™’s activated zinc ions were his solution to eliminating the sulfur production at the root of bad breath.</p><p>We’re so confident every SmartMouth™ rinse will eliminate your breath issue, that all of our products carry a full money back satisfaction <a href=\"https://www.smartmouth.com/satisfaction-guarantee/\">guarantee</a>.</p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_N4dyqd",
+        "text_G748zV"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/6-SmartMouth-Original-Mouthwash-16oz-scaled_4f72cc74-e109-4c2f-9528-49419ca6cbfc.jpg",
+        "height": "medium",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "rich_text_gfbgxz",
+    "image_with_text_tPTBkf"
   ]
 }
