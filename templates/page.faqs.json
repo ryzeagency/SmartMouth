@@ -15,9 +15,187 @@
         "padding_top": 60,
         "padding_bottom": 60
       }
+    },
+    "faqs_accordion_j8akQL": {
+      "type": "faqs-accordion",
+      "blocks": {
+        "accordion_item_GfgRV3": {
+          "type": "accordion_item",
+          "settings": {
+            "title": "Which SmartMouth™ rinse is right for me?",
+            "content": "<img src=\"https://www.smartmouth.com/wp-content/uploads/2025/07/Rinse-Comparison-Chart-7.1.2025-scaled.jpg\" alt=\"Rinse Comparison Chart 7.1.2025\">"
+          }
+        },
+        "accordion_item_YLiiNd": {
+          "type": "accordion_item",
+          "settings": {
+            "title": "Why does SmartMouth™ use 2 solutions?",
+            "content": "<p>SmartMouth™ Mouthwash uses a patented, dual-solution technology that requires 2 key solutions to be kept separate until just prior to rinsing. This ensures that SmartMouth™ is freshly activated with each use to provide unmatched, all day fresh breath.</p>"
+          }
+        },
+        "accordion_item_eP783p": {
+          "type": "accordion_item",
+          "settings": {
+            "title": "Can I travel with SmartMouth™?",
+            "content": "<p>With the FAA liquid carry-on limitations, don’t forget to pack the new SmartMouth™ Single Use Packs. These individual-use mouthwash packets fall well under the FAA liquid carry-on limit and fit easily into your purse, briefcase, or carry-on for fresh breath anytime, anywhere.</p><p>You can also pack an unopened package of SmartMouth™ Mouthwash into your checked baggage. Please note that you should not travel with previously opened mouthwash bottles.</p>"
+          }
+        },
+        "accordion_item_P8FwF9": {
+          "type": "accordion_item",
+          "settings": {
+            "title": "Why is SmartMouth™ better than other mouthwashes at preventing bad breath?",
+            "content": "<p>SmartMouth™ provides fresh breath 12 times longer than any other leading mouthwash because it works in 2 ways: elimination* and prevention. (1) It eliminates existing bad breath when you rinse with it. (2) It prevents new bad breath from forming. The result is 12 hours of fresh breath after each rinse. No other leading mouthwash has been clinically proven to provide fresh breath longer than 1 hour.</p>"
+          }
+        },
+        "accordion_item_gWt8a6": {
+          "type": "accordion_item",
+          "settings": {
+            "title": "What will I experience/feel when I use SmartMouth™?",
+            "content": "<p>Your taste buds will be thrilled with the delicious, mint taste of SmartMouth™. Unlike most mouthwashes, SmartMouth™ does not contain alcohol so it does not burn or dry out the mouth. After rinsing with SmartMouth™, your mouth and teeth will feel smooth and uniquely clean. In fact, within one week, you can wake up with your teeth feeling smooth and clean (no fuzzy feeling).</p>"
+          }
+        },
+        "accordion_item_c8fMze": {
+          "type": "accordion_item",
+          "settings": {
+            "title": "Can you eat or drink right after using SmartMouth™?",
+            "content": "<p>SmartMouth™ is immediately effective upon rinsing, and you can drink or eat at any time. However, when rinsing with any flavored mouthwash, you may want to wait a few moments before eating or drinking. This allows time for your palate to naturally become flavor neutral.</p>"
+          }
+        },
+        "accordion_item_ngRqec": {
+          "type": "accordion_item",
+          "settings": {
+            "title": "Do I have to rinse after eating?",
+            "content": "<p>SmartMouth™ Mouthwash is effective at maintaining fresh breath even after eating most foods, so additional rinsing is not required. If you do introduce a very strong, food-based odor like onion or garlic into your mouth, you may need to re-rinse to eliminate that new odor.</p>"
+          }
+        },
+        "accordion_item_zdXU9t": {
+          "type": "accordion_item",
+          "settings": {
+            "title": "Does SmartMouth work on smoker’s breath?",
+            "content": "<p>SmartMouth™ is effective in eliminating smoker’s breath, including cigar breath. As smoking re-introduces strong odor back into the mouth, you may want to re-rinse after smoking.</p>"
+          }
+        },
+        "accordion_item_3PYq3R": {
+          "type": "accordion_item",
+          "settings": {
+            "title": "Does SmartMouth™ work on post-nasal drip?",
+            "content": "<p>Post-nasal drip provides a natural food supply (protein) for bacteria to consume and produce bad breath gases. SmartMouth™ is effective in eliminating and preventing the bad breath caused by typical post-nasal drip.</p>"
+          }
+        },
+        "accordion_item_QMye6H": {
+          "type": "accordion_item",
+          "settings": {
+            "title": "Is SmartMouth™ alcohol free?",
+            "content": "<p>SmartMouth™ Mouthwash is 100% alcohol free. Alcohol is a drying agent, and a dry mouth can cause or worsen bad breath. In fact, there are many challenges to alcohol containing mouthwashes.</p>"
+          }
+        },
+        "accordion_item_WQhpzA": {
+          "type": "accordion_item",
+          "settings": {
+            "title": "Does SmartMouth™ have fluoride?",
+            "content": "<p>All SmartMouth™ oral rinses are fluoride free.</p>"
+          }
+        },
+        "accordion_item_4Tz67N": {
+          "type": "accordion_item",
+          "settings": {
+            "title": "Can SmartMouth™ prevent gingivitis?",
+            "content": "<p>While proper oral hygiene is essential to preventing gingivitis, there are many other factors that can influence whether or not you’ll get gingivitis. These include age, nutrition, tobacco use, infections, diabetes, and more. Use SmartMouth™ Clinical mouthwash twice a day. Other than improving your oral hygiene and diet, this is one of the best ways to eliminate germs and sulfur production in your mouth.</p>"
+          }
+        },
+        "accordion_item_3XK3yM": {
+          "type": "accordion_item",
+          "settings": {
+            "title": "Does SmartMouth™ work for dry mouth?",
+            "content": "<p>Yes, SmartMouth™ <a href=\"/product/smartmouth-dry-mouth-activated-mouthwash-16oz/\">Dry Mouth formula</a> combines dry mouth relief and bad breath prevention in a never-before-seen way.</p>"
+          }
+        },
+        "accordion_item_DnRcYP": {
+          "type": "accordion_item",
+          "settings": {
+            "title": "Where can I buy SmartMouth™?",
+            "content": "<p>You can buy SmartMouth™ toothpaste, oral rinses, mints, and travel packs at over 60,000 national and regional <a href=\"/where-to-buy/\">retail locations</a> as well as purchase them on Amazon.</p>"
+          }
+        },
+        "accordion_item_LGRMPz": {
+          "type": "accordion_item",
+          "settings": {
+            "title": "Is SmartMouth™ safe for kids?",
+            "content": "<p>Yes! SmartMouth™ is safe and recommended for children 6 years and older. All the ingredients used in SmartMouth™ products have been established by the FDA as “GRAS” (Generally Recognized As Safe) and considered safe for use in non-prescription, over-the-counter, oral care products.</p>"
+          }
+        },
+        "accordion_item_HV8Uid": {
+          "type": "accordion_item",
+          "settings": {
+            "title": "Is SmartMouth™ safe for diabetics?",
+            "content": "<p>Yest! SmartMouth™ is safe for Diabetics. All the ingredients used in SmartMouth™ products have been established by the FDA as “GRAS” (Generally Recognized As Safe) and considered safe for use in non-prescription, over-the-counter, oral care products.</p>"
+          }
+        },
+        "accordion_item_keLLgf": {
+          "type": "accordion_item",
+          "settings": {
+            "title": "Is SmartMouth™ safe to use if I’m pregnant?",
+            "content": "<p>While we are unaware of any known health concerns with the use of SmartMouth™ while pregnant, it is recommended that you consult your doctor before using this or any other over-the-counter or prescription mouthwash. All the ingredients used in SmartMouth™ products have been established by the FDA as “GRAS” (Generally Recognized As Safe) and considered safe for use in non-prescription, over-the-counter, oral care products.</p>"
+          }
+        },
+        "accordion_item_kXQaUV": {
+          "type": "accordion_item",
+          "settings": {
+            "title": "What toothpaste is good for gum disease?",
+            "content": "<p>When looking to prevent gum disease and gingivitis, you should look for a toothpaste with proven oral health benefits, like SmartMouth™ Premium toothpaste. Products like SmartMouth™ Premium toothpaste provides enamel strengthening, anti plaque, anti cavity, as well as sensitive whitening benefits.</p>"
+          }
+        },
+        "accordion_item_wgWUPf": {
+          "type": "accordion_item",
+          "settings": {
+            "title": "Which toothpaste kills the most bacteria?",
+            "content": "<p>SmartMouth™ Premium Toothpaste uses zinc ion technology in conjunction with other premium features to provide enamel strengthening, anti-plaque, anti-cavity, sensitive whitening. An effective toothpaste needs to work subgingivally, meaning it can reach the difficult area between your gums and teeth.</p>"
+          }
+        },
+        "accordion_item_Hfc3ny": {
+          "type": "accordion_item",
+          "settings": {
+            "title": "What mouthwash is good for bleeding gums?",
+            "content": "<p>SmartMouth™ Clinical DDS provides optimal oral and general health without sacrificing any of SmartMouth™’s elite anti-bad-breath-technology. However, you should consult a dentist if you experience the following symptoms after use: bleeding gums, gums that are tender or swollen, persistent bad breath.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "accordion_item_GfgRV3",
+        "accordion_item_YLiiNd",
+        "accordion_item_eP783p",
+        "accordion_item_P8FwF9",
+        "accordion_item_gWt8a6",
+        "accordion_item_c8fMze",
+        "accordion_item_ngRqec",
+        "accordion_item_zdXU9t",
+        "accordion_item_3PYq3R",
+        "accordion_item_QMye6H",
+        "accordion_item_WQhpzA",
+        "accordion_item_4Tz67N",
+        "accordion_item_3XK3yM",
+        "accordion_item_DnRcYP",
+        "accordion_item_LGRMPz",
+        "accordion_item_HV8Uid",
+        "accordion_item_keLLgf",
+        "accordion_item_kXQaUV",
+        "accordion_item_wgWUPf",
+        "accordion_item_Hfc3ny"
+      ],
+      "name": "Custom Accordion",
+      "settings": {
+        "title": "",
+        "bg_color": "#f4f4f4",
+        "border_color": "#e5e5e5",
+        "text_color": "#333333",
+        "icon_color": "#0066cc",
+        "padding_top": 0,
+        "padding_bottom": 60
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "faqs_accordion_j8akQL"
   ]
 }
