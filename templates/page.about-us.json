@@ -43,11 +43,52 @@
         "padding_top": 50,
         "padding_bottom": 50
       }
+    },
+    "team_members_QaYTeN": {
+      "type": "team-members",
+      "blocks": {
+        "member_ccdeAD": {
+          "type": "member",
+          "settings": {
+            "image": "shopify://shop_images/Purple-Lines-Modern-Tech-Company-Team-Flyer-1-2-scaled-e1757357979537-650x650.png",
+            "name": "Mark Walsh",
+            "bio": "<p>Mark joined SmartMouth as President & CEO in September 2024. He brings a wealth of multi-functional general management experience, built on a strong foundation at large blue-chip companies like Procter & Gamble and PepsiCo. Over the past 10 years, he has successfully grown businesses in the oral care segment. Mark’s leadership, vision, and dedication to innovation make him the ideal person to guide SmartMouth to new heights, driving growth and ensuring our products continue to make a real difference for our customers.</p>"
+          }
+        },
+        "member_WD8qxB": {
+          "type": "member",
+          "settings": {
+            "image": "shopify://shop_images/Purple-Lines-Modern-Tech-Company-Team-Flyer-1-1-scaled-e1757358031599-650x650.png",
+            "name": "Brent Dellay",
+            "bio": "<p>Responsible for R&D, quality control and new product development, Brent’s the guy who listens to customer feedback and works tirelessly to improve our products. He attacks product development with good humor, perseverance and ingenuity, skills that served him well through deployments in Kuwait and Afghanistan as a first sergeant in the Illinois Army National Guard. We’re glad he’s on our side.</p>"
+          }
+        },
+        "member_NnRWYm": {
+          "type": "member",
+          "settings": {
+            "image": "shopify://shop_images/Purple-Lines-Modern-Tech-Company-Team-Flyer-1-2-scaled-e1757358180774-650x650.png",
+            "name": "Dr. Elizabeth Clary, D.M.D.",
+            "bio": "<p>Dr. Clary received her dental education at Southern Illinois University. She is SmartMouth™’s resident dental expert and a member of the American Dental Association. When she’s not helping her patients or consulting with SmartMouth™, she loves to spend time with her husband, Andrew, and her four children.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "member_ccdeAD",
+        "member_WD8qxB",
+        "member_NnRWYm"
+      ],
+      "name": "Team Members",
+      "settings": {
+        "title": "Our Executive Team, Leading the Charge Against Bad Breath",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
     }
   },
   "order": [
     "main",
     "split_image_text_B4z4Hx",
-    "cta_banner_nyy9F4"
+    "cta_banner_nyy9F4",
+    "team_members_QaYTeN"
   ]
 }
