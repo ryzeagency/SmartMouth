@@ -21,7 +21,7 @@
   </h1>
   </div>
 </div>
-{% if page.content %}
+{% if page.content != blank %}
 <div class="page-width page-width--narrow section-{{ section.id }}-padding">
   <div class="rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
     {{ page.content }}
