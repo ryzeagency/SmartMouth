@@ -94,7 +94,7 @@
   {%- if section.settings.main_title != blank or section.settings.main_subtext != blank -%}
     <div class="split-header-{{ section.id }}">
       {%- if section.settings.main_title != blank -%}
-        <strong><h2 class="h2">{{ section.settings.main_title }}</h2></strong>
+        <h2 class="h2"><strong>{{ section.settings.main_title }}</strong></h2>
       {%- endif -%}
       {%- if section.settings.main_subtext != blank -%}
         <div class="rte">{{ section.settings.main_subtext }}</div>
