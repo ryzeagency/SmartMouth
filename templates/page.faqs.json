@@ -185,8 +185,8 @@
       "name": "Custom Accordion",
       "settings": {
         "title": "",
-        "bg_color": "#f4f4f4",
-        "border_color": "#e5e5e5",
+        "bg_color": "#fdfdfd",
+        "border_color": "#f0f0f0",
         "text_color": "#333333",
         "icon_color": "#0066cc",
         "padding_top": 0,
