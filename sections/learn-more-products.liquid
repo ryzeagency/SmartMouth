@@ -1,0 +1,301 @@
+{%- style -%}
+  .section-{{ section.id }}-wrapper {
+    background-color: {{ section.settings.bg_color }};
+  }
+
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .learn-more-header-{{ section.id }} {
+    text-align: center;
+    margin-bottom: 5rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .learn-more-header-{{ section.id }} .h2 {
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+  }
+
+  .learn-more-header-{{ section.id }} .rte {
+    color: rgba(var(--color-foreground), 0.8);
+    font-size: 1.5rem;
+    line-height: 1.6;
+  }
+
+  /* Grid adjustments for spacing */
+  .learn-more-grid-{{ section.id }} {
+    row-gap: 6rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .learn-more-grid-{{ section.id }} {
+      row-gap: 8rem;
+      column-gap: 4rem;
+    }
+  }
+
+  .learn-more-block-{{ section.id }} {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+  }
+
+  .learn-more-image-wrapper-{{ section.id }} {
+    width: 100%;
+    max-width: 250px; /* Constrains the image size like in the mockup */
+    margin: 0 auto 2rem auto;
+  }
+
+  .learn-more-image-{{ section.id }} {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+  }
+
+  .learn-more-block-{{ section.id }} h3 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-size: clamp(1.8rem, 2vw, 2.2rem);
+    font-weight: bold;
+  }
+
+  .learn-more-block-{{ section.id }} .rte {
+    color: rgba(var(--color-foreground), 0.75);
+    font-size: 1.4rem;
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+    flex-grow: 1; /* Pushes the button to the bottom evenly */
+  }
+
+  .learn-more-block-{{ section.id }} .rte p {
+    margin: 0;
+  }
+
+  .learn-more-btn-{{ section.id }} {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border: 0;
+    padding: 0 3rem;
+    cursor: pointer;
+    font: inherit;
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-decoration: none;
+    min-height: 4.4rem;
+    border-radius: 4rem; /* Pill shape */
+    letter-spacing: 0.05rem;
+    text-transform: uppercase;
+    background-color: {{ section.settings.button_bg_color }};
+    color: {{ section.settings.button_text_color }};
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .learn-more-btn-{{ section.id }}:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+
+  /* Placeholder styling */
+  .placeholder-svg-wrapper {
+    width: 100%;
+    height: 250px;
+    background-color: rgba(var(--color-foreground), 0.04);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .placeholder-svg-wrapper svg {
+    width: 60px;
+    height: 60px;
+    fill: rgba(var(--color-foreground), 0.2);
+  }
+{%- endstyle -%}
+
+<div class="section-{{ section.id }}-wrapper">
+  <div class="page-width section-{{ section.id }}-padding">
+    
+    {%- if section.settings.title != blank or section.settings.subtext != blank -%}
+      <div class="learn-more-header-{{ section.id }}">
+        {%- if section.settings.title != blank -%}
+          <h2 class="h2">{{ section.settings.title }}</h2>
+        {%- endif -%}
+        {%- if section.settings.subtext != blank -%}
+          <div class="rte">{{ section.settings.subtext }}</div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div class="grid grid--1-col grid--2-col-tablet learn-more-grid-{{ section.id }}">
+      {%- for block in section.blocks -%}
+        <div class="grid__item" {{ block.shopify_attributes }}>
+          <div class="learn-more-block-{{ section.id }}">
+            
+            <div class="learn-more-image-wrapper-{{ section.id }}">
+              {%- if block.settings.image != blank -%}
+                {{ block.settings.image | image_url: width: 600 | image_tag: 
+                  class: 'learn-more-image',
+                  loading: 'lazy',
+                  sizes: '(min-width: 750px) 250px, 50vw'
+                }}
+              {%- else -%}
+                <div class="placeholder-svg-wrapper">
+                  {{ 'product-1' | placeholder_svg_tag }}
+                </div>
+              {%- endif -%}
+            </div>
+
+            {%- if block.settings.heading != blank -%}
+              <h3>{{ block.settings.heading }}</h3>
+            {%- endif -%}
+
+            {%- if block.settings.text != blank -%}
+              <div class="rte">
+                {{ block.settings.text }}
+              </div>
+            {%- endif -%}
+
+            {%- if block.settings.button_label != blank -%}
+              <a href="{{ block.settings.button_link | default: '#' }}" class="learn-more-btn-{{ section.id }}">
+                {{ block.settings.button_label }}
+              </a>
+            {%- endif -%}
+
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Learn More Products",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Header"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Main Title"
+    },
+    {
+      "type": "richtext",
+      "id": "subtext",
+      "label": "Main Subtext"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#eefaf2"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button Background Color",
+      "default": "#0066cc"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 80
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product_card",
+      "name": "Product Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text Content"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button Label"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Learn More Products",
+      "blocks": [
+        { "type": "product_card" },
+        { "type": "product_card" },
+        { "type": "product_card" },
+        { "type": "product_card" }
+      ]
+    }
+  ]
+}
+{% endschema %}
