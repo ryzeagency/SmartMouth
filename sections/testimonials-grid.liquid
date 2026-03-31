@@ -1,9 +1,9 @@
 {%- style -%}
-  /* Section Padding */
+  /* Section Padding & Background */
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
-    background-color: #f9f9f9; /* Matches light grey background in mockup */
+    background-color: {{ section.settings.bg_color }};
   }
 
   @media screen and (min-width: 750px) {
@@ -22,7 +22,7 @@
     margin-right: auto;
   }
 
-  .testimonials-header-{{ section.id }} .h1 {
+  .testimonials-header-{{ section.id }} .h2 {
     font-weight: bold;
     margin-top: 0;
     margin-bottom: 1.5rem;
@@ -115,6 +115,19 @@
   .testimonial-info-{{ section.id }} {
     margin-top: 1rem;
     position: relative;
+    padding-top: 2rem; /* Space for the connecting line */
+  }
+
+  /* The Vertical Connecting Line */
+  .testimonial-info-{{ section.id }}::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 2rem; /* Length of the line below pointer */
+    background-color: #e0e0e0; /* Faint grey line */
   }
 
   .testimonial-name-{{ section.id }} {
@@ -130,7 +143,7 @@
     
     {%- if section.settings.title != blank -%}
       <div class="testimonials-header-{{ section.id }}">
-        <h2 class="h2"><strong>{{ section.settings.title }}</strong></h2>
+        <h2 class="h2">{{ section.settings.title }}</h2>
       </div>
     {%- endif -%}
 
@@ -211,6 +224,12 @@
       "step": 1,
       "default": 2,
       "label": "Columns on desktop"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#f9f9f9"
     },
     {
       "type": "header",
