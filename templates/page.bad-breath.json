@@ -33,70 +33,70 @@
     "faqs_accordion_qErFTD": {
       "type": "faqs-accordion",
       "blocks": {
-        "accordion_item_tmnRC9": {
-          "type": "accordion_item",
-          "settings": {
-            "title": "What causes bad breath?",
-            "content": ""
-          }
-        },
-        "accordion_item_rVBkwV": {
-          "type": "accordion_item",
-          "settings": {
-            "title": "What causes bad breath from the stomach?",
-            "content": ""
-          }
-        },
-        "accordion_item_Bd7MiT": {
-          "type": "accordion_item",
-          "settings": {
-            "title": "Do cavities cause bad breath?",
-            "content": ""
-          }
-        },
-        "accordion_item_JcXcxL": {
-          "type": "accordion_item",
-          "settings": {
-            "title": "How can I tell if I have bad breath?",
-            "content": ""
-          }
-        },
-        "accordion_item_PhKmic": {
-          "type": "accordion_item",
-          "settings": {
-            "title": "How do I prevent bad breath?",
-            "content": ""
-          }
-        },
-        "accordion_item_6njBn4": {
-          "type": "accordion_item",
-          "settings": {
-            "title": "How can I get rid of bad breath?",
-            "content": ""
-          }
-        },
-        "accordion_item_XGf68P": {
-          "type": "accordion_item",
-          "settings": {
-            "title": "How can I cure bad breath permanently?",
-            "content": ""
-          }
-        },
-        "accordion_item_QRqczg": {
-          "type": "accordion_item",
-          "settings": {
-            "title": "What is halitosis?",
-            "content": ""
-          }
-        },
-        "accordion_item_ximpiH": {
-          "type": "accordion_item",
-          "settings": {
-            "title": "Which medications cause bad breath?",
-            "content": ""
-          }
-        }
-      },
+  "accordion_item_tmnRC9": {
+    "type": "accordion_item",
+    "settings": {
+      "title": "What causes bad breath?",
+      "content": "<p><strong>If you’ve ever asked yourself, “Why do I have bad breath?” you should consider <a href=\"https://www.mayoclinic.org/diseases-conditions/bad-breath/symptoms-causes/syc-20350922\" target=\"_blank\">a number of potential causes</a>.</strong></p><p><a href=\"https://www.health.harvard.edu/blog/bad-breath-what-causes-it-and-what-to-do-about-it-2019012115803\" target=\"_blank\">Good oral hygiene</a> is the most important factor when it comes to halitosis (the clinical name for bad breath). Be sure to brush your teeth and tongue after eating, floss daily, and drink plenty of water. If you wear dentures, clean them regularly and make sure they fit properly so they don’t trap food particles and odor-causing bacteria, which both can cause unpleasant breath.</p><p>You may wonder what causes bad breath even after brushing and flossing. You probably know that <a href=\"https://www.medicinenet.com/bad_breath/article.htm\" target=\"_blank\">eating certain foods</a> such as onions, garlic, and other spices may cause bad breath. Remnants of these foods can remain in your mouth and cause the issue. Or they may <a href=\"https://www.webmd.com/food-recipes/news/19991127/garlic-bad-breath-king#1\" target=\"_blank\">release sulfur gasses during digestion</a>.</p><p><a href=\"https://www.medicinenet.com/bad_breath/article.htm\" target=\"_blank\">Dry mouth, also known as xerostomia</a>, also causes bad breath. Although you may not think of saliva as being clean, it helps cleanse your mouth to remove odor-causing food particles and bacteria. You’ve probably noticed your breath is less fresh in the morning. The culprit is usually naturally occurring dry mouth, especially if you sleep with your mouth open. However, some people experience chronic dry mouth due to disease, problems with the salivary glands, or a side effect from medication.</p><p>Medications can cause bad breath for other reasons, too. Some break down in the body and <a href=\"https://www.mayoclinic.org/diseases-conditions/bad-breath/symptoms-causes/syc-20350922\" target=\"_blank\">release chemicals</a> that other people can detect on your breath.</p><p>Certain <a href=\"https://www.health.harvard.edu/blog/bad-breath-what-causes-it-and-what-to-do-about-it-2019012115803\" target=\"_blank\">medical issues</a> can also lead to halitosis, including:</p><ul><li>Infections or surgical wounds in the mouth</li><li>Nose, throat, and mouth conditions</li><li>Chronic reflux of stomach acid</li><li>Some cancers and metabolic disorders</li></ul>"
+    }
+  },
+  "accordion_item_rVBkwV": {
+    "type": "accordion_item",
+    "settings": {
+      "title": "What causes bad breath from the stomach?",
+      "content": "<p>If you’ve heard <a href=\"https://www.everydayhealth.com/dental-health-pictures/ways-your-bad-breath-could-mean-bad-health.aspx\" target=\"_blank\">problems with your gut can cause bad breath</a>, you may be wondering if that’s true — and how to cure bad breath coming from your stomach. Digestive conditions, including stomach ulcers, acid reflux, and gastroesophageal reflux disease (more commonly known as GERD), can prevent or delay digestion of food in the stomach. The undigested food doesn’t move along, and it causes bad breath if it remains stuck long enough to decay.</p><p>If you experience bad breath due to digestive issues, the key is to approach the root of the problem. Practice good oral hygiene and use a mouthwash designed to eliminate and prevent bad breath. And also deal with what’s happening in your stomach. Discuss your symptoms with your doctor. You may be able to <a href=\"https://www.health.harvard.edu/digestive-health/9-ways-to-relieve-acid-reflux-without-medication\" target=\"_blank\">reduce acid reflux or GERD without medication</a> with these steps.</p><ul><li>Eat smaller, more frequent meals</li><li><a href=\"http://www.foodicinehealth.org/medical-conditions/acid-refluxheartburngastroesophageal-reflux-disease-gerd/\" target=\"_blank\">Avoid food and drink</a> triggers such as spicy foods, fatty foods, coffee, chocolate, carbonated beverages, and alcohol</li><li>Eat a couple of hours before vigorous exercise</li><li>Sleep on an incline</li><li>Quit smoking</li></ul><p>Be sure to ask your doctor whether medications you take may increase your likelihood of experiencing reflux.</p>"
+    }
+  },
+  "accordion_item_Bd7MiT": {
+    "type": "accordion_item",
+    "settings": {
+      "title": "Do cavities cause bad breath?",
+      "content": "<p>The bacteria that causes and feeds on cavities <a href=\"/articles/blog/do-cavities-cause-bad-breath/\">can cause bad breath</a> too. As bacteria feed, they release sulfur gas in your mouth, which is bad breath. Bad breath is sulfur gas. If you know or suspect you have a cavity, see your dentist as soon as possible. It’s easier to treat cavities when you discover them early. If you wait too long, decay may destroy a large portion of the tooth, necessitating a crown or root canal instead of a small filling. If you take care of cavities as soon as you notice them, you’ll also reduce your chances of having bad breath.</p>"
+    }
+  },
+  "accordion_item_JcXcxL": {
+    "type": "accordion_item",
+    "settings": {
+      "title": "How can I tell if I have bad breath?",
+      "content": "<p>Not sure how to tell if you have bad breath? You could ask a trusted friend or loved one. But you may not want to if you’re sensitive about the issue.</p><p>If you’d rather find out if you have bad breath on your own, test yourself in one of these three ways.</p><p>1. Do the lick test</p><p>Lick the back of your clean hand. Let it dry for about 10 seconds, then smell the spot you licked. If you detect an odor, you may have bad breath.</p><p>2. Use cotton gauze</p><p>Wipe the inside of your mouth with a piece of cotton gauze. If you see a yellowish stain on the cotton or smell a foul scent, you may have an elevated sulfide production level, which could be a sign of halitosis.</p><p>3. Sniff your dental floss</p><p>Floss between all your teeth, and then take a whiff of the floss. If it smells bad, your breath probably does too.</p><p>Of course, your dental professional remains an excellent resource for all of your oral health concerns. If you have questions about your breath, ask at your next dental cleaning.</p>"
+    }
+  },
+  "accordion_item_PhKmic": {
+    "type": "accordion_item",
+    "settings": {
+      "title": "How do I prevent bad breath?",
+      "content": "<p>Need to know how to prevent bad breath? Or are you curious as to <a href=\"/oral-health/bad-breath/why-do-we-have-bad-breath-in-the-morning/\">how to prevent morning breath</a>? If you suspect you have halitosis, the first thing you should do is evaluate your dental hygiene practice. To keep your breath clean and fresh, brush your teeth and tongue regularly, floss at least once a day, drink plenty of water, and use mouthwash. But keep in mind that companies design toothpastes and mouthwashes with different health goals in mind. If preventing stinky breath — in the morning or at any time of day — is at the top of your priority list, use products that align with your goal.</p><p><a href=\"/products/\">SmartMouth’s Activated Mouthwashes</a> use a <a href=\"/how-it-works/\">zinc ion solution</a> to prevent the production of odor-causing sulfur gas. They eliminate bad breath and keep it from returning for 24 hours. SmartMouth Premium Zinc Ion Toothpaste contains a zinc ion solution as well as fluoride to strengthen enamel, remove dental plaque, prevent cavities, and whiten teeth. It’s important to realize that sulfur gas in the mouth breaks down soft tissue, which means bad breath is much more than a cosmetic problem.</p>"
+    }
+  },
+  "accordion_item_6njBn4": {
+    "type": "accordion_item",
+    "settings": {
+      "title": "How can I get rid of bad breath?",
+      "content": "<p>Many people want to know how to get rid of bad breath. That’s no surprise because bad breath can affect anyone. Health experts estimate that <a href=\"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3633265/#ref6\" target=\"_blank\">50 percent of people suffer from bad breath regularly</a> — and of course, those who experience it want to know how to cure bad breath.</p><p>If you have a treatable underlying behavior or condition that causes bad breath, you can treat the condition or change the behavior to improve your breath. For example, if you quit smoking, you’ll improve your oral health as well as your breath. But here’s the bottom line: If a condition or behavior isn’t causing your bad breath, it may be impossible to get rid of bad breath for good. There isn’t a one time cure for bad breath, it must be handled daily. However, it is possible to eliminate bad breath and prevent sulfur gas from returning for 24 hours.</p><p>SmartMouth’s activated rinses provide all-day bad-breath prevention with zinc ion technology. Zinc ions work by blocking germs from consuming protein particles inside your mouth, which prevents the sulfur gas production that causes stinky breath. Visit our <a href=\"/how-it-works/\">How It Works page</a> for an in-depth explanation of our technology and a step-by-step description of how our products work.</p>"
+    }
+  },
+  "accordion_item_XGf68P": {
+    "type": "accordion_item",
+    "settings": {
+      "title": "How can I cure bad breath permanently?",
+      "content": "<p>Unfortunately, it’s impossible to get rid of bad breath permanently. The process of bacteria in your mouth consuming protein and creating sulfur compounds is constant, which means one stop solutions will never be effective. Bad breath must be addressed each and every day. However, with SmartMouth’s activated mouthwashes, it’s easy to stop bad breath in its tracks — and, even better, prevent it from returning for 24 hours. <a href=\"/products/\">Our products</a> can even help when you’re on the go. Bring our Activated Breath Rinse Single Packs (which are TSA-approved), Premium Zinc Ion Toothpaste, and Dry Mouth Mints with you to the office, on a date, or wherever life takes you.</p>"
+    }
+  },
+  "accordion_item_QRqczg": {
+    "type": "accordion_item",
+    "settings": {
+      "title": "What is halitosis?",
+      "content": "<p>Halitosis is caused by germs that live in our mouth and eat protein and producing foul smelling sulfur gases. Everyone has halitosis at one time or another.</p><p>Within the past several years, the only 3rd generation halitosis treatment was developed and made available to Americans. Over 9.1 billion dollars were spent in the U.S.A. in the year 2008 on commercial oral care products, with a significant percentage of those monies devoted to prevention and treatment of halitosis.</p><p>In recent years, there is a growing awareness, in both Medicine and Dentistry, that many health problems throughout the entire body originate in the mouth. There is also an increasing agreement that the gum tissue health in everyone’s mouth may be the primary culprit in the development of these problems.</p>"
+    }
+  },
+  "accordion_item_ximpiH": {
+    "type": "accordion_item",
+    "settings": {
+      "title": "Which medications cause bad breath?",
+      "content": "<p>One of the most common causes for bad breath and dry mouth symptoms are due to the medications we take. Appetite suppressants, anti-anxiety medications, antidepressant medication, anti-acne medications, as well as muscle relaxers and antihistamines are all known to have dry mouth as symptoms. Below is a list of common medications that cause bad breath or dry mouth:</p><ul><li>Diazepam (Valium)</li><li>Alprazolam (Xanax)</li><li>Isotretinoin (Accutane)</li><li>Lorazepam (Ativan)</li><li>Cyclobenzaprine (Flexeril)</li><li>Albuterol (Ventolin)</li><li>Loratadine (Claritin)</li><li>Bupropion (Wellbutrin)</li><li>Fluoxetine (Prozac)</li></ul><p>This is just a small list of the commonly prescribed medications associated with dry mouth and bad breath symptoms. However, always check your medication’s side effects to be sure.</p>"
+    }
+  }
+},
       "block_order": [
         "accordion_item_tmnRC9",
         "accordion_item_rVBkwV",
