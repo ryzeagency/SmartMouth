@@ -19,9 +19,32 @@
     row-gap: 5rem;
   }
   
+  /* 35% / 65% Split Logic for Tablet & Desktop */
+  @media screen and (min-width: 750px) {
+    .footer-main-grid-{{ section.id }} {
+      column-gap: 5rem;
+    }
+    .footer-block-brand-{{ section.id }} {
+      width: calc(35% - 2.5rem);
+      max-width: calc(35% - 2.5rem);
+    }
+    .footer-block-multi_menu-{{ section.id }} {
+      width: calc(65% - 2.5rem);
+      max-width: calc(65% - 2.5rem);
+    }
+  }
+
   @media screen and (min-width: 990px) {
     .footer-main-grid-{{ section.id }} {
       column-gap: 8rem;
+    }
+    .footer-block-brand-{{ section.id }} {
+      width: calc(35% - 4rem);
+      max-width: calc(35% - 4rem);
+    }
+    .footer-block-multi_menu-{{ section.id }} {
+      width: calc(65% - 4rem);
+      max-width: calc(65% - 4rem);
     }
   }
 
@@ -127,12 +150,12 @@
 <footer class="custom-footer-{{ section.id }}">
   <div class="page-width">
     
-    <div class="grid grid--1-col grid--2-col-tablet footer-main-grid-{{ section.id }}">
+    <div class="grid grid--1-col footer-main-grid-{{ section.id }}">
       {%- for block in section.blocks -%}
         
         {%- case block.type -%}
           {%- when 'brand' -%}
-            <div class="grid__item" {{ block.shopify_attributes }}>
+            <div class="grid__item footer-block-brand-{{ section.id }}" {{ block.shopify_attributes }}>
               {%- if block.settings.logo != blank -%}
                 <img src="{{ block.settings.logo | image_url: width: 400 }}" 
                      alt="{{ block.settings.logo.alt | default: shop.name | escape }}"
@@ -153,7 +176,7 @@
             </div>
 
           {%- when 'multi_menu' -%}
-            <div class="grid__item" {{ block.shopify_attributes }}>
+            <div class="grid__item footer-block-multi_menu-{{ section.id }}" {{ block.shopify_attributes }}>
               {%- if block.settings.heading != blank -%}
                 <h3 class="footer-block-heading-{{ section.id }}">{{ block.settings.heading }}</h3>
               {%- endif -%}
