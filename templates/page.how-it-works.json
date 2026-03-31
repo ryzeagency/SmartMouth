@@ -101,29 +101,59 @@
         "feature_AxLGYp": {
           "type": "feature",
           "settings": {
-            "heading": "",
-            "text": ""
+            "image": "shopify://shop_images/Dual-Chamber-Bottle-80x80.png",
+            "heading": "Dual Chamber Bottle",
+            "text": "<p>The original SmartMouth™ dual chamber bottle is scientifically designed to harness the power of both bad breath fighting solutions, leaving the power of zinc ion activation in your hands every time you pour.</p>"
           }
         },
         "feature_mRPGxy": {
           "type": "feature",
           "settings": {
-            "heading": "",
-            "text": ""
+            "image": "shopify://shop_images/Zinc-Rich-Activator-80x80.png",
+            "heading": "Zinc Rich Activator",
+            "text": "<p>The Zinc Rich Solution activates when you pour, releasing billions of zinc ions that bond to the germs in your mouth, preventing bad breath for 12 hours with every rinse.</p>"
           }
         },
         "feature_QpdXe3": {
           "type": "feature",
           "settings": {
-            "heading": "",
-            "text": ""
+            "image": "shopify://shop_images/Sulfur-Eliminator-80x80.png",
+            "heading": "Sulfur Eliminator",
+            "text": "<p>The Sulfur Eliminating Solution destroys any existing bad breath gases in your mouth.</p>"
+          }
+        },
+        "feature_LTWxDH": {
+          "type": "feature",
+          "settings": {
+            "image": "shopify://shop_images/Safe-for-Kids-Diabetics-80x80.png",
+            "heading": "Safe for People with Diabetes and Kids",
+            "text": "<p>100% paraben-free zinc ion oral rinse.</p>"
+          }
+        },
+        "feature_tUK4qj": {
+          "type": "feature",
+          "settings": {
+            "image": "shopify://shop_images/Clinical-Strength-80x80.png",
+            "heading": "Clinical Strength",
+            "text": "<p>An alcohol-free, anti-plaque and anti-gingivitis solution.</p>"
+          }
+        },
+        "feature_dY9Nti": {
+          "type": "feature",
+          "settings": {
+            "image": "shopify://shop_images/Powerful-Feel-Taste-80x80.png",
+            "heading": "Powerful Feel and Great Taste",
+            "text": "<p>It’s a new kind of feel, a smart kind of clean.</p>"
           }
         }
       },
       "block_order": [
         "feature_AxLGYp",
         "feature_mRPGxy",
-        "feature_QpdXe3"
+        "feature_QpdXe3",
+        "feature_LTWxDH",
+        "feature_tUK4qj",
+        "feature_dY9Nti"
       ],
       "name": "Features Grid",
       "settings": {
