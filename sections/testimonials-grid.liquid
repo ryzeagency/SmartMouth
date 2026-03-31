@@ -115,19 +115,6 @@
   .testimonial-info-{{ section.id }} {
     margin-top: 1rem;
     position: relative;
-    padding-top: 2rem; /* Space for the connecting line */
-  }
-
-  /* The Vertical Connecting Line */
-  .testimonial-info-{{ section.id }}::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 1px;
-    height: 2rem; /* Length of the line below pointer */
-    background-color: #e0e0e0; /* Faint grey line */
   }
 
   .testimonial-name-{{ section.id }} {
