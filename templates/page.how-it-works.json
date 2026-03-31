@@ -72,11 +72,27 @@
       "settings": {
         "title": "",
         "subtext": "",
-        "bg_color": "#fff",
+        "bg_color": "#ffffff",
         "button_bg_color": "#0066cc",
         "button_text_color": "#ffffff",
         "padding_top": 80,
         "padding_bottom": 80
+      }
+    },
+    "video_B4ndDi": {
+      "type": "video",
+      "name": "t:sections.video.presets.name",
+      "settings": {
+        "heading": "",
+        "heading_size": "h1",
+        "enable_video_looping": false,
+        "video_url": "https://www.youtube.com/watch?v=lBex50BHOSY",
+        "cover_image": "shopify://shop_images/CleanShot_2026-03-31_at_11.00.33.png",
+        "description": "",
+        "full_width": false,
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     }
   },
@@ -84,6 +100,7 @@
     "main",
     "custom_video_content_7ebpUE",
     "custom_title_image_NDrhAP",
-    "learn_more_products_PrHmNL"
+    "learn_more_products_PrHmNL",
+    "video_B4ndDi"
   ]
 }
