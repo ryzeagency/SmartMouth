@@ -22,13 +22,13 @@
   /* 35% / 65% Split Logic for Tablet & Desktop */
   @media screen and (min-width: 750px) {
     .footer-main-grid-{{ section.id }} {
-      column-gap: 5rem;
+      /**column-gap: 5rem;**/
     }
-    .footer-block-brand-{{ section.id }} {
+    .grid .footer-block-brand-{{ section.id }} {
       width: calc(35% - 2.5rem);
       max-width: calc(35% - 2.5rem);
     }
-    .footer-block-multi_menu-{{ section.id }} {
+    .grid .footer-block-multi_menu-{{ section.id }} {
       width: calc(65% - 2.5rem);
       max-width: calc(65% - 2.5rem);
     }
