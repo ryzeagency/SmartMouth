@@ -1,0 +1,71 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "split_image_text_AGL4Km": {
+      "type": "split-image-text",
+      "name": "Split Image & Text",
+      "settings": {
+        "main_title": "",
+        "main_subtext": "",
+        "layout": "left",
+        "right_heading": "",
+        "right_text": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "faqs_accordion_qErFTD": {
+      "type": "faqs-accordion",
+      "blocks": {
+        "accordion_item_tmnRC9": {
+          "type": "accordion_item",
+          "settings": {
+            "title": "Which SmartMouth™ rinse is right for me?",
+            "content": "<img src=\"https://www.smartmouth.com/wp-content/uploads/2025/07/Rinse-Comparison-Chart-7.1.2025-scaled.jpg\" alt=\"Rinse Comparison Chart 7.1.2025\">"
+          }
+        },
+        "accordion_item_rVBkwV": {
+          "type": "accordion_item",
+          "settings": {
+            "title": "What mouthwash is good for bleeding gums?",
+            "content": "<p>SmartMouth™ Clinical DDS provides optimal oral and general health without sacrificing any of SmartMouth™’s elite anti-bad-breath-technology. However, you should consult a dentist if you experience the following symptoms after use: bleeding gums, gums that are tender or swollen, persistent bad breath.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "accordion_item_tmnRC9",
+        "accordion_item_rVBkwV"
+      ],
+      "name": "Custom Accordion",
+      "settings": {
+        "title": "",
+        "bg_color": "#f4f4f4",
+        "border_color": "#e5e5e5",
+        "text_color": "#333333",
+        "icon_color": "#0066cc",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    }
+  },
+  "order": [
+    "main",
+    "split_image_text_AGL4Km",
+    "faqs_accordion_qErFTD"
+  ]
+}
