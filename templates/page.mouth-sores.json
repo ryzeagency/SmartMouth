@@ -22,9 +22,10 @@
       "settings": {
         "main_title": "",
         "main_subtext": "",
-        "layout": "left",
-        "right_heading": "",
-        "right_text": "",
+        "layout": "right",
+        "image": "shopify://shop_images/MouthSore-16oz-Slim-Front-WhiteTop-1.27.25-square.png",
+        "right_heading": "Mouth Sores",
+        "right_text": "<p>Recurring mouth sores are one of the most common oral ailments worldwide, impacting 20 to 25 percent of the overall population. They usually appear as swollen, painful ulcers, and while they’re not contagious, they can be caused by a variety of factors.</p>",
         "padding_top": 36,
         "padding_bottom": 36
       }
@@ -32,28 +33,53 @@
     "faqs_accordion_qErFTD": {
       "type": "faqs-accordion",
       "blocks": {
+        "accordion_item_HWmUji": {
+          "type": "accordion_item",
+          "settings": {
+            "title": "What causes mouth sores?",
+            "content": "Experts are split on the exact cause of mouth sores, but many believe their frequency depends on genetics, or hereditary factors. Regardless, other circumstances like hormonal fluctuations, stress, food allergies, vitamin deficiencies, or even the vigorous over-brushing of teeth can contribute to their development."
+          }
+        },
+        "accordion_item_MGT7x3": {
+          "type": "accordion_item",
+          "settings": {
+            "title": "How long do mouth sores last?",
+            "content": "Usually, mouth sores heal after a week or two. More significant growths, called major mouth sores, may stick around for up to six weeks and possibly leave oral scarring"
+          }
+        },
+        "accordion_item_zeQ9LJ": {
+          "type": "accordion_item",
+          "settings": {
+            "title": "How do you get rid of mouth sores?",
+            "content": "There is no cure-all for canker sores, but you can relieve your pain and quicken the healing process with a combination of treatments, which may include a mouthwash, a pain-relieving ointment, a prescription medication, supplements, and/or a medical procedure."
+          }
+        },
         "accordion_item_tmnRC9": {
           "type": "accordion_item",
           "settings": {
-            "title": "Which SmartMouth™ rinse is right for me?",
-            "content": "<img src=\"https://www.smartmouth.com/wp-content/uploads/2025/07/Rinse-Comparison-Chart-7.1.2025-scaled.jpg\" alt=\"Rinse Comparison Chart 7.1.2025\">"
+            "title": "What causes canker sores?",
+            "content": "<p>The term “canker sore” is <a href=\"https://my.clevelandclinic.org/health/diseases/21766-mouth-ulcer\" rel=\"noreferrer noopener\" onclick=\"javascript:window.open('https://my.clevelandclinic.org/health/diseases/21766-mouth-ulcer', '_blank', 'noopener'); return false;\" data-uw-rm-brl=\"PR\" data-uw-original-href=\"https://my.clevelandclinic.org/health/diseases/21766-mouth-ulcer\">interchangeable</a> with “mouth ulcer.” These painful sores can be caused by a variety of factors including genetics, hormonal fluctuations, vitamin deficiencies, food allergies, and oral irritation, among others. Interestingly, research also shows that canker sores are <a href=\"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8934078/#ref3:~:text=women%20are%20at%20a%20slightly%20greater%20risk%20than%20men\" rel=\"noreferrer noopener\" onclick=\"javascript:window.open('https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8934078/#ref3:~:text=women%20are%20at%20a%20slightly%20greater%20risk%20than%20men', '_blank', 'noopener'); return false;\" data-uw-rm-brl=\"PR\" data-uw-original-href=\"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8934078/#ref3:~:text=women%20are%20at%20a%20slightly%20greater%20risk%20than%20men\">more common in women than in men</a>. </p>"
           }
         },
         "accordion_item_rVBkwV": {
           "type": "accordion_item",
           "settings": {
-            "title": "What mouthwash is good for bleeding gums?",
-            "content": "<p>SmartMouth™ Clinical DDS provides optimal oral and general health without sacrificing any of SmartMouth™’s elite anti-bad-breath-technology. However, you should consult a dentist if you experience the following symptoms after use: bleeding gums, gums that are tender or swollen, persistent bad breath.</p>"
+            "title": "How do you get rid of canker sores?",
+            "content": "Time is often the most effective cure for canker sores—they usually heal after a couple of weeks. However, you can ease the healing process and combat irritation from a mouth ulcer with a variety of treatments, including mouthwashes, prescription gels, and oral supplements."
           }
         }
       },
       "block_order": [
+        "accordion_item_HWmUji",
+        "accordion_item_MGT7x3",
+        "accordion_item_zeQ9LJ",
         "accordion_item_tmnRC9",
         "accordion_item_rVBkwV"
       ],
       "name": "Custom Accordion",
       "settings": {
-        "title": "",
+        "title": "Learn About Mouth Sores: Causes & Prevention",
+        "subtitle": "Oral ulcers can cause serious discomfort, and they impact how you eat, drink, and speak. They typically emerge in groups of two or four on the inner cheek walls, inner lips, or, less frequently, on the tongue or soft palate. Read on to understand the possible causes of mouth sores and how you can prevent them.",
         "bg_color": "#f4f4f4",
         "border_color": "#e5e5e5",
         "text_color": "#333333",
