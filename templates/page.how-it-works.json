@@ -248,8 +248,54 @@
         "quick_add": "none",
         "columns_mobile": "2",
         "swipe_on_mobile": false,
-        "padding_top": 36,
-        "padding_bottom": 36
+        "padding_top": 56,
+        "padding_bottom": 56
+      }
+    },
+    "testimonials_grid_VXDXHk": {
+      "type": "testimonials-grid",
+      "blocks": {
+        "testimonial_iHmGxk": {
+          "type": "testimonial",
+          "settings": {
+            "text": "<p>Once you try you won't deny. Love this stuff. Worth the price tag. Unlike any mouthwash I've ever tried!</p>",
+            "name": "Ana"
+          }
+        },
+        "testimonial_XW4GCB": {
+          "type": "testimonial",
+          "settings": {
+            "text": "<p>Love it! No more dragon breath in the morning.</p>",
+            "name": "Maribel"
+          }
+        },
+        "testimonial_U9erVx": {
+          "type": "testimonial",
+          "settings": {
+            "text": "<p>This is the best mouthwash on the market. No aftertaste and you have fresh breath all day.</p>",
+            "name": "Ozzy"
+          }
+        },
+        "testimonial_GQVdbb": {
+          "type": "testimonial",
+          "settings": {
+            "text": "<p>Daily use has totally ended my bleeding gums problem. My dentist was so impressed he ordered it for his office.</p>",
+            "name": "BJ"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_iHmGxk",
+        "testimonial_XW4GCB",
+        "testimonial_U9erVx",
+        "testimonial_GQVdbb"
+      ],
+      "name": "Testimonials Grid",
+      "settings": {
+        "title": "What People Are Saying About SmartMouth™",
+        "columns_desktop": 2,
+        "padding_top": 60,
+        "padding_bottom": 60
       }
     },
     "faqs_accordion_Hc3gbc": {
@@ -443,6 +489,7 @@
     "split_image_text_cqqD9n",
     "split_image_text_GTMCkd",
     "featured_collection_jkPwQ4",
+    "testimonials_grid_VXDXHk",
     "faqs_accordion_Hc3gbc"
   ]
 }
