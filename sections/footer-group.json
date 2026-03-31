@@ -43,6 +43,44 @@
         "show_form": false
       }
     },
+    "smartmouth_footer_NkMreL": {
+      "type": "smartmouth-footer",
+      "blocks": {
+        "brand_VxXYHm": {
+          "type": "brand",
+          "settings": {
+            "logo": "shopify://shop_images/smartmouth-logo.png",
+            "logo_width": 160,
+            "text": "<p>Results may vary. 24-hour bad breath protection results associated with twice daily use. SmartMouth products are not intended to diagnose, treat, cure, or prevent any disease. All SmartMouth products come with our guarantee that ensures SmartMouth will work exactly as described on this website or your money back. Always consult your healthcare professional.</p>"
+          }
+        },
+        "multi_menu_nW48Yn": {
+          "type": "multi_menu",
+          "settings": {
+            "heading": "Quick Links",
+            "menu_1": "quick-footer-links-1",
+            "menu_2": "quick-footer-links-2",
+            "menu_3": "quick-footer-links-3"
+          }
+        }
+      },
+      "block_order": [
+        "brand_VxXYHm",
+        "multi_menu_nW48Yn"
+      ],
+      "name": "SmartMouth Footer",
+      "settings": {
+        "bg_color": "#ffffff",
+        "text_color": "#121212",
+        "social_facebook": "https://www.facebook.com/smartmouth",
+        "social_linkedin": "https://www.linkedin.com/company/smartmouth-oral-health-labs/",
+        "social_instagram": "https://www.instagram.com/smartmouthwash/",
+        "social_tiktok": "https://www.tiktok.com/@smartmouthwash",
+        "copyright_text": "All Rights Reserved.",
+        "padding_top": 80,
+        "padding_bottom": 60
+      }
+    },
     "footer": {
       "type": "footer",
       "blocks": {
@@ -82,6 +120,7 @@
         "footer-1",
         "footer-2"
       ],
+      "disabled": true,
       "settings": {
         "color_scheme": "scheme-1",
         "newsletter_enable": true,
@@ -101,6 +140,7 @@
   "order": [
     "available_in_BGCVXY",
     "newsletter_bar_WMzUjf",
+    "smartmouth_footer_NkMreL",
     "footer"
   ]
 }
