@@ -134,11 +134,13 @@
           {%- when 'brand' -%}
             <div class="grid__item" {{ block.shopify_attributes }}>
               {%- if block.settings.logo != blank -%}
-                {{ block.settings.logo | image_url: width: 400 | image_tag: 
-                  class: 'footer-brand-logo-' | append: section.id,
-                  style: 'max-width: ' | append: block.settings.logo_width | append: 'px;',
-                  loading: 'lazy'
-                }}
+                <img src="{{ block.settings.logo | image_url: width: 400 }}" 
+                     alt="{{ block.settings.logo.alt | default: shop.name | escape }}"
+                     class="footer-brand-logo-{{ section.id }}"
+                     style="max-width: {{ block.settings.logo_width }}px;"
+                     loading="lazy"
+                     width="{{ block.settings.logo.width }}"
+                     height="{{ block.settings.logo.height }}">
               {%- else -%}
                 <h2 class="h3" style="margin-bottom: 2rem;">{{ shop.name }}</h2>
               {%- endif -%}
