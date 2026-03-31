@@ -30,6 +30,67 @@
         "padding_bottom": 56
       }
     },
+    "learn_more_products_9j7QMq": {
+      "type": "learn-more-products",
+      "blocks": {
+        "product_card_gdf76P": {
+          "type": "product_card",
+          "settings": {
+            "image": "shopify://shop_images/DryMouth-16oz-Slim-Front-WhiteTop-1.27.25-square.png",
+            "heading": "Dry Mouth",
+            "text": "<p>As many as 65 percent of people experience dry mouth. It’s not just uncomfortable; it can make it difficult to taste, chew, swallow, and speak.</p>",
+            "button_label": "Learn More",
+            "button_link": "shopify://pages/dry-mouth"
+          }
+        },
+        "product_card_r3RAwg": {
+          "type": "product_card",
+          "settings": {
+            "image": "shopify://shop_images/Orig-16oz-Slim-Front-WhiteTop-1.27.25-square.png",
+            "heading": "Bad Breath",
+            "text": "<p>Anywhere from 22 to 50 percent of the population has bad breath. It can negatively impact your relationships and cause depression, and anxiety.</p>",
+            "button_label": "Learn More",
+            "button_link": "shopify://pages/bad-breath"
+          }
+        },
+        "product_card_kedpme": {
+          "type": "product_card",
+          "settings": {
+            "image": "shopify://shop_images/GumHealth-16oz-Slim-Front-WhiteTop-1.27.25-square.png",
+            "heading": "Gum Disease",
+            "text": "<p>Gum disease is an infection of the gums. It impacts nearly half of people older than 30, as well as 70 percent of people older than 65.</p>",
+            "button_label": "Learn More",
+            "button_link": "shopify://pages/gum-disease"
+          }
+        },
+        "product_card_hQx7RF": {
+          "type": "product_card",
+          "settings": {
+            "image": "shopify://shop_images/MouthSore-16oz-Slim-Front-WhiteTop-1.27.25-square.png",
+            "heading": "Mouth Sores",
+            "text": "<p>Recurring mouth sores are one of the most common oral ailments worldwide, impacting 20 to 25 percent of the overall population.</p>",
+            "button_label": "Learn More",
+            "button_link": "shopify://pages/mouth-sores"
+          }
+        }
+      },
+      "block_order": [
+        "product_card_gdf76P",
+        "product_card_r3RAwg",
+        "product_card_kedpme",
+        "product_card_hQx7RF"
+      ],
+      "name": "Learn More Products",
+      "settings": {
+        "title": "Learn About Oral Health",
+        "subtext": "<p>Oral health is a key part of staying healthy. We can help you understand its impact on the body and find solutions to improve your oral health.</p>",
+        "bg_color": "#eefaf2",
+        "button_bg_color": "#0066cc",
+        "button_text_color": "#ffffff",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
     "faqs_accordion_EpWeaM": {
       "type": "faqs-accordion",
       "blocks": {
@@ -55,6 +116,7 @@
       "name": "Custom Accordion",
       "settings": {
         "title": "",
+        "subtitle": "",
         "bg_color": "#f4f4f4",
         "border_color": "#e5e5e5",
         "text_color": "#333333",
@@ -67,6 +129,7 @@
   "order": [
     "main",
     "split_image_text_bDz6TX",
+    "learn_more_products_9j7QMq",
     "faqs_accordion_EpWeaM"
   ]
 }
