@@ -1,0 +1,382 @@
+{%- style -%}
+  .custom-footer-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    color: {{ section.settings.text_color }};
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    border-top: 1px solid rgba(var(--color-foreground), 0.05);
+  }
+
+  @media screen and (min-width: 750px) {
+    .custom-footer-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  /* Main Grid Layout */
+  .footer-main-grid-{{ section.id }} {
+    row-gap: 5rem;
+  }
+  
+  @media screen and (min-width: 990px) {
+    .footer-main-grid-{{ section.id }} {
+      column-gap: 8rem;
+    }
+  }
+
+  /* Brand Block (Logo + Text) */
+  .footer-brand-logo-{{ section.id }} {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 2.5rem;
+    display: block;
+  }
+
+  .footer-brand-text-{{ section.id }} {
+    font-size: 1.4rem;
+    line-height: 1.8;
+    color: {{ section.settings.text_color }};
+    opacity: 0.75; /* Lighter grey look */
+  }
+
+  .footer-brand-text-{{ section.id }} p {
+    margin: 0;
+  }
+
+  /* Multi-Menu Block */
+  .footer-block-heading-{{ section.id }} {
+    color: {{ section.settings.text_color }};
+    font-size: 2rem;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 3rem;
+  }
+
+  .footer-menu-grid-{{ section.id }} {
+    row-gap: 3rem;
+  }
+
+  .footer-menu-list-{{ section.id }} {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .footer-menu-list-{{ section.id }} li {
+    margin-bottom: 1.8rem;
+  }
+
+  .footer-menu-list-{{ section.id }} a {
+    color: {{ section.settings.text_color }};
+    text-decoration: none;
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
+    transition: opacity 0.2s ease;
+  }
+
+  .footer-menu-list-{{ section.id }} a:hover {
+    opacity: 0.6;
+  }
+
+  /* Footer Bottom */
+  .footer-bottom-{{ section.id }} {
+    margin-top: 8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
+  }
+
+  .footer-socials-{{ section.id }} {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .footer-socials-{{ section.id }} a {
+    color: {{ section.settings.text_color }};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  .footer-socials-{{ section.id }} a:hover {
+    opacity: 0.7;
+    transform: translateY(-2px);
+  }
+
+  .footer-socials-{{ section.id }} svg {
+    width: 2rem;
+    height: 2rem;
+    fill: currentColor;
+  }
+
+  .footer-copyright-{{ section.id }} {
+    font-size: 1.4rem;
+    color: {{ section.settings.text_color }};
+    opacity: 0.5;
+    text-align: center;
+  }
+{%- endstyle -%}
+
+<footer class="custom-footer-{{ section.id }}">
+  <div class="page-width">
+    
+    <div class="grid grid--1-col grid--2-col-tablet footer-main-grid-{{ section.id }}">
+      {%- for block in section.blocks -%}
+        
+        {%- case block.type -%}
+          {%- when 'brand' -%}
+            <div class="grid__item" {{ block.shopify_attributes }}>
+              {%- if block.settings.logo != blank -%}
+                {{ block.settings.logo | image_url: width: 400 | image_tag: 
+                  class: 'footer-brand-logo-' | append: section.id,
+                  style: 'max-width: ' | append: block.settings.logo_width | append: 'px;',
+                  loading: 'lazy'
+                }}
+              {%- else -%}
+                <h2 class="h3" style="margin-bottom: 2rem;">{{ shop.name }}</h2>
+              {%- endif -%}
+              
+              {%- if block.settings.text != blank -%}
+                <div class="footer-brand-text-{{ section.id }} rte">
+                  {{ block.settings.text }}
+                </div>
+              {%- endif -%}
+            </div>
+
+          {%- when 'multi_menu' -%}
+            <div class="grid__item" {{ block.shopify_attributes }}>
+              {%- if block.settings.heading != blank -%}
+                <h3 class="footer-block-heading-{{ section.id }}">{{ block.settings.heading }}</h3>
+              {%- endif -%}
+
+              <div class="grid grid--1-col grid--3-col-desktop footer-menu-grid-{{ section.id }}">
+                
+                {%- if block.settings.menu_1 != blank -%}
+                  <div class="grid__item">
+                    <ul class="footer-menu-list-{{ section.id }}">
+                      {%- for link in block.settings.menu_1.links -%}
+                        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                      {%- endfor -%}
+                    </ul>
+                  </div>
+                {%- endif -%}
+
+                {%- if block.settings.menu_2 != blank -%}
+                  <div class="grid__item">
+                    <ul class="footer-menu-list-{{ section.id }}">
+                      {%- for link in block.settings.menu_2.links -%}
+                        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                      {%- endfor -%}
+                    </ul>
+                  </div>
+                {%- endif -%}
+
+                {%- if block.settings.menu_3 != blank -%}
+                  <div class="grid__item">
+                    <ul class="footer-menu-list-{{ section.id }}">
+                      {%- for link in block.settings.menu_3.links -%}
+                        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                      {%- endfor -%}
+                    </ul>
+                  </div>
+                {%- endif -%}
+
+              </div>
+            </div>
+            
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+
+    <div class="footer-bottom-{{ section.id }}">
+      
+      <div class="footer-socials-{{ section.id }}">
+        {%- if section.settings.social_facebook != blank -%}
+          <a href="{{ section.settings.social_facebook }}" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg viewBox="0 0 320 512"><path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"/></svg>
+          </a>
+        {%- endif -%}
+        {%- if section.settings.social_linkedin != blank -%}
+          <a href="{{ section.settings.social_linkedin }}" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg viewBox="0 0 448 512"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"/></svg>
+          </a>
+        {%- endif -%}
+        {%- if section.settings.social_instagram != blank -%}
+          <a href="{{ section.settings.social_instagram }}" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 448 512"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+          </a>
+        {%- endif -%}
+        {%- if section.settings.social_tiktok != blank -%}
+          <a href="{{ section.settings.social_tiktok }}" target="_blank" rel="noopener" aria-label="TikTok">
+            <svg viewBox="0 0 448 512"><path d="M448 209.91a210.06 210.06 0 0 1-122.77-39.25V349.38A162.55 162.55 0 1 1 185 188.31v89.89a74.62 74.62 0 1 0 52.23 71.18V0l88 0a121.18 121.18 0 0 0 1.86 22.17h0A122.18 122.18 0 0 0 381 102.39a121.43 121.43 0 0 0 67 20.14Z"/></svg>
+          </a>
+        {%- endif -%}
+      </div>
+
+      <div class="footer-copyright-{{ section.id }}">
+        &copy; {{ 'now' | date: "%Y" }} {{ shop.name }}. {{ section.settings.copyright_text }}
+      </div>
+
+    </div>
+
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "SmartMouth Footer",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#121212"
+    },
+    {
+      "type": "header",
+      "content": "Social Media Links",
+      "info": "Leave blank to hide the icon."
+    },
+    {
+      "type": "url",
+      "id": "social_facebook",
+      "label": "Facebook URL"
+    },
+    {
+      "type": "url",
+      "id": "social_linkedin",
+      "label": "LinkedIn URL"
+    },
+    {
+      "type": "url",
+      "id": "social_instagram",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "url",
+      "id": "social_tiktok",
+      "label": "TikTok URL"
+    },
+    {
+      "type": "header",
+      "content": "Footer Bottom"
+    },
+    {
+      "type": "text",
+      "id": "copyright_text",
+      "label": "Additional Copyright Text",
+      "default": "All Rights Reserved."
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "brand",
+      "name": "Logo & Text",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo Image"
+        },
+        {
+          "type": "range",
+          "id": "logo_width",
+          "min": 50,
+          "max": 300,
+          "step": 10,
+          "unit": "px",
+          "label": "Logo Width",
+          "default": 160
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Results may vary. 24-hour bad breath protection results associated with twice daily use. SmartMouth products are not intended to diagnose, treat, cure, or prevent any disease. All SmartMouth products come with our guarantee that ensures SmartMouth will work exactly as described on this website or your money back. Always consult your healthcare professional.</p>"
+        }
+      ]
+    },
+    {
+      "type": "multi_menu",
+      "name": "Multi-Column Menus",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Main Heading",
+          "default": "Quick Links"
+        },
+        {
+          "type": "link_list",
+          "id": "menu_1",
+          "label": "Column 1 Menu"
+        },
+        {
+          "type": "link_list",
+          "id": "menu_2",
+          "label": "Column 2 Menu"
+        },
+        {
+          "type": "link_list",
+          "id": "menu_3",
+          "label": "Column 3 Menu"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "SmartMouth Footer",
+      "blocks": [
+        { "type": "brand" },
+        { "type": "multi_menu" }
+      ]
+    }
+  ]
+}
+{% endschema %}
