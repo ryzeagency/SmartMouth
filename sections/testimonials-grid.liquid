@@ -1,0 +1,310 @@
+{%- style -%}
+  /* Section Padding */
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    background-color: #f9f9f9; /* Matches light grey background in mockup */
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  /* Header Styling */
+  .testimonials-header-{{ section.id }} {
+    text-align: center;
+    margin-bottom: 5rem;
+    max-width: 70rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .testimonials-header-{{ section.id }} .h1 {
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Grid Spacing */
+  .testimonials-grid-{{ section.id }} {
+    row-gap: 4rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .testimonials-grid-{{ section.id }} {
+      row-gap: 6rem;
+      column-gap: 3rem;
+    }
+  }
+
+  /* Block (Card) Styling */
+  .testimonial-block-{{ section.id }} {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+  }
+
+  /* The White Box */
+  .testimonial-card-{{ section.id }} {
+    background-color: #ffffff;
+    border-radius: 8px; /* Standard media radius */
+    padding: 3rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05); /* Soft shadow like mockup */
+    position: relative;
+    width: 100%;
+    margin-bottom: 2.5rem; /* Space for the pointer and name */
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* The Speech Bubble Pointer */
+  .testimonial-card-{{ section.id }}::after {
+    content: '';
+    position: absolute;
+    bottom: -15px; /* Adjust based on size */
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 15px 15px 0 15px;
+    border-style: solid;
+    border-color: #ffffff transparent transparent transparent;
+    filter: drop-shadow(0 2px 1px rgba(0,0,0,0.02)); /* Matches box shadow */
+  }
+
+  /* Star Rating */
+  .testimonial-stars-{{ section.id }} {
+    display: flex;
+    gap: 0.2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .testimonial-stars-{{ section.id }} svg {
+    width: 1.6rem;
+    height: 1.6rem;
+    fill: #f29a2e; /* Orange color from mockup */
+  }
+
+  /* Quote Icon */
+  .testimonial-quote-{{ section.id }} {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  .testimonial-quote-{{ section.id }} svg {
+    width: 2.8rem;
+    height: 2.8rem;
+    fill: #34855d; /* Green color from mockup */
+  }
+
+  /* Review Text */
+  .testimonial-text-{{ section.id }} {
+    color: rgba(var(--color-foreground), 0.75);
+    font-size: 1.4rem;
+    line-height: 1.6;
+    margin: 0;
+    flex-grow: 1; /* Pushes content evenly */
+  }
+
+  /* Reviewer Info (Name & Line) */
+  .testimonial-info-{{ section.id }} {
+    margin-top: 1rem;
+    position: relative;
+    padding-top: 2rem; /* Space for the connecting line */
+  }
+
+  /* The Vertical Connecting Line */
+  .testimonial-info-{{ section.id }}::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 2rem; /* Length of the line below pointer */
+    background-color: #e0e0e0; /* Faint grey line */
+  }
+
+  .testimonial-name-{{ section.id }} {
+    font-weight: 600;
+    font-size: 1.4rem;
+    margin: 0;
+    color: var(--color-foreground);
+  }
+{%- endstyle -%}
+
+<div class="section-{{ section.id }}-padding">
+  <div class="page-width">
+    
+    {%- if section.settings.title != blank -%}
+      <div class="testimonials-header-{{ section.id }}">
+        <h2 class="h2"><strong>{{ section.settings.title }}</strong></h2>
+      </div>
+    {%- endif -%}
+
+    {%- liquid
+      # Mapping column count to Dawn's grid classes
+      assign columns_desktop = section.settings.columns_desktop
+      if columns_desktop == 2
+        assign grid_class = 'grid--2-col-desktop'
+      elsif columns_desktop == 3
+        assign grid_class = 'grid--3-col-desktop'
+      elsif columns_desktop == 4
+        assign grid_class = 'grid--4-col-desktop'
+      endif
+    -%}
+
+    <div class="grid grid--1-col grid--2-col-tablet {{ grid_class }} testimonials-grid-{{ section.id }}">
+      
+      {%- for block in section.blocks -%}
+        <div class="grid__item" {{ block.shopify_attributes }}>
+          <div class="testimonial-block-{{ section.id }}">
+            
+            <div class="testimonial-card-{{ section.id }}">
+              
+              <div class="testimonial-stars-{{ section.id }}">
+                <span class="star-rating">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg>
+                </span>
+              </div>
+
+              <div class="testimonial-quote-{{ section.id }}">
+                <span class="quote-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M448 224h-64v-24c0-30.9 25.1-56 56-56h16c22.1 0 40-17.9 40-40V72c0-22.1-17.9-40-40-40h-16c-92.6 0-168 75.4-168 168v216c0 35.3 28.7 64 64 64h112c35.3 0 64-28.7 64-64V288c0-35.3-28.7-64-64-64zm32 192c0 17.7-14.3 32-32 32H336c-17.7 0-32-14.3-32-32V200c0-75.1 60.9-136 136-136h16c4.4 0 8 3.6 8 8v32c0 4.4-3.6 8-8 8h-16c-48.6 0-88 39.4-88 88v56h96c17.7 0 32 14.3 32 32v128zM176 224h-64v-24c0-30.9 25.1-56 56-56h16c22.1 0 40-17.9 40-40V72c0-22.1-17.9-40-40-40h-16C75.4 32 0 107.4 0 200v216c0 35.3 28.7 64 64 64h112c35.3 0 64-28.7 64-64V288c0-35.3-28.7-64-64-64zm32 192c0 17.7-14.3 32-32 32H64c-17.7 0-32-14.3-32-32V200c0-75.1 60.9-136 136-136h16c4.4 0 8 3.6 8 8v32c0 4.4-3.6 8-8 8h-16c-48.6 0-88 39.4-88 88v56h96c17.7 0 32 14.3 32 32v128z"></path></svg>
+                </span>
+              </div>
+
+              <div class="testimonial-text-{{ section.id }} rte">
+                {%- if block.settings.text != blank -%}
+                  {{ block.settings.text }}
+                {%- else -%}
+                  <p>Add review text here via the block settings.</p>
+                {%- endif -%}
+              </div>
+            </div>
+
+            <div class="testimonial-info-{{ section.id }}">
+              <p class="testimonial-name-{{ section.id }}">{{ block.settings.name | default: 'Reviewer Name' }}</p>
+            </div>
+
+          </div>
+        </div>
+      {%- endfor -%}
+
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Testimonials Grid",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Heading",
+      "default": "What People Are Saying About SmartMouth™"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 2,
+      "label": "Columns on desktop"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Review Text",
+          "default": "<p>\"Share a fantastic review from a happy customer.\"</p>"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Reviewer Name",
+          "default": "Customer Name"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials Grid",
+      "blocks": [
+        {
+          "type": "testimonial",
+          "settings": {
+            "name": "Ana",
+            "text": "<p>Once you try you won't deny. Love this stuff. Worth the price tag. Unlike any mouthwash I've ever tried!</p>"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "name": "Maribel",
+            "text": "<p>Love it! No more dragon breath in the morning.</p>"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "name": "Ozzy",
+            "text": "<p>This is the best mouthwash on the market. No aftertaste and you have fresh breath all day.</p>"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "name": "BJ",
+            "text": "<p>Daily use has totally ended my bleeding gums problem. My dentist was so impressed he ordered it for his office.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
