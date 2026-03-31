@@ -103,6 +103,7 @@
       "name": "Custom Accordion",
       "settings": {
         "title": "Learn About Dry Mouth",
+        "subtitle": "Dry mouth, also called xerostemia, is a sticky, cottony sensation in your mouth stemming from a lack of saliva. We can help you understand what’s causing your dry mouth and find solutions to improve your oral health.",
         "bg_color": "#f4f4f4",
         "border_color": "#e5e5e5",
         "text_color": "#333333",
