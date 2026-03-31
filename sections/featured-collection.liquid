@@ -36,6 +36,14 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  /* Custom alignment overrides */
+  .title-wrapper-{{ section.id }} {
+    text-align: {{ section.settings.heading_alignment }};
+  }
+  .title-wrapper-{{ section.id }} .title {
+    justify-content: {% if section.settings.heading_alignment == 'center' %}center{% elsif section.settings.heading_alignment == 'right' %}flex-end{% else %}flex-start{% endif %};
+  }
 {%- endstyle -%}
 
 {%- liquid
@@ -66,13 +74,14 @@
 
 <div
   class="color-{{ section.settings.color_scheme }} isolate gradient"
+  {% if section.settings.custom_bg_color != blank and section.settings.custom_bg_color != 'rgba(0,0,0,0)' %}style="background-color: {{ section.settings.custom_bg_color }};"{% endif %}
 >
   <div
     class="collection{% if section.settings.quick_add == 'bulk' %} collection-quick-add-bulk{% endif %} section-{{ section.id }}-padding{% if section.settings.full_width %} collection--full-width{% endif %}"
     id="collection-{{ section.id }}"
     data-id="{{ section.id }}"
   >
-    <div class="collection__title title-wrapper title-wrapper--no-top-margin page-width{% if show_mobile_slider %} title-wrapper--self-padded-tablet-down{% endif %}{% if show_desktop_slider %} collection__title--desktop-slider{% endif %}">
+    <div class="collection__title title-wrapper title-wrapper-{{ section.id }} title-wrapper--no-top-margin page-width{% if show_mobile_slider %} title-wrapper--self-padded-tablet-down{% endif %}{% if show_desktop_slider %} collection__title--desktop-slider{% endif %}">
       {%- if section.settings.title != blank -%}
         <h2 class="title inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
           {{ section.settings.title }}
@@ -249,6 +258,26 @@
     },
     {
       "type": "select",
+      "id": "heading_alignment",
+      "label": "Heading Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
       "id": "heading_size",
       "options": [
         {
@@ -364,6 +393,12 @@
       "label": "t:sections.all.colors.label",
       "info": "t:sections.all.colors.has_cards_info",
       "default": "scheme-1"
+    },
+    {
+      "type": "color",
+      "id": "custom_bg_color",
+      "label": "Custom Background Color",
+      "info": "Overrides the color scheme background if selected."
     },
     {
       "type": "header",
