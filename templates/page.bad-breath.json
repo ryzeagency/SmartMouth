@@ -36,21 +36,77 @@
         "accordion_item_tmnRC9": {
           "type": "accordion_item",
           "settings": {
-            "title": "Which SmartMouth™ rinse is right for me?",
-            "content": "<img src=\"https://www.smartmouth.com/wp-content/uploads/2025/07/Rinse-Comparison-Chart-7.1.2025-scaled.jpg\" alt=\"Rinse Comparison Chart 7.1.2025\">"
+            "title": "What causes bad breath?",
+            "content": ""
           }
         },
         "accordion_item_rVBkwV": {
           "type": "accordion_item",
           "settings": {
-            "title": "What mouthwash is good for bleeding gums?",
-            "content": "<p>SmartMouth™ Clinical DDS provides optimal oral and general health without sacrificing any of SmartMouth™’s elite anti-bad-breath-technology. However, you should consult a dentist if you experience the following symptoms after use: bleeding gums, gums that are tender or swollen, persistent bad breath.</p>"
+            "title": "What causes bad breath from the stomach?",
+            "content": ""
+          }
+        },
+        "accordion_item_Bd7MiT": {
+          "type": "accordion_item",
+          "settings": {
+            "title": "Do cavities cause bad breath?",
+            "content": ""
+          }
+        },
+        "accordion_item_JcXcxL": {
+          "type": "accordion_item",
+          "settings": {
+            "title": "How can I tell if I have bad breath?",
+            "content": ""
+          }
+        },
+        "accordion_item_PhKmic": {
+          "type": "accordion_item",
+          "settings": {
+            "title": "How do I prevent bad breath?",
+            "content": ""
+          }
+        },
+        "accordion_item_6njBn4": {
+          "type": "accordion_item",
+          "settings": {
+            "title": "How can I get rid of bad breath?",
+            "content": ""
+          }
+        },
+        "accordion_item_XGf68P": {
+          "type": "accordion_item",
+          "settings": {
+            "title": "How can I cure bad breath permanently?",
+            "content": ""
+          }
+        },
+        "accordion_item_QRqczg": {
+          "type": "accordion_item",
+          "settings": {
+            "title": "What is halitosis?",
+            "content": ""
+          }
+        },
+        "accordion_item_ximpiH": {
+          "type": "accordion_item",
+          "settings": {
+            "title": "Which medications cause bad breath?",
+            "content": ""
           }
         }
       },
       "block_order": [
         "accordion_item_tmnRC9",
-        "accordion_item_rVBkwV"
+        "accordion_item_rVBkwV",
+        "accordion_item_Bd7MiT",
+        "accordion_item_JcXcxL",
+        "accordion_item_PhKmic",
+        "accordion_item_6njBn4",
+        "accordion_item_XGf68P",
+        "accordion_item_QRqczg",
+        "accordion_item_ximpiH"
       ],
       "name": "Custom Accordion",
       "settings": {
