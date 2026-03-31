@@ -57,9 +57,22 @@
     padding: 2rem 0;
   }
 
+  /* Desktop Layout Ordering & Padding */
   @media screen and (min-width: 750px) {
-    .split-text-content-{{ section.id }} {
+    /* If image is on the RIGHT */
+    .split-layout-right-{{ section.id }} .split-image-column {
+      order: 2;
+    }
+    .split-layout-right-{{ section.id }} .split-text-column {
+      order: 1;
+    }
+    
+    /* Dynamic padding so text isn't glued to the image */
+    .split-layout-left-{{ section.id }} .split-text-content-{{ section.id }} {
       padding-left: 3rem;
+    }
+    .split-layout-right-{{ section.id }} .split-text-content-{{ section.id }} {
+      padding-right: 3rem;
     }
   }
 
@@ -102,9 +115,9 @@
     </div>
   {%- endif -%}
 
-  <div class="grid grid--1-col grid--2-col-tablet">
+  <div class="grid grid--1-col grid--2-col-tablet split-layout-{{ section.settings.layout }}-{{ section.id }}">
     
-    <div class="grid__item">
+    <div class="grid__item split-image-column">
       <div class="split-image-wrapper-{{ section.id }}">
         {%- if section.settings.image != blank -%}
           {{ section.settings.image | image_url: width: 1500 | image_tag: 
@@ -120,7 +133,7 @@
       </div>
     </div>
 
-    <div class="grid__item">
+    <div class="grid__item split-text-column">
       <div class="split-text-content-{{ section.id }}">
         {%- if section.settings.right_heading != blank -%}
           <h2 class="h2">{{ section.settings.right_heading }}</h2>
@@ -159,7 +172,27 @@
     },
     {
       "type": "header",
-      "content": "Left Column (Image)"
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Image placement on desktop",
+      "options": [
+        {
+          "value": "left",
+          "label": "Image on left"
+        },
+        {
+          "value": "right",
+          "label": "Image on right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "header",
+      "content": "Image Content"
     },
     {
       "type": "image_picker",
@@ -168,17 +201,17 @@
     },
     {
       "type": "header",
-      "content": "Right Column (Text)"
+      "content": "Text Content"
     },
     {
       "type": "text",
       "id": "right_heading",
-      "label": "Right Heading"
+      "label": "Heading"
     },
     {
       "type": "richtext",
       "id": "right_text",
-      "label": "Right Text Content"
+      "label": "Text Content"
     },
     {
       "type": "header",
