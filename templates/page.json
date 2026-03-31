@@ -20,12 +20,12 @@
       "type": "split-image-text",
       "name": "Split Image & Text",
       "settings": {
-        "main_title": "Oral Health",
-        "main_subtext": "<p>Oral health encompasses the health of the teeth, gums, mouth, throat, and oral cavity. It plays a significant role in your ability to smile, speak clearly, chew, and swallow — and it influences your overall health and quality of life. A <a href=\"https://www.nidcr.nih.gov/research/oralhealthinamerica/section-3a-summary\">substantial percentage</a> of the American population faces oral health challenges with 90 percent of adults experiencing tooth decay and 50 percent dealing with gum disease.</p>",
+        "main_title": "",
+        "main_subtext": "",
         "layout": "right",
         "image": "shopify://shop_images/smartmouth-groupproduct-img.jpg",
-        "right_heading": "",
-        "right_text": "",
+        "right_heading": "Oral Health",
+        "right_text": "<p>Oral health encompasses the health of the teeth, gums, mouth, throat, and oral cavity. It plays a significant role in your ability to smile, speak clearly, chew, and swallow — and it influences your overall health and quality of life. A <a href=\"https://www.nidcr.nih.gov/research/oralhealthinamerica/section-3a-summary\">substantial percentage</a> of the American population faces oral health challenges with 90 percent of adults experiencing tooth decay and 50 percent dealing with gum disease.</p>",
         "padding_top": 36,
         "padding_bottom": 36
       }
