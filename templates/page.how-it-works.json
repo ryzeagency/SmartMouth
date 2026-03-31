@@ -94,6 +94,45 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "features_grid_A3DA9p": {
+      "type": "features-grid",
+      "blocks": {
+        "feature_AxLGYp": {
+          "type": "feature",
+          "settings": {
+            "heading": "",
+            "text": ""
+          }
+        },
+        "feature_mRPGxy": {
+          "type": "feature",
+          "settings": {
+            "heading": "",
+            "text": ""
+          }
+        },
+        "feature_QpdXe3": {
+          "type": "feature",
+          "settings": {
+            "heading": "",
+            "text": ""
+          }
+        }
+      },
+      "block_order": [
+        "feature_AxLGYp",
+        "feature_mRPGxy",
+        "feature_QpdXe3"
+      ],
+      "name": "Features Grid",
+      "settings": {
+        "columns_desktop": 3,
+        "bg_color": "#005aab",
+        "text_color": "#ffffff",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
     }
   },
   "order": [
@@ -101,6 +140,7 @@
     "custom_video_content_7ebpUE",
     "custom_title_image_NDrhAP",
     "learn_more_products_PrHmNL",
-    "video_B4ndDi"
+    "video_B4ndDi",
+    "features_grid_A3DA9p"
   ]
 }
