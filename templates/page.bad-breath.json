@@ -22,9 +22,10 @@
       "settings": {
         "main_title": "",
         "main_subtext": "",
-        "layout": "left",
-        "right_heading": "",
-        "right_text": "",
+        "layout": "right",
+        "image": "shopify://shop_images/smartmouth-groupproduct-img.jpg",
+        "right_heading": "Bad Breath",
+        "right_text": "<p>Anywhere from <a href=\"https://pubmed.ncbi.nlm.nih.gov/25525639/\">22 to 50 percent</a> of the population has bad breath. It can negatively impact your relationships and cause shame, humiliation, depression, and anxiety. But you don’t have to live with it. The first step to improving your oral health is learning more about it.</p>",
         "padding_top": 36,
         "padding_bottom": 36
       }
@@ -53,7 +54,8 @@
       ],
       "name": "Custom Accordion",
       "settings": {
-        "title": "",
+        "title": "Learn About Bad Breath",
+        "subtitle": "Bad breath, also called halitosis, is an unpleasant odor coming from the mouth. We can help you identify what’s causing your bad breath and find solutions, so you can smile with confidence again.",
         "bg_color": "#f4f4f4",
         "border_color": "#e5e5e5",
         "text_color": "#333333",
