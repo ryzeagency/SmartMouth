@@ -22,9 +22,10 @@
       "settings": {
         "main_title": "",
         "main_subtext": "",
-        "layout": "left",
-        "right_heading": "",
-        "right_text": "",
+        "layout": "right",
+        "image": "shopify://shop_images/Clinical-16oz-Slim-Front-WhiteTop-1.27.25-square.png",
+        "right_heading": "Gum Disease",
+        "right_text": "<p>Gum disease is an infection of the gums. It impacts <a href=\"https://www.cdc.gov/oralhealth/conditions/periodontal-disease.html\">nearly half</a> of people older than 30, as well as 70 percent of people older than 65. When untreated, it can cause gum recession and tooth loss. We can help you understand the symptoms of gum disease and learn how to prevent it to improve your oral health.</p>",
         "padding_top": 36,
         "padding_bottom": 36
       }
@@ -32,28 +33,61 @@
     "faqs_accordion_qErFTD": {
       "type": "faqs-accordion",
       "blocks": {
+        "accordion_item_7WKphj": {
+          "type": "accordion_item",
+          "settings": {
+            "title": "What is gum disease?",
+            "content": ""
+          }
+        },
+        "accordion_item_kKK98g": {
+          "type": "accordion_item",
+          "settings": {
+            "title": "How can you prevent gum disease?",
+            "content": ""
+          }
+        },
+        "accordion_item_f3p3Vr": {
+          "type": "accordion_item",
+          "settings": {
+            "title": "What is gingivitis?",
+            "content": ""
+          }
+        },
+        "accordion_item_KWbWUi": {
+          "type": "accordion_item",
+          "settings": {
+            "title": "What causes gingivitis?",
+            "content": ""
+          }
+        },
         "accordion_item_tmnRC9": {
           "type": "accordion_item",
           "settings": {
-            "title": "Which SmartMouth™ rinse is right for me?",
-            "content": "<img src=\"https://www.smartmouth.com/wp-content/uploads/2025/07/Rinse-Comparison-Chart-7.1.2025-scaled.jpg\" alt=\"Rinse Comparison Chart 7.1.2025\">"
+            "title": "What causes receding gums?",
+            "content": ""
           }
         },
         "accordion_item_rVBkwV": {
           "type": "accordion_item",
           "settings": {
-            "title": "What mouthwash is good for bleeding gums?",
-            "content": "<p>SmartMouth™ Clinical DDS provides optimal oral and general health without sacrificing any of SmartMouth™’s elite anti-bad-breath-technology. However, you should consult a dentist if you experience the following symptoms after use: bleeding gums, gums that are tender or swollen, persistent bad breath.</p>"
+            "title": "How can you fix receding gums?",
+            "content": ""
           }
         }
       },
       "block_order": [
+        "accordion_item_7WKphj",
+        "accordion_item_kKK98g",
+        "accordion_item_f3p3Vr",
+        "accordion_item_KWbWUi",
         "accordion_item_tmnRC9",
         "accordion_item_rVBkwV"
       ],
       "name": "Custom Accordion",
       "settings": {
-        "title": "",
+        "title": "Learn About Gum Disease",
+        "subtitle": "Gum disease is an infection of the gum tissue. When left untreated, it can progress from gingivitis in its most mild form to periodontitis, a more serious infection.",
         "bg_color": "#f4f4f4",
         "border_color": "#e5e5e5",
         "text_color": "#333333",
