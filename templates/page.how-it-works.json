@@ -15,9 +15,75 @@
         "padding_top": 60,
         "padding_bottom": 60
       }
+    },
+    "custom_video_content_7ebpUE": {
+      "type": "custom-video-content",
+      "name": "Split Video & Text",
+      "settings": {
+        "layout": "right",
+        "bg_color": "#eefaf2",
+        "video_url": "https://www.youtube.com/watch?v=U_MK_PQkT0M",
+        "heading": "How SmartMouth™ Works",
+        "text": "<p>SmartMouth™’s patented formula combines a sulfur eliminating liquid with a zinc ion activating liquid that are kept separate until you pour. SmartMouth™’s activated rinses eliminate bad breath instantly and prevent sulfur gas from returning for 24 hours with just two rinses a day.</p>",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "custom_title_image_NDrhAP": {
+      "type": "custom-title-image",
+      "name": "Title & Image Banner",
+      "settings": {
+        "title": "All day bad breath prevention with Smart-Zinc™ Technology",
+        "subtitle": "",
+        "image": "shopify://shop_images/How-it-works-v1-1-scaled.jpg",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "learn_more_products_PrHmNL": {
+      "type": "learn-more-products",
+      "blocks": {
+        "product_card_cHrMD3": {
+          "type": "product_card",
+          "settings": {
+            "image": "shopify://shop_images/germs-protein-e1743492343110.png",
+            "heading": "Germs + Protein in Our Saliva = Sulfur Gas, AKA The Real Cause of Bad Breath",
+            "text": "<p>When poured in the cup, SmartMouth™’s two liquids — the Sulfur Eliminating Solution, which destroys sulfur gases, and the zinc ion Activating Solution, activate to release billions of zinc ions.</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "product_card_RDzczR": {
+          "type": "product_card",
+          "settings": {
+            "image": "shopify://shop_images/germs-zinc.png",
+            "heading": "Germs + SmartMouth™ Activated Zinc Ion Solution = No More Bad Breath",
+            "text": "<p>It’s this zinc ion activation technology that blocks germs from consuming protein particles inside your mouth. This is the key to preventing sulfur gas production and the secret to all day bad breath prevention.</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "product_card_cHrMD3",
+        "product_card_RDzczR"
+      ],
+      "name": "Learn More Products",
+      "settings": {
+        "title": "",
+        "subtext": "",
+        "bg_color": "#fff",
+        "button_bg_color": "#0066cc",
+        "button_text_color": "#ffffff",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "custom_video_content_7ebpUE",
+    "custom_title_image_NDrhAP",
+    "learn_more_products_PrHmNL"
   ]
 }
