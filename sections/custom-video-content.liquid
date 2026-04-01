@@ -56,10 +56,11 @@
     margin-bottom: 2rem;
     font-weight: bold;
     font-size: clamp(2.4rem, 3vw, 3.2rem);
+    color: {{ section.settings.heading_color }};
   }
 
   .split-text-content-{{ section.id }} .rte {
-    color: rgba(var(--color-foreground), 0.8);
+    color: {{ section.settings.text_color }};
     line-height: 1.6;
     font-size: 1.5rem;
   }
@@ -67,6 +68,34 @@
   .split-text-content-{{ section.id }} .rte p {
     margin-top: 0;
     margin-bottom: 1.5rem;
+  }
+
+  /* Button Styling */
+  .split-video-btn-{{ section.id }} {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border: 0;
+    padding: 0 3rem;
+    cursor: pointer;
+    font: inherit;
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-decoration: none;
+    min-height: 4.6rem;
+    border-radius: 4rem; /* Pill shape */
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+    background-color: {{ section.settings.button_bg_color }};
+    color: {{ section.settings.button_text_color }};
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin-top: 1rem;
+    width: fit-content;
+  }
+
+  .split-video-btn-{{ section.id }}:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
   }
 
   /* Responsive 16:9 Video Wrapper */
@@ -126,6 +155,12 @@
               {{ section.settings.text }}
             </div>
           {%- endif -%}
+
+          {%- if section.settings.button_label != blank -%}
+            <a href="{{ section.settings.button_link | default: '#' }}" class="split-video-btn-{{ section.id }}">
+              {{ section.settings.button_label }}
+            </a>
+          {%- endif -%}
         </div>
       </div>
 
@@ -141,7 +176,7 @@
   "settings": [
     {
       "type": "header",
-      "content": "Layout & Colors"
+      "content": "Layout & Background"
     },
     {
       "type": "select",
@@ -185,9 +220,47 @@
       "label": "Heading"
     },
     {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#121212"
+    },
+    {
       "type": "richtext",
       "id": "text",
       "label": "Text Content"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#333333"
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button Background Color",
+      "default": "#0066cc"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#ffffff"
     },
     {
       "type": "header",
