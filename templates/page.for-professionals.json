@@ -15,9 +15,151 @@
         "padding_top": 60,
         "padding_bottom": 60
       }
+    },
+    "content_text_buttons_43dWtL": {
+      "type": "content-text-buttons",
+      "name": "Content with Dual Buttons",
+      "settings": {
+        "heading": "Online Ordering Now AvailableFor Professionals",
+        "text": "",
+        "btn1_label": "Login to Order",
+        "btn1_link": "https://smartmouth.myshopify.com/customer_authentication/redirect?locale=en&region_country=US",
+        "btn1_bg_color": "#0076cb",
+        "btn1_text_color": "#ffffff",
+        "btn2_label": "Register Your Wholesale Account",
+        "btn2_link": "shopify://pages/wholesale-registration",
+        "btn2_bg_color": "#008037",
+        "btn2_text_color": "#ffffff",
+        "bg_color": "#ffffff",
+        "text_color": "#121212",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "split_image_text_J7rwkR": {
+      "type": "split-image-text",
+      "name": "Split Image & Text",
+      "settings": {
+        "main_title": "Providing Dentists & Dental HygienistsWith Science For Smarter Oral Care",
+        "main_subtext": "<h3>The Results Are In: SmartMouth Is As Effective As Chlorhexidine</h3>",
+        "layout": "right",
+        "image": "shopify://shop_images/SM-Original-Clinical-DryMouth-Packets-1500x694-1.jpg",
+        "right_heading": "",
+        "right_text": "<p><strong>SmartMouth Clinical DDS oral rinse is the OTC alternative for patients who would benefit from chlorhexidine rinse, but need a solution for longer than the typical two-week prescription period or stop using chlorhexidine because of the unpleasant side effects.</strong></p><p>In a six-week study SmartMouth Clinical DDS Activated Oral Rinse was compared to 0.12% Chlorhexidine Mouth Rinse. Based on the research, SmartMouth Clinical DDS oral rinse was found to be as effective as chlorhexidine rinse in reducing gingival inflammation, plaque and bleeding.</p><p>SmartMouth Clinical DDS outperformed chlorhexidine rinse when measuring tooth staining, taste preference and patient compliance. The study was recently published in Oral Health and Preventive Dentistry (full article available with subscription).</p>",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "split_image_text_FT4YCd": {
+      "type": "split-image-text",
+      "name": "Split Image & Text",
+      "settings": {
+        "main_title": "",
+        "main_subtext": "",
+        "layout": "right",
+        "image": "shopify://shop_images/1-SmartMouth-Dry-Mouth-Mouthwash-16oz-1536x1536.jpg",
+        "right_heading": "SmartMouth Also Has a Solution for Patients with Dry Mouth",
+        "right_text": "<p>In addition to the benefits offered by our Clinical DDS formula, SmartMouth also has a solution for patients experiencing dry mouth. Dry mouth can be a very uncomfortable issue, and if not dealt with properly can lead to other oral health problems. Do your patients experience difficulty swallowing, a stickiness in their mouth, or stringy saliva? If so, SmartMouth Dry Mouth Activated Oral Rinse provides relief from the symptoms and discomfort of dry mouth.</p><p><a href=\"https://www.smartmouth.com/product/smartmouth-dry-mouth-activated-mouthwash-16oz/\" target=\"_blank\">SmartMouth’s Dry Mouth Oral Rinse</a> is cleared as a medical device by the FDA to refresh, moisturize, rehydrate, clean, and soothe oral irritation while lubricating oral dryness. It also utilizes SmartMouth’s patented zinc ion technology to eliminate bad breath while preventing it from returning for 24 hours. Although there are many causes of dry mouth, ranging from prescribed medications to CPAP machines, SmartMouth is an effective over-the-counter solution that provides patients with relief.</p>",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "features_grid_hREYM4": {
+      "type": "features-grid",
+      "blocks": {
+        "feature_4H3ffn": {
+          "type": "feature",
+          "settings": {
+            "image": "shopify://shop_images/Icon-OTC-1.png",
+            "heading": "No Prescription Required",
+            "text": "<p>Formulated for daily use and easily available without a prescription.</p>"
+          }
+        },
+        "feature_p98Ap7": {
+          "type": "feature",
+          "settings": {
+            "image": "shopify://shop_images/Icon-Compliance-2.png",
+            "heading": "Better Patient Compliance",
+            "text": "<p>Patients are more likely to use as directed over a longer period of time.</p>"
+          }
+        },
+        "feature_MmBN8W": {
+          "type": "feature",
+          "settings": {
+            "image": "shopify://shop_images/Icon-Tooth-Stain-1.png",
+            "heading": "No Chlorhexidine Staining",
+            "text": "<p>No more chlorhexidine staining of teeth and fillings.</p>"
+          }
+        },
+        "feature_FHKXiy": {
+          "type": "feature",
+          "settings": {
+            "image": "shopify://shop_images/Icon-Taste-1.png",
+            "heading": "Reduced Taste Alteration",
+            "text": "<p>Noticeably fewer patient complaints about taste interference or disturbance during usage.</p>"
+          }
+        },
+        "feature_a3AwK8": {
+          "type": "feature",
+          "settings": {
+            "image": "shopify://shop_images/Icon-Inflammation.png",
+            "heading": "Reduced Bleeding & Inflammation",
+            "text": "<p>Considerable reduction in gum inflammation and total mouth bleeding scores.</p>"
+          }
+        },
+        "feature_jCRgJF": {
+          "type": "feature",
+          "settings": {
+            "image": "shopify://shop_images/Icon-Plaque-1.png",
+            "heading": "Anti-Plaque & Anti-Gingivitis",
+            "text": "<p>Decreases plaque development, formation and accumulation to help prevent gingivitis.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "feature_4H3ffn",
+        "feature_p98Ap7",
+        "feature_MmBN8W",
+        "feature_FHKXiy",
+        "feature_a3AwK8",
+        "feature_jCRgJF"
+      ],
+      "name": "Features Grid",
+      "settings": {
+        "columns_desktop": 3,
+        "bg_color": "#fff",
+        "text_color": "#121212",
+        "padding_top": 0,
+        "padding_bottom": 60
+      }
+    },
+    "content_text_buttons_H8XJAK": {
+      "type": "content-text-buttons",
+      "name": "Content with Dual Buttons",
+      "settings": {
+        "heading": "Sign up to receive patient handouts for our SmartMouth Clinical DDS Activated Oral Rinse for your dental practice.",
+        "text": "<p>Whether your patients need to eliminate bad breath, relieve dry mouth, or help prevent gingivitis and gum disease before it becomes a clinical issue, SmartMouth offers multiple formulations which are scientifically proven to work.</p><p>Our extended line of oral health products, including Dry Mouth Mints and SmartMouth Premium Toothpaste, can supplement your patients' oral health and dental care with added benefits to help alleviate any issues.</p><p><strong>Sign up today to receive patient handouts, exclusive benefits, and access to future initiatives!</strong></p>",
+        "btn1_label": "New Office Request Form",
+        "btn1_link": "https://3464467.extforms.netsuite.com/app/site/crm/externalleadpage.nl/compid.3464467/.f?formid=36&h=AAFdikaIgex6V_nnCDYUJiAAQe3rk1ispgQoMYe-9QE44RGeQ8I&redirect_count=1&did_javascript_redirect=T",
+        "btn1_bg_color": "#0076cb",
+        "btn1_text_color": "#ffffff",
+        "btn2_label": "Returning Office Form",
+        "btn2_link": "https://3464467.extforms.netsuite.com/app/site/crm/externalleadpage.nl/compid.3464467/.f?formid=37&h=AAFdikaIa5gxlLdq7fuliADmpnJ5iLgGTu6XpuQUAzD4_xEH5gY&redirect_count=1&did_javascript_redirect=T",
+        "btn2_bg_color": "#008037",
+        "btn2_text_color": "#ffffff",
+        "bg_color": "#ffffff",
+        "text_color": "#121212",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "content_text_buttons_43dWtL",
+    "split_image_text_J7rwkR",
+    "split_image_text_FT4YCd",
+    "features_grid_hREYM4",
+    "content_text_buttons_H8XJAK"
   ]
 }
