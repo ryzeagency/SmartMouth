@@ -70,7 +70,6 @@
   .wholesale-form-wrapper-{{ section.id }} input[type="email"],
   .wholesale-form-wrapper-{{ section.id }} input[type="tel"],
   .wholesale-form-wrapper-{{ section.id }} input[type="number"],
-  .wholesale-form-wrapper-{{ section.id }} input[type="password"],
   .wholesale-form-wrapper-{{ section.id }} select {
     width: 100%;
     padding: 1.2rem 1.5rem;
@@ -186,7 +185,7 @@
         </div>
       {%- endif -%}
 
-      {% form 'create_customer', id: 'WholesaleRegistrationForm' %}
+      {% form 'contact', id: 'WholesaleContactForm' %}
         
         {%- if form.posted_successfully? -%}
           <div class="form-message form-message--success" tabindex="-1" autofocus>
@@ -195,7 +194,7 @@
               <path d="M5.53271 8.66357L9.25213 4.68146" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               <path d="M3.10664 6.97668L5.53271 8.66357" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-            Thank you for registering! We will review your application shortly.
+            Thank you for your request! Our team will review your application and contact you shortly.
           </div>
         {%- elsif form.errors -%}
           <div class="form-message form-message--error" tabindex="-1" autofocus>
@@ -206,7 +205,7 @@
                   {%- if field == 'form' -%}
                     {{ form.errors.messages[field] }}
                   {%- else -%}
-                    <a href="#RegisterForm-{{ field }}">{{ form.errors.translated_fields[field] | capitalize }} {{ form.errors.messages[field] }}</a>
+                    <a href="#ContactForm-{{ field }}">{{ form.errors.translated_fields[field] | capitalize }} {{ form.errors.messages[field] }}</a>
                   {%- endif -%}
                 </li>
               {%- endfor -%}
@@ -214,51 +213,43 @@
           </div>
         {%- endif -%}
 
-        <input type="hidden" name="customer[tags]" value="Wholesale Applicant">
+        <input type="hidden" name="contact[Subject]" value="New Wholesale Registration Request">
 
         <div class="form-row">
           <div class="form-group half-width">
-            <label for="RegisterForm-FirstName">First Name *</label>
-            <input type="text" name="customer[first_name]" id="RegisterForm-FirstName" {% if form.first_name %}value="{{ form.first_name }}"{% endif %} autocomplete="given-name" placeholder="First Name" required>
+            <label for="ContactForm-FirstName">First Name *</label>
+            <input type="text" name="contact[First Name]" id="ContactForm-FirstName" placeholder="First Name" required>
           </div>
           <div class="form-group half-width">
-            <label for="RegisterForm-LastName">Last Name *</label>
-            <input type="text" name="customer[last_name]" id="RegisterForm-LastName" {% if form.last_name %}value="{{ form.last_name }}"{% endif %} autocomplete="family-name" placeholder="Last Name" required>
+            <label for="ContactForm-LastName">Last Name *</label>
+            <input type="text" name="contact[Last Name]" id="ContactForm-LastName" placeholder="Last Name" required>
           </div>
         </div>
 
         <div class="form-row">
           <div class="form-group half-width">
-            <label for="RegisterForm-email">Email *</label>
-            <input type="email" name="customer[email]" id="RegisterForm-email" {% if form.email %} value="{{ form.email }}"{% endif %} spellcheck="false" autocapitalize="off" autocomplete="email" placeholder="Email" required>
+            <label for="ContactForm-email">Email *</label>
+            <input type="email" name="contact[email]" id="ContactForm-email" spellcheck="false" autocapitalize="off" placeholder="Email" required>
           </div>
           <div class="form-group half-width">
-            <label for="RegisterForm-Phone">Phone *</label>
-            <input type="tel" name="customer[note][Phone]" id="RegisterForm-Phone" placeholder="Phone" required>
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label for="RegisterForm-password">Create Password *</label>
-            <input type="password" name="customer[password]" id="RegisterForm-password" aria-required="true" placeholder="Password" required>
+            <label for="ContactForm-Phone">Phone *</label>
+            <input type="tel" name="contact[Phone]" id="ContactForm-Phone" placeholder="Phone" required>
           </div>
         </div>
 
         <div class="checkbox-group">
-          <input type="hidden" name="customer[accepts_marketing]" value="" />
-          <input type="checkbox" name="customer[accepts_marketing]" id="RegisterForm-Marketing" value="true" checked>
-          <label for="RegisterForm-Marketing">Send me updates & special offers</label>
+          <input type="checkbox" name="contact[Opt-in to Marketing]" id="ContactForm-Marketing" value="Yes" checked>
+          <label for="ContactForm-Marketing">Send me updates & special offers</label>
         </div>
 
         <div class="form-row">
           <div class="form-group half-width">
-            <label for="RegisterForm-Company">Company *</label>
-            <input type="text" name="customer[note][Company]" id="RegisterForm-Company" placeholder="Company" required>
+            <label for="ContactForm-Company">Company *</label>
+            <input type="text" name="contact[Company]" id="ContactForm-Company" placeholder="Company" required>
           </div>
           <div class="form-group half-width">
-            <label for="RegisterForm-PracticeType">Practice Type *</label>
-            <select name="customer[note][Practice Type]" id="RegisterForm-PracticeType" required>
+            <label for="ContactForm-PracticeType">Practice Type *</label>
+            <select name="contact[Practice Type]" id="ContactForm-PracticeType" required>
               <option value="" disabled selected>Select Practice Type</option>
               <option value="Periodontist">Periodontist</option>
               <option value="General Dentist">General Dentist</option>
@@ -272,12 +263,12 @@
 
         <div class="form-row">
           <div class="form-group half-width">
-            <label for="RegisterForm-Employees">Number of Office Employees</label>
-            <input type="number" name="customer[note][Number of Employees]" id="RegisterForm-Employees" placeholder="e.g. 15">
+            <label for="ContactForm-Employees">Number of Office Employees</label>
+            <input type="number" name="contact[Number of Employees]" id="ContactForm-Employees" placeholder="e.g. 15">
           </div>
           <div class="form-group half-width">
-            <label for="RegisterForm-Patients">Active Patients</label>
-            <select name="customer[note][Active Patients]" id="RegisterForm-Patients">
+            <label for="ContactForm-Patients">Active Patients</label>
+            <select name="contact[Active Patients]" id="ContactForm-Patients">
               <option value="" disabled selected>Select Volume</option>
               <option value=">3500">>3500</option>
               <option value="3000-3500">3000-3500</option>
@@ -292,8 +283,8 @@
 
         <div class="form-row">
           <div class="form-group">
-            <label for="RegisterForm-HearAbout">How Did You Hear About Us?</label>
-            <select name="customer[note][How did you hear about us?]" id="RegisterForm-HearAbout">
+            <label for="ContactForm-HearAbout">How Did You Hear About Us?</label>
+            <select name="contact[How did you hear about us?]" id="ContactForm-HearAbout">
               <option value="" disabled selected>Select an option</option>
               <option value="Patient Asked Me About SmartMouth">Patient Asked Me About SmartMouth</option>
               <option value="Dental Show">Dental Show</option>
@@ -308,43 +299,43 @@
           <h3 class="h4" style="margin-top:0; margin-bottom:2rem; color: {{ section.settings.heading_color }};">Address Details</h3>
           <div class="form-row">
             <div class="form-group">
-              <label for="RegisterForm-Address1">Street Address *</label>
-              <input type="text" name="customer[note][Address]" id="RegisterForm-Address1" placeholder="Street Address" required>
+              <label for="ContactForm-Address1">Street Address *</label>
+              <input type="text" name="contact[Street Address]" id="ContactForm-Address1" placeholder="Street Address" required>
             </div>
           </div>
           <div class="form-row">
             <div class="form-group half-width">
-              <label for="RegisterForm-City">City *</label>
-              <input type="text" name="customer[note][City]" id="RegisterForm-City" placeholder="City" required>
+              <label for="ContactForm-City">City *</label>
+              <input type="text" name="contact[City]" id="ContactForm-City" placeholder="City" required>
             </div>
             <div class="form-group half-width">
-              <label for="RegisterForm-State">State / Province *</label>
-              <input type="text" name="customer[note][State]" id="RegisterForm-State" placeholder="State" required>
+              <label for="ContactForm-State">State / Province *</label>
+              <input type="text" name="contact[State]" id="ContactForm-State" placeholder="State" required>
             </div>
           </div>
           <div class="form-row">
             <div class="form-group half-width">
-              <label for="RegisterForm-Zip">ZIP / Postal Code *</label>
-              <input type="text" name="customer[note][Zip]" id="RegisterForm-Zip" placeholder="Zip Code" required>
+              <label for="ContactForm-Zip">ZIP / Postal Code *</label>
+              <input type="text" name="contact[Zip Code]" id="ContactForm-Zip" placeholder="Zip Code" required>
             </div>
             <div class="form-group half-width">
-              <label for="RegisterForm-Country">Country *</label>
-              <input type="text" name="customer[note][Country]" id="RegisterForm-Country" value="United States" required>
+              <label for="ContactForm-Country">Country *</label>
+              <input type="text" name="contact[Country]" id="ContactForm-Country" value="United States" required>
             </div>
           </div>
         </div>
 
         <div class="checkbox-group" style="margin-top: 2rem;">
-          <input type="checkbox" name="customer[note][Tax Exempt]" id="RegisterForm-TaxExempt" value="Yes">
-          <label for="RegisterForm-TaxExempt">
+          <input type="checkbox" name="contact[Tax Exempt Requested]" id="ContactForm-TaxExempt" value="Yes">
+          <label for="ContactForm-TaxExempt">
             <strong>Tax Exempt</strong><br>
             <span style="font-size: 1.3rem; opacity: 0.8;">Please check this box if you are eligible for tax exemption. (Note: Our team will contact you to collect documentation after registration).</span>
           </label>
         </div>
 
         <div class="checkbox-group" style="margin-top: 2rem;">
-          <input type="checkbox" name="customer[note][Agreed to Terms]" id="RegisterForm-Terms" value="Yes" required>
-          <label for="RegisterForm-Terms">
+          <input type="checkbox" name="contact[Agreed to Terms]" id="ContactForm-Terms" value="Yes" required>
+          <label for="ContactForm-Terms">
             I agree to the <a href="https://drive.google.com/file/d/1XPOD_g5MSFDGAGH5spk2jQwIs7GOueAk/view?usp=sharing" target="_blank">Terms and Conditions</a>. *
           </label>
         </div>
@@ -361,7 +352,7 @@
 
 {% schema %}
 {
-  "name": "Wholesale Reg. Form",
+  "name": "Wholesale Contact Form",
   "tag": "section",
   "class": "section",
   "settings": [
@@ -381,7 +372,7 @@
       "type": "text",
       "id": "btn_label",
       "label": "Button Label",
-      "default": "Register"
+      "default": "Submit Request"
     },
     {
       "type": "header",
@@ -444,7 +435,7 @@
   ],
   "presets": [
     {
-      "name": "Wholesale Registration Form"
+      "name": "Wholesale Contact Form"
     }
   ]
 }
