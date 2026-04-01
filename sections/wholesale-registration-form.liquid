@@ -1,0 +1,451 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    background-color: {{ section.settings.bg_color }};
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .wholesale-form-wrapper-{{ section.id }} {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 4rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  }
+
+  .wholesale-form-header-{{ section.id }} {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .wholesale-form-header-{{ section.id }} h2 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+    color: {{ section.settings.heading_color }};
+  }
+
+  .wholesale-form-header-{{ section.id }} .rte {
+    color: {{ section.settings.text_color }};
+    font-size: 1.5rem;
+  }
+
+  /* Form Grid Layout */
+  .form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .form-group {
+    flex: 1 1 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media screen and (min-width: 750px) {
+    .form-group.half-width {
+      flex: 1 1 calc(50% - 1rem);
+    }
+  }
+
+  /* Input Styling */
+  .wholesale-form-wrapper-{{ section.id }} label {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+    color: {{ section.settings.text_color }};
+  }
+
+  .wholesale-form-wrapper-{{ section.id }} input[type="text"],
+  .wholesale-form-wrapper-{{ section.id }} input[type="email"],
+  .wholesale-form-wrapper-{{ section.id }} input[type="tel"],
+  .wholesale-form-wrapper-{{ section.id }} input[type="number"],
+  .wholesale-form-wrapper-{{ section.id }} input[type="password"],
+  .wholesale-form-wrapper-{{ section.id }} select {
+    width: 100%;
+    padding: 1.2rem 1.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1.5rem;
+    font-family: inherit;
+    background-color: #fff;
+    transition: border-color 0.2s ease;
+  }
+
+  .wholesale-form-wrapper-{{ section.id }} input:focus,
+  .wholesale-form-wrapper-{{ section.id }} select:focus {
+    outline: none;
+    border-color: {{ section.settings.btn_bg_color }};
+  }
+
+  /* Checkbox Styling */
+  .checkbox-group {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .checkbox-group input[type="checkbox"] {
+    margin-top: 0.4rem;
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+
+  .checkbox-group label {
+    font-weight: normal;
+    margin-bottom: 0;
+    line-height: 1.5;
+  }
+
+  .checkbox-group label a {
+    color: {{ section.settings.btn_bg_color }};
+    text-decoration: underline;
+  }
+
+  /* Address Section styling */
+  .address-section {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #eee;
+  }
+
+  /* Button Styling */
+  .wholesale-form-btn-{{ section.id }} {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border: 0;
+    padding: 0 4rem;
+    cursor: pointer;
+    font: inherit;
+    font-size: 1.4rem;
+    font-weight: 700;
+    text-decoration: none;
+    min-height: 5rem;
+    border-radius: 4rem;
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+    width: 100%;
+    background-color: {{ section.settings.btn_bg_color }};
+    color: {{ section.settings.btn_text_color }};
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin-top: 2rem;
+  }
+
+  .wholesale-form-btn-{{ section.id }}:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  }
+
+  /* Form Error/Success Messages */
+  .form-message {
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border-radius: 4px;
+    font-size: 1.4rem;
+  }
+  .form-message--success {
+    background-color: #eefaf2;
+    color: #008037;
+    border: 1px solid #008037;
+  }
+  .form-message--error {
+    background-color: #fff0f0;
+    color: #d20000;
+    border: 1px solid #d20000;
+  }
+  .form-message--error ul {
+    margin: 0;
+    padding-left: 2rem;
+  }
+{%- endstyle -%}
+
+<div class="section-{{ section.id }}-padding">
+  <div class="page-width">
+    <div class="wholesale-form-wrapper-{{ section.id }}">
+      
+      {%- if section.settings.heading != blank or section.settings.text != blank -%}
+        <div class="wholesale-form-header-{{ section.id }}">
+          {%- if section.settings.heading != blank -%}
+            <h2 class="h2">{{ section.settings.heading }}</h2>
+          {%- endif -%}
+          {%- if section.settings.text != blank -%}
+            <div class="rte">{{ section.settings.text }}</div>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {% form 'create_customer', id: 'WholesaleRegistrationForm' %}
+        
+        {%- if form.posted_successfully? -%}
+          <div class="form-message form-message--success" tabindex="-1" autofocus>
+            <svg aria-hidden="true" focusable="false" viewBox="0 0 13 13" style="width: 1.4rem; margin-right: 1rem; fill: currentColor; vertical-align: text-bottom;">
+              <path d="M6.5 12.35C9.73087 12.35 12.35 9.73086 12.35 6.5C12.35 3.26913 9.73087 0.65 6.5 0.65C3.26913 0.65 0.65 3.26913 0.65 6.5C0.65 9.73086 3.26913 12.35 6.5 12.35Z" fill="currentColor" stroke="white" stroke-width="0.7"/>
+              <path d="M5.53271 8.66357L9.25213 4.68146" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M3.10664 6.97668L5.53271 8.66357" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Thank you for registering! We will review your application shortly.
+          </div>
+        {%- elsif form.errors -%}
+          <div class="form-message form-message--error" tabindex="-1" autofocus>
+            Please adjust the following:
+            <ul>
+              {%- for field in form.errors -%}
+                <li>
+                  {%- if field == 'form' -%}
+                    {{ form.errors.messages[field] }}
+                  {%- else -%}
+                    <a href="#RegisterForm-{{ field }}">{{ form.errors.translated_fields[field] | capitalize }} {{ form.errors.messages[field] }}</a>
+                  {%- endif -%}
+                </li>
+              {%- endfor -%}
+            </ul>
+          </div>
+        {%- endif -%}
+
+        <input type="hidden" name="customer[tags]" value="Wholesale Applicant">
+
+        <div class="form-row">
+          <div class="form-group half-width">
+            <label for="RegisterForm-FirstName">First Name *</label>
+            <input type="text" name="customer[first_name]" id="RegisterForm-FirstName" {% if form.first_name %}value="{{ form.first_name }}"{% endif %} autocomplete="given-name" placeholder="First Name" required>
+          </div>
+          <div class="form-group half-width">
+            <label for="RegisterForm-LastName">Last Name *</label>
+            <input type="text" name="customer[last_name]" id="RegisterForm-LastName" {% if form.last_name %}value="{{ form.last_name }}"{% endif %} autocomplete="family-name" placeholder="Last Name" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group half-width">
+            <label for="RegisterForm-email">Email *</label>
+            <input type="email" name="customer[email]" id="RegisterForm-email" {% if form.email %} value="{{ form.email }}"{% endif %} spellcheck="false" autocapitalize="off" autocomplete="email" placeholder="Email" required>
+          </div>
+          <div class="form-group half-width">
+            <label for="RegisterForm-Phone">Phone *</label>
+            <input type="tel" name="customer[note][Phone]" id="RegisterForm-Phone" placeholder="Phone" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="RegisterForm-password">Create Password *</label>
+            <input type="password" name="customer[password]" id="RegisterForm-password" aria-required="true" placeholder="Password" required>
+          </div>
+        </div>
+
+        <div class="checkbox-group">
+          <input type="hidden" name="customer[accepts_marketing]" value="" />
+          <input type="checkbox" name="customer[accepts_marketing]" id="RegisterForm-Marketing" value="true" checked>
+          <label for="RegisterForm-Marketing">Send me updates & special offers</label>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group half-width">
+            <label for="RegisterForm-Company">Company *</label>
+            <input type="text" name="customer[note][Company]" id="RegisterForm-Company" placeholder="Company" required>
+          </div>
+          <div class="form-group half-width">
+            <label for="RegisterForm-PracticeType">Practice Type *</label>
+            <select name="customer[note][Practice Type]" id="RegisterForm-PracticeType" required>
+              <option value="" disabled selected>Select Practice Type</option>
+              <option value="Periodontist">Periodontist</option>
+              <option value="General Dentist">General Dentist</option>
+              <option value="Endodontist">Endodontist</option>
+              <option value="Oral/Maxillofacial Surgeon">Oral/Maxillofacial Surgeon</option>
+              <option value="Orthodontist">Orthodontist</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group half-width">
+            <label for="RegisterForm-Employees">Number of Office Employees</label>
+            <input type="number" name="customer[note][Number of Employees]" id="RegisterForm-Employees" placeholder="e.g. 15">
+          </div>
+          <div class="form-group half-width">
+            <label for="RegisterForm-Patients">Active Patients</label>
+            <select name="customer[note][Active Patients]" id="RegisterForm-Patients">
+              <option value="" disabled selected>Select Volume</option>
+              <option value=">3500">>3500</option>
+              <option value="3000-3500">3000-3500</option>
+              <option value="2500-3000">2500-3000</option>
+              <option value="2000-2500">2000-2500</option>
+              <option value="1500-2000">1500-2000</option>
+              <option value="1000-1500">1000-1500</option>
+              <option value="<1000"><1000</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="RegisterForm-HearAbout">How Did You Hear About Us?</label>
+            <select name="customer[note][How did you hear about us?]" id="RegisterForm-HearAbout">
+              <option value="" disabled selected>Select an option</option>
+              <option value="Patient Asked Me About SmartMouth">Patient Asked Me About SmartMouth</option>
+              <option value="Dental Show">Dental Show</option>
+              <option value="Social Media">Social Media</option>
+              <option value="Online Advertisement">Online Advertisement</option>
+              <option value="Television/Radio Advertisement">Television/Radio Advertisement</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="address-section">
+          <h3 class="h4" style="margin-top:0; margin-bottom:2rem; color: {{ section.settings.heading_color }};">Address Details</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="RegisterForm-Address1">Street Address *</label>
+              <input type="text" name="customer[note][Address]" id="RegisterForm-Address1" placeholder="Street Address" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group half-width">
+              <label for="RegisterForm-City">City *</label>
+              <input type="text" name="customer[note][City]" id="RegisterForm-City" placeholder="City" required>
+            </div>
+            <div class="form-group half-width">
+              <label for="RegisterForm-State">State / Province *</label>
+              <input type="text" name="customer[note][State]" id="RegisterForm-State" placeholder="State" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group half-width">
+              <label for="RegisterForm-Zip">ZIP / Postal Code *</label>
+              <input type="text" name="customer[note][Zip]" id="RegisterForm-Zip" placeholder="Zip Code" required>
+            </div>
+            <div class="form-group half-width">
+              <label for="RegisterForm-Country">Country *</label>
+              <input type="text" name="customer[note][Country]" id="RegisterForm-Country" value="United States" required>
+            </div>
+          </div>
+        </div>
+
+        <div class="checkbox-group" style="margin-top: 2rem;">
+          <input type="checkbox" name="customer[note][Tax Exempt]" id="RegisterForm-TaxExempt" value="Yes">
+          <label for="RegisterForm-TaxExempt">
+            <strong>Tax Exempt</strong><br>
+            <span style="font-size: 1.3rem; opacity: 0.8;">Please check this box if you are eligible for tax exemption. (Note: Our team will contact you to collect documentation after registration).</span>
+          </label>
+        </div>
+
+        <div class="checkbox-group" style="margin-top: 2rem;">
+          <input type="checkbox" name="customer[note][Agreed to Terms]" id="RegisterForm-Terms" value="Yes" required>
+          <label for="RegisterForm-Terms">
+            I agree to the <a href="https://drive.google.com/file/d/1XPOD_g5MSFDGAGH5spk2jQwIs7GOueAk/view?usp=sharing" target="_blank">Terms and Conditions</a>. *
+          </label>
+        </div>
+
+        <button type="submit" class="wholesale-form-btn-{{ section.id }}">
+          {{ section.settings.btn_label }}
+        </button>
+
+      {% endform %}
+
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Wholesale Reg. Form",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Wholesale Registration"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Sign up today to receive patient handouts, exclusive benefits, and access to future initiatives!</p>"
+    },
+    {
+      "type": "text",
+      "id": "btn_label",
+      "label": "Button Label",
+      "default": "Register"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Section Background",
+      "default": "#f4f4f4"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#121212"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text/Label Color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "btn_bg_color",
+      "label": "Button Background",
+      "default": "#0076cb"
+    },
+    {
+      "type": "color",
+      "id": "btn_text_color",
+      "label": "Button Text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 80
+    }
+  ],
+  "presets": [
+    {
+      "name": "Wholesale Registration Form"
+    }
+  ]
+}
+{% endschema %}
