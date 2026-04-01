@@ -50,6 +50,92 @@
         "padding_bottom": 36
       }
     },
+    "custom_icons_section_adTPJc": {
+      "type": "custom-icons-section",
+      "blocks": {
+        "icon_wnCTwA": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/Icon-OTC-1.png",
+            "image_width": 120
+          }
+        },
+        "icon_Ayb8JY": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/Icon-Compliance-2.png",
+            "image_width": 120
+          }
+        },
+        "icon_qkzCDi": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/Icon-Tooth-Stain-1.png",
+            "image_width": 120
+          }
+        },
+        "icon_qzCXcq": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/Icon-Taste-1.png",
+            "image_width": 120
+          }
+        },
+        "icon_qexKaV": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/Icon-Inflammation.png",
+            "image_width": 120
+          }
+        },
+        "icon_PDNFLq": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/Icon-Plaque-1.png",
+            "image_width": 120
+          }
+        }
+      },
+      "block_order": [
+        "icon_wnCTwA",
+        "icon_Ayb8JY",
+        "icon_qkzCDi",
+        "icon_qzCXcq",
+        "icon_qexKaV",
+        "icon_PDNFLq"
+      ],
+      "name": "Icons with Dual Buttons",
+      "settings": {
+        "heading": "Key findings from the study include:",
+        "columns_desktop": 6,
+        "text": "<p>Sign up to order for your dental office or request patient handouts and samples of SmartMouth products.</p>",
+        "btn1_label": "New Office Request Form",
+        "btn1_link": "https://3464467.extforms.netsuite.com/app/site/crm/externalleadpage.nl/compid.3464467/.f?formid=36&h=AAFdikaIgex6V_nnCDYUJiAAQe3rk1ispgQoMYe-9QE44RGeQ8I&redirect_count=1&did_javascript_redirect=T",
+        "btn1_bg_color": "#0076cb",
+        "btn1_text_color": "#ffffff",
+        "btn2_label": "Returning Office Form",
+        "btn2_link": "https://3464467.extforms.netsuite.com/app/site/crm/externalleadpage.nl/compid.3464467/.f?formid=37&h=AAFdikaIa5gxlLdq7fuliADmpnJ5iLgGTu6XpuQUAzD4_xEH5gY&redirect_count=1&did_javascript_redirect=T",
+        "btn2_bg_color": "#008037",
+        "btn2_text_color": "#ffffff",
+        "bg_color": "#ffffff",
+        "text_color": "#333333",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "custom_video_content_f7jMbz": {
+      "type": "custom-video-content",
+      "name": "Split Video & Text",
+      "settings": {
+        "layout": "right",
+        "bg_color": "#0073c8",
+        "video_url": "https://www.youtube.com/watch?v=-faDB4EI46c",
+        "heading": "Watch Dr. Douglas Miley discuss the clinical research study findings.",
+        "text": "",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
     "split_image_text_FT4YCd": {
       "type": "split-image-text",
       "name": "Split Image & Text",
@@ -173,6 +259,8 @@
     "main",
     "content_text_buttons_43dWtL",
     "split_image_text_J7rwkR",
+    "custom_icons_section_adTPJc",
+    "custom_video_content_f7jMbz",
     "split_image_text_FT4YCd",
     "new_improved_pour_UDkeFT",
     "features_grid_hREYM4",
