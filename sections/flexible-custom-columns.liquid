@@ -1,0 +1,396 @@
+{%- style -%}
+  .section-{{ section.id }}-wrapper {
+    background-color: {{ section.settings.bg_color }};
+    overflow: hidden;
+  }
+
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  /* Flexbox Grid System */
+  .flex-container-{{ section.id }} {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: {{ section.settings.vertical_alignment }};
+    margin: -2rem; /* Negative margin to offset block padding and create a seamless grid */
+  }
+
+  .flex-block-{{ section.id }} {
+    padding: 2rem;
+    width: 100%; /* Defaults to stacking 100% width on mobile */
+  }
+
+  @media screen and (min-width: 750px) {
+    .flex-block-{{ section.id }} {
+      /* Pulls the width dynamically from the block settings */
+      width: var(--desktop-width); 
+    }
+  }
+
+  /* Content Block Styling */
+  .custom-block-content h2 {
+    margin-top: 0;
+    font-weight: bold;
+    line-height: 1.1;
+  }
+
+  .custom-block-content .size-large {
+    font-size: clamp(3rem, 4vw, 4.8rem);
+    margin-bottom: 2rem;
+  }
+
+  .custom-block-content .size-medium {
+    font-size: clamp(2.2rem, 3vw, 3.2rem);
+    margin-bottom: 1.5rem;
+  }
+
+  .custom-block-content .size-small {
+    font-size: clamp(1.8rem, 2vw, 2.2rem);
+    margin-bottom: 1.5rem;
+  }
+
+  .custom-block-content .rte {
+    line-height: 1.6;
+    font-size: 1.5rem;
+    opacity: 0.85;
+  }
+
+  .custom-block-content .rte p {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+  }
+
+  .custom-block-content .rte p:last-child {
+    margin-bottom: 0;
+  }
+
+  .custom-block-btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border: 0;
+    padding: 0 3rem;
+    cursor: pointer;
+    font: inherit;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-decoration: none;
+    min-height: 4.4rem;
+    border-radius: 4rem; /* Pill shape */
+    letter-spacing: 0.05rem;
+    text-transform: uppercase;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin-top: 2.5rem;
+    width: fit-content;
+  }
+
+  .custom-block-btn:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  }
+
+  /* Image Block Styling */
+  .custom-block-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+
+  .placeholder-image-wrapper {
+    width: 100%;
+    min-height: 400px;
+    background-color: rgba(var(--color-foreground), 0.04);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .placeholder-image-wrapper svg {
+    width: 80px;
+    height: 80px;
+    fill: rgba(var(--color-foreground), 0.2);
+  }
+{%- endstyle -%}
+
+<div class="section-{{ section.id }}-wrapper">
+  <div class="page-width section-{{ section.id }}-padding">
+    
+    <div class="flex-container-{{ section.id }}">
+      {%- for block in section.blocks -%}
+        
+        <div class="flex-block-{{ section.id }} custom-block-{{ block.type }}" 
+             style="--desktop-width: {{ block.settings.width }}%; text-align: {{ block.settings.text_align }};" 
+             {{ block.shopify_attributes }}>
+          
+          {%- case block.type -%}
+            
+            {%- when 'content' -%}
+              {%- if block.settings.heading != blank -%}
+                <h2 class="size-{{ block.settings.heading_size }}" style="color: {{ block.settings.heading_color }};">
+                  {{ block.settings.heading | newline_to_br }}
+                </h2>
+              {%- endif -%}
+
+              {%- if block.settings.text != blank -%}
+                <div class="rte" style="color: {{ block.settings.text_color }};">
+                  {{ block.settings.text }}
+                </div>
+              {%- endif -%}
+
+              {%- if block.settings.btn_label != blank -%}
+                <a href="{{ block.settings.btn_link | default: '#' }}" 
+                   class="custom-block-btn" 
+                   style="background-color: {{ block.settings.btn_bg_color }}; color: {{ block.settings.btn_text_color }};">
+                  {{ block.settings.btn_label }}
+                </a>
+              {%- endif -%}
+
+            {%- when 'image' -%}
+              {%- if block.settings.image != blank -%}
+                {{ block.settings.image | image_url: width: 1000 | image_tag: 
+                  loading: 'lazy',
+                  sizes: '(min-width: 750px) 50vw, 100vw'
+                }}
+              {%- else -%}
+                <div class="placeholder-image-wrapper">
+                  {{ 'image' | placeholder_svg_tag }}
+                </div>
+              {%- endif -%}
+
+          {%- endcase -%}
+
+        </div>
+      {%- endfor -%}
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Flexible Custom Columns",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Section Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "select",
+      "id": "vertical_alignment",
+      "label": "Vertical Alignment",
+      "options": [
+        { "value": "flex-start", "label": "Top" },
+        { "value": "center", "label": "Center" },
+        { "value": "flex-end", "label": "Bottom" },
+        { "value": "stretch", "label": "Stretch" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 80
+    }
+  ],
+  "blocks": [
+    {
+      "type": "content",
+      "name": "Content Block",
+      "settings": [
+        {
+          "type": "select",
+          "id": "width",
+          "label": "Desktop Width",
+          "options": [
+            { "value": "20", "label": "20%" },
+            { "value": "25", "label": "25%" },
+            { "value": "33.333", "label": "33%" },
+            { "value": "40", "label": "40%" },
+            { "value": "50", "label": "50%" },
+            { "value": "60", "label": "60%" },
+            { "value": "66.666", "label": "66%" },
+            { "value": "75", "label": "75%" },
+            { "value": "100", "label": "100%" }
+          ],
+          "default": "33.333"
+        },
+        {
+          "type": "select",
+          "id": "text_align",
+          "label": "Text Alignment",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ],
+          "default": "left"
+        },
+        {
+          "type": "header",
+          "content": "Heading"
+        },
+        {
+          "type": "textarea",
+          "id": "heading",
+          "label": "Heading Text"
+        },
+        {
+          "type": "select",
+          "id": "heading_size",
+          "label": "Heading Size",
+          "options": [
+            { "value": "small", "label": "Small" },
+            { "value": "medium", "label": "Medium" },
+            { "value": "large", "label": "Large" }
+          ],
+          "default": "medium"
+        },
+        {
+          "type": "color",
+          "id": "heading_color",
+          "label": "Heading Color",
+          "default": "#121212"
+        },
+        {
+          "type": "header",
+          "content": "Body Text"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text Color",
+          "default": "#333333"
+        },
+        {
+          "type": "header",
+          "content": "Button"
+        },
+        {
+          "type": "text",
+          "id": "btn_label",
+          "label": "Button Label"
+        },
+        {
+          "type": "url",
+          "id": "btn_link",
+          "label": "Button Link"
+        },
+        {
+          "type": "color",
+          "id": "btn_bg_color",
+          "label": "Button Background Color",
+          "default": "#0076cb"
+        },
+        {
+          "type": "color",
+          "id": "btn_text_color",
+          "label": "Button Text Color",
+          "default": "#ffffff"
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "name": "Image Block",
+      "settings": [
+        {
+          "type": "select",
+          "id": "width",
+          "label": "Desktop Width",
+          "options": [
+            { "value": "20", "label": "20%" },
+            { "value": "25", "label": "25%" },
+            { "value": "33.333", "label": "33%" },
+            { "value": "40", "label": "40%" },
+            { "value": "50", "label": "50%" },
+            { "value": "60", "label": "60%" },
+            { "value": "66.666", "label": "66%" },
+            { "value": "75", "label": "75%" },
+            { "value": "100", "label": "100%" }
+          ],
+          "default": "33.333"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Flexible Custom Columns",
+      "blocks": [
+        {
+          "type": "content",
+          "settings": {
+            "width": "33.333",
+            "heading": "Never\nHave Bad\nBreath",
+            "heading_size": "large",
+            "heading_color": "#214e2c",
+            "text": "<p>The only mouthwash <strong>scientifically proven</strong> to eliminate and prevent bad breath for <strong>24 hours</strong> with two rinses a day.</p>"
+          }
+        },
+        {
+          "type": "image",
+          "settings": {
+            "width": "33.333"
+          }
+        },
+        {
+          "type": "content",
+          "settings": {
+            "width": "33.333",
+            "heading": "Get the Summary of the Study Now",
+            "heading_size": "medium",
+            "heading_color": "#121212",
+            "text": "<p>Read more about the findings of this clinical study conducted at Saint Louis University Center for Advanced Dental Education and Southern Illinois University School of Dental Medicine.</p><p>Learn why SmartMouth Clinical DDS oral rinse is the non-prescription alternative for patients who use chlorhexidine rinse.</p>",
+            "btn_label": "Download Info Sheet",
+            "btn_bg_color": "#0066cc",
+            "btn_text_color": "#ffffff"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
