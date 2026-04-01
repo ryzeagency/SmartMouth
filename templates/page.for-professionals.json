@@ -33,7 +33,7 @@
         "bg_color": "#ffffff",
         "text_color": "#121212",
         "padding_top": 80,
-        "padding_bottom": 80
+        "padding_bottom": 40
       }
     },
     "split_image_text_J7rwkR": {
@@ -46,7 +46,7 @@
         "image": "shopify://shop_images/SM-Original-Clinical-DryMouth-Packets-1500x694-1.jpg",
         "right_heading": "",
         "right_text": "<p><strong>SmartMouth Clinical DDS oral rinse is the OTC alternative for patients who would benefit from chlorhexidine rinse, but need a solution for longer than the typical two-week prescription period or stop using chlorhexidine because of the unpleasant side effects.</strong></p><p>In a six-week study SmartMouth Clinical DDS Activated Oral Rinse was compared to 0.12% Chlorhexidine Mouth Rinse. Based on the research, SmartMouth Clinical DDS oral rinse was found to be as effective as chlorhexidine rinse in reducing gingival inflammation, plaque and bleeding.</p><p>SmartMouth Clinical DDS outperformed chlorhexidine rinse when measuring tooth staining, taste preference and patient compliance. The study was recently published in Oral Health and Preventive Dentistry (full article available with subscription).</p>",
-        "padding_top": 36,
+        "padding_top": 0,
         "padding_bottom": 36
       }
     },
