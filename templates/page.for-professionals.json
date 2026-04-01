@@ -131,7 +131,13 @@
         "bg_color": "#0073c8",
         "video_url": "https://www.youtube.com/watch?v=-faDB4EI46c",
         "heading": "Watch Dr. Douglas Miley discuss the clinical research study findings.",
+        "heading_color": "#fff",
         "text": "",
+        "text_color": "#333333",
+        "button_label": "Watch the full video for more details.",
+        "button_link": "https://youtu.be/S6yFwT4ydjc",
+        "button_bg_color": "#fff",
+        "button_text_color": "#121212",
         "padding_top": 60,
         "padding_bottom": 60
       }
