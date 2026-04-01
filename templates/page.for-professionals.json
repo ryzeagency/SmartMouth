@@ -64,6 +64,21 @@
         "padding_bottom": 36
       }
     },
+    "new_improved_pour_UDkeFT": {
+      "type": "new-improved-pour",
+      "name": "Custom Centered Text",
+      "settings": {
+        "bg_color": "#ffffff",
+        "heading": "SmartMouth Clinical Activated Oral Rinse delivered these key benefits:",
+        "heading_color": "#1a1a1a",
+        "text": "",
+        "text_color": "#333333",
+        "button_label": "",
+        "button_url": "",
+        "button_bg": "#2b70c9",
+        "button_text": "#ffffff"
+      }
+    },
     "features_grid_hREYM4": {
       "type": "features-grid",
       "blocks": {
@@ -127,7 +142,7 @@
       "name": "Features Grid",
       "settings": {
         "columns_desktop": 3,
-        "bg_color": "#fff",
+        "bg_color": "#ffffff",
         "text_color": "#121212",
         "padding_top": 0,
         "padding_bottom": 60
@@ -159,6 +174,7 @@
     "content_text_buttons_43dWtL",
     "split_image_text_J7rwkR",
     "split_image_text_FT4YCd",
+    "new_improved_pour_UDkeFT",
     "features_grid_hREYM4",
     "content_text_buttons_H8XJAK"
   ]
