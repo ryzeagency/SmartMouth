@@ -142,20 +142,6 @@
         "padding_bottom": 60
       }
     },
-    "split_image_text_FT4YCd": {
-      "type": "split-image-text",
-      "name": "Split Image & Text",
-      "settings": {
-        "main_title": "",
-        "main_subtext": "",
-        "layout": "right",
-        "image": "shopify://shop_images/1-SmartMouth-Dry-Mouth-Mouthwash-16oz-1536x1536.jpg",
-        "right_heading": "SmartMouth Also Has a Solution for Patients with Dry Mouth",
-        "right_text": "<p>In addition to the benefits offered by our Clinical DDS formula, SmartMouth also has a solution for patients experiencing dry mouth. Dry mouth can be a very uncomfortable issue, and if not dealt with properly can lead to other oral health problems. Do your patients experience difficulty swallowing, a stickiness in their mouth, or stringy saliva? If so, SmartMouth Dry Mouth Activated Oral Rinse provides relief from the symptoms and discomfort of dry mouth.</p><p><a href=\"https://www.smartmouth.com/product/smartmouth-dry-mouth-activated-mouthwash-16oz/\" target=\"_blank\">SmartMouth’s Dry Mouth Oral Rinse</a> is cleared as a medical device by the FDA to refresh, moisturize, rehydrate, clean, and soothe oral irritation while lubricating oral dryness. It also utilizes SmartMouth’s patented zinc ion technology to eliminate bad breath while preventing it from returning for 24 hours. Although there are many causes of dry mouth, ranging from prescribed medications to CPAP machines, SmartMouth is an effective over-the-counter solution that provides patients with relief.</p>",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
     "new_improved_pour_UDkeFT": {
       "type": "new-improved-pour",
       "name": "Custom Centered Text",
@@ -240,6 +226,76 @@
         "padding_bottom": 60
       }
     },
+    "flexible_custom_columns_qRazzR": {
+      "type": "flexible-custom-columns",
+      "blocks": {
+        "content_iLLctM": {
+          "type": "content",
+          "settings": {
+            "width": "25",
+            "text_align": "left",
+            "heading": "Never\nHave Bad\nBreath",
+            "heading_size": "large",
+            "heading_color": "#214e2c",
+            "text": "<p>The only mouthwash <strong>scientifically proven</strong> to eliminate and prevent bad breath for <strong>24 hours</strong> with two rinses a day.</p>",
+            "text_color": "#333333",
+            "btn_label": "",
+            "btn_link": "",
+            "btn_bg_color": "#0076cb",
+            "btn_text_color": "#ffffff"
+          }
+        },
+        "image_CfH8B6": {
+          "type": "image",
+          "settings": {
+            "width": "33.333",
+            "image": "shopify://shop_images/CleanShot_2026-04-01_at_09.11.06_2x_52d92ff5-c603-4a8c-93f3-0eacd72a88e1.png"
+          }
+        },
+        "content_hXGHFQ": {
+          "type": "content",
+          "settings": {
+            "width": "40",
+            "text_align": "left",
+            "heading": "Get the Summary of the Study Now",
+            "heading_size": "medium",
+            "heading_color": "#121212",
+            "text": "<p>Read more about the findings of this clinical study conducted at Saint Louis University Center for Advanced Dental Education and Southern Illinois University School of Dental Medicine.</p><p>Learn why SmartMouth Clinical DDS oral rinse is the non-prescription alternative for patients who use chlorhexidine rinse.</p>",
+            "text_color": "#333333",
+            "btn_label": "Download Info Sheet",
+            "btn_link": "https://cdn.shopify.com/s/files/1/0888/4578/files/SM_Clinical_Research_Study_Update.pdf?v=1775004511",
+            "btn_bg_color": "#0066cc",
+            "btn_text_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "content_iLLctM",
+        "image_CfH8B6",
+        "content_hXGHFQ"
+      ],
+      "name": "Flexible Custom Columns",
+      "settings": {
+        "bg_color": "#ffffff",
+        "vertical_alignment": "center",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "split_image_text_FT4YCd": {
+      "type": "split-image-text",
+      "name": "Split Image & Text",
+      "settings": {
+        "main_title": "",
+        "main_subtext": "",
+        "layout": "right",
+        "image": "shopify://shop_images/1-SmartMouth-Dry-Mouth-Mouthwash-16oz-1536x1536.jpg",
+        "right_heading": "SmartMouth Also Has a Solution for Patients with Dry Mouth",
+        "right_text": "<p>In addition to the benefits offered by our Clinical DDS formula, SmartMouth also has a solution for patients experiencing dry mouth. Dry mouth can be a very uncomfortable issue, and if not dealt with properly can lead to other oral health problems. Do your patients experience difficulty swallowing, a stickiness in their mouth, or stringy saliva? If so, SmartMouth Dry Mouth Activated Oral Rinse provides relief from the symptoms and discomfort of dry mouth.</p><p><a href=\"https://www.smartmouth.com/product/smartmouth-dry-mouth-activated-mouthwash-16oz/\" target=\"_blank\">SmartMouth’s Dry Mouth Oral Rinse</a> is cleared as a medical device by the FDA to refresh, moisturize, rehydrate, clean, and soothe oral irritation while lubricating oral dryness. It also utilizes SmartMouth’s patented zinc ion technology to eliminate bad breath while preventing it from returning for 24 hours. Although there are many causes of dry mouth, ranging from prescribed medications to CPAP machines, SmartMouth is an effective over-the-counter solution that provides patients with relief.</p>",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "content_text_buttons_H8XJAK": {
       "type": "content-text-buttons",
       "name": "Content with Dual Buttons",
@@ -267,9 +323,10 @@
     "split_image_text_J7rwkR",
     "custom_icons_section_adTPJc",
     "custom_video_content_f7jMbz",
-    "split_image_text_FT4YCd",
     "new_improved_pour_UDkeFT",
     "features_grid_hREYM4",
+    "flexible_custom_columns_qRazzR",
+    "split_image_text_FT4YCd",
     "content_text_buttons_H8XJAK"
   ]
 }
