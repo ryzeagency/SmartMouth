@@ -15,9 +15,30 @@
         "padding_top": 60,
         "padding_bottom": 60
       }
+    },
+    "content_text_buttons_P9gfcX": {
+      "type": "content-text-buttons",
+      "name": "Content with Dual Buttons",
+      "settings": {
+        "heading": "Permissible Public Website Registration Form",
+        "text": "<p>If you purchase SmartMouth® products (the “Products”) from a SmartMouth Authorized Distributor or directly from Triumph Pharmaceuticals Inc. dba SmartMouth (“SmartMouth”) for purposes of resale to end-user consumers, and wish to sell Products on your own proprietary website, you must register your website with SmartMouth.  <strong>Please note you are not authorized to sell Products on or through your own proprietary website until you have registered that website with SmartMouth.</strong></p><p>To complete registration, please (1) review the SmartMouth <a href=\"https://www.smartmouth.com/wp-content/uploads/2020/05/SmartMouth-Authorized-Reseller-Packet.pdf\" target=\"_blank\">Authorized Reseller Policy</a> for the United States (“Authorized Reseller Policy”), including the attached Online Sales Guidelines, (2) fill out the Permissible Public Website Registration Form (“Form”) below, and (3) click SUBMIT.</p><p>This Form is only used to register “Permissible Public Websites,” as defined in the Authorized Reseller Policy.  <strong>The Authorized Reseller Policy prohibits you from selling Products on online marketplaces (such as Amazon, eBay, Walmart Marketplace, Facebook Marketplace, and Target+) without SmartMouth’s prior written consent.</strong>  <span style=\"text-decoration:underline\"><strong>Consent to sell Products on online marketplaces is not granted through this Form</strong></span><strong>.</strong></p><p>This website registration process and the Authorized Reseller Policy are applicable only in the United States of America.</p><p>Fields marked with an asterisk are required.</p>",
+        "btn1_label": "Click Here To Registration Form",
+        "btn1_link": "https://3464467.extforms.netsuite.com/app/site/crm/externalcasepage.nl/compid.3464467/.f?formid=5&h=AAFdikaIgF2TZRCL5P9QDaCy2cxqcUW1Nu_UVrafa6AT5IQ_w6s&redirect_count=1&did_javascript_redirect=T",
+        "btn1_bg_color": "#0076cb",
+        "btn1_text_color": "#ffffff",
+        "btn2_label": "",
+        "btn2_link": "",
+        "btn2_bg_color": "#008037",
+        "btn2_text_color": "#ffffff",
+        "bg_color": "#ffffff",
+        "text_color": "#121212",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "content_text_buttons_P9gfcX"
   ]
 }
