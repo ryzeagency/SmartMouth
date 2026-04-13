@@ -1,3 +1,14 @@
+.product__code-output {
+    display: flex;
+}
+
+.product__code-output .es-card-badge-container {
+    padding: 0;
+    width: auto;
+}
+
+.product__code-output .es-card-badge-container > .es-badge-rating-container {align-items: flex-start;}
+
 product-info {
   display: block;
 }
