@@ -21,11 +21,11 @@
         "subheading": "SmartMouth™ is the only mouthwash scientifically proven to eliminate & prevent bad breath for 24 hours with just 2 rinses a day.",
         "text_color": "#242833",
         "button_label_1": "New & Improved Pour",
-        "button_url_1": "",
+        "button_url_1": "#new-pour",
         "button_bg_1": "#e87511",
         "button_text_1": "#ffffff",
         "button_label_2": "View Products",
-        "button_url_2": "",
+        "button_url_2": "shopify://collections/all",
         "button_bg_2": "#0066cc",
         "button_text_2": "#ffffff"
       }
@@ -40,7 +40,7 @@
         "text": "We just upgraded our bottle! Now with individual snap-top closures, SmartMouth is easier than ever to open and use – no more assembly needed! Same 24-hour fresh breath, with just 2 rinses a day. Now with effortless convenience!",
         "text_color": "#555555",
         "button_label": "Shop Now",
-        "button_url": "",
+        "button_url": "shopify://collections/all",
         "button_bg": "#0066cc",
         "button_text": "#ffffff"
       }
@@ -175,7 +175,7 @@
         "text_color": "#ffffff",
         "heading": "What People Are Saying About SmartMouth™",
         "button_label": "READ MORE REVIEWS",
-        "button_url": "",
+        "button_url": "shopify://pages/success-stories",
         "button_bg": "#008035",
         "button_text": "#ffffff"
       }
