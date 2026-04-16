@@ -53,6 +53,13 @@
           "type": "shopify://apps/loop-subscriptions/blocks/loop_widget/267a7c64-5cb3-4552-b817-5485165f0a0b",
           "settings": {}
         },
+        "dates_rates_pdp_promise_J36xKc": {
+          "type": "shopify://apps/dates-rates/blocks/pdp_promise/019b7179-2976-776c-b361-368f075c66eb",
+          "settings": {
+            "product": "{{product}}",
+            "colour": "#333333"
+          }
+        },
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
@@ -107,6 +114,7 @@
         "variant_picker",
         "quantity_selector",
         "loop_subscriptions_loop_widget_ndmjpf",
+        "dates_rates_pdp_promise_J36xKc",
         "buy_buttons",
         "description",
         "collapsible-row-0",
