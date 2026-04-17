@@ -2373,6 +2373,15 @@ sticky-header .header {
     grid-template-columns: 1fr auto 1fr;
   }
 
+  sticky-header .header {
+      display: grid;
+  }
+
+  .header__heading-logo {
+      height: 50px;
+      width: auto;
+  }
+
   .header--top-left,
   .header--middle-left:not(.header--has-menu) {
     grid-template-areas:
