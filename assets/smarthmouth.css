@@ -610,6 +610,11 @@
   fill: currentColor;
 }
 
+.where-to-buy__btn img {
+    width: 30px;
+    margin: 5px 5px 0 0;
+}
+
 .where-to-buy__image-wrapper {
   max-width: 1000px;
   margin: 0 auto;
