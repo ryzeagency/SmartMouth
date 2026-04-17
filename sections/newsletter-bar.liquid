@@ -14,38 +14,7 @@
     {% endif %}
 
     {% if section.settings.show_form %}
-      <div class="newsletter-banner__form-wrapper">
-        {% form 'customer', class: 'newsletter-banner__form' %}
-          <input type="hidden" name="contact[tags]" value="newsletter">
-          
-          {%- if form.posted_successfully? -%}
-            <div class="newsletter-banner__success" tabindex="-1" autofocus>
-              Thanks for subscribing! Keep an eye on your inbox.
-            </div>
-          {%- else -%}
-            <input
-              id="NewsletterForm--{{ section.id }}"
-              type="email"
-              name="contact[email]"
-              class="newsletter-banner__input"
-              value="{{ form.email }}"
-              aria-required="true"
-              autocorrect="off"
-              autocapitalize="off"
-              autocomplete="email"
-              {% if form.errors %}
-                autofocus
-                aria-invalid="true"
-              {% endif %}
-              placeholder="Enter your email"
-              required
-            >
-            <button type="submit" class="newsletter-banner__btn" name="commit" id="Subscribe">
-              Subscribe
-            </button>
-          {%- endif -%}
-        {% endform %}
-      </div>
+      <div class="klaviyo-form-R5Rhv9"></div>
     {% endif %}
 
   </div>
