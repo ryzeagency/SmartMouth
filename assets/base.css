@@ -2353,6 +2353,24 @@ sticky-header .header {
     padding: 15px 0 !important;
 }
 
+ul.list-menu li:last-child {
+    background: #058449;
+    border-radius: 25px;
+    padding: 0 25px;
+    margin-left: 10px;
+    transition: all 0.25s ease-out;
+}
+
+ul.list-menu li:last-child a, ul.list-menu li:last-child a span {
+    color: #fff;
+    text-transform: uppercase;
+    text-decoration: none !important;
+}
+
+ul.list-menu li:last-child:hover {
+    background-color: #02a85b;
+}
+
 .header-wrapper--border-bottom {
   border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.08);
 }
