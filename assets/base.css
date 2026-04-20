@@ -2370,6 +2370,7 @@ sticky-header .header {
   }
   sticky-header .header {
       display: grid;
+      padding: 15px !important;
   }
 
  .header .header__heading-logo {
