@@ -2398,12 +2398,14 @@ sticky-header .header {
   .menu-drawer__navigation > ul.list-menu > li:last-child {
       background: transparent;
       margin: 0;
+      padding: 0 25px;
   }
 
   .menu-drawer__navigation > ul.list-menu > li:last-child a {
       color: #fff;
       background: #077b31;
       border-radius: 25px;
+      text-transform: uppercase;
   }
 
  .header .header__heading-logo {
