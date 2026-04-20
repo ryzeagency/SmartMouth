@@ -2573,6 +2573,7 @@ sticky-header .header {
   height: 4.4rem;
   width: auto;
   padding: 0;
+  text-decoration: none;
 }
 
 .header__icon--cart {
