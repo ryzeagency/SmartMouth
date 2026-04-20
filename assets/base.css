@@ -2361,7 +2361,7 @@ ul.list-menu:not(.header__submenu) > li:last-child {
     transition: all 0.25s ease-out;
 }
 
-ul.list-menu:not(.header__submenu) li:last-child a, ul.list-menu:not(.header__submenu) li:last-child a span {
+ul.list-menu:not(.header__submenu) > li:last-child a, ul.list-menu:not(.header__submenu) > li:last-child a span {
     color: #fff;
     text-transform: uppercase;
     text-decoration: none !important;
