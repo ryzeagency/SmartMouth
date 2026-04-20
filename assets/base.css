@@ -2367,7 +2367,7 @@ ul.list-menu:not(.header__submenu) > li:last-child a, ul.list-menu:not(.header__
     text-decoration: none !important;
 }
 
-ul.list-menu li:last-child:hover {
+ul.list-menu:not(.header__submenu) li:last-child:hover {
     background-color: #02a85b;
 }
 
