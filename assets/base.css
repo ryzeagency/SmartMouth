@@ -2388,7 +2388,7 @@ ul.list-menu li:last-child:hover {
   }
   sticky-header .header {
       display: grid;
-      padding: 15px !important;
+      padding: 15px 15px 15px 30px !important;
   }
 
  .header .header__heading-logo {
