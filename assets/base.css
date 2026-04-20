@@ -2353,7 +2353,7 @@ sticky-header .header {
     padding: 15px 0 !important;
 }
 
-ul.list-menu:not(.header__submenu)  li:last-child {
+ul.list-menu:not(.header__submenu) > li:last-child {
     background: #058449;
     border-radius: 25px;
     padding: 0 25px;
