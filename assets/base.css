@@ -2353,7 +2353,7 @@ sticky-header .header {
     padding: 15px 0 !important;
 }
 
-ul.list-menu li:last-child {
+ul.list-menu:not(header__submenu)  li:last-child {
     background: #058449;
     border-radius: 25px;
     padding: 0 25px;
@@ -2361,7 +2361,7 @@ ul.list-menu li:last-child {
     transition: all 0.25s ease-out;
 }
 
-ul.list-menu li:last-child a, ul.list-menu li:last-child a span {
+ul.list-menu:not(header__submenu) li:last-child a, ul.list-menu li:last-child a span {
     color: #fff;
     text-transform: uppercase;
     text-decoration: none !important;
