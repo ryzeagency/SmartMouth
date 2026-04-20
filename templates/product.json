@@ -179,46 +179,12 @@
         "padding_top": 48,
         "padding_bottom": 48
       }
-    },
-    "available_in_HNwh3d": {
-      "type": "available-in",
-      "name": "Where to Buy",
-      "settings": {
-        "bg_color": "#fafafa",
-        "heading": "SmartMouth is available on Amazon and in stores Nationwide",
-        "heading_color": "#222222",
-        "text": "Purchase SmartMouth™ mouthwash and oral care products from regional and national retailers near you. So you can be sure – no matter where you go – bad breath doesn’t follow.",
-        "text_color": "#555555",
-        "button_label_1": "WHERE TO BUY",
-        "button_url_1": "",
-        "button_bg_1": "#0072ce",
-        "button_text_1": "#ffffff",
-        "show_amazon_icon": true,
-        "button_label_2": "BUY ON AMAZON",
-        "button_url_2": "",
-        "button_bg_2": "#008035",
-        "button_text_2": "#ffffff",
-        "image": "shopify://shop_images/smartmouth-groupproduct-img.png"
-      }
-    },
-    "newsletter_bar_6KkmKA": {
-      "type": "newsletter-bar",
-      "name": "Newsletter Banner",
-      "settings": {
-        "bg_color": "#0073c8",
-        "text_color": "#ffffff",
-        "heading": "Sign up today for coupons, offers and updates!",
-        "text": "At SmartMouth™, we love saving you from bad breath, but we also love saving you money.",
-        "show_form": false
-      }
     }
   },
   "order": [
     "main",
     "product_mouthwash_info_EEaENx",
     "related-products",
-    "product_customer_review_zzHYdM",
-    "available_in_HNwh3d",
-    "newsletter_bar_6KkmKA"
+    "product_customer_review_zzHYdM"
   ]
 }
