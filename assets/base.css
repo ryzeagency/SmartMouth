@@ -2391,6 +2391,17 @@ ul.list-menu li:last-child:hover {
       padding: 15px 15px 15px 30px !important;
   }
 
+  ul.list-menu li:last-child {
+      background: transparent;
+      margin: 0;
+  }
+
+  ul.list-menu li:last-child a {
+      color: #fff;
+      background: #077b31;
+      border-radius: 25px;
+  }
+
  .header .header__heading-logo {
       height: 50px;
       width: auto;
