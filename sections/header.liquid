@@ -251,7 +251,7 @@
           {%- else -%}
             <span class="svg-wrapper">{{ 'icon-account.svg' | inline_asset_content }}</span>
           {%- endif -%}
-          <span class="visually-hidden">
+          <span>
             {%- liquid
               if customer
                 echo 'customer.account_fallback' | t
