@@ -84,11 +84,13 @@
 
   <div class="title-image-wrapper-{{ section.id }}">
     {%- if section.settings.image != blank -%}
-      {{ section.settings.image | image_url: width: 2000 | image_tag: 
-        class: 'title-image',
-        loading: 'lazy',
-        sizes: '100vw'
-      }}
+      <img 
+        src="{{ section.settings.image | image_url: width: 2000 }}" 
+        alt="{{ section.settings.image.alt | escape }}"
+        class="title-image" 
+        loading="lazy" 
+        style="width: 100%; height: auto;"
+      >
     {%- else -%}
       <div class="placeholder-svg-wrapper">
         {{ 'lifestyle-2' | placeholder_svg_tag }}
