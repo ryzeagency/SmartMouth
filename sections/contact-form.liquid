@@ -26,7 +26,7 @@
 
     {%- if section.settings.use_netsuite -%}
       <div class="contact__button" style="text-align: center; margin-top: 3rem;">
-        <a href="{{ section.settings.netsuite_link }}" target="_blank" rel="noopener noreferrer" class="where-to-buy__btn" style="background-color: rgb(0, 114, 206); color: rgb(255, 255, 255);">
+        <a href="{{ section.settings.netsuite_link }}" target="_blank" rel="noopener noreferrer" class="where-to-buy__btn" style="background-color: rgb(0, 114, 206); color: rgb(255, 255, 255);margin-top:-25px">
           {{ section.settings.netsuite_button_text | default: 'Contact Us' | escape }}
         </a>
       </div>
