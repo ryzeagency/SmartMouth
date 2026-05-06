@@ -22,7 +22,10 @@
         "heading": "",
         "heading_size": "h1",
         "color_scheme": "scheme-1",
-        "padding_top": 36,
+        "use_netsuite": true,
+        "netsuite_link": "https://3464467.extforms.netsuite.com/app/site/crm/externalcasepage.nl/compid.3464467/.f?formid=2&h=AAFdikaIGXMqDPbEfeJaJ8xzOv0HnyO1hMIWuvC7zDsvfJMPY8g&redirect_count=1&did_javascript_redirect=T",
+        "netsuite_button_text": "Contact Us",
+        "padding_top": 0,
         "padding_bottom": 36
       }
     }
