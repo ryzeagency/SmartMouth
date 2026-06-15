@@ -24,7 +24,13 @@
         "bg_color": "#eefaf2",
         "video_url": "https://www.youtube.com/watch?v=U_MK_PQkT0M",
         "heading": "How SmartMouth™ Works",
+        "heading_color": "#121212",
         "text": "<p>SmartMouth™’s patented formula combines a sulfur eliminating liquid with a zinc ion activating liquid that are kept separate until you pour. SmartMouth™’s activated rinses eliminate bad breath instantly and prevent sulfur gas from returning for 24 hours with just two rinses a day.</p>",
+        "text_color": "#333333",
+        "button_label": "",
+        "button_link": "",
+        "button_bg_color": "#0066cc",
+        "button_text_color": "#ffffff",
         "padding_top": 60,
         "padding_bottom": 60
       }
@@ -294,6 +300,7 @@
       "settings": {
         "title": "What People Are Saying About SmartMouth™",
         "columns_desktop": 2,
+        "bg_color": "#f9f9f9",
         "padding_top": 60,
         "padding_bottom": 60
       }
@@ -305,7 +312,7 @@
           "type": "accordion_item",
           "settings": {
             "title": "Which SmartMouth™ rinse is right for me?",
-            "content": "<img src=\"https://www.smartmouth.com/wp-content/uploads/2025/07/Rinse-Comparison-Chart-7.1.2025-scaled.jpg\" alt=\"Rinse Comparison Chart 7.1.2025\">"
+            "content": "<img src=\"https://cdn.shopify.com/s/files/1/0888/4578/files/Rinse-Comparison-Chart-7.1.2025-scaled.jpg?v=1781557040\" alt=\"Rinse Comparison Chart 7.1.2025\">"
           }
         },
         "accordion_item_cM4KK6": {
