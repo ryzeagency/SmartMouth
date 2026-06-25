@@ -1,0 +1,464 @@
+
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>SmartMouth — Find Your Rinse</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --teal:#00897B;--teal-d:#005A52;--teal-l:#E0F5F3;--teal-m:#B2E0DA;
+  --navy:#0D1F2D;--slate:#3D5163;--mid:#7A95A6;
+  --light:#F4F7F9;--white:#FFFFFF;--border:#DDE5EA;
+  --green:#00C48C;--amber:#F59E0B;
+}
+body{font-family:'DM Sans',sans-serif;background:#F0F3F5;padding:24px 16px 60px;-webkit-font-smoothing:antialiased;}
+.wrap{max-width:680px;margin:0 auto;}
+.header{text-align:center;margin-bottom:24px;}
+.header-logo{font-size:22px;font-weight:700;color:var(--navy);letter-spacing:.04em;margin-bottom:4px;}
+.header-sub{font-size:13px;color:var(--mid);}
+.card{background:var(--white);border-radius:14px;border:1px solid var(--border);overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.07);}
+
+.prog-bar{height:4px;background:var(--border);}
+.prog-fill{height:100%;background:var(--teal);border-radius:2px;transition:width .4s ease;}
+
+/* EMAIL GATE */
+.email-gate{padding:40px 32px;text-align:center;}
+.gate-ico{width:56px;height:56px;border-radius:50%;background:var(--teal-l);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;}
+.gate-ico i{font-size:26px;color:var(--teal);}
+.gate-h{font-size:22px;font-weight:600;color:var(--navy);margin-bottom:8px;line-height:1.3;}
+.gate-sub{font-size:13px;color:var(--mid);line-height:1.65;margin-bottom:28px;max-width:380px;margin-left:auto;margin-right:auto;}
+.gate-form{display:flex;flex-direction:column;gap:10px;max-width:360px;margin:0 auto;}
+.gate-input{height:46px;border:1px solid var(--border);border-radius:8px;padding:0 16px;font-size:13px;font-family:inherit;color:var(--navy);outline:none;transition:border-color .15s;}
+.gate-input:focus{border-color:var(--teal);}
+.gate-btn{height:46px;background:var(--teal);color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;letter-spacing:.03em;transition:opacity .15s;}
+.gate-btn:hover{opacity:.88;}
+.gate-skip{font-size:11px;color:var(--mid);margin-top:10px;cursor:pointer;text-decoration:underline;}
+.gate-skip:hover{color:var(--slate);}
+.gate-privacy{font-size:10px;color:var(--mid);margin-top:8px;line-height:1.5;}
+
+/* QUIZ */
+.q-step{display:none;padding:32px;}
+.q-step.active{display:block;}
+.q-label{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--mid);margin-bottom:8px;}
+.q-text{font-size:20px;font-weight:500;line-height:1.3;margin-bottom:22px;color:var(--navy);}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:22px;}
+.opt{border:1px solid var(--border);border-radius:12px;padding:16px;cursor:pointer;background:var(--white);text-align:left;display:flex;align-items:flex-start;gap:12px;transition:all .15s;}
+.opt:hover{background:var(--light);border-color:var(--teal-m);}
+.opt.sel{border:2px solid var(--teal);background:var(--teal-l);}
+.opt-ico{width:34px;height:34px;border-radius:8px;background:var(--light);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.opt-ico i{font-size:17px;color:var(--teal);}
+.opt.sel .opt-ico{background:var(--teal-m);}
+.opt-t{font-size:13px;font-weight:500;margin-bottom:2px;color:var(--navy);}
+.opt-d{font-size:11px;color:var(--mid);line-height:1.4;}
+.opt.sel .opt-t{color:var(--teal-d);}
+.nav-row{display:flex;align-items:center;justify-content:space-between;}
+.back-b{font-size:13px;color:var(--mid);background:none;border:none;cursor:pointer;padding:0;display:flex;align-items:center;gap:4px;}
+.back-b:hover{color:var(--navy);}
+.next-b{background:var(--teal);color:#fff;border:none;border-radius:22px;padding:11px 26px;font-size:13px;font-weight:600;cursor:pointer;transition:opacity .15s;}
+.next-b:disabled{opacity:.35;cursor:default;}
+.next-b:not(:disabled):hover{opacity:.88;}
+
+/* RESULTS */
+.results{display:none;padding:32px;}
+.results.active{display:block;}
+.pair-wrap{display:grid;grid-template-columns:1fr auto 1fr;border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:18px;}
+.primary-card{background:var(--navy);padding:22px;}
+.p-label{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin-bottom:12px;display:flex;align-items:center;gap:5px;}
+.p-img{height:120px;background:rgba(255,255,255,.07);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;overflow:hidden;}
+.p-img img{max-height:110px;max-width:90%;object-fit:contain;}
+.p-name{font-size:13px;font-weight:500;color:#fff;line-height:1.3;margin-bottom:5px;}
+.p-price{font-size:16px;font-weight:500;color:var(--green);margin-bottom:8px;}
+.p-tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px;}
+.p-tag{font-size:10px;padding:2px 8px;border-radius:10px;background:rgba(0,196,140,.15);color:var(--green);border:0.5px solid rgba(0,196,140,.3);}
+.p-why{font-size:11px;color:rgba(255,255,255,.5);line-height:1.5;margin-bottom:14px;}
+.add-p{width:100%;background:var(--teal);color:#fff;border:none;border-radius:20px;padding:10px;font-size:12px;font-weight:600;cursor:pointer;}
+.add-p:hover{background:var(--teal-d);}
+.div-col{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 4px;background:var(--light);}
+.plus-c{width:30px;height:30px;border-radius:50%;background:var(--white);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;}
+.plus-c i{font-size:14px;color:var(--mid);}
+.div-line{flex:1;width:0.5px;background:var(--border);}
+.addon-card{background:var(--white);padding:22px;}
+.a-label{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);margin-bottom:12px;display:flex;align-items:center;gap:5px;}
+.a-img{height:120px;background:var(--light);border:1px solid var(--border);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;overflow:hidden;}
+.a-img img{max-height:110px;max-width:90%;object-fit:contain;}
+.a-name{font-size:13px;font-weight:500;color:var(--navy);line-height:1.3;margin-bottom:5px;}
+.a-price{font-size:16px;font-weight:500;color:var(--teal);margin-bottom:8px;}
+.a-tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px;}
+.a-tag{font-size:10px;padding:2px 8px;border-radius:10px;background:var(--teal-l);color:var(--teal-d);border:0.5px solid var(--teal-m);}
+.a-why{font-size:11px;color:var(--mid);line-height:1.5;margin-bottom:14px;}
+.add-a{width:100%;border:1px solid var(--teal);border-radius:20px;padding:10px;font-size:12px;font-weight:500;color:var(--teal);background:transparent;cursor:pointer;}
+.add-a:hover{background:var(--teal);color:#fff;}
+.bundle-bar{background:var(--light);border:1px solid var(--border);border-radius:12px;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:20px;flex-wrap:wrap;}
+.b-ico{width:36px;height:36px;border-radius:8px;background:var(--white);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.b-ico i{font-size:18px;color:var(--teal);}
+.b-h{font-size:13px;font-weight:500;color:var(--navy);margin-bottom:2px;}
+.b-s{font-size:11px;color:var(--mid);}
+.bp-was{font-size:11px;color:var(--mid);text-decoration:line-through;}
+.bp-now{font-size:16px;font-weight:500;color:var(--teal);}
+.bundle-btn{background:var(--navy);color:#fff;border:none;border-radius:20px;padding:10px 18px;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;}
+.retake-row{display:flex;align-items:center;gap:10px;margin-bottom:24px;}
+.retake-b{font-size:13px;color:var(--mid);background:none;border:1px solid var(--border);border-radius:16px;padding:8px 18px;cursor:pointer;}
+.retake-b:hover{background:var(--light);}
+.grid-sec{border-top:1px solid var(--border);padding-top:24px;}
+.grid-sec-h{font-size:16px;font-weight:600;color:var(--navy);margin-bottom:3px;}
+.grid-sec-s{font-size:12px;color:var(--mid);margin-bottom:14px;}
+.fpills{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px;}
+.fp{font-size:11px;padding:5px 12px;border-radius:12px;border:1px solid var(--border);cursor:pointer;background:var(--white);color:var(--mid);transition:all .15s;}
+.fp:hover{background:var(--light);}
+.fp.on{background:var(--navy);color:#fff;border-color:var(--navy);}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:10px;}
+.pc{border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--white);transition:border-color .15s;}
+.pc:hover{border-color:var(--teal-m);}
+.pc.hi{border:2px solid var(--teal);}
+.pc.hidden{display:none;}
+.pi{height:90px;background:var(--light);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.pi img{max-height:82px;max-width:88%;object-fit:contain;}
+.pc-badge{position:absolute;top:5px;left:5px;font-size:9px;padding:2px 6px;border-radius:8px;font-weight:600;color:#fff;}
+.pb{padding:9px 10px 11px;}
+.pn{font-size:11px;font-weight:500;margin-bottom:3px;line-height:1.35;color:var(--navy);}
+.pp{font-size:12px;font-weight:500;color:var(--teal);margin-bottom:6px;}
+.pbens{display:flex;flex-wrap:wrap;gap:3px;margin-bottom:8px;}
+.pben{font-size:9px;padding:1px 5px;border-radius:8px;background:var(--teal-l);color:var(--teal-d);border:0.5px solid var(--teal-m);}
+.padd{width:100%;border:1px solid var(--border);border-radius:10px;padding:5px;font-size:11px;color:var(--mid);background:transparent;cursor:pointer;transition:all .15s;}
+.padd:hover{border-color:var(--teal);color:var(--teal);}
+.pc.dimmed{opacity:.5;}
+.pc.dimmed .padd{cursor:default;}
+</style>
+<div class="wrap">
+  <div class="header">
+    <div class="header-logo">SmartMouth™</div>
+    <div class="header-sub">Find Your Rinse — personalized formula finder</div>
+  </div>
+  <div class="card">
+    <div class="prog-bar"><div class="prog-fill" id="prog" style="width:0%"></div></div>
+
+    <!-- EMAIL GATE -->
+    <div class="email-gate" id="email-gate">
+      <div class="gate-ico"><i class="ti ti-mail"></i></div>
+      <div class="gate-h">Get your personalized<br>SmartMouth formula</div>
+      <div class="gate-sub">Enter your email and we'll send your results — plus a coupon for your first order.</div>
+      <div class="gate-form">
+        <input class="gate-input" id="email-input" type="email" placeholder="Your email address" autocomplete="email"/>
+        <button class="gate-btn" onclick="startQuiz()">Find my formula →</button>
+      </div>
+      <div class="gate-skip" onclick="startQuiz()">Skip — just show me the quiz</div>
+      <div class="gate-privacy">We never share your email. Unsubscribe any time.</div>
+    </div>
+
+    <!-- Q1: PRIMARY CONCERN -->
+    <div class="q-step" id="q1">
+      <div class="q-label">Question 1 of 5</div>
+      <div class="q-text">What's your main concern?</div>
+      <div class="opts">
+        <div class="opt" data-q="1" data-v="breath" onclick="pick(this)"><div class="opt-ico"><i class="ti ti-wind"></i></div><div><div class="opt-t">Bad breath</div><div class="opt-d">I want all-day fresh breath confidence</div></div></div>
+        <div class="opt" data-q="1" data-v="dry" onclick="pick(this)"><div class="opt-ico"><i class="ti ti-droplet-off"></i></div><div><div class="opt-t">Dry mouth</div><div class="opt-d">My mouth feels dry, especially at night</div></div></div>
+        <div class="opt" data-q="1" data-v="gum" onclick="pick(this)"><div class="opt-ico"><i class="ti ti-heart-rate-monitor"></i></div><div><div class="opt-t">Gum health</div><div class="opt-d">Sensitivity, bleeding or plaque buildup</div></div></div>
+        <div class="opt" data-q="1" data-v="sore" onclick="pick(this)"><div class="opt-ico"><i class="ti ti-bandage"></i></div><div><div class="opt-t">Mouth sores</div><div class="opt-d">Canker sores or oral irritation</div></div></div>
+      </div>
+      <div class="nav-row"><span></span><button class="next-b" id="n1" disabled onclick="goTo(2)">Next <i class="ti ti-arrow-right"></i></button></div>
+    </div>
+
+    <!-- Q2: HOW LONG -->
+    <div class="q-step" id="q2">
+      <div class="q-label">Question 2 of 5</div>
+      <div class="q-text">How long have you been dealing with it?</div>
+      <div class="opts">
+        <div class="opt" data-q="2" data-v="new" onclick="pick(this)"><div class="opt-ico"><i class="ti ti-clock"></i></div><div><div class="opt-t">Just noticed it</div><div class="opt-d">It's relatively new for me</div></div></div>
+        <div class="opt" data-q="2" data-v="months" onclick="pick(this)"><div class="opt-ico"><i class="ti ti-calendar"></i></div><div><div class="opt-t">A few months</div><div class="opt-d">It's been building for a while</div></div></div>
+        <div class="opt" data-q="2" data-v="years" onclick="pick(this)"><div class="opt-ico"><i class="ti ti-calendar-repeat"></i></div><div><div class="opt-t">Years</div><div class="opt-d">It's been a persistent issue</div></div></div>
+        <div class="opt" data-q="2" data-v="prevention" onclick="pick(this)"><div class="opt-ico"><i class="ti ti-shield-check"></i></div><div><div class="opt-t">I want to prevent it</div><div class="opt-d">No issue yet — keeping it that way</div></div></div>
+      </div>
+      <div class="nav-row"><button class="back-b" onclick="goTo(1)"><i class="ti ti-arrow-left"></i> Back</button><button class="next-b" id="n2" disabled onclick="goTo(3)">Next <i class="ti ti-arrow-right"></i></button></div>
+    </div>
+
+    <!-- Q3: LIFESTYLE -->
+    <div class="q-step" id="q3">
+      <div class="q-label">Question 3 of 5</div>
+      <div class="q-text">Do any of these apply to you?</div>
+      <div class="opts">
+        <div class="opt" data-q="3" data-v="smoker" onclick="pick(this)"><div class="opt-ico"><i class="ti ti-smoking"></i></div><div><div class="opt-t">Smoker or vaper</div><div class="opt-d">Tobacco or e-cigarette use</div></div></div>
+        <div class="opt" data-q="3" data-v="coffee" onclick="pick(this)"><div class="opt-ico"><i class="ti ti-coffee"></i></div><div><div class="opt-t">Coffee drinker</div><div class="opt-d">Daily coffee, tea, or strong foods</div></div></div>
+        <div class="opt" data-q="3" data-v="medication" onclick="pick(this)"><div class="opt-ico"><i class="ti ti-pill"></i></div><div><div class="opt-t">On medication</div><div class="opt-d">Dry mouth is a known side effect</div></div></div>
+        <div class="opt" data-q="3" data-v="none" onclick="pick(this)"><div class="opt-ico"><i class="ti ti-minus"></i></div><div><div class="opt-t">None of these</div><div class="opt-d">No specific lifestyle factors</div></div></div>
+      </div>
+      <div class="nav-row"><button class="back-b" onclick="goTo(2)"><i class="ti ti-arrow-left"></i> Back</button><button class="next-b" id="n3" disabled onclick="goTo(4)">Next <i class="ti ti-arrow-right"></i></button></div>
+    </div>
+
+    <!-- Q4: WHERE -->
+    <div class="q-step" id="q4">
+      <div class="q-label">Question 4 of 5</div>
+      <div class="q-text">Where will you mainly use it?</div>
+      <div class="opts">
+        <div class="opt" data-q="4" data-v="home" onclick="pick(this)"><div class="opt-ico"><i class="ti ti-home"></i></div><div><div class="opt-t">At home</div><div class="opt-d">Part of my morning and evening routine</div></div></div>
+        <div class="opt" data-q="4" data-v="travel" onclick="pick(this)"><div class="opt-ico"><i class="ti ti-plane"></i></div><div><div class="opt-t">On the go</div><div class="opt-d">I travel a lot and need something portable</div></div></div>
+        <div class="opt" data-q="4" data-v="both" onclick="pick(this)"><div class="opt-ico"><i class="ti ti-refresh"></i></div><div><div class="opt-t">Both</div><div class="opt-d">I need options for home and travel</div></div></div>
+        <div class="opt" data-q="4" data-v="work" onclick="pick(this)"><div class="opt-ico"><i class="ti ti-briefcase"></i></div><div><div class="opt-t">At work too</div><div class="opt-d">I want something I can use during the day</div></div></div>
+      </div>
+      <div class="nav-row"><button class="back-b" onclick="goTo(3)"><i class="ti ti-arrow-left"></i> Back</button><button class="next-b" id="n4" disabled onclick="goTo(5)">Next <i class="ti ti-arrow-right"></i></button></div>
+    </div>
+
+    <!-- Q5: TRIED BEFORE -->
+    <div class="q-step" id="q5">
+      <div class="q-label">Question 5 of 5</div>
+      <div class="q-text">Have you tried other mouthwashes before?</div>
+      <div class="opts">
+        <div class="opt" data-q="5" data-v="nothing_worked" onclick="pick(this)"><div class="opt-ico"><i class="ti ti-x"></i></div><div><div class="opt-t">Yes — nothing has worked</div><div class="opt-d">I've tried several and still have the problem</div></div></div>
+        <div class="opt" data-q="5" data-v="want_stronger" onclick="pick(this)"><div class="opt-ico"><i class="ti ti-trending-up"></i></div><div><div class="opt-t">Yes — I want something stronger</div><div class="opt-d">What I use works, but I want better results</div></div></div>
+        <div class="opt" data-q="5" data-v="new_to_mouthwash" onclick="pick(this)"><div class="opt-ico"><i class="ti ti-sparkles"></i></div><div><div class="opt-t">I'm new to mouthwash</div><div class="opt-d">Starting fresh, want the right foundation</div></div></div>
+        <div class="opt" data-q="5" data-v="switching" onclick="pick(this)"><div class="opt-ico"><i class="ti ti-arrows-exchange"></i></div><div><div class="opt-t">Switching from SmartMouth</div><div class="opt-d">I use it already but want to upgrade</div></div></div>
+      </div>
+      <div class="nav-row"><button class="back-b" onclick="goTo(4)"><i class="ti ti-arrow-left"></i> Back</button><button class="next-b" id="n5" disabled onclick="showResults()">See my formula <i class="ti ti-arrow-right"></i></button></div>
+    </div>
+
+    <!-- RESULTS -->
+    <div class="results" id="results">
+      <div style="font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;">Your personalized SmartMouth routine</div>
+      <div class="pair-wrap">
+        <div class="primary-card" id="pcard"></div>
+        <div class="div-col"><div class="div-line"></div><div class="plus-c"><i class="ti ti-plus"></i></div><div class="div-line"></div></div>
+        <div class="addon-card" id="acard"></div>
+      </div>
+      <div class="bundle-bar">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div class="b-ico"><i class="ti ti-gift"></i></div>
+          <div><div class="b-h">Get both together</div><div class="b-s" id="bsub">Save 10% when you add both to your cart</div></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+          <div><div class="bp-was" id="bwas"></div><div class="bp-now" id="bnow"></div></div>
+          <button class="bundle-btn">Add both to cart</button>
+        </div>
+      </div>
+      <div class="retake-row">
+        <button class="retake-b" onclick="retake()"><i class="ti ti-refresh" style="font-size:13px;margin-right:4px;"></i>Retake quiz</button>
+        <span style="font-size:12px;color:var(--mid);">or browse all products below</span>
+      </div>
+      <div class="grid-sec">
+        <div class="grid-sec-h">All SmartMouth products</div>
+        <div class="grid-sec-s">Your matches are highlighted</div>
+        <div class="fpills">
+          <div class="fp on" onclick="fg(this,'all')">All (19)</div>
+          <div class="fp" onclick="fg(this,'mouthwash')">Mouthwash</div>
+          <div class="fp" onclick="fg(this,'liposomal')">Liposomal</div>
+          <div class="fp" onclick="fg(this,'toothpaste')">Toothpaste</div>
+          <div class="fp" onclick="fg(this,'mints')">Mints</div>
+          <div class="fp" onclick="fg(this,'travel')">Travel size</div>
+          <div class="fp" onclick="fg(this,'system')">Systems</div>
+        </div>
+        <div class="pgrid" id="pgrid"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const ans = {};
+let emailCaptured = '';
+
+
+const products = [
+  {id:1,name:"Original Activated Mouthwash (16oz)",price:"$10.99",priceN:10.99,cat:"mouthwash",benefits:["24hr breath","Zinc ion"],inStock:true,concern:["breath"],duration:["new","prevention"],lifestyle:["none","coffee","smoker"],location:["home","both","work"],experience:["new_to_mouthwash","switching"],addonFor:[]},
+  {id:2,name:"Clinical Activated Mouthwash (16oz)",price:"$13.99",priceN:13.99,cat:"mouthwash",benefits:["24hr breath","Anti-gingivitis","Anti-plaque"],inStock:true,concern:["breath","gum"],duration:["months","years"],lifestyle:["smoker","coffee","none"],location:["home","both","work"],experience:["nothing_worked","want_stronger","switching"],addonFor:[]},
+  {id:3,name:"Dry Mouth Activated Mouthwash (16oz)",price:"$11.99",priceN:11.99,cat:"mouthwash",benefits:["24hr breath","Dry mouth relief"],inStock:true,concern:["dry","breath"],duration:["new","months","years"],lifestyle:["medication","none"],location:["home","both","work"],experience:["nothing_worked","want_stronger","new_to_mouthwash"],addonFor:[]},
+  {id:4,name:"Mouth Sore Activated Mouthwash (16oz)",price:"$12.99",priceN:12.99,cat:"mouthwash",benefits:["Soothing","Canker sore relief"],inStock:true,concern:["sore"],duration:["new","months","years"],lifestyle:["none","medication"],location:["home","both"],experience:["nothing_worked","new_to_mouthwash","want_stronger"],addonFor:[]},
+  {id:5,name:"Gum Health Activated Mouthwash (16oz)",price:"$13.99",priceN:13.99,cat:"mouthwash",benefits:["Anti-gingivitis","Anti-plaque"],inStock:true,concern:["gum"],duration:["new","months","years"],lifestyle:["none","coffee"],location:["home","both"],experience:["nothing_worked","want_stronger","switching"],addonFor:[]},
+  {id:6,name:"Advanced Liposomal Vitamin C (16oz)",price:"$13.99",priceN:13.99,cat:"liposomal",benefits:["Liposomal tech","Vitamin C","Gum health"],inStock:true,concern:["gum","breath"],duration:["years","months"],lifestyle:["none","coffee"],location:["home","both"],experience:["nothing_worked","want_stronger","switching"],addonFor:["gum","breath"]},
+  {id:7,name:"Advanced Liposomal Morning (16oz)",price:"$13.99",priceN:13.99,cat:"liposomal",benefits:["Liposomal tech","Morning formula"],inStock:true,concern:["breath","gum"],duration:["years","months"],lifestyle:["none","coffee","smoker"],location:["home","both"],experience:["nothing_worked","want_stronger","switching"],addonFor:["breath","gum"]},
+  {id:8,name:"Advanced Liposomal Evening (16oz)",price:"$13.99",priceN:13.99,cat:"liposomal",benefits:["Liposomal tech","Evening formula"],inStock:true,concern:["breath","gum"],duration:["years","months"],lifestyle:["none","coffee","smoker"],location:["home","both"],experience:["nothing_worked","want_stronger","switching"],addonFor:["breath","gum"]},
+  {id:9,name:"Original Activated Mouthwash (32oz)",price:"$19.99",priceN:19.99,cat:"mouthwash",benefits:["24hr breath","Value size"],inStock:false,concern:["breath"],duration:["new","prevention"],lifestyle:["none"],location:["home"],experience:["switching","new_to_mouthwash"],addonFor:[]},
+  {id:10,name:"Clinical Activated Mouthwash (32oz)",price:"$24.99",priceN:24.99,cat:"mouthwash",benefits:["Clinical strength","Value size"],inStock:true,concern:["breath","gum"],duration:["months","years"],lifestyle:["smoker","coffee","none"],location:["home"],experience:["nothing_worked","want_stronger","switching"],addonFor:[]},
+  {id:11,name:"Anti-Cavity + Zinc Toothpaste (3.4oz)",price:"$7.99",priceN:7.99,cat:"toothpaste",benefits:["Cavity protection","Zinc"],inStock:true,concern:["breath","gum"],duration:["new","prevention","months"],lifestyle:["none","coffee"],location:["home","both","work"],experience:["new_to_mouthwash","switching","want_stronger"],addonFor:["breath","gum","sore","dry"]},
+  {id:12,name:"Anti-Cavity + Zinc Toothpaste (6oz)",price:"$9.99",priceN:9.99,cat:"toothpaste",benefits:["Cavity protection","Zinc","Value size"],inStock:true,concern:["breath","gum"],duration:["new","prevention","months"],lifestyle:["none","coffee"],location:["home"],experience:["new_to_mouthwash","switching","want_stronger"],addonFor:["breath","gum","sore","dry"]},
+  {id:13,name:"Dry Mouth Dual-Action Mints",price:"$3.99",priceN:3.99,cat:"mints",benefits:["Dry mouth","On-the-go"],inStock:true,concern:["dry"],duration:["new","months"],lifestyle:["medication","none"],location:["travel","both","work"],experience:["new_to_mouthwash","nothing_worked"],addonFor:["dry","breath"]},
+  {id:14,name:"Original Single Packs — 10 Ct",price:"$8.99",priceN:8.99,cat:"travel",benefits:["Travel","Single-use"],inStock:true,concern:["breath"],duration:["new","prevention","months"],lifestyle:["none","coffee"],location:["travel","both","work"],experience:["new_to_mouthwash","switching"],addonFor:["breath"]},
+  {id:15,name:"Clinical Single Packs — 50 Ct",price:"$59.99",priceN:59.99,cat:"travel",benefits:["Travel","Clinical","50 ct"],inStock:true,concern:["breath","gum"],duration:["months","years"],lifestyle:["smoker","coffee","none"],location:["travel","both","work"],experience:["nothing_worked","want_stronger"],addonFor:["gum","breath"]},
+  {id:16,name:"Dry Mouth Single Packs — 50 Ct",price:"$54.99",priceN:54.99,cat:"travel",benefits:["Travel","Dry mouth","50 ct"],inStock:false,concern:["dry"],duration:["months","years"],lifestyle:["medication"],location:["travel","both"],experience:["nothing_worked","want_stronger"],addonFor:["dry"]},
+  {id:17,name:"Original Single Packs — 50 Ct",price:"$44.99",priceN:44.99,cat:"travel",benefits:["Travel","Value","50 ct"],inStock:true,concern:["breath"],duration:["months","years","prevention"],lifestyle:["none","coffee"],location:["travel","both","work"],experience:["switching","want_stronger"],addonFor:["breath"]},
+  {id:18,name:"Clinical 2-Bottle Activated System",price:"$24.99",priceN:24.99,cat:"system",benefits:["2-bottle system","Clinical strength"],inStock:true,concern:["breath","gum"],duration:["months","years"],lifestyle:["smoker","coffee","none"],location:["home","both"],experience:["nothing_worked","want_stronger","switching"],addonFor:[]},
+  {id:19,name:"Original 2-Bottle Activated System",price:"$21.99",priceN:21.99,cat:"system",benefits:["2-bottle system","24hr breath"],inStock:false,concern:["breath"],duration:["new","prevention"],lifestyle:["none"],location:["home"],experience:["new_to_mouthwash","switching"],addonFor:[]}
+];
+
+const primaryReasons = {
+  1:"The original zinc ion formula — gentle, effective, and the right starting point for everyday fresh-breath protection.",
+  2:"Clinical strength targets bad breath and gum health simultaneously — the go-to when the problem has been persistent.",
+  3:"Specifically formulated for dry mouth — delivers relief and 24-hour breath protection in one rinse.",
+  4:"A gentle, soothing formula designed to calm canker sores and oral irritation while keeping breath fresh.",
+  5:"Advanced anti-gingivitis and anti-plaque actives — formulated specifically where gum health is the priority.",
+  6:"Liposomal Vitamin C delivers the deepest tissue nourishment — the most advanced formula in the lineup.",
+  7:"Liposomal morning formula — engineered for the highest-impact rinse of the day.",
+  8:"Liposomal evening formula — works overnight so you wake up to genuinely fresh breath.",
+  10:"Same clinical strength, bigger bottle — the right move when you know this is your formula.",
+  11:"Zinc toothpaste pairs perfectly with your mouthwash — reinforcing protection at every brush.",
+  13:"Portable dry mouth relief — keeps you comfortable throughout the day, anywhere you go.",
+  14:"Same great formula in single-use packs — your routine goes wherever you do.",
+  15:"Clinical strength in a 50-pack — the right choice for frequent travelers who don't want to compromise."
+};
+
+const addonReasons = {
+  11:"Zinc toothpaste reinforces your mouthwash protection at every brush — the natural next step in your routine.",
+  12:"The 6oz tube keeps your whole routine zinc-powered without running out — best value for daily use.",
+  13:"Keep dry mouth relief on hand all day — small enough for any bag, effective enough to notice.",
+  14:"Take your routine anywhere — same formula, single-use packs for travel or on the go.",
+  15:"50 clinical packs means your routine never gets interrupted — perfect if you travel frequently.",
+  17:"50 original packs keeps you covered for months — best value for consistent travel use.",
+  7:"A dedicated morning liposomal formula adds a powerful AM layer on top of your evening rinse.",
+  8:"Evening liposomal formula works overnight — maximises the protection you've already started.",
+  6:"Vitamin C liposomal tech delivers deeper gum nourishment alongside your daily rinse."
+};
+
+function startQuiz() {
+  const emailInput = document.getElementById('email-input');
+  emailCaptured = emailInput ? emailInput.value.trim() : '';
+  document.getElementById('email-gate').style.display = 'none';
+  document.getElementById('prog').style.width = '20%';
+  goTo(1);
+}
+
+function pick(el) {
+  const q = el.dataset.q;
+  document.querySelectorAll(`.opt[data-q="${q}"]`).forEach(b=>b.classList.remove('sel'));
+  el.classList.add('sel');
+  ans[q] = el.dataset.v;
+  document.getElementById('n'+q).disabled = false;
+}
+
+function goTo(n) {
+  document.querySelectorAll('.q-step').forEach(s=>s.classList.remove('active'));
+  document.getElementById('q'+n).classList.add('active');
+  document.getElementById('prog').style.width=(n*20)+'%';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function scoreP(p) {
+  if (!p.inStock) return -99;
+  let s = 0;
+  if (p.concern.includes(ans[1])) s += 6;
+  if (p.duration && p.duration.includes(ans[2])) s += 3;
+  // Duration boosts clinical/liposomal for long-term issues
+  if ((ans[2]==='years'||ans[2]==='months') && (p.cat==='liposomal'||p.benefits.some(b=>b.includes('Clinical')))) s += 2;
+  if (p.lifestyle && p.lifestyle.includes(ans[3])) s += 2;
+  if ((ans[3]==='medication') && p.concern.includes('dry')) s += 3;
+  if ((ans[3]==='smoker') && (p.cat==='liposomal'||p.benefits.some(b=>b.includes('Clinical')))) s += 2;
+  // Location scoring
+  if (ans[4]==='travel' && p.cat==='travel') s += 5;
+  if (ans[4]==='travel' && p.cat==='mints') s += 3;
+  if ((ans[4]==='both'||ans[4]==='work') && (p.cat==='travel'||p.cat==='mints')) s += 2;
+  if (ans[4]==='home' && (p.cat==='mouthwash'||p.cat==='liposomal')) s += 1;
+  // Experience scoring — strongest filter
+  if (ans[5]==='nothing_worked' && p.cat==='liposomal') s += 5;
+  if (ans[5]==='nothing_worked' && (p.id===2||p.id===5||p.id===3)) s += 3;
+  if (ans[5]==='want_stronger' && (p.cat==='liposomal'||p.id===2||p.id===10)) s += 4;
+  if (ans[5]==='new_to_mouthwash' && (p.id===1||p.id===3||p.id===4)) s += 4;
+  if (ans[5]==='switching' && (p.cat==='liposomal'||p.id===2)) s += 3;
+  return s;
+}
+
+function pickAddon(primary) {
+  const concern = ans[1], location = ans[4];
+  const cands = products.filter(p => {
+    if (!p.inStock) return false;
+    if (p.id === primary.id) return false;
+    if (p.cat === primary.cat && p.cat !== 'toothpaste') return false;
+    return p.addonFor.includes(concern);
+  });
+  if (!cands.length) return products.find(p=>p.id===11&&p.inStock) || products.find(p=>p.inStock&&p.id!==primary.id);
+  const sc = cands.map(p => {
+    let s = 0;
+    if (p.addonFor.includes(concern)) s += 3;
+    if ((location==='travel'||location==='both'||location==='work') && p.cat==='travel') s += 3;
+    if ((location==='travel'||location==='work') && p.cat==='mints') s += 2;
+    if (p.cat==='toothpaste') s += 2;
+    if (concern==='dry' && p.cat==='mints') s += 3;
+    return {p, s};
+  });
+  sc.sort((a,b)=>b.s-a.s);
+  return sc[0].p;
+}
+
+function fmt(n){return'$'+n.toFixed(2);}
+
+function showResults() {
+  document.querySelectorAll('.q-step').forEach(s=>s.classList.remove('active'));
+  document.getElementById('prog').style.width='100%';
+  document.getElementById('results').classList.add('active');
+
+  const sorted = products.map(p=>({...p,sc:scoreP(p)})).sort((a,b)=>b.sc-a.sc);
+  const primary = sorted[0];
+  const addon = pickAddon(primary);
+
+  document.getElementById('pcard').innerHTML=`
+    <div class="p-label"><i class="ti ti-crown" style="font-size:12px;"></i> Primary formula</div>
+    <div class="p-img"><img src="${PRODUCT_IMGS[String(primary.id)]||''}" alt="${primary.name}" loading="lazy"/></div>
+    <div class="p-name">${primary.name}</div>
+    <div class="p-price">${fmt(primary.priceN)}</div>
+    <div class="p-tags">${primary.benefits.map(b=>`<span class="p-tag">${b}</span>`).join('')}</div>
+    <div class="p-why">${primaryReasons[primary.id]||'Matched to your answers for maximum effectiveness.'}</div>
+    <button class="add-p">Add to cart</button>`;
+
+  document.getElementById('acard').innerHTML=`
+    <div class="a-label"><i class="ti ti-sparkles" style="font-size:12px;"></i> Recommended add-on</div>
+    <div class="a-img"><img src="${PRODUCT_IMGS[String(addon.id)]||''}" alt="${addon.name}" loading="lazy"/></div>
+    <div class="a-name">${addon.name}</div>
+    <div class="a-price">${fmt(addon.priceN)}</div>
+    <div class="a-tags">${addon.benefits.map(b=>`<span class="a-tag">${b}</span>`).join('')}</div>
+    <div class="a-why">${addonReasons[addon.id]||'A great complement to your primary formula.'}</div>
+    <button class="add-a">Add to cart</button>`;
+
+  const total = primary.priceN + addon.priceN;
+  const save = total * 0.10;
+  document.getElementById('bwas').textContent = fmt(total);
+  document.getElementById('bnow').textContent = fmt(total-save)+' (save '+fmt(save)+')';
+  document.getElementById('bsub').textContent = primary.name.split(' ').slice(0,3).join(' ')+' + '+addon.name.split(' ').slice(0,3).join(' ')+' — 10% off together';
+
+  renderGrid(primary.id, addon.id);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function retake() {
+  Object.keys(ans).forEach(k=>delete ans[k]);
+  document.querySelectorAll('.opt').forEach(b=>b.classList.remove('sel'));
+  document.querySelectorAll('.next-b').forEach(b=>b.disabled=true);
+  document.getElementById('results').classList.remove('active');
+  document.getElementById('email-gate').style.display='block';
+  document.getElementById('prog').style.width='0%';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function renderGrid(pid, aid) {
+  const grid = document.getElementById('pgrid');
+  grid.innerHTML = '';
+  products.forEach(p => {
+    const isM = (p.id===pid||p.id===aid);
+    const card = document.createElement('div');
+    card.className = 'pc'+(isM?' hi':'')+(p.inStock?'':' dimmed');
+    card.dataset.cat = p.cat;
+    card.innerHTML=`
+      <div class="pi">
+        <img src="${PRODUCT_IMGS[String(p.id)]||''}" alt="${p.name}" loading="lazy"/>
+        ${isM?`<span class="pc-badge" style="background:${p.id===pid?'var(--teal)':'var(--amber)'};">${p.id===pid?'Your pick':'Add-on'}</span>`:''}
+        ${!p.inStock?'<span class="pc-badge" style="background:#aaa;">Sold out</span>':''}
+      </div>
+      <div class="pb">
+        <div class="pn">${p.name}</div>
+        <div class="pp">${p.price}</div>
+        <div class="pbens">${p.benefits.slice(0,2).map(b=>`<span class="pben">${b}</span>`).join('')}</div>
+        <button class="padd" ${p.inStock?'':'disabled'}>${p.inStock?'Add to cart':'Out of stock'}</button>
+      </div>`;
+    grid.appendChild(card);
+  });
+}
+
+function fg(el, cat) {
+  document.querySelectorAll('.fp').forEach(p=>p.classList.remove('on'));
+  el.classList.add('on');
+  document.querySelectorAll('.pc').forEach(c=>{
+    c.classList.toggle('hidden', cat!=='all' && c.dataset.cat!==cat);
+  });
+}
+
+// Allow enter key on email input
+document.addEventListener('DOMContentLoaded', () => {
+  const input = document.getElementById('email-input');
+  if (input) input.addEventListener('keydown', e => { if(e.key==='Enter') startQuiz(); });
+});
+</script>
