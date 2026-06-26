@@ -152,6 +152,20 @@
         "type": "shopify://apps/blockify-fraud-filter/blocks/app_embed/2e3e0ba5-0e70-447a-9ec5-3bf76b5ef12e",
         "disabled": false,
         "settings": {}
+      },
+      "4761459923222742006": {
+        "type": "shopify://apps/repete-ai-reorder-agent/blocks/on-demand-widget/aab79467-9235-43e5-8d30-39a1906f371b",
+        "disabled": false,
+        "settings": {
+          "enable_repete_widget": "widget_only",
+          "due_schedules_pre_days": 2,
+          "customer_widget_y_alignment": "bottom",
+          "customer_widget_x_alignment": "center-x",
+          "enable_selling_plan_helper": true,
+          "enable_tae_buy_button": false,
+          "atc_selector": "",
+          "enable_repete_buy_button": "true"
+        }
       }
     },
     "color_schemes": {
