@@ -1,0 +1,323 @@
+{% liquid
+  assign delivered_link = section.settings.button_link | default: routes.all_products_collection_url
+  assign card_alpha = section.settings.card_opacity | times: 0.01
+  assign card_background = section.settings.card_color | color_modify: 'alpha', card_alpha
+%}
+
+<section class="hr-delivered" aria-labelledby="DeliveredHeading-{{ section.id }}">
+  <div class="hr-delivered__container">
+    <div class="hr-delivered__card" style="--delivered-card-bg: {{ card_background }};">
+      <div class="hr-delivered__content">
+        {% if section.settings.eyebrow != blank %}
+          <p class="hr-delivered__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+        {% endif %}
+
+        {% if section.settings.heading != blank %}
+          <h2 class="hr-delivered__heading" id="DeliveredHeading-{{ section.id }}">
+            {{ section.settings.heading | escape | newline_to_br }}
+          </h2>
+        {% endif %}
+
+        {% if section.settings.body != blank %}
+          <div class="hr-delivered__body rte">{{ section.settings.body }}</div>
+        {% endif %}
+
+        {% if section.settings.button_label != blank %}
+          <a class="button hr-delivered__button" href="{{ delivered_link }}">
+            {{ section.settings.button_label | escape }}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="hr-delivered__image">
+      {% if section.settings.image != blank %}
+        {{
+          section.settings.image
+          | image_url: width: 2200
+          | image_tag:
+            widths: '750, 1000, 1250, 1500, 1800, 2200',
+            sizes: '(min-width: 750px) 48.83vw, 100vw',
+            loading: 'lazy',
+            alt: section.settings.image_alt
+        }}
+      {% else %}
+        <img
+          src="{{ 'smartmouth-girl-delivered.webp' | asset_url }}"
+          alt="{{ section.settings.image_alt | escape }}"
+          width="1000"
+          height="939"
+          loading="lazy"
+        >
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --hr-delivered-bg-start: {{ section.settings.background_start }};
+    --hr-delivered-bg-end: {{ section.settings.background_end }};
+    --hr-delivered-text: {{ section.settings.text_color }};
+    --hr-delivered-button: {{ section.settings.button_color }};
+    --hr-delivered-button-text: {{ section.settings.button_text_color }};
+  }
+
+  #shopify-section-{{ section.id }} .hr-delivered {
+    overflow: hidden;
+    padding: 6.3vw 0 3.3vw;
+    color: var(--hr-delivered-text);
+    background:
+      radial-gradient(circle at 58% 34%, var(--hr-delivered-bg-end) 0, var(--hr-delivered-bg-start) 72%);
+  }
+
+  #shopify-section-{{ section.id }} .hr-delivered__container {
+    position: relative;
+    width: 85vw;
+    margin: 0 auto;
+  }
+
+  #shopify-section-{{ section.id }} .hr-delivered__card {
+    position: relative;
+    z-index: 1;
+    width: 54.2vw;
+    margin-left: 29.17vw;
+    padding: 6.8vw 3.5vw 5.2vw 14.5vw;
+    background: var(--delivered-card-bg);
+    border-radius: .5vw;
+    box-sizing: border-box;
+  }
+
+  #shopify-section-{{ section.id }} .hr-delivered__content {
+    position: relative;
+    z-index: 3;
+    max-width: 30vw;
+  }
+
+  #shopify-section-{{ section.id }} .hr-delivered__eyebrow {
+    margin: 0 0 .8vw;
+    font-size: 1.45vw;
+    font-weight: 600;
+    letter-spacing: .02vw;
+    line-height: 1.15;
+    text-transform: uppercase;
+  }
+
+  #shopify-section-{{ section.id }} .hr-delivered__heading {
+    margin: 0 0 1.8vw;
+    color: inherit;
+    font-family: var(--font-heading-family);
+    font-size: 2.4vw;
+    font-style: var(--font-heading-style);
+    font-weight: var(--font-heading-weight);
+    letter-spacing: 0;
+    line-height: 1.08;
+  }
+
+  #shopify-section-{{ section.id }} .hr-delivered__body {
+    max-width: 27vw;
+    margin: 0 0 2.2vw;
+    color: inherit;
+    font-size: 1.13vw;
+    font-weight: 500;
+    line-height: 1.27;
+  }
+
+  #shopify-section-{{ section.id }} .hr-delivered__body p {
+    margin: 0;
+  }
+
+  #shopify-section-{{ section.id }} .hr-delivered__button.button {
+    min-width: 14vw;
+    padding: .9vw 1.8vw;
+    color: var(--hr-delivered-button-text);
+    background: var(--hr-delivered-button);
+    border: 0;
+    border-radius: 2vw;
+    font-size: 1.17vw;
+    font-weight: 800;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  #shopify-section-{{ section.id }} .hr-delivered__button.button::before,
+  #shopify-section-{{ section.id }} .hr-delivered__button.button::after {
+    content: none;
+  }
+
+  #shopify-section-{{ section.id }} .hr-delivered__image {
+    position: absolute;
+    top: -4.35vw;
+    left: -7.5vw;
+    z-index: 2;
+    width: 48.83vw;
+    pointer-events: none;
+  }
+
+  #shopify-section-{{ section.id }} .hr-delivered__image img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .hr-delivered {
+      padding: 8vw 0 10vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-delivered__card {
+      width: 85vw;
+      margin: 70vw 0 0;
+      padding: 20vw 7vw 9vw;
+      border-radius: 2vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-delivered__content,
+    #shopify-section-{{ section.id }} .hr-delivered__body {
+      max-width: none;
+    }
+
+    #shopify-section-{{ section.id }} .hr-delivered__image {
+      top: -8vw;
+      left: -15vw;
+      width: 100vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-delivered__eyebrow {
+      margin-bottom: 3vw;
+      font-size: 4.2vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-delivered__heading {
+      margin-bottom: 6vw;
+      font-size: 8vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-delivered__body {
+      margin-bottom: 7vw;
+      font-size: 4.2vw;
+      line-height: 1.35;
+    }
+
+    #shopify-section-{{ section.id }} .hr-delivered__button.button {
+      min-width: 55vw;
+      padding: 3.5vw 6vw;
+      border-radius: 8vw;
+      font-size: 4.2vw;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "SmartMouth Delivered",
+  "tag": "section",
+  "class": "section section-home-revamp-delivered",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Woman and product image"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Image alt text",
+      "default": "Woman holding SmartMouth Morning mouthwash"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "SUBSCRIBE & SAVE"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "SmartMouth, delivered.\nAlways 10% off."
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Body",
+      "default": "<p>You use it every day. You shouldn’t have to think about reordering it. Set your frequency, lock in 10% off, and get free shipping on every order — <em>cancel, pause or swap any time, no questions asked.</em></p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "GET STARTED"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_start",
+      "label": "Background outer color",
+      "default": "#81A8E2"
+    },
+    {
+      "type": "color",
+      "id": "background_end",
+      "label": "Background highlight",
+      "default": "#A7C6F2"
+    },
+    {
+      "type": "color",
+      "id": "card_color",
+      "label": "Card color",
+      "default": "#D9E7FC"
+    },
+    {
+      "type": "range",
+      "id": "card_opacity",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "%",
+      "label": "Card opacity",
+      "default": 24
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#24588D"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button",
+      "default": "#FF7701"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text",
+      "default": "#FFFFFF"
+    }
+  ],
+  "presets": [
+    {
+      "name": "SmartMouth Delivered",
+      "category": "Home Revamp"
+    }
+  ]
+}
+{% endschema %}
