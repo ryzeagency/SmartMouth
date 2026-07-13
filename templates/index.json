@@ -93,7 +93,7 @@
       "settings": {
         "accessible_label": "As featured in",
         "background_color": "#8bc1e4",
-        "speed": 24,
+        "speed": 35,
         "pause_hover": true
       }
     },
