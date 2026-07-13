@@ -1,0 +1,497 @@
+<section
+  class="hr-zinc"
+  data-zinc-section="{{ section.id }}"
+  aria-labelledby="ZincHeading-{{ section.id }}"
+>
+  <div class="hr-zinc__container">
+    <header class="hr-zinc__header">
+      {% if section.settings.eyebrow != blank %}
+        <p class="hr-zinc__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      {% endif %}
+
+      {% if section.settings.heading_prefix != blank or section.settings.heading_accent != blank %}
+        <h2 class="hr-zinc__heading" id="ZincHeading-{{ section.id }}">
+          {{ section.settings.heading_prefix | escape }}
+          {% if section.settings.heading_accent != blank %}
+            <span>{{ section.settings.heading_accent | escape }}</span>
+          {% endif %}
+        </h2>
+      {% endif %}
+
+      {% if section.settings.subheading != blank %}
+        <p class="hr-zinc__subheading">{{ section.settings.subheading | escape }}</p>
+      {% endif %}
+    </header>
+
+    {% if section.settings.show_virus %}
+      <div class="hr-zinc__virus-entrance" aria-hidden="true">
+        <div class="hr-zinc__virus-float">
+          {% if section.settings.virus_image != blank %}
+            {{
+              section.settings.virus_image
+              | image_url: width: 800
+              | image_tag:
+                widths: '250, 375, 500, 750, 800',
+                sizes: '(min-width: 750px) 13.0208vw, 32vw',
+                loading: 'lazy',
+                alt: ''
+            }}
+          {% else %}
+            <span class="hr-zinc__virus-fallback"></span>
+          {% endif %}
+        </div>
+      </div>
+    {% endif %}
+
+    <div class="hr-zinc__cards" role="list">
+      {% for block in section.blocks %}
+        <article
+          class="hr-zinc__card"
+          style="--card-background: {{ block.settings.background_color }};"
+          role="listitem"
+          {{ block.shopify_attributes }}
+        >
+          {% if block.settings.heading != blank %}
+            <h3 class="hr-zinc__card-heading">{{ block.settings.heading | escape }}</h3>
+          {% endif %}
+
+          {% if block.settings.lead != blank %}
+            <p class="hr-zinc__card-lead">{{ block.settings.lead | escape }}</p>
+          {% endif %}
+
+          {% if block.settings.body != blank %}
+            <div class="hr-zinc__card-body rte">{{ block.settings.body }}</div>
+          {% endif %}
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --hr-zinc-background: {{ section.settings.background_color }};
+    --hr-zinc-text: {{ section.settings.text_color }};
+    --hr-zinc-accent: {{ section.settings.accent_color }};
+    --hr-zinc-virus-size: 13.0208vw;
+  }
+
+  #shopify-section-{{ section.id }} .hr-zinc {
+    overflow: hidden;
+    padding: 7.4vw 0 3.4vw;
+    color: var(--hr-zinc-text);
+    background: var(--hr-zinc-background);
+  }
+
+  #shopify-section-{{ section.id }} .hr-zinc__container {
+    position: relative;
+    width: 85vw;
+    margin: 0 auto;
+  }
+
+  #shopify-section-{{ section.id }} .hr-zinc__header {
+    position: relative;
+    z-index: 2;
+    width: 75vw;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  #shopify-section-{{ section.id }} .hr-zinc__eyebrow {
+    margin: 0 0 .95vw;
+    font-family: var(--font-body-family);
+    font-size: 1.5vw;
+    font-style: var(--font-body-style);
+    font-weight: 600;
+    letter-spacing: .02vw;
+    line-height: 1.15;
+    text-transform: uppercase;
+  }
+
+  #shopify-section-{{ section.id }} .hr-zinc__heading {
+    margin: 0 0 1.25vw;
+    color: inherit;
+    font-family: var(--font-heading-family);
+    font-size: 2.4vw;
+    font-style: var(--font-heading-style);
+    font-weight: var(--font-heading-weight);
+    letter-spacing: 0;
+    line-height: 1.08;
+  }
+
+  #shopify-section-{{ section.id }} .hr-zinc__heading span {
+    color: var(--hr-zinc-accent);
+  }
+
+  #shopify-section-{{ section.id }} .hr-zinc__subheading {
+    margin: 0;
+    font-size: 1.12vw;
+    font-style: italic;
+    font-weight: 800;
+    line-height: 1.25;
+  }
+
+  #shopify-section-{{ section.id }} .hr-zinc__virus-entrance {
+    position: absolute;
+    top: .4vw;
+    right: -.35vw;
+    z-index: 1;
+    width: var(--hr-zinc-virus-size);
+    aspect-ratio: 1;
+    opacity: 0;
+    transform: translateX(5vw);
+    transition:
+      opacity .8s ease,
+      transform .95s cubic-bezier(.2, .75, .3, 1);
+    pointer-events: none;
+  }
+
+  #shopify-section-{{ section.id }} .hr-zinc.is-visible .hr-zinc__virus-entrance {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  #shopify-section-{{ section.id }} .hr-zinc__virus-float {
+    width: 100%;
+    aspect-ratio: 1;
+    animation: hr-zinc-float-{{ section.id }} 4.2s ease-in-out .95s infinite;
+    animation-play-state: paused;
+  }
+
+  #shopify-section-{{ section.id }} .hr-zinc.is-visible .hr-zinc__virus-float {
+    animation-play-state: running;
+  }
+
+  #shopify-section-{{ section.id }} .hr-zinc__virus-float img,
+  #shopify-section-{{ section.id }} .hr-zinc__virus-fallback {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1;
+  }
+
+  #shopify-section-{{ section.id }} .hr-zinc__virus-float img {
+    object-fit: contain;
+  }
+
+  #shopify-section-{{ section.id }} .hr-zinc__virus-fallback {
+    background-image: url("{{ 'd893c4ee-2698-4c4b-8b23-003209147ab8.png' | asset_url }}");
+    background-repeat: no-repeat;
+    background-position: -79.85vw -7.75vw;
+    background-size: 100vw auto;
+  }
+
+  #shopify-section-{{ section.id }} .hr-zinc__cards {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5vw;
+    width: 75vw;
+    margin: 2.25vw auto 0;
+  }
+
+  #shopify-section-{{ section.id }} .hr-zinc__card {
+    min-width: 0;
+    padding: 2.15vw;
+    background: var(--card-background);
+    box-sizing: border-box;
+  }
+
+  #shopify-section-{{ section.id }} .hr-zinc__card-heading {
+    margin: 0 0 .75vw;
+    color: inherit;
+    font-family: var(--font-heading-family);
+    font-size: 1.9vw;
+    font-style: var(--font-heading-style);
+    font-weight: var(--font-heading-weight);
+    letter-spacing: 0;
+    line-height: 1.08;
+  }
+
+  #shopify-section-{{ section.id }} .hr-zinc__card-lead {
+    margin: 0 0 .7vw;
+    font-size: 1.28vw;
+    font-weight: 800;
+    line-height: 1.2;
+  }
+
+  #shopify-section-{{ section.id }} .hr-zinc__card-body {
+    max-width: 31vw;
+    color: inherit;
+    font-size: 1.12vw;
+    line-height: 1.22;
+  }
+
+  #shopify-section-{{ section.id }} .hr-zinc__card-body p {
+    margin: 0;
+  }
+
+  @keyframes hr-zinc-float-{{ section.id }} {
+    0%, 100% {
+      transform: translate3d(0, 0, 0) rotate(0deg);
+    }
+
+    50% {
+      transform: translate3d(0, -.55vw, 0) rotate(1.5deg);
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} {
+      --hr-zinc-virus-size: 32vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-zinc {
+      padding: 16vw 0 12vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-zinc__header,
+    #shopify-section-{{ section.id }} .hr-zinc__cards {
+      width: 85vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-zinc__eyebrow {
+      margin-bottom: 3vw;
+      font-size: 4.3vw;
+      letter-spacing: .08vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-zinc__heading {
+      margin-bottom: 4vw;
+      font-size: 7.7vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-zinc__subheading {
+      font-size: 4vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-zinc__virus-entrance {
+      top: 26vw;
+      right: -12vw;
+      transform: translateX(16vw);
+    }
+
+    #shopify-section-{{ section.id }} .hr-zinc__virus-fallback {
+      background-position: -196.5vw -19vw;
+      background-size: 246vw auto;
+    }
+
+    #shopify-section-{{ section.id }} .hr-zinc__cards {
+      grid-template-columns: 1fr;
+      gap: 4vw;
+      margin-top: 10vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-zinc__card {
+      padding: 7vw 6vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-zinc__card-heading {
+      margin-bottom: 3vw;
+      font-size: 7vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-zinc__card-lead {
+      margin-bottom: 3vw;
+      font-size: 4.5vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-zinc__card-body {
+      max-width: none;
+      font-size: 4vw;
+      line-height: 1.35;
+    }
+
+    @keyframes hr-zinc-float-{{ section.id }} {
+      0%, 100% {
+        transform: translate3d(0, 0, 0) rotate(0deg);
+      }
+
+      50% {
+        transform: translate3d(0, -1.5vw, 0) rotate(1.5deg);
+      }
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #shopify-section-{{ section.id }} .hr-zinc__virus-entrance {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+
+    #shopify-section-{{ section.id }} .hr-zinc__virus-float {
+      animation: none;
+    }
+  }
+</style>
+
+<script>
+  (() => {
+    const section = document.querySelector('[data-zinc-section="{{ section.id }}"]');
+
+    if (!section || section.dataset.animationReady === 'true') return;
+
+    section.dataset.animationReady = 'true';
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      section.classList.add('is-visible');
+      return;
+    }
+
+    if (!('IntersectionObserver' in window)) {
+      section.classList.add('is-visible');
+      return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+
+        section.classList.add('is-visible');
+        observer.disconnect();
+      });
+    }, { threshold: 0.25 });
+
+    observer.observe(section);
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Smart-Zinc Technology",
+  "tag": "section",
+  "class": "section section-home-revamp-zinc",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "SMART-ZINC™ TECHNOLOGY"
+    },
+    {
+      "type": "text",
+      "id": "heading_prefix",
+      "label": "Heading",
+      "default": "Sulfur gas is the real cause of"
+    },
+    {
+      "type": "text",
+      "id": "heading_accent",
+      "label": "Heading accent",
+      "default": "bad breath."
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Most mouthwashes mask it. SmartMouth eliminates it — for 24 hours — with just 2 rinses."
+    },
+    {
+      "type": "header",
+      "content": "Virus image"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_virus",
+      "label": "Show virus image",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "virus_image",
+      "label": "Virus image"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#062342"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Heading accent",
+      "default": "#8FD7CD"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Information card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "The problem"
+        },
+        {
+          "type": "text",
+          "id": "lead",
+          "label": "Lead text",
+          "default": "Germs + protein = sulfur gas"
+        },
+        {
+          "type": "richtext",
+          "id": "body",
+          "label": "Body",
+          "default": "<p>Bacteria in your mouth eat protein from saliva and release stinky sulfur gas. That’s bad breath — and normal mouthwash just covers it up.</p>"
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Background",
+          "default": "#BDE3DD"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Smart-Zinc Technology",
+      "category": "Home Revamp",
+      "blocks": [
+        {
+          "type": "card",
+          "settings": {
+            "heading": "The problem",
+            "lead": "Germs + protein = sulfur gas",
+            "body": "<p>Bacteria in your mouth eat protein from saliva and release stinky sulfur gas. That’s bad breath — and normal mouthwash just covers it up.</p>",
+            "background_color": "#BDE3DD"
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "heading": "The solution",
+            "lead": "Zinc ions block the gas at the source",
+            "body": "<p>When our two solutions combine, they activate billions of zinc ions that block germs from producing sulfur — preventing bad breath for a full 24 hours.</p>",
+            "background_color": "#CFE2F4"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+{% comment %}
+  The fallback virus is cropped from the supplied composite mockup. Uploading a
+  transparent virus asset through the section setting produces the cleanest animation.
+{% endcomment %}
