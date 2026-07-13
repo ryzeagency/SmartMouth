@@ -1,0 +1,614 @@
+<section
+  class="hr-testimonials"
+  data-testimonials-section="{{ section.id }}"
+  aria-labelledby="TestimonialsHeading-{{ section.id }}"
+>
+  <header class="hr-testimonials__header">
+    <h2 class="hr-testimonials__heading" id="TestimonialsHeading-{{ section.id }}">
+      <span class="hr-testimonials__heading-line hr-testimonials__heading-line--top">
+        {{ section.settings.heading_top | escape }}
+      </span>
+      <span class="hr-testimonials__heading-line hr-testimonials__heading-line--bottom">
+        {{ section.settings.heading_bottom | escape }}
+      </span>
+    </h2>
+  </header>
+
+  <div
+    class="hr-testimonials__viewport"
+    data-testimonials-viewport
+    role="region"
+    aria-label="{{ section.settings.slider_label | escape }}"
+    tabindex="0"
+  >
+    <div class="hr-testimonials__track" role="list">
+      {% for block in section.blocks %}
+        <article
+          class="hr-testimonials__slide"
+          data-testimonial-slide
+          role="listitem"
+          {{ block.shopify_attributes }}
+        >
+          <div
+            class="hr-testimonials__card"
+            style="--testimonial-card-bg: {{ block.settings.background_color }};"
+          >
+            <div
+              class="hr-testimonials__stars"
+              aria-label="{{ block.settings.rating }} out of 5 stars"
+            >
+              <span aria-hidden="true">
+                {% for star in (1..5) %}
+                  <span class="hr-testimonials__star{% if star > block.settings.rating %} hr-testimonials__star--empty{% endif %}">★</span>
+                {% endfor %}
+              </span>
+            </div>
+
+            {% if block.settings.quote != blank %}
+              <blockquote class="hr-testimonials__quote">
+                <p>“{{ block.settings.quote | escape }}”</p>
+              </blockquote>
+            {% endif %}
+
+            <footer class="hr-testimonials__author">
+              {% if block.settings.author != blank %}
+                <strong>{{ block.settings.author | escape }}</strong>
+              {% endif %}
+              {% if block.settings.author_label != blank %}
+                <span>{{ block.settings.author_label | escape }}</span>
+              {% endif %}
+            </footer>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --hr-testimonials-bg: {{ section.settings.background_color }};
+    --hr-testimonials-blue: {{ section.settings.heading_background }};
+    --hr-testimonials-top-text: {{ section.settings.heading_top_color }};
+    --hr-testimonials-bottom-text: {{ section.settings.heading_bottom_color }};
+    --hr-testimonials-card-text: {{ section.settings.text_color }};
+    --hr-testimonials-border: {{ section.settings.border_color }};
+    --hr-testimonials-stars: {{ section.settings.star_color }};
+    --hr-testimonials-card-width: {{ section.settings.card_width }}vw;
+    --hr-testimonials-gap: {{ section.settings.card_gap }}vw;
+  }
+
+  #shopify-section-{{ section.id }} .hr-testimonials {
+    width: 100%;
+    overflow: hidden;
+    padding: 4vw 0 3.4vw;
+    color: var(--hr-testimonials-card-text);
+    background: var(--hr-testimonials-bg);
+  }
+
+  #shopify-section-{{ section.id }} .hr-testimonials__header {
+    position: relative;
+    z-index: 2;
+    margin-bottom: 2.6vw;
+    text-align: center;
+  }
+
+  #shopify-section-{{ section.id }} .hr-testimonials__heading {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    color: inherit;
+    font-family: var(--font-heading-family);
+    font-style: var(--font-heading-style);
+    font-weight: var(--font-heading-weight);
+    letter-spacing: 0;
+    line-height: .85;
+    transform: rotate(-2deg);
+  }
+
+  #shopify-section-{{ section.id }} .hr-testimonials__heading-line {
+    display: block;
+    background: var(--hr-testimonials-blue);
+  }
+
+  #shopify-section-{{ section.id }} .hr-testimonials__heading-line--top {
+    z-index: 1;
+    padding: .3vw 2.15vw .65vw;
+    color: var(--hr-testimonials-top-text);
+    font-size: 4.65vw;
+  }
+
+  #shopify-section-{{ section.id }} .hr-testimonials__heading-line--bottom {
+    margin-top: -.42vw;
+    padding: .18vw 2.35vw .65vw;
+    color: var(--hr-testimonials-bottom-text);
+    font-size: 4.4vw;
+  }
+
+  #shopify-section-{{ section.id }} .hr-testimonials__viewport {
+    width: 100vw;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    cursor: grab;
+    touch-action: pan-x;
+  }
+
+  #shopify-section-{{ section.id }} .hr-testimonials__viewport::-webkit-scrollbar {
+    display: none;
+  }
+
+  #shopify-section-{{ section.id }} .hr-testimonials__viewport.is-dragging {
+    cursor: grabbing;
+    scroll-behavior: auto;
+    scroll-snap-type: none;
+    user-select: none;
+  }
+
+  #shopify-section-{{ section.id }} .hr-testimonials__track {
+    display: flex;
+    align-items: stretch;
+    gap: var(--hr-testimonials-gap);
+    width: max-content;
+    padding: 0 calc((100vw - var(--hr-testimonials-card-width)) / 2);
+    box-sizing: border-box;
+  }
+
+  #shopify-section-{{ section.id }} .hr-testimonials__slide {
+    display: flex;
+    flex: 0 0 var(--hr-testimonials-card-width);
+    width: var(--hr-testimonials-card-width);
+    padding-bottom: 3.9vw;
+    scroll-snap-align: center;
+    box-sizing: border-box;
+  }
+
+  #shopify-section-{{ section.id }} .hr-testimonials__card {
+    position: relative;
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 2.55vw 3vw 1.55vw;
+    color: var(--hr-testimonials-card-text);
+    background: var(--testimonial-card-bg);
+    border: .2vw solid var(--hr-testimonials-border);
+    border-radius: 1.2vw;
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  #shopify-section-{{ section.id }} .hr-testimonials__card::after {
+    content: '';
+    position: absolute;
+    right: 50%;
+    bottom: -2.78vw;
+    z-index: 0;
+    width: 5.3vw;
+    aspect-ratio: 1;
+    background: var(--testimonial-card-bg);
+    border-right: .2vw solid var(--hr-testimonials-border);
+    border-bottom: .2vw solid var(--hr-testimonials-border);
+    transform: translateX(50%) rotate(45deg);
+  }
+
+  #shopify-section-{{ section.id }} .hr-testimonials__stars,
+  #shopify-section-{{ section.id }} .hr-testimonials__quote,
+  #shopify-section-{{ section.id }} .hr-testimonials__author {
+    position: relative;
+    z-index: 1;
+  }
+
+  #shopify-section-{{ section.id }} .hr-testimonials__stars {
+    margin-bottom: .8vw;
+    color: var(--hr-testimonials-stars);
+    font-size: 2vw;
+    letter-spacing: .12vw;
+    line-height: 1;
+  }
+
+  #shopify-section-{{ section.id }} .hr-testimonials__star--empty {
+    opacity: .25;
+  }
+
+  #shopify-section-{{ section.id }} .hr-testimonials__quote {
+    max-width: 26vw;
+    margin: 0;
+    padding: 0;
+    color: inherit;
+    border: 0;
+    font-size: 1.13vw;
+    font-style: italic;
+    font-weight: 600;
+    line-height: 1.28;
+  }
+
+  #shopify-section-{{ section.id }} .hr-testimonials__quote p {
+    margin: 0;
+  }
+
+  #shopify-section-{{ section.id }} .hr-testimonials__author {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: auto;
+    padding-top: 1.25vw;
+  }
+
+  #shopify-section-{{ section.id }} .hr-testimonials__author strong {
+    font-size: 1.12vw;
+    line-height: 1.15;
+  }
+
+  #shopify-section-{{ section.id }} .hr-testimonials__author span {
+    margin-top: .15vw;
+    color: inherit;
+    font-size: .9vw;
+    line-height: 1.15;
+    opacity: .52;
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} {
+      --hr-testimonials-card-width: 85vw;
+      --hr-testimonials-gap: 5vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-testimonials {
+      padding: 12vw 0 10vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-testimonials__header {
+      margin-bottom: 10vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-testimonials__heading-line--top {
+      padding: 1.2vw 5vw 2vw;
+      font-size: 11vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-testimonials__heading-line--bottom {
+      margin-top: -1vw;
+      padding: 1vw 6vw 2.2vw;
+      font-size: 10.5vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-testimonials__slide {
+      padding-bottom: 11vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-testimonials__card {
+      padding: 8vw 7vw 5vw;
+      border-width: .7vw;
+      border-radius: 4vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-testimonials__card::after {
+      bottom: -7.5vw;
+      width: 15vw;
+      border-right-width: .7vw;
+      border-bottom-width: .7vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-testimonials__stars {
+      margin-bottom: 4vw;
+      font-size: 7vw;
+      letter-spacing: .4vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-testimonials__quote {
+      max-width: none;
+      font-size: 4.2vw;
+      line-height: 1.35;
+    }
+
+    #shopify-section-{{ section.id }} .hr-testimonials__author {
+      padding-top: 7vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-testimonials__author strong {
+      font-size: 4.3vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-testimonials__author span {
+      margin-top: .6vw;
+      font-size: 3.6vw;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #shopify-section-{{ section.id }} .hr-testimonials__viewport {
+      scroll-behavior: auto;
+    }
+  }
+</style>
+
+<script>
+  (() => {
+    const section = document.querySelector('[data-testimonials-section="{{ section.id }}"]');
+    const viewport = section?.querySelector('[data-testimonials-viewport]');
+
+    if (!section || !viewport || viewport.dataset.sliderReady === 'true') return;
+
+    viewport.dataset.sliderReady = 'true';
+
+    const slides = Array.from(viewport.querySelectorAll('[data-testimonial-slide]'));
+
+    if (slides.length === 0) return;
+
+    const requestedIndex = {{ section.settings.initial_slide | minus: 1 }};
+    const initialIndex = Math.max(0, Math.min(requestedIndex, slides.length - 1));
+
+    const centerSlide = (slide, behavior = 'smooth') => {
+      if (!slide) return;
+
+      const left = slide.offsetLeft - ((viewport.clientWidth - slide.offsetWidth) / 2);
+      viewport.scrollTo({ left, behavior });
+    };
+
+    requestAnimationFrame(() => centerSlide(slides[initialIndex], 'auto'));
+
+    let isDragging = false;
+    let startX = 0;
+    let startScrollLeft = 0;
+
+    viewport.addEventListener('pointerdown', (event) => {
+      if (event.button !== 0) return;
+
+      isDragging = true;
+      startX = event.clientX;
+      startScrollLeft = viewport.scrollLeft;
+      viewport.classList.add('is-dragging');
+      viewport.setPointerCapture(event.pointerId);
+    });
+
+    viewport.addEventListener('pointermove', (event) => {
+      if (!isDragging) return;
+
+      viewport.scrollLeft = startScrollLeft - (event.clientX - startX);
+    });
+
+    const stopDragging = (event) => {
+      if (!isDragging) return;
+
+      isDragging = false;
+      viewport.classList.remove('is-dragging');
+
+      if (viewport.hasPointerCapture(event.pointerId)) {
+        viewport.releasePointerCapture(event.pointerId);
+      }
+
+      const viewportCenter = viewport.scrollLeft + (viewport.clientWidth / 2);
+      const closest = slides.reduce((current, slide) => {
+        const slideCenter = slide.offsetLeft + (slide.offsetWidth / 2);
+        const currentCenter = current.offsetLeft + (current.offsetWidth / 2);
+
+        return Math.abs(slideCenter - viewportCenter) < Math.abs(currentCenter - viewportCenter)
+          ? slide
+          : current;
+      }, slides[0]);
+
+      centerSlide(closest);
+    };
+
+    viewport.addEventListener('pointerup', stopDragging);
+    viewport.addEventListener('pointercancel', stopDragging);
+
+    viewport.addEventListener('keydown', (event) => {
+      if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+
+      event.preventDefault();
+
+      const viewportCenter = viewport.scrollLeft + (viewport.clientWidth / 2);
+      let currentIndex = slides.reduce((closestIndex, slide, index) => {
+        const slideCenter = slide.offsetLeft + (slide.offsetWidth / 2);
+        const closestCenter = slides[closestIndex].offsetLeft + (slides[closestIndex].offsetWidth / 2);
+
+        return Math.abs(slideCenter - viewportCenter) < Math.abs(closestCenter - viewportCenter)
+          ? index
+          : closestIndex;
+      }, 0);
+
+      currentIndex += event.key === 'ArrowRight' ? 1 : -1;
+      currentIndex = Math.max(0, Math.min(currentIndex, slides.length - 1));
+      centerSlide(slides[currentIndex]);
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "What People Are Saying",
+  "tag": "section",
+  "class": "section section-home-revamp-testimonials",
+  "max_blocks": 12,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "heading_top",
+      "label": "Top line",
+      "default": "What people"
+    },
+    {
+      "type": "text",
+      "id": "heading_bottom",
+      "label": "Bottom line",
+      "default": "are saying"
+    },
+    {
+      "type": "header",
+      "content": "Slider"
+    },
+    {
+      "type": "text",
+      "id": "slider_label",
+      "label": "Accessible slider label",
+      "default": "Customer testimonials"
+    },
+    {
+      "type": "range",
+      "id": "initial_slide",
+      "min": 1,
+      "max": 12,
+      "step": 1,
+      "label": "Initial centered slide",
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "card_width",
+      "min": 24,
+      "max": 40,
+      "step": 1,
+      "unit": "vw",
+      "label": "Desktop card width",
+      "default": 31
+    },
+    {
+      "type": "range",
+      "id": "card_gap",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "unit": "vw",
+      "label": "Desktop card gap",
+      "default": 7
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#D1EDE7"
+    },
+    {
+      "type": "color",
+      "id": "heading_background",
+      "label": "Heading background",
+      "default": "#205085"
+    },
+    {
+      "type": "color",
+      "id": "heading_top_color",
+      "label": "Top heading text",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "heading_bottom_color",
+      "label": "Bottom heading text",
+      "default": "#A9D7EE"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Card text",
+      "default": "#182A4A"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Card border",
+      "default": "#205085"
+    },
+    {
+      "type": "color",
+      "id": "star_color",
+      "label": "Stars",
+      "default": "#FFB400"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "range",
+          "id": "rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "label": "Rating",
+          "default": 5
+        },
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Quote",
+          "default": "In just 24 hours, I saw a major improvement. Now I feel confident in pursuing my dreams. Your products are truly a lifesaver."
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author",
+          "default": "Nikia"
+        },
+        {
+          "type": "text",
+          "id": "author_label",
+          "label": "Author label",
+          "default": "Verified User"
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Card background",
+          "default": "#FFFFFF"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "What People Are Saying",
+      "category": "Home Revamp",
+      "blocks": [
+        {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "In just 24 hours, I saw a major improvement. Now I feel confident in pursuing my dreams. Your products are truly a lifesaver.",
+            "author": "Nikia",
+            "author_label": "Verified User"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "I just want to say thank you for this amazing product. For years I have struggled with dry mouth due to my autoimmune disease. In just 24 hours, I saw a major improvement. Now I feel confident in pursuing my dreams. Your products are truly a lifesaver. I will be a customer for life!",
+            "author": "Alan",
+            "author_label": "Verified User"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "You win… I tried to not have fresh breath after rinsing with SmartMouth by eating garlic, onions, fermented beans, pepperoni, and coffee. But my breath was fresh again after an hour of eating those things. I am a fan for life.",
+            "author": "Mika",
+            "author_label": "Verified User"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+{% comment %}
+  This full-width slider uses native scroll snapping in the same spirit as Dawn's
+  slider component, with no external JavaScript dependency.
+{% endcomment %}
