@@ -330,13 +330,13 @@
         "body": "<p>You use it every day. You shouldn’t have to think about reordering it. Set your frequency, lock in 10% off, and get free shipping on every order — <em>cancel, pause or swap any time, no questions asked.</em></p>",
         "button_label": "GET STARTED",
         "button_link": "",
-        "background_start": "#81A8E2",
-        "background_end": "#A7C6F2",
-        "card_color": "#D9E7FC",
+        "background_start": "#81a8e2",
+        "background_end": "#a7c6f2",
+        "card_color": "#d9e7fc",
         "card_opacity": 24,
-        "text_color": "#24588D",
-        "button_color": "#FF7701",
-        "button_text_color": "#FFFFFF"
+        "text_color": "#24588d",
+        "button_color": "#ff7701",
+        "button_text_color": "#ffffff"
       }
     },
     "smt_home_revamp_testimonials_84iMcA": {
@@ -349,7 +349,7 @@
             "quote": "In just 24 hours, I saw a major improvement. Now I feel confident in pursuing my dreams. Your products are truly a lifesaver.",
             "author": "Nikia",
             "author_label": "Verified User",
-            "background_color": "#FFFFFF"
+            "background_color": "#ffffff"
           }
         },
         "testimonial_NAGHM9": {
@@ -359,7 +359,7 @@
             "quote": "In just 24 hours, I saw a major improvement. Now I feel confident in pursuing my dreams. Your products are truly a lifesaver.",
             "author": "Nikia",
             "author_label": "Verified User",
-            "background_color": "#FFFFFF"
+            "background_color": "#ffffff"
           }
         },
         "testimonial_YAzDNz": {
@@ -369,7 +369,7 @@
             "quote": "In just 24 hours, I saw a major improvement. Now I feel confident in pursuing my dreams. Your products are truly a lifesaver.",
             "author": "Nikia",
             "author_label": "Verified User",
-            "background_color": "#FFFFFF"
+            "background_color": "#ffffff"
           }
         },
         "testimonial_GRJj7z": {
@@ -379,7 +379,7 @@
             "quote": "I just want to say thank you for this amazing product. For years I have struggled with dry mouth due to my autoimmune disease. In just 24 hours, I saw a major improvement. Now I feel confident in pursuing my dreams. Your products are truly a lifesaver. I will be a customer for life!",
             "author": "Alan",
             "author_label": "Verified User",
-            "background_color": "#FFFFFF"
+            "background_color": "#ffffff"
           }
         },
         "testimonial_U7zchJ": {
@@ -389,7 +389,7 @@
             "quote": "You win… I tried to not have fresh breath after rinsing with SmartMouth by eating garlic, onions, fermented beans, pepperoni, and coffee. But my breath was fresh again after an hour of eating those things. I am a fan for life.",
             "author": "Mika",
             "author_label": "Verified User",
-            "background_color": "#FFFFFF"
+            "background_color": "#ffffff"
           }
         }
       },
@@ -408,13 +408,71 @@
         "initial_slide": 2,
         "card_width": 31,
         "card_gap": 7,
-        "background_color": "#D1EDE7",
+        "background_color": "#d1ede7",
         "heading_background": "#205085",
-        "heading_top_color": "#FFFFFF",
-        "heading_bottom_color": "#A9D7EE",
-        "text_color": "#182A4A",
+        "heading_top_color": "#ffffff",
+        "heading_bottom_color": "#a9d7ee",
+        "text_color": "#182a4a",
         "border_color": "#205085",
-        "star_color": "#FFB400"
+        "star_color": "#ffb400"
+      }
+    },
+    "smt_home_revamp_available_NBRVAi": {
+      "type": "smt-home-revamp-available",
+      "blocks": {
+        "retailer_B4HwdP": {
+          "type": "retailer",
+          "settings": {
+            "image": "shopify://shop_images/walmart.png",
+            "logo_style": "walmart",
+            "text": "Walmart",
+            "alt": "Walmart",
+            "logo_width": 14,
+            "logo_color": "#0071ce",
+            "link": ""
+          }
+        },
+        "retailer_F39fbf": {
+          "type": "retailer",
+          "settings": {
+            "image": "shopify://shop_images/walgreens.png",
+            "logo_style": "walgreens",
+            "text": "Walgreens",
+            "alt": "Walgreens",
+            "logo_width": 15,
+            "logo_color": "#e31837",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "retailer_B4HwdP",
+        "retailer_F39fbf"
+      ],
+      "name": "Available Nationwide",
+      "settings": {
+        "background_image": "shopify://shop_images/ChatGPT_Image_Jul_13_2026_04_03_58_PM.webp",
+        "bottle_image": "shopify://shop_images/smartmouth-bottle.webp",
+        "bottle_alt": "SmartMouth Dry Mouth mouthwash",
+        "heading_prefix": "Available at",
+        "heading_accent": "40,000+",
+        "heading_suffix": "stores nationwide",
+        "body": "<p>Available at Walmart · Walgreens.<br/><strong>Or skip the trip and subscribe online.</strong></p>",
+        "store_label": "FIND A STORE NEAR ME",
+        "store_link": "",
+        "amazon_label": "SHOP ON AMAZON",
+        "amazon_link": "",
+        "shop_label": "SHOP ONLINE",
+        "shop_link": "",
+        "background_color": "#9A96BC",
+        "glass_color": "#E2DCFA",
+        "glass_opacity": 22,
+        "text_color": "#FFFFFF",
+        "heading_background": "#865CE6",
+        "heading_color": "#FFFFFF",
+        "heading_accent_color": "#C8B7FF",
+        "button_color": "#FF7701",
+        "button_text_color": "#FFFFFF"
       }
     }
   },
@@ -426,6 +484,7 @@
     "smt_home_revamp_smart_zinc_gYfGTQ",
     "smt_home_revamp_how_smartmouth_works_Yawt8z",
     "smt_home_revamp_delivered_LPxhWa",
-    "smt_home_revamp_testimonials_84iMcA"
+    "smt_home_revamp_testimonials_84iMcA",
+    "smt_home_revamp_available_NBRVAi"
   ]
 }
