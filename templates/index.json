@@ -474,6 +474,24 @@
         "button_color": "#FF7701",
         "button_text_color": "#FFFFFF"
       }
+    },
+    "smt_home_revamp_klaviyo_signup_37qfYc": {
+      "type": "smt-home-revamp-klaviyo-signup",
+      "name": "Klaviyo Email Signup",
+      "settings": {
+        "form_id": "R5Rhv9",
+        "visual_button_label": "SUBMIT",
+        "heading_top": "We love saving",
+        "heading_bottom": "you from bad breath",
+        "subheading": "Sign up for coupons, offers & updates",
+        "background_color": "#ADD2EC",
+        "heading_background": "#205085",
+        "heading_color": "#FFFFFF",
+        "text_color": "#205085",
+        "input_background": "#FFFFFF",
+        "button_color": "#FF7701",
+        "button_text_color": "#FFFFFF"
+      }
     }
   },
   "order": [
@@ -485,6 +503,7 @@
     "smt_home_revamp_how_smartmouth_works_Yawt8z",
     "smt_home_revamp_delivered_LPxhWa",
     "smt_home_revamp_testimonials_84iMcA",
-    "smt_home_revamp_available_NBRVAi"
+    "smt_home_revamp_available_NBRVAi",
+    "smt_home_revamp_klaviyo_signup_37qfYc"
   ]
 }
