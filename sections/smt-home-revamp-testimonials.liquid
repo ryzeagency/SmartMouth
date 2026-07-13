@@ -1,6 +1,8 @@
 <section
   class="hr-testimonials"
   data-testimonials-section="{{ section.id }}"
+  data-testimonials-autoplay="{{ section.settings.enable_autoplay }}"
+  data-testimonials-interval="{{ section.settings.autoplay_interval | times: 1000 }}"
   aria-labelledby="TestimonialsHeading-{{ section.id }}"
 >
   <header class="hr-testimonials__header">
@@ -37,11 +39,28 @@
               class="hr-testimonials__stars"
               aria-label="{{ block.settings.rating }} out of 5 stars"
             >
-              <span aria-hidden="true">
-                {% for star in (1..5) %}
-                  <span class="hr-testimonials__star{% if star > block.settings.rating %} hr-testimonials__star--empty{% endif %}">★</span>
-                {% endfor %}
-              </span>
+              {%- if section.settings.stars_image != blank -%}
+                <img
+                  class="hr-testimonials__stars-image"
+                  src="{{ section.settings.stars_image | image_url: width: 600 }}"
+                  srcset="
+                    {{ section.settings.stars_image | image_url: width: 200 }} 200w,
+                    {{ section.settings.stars_image | image_url: width: 400 }} 400w,
+                    {{ section.settings.stars_image | image_url: width: 600 }} 600w
+                  "
+                  sizes="(min-width: 750px) {{ section.settings.stars_image_width }}vw, 35vw"
+                  width="{{ section.settings.stars_image.width }}"
+                  height="{{ section.settings.stars_image.height }}"
+                  alt=""
+                  loading="lazy"
+                >
+              {%- else -%}
+                <span aria-hidden="true">
+                  {% for star in (1..5) %}
+                    <span class="hr-testimonials__star{% if star > block.settings.rating %} hr-testimonials__star--empty{% endif %}">★</span>
+                  {% endfor %}
+                </span>
+              {%- endif -%}
             </div>
 
             {% if block.settings.quote != blank %}
@@ -74,6 +93,7 @@
     --hr-testimonials-card-text: {{ section.settings.text_color }};
     --hr-testimonials-border: {{ section.settings.border_color }};
     --hr-testimonials-stars: {{ section.settings.star_color }};
+    --hr-testimonials-stars-image-width: {{ section.settings.stars_image_width }}vw;
     --hr-testimonials-card-width: {{ section.settings.card_width }}vw;
     --hr-testimonials-gap: {{ section.settings.card_gap }}vw;
   }
@@ -215,6 +235,14 @@
     opacity: .25;
   }
 
+  #shopify-section-{{ section.id }} .hr-testimonials__stars-image {
+    display: block;
+    width: min(var(--hr-testimonials-stars-image-width), 100%);
+    max-width: 100%;
+    margin: 0 auto;
+    object-fit: contain;
+  }
+
   #shopify-section-{{ section.id }} .hr-testimonials__quote {
     max-width: 26vw;
     margin: 0;
@@ -300,6 +328,10 @@
       letter-spacing: .4vw;
     }
 
+    #shopify-section-{{ section.id }} .hr-testimonials__stars-image {
+      width: min(35vw, 100%);
+    }
+
     #shopify-section-{{ section.id }} .hr-testimonials__quote {
       max-width: none;
       font-size: 4.2vw;
@@ -342,23 +374,73 @@
 
     const requestedIndex = {{ section.settings.initial_slide | minus: 1 }};
     const initialIndex = Math.max(0, Math.min(requestedIndex, slides.length - 1));
+    const autoplayEnabled = section.dataset.testimonialsAutoplay === 'true' && slides.length > 1;
+    const autoplayInterval = Number(section.dataset.testimonialsInterval) || 3000;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-    const centerSlide = (slide, behavior = 'smooth') => {
-      if (!slide) return;
+    let currentIndex = initialIndex;
+    let autoplayTimer = null;
+    let isDragging = false;
+    let isPointerInside = false;
+    let startX = 0;
+    let startScrollLeft = 0;
 
+    const closestSlideIndex = () => {
+      const viewportCenter = viewport.scrollLeft + (viewport.clientWidth / 2);
+
+      return slides.reduce((closestIndex, slide, index) => {
+        const slideCenter = slide.offsetLeft + (slide.offsetWidth / 2);
+        const closestCenter = slides[closestIndex].offsetLeft + (slides[closestIndex].offsetWidth / 2);
+
+        return Math.abs(slideCenter - viewportCenter) < Math.abs(closestCenter - viewportCenter)
+          ? index
+          : closestIndex;
+      }, 0);
+    };
+
+    const centerSlide = (index, behavior = 'smooth') => {
+      currentIndex = ((index % slides.length) + slides.length) % slides.length;
+
+      const slide = slides[currentIndex];
       const left = slide.offsetLeft - ((viewport.clientWidth - slide.offsetWidth) / 2);
       viewport.scrollTo({ left, behavior });
     };
 
-    requestAnimationFrame(() => centerSlide(slides[initialIndex], 'auto'));
+    const stopAutoplay = () => {
+      if (autoplayTimer !== null) {
+        window.clearTimeout(autoplayTimer);
+        autoplayTimer = null;
+      }
+    };
 
-    let isDragging = false;
-    let startX = 0;
-    let startScrollLeft = 0;
+    const startAutoplay = () => {
+      stopAutoplay();
+
+      if (
+        !autoplayEnabled
+        || reducedMotion.matches
+        || document.hidden
+        || isDragging
+        || isPointerInside
+        || viewport.contains(document.activeElement)
+      ) return;
+
+      autoplayTimer = window.setTimeout(() => {
+        currentIndex = closestSlideIndex();
+        centerSlide(currentIndex + 1);
+        startAutoplay();
+      }, autoplayInterval);
+    };
+
+    requestAnimationFrame(() => {
+      centerSlide(initialIndex, 'auto');
+      startAutoplay();
+    });
 
     viewport.addEventListener('pointerdown', (event) => {
       if (event.button !== 0) return;
 
+      stopAutoplay();
       isDragging = true;
       startX = event.clientX;
       startScrollLeft = viewport.scrollLeft;
@@ -382,17 +464,8 @@
         viewport.releasePointerCapture(event.pointerId);
       }
 
-      const viewportCenter = viewport.scrollLeft + (viewport.clientWidth / 2);
-      const closest = slides.reduce((current, slide) => {
-        const slideCenter = slide.offsetLeft + (slide.offsetWidth / 2);
-        const currentCenter = current.offsetLeft + (current.offsetWidth / 2);
-
-        return Math.abs(slideCenter - viewportCenter) < Math.abs(currentCenter - viewportCenter)
-          ? slide
-          : current;
-      }, slides[0]);
-
-      centerSlide(closest);
+      centerSlide(closestSlideIndex());
+      startAutoplay();
     };
 
     viewport.addEventListener('pointerup', stopDragging);
@@ -402,21 +475,37 @@
       if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
 
       event.preventDefault();
+      stopAutoplay();
 
-      const viewportCenter = viewport.scrollLeft + (viewport.clientWidth / 2);
-      let currentIndex = slides.reduce((closestIndex, slide, index) => {
-        const slideCenter = slide.offsetLeft + (slide.offsetWidth / 2);
-        const closestCenter = slides[closestIndex].offsetLeft + (slides[closestIndex].offsetWidth / 2);
-
-        return Math.abs(slideCenter - viewportCenter) < Math.abs(closestCenter - viewportCenter)
-          ? index
-          : closestIndex;
-      }, 0);
-
-      currentIndex += event.key === 'ArrowRight' ? 1 : -1;
-      currentIndex = Math.max(0, Math.min(currentIndex, slides.length - 1));
-      centerSlide(slides[currentIndex]);
+      currentIndex = closestSlideIndex();
+      centerSlide(currentIndex + (event.key === 'ArrowRight' ? 1 : -1));
     });
+
+    viewport.addEventListener('mouseenter', () => {
+      isPointerInside = true;
+      stopAutoplay();
+    });
+
+    viewport.addEventListener('mouseleave', () => {
+      isPointerInside = false;
+      startAutoplay();
+    });
+
+    viewport.addEventListener('focusin', stopAutoplay);
+    viewport.addEventListener('focusout', () => {
+      window.requestAnimationFrame(startAutoplay);
+    });
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        stopAutoplay();
+      } else {
+        startAutoplay();
+      }
+    });
+
+    reducedMotion.addEventListener?.('change', startAutoplay);
+    section.addEventListener('shopify:section:unload', stopAutoplay);
   })();
 </script>
 
@@ -463,6 +552,22 @@
       "default": 2
     },
     {
+      "type": "checkbox",
+      "id": "enable_autoplay",
+      "label": "Automatically change slides",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "autoplay_interval",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "label": "Time between slides",
+      "default": 3
+    },
+    {
       "type": "range",
       "id": "card_width",
       "min": 24,
@@ -481,6 +586,26 @@
       "unit": "vw",
       "label": "Desktop card gap",
       "default": 7
+    },
+    {
+      "type": "header",
+      "content": "Stars image"
+    },
+    {
+      "type": "image_picker",
+      "id": "stars_image",
+      "label": "Shared stars image",
+      "info": "Used on every testimonial card. Leave blank to use the text stars and each block's rating."
+    },
+    {
+      "type": "range",
+      "id": "stars_image_width",
+      "min": 4,
+      "max": 20,
+      "step": 1,
+      "unit": "vw",
+      "label": "Desktop image width",
+      "default": 11
     },
     {
       "type": "header",
@@ -610,5 +735,6 @@
 
 {% comment %}
   This full-width slider uses native scroll snapping in the same spirit as Dawn's
-  slider component, with no external JavaScript dependency.
+  slider component, with no external JavaScript dependency. Autoplay pauses for
+  interaction, hidden tabs, and reduced-motion preferences.
 {% endcomment %}
