@@ -233,6 +233,88 @@
         "text_color": "#062342",
         "accent_color": "#8fd7cd"
       }
+    },
+    "smt_home_revamp_how_smartmouth_works_Yawt8z": {
+      "type": "smt-home-revamp-how-smartmouth-works",
+      "blocks": {
+        "bullet_VRP4Dt": {
+          "type": "bullet",
+          "settings": {
+            "text": "Two chambers, two solutions — kept apart until you pour"
+          }
+        },
+        "bullet_BJi8wN": {
+          "type": "bullet",
+          "settings": {
+            "text": "Pouring combines them — activating zinc ions instantly"
+          }
+        },
+        "bullet_DTYRkn": {
+          "type": "bullet",
+          "settings": {
+            "text": "Green means fresh and ready · blue means pour again"
+          }
+        },
+        "solution_j4JQqf": {
+          "type": "solution",
+          "settings": {
+            "label": "SOLUTION #1",
+            "body": "Instantly Eliminates\nExisting Sulfur Gas\n(AKA Bad Breath)",
+            "position": "left",
+            "card_width": 16,
+            "top_offset": -2.5,
+            "side_offset": 41,
+            "animation_delay": 0,
+            "background_color": "#205085",
+            "text_color": "#ffffff",
+            "label_background": "#a9d7ee",
+            "label_color": "#06203c"
+          }
+        },
+        "solution_tNGRTN": {
+          "type": "solution",
+          "settings": {
+            "label": "SOLUTION #2",
+            "body": "Activates Billions of Zinc\nIons to Block\nGerms & Prevent\nNew Bad Breath",
+            "position": "right",
+            "card_width": 15.5,
+            "top_offset": 1.5,
+            "side_offset": -1,
+            "animation_delay": 2,
+            "background_color": "#04783f",
+            "text_color": "#ffffff",
+            "label_background": "#8cd1c4",
+            "label_color": "#06203c"
+          }
+        }
+      },
+      "block_order": [
+        "bullet_VRP4Dt",
+        "bullet_BJi8wN",
+        "bullet_DTYRkn",
+        "solution_j4JQqf",
+        "solution_tNGRTN"
+      ],
+      "name": "How SmartMouth Works",
+      "settings": {
+        "eyebrow": "THE SCIENCE",
+        "heading_prefix": "How",
+        "heading_accent": "SmartMouth",
+        "heading_suffix": "works",
+        "intro": "<p>The two solutions have to be kept separate until the moment you pour — that’s what activates billions of zinc ions. Pour it in, use it fresh.</p>",
+        "button_label": "EXPLORE THE SCIENCE",
+        "button_link": "",
+        "product_image": "shopify://shop_images/howsmart-img.webp",
+        "image_alt": "SmartMouth two-solution bottle pouring into a cup",
+        "background_color": "#FBF5E3",
+        "text_color": "#06203C",
+        "heading_background": "#205085",
+        "heading_color": "#FFFFFF",
+        "accent_color": "#8CD1C4",
+        "arrow_color": "#04783F",
+        "button_color": "#FF7701",
+        "button_text_color": "#FFFFFF"
+      }
     }
   },
   "order": [
@@ -240,6 +322,7 @@
     "smt_home_revamp_logo_marquee_k3xkz8",
     "smt_home_revamp_reason_to_pour_ifexUk",
     "smt_home_revamp_find_your_rinse_zhddc7",
-    "smt_home_revamp_smart_zinc_gYfGTQ"
+    "smt_home_revamp_smart_zinc_gYfGTQ",
+    "smt_home_revamp_how_smartmouth_works_Yawt8z"
   ]
 }
