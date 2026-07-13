@@ -1,0 +1,654 @@
+{% liquid
+  assign store_link = section.settings.store_link | default: '/pages/store-locator'
+  assign amazon_link = section.settings.amazon_link | default: routes.all_products_collection_url
+  assign shop_link = section.settings.shop_link | default: routes.all_products_collection_url
+  assign glass_alpha = section.settings.glass_opacity | times: 0.01
+  assign glass_background = section.settings.glass_color | color_modify: 'alpha', glass_alpha
+%}
+
+<section class="hr-available" aria-labelledby="AvailableHeading-{{ section.id }}">
+  {% if section.settings.background_image != blank %}
+    <div class="hr-available__background" aria-hidden="true">
+      {{
+        section.settings.background_image
+        | image_url: width: 3840
+        | image_tag:
+          widths: '1000, 1500, 2000, 2500, 3000, 3840',
+          sizes: '100vw',
+          loading: 'lazy',
+          alt: ''
+      }}
+    </div>
+  {% endif %}
+
+  <div class="hr-available__container">
+    <div
+      class="hr-available__glass"
+      style="--available-glass-bg: {{ glass_background }};"
+    >
+      <div class="hr-available__content">
+        {% if section.settings.heading_prefix != blank or section.settings.heading_accent != blank or section.settings.heading_suffix != blank %}
+          <h2 class="hr-available__heading" id="AvailableHeading-{{ section.id }}">
+            <span>
+              {{ section.settings.heading_prefix | escape }}
+              <strong>{{ section.settings.heading_accent | escape }}</strong>
+              {{ section.settings.heading_suffix | escape | newline_to_br }}
+            </span>
+          </h2>
+        {% endif %}
+
+        {% if section.settings.body != blank %}
+          <div class="hr-available__body rte">{{ section.settings.body }}</div>
+        {% endif %}
+
+        <div class="hr-available__links">
+          {% if section.settings.store_label != blank %}
+            <a href="{{ store_link }}">
+              {{ section.settings.store_label | escape }} <span aria-hidden="true">→</span>
+            </a>
+          {% endif %}
+
+          {% if section.settings.amazon_label != blank %}
+            <a href="{{ amazon_link }}">
+              {{ section.settings.amazon_label | escape }} <span aria-hidden="true">→</span>
+            </a>
+          {% endif %}
+        </div>
+
+        {% if section.settings.shop_label != blank %}
+          <a class="button hr-available__button" href="{{ shop_link }}">
+            {{ section.settings.shop_label | escape }}
+          </a>
+        {% endif %}
+      </div>
+
+      {% if section.blocks.size > 0 %}
+        <div class="hr-available__retailers" role="list" aria-label="Available retailers">
+          {% for block in section.blocks %}
+            {% liquid
+              assign retailer_alt = block.settings.alt | default: block.settings.text
+            %}
+            <div
+              class="hr-available__retailer hr-available__retailer--{{ block.settings.logo_style }}"
+              style="--retailer-width: {{ block.settings.logo_width }}vw; --retailer-color: {{ block.settings.logo_color }};"
+              role="listitem"
+              {{ block.shopify_attributes }}
+            >
+              {% if block.settings.link != blank %}<a href="{{ block.settings.link }}">{% endif %}
+                {% if block.settings.image != blank %}
+                  {{
+                    block.settings.image
+                    | image_url: width: 800
+                    | image_tag:
+                      widths: '200, 300, 400, 600, 800',
+                      sizes: '(min-width: 750px) 15vw, 34vw',
+                      loading: 'lazy',
+                      alt: retailer_alt
+                  }}
+                {% elsif block.settings.logo_style == 'walmart' %}
+                  <span class="hr-available__walmart-word">{{ block.settings.text | escape }}</span>
+                  <span class="hr-available__walmart-spark" aria-hidden="true">✱</span>
+                {% else %}
+                  <span>{{ block.settings.text | escape }}</span>
+                {% endif %}
+              {% if block.settings.link != blank %}</a>{% endif %}
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="hr-available__bottle">
+      {% if section.settings.bottle_image != blank %}
+        {{
+          section.settings.bottle_image
+          | image_url: width: 1200
+          | image_tag:
+            widths: '360, 500, 700, 900, 1100, 1200',
+            sizes: '(min-width: 750px) 13.3vw, 42vw',
+            loading: 'lazy',
+            alt: section.settings.bottle_alt
+        }}
+      {% else %}
+        <img
+          src="{{ 'smartmouth-bottle.webp' | asset_url }}"
+          alt="{{ section.settings.bottle_alt | escape }}"
+          width="362"
+          height="1000"
+          loading="lazy"
+        >
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --hr-available-bg: {{ section.settings.background_color }};
+    --hr-available-text: {{ section.settings.text_color }};
+    --hr-available-heading-bg: {{ section.settings.heading_background }};
+    --hr-available-heading-text: {{ section.settings.heading_color }};
+    --hr-available-heading-accent: {{ section.settings.heading_accent_color }};
+    --hr-available-button: {{ section.settings.button_color }};
+    --hr-available-button-text: {{ section.settings.button_text_color }};
+  }
+
+  #shopify-section-{{ section.id }} .hr-available {
+    position: relative;
+    overflow: hidden;
+    padding: 7.4vw 0 7.65vw;
+    color: var(--hr-available-text);
+    background:
+      linear-gradient(90deg, transparent 0 20%, rgba(255, 255, 255, .12) 20% 20.25%, transparent 20.25% 47%, rgba(255, 255, 255, .12) 47% 47.25%, transparent 47.25% 74%, rgba(255, 255, 255, .12) 74% 74.25%, transparent 74.25%),
+      linear-gradient(0deg, transparent 0 31%, rgba(84, 70, 150, .28) 31% 31.35%, transparent 31.35% 67%, rgba(84, 70, 150, .28) 67% 67.35%, transparent 67.35%),
+      radial-gradient(circle at 62% 36%, rgba(233, 225, 255, .65), transparent 38%),
+      var(--hr-available-bg);
+  }
+
+  #shopify-section-{{ section.id }} .hr-available__background {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  #shopify-section-{{ section.id }} .hr-available__background img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  #shopify-section-{{ section.id }} .hr-available__container {
+    position: relative;
+    z-index: 1;
+    width: 85vw;
+    margin: 0 auto;
+  }
+
+  #shopify-section-{{ section.id }} .hr-available__glass {
+    position: relative;
+    z-index: 1;
+    width: 48.6vw;
+    margin-left: 6.1vw;
+    overflow: hidden;
+    background:
+      linear-gradient(120deg, rgba(255, 255, 255, .2), transparent 42%),
+      var(--available-glass-bg);
+    border: .06vw solid rgba(255, 255, 255, .2);
+    box-shadow:
+      inset 0 0 2.5vw rgba(255, 255, 255, .08),
+      0 1.2vw 3vw rgba(65, 47, 130, .08);
+    backdrop-filter: blur(.8vw) saturate(115%);
+    -webkit-backdrop-filter: blur(.8vw) saturate(115%);
+  }
+
+  #shopify-section-{{ section.id }} .hr-available__content {
+    padding: 4.15vw 7.65vw 1.15vw;
+  }
+
+  #shopify-section-{{ section.id }} .hr-available__heading {
+    margin: 0 0 1.65vw;
+    color: var(--hr-available-heading-text);
+    font-family: var(--font-heading-family);
+    font-size: 2.38vw;
+    font-style: var(--font-heading-style);
+    font-weight: var(--font-heading-weight);
+    letter-spacing: 0;
+    line-height: 1.14;
+  }
+
+  #shopify-section-{{ section.id }} .hr-available__heading > span {
+    padding: .45vw 1.6vw .58vw;
+    background: var(--hr-available-heading-bg);
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+
+  #shopify-section-{{ section.id }} .hr-available__heading strong {
+    color: var(--hr-available-heading-accent);
+    font-weight: inherit;
+  }
+
+  #shopify-section-{{ section.id }} .hr-available__body {
+    margin: 0 0 1.45vw 1.6vw;
+    color: inherit;
+    font-size: 1.08vw;
+    font-weight: 500;
+    line-height: 1.28;
+  }
+
+  #shopify-section-{{ section.id }} .hr-available__body p {
+    margin: 0;
+  }
+
+  #shopify-section-{{ section.id }} .hr-available__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.15vw;
+    margin: 0 0 1.85vw 1.5vw;
+  }
+
+  #shopify-section-{{ section.id }} .hr-available__links a {
+    color: inherit;
+    font-size: .94vw;
+    font-weight: 800;
+    line-height: 1;
+    text-decoration: underline;
+    text-decoration-thickness: .07vw;
+    text-underline-offset: .12vw;
+    text-transform: uppercase;
+  }
+
+  #shopify-section-{{ section.id }} .hr-available__button.button {
+    min-width: 18.15vw;
+    margin-left: 1.5vw;
+    padding: .9vw 1.8vw;
+    color: var(--hr-available-button-text);
+    background: var(--hr-available-button);
+    border: 0;
+    border-radius: 2vw;
+    font-size: 1.18vw;
+    font-weight: 800;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  #shopify-section-{{ section.id }} .hr-available__button.button::before,
+  #shopify-section-{{ section.id }} .hr-available__button.button::after {
+    content: none;
+  }
+
+  #shopify-section-{{ section.id }} .hr-available__retailers {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5.3vw;
+    padding: 1.85vw 3vw;
+    background: #fff;
+  }
+
+  #shopify-section-{{ section.id }} .hr-available__retailer,
+  #shopify-section-{{ section.id }} .hr-available__retailer a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--retailer-color);
+    text-decoration: none;
+  }
+
+  #shopify-section-{{ section.id }} .hr-available__retailer {
+    width: var(--retailer-width);
+    font-size: 2.35vw;
+    font-weight: 800;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  #shopify-section-{{ section.id }} .hr-available__retailer img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  #shopify-section-{{ section.id }} .hr-available__retailer--walmart {
+    gap: .35vw;
+    font-family: Arial, sans-serif;
+  }
+
+  #shopify-section-{{ section.id }} .hr-available__retailer--walmart a {
+    gap: .35vw;
+  }
+
+  #shopify-section-{{ section.id }} .hr-available__walmart-spark {
+    color: #fdbb30;
+    font-size: 2.65vw;
+  }
+
+  #shopify-section-{{ section.id }} .hr-available__retailer--walgreens {
+    font-family: cursive;
+    font-style: italic;
+    font-weight: 700;
+  }
+
+  #shopify-section-{{ section.id }} .hr-available__bottle {
+    position: absolute;
+    top: -5.05vw;
+    left: 54.5vw;
+    z-index: 3;
+    width: 13.3vw;
+    pointer-events: none;
+  }
+
+  #shopify-section-{{ section.id }} .hr-available__bottle img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .hr-available {
+      padding: 12vw 0;
+    }
+
+    #shopify-section-{{ section.id }} .hr-available__glass {
+      width: 85vw;
+      margin: 0;
+      overflow: visible;
+      border-width: .2vw;
+      backdrop-filter: blur(2vw) saturate(115%);
+      -webkit-backdrop-filter: blur(2vw) saturate(115%);
+    }
+
+    #shopify-section-{{ section.id }} .hr-available__content {
+      padding: 55vw 7vw 9vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-available__bottle {
+      top: -7vw;
+      left: 32vw;
+      width: 42vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-available__heading {
+      margin-bottom: 7vw;
+      font-size: 8vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-available__heading > span {
+      padding: 1.5vw 3vw 2vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-available__body {
+      margin: 0 0 7vw;
+      font-size: 4.2vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-available__links {
+      flex-direction: column;
+      gap: 4vw;
+      margin: 0 0 8vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-available__links a {
+      font-size: 3.8vw;
+      text-decoration-thickness: .25vw;
+      text-underline-offset: .5vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-available__button.button {
+      min-width: 60vw;
+      margin: 0;
+      padding: 3.5vw 6vw;
+      border-radius: 8vw;
+      font-size: 4.2vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-available__retailers {
+      flex-wrap: wrap;
+      gap: 8vw;
+      padding: 6vw 4vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-available__retailer {
+      width: 34vw;
+      font-size: 6.5vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-available__walmart-spark {
+      font-size: 7.5vw;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Available Nationwide",
+  "tag": "section",
+  "class": "section section-home-revamp-available",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Media"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image"
+    },
+    {
+      "type": "image_picker",
+      "id": "bottle_image",
+      "label": "Bottle image"
+    },
+    {
+      "type": "text",
+      "id": "bottle_alt",
+      "label": "Bottle alt text",
+      "default": "SmartMouth Dry Mouth mouthwash"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "heading_prefix",
+      "label": "Heading before accent",
+      "default": "Available at"
+    },
+    {
+      "type": "text",
+      "id": "heading_accent",
+      "label": "Heading accent",
+      "default": "40,000+"
+    },
+    {
+      "type": "textarea",
+      "id": "heading_suffix",
+      "label": "Heading after accent",
+      "default": "\nstores nationwide"
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Body",
+      "default": "<p>Available at Walmart · Walgreens.<br><strong>Or skip the trip and subscribe online.</strong></p>"
+    },
+    {
+      "type": "text",
+      "id": "store_label",
+      "label": "Store locator label",
+      "default": "FIND A STORE NEAR ME"
+    },
+    {
+      "type": "url",
+      "id": "store_link",
+      "label": "Store locator link"
+    },
+    {
+      "type": "text",
+      "id": "amazon_label",
+      "label": "Amazon label",
+      "default": "SHOP ON AMAZON"
+    },
+    {
+      "type": "url",
+      "id": "amazon_link",
+      "label": "Amazon link"
+    },
+    {
+      "type": "text",
+      "id": "shop_label",
+      "label": "Button label",
+      "default": "SHOP ONLINE"
+    },
+    {
+      "type": "url",
+      "id": "shop_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Glass and colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Fallback background",
+      "default": "#9A96BC"
+    },
+    {
+      "type": "color",
+      "id": "glass_color",
+      "label": "Glass color",
+      "default": "#E2DCFA"
+    },
+    {
+      "type": "range",
+      "id": "glass_opacity",
+      "min": 5,
+      "max": 50,
+      "step": 1,
+      "unit": "%",
+      "label": "Glass opacity",
+      "default": 22
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "heading_background",
+      "label": "Heading background",
+      "default": "#865CE6"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading text",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "heading_accent_color",
+      "label": "Heading accent",
+      "default": "#C8B7FF"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button",
+      "default": "#FF7701"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text",
+      "default": "#FFFFFF"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "retailer",
+      "name": "Retailer logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Logo image"
+        },
+        {
+          "type": "select",
+          "id": "logo_style",
+          "label": "Text fallback style",
+          "default": "custom",
+          "options": [
+            {
+              "value": "walmart",
+              "label": "Walmart"
+            },
+            {
+              "value": "walgreens",
+              "label": "Walgreens"
+            },
+            {
+              "value": "custom",
+              "label": "Custom"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Fallback text",
+          "default": "Retailer"
+        },
+        {
+          "type": "text",
+          "id": "alt",
+          "label": "Logo alt text"
+        },
+        {
+          "type": "range",
+          "id": "logo_width",
+          "min": 7,
+          "max": 18,
+          "step": 1,
+          "unit": "vw",
+          "label": "Desktop logo width",
+          "default": 12
+        },
+        {
+          "type": "color",
+          "id": "logo_color",
+          "label": "Fallback text color",
+          "default": "#0071CE"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Available Nationwide",
+      "category": "Home Revamp",
+      "blocks": [
+        {
+          "type": "retailer",
+          "settings": {
+            "logo_style": "walmart",
+            "text": "Walmart",
+            "alt": "Walmart",
+            "logo_width": 14,
+            "logo_color": "#0071CE"
+          }
+        },
+        {
+          "type": "retailer",
+          "settings": {
+            "logo_style": "walgreens",
+            "text": "Walgreens",
+            "alt": "Walgreens",
+            "logo_width": 15,
+            "logo_color": "#E31837"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+{% comment %}
+  Upload the clean tiled bathroom background through the background-image setting.
+  The supplied transparent bottle is used automatically as the default product asset.
+{% endcomment %}

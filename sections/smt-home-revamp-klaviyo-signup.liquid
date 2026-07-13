@@ -1,0 +1,318 @@
+<section class="hr-klaviyo" aria-labelledby="KlaviyoHeading-{{ section.id }}">
+  <div class="hr-klaviyo__container">
+    <header class="hr-klaviyo__header">
+      <h2 class="hr-klaviyo__heading" id="KlaviyoHeading-{{ section.id }}">
+        <span>{{ section.settings.heading_top | escape }}</span>
+        <span>{{ section.settings.heading_bottom | escape }}</span>
+      </h2>
+
+      {% if section.settings.subheading != blank %}
+        <p class="hr-klaviyo__subheading">{{ section.settings.subheading | escape }}</p>
+      {% endif %}
+    </header>
+
+    <div class="hr-klaviyo__form-wrap">
+      <div class="klaviyo-form-{{ section.settings.form_id | escape }}"></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --hr-klaviyo-bg: {{ section.settings.background_color }};
+    --hr-klaviyo-blue: {{ section.settings.heading_background }};
+    --hr-klaviyo-heading: {{ section.settings.heading_color }};
+    --hr-klaviyo-text: {{ section.settings.text_color }};
+    --hr-klaviyo-input: {{ section.settings.input_background }};
+    --hr-klaviyo-button: {{ section.settings.button_color }};
+    --hr-klaviyo-button-text: {{ section.settings.button_text_color }};
+  }
+
+  #shopify-section-{{ section.id }} .hr-klaviyo {
+    padding: 3.2vw 0 4.05vw;
+    color: var(--hr-klaviyo-text);
+    background: var(--hr-klaviyo-bg);
+  }
+
+  #shopify-section-{{ section.id }} .hr-klaviyo__container {
+    width: 85vw;
+    margin: 0 auto;
+  }
+
+  #shopify-section-{{ section.id }} .hr-klaviyo__header {
+    text-align: center;
+  }
+
+  #shopify-section-{{ section.id }} .hr-klaviyo__heading {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 0 .95vw;
+    color: var(--hr-klaviyo-heading);
+    font-family: var(--font-heading-family);
+    font-size: 3.05vw;
+    font-style: var(--font-heading-style);
+    font-weight: var(--font-heading-weight);
+    letter-spacing: 0;
+    line-height: .92;
+  }
+
+  #shopify-section-{{ section.id }} .hr-klaviyo__heading span {
+    display: block;
+    padding: .45vw 1.5vw .6vw;
+    background: var(--hr-klaviyo-blue);
+  }
+
+  #shopify-section-{{ section.id }} .hr-klaviyo__heading span:last-child {
+    margin-top: -.15vw;
+    padding-right: 2vw;
+    padding-left: 2vw;
+  }
+
+  #shopify-section-{{ section.id }} .hr-klaviyo__subheading {
+    margin: 0 0 .9vw;
+    font-size: 1.15vw;
+    font-weight: 500;
+    line-height: 1.2;
+  }
+
+  #shopify-section-{{ section.id }} .hr-klaviyo__form-wrap {
+    width: 39.3vw;
+    margin: 0 auto;
+  }
+
+  /* Klaviyo injects inline layout declarations, so scoped important overrides are required. */
+  #shopify-section-{{ section.id }} .hr-klaviyo__form-wrap [class*='klaviyo-form-'] > div,
+  #shopify-section-{{ section.id }} .hr-klaviyo__form-wrap form {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+  }
+
+  #shopify-section-{{ section.id }} .hr-klaviyo__form-wrap form > div {
+    min-height: 0 !important;
+    padding: 0 !important;
+  }
+
+  #shopify-section-{{ section.id }} .hr-klaviyo__form-wrap [data-testid='form-row'] {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: stretch !important;
+    width: 100% !important;
+  }
+
+  #shopify-section-{{ section.id }} .hr-klaviyo__form-wrap [data-testid='form-row'] > [data-testid='form-component']:first-child {
+    flex: 1 1 auto !important;
+    width: auto !important;
+  }
+
+  #shopify-section-{{ section.id }} .hr-klaviyo__form-wrap [data-testid='form-row'] > [data-testid='form-component']:last-child {
+    flex: 0 0 13.7vw !important;
+    width: 13.7vw !important;
+  }
+
+  #shopify-section-{{ section.id }} .hr-klaviyo__form-wrap input[type='email'] {
+    width: 100% !important;
+    padding: .95vw 1.25vw !important;
+    color: var(--hr-klaviyo-text) !important;
+    background: var(--hr-klaviyo-input) !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    font-family: var(--font-body-family) !important;
+    font-size: 1.05vw !important;
+    line-height: 1 !important;
+    box-sizing: border-box !important;
+  }
+
+  #shopify-section-{{ section.id }} .hr-klaviyo__form-wrap button.klaviyo-form-button {
+    width: 100% !important;
+    padding: .95vw 1.5vw !important;
+    color: var(--hr-klaviyo-button-text) !important;
+    background: var(--hr-klaviyo-button) !important;
+    border: 0 !important;
+    border-radius: 2vw !important;
+    box-shadow: none !important;
+    font-family: var(--font-body-family) !important;
+    font-size: 0 !important;
+    font-weight: 800 !important;
+    line-height: 1 !important;
+    text-transform: uppercase !important;
+    box-sizing: border-box !important;
+  }
+
+  #shopify-section-{{ section.id }} .hr-klaviyo__form-wrap button.klaviyo-form-button::after {
+    content: {{ section.settings.visual_button_label | json }};
+    font-size: 1.18vw;
+  }
+
+  #shopify-section-{{ section.id }} .hr-klaviyo__form-wrap input[type='email']:focus-visible,
+  #shopify-section-{{ section.id }} .hr-klaviyo__form-wrap button.klaviyo-form-button:focus-visible {
+    outline: .15vw solid var(--hr-klaviyo-blue) !important;
+    outline-offset: .15vw !important;
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .hr-klaviyo {
+      padding: 12vw 0;
+    }
+
+    #shopify-section-{{ section.id }} .hr-klaviyo__heading {
+      margin-bottom: 5vw;
+      font-size: 9vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-klaviyo__heading span {
+      padding: 1.5vw 4vw 2.2vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-klaviyo__heading span:last-child {
+      margin-top: -.5vw;
+      padding-right: 5vw;
+      padding-left: 5vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-klaviyo__subheading {
+      margin-bottom: 6vw;
+      font-size: 4.2vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-klaviyo__form-wrap {
+      width: 85vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-klaviyo__form-wrap [data-testid='form-row'] {
+      flex-direction: column !important;
+      gap: 3vw !important;
+    }
+
+    #shopify-section-{{ section.id }} .hr-klaviyo__form-wrap [data-testid='form-row'] > [data-testid='form-component'] {
+      flex: 1 1 auto !important;
+      width: 100% !important;
+    }
+
+    #shopify-section-{{ section.id }} .hr-klaviyo__form-wrap input[type='email'] {
+      padding: 4vw !important;
+      font-size: 4vw !important;
+    }
+
+    #shopify-section-{{ section.id }} .hr-klaviyo__form-wrap button.klaviyo-form-button {
+      padding: 4vw 6vw !important;
+      border-radius: 8vw !important;
+    }
+
+    #shopify-section-{{ section.id }} .hr-klaviyo__form-wrap button.klaviyo-form-button::after {
+      font-size: 4.2vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-klaviyo__form-wrap input[type='email']:focus-visible,
+    #shopify-section-{{ section.id }} .hr-klaviyo__form-wrap button.klaviyo-form-button:focus-visible {
+      outline-width: .5vw !important;
+      outline-offset: .5vw !important;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Klaviyo Email Signup",
+  "tag": "section",
+  "class": "section section-home-revamp-klaviyo",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Klaviyo"
+    },
+    {
+      "type": "text",
+      "id": "form_id",
+      "label": "Klaviyo form ID",
+      "default": "R5Rhv9",
+      "info": "Use the six-character ID from the Klaviyo embed class."
+    },
+    {
+      "type": "text",
+      "id": "visual_button_label",
+      "label": "Visual button label",
+      "default": "SUBMIT"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "heading_top",
+      "label": "Top heading line",
+      "default": "We love saving"
+    },
+    {
+      "type": "text",
+      "id": "heading_bottom",
+      "label": "Bottom heading line",
+      "default": "you from bad breath"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Sign up for coupons, offers & updates"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ADD2EC"
+    },
+    {
+      "type": "color",
+      "id": "heading_background",
+      "label": "Heading background",
+      "default": "#205085"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading text",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#205085"
+    },
+    {
+      "type": "color",
+      "id": "input_background",
+      "label": "Input background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button",
+      "default": "#FF7701"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text",
+      "default": "#FFFFFF"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Klaviyo Email Signup",
+      "category": "Home Revamp"
+    }
+  ]
+}
+{% endschema %}
