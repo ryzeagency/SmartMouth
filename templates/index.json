@@ -92,7 +92,7 @@
       "name": "Home Revamp Logos",
       "settings": {
         "accessible_label": "As featured in",
-        "background_color": "#8BC1E4",
+        "background_color": "#8bc1e4",
         "speed": 24,
         "pause_hover": true
       }
@@ -109,7 +109,7 @@
             "custom_link": "",
             "badge_text": "BAD BREATH",
             "badge_color": "#008244",
-            "badge_text_color": "#FFFFFF",
+            "badge_text_color": "#ffffff",
             "fallback_card": "1"
           }
         },
@@ -122,7 +122,7 @@
             "custom_link": "",
             "badge_text": "DRY MOUTH",
             "badge_color": "#5e00b8",
-            "badge_text_color": "#FFFFFF",
+            "badge_text_color": "#ffffff",
             "fallback_card": "2"
           }
         },
@@ -135,7 +135,7 @@
             "custom_link": "",
             "badge_text": "ORAL HEALTH",
             "badge_color": "#245a8d",
-            "badge_text_color": "#FFFFFF",
+            "badge_text_color": "#ffffff",
             "fallback_card": "3"
           }
         },
@@ -148,7 +148,7 @@
             "custom_link": "",
             "badge_text": "NIGHT TIME",
             "badge_color": "#9c91d3",
-            "badge_text_color": "#FFFFFF",
+            "badge_text_color": "#ffffff",
             "fallback_card": "4"
           }
         }
@@ -167,10 +167,10 @@
         "heading": "What’s your reason to pour?",
         "button_label": "SHOP ALL PRODUCTS",
         "button_link": "shopify://collections/all",
-        "background_color": "#FFFFFF",
+        "background_color": "#ffffff",
         "text_color": "#062342",
-        "accent_color": "#8FD7CD",
-        "link_color": "#1F568D"
+        "accent_color": "#8fd7cd",
+        "link_color": "#1f568d"
       }
     },
     "smt_home_revamp_find_your_rinse_zhddc7": {
@@ -183,16 +183,16 @@
         "bottom_overflow": 6,
         "heading": "Find your rinse",
         "subheading": "Not sure which SmartMouth formula is right for you?",
-        "copy": "<p><strong>Answer 5 quick questions — get a personalized recommendation in 60 seconds</strong></p>",
+        "copy": "<p>Answer 5 quick questions — get a personalized recommendation in 60 seconds</p>",
         "button_label": "TAKE THE QUIZ",
         "button_link": "",
-        "background_color": "#B9DDCF",
-        "circle_color": "#7DB99D",
+        "background_color": "#b9ddcf",
+        "circle_color": "#7db99d",
         "text_color": "#062342",
         "title_background": "#008244",
-        "title_color": "#FFFFFF",
-        "button_color": "#FF7600",
-        "button_text_color": "#FFFFFF"
+        "title_color": "#ffffff",
+        "button_color": "#ff7600",
+        "button_text_color": "#ffffff"
       }
     }
   },
