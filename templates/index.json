@@ -240,18 +240,21 @@
         "bullet_VRP4Dt": {
           "type": "bullet",
           "settings": {
+            "icon": "shopify://shop_images/right-arrow-how-smt.png",
             "text": "Two chambers, two solutions — kept apart until you pour"
           }
         },
         "bullet_BJi8wN": {
           "type": "bullet",
           "settings": {
+            "icon": "shopify://shop_images/right-arrow-how-smt.png",
             "text": "Pouring combines them — activating zinc ions instantly"
           }
         },
         "bullet_DTYRkn": {
           "type": "bullet",
           "settings": {
+            "icon": "shopify://shop_images/right-arrow-how-smt.png",
             "text": "Green means fresh and ready · blue means pour again"
           }
         },
@@ -306,14 +309,14 @@
         "button_link": "",
         "product_image": "shopify://shop_images/howsmart-img.webp",
         "image_alt": "SmartMouth two-solution bottle pouring into a cup",
-        "background_color": "#FBF5E3",
-        "text_color": "#06203C",
+        "background_color": "#fbf5e3",
+        "text_color": "#06203c",
         "heading_background": "#205085",
-        "heading_color": "#FFFFFF",
-        "accent_color": "#8CD1C4",
-        "arrow_color": "#04783F",
-        "button_color": "#FF7701",
-        "button_text_color": "#FFFFFF"
+        "heading_color": "#ffffff",
+        "accent_color": "#8cd1c4",
+        "arrow_color": "#04783f",
+        "button_color": "#ff7701",
+        "button_text_color": "#ffffff"
       }
     }
   },
