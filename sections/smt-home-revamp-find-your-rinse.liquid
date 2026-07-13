@@ -7,7 +7,9 @@
     <div class="hr-find__container">
       <div class="hr-find__visual" aria-hidden="true">
         {% if section.settings.image != blank %}
-          <span class="hr-find__circle"></span>
+          <span class="hr-find__circle-mask">
+            <span class="hr-find__circle"></span>
+          </span>
           {{
             section.settings.image
             | image_url: width: 1800
@@ -85,13 +87,18 @@
     display: grid;
     align-self: stretch;
     width: 42.5vw;
-    height: calc(100% + var(--hr-find-top) + var(--hr-find-bottom));
-    margin-top: calc(-1 * var(--hr-find-top));
-    margin-bottom: calc(-1 * var(--hr-find-bottom));
+    height: 100%;
   }
 
   #shopify-section-{{ section.id }} .hr-find__visual > * {
     grid-area: 1 / 1;
+  }
+
+  #shopify-section-{{ section.id }} .hr-find__circle-mask {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
   }
 
   #shopify-section-{{ section.id }} .hr-find__circle {
@@ -107,10 +114,12 @@
   #shopify-section-{{ section.id }} .hr-find__visual img {
     z-index: 1;
     display: block;
-    align-self: center;
+    align-self: start;
     justify-self: start;
     width: 27vw;
-    height: 100%;
+    height: calc(100% + var(--hr-find-top) + var(--hr-find-bottom));
+    margin-top: calc(-1 * var(--hr-find-top));
+    margin-bottom: calc(-1 * var(--hr-find-bottom));
     margin-left: 6.7vw;
     object-fit: contain;
   }
@@ -118,7 +127,9 @@
   #shopify-section-{{ section.id }} .hr-find__fallback {
     display: block;
     width: 42.5vw;
-    height: 38.53vw;
+    height: calc(100% + var(--hr-find-top) + var(--hr-find-bottom));
+    margin-top: calc(-1 * var(--hr-find-top));
+    margin-bottom: calc(-1 * var(--hr-find-bottom));
     background-image: url("{{ 'd61e3060-148b-4420-b1ae-3346782eaeb3.png' | asset_url }}");
     background-repeat: no-repeat;
     background-position: -7.5vw 0;
@@ -208,8 +219,12 @@
 
     #shopify-section-{{ section.id }} .hr-find__visual {
       width: 85vw;
-      height: 95vw;
-      margin: -20vw 0 0;
+      height: 76vw;
+      margin: 0;
+    }
+
+    #shopify-section-{{ section.id }} .hr-find__circle-mask {
+      height: 76vw;
     }
 
     #shopify-section-{{ section.id }} .hr-find__circle {
@@ -220,14 +235,16 @@
 
     #shopify-section-{{ section.id }} .hr-find__visual img {
       width: 68vw;
-      height: 100%;
+      height: 96vw;
+      margin-top: -20vw;
+      margin-bottom: 0;
       margin-left: 7vw;
     }
 
     #shopify-section-{{ section.id }} .hr-find__fallback {
       width: 85vw;
       height: 95vw;
-      margin: 0;
+      margin: -20vw 0 0;
       background-position: -18.5vw 0;
       background-size: 246.5vw 95vw;
     }
