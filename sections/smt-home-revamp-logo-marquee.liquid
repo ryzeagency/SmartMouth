@@ -1,0 +1,231 @@
+<section
+  class="hr-marquee"
+  aria-label="{{ section.settings.accessible_label | escape }}"
+>
+  <div class="hr-marquee__viewport">
+    <div class="hr-marquee__track">
+      {% for copy in (1..2) %}
+        <div class="hr-marquee__group"{% if copy == 2 %} aria-hidden="true"{% endif %}>
+          {% for block in section.blocks %}
+            {% liquid
+              assign logo_alt = block.settings.alt | default: block.settings.logo_text
+            %}
+            <div
+              class="hr-marquee__item"
+              style="--logo-width: {{ block.settings.logo_width }}vw;"
+              {% if copy == 1 %}{{ block.shopify_attributes }}{% endif %}
+            >
+              {% if block.settings.link != blank %}<a href="{{ block.settings.link }}" aria-label="{{ logo_alt | escape }}">{% endif %}
+                {% if block.settings.image != blank %}
+                  {{
+                    block.settings.image
+                    | image_url: width: 800
+                    | image_tag:
+                      widths: '160, 240, 320, 480, 640, 800',
+                      sizes: block.settings.logo_width,
+                      loading: 'lazy',
+                      alt: logo_alt
+                  }}
+                {% else %}
+                  <span
+                    class="hr-marquee__fallback hr-marquee__fallback--{{ block.settings.fallback_logo }}"
+                    role="img"
+                    aria-label="{{ logo_alt | escape }}"
+                  ></span>
+                {% endif %}
+              {% if block.settings.link != blank %}</a>{% endif %}
+            </div>
+          {% endfor %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --hr-marquee-bg: {{ section.settings.background_color }};
+    --hr-marquee-speed: {{ section.settings.speed }}s;
+  }
+
+  #shopify-section-{{ section.id }} .hr-marquee {
+    width: 100%;
+    overflow: hidden;
+    background: var(--hr-marquee-bg);
+  }
+
+  #shopify-section-{{ section.id }} .hr-marquee__viewport {
+    width: 85vw;
+    height: 6.3vw;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+
+  #shopify-section-{{ section.id }} .hr-marquee__track {
+    display: flex;
+    width: max-content;
+    height: 100%;
+    animation: hr-marquee-{{ section.id }} var(--hr-marquee-speed) linear infinite;
+    will-change: transform;
+  }
+
+  #shopify-section-{{ section.id }} .hr-marquee__group {
+    display: flex;
+    flex: 0 0 52.1vw;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 5.7vw;
+    width: 52.1vw;
+    height: 100%;
+    padding-left: .85vw;
+    box-sizing: border-box;
+  }
+
+  #shopify-section-{{ section.id }} .hr-marquee__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 var(--logo-width);
+    width: var(--logo-width);
+    height: 4.1vw;
+  }
+
+  #shopify-section-{{ section.id }} .hr-marquee__item a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  #shopify-section-{{ section.id }} .hr-marquee__item img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+
+  #shopify-section-{{ section.id }} .hr-marquee__fallback {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-image: url("{{ '659b977a-545c-49a8-a5f6-65a935d342fb.png' | asset_url }}");
+    background-repeat: no-repeat;
+    background-size: 100vw 6.3vw;
+  }
+
+  #shopify-section-{{ section.id }} .hr-marquee__fallback--today {
+    background-position: -8.35vw -1.05vw;
+  }
+
+  #shopify-section-{{ section.id }} .hr-marquee__fallback--yahoo {
+    background-position: -20.2vw -1.05vw;
+  }
+
+  #shopify-section-{{ section.id }} .hr-marquee__fallback--mens-journal {
+    background-position: -31.05vw -1.05vw;
+  }
+
+  #shopify-section-{{ section.id }} .hr-marquee__fallback--gq {
+    background-position: -48.1vw -1.05vw;
+  }
+
+  #shopify-section-{{ section.id }} .hr-marquee:hover .hr-marquee__track {
+    animation-play-state: {% if section.settings.pause_hover %}paused{% else %}running{% endif %};
+  }
+
+  @keyframes hr-marquee-{{ section.id }} {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #shopify-section-{{ section.id }} .hr-marquee__track {
+      animation-play-state: paused;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .hr-marquee__viewport {
+      height: 20vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-marquee__group {
+      gap: 12vw;
+      justify-content: flex-start;
+      padding: 0 6vw;
+      box-sizing: border-box;
+      flex-basis: 150vw;
+      width: 150vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-marquee__item {
+      flex-basis: calc(var(--logo-width) * 2.5);
+      width: calc(var(--logo-width) * 2.5);
+      height: 13vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-marquee__fallback {
+      background-size: 250vw 15.75vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-marquee__fallback--today { background-position: -20.88vw -2.63vw; }
+    #shopify-section-{{ section.id }} .hr-marquee__fallback--yahoo { background-position: -50.5vw -2.63vw; }
+    #shopify-section-{{ section.id }} .hr-marquee__fallback--mens-journal { background-position: -77.63vw -2.63vw; }
+    #shopify-section-{{ section.id }} .hr-marquee__fallback--gq { background-position: -120.25vw -2.63vw; }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Home Revamp Logos",
+  "tag": "section",
+  "class": "section section-home-revamp-logos",
+  "max_blocks": 12,
+  "settings": [
+    { "type": "text", "id": "accessible_label", "label": "Accessible label", "default": "As featured in" },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#8BC1E4" },
+    { "type": "range", "id": "speed", "min": 8, "max": 60, "step": 1, "unit": "s", "label": "Marquee speed", "default": 24 },
+    { "type": "checkbox", "id": "pause_hover", "label": "Pause on hover", "default": true }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Logo image" },
+        {
+          "type": "select",
+          "id": "fallback_logo",
+          "label": "Mockup fallback logo",
+          "default": "today",
+          "options": [
+            { "value": "today", "label": "TODAY" },
+            { "value": "yahoo", "label": "Yahoo!" },
+            { "value": "mens-journal", "label": "Men's Journal" },
+            { "value": "gq", "label": "GQ" }
+          ]
+        },
+        { "type": "text", "id": "logo_text", "label": "Logo name", "default": "TODAY" },
+        { "type": "text", "id": "alt", "label": "Alt text" },
+        { "type": "range", "id": "logo_width", "min": 4, "max": 15, "step": 0.5, "unit": "vw", "label": "Desktop logo width", "default": 8 },
+        { "type": "url", "id": "link", "label": "Optional link" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Home Revamp Logos",
+      "category": "Home Revamp",
+      "blocks": [
+        { "type": "logo", "settings": { "fallback_logo": "today", "logo_text": "TODAY", "logo_width": 6 } },
+        { "type": "logo", "settings": { "fallback_logo": "yahoo", "logo_text": "Yahoo!", "logo_width": 5 } },
+        { "type": "logo", "settings": { "fallback_logo": "mens-journal", "logo_text": "MEN'S JOURNAL", "logo_width": 12 } },
+        { "type": "logo", "settings": { "fallback_logo": "gq", "logo_text": "GQ", "logo_width": 6 } }
+      ]
+    }
+  ]
+}
+{% endschema %}

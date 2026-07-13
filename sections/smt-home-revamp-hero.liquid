@@ -1,0 +1,424 @@
+{% liquid
+  assign hero_link = section.settings.button_link | default: '/pages/find-your-rinse'
+%}
+
+<section
+  class="hr-hero hr-hero--{{ section.settings.panel_position }}"
+  aria-labelledby="HeroHeading-{{ section.id }}"
+>
+  <div class="hr-hero__media" aria-hidden="true">
+    {% if section.settings.video != blank %}
+      {{
+        section.settings.video
+        | video_tag:
+          autoplay: true,
+          loop: true,
+          muted: true,
+          controls: false,
+          preload: 'metadata',
+          image_size: '3840x'
+      }}
+    {% else %}
+      <picture>
+        {% if section.settings.mobile_image != blank %}
+          <source
+            media="(max-width: 749px)"
+            srcset="{{ section.settings.mobile_image | image_url: width: 1500 }}"
+          >
+        {% endif %}
+        {% if section.settings.image != blank %}
+          {{
+            section.settings.image
+            | image_url: width: 3840
+            | image_tag:
+              widths: '750, 1100, 1500, 2000, 3000, 3840',
+              sizes: '100vw',
+              loading: 'eager',
+              fetchpriority: 'high',
+              alt: section.settings.media_alt
+          }}
+        {% else %}
+          <img
+            src="{{ 'e23e95e9-577a-4957-8742-9c754791e3e1.png' | asset_url }}"
+            alt="{{ section.settings.media_alt | escape }}"
+            width="2048"
+            height="833"
+            loading="eager"
+            fetchpriority="high"
+          >
+        {% endif %}
+      </picture>
+    {% endif %}
+  </div>
+
+  <div class="hr-hero__container">
+    <div class="hr-hero__panel">
+      {% if section.settings.review_text != blank %}
+        <div class="hr-hero__reviews" aria-label="{{ section.settings.review_accessible | escape }}">
+          <span class="hr-hero__stars" aria-hidden="true">★★★★★</span>
+          <span>{{ section.settings.review_text | escape }}</span>
+        </div>
+      {% endif %}
+
+      {% if section.settings.heading != blank %}
+        <h1 class="hr-hero__heading" id="HeroHeading-{{ section.id }}">
+          {{ section.settings.heading | escape | newline_to_br }}
+        </h1>
+      {% endif %}
+
+      {% if section.settings.copy != blank %}
+        <div class="hr-hero__copy rte">{{ section.settings.copy }}</div>
+      {% endif %}
+
+      <div class="hr-hero__benefits" role="list">
+        {% if section.settings.benefit_1 != blank %}
+          <div class="hr-hero__benefit" role="listitem">
+            <span class="hr-hero__benefit-icon" aria-hidden="true">
+              {% if section.settings.icon_1 != blank %}
+                {{ section.settings.icon_1 | image_url: width: 180 | image_tag: loading: 'lazy', alt: '' }}
+              {% else %}
+                <svg viewBox="0 0 68 68" role="img">
+                  <path d="M12 21.5 18.5 56h19L44 21.5M10 20c8-5 28-5 36 0M31 8l18 6-11 9M31 8l-4 14" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              {% endif %}
+            </span>
+            <span>{{ section.settings.benefit_1 | escape | newline_to_br }}</span>
+          </div>
+        {% endif %}
+
+        {% if section.settings.benefit_2 != blank %}
+          <div class="hr-hero__benefit hr-hero__benefit--strong" role="listitem">
+            <span class="hr-hero__benefit-icon" aria-hidden="true">
+              {% if section.settings.icon_2 != blank %}
+                {{ section.settings.icon_2 | image_url: width: 180 | image_tag: loading: 'lazy', alt: '' }}
+              {% else %}
+                <svg viewBox="0 0 68 68" role="img">
+                  <path d="M43 11c-17-5-32 6-32 23s11 27 26 27 25-11 25-26c0-7-2-12-6-17" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
+                  <path d="m43 5 2 13 12-6M22 31l7-6v20M36 27c2-2 8-3 9 2 1 4-7 8-9 15h11" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              {% endif %}
+            </span>
+            <span>{{ section.settings.benefit_2 | escape | newline_to_br }}</span>
+          </div>
+        {% endif %}
+      </div>
+
+      {% if section.settings.button_label != blank %}
+        <a class="button hr-hero__button" href="{{ hero_link }}">
+          {{ section.settings.button_label | escape }}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --hr-hero-blue: {{ section.settings.panel_color }};
+    --hr-hero-text: {{ section.settings.text_color }};
+    --hr-hero-star: {{ section.settings.star_color }};
+    --hr-hero-button: {{ section.settings.button_color }};
+    --hr-hero-button-text: {{ section.settings.button_text_color }};
+  }
+
+  #shopify-section-{{ section.id }} .hr-hero {
+    position: relative;
+    min-height: 40.67vw;
+    overflow: hidden;
+    color: var(--hr-hero-text);
+    background: #b8ddeb;
+  }
+
+  #shopify-section-{{ section.id }} .hr-hero__media {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  #shopify-section-{{ section.id }} .hr-hero__media picture,
+  #shopify-section-{{ section.id }} .hr-hero__media img,
+  #shopify-section-{{ section.id }} .hr-hero__media video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: {{ section.settings.media_position }};
+  }
+
+  #shopify-section-{{ section.id }} .hr-hero__container {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 85vw;
+    min-height: 40.67vw;
+    margin: 0 auto;
+    padding: 4.64vw 0;
+    box-sizing: border-box;
+  }
+
+  #shopify-section-{{ section.id }} .hr-hero--right .hr-hero__container {
+    justify-content: flex-end;
+  }
+
+  #shopify-section-{{ section.id }} .hr-hero__panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 35.25vw;
+    min-height: 31.54vw;
+    padding: 2.83vw 4.55vw;
+    color: var(--hr-hero-text);
+    background: var(--hr-hero-blue);
+    border-radius: .42vw;
+    box-shadow: 0 .16vw .4vw rgba(0, 27, 58, .28);
+    box-sizing: border-box;
+  }
+
+  #shopify-section-{{ section.id }} .hr-hero__reviews {
+    display: flex;
+    align-items: center;
+    gap: .72vw;
+    margin: 0 0 .55vw;
+    font-size: 1.04vw;
+    line-height: 1.15;
+    white-space: nowrap;
+  }
+
+  #shopify-section-{{ section.id }} .hr-hero__stars {
+    color: var(--hr-hero-star);
+    font-size: 1.18vw;
+    letter-spacing: .08vw;
+  }
+
+  #shopify-section-{{ section.id }} .hr-hero__heading {
+    margin: 0 0 1.14vw;
+    color: inherit;
+    font-family: var(--font-heading-family);
+    font-size: 2.93vw;
+    font-style: var(--font-heading-style);
+    font-weight: var(--font-heading-weight);
+    letter-spacing: 0;
+    line-height: 1.1;
+  }
+
+  #shopify-section-{{ section.id }} .hr-hero__copy {
+    max-width: 26vw;
+    margin: 0 0 2.25vw;
+    color: inherit;
+    font-size: 1.08vw;
+    font-weight: 700;
+    line-height: 1.42;
+  }
+
+  #shopify-section-{{ section.id }} .hr-hero__copy p {
+    margin: 0;
+  }
+
+  #shopify-section-{{ section.id }} .hr-hero__benefits {
+    display: flex;
+    align-items: center;
+    gap: 1.7vw;
+    margin: 0 0 2.68vw;
+  }
+
+  #shopify-section-{{ section.id }} .hr-hero__benefit {
+    display: flex;
+    align-items: center;
+    gap: .72vw;
+    font-size: 1.47vw;
+    line-height: .98;
+    white-space: nowrap;
+  }
+
+  #shopify-section-{{ section.id }} .hr-hero__benefit--strong {
+    font-weight: 800;
+  }
+
+  #shopify-section-{{ section.id }} .hr-hero__benefit-icon {
+    display: inline-flex;
+    flex: 0 0 3.25vw;
+    width: 3.25vw;
+    height: 3.25vw;
+  }
+
+  #shopify-section-{{ section.id }} .hr-hero__benefit-icon img,
+  #shopify-section-{{ section.id }} .hr-hero__benefit-icon svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  #shopify-section-{{ section.id }} .hr-hero__button.button {
+    align-self: flex-start;
+    min-width: 14.16vw;
+    min-height: 2.93vw;
+    padding: .64vw 1.75vw;
+    color: var(--hr-hero-button-text);
+    background: var(--hr-hero-button);
+    border: 0;
+    border-radius: 2vw;
+    font-size: 1.22vw;
+    font-weight: 800;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  #shopify-section-{{ section.id }} .hr-hero__button.button::before,
+  #shopify-section-{{ section.id }} .hr-hero__button.button::after {
+    content: none;
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .hr-hero,
+    #shopify-section-{{ section.id }} .hr-hero__container {
+      min-height: 145vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-hero__media img,
+    #shopify-section-{{ section.id }} .hr-hero__media video {
+      object-position: {{ section.settings.mobile_position }};
+    }
+
+    #shopify-section-{{ section.id }} .hr-hero__container,
+    #shopify-section-{{ section.id }} .hr-hero--right .hr-hero__container {
+      align-items: flex-end;
+      justify-content: center;
+      width: 85vw;
+      padding: 8vw 0;
+    }
+
+    #shopify-section-{{ section.id }} .hr-hero__panel {
+      width: 85vw;
+      min-height: 0;
+      padding: 8vw 7vw;
+      border-radius: 1.6vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-hero__reviews {
+      gap: 2vw;
+      margin-bottom: 2vw;
+      font-size: 3.4vw;
+      white-space: normal;
+    }
+
+    #shopify-section-{{ section.id }} .hr-hero__stars {
+      font-size: 4vw;
+      letter-spacing: .15vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-hero__heading {
+      margin-bottom: 3.5vw;
+      font-size: 10vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-hero__copy {
+      max-width: none;
+      margin-bottom: 6vw;
+      font-size: 4vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-hero__benefits {
+      flex-wrap: wrap;
+      gap: 4vw 6vw;
+      margin-bottom: 7vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-hero__benefit {
+      gap: 2vw;
+      font-size: 4.3vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-hero__benefit-icon {
+      flex-basis: 10vw;
+      width: 10vw;
+      height: 10vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-hero__button.button {
+      min-width: 52vw;
+      min-height: 11vw;
+      padding: 2vw 6vw;
+      border-radius: 7vw;
+      font-size: 4.2vw;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Home Revamp Hero",
+  "tag": "section",
+  "class": "section section-home-revamp-hero",
+  "settings": [
+    { "type": "header", "content": "Media" },
+    { "type": "image_picker", "id": "image", "label": "Background image" },
+    { "type": "image_picker", "id": "mobile_image", "label": "Mobile background image" },
+    { "type": "video", "id": "video", "label": "Background video" },
+    { "type": "text", "id": "media_alt", "label": "Image alt text", "default": "SmartMouth mouthwash being poured in a bathroom" },
+    {
+      "type": "select",
+      "id": "media_position",
+      "label": "Desktop media position",
+      "default": "center center",
+      "options": [
+        { "value": "left center", "label": "Left" },
+        { "value": "center center", "label": "Center" },
+        { "value": "right center", "label": "Right" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "mobile_position",
+      "label": "Mobile media position",
+      "default": "center center",
+      "options": [
+        { "value": "left center", "label": "Left" },
+        { "value": "center center", "label": "Center" },
+        { "value": "right center", "label": "Right" }
+      ]
+    },
+    { "type": "header", "content": "Content" },
+    {
+      "type": "select",
+      "id": "panel_position",
+      "label": "Blue block position",
+      "default": "left",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ]
+    },
+    { "type": "text", "id": "review_text", "label": "Review text", "default": "4.5 avg. | 8.8K+ Trusted Reviews" },
+    { "type": "text", "id": "review_accessible", "label": "Accessible review label", "default": "4.5 out of 5 stars from more than 8,800 trusted reviews" },
+    { "type": "textarea", "id": "heading", "label": "Heading", "default": "The smarter\nmouthwash" },
+    { "type": "richtext", "id": "copy", "label": "Body text", "default": "<p><strong>The only mouthwash scientifically proven to eliminate &amp; prevent bad breath for 24 hours — <em>with just 2 rinses a day.</em></strong></p>" },
+    { "type": "image_picker", "id": "icon_1", "label": "First benefit icon" },
+    { "type": "textarea", "id": "benefit_1", "label": "First benefit", "default": "2 RINSES\nA DAY" },
+    { "type": "image_picker", "id": "icon_2", "label": "Second benefit icon" },
+    { "type": "textarea", "id": "benefit_2", "label": "Second benefit", "default": "24-HOUR\nPROTECTION" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "FIND YOUR RINSE" },
+    { "type": "url", "id": "button_link", "label": "Button link" },
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "panel_color", "label": "Blue block", "default": "#24588D" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#FFFFFF" },
+    { "type": "color", "id": "star_color", "label": "Stars", "default": "#FFC857" },
+    { "type": "color", "id": "button_color", "label": "Button", "default": "#FF7600" },
+    { "type": "color", "id": "button_text_color", "label": "Button text", "default": "#FFFFFF" }
+  ],
+  "presets": [
+    {
+      "name": "Home Revamp Hero",
+      "category": "Home Revamp"
+    }
+  ]
+}
+{% endschema %}
+
+{% comment %}
+  The supplied fallback is a composite mockup. Replace the background image or video
+  before moving the content block to the right so the embedded left-side panel is removed.
+{% endcomment %}
