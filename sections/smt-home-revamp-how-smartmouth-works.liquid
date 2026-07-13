@@ -15,7 +15,7 @@
 
       {% if section.settings.heading_prefix != blank or section.settings.heading_accent != blank or section.settings.heading_suffix != blank %}
         <h2 class="hr-science__heading" id="ScienceHeading-{{ section.id }}">
-          {{ section.settings.heading_prefix | escape }}<span>{{ section.settings.heading_accent | escape }}</span>{{ section.settings.heading_suffix | escape }}
+          {{ section.settings.heading_prefix | escape }} <span>{{ section.settings.heading_accent | escape }}</span> {{ section.settings.heading_suffix | escape }}
         </h2>
       {% endif %}
 
