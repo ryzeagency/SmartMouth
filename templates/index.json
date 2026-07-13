@@ -104,7 +104,7 @@
           "type": "product",
           "settings": {
             "product": "smartmouthtm-original-activated-mouthwash-16oz",
-            "image": "shopify://shop_images/smt-revamp-reason-badbreath.webp",
+            "image": "shopify://shop_images/reason-to-pour-original.webp",
             "custom_title": "SmartMouth™ Original Liposomal Evening Mouthwash",
             "custom_link": "",
             "badge_text": "BAD BREATH",
@@ -117,7 +117,7 @@
           "type": "product",
           "settings": {
             "product": "smartmouthtm-dry-mouth-activated-mouthwash-16oz",
-            "image": "shopify://shop_images/smt-revamp-reason-drymouth.webp",
+            "image": "shopify://shop_images/reason-to-pour-dry-mouth.webp",
             "custom_title": "SmartMouth™ Dry Mouth Activated Mouthwash",
             "custom_link": "",
             "badge_text": "DRY MOUTH",
@@ -130,7 +130,7 @@
           "type": "product",
           "settings": {
             "product": "smartmouthtm-clinical-activated-mouthwash-16oz",
-            "image": "shopify://shop_images/smt-revamp-reason-oralhealth.webp",
+            "image": "shopify://shop_images/reason-to-pour-oral-health.webp",
             "custom_title": "SmartMouth™ Clinical Activated Mouthwash",
             "custom_link": "",
             "badge_text": "ORAL HEALTH",
@@ -143,7 +143,7 @@
           "type": "product",
           "settings": {
             "product": "smartmouthtm-advanced-liposomal-evening-mouthwash-16oz",
-            "image": "shopify://shop_images/smt-revamp-reason-nighttime.webp",
+            "image": "shopify://shop_images/reason-to-pour-evening.webp",
             "custom_title": "SmartMouth™ Advanced Liposomal Evening Mouthwash",
             "custom_link": "",
             "badge_text": "NIGHT TIME",
@@ -229,9 +229,9 @@
         "subheading": "Most mouthwashes mask it. SmartMouth eliminates it — for 24 hours — with just 2 rinses.",
         "show_virus": true,
         "virus_image": "shopify://shop_images/sulfur-virus.webp",
-        "background_color": "#FFFFFF",
+        "background_color": "#ffffff",
         "text_color": "#062342",
-        "accent_color": "#8FD7CD"
+        "accent_color": "#8fd7cd"
       }
     }
   },
