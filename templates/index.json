@@ -13,6 +13,7 @@
       "type": "smt-home-revamp-hero",
       "name": "Home Revamp Hero",
       "settings": {
+        "image": "shopify://shop_images/smt-revamp-hero-bg.webp",
         "media_alt": "SmartMouth mouthwash being poured in a bathroom",
         "media_position": "center center",
         "mobile_position": "center center",
@@ -21,15 +22,17 @@
         "review_accessible": "4.5 out of 5 stars from more than 8,800 trusted reviews",
         "heading": "The smarter\nmouthwash",
         "copy": "<p><strong>The only mouthwash scientifically proven to eliminate & prevent bad breath for 24 hours — </strong><em><strong>with just 2 rinses a day.</strong></em></p>",
+        "icon_1": "shopify://shop_images/smt-revamp-hero-icon-1.png",
         "benefit_1": "2 RINSES\nA DAY",
+        "icon_2": "shopify://shop_images/smt-revamp-hero-icon-2.png",
         "benefit_2": "24-HOUR\nPROTECTION",
         "button_label": "FIND YOUR RINSE",
         "button_link": "",
-        "panel_color": "#24588D",
-        "text_color": "#FFFFFF",
-        "star_color": "#FFC857",
-        "button_color": "#FF7600",
-        "button_text_color": "#FFFFFF"
+        "panel_color": "#24588d",
+        "text_color": "#ffffff",
+        "star_color": "#ffc857",
+        "button_color": "#ff7600",
+        "button_text_color": "#ffffff"
       }
     }
   },
