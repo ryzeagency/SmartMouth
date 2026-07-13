@@ -1,0 +1,306 @@
+{% liquid
+  assign quiz_link = section.settings.button_link | default: '/pages/find-your-rinse'
+%}
+
+<section class="hr-find" aria-labelledby="FindHeading-{{ section.id }}">
+  <div class="hr-find__band">
+    <div class="hr-find__container">
+      <div class="hr-find__visual" aria-hidden="true">
+        {% if section.settings.image != blank %}
+          <span class="hr-find__circle"></span>
+          {{
+            section.settings.image
+            | image_url: width: 1800
+            | image_tag:
+              widths: '600, 900, 1200, 1500, 1800',
+              sizes: '(min-width: 750px) 42.5vw, 85vw',
+              loading: 'lazy',
+              alt: section.settings.image_alt
+          }}
+        {% else %}
+          <span class="hr-find__fallback"></span>
+        {% endif %}
+      </div>
+
+      <div class="hr-find__content">
+        {% if section.settings.heading != blank %}
+          <h2 class="hr-find__heading" id="FindHeading-{{ section.id }}">
+            {{ section.settings.heading | escape }}
+          </h2>
+        {% endif %}
+
+        {% if section.settings.subheading != blank %}
+          <p class="hr-find__subheading">{{ section.settings.subheading | escape }}</p>
+        {% endif %}
+
+        {% if section.settings.copy != blank %}
+          <div class="hr-find__copy rte">{{ section.settings.copy }}</div>
+        {% endif %}
+
+        {% if section.settings.button_label != blank %}
+          <a class="button hr-find__button" href="{{ quiz_link }}">
+            <span>{{ section.settings.button_label | escape }}</span>
+            <span aria-hidden="true">→</span>
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --hr-find-bg: {{ section.settings.background_color }};
+    --hr-find-circle: {{ section.settings.circle_color }};
+    --hr-find-text: {{ section.settings.text_color }};
+    --hr-find-title-bg: {{ section.settings.title_background }};
+    --hr-find-title-text: {{ section.settings.title_color }};
+    --hr-find-button: {{ section.settings.button_color }};
+    --hr-find-button-text: {{ section.settings.button_text_color }};
+    --hr-find-top: {{ section.settings.top_overflow }}vw;
+    --hr-find-bottom: {{ section.settings.bottom_overflow }}vw;
+  }
+
+  #shopify-section-{{ section.id }} .hr-find {
+    padding: 7.52vw 0 5.96vw;
+    color: var(--hr-find-text);
+    background: #fff;
+    overflow: hidden;
+  }
+
+  #shopify-section-{{ section.id }} .hr-find__band {
+    height: 25.05vw;
+    background: var(--hr-find-bg);
+  }
+
+  #shopify-section-{{ section.id }} .hr-find__container {
+    display: grid;
+    grid-template-columns: 50.8% 49.2%;
+    width: 85vw;
+    height: 100%;
+    margin: 0 auto;
+  }
+
+  #shopify-section-{{ section.id }} .hr-find__visual {
+    display: grid;
+    align-self: stretch;
+    width: 42.5vw;
+    height: calc(100% + var(--hr-find-top) + var(--hr-find-bottom));
+    margin-top: calc(-1 * var(--hr-find-top));
+    margin-bottom: calc(-1 * var(--hr-find-bottom));
+  }
+
+  #shopify-section-{{ section.id }} .hr-find__visual > * {
+    grid-area: 1 / 1;
+  }
+
+  #shopify-section-{{ section.id }} .hr-find__circle {
+    align-self: center;
+    justify-self: start;
+    width: 32.3vw;
+    height: 32.3vw;
+    margin-left: 2.35vw;
+    background: var(--hr-find-circle);
+    border-radius: 50%;
+  }
+
+  #shopify-section-{{ section.id }} .hr-find__visual img {
+    z-index: 1;
+    display: block;
+    align-self: center;
+    justify-self: start;
+    width: 27vw;
+    height: 100%;
+    margin-left: 6.7vw;
+    object-fit: contain;
+  }
+
+  #shopify-section-{{ section.id }} .hr-find__fallback {
+    display: block;
+    width: 42.5vw;
+    height: 38.53vw;
+    background-image: url("{{ 'd61e3060-148b-4420-b1ae-3346782eaeb3.png' | asset_url }}");
+    background-repeat: no-repeat;
+    background-position: -7.5vw 0;
+    background-size: 100vw 38.53vw;
+  }
+
+  #shopify-section-{{ section.id }} .hr-find__content {
+    align-self: center;
+    justify-self: start;
+    width: 29vw;
+    padding-left: 1.5vw;
+  }
+
+  #shopify-section-{{ section.id }} .hr-find__heading {
+    display: table;
+    margin: 0 0 1.78vw;
+    padding: .6vw 1.05vw .7vw;
+    color: var(--hr-find-title-text);
+    background: var(--hr-find-title-bg);
+    font-family: var(--font-heading-family);
+    font-size: 2.28vw;
+    font-style: var(--font-heading-style);
+    font-weight: var(--font-heading-weight);
+    letter-spacing: 0;
+    line-height: 1;
+  }
+
+  #shopify-section-{{ section.id }} .hr-find__subheading {
+    margin: 0 0 1.8vw .25vw;
+    font-size: 1.08vw;
+    font-style: italic;
+    font-weight: 800;
+    line-height: 1.25;
+  }
+
+  #shopify-section-{{ section.id }} .hr-find__copy {
+    margin: 0 0 1.9vw .25vw;
+    color: inherit;
+    font-size: 1.1vw;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+
+  #shopify-section-{{ section.id }} .hr-find__copy p {
+    margin: 0;
+  }
+
+  #shopify-section-{{ section.id }} .hr-find__button.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .75vw;
+    min-width: 14.1vw;
+    min-height: 2.93vw;
+    margin-left: .25vw;
+    padding: .65vw 1.75vw;
+    color: var(--hr-find-button-text);
+    background: var(--hr-find-button);
+    border: 0;
+    border-radius: 2vw;
+    font-size: 1.2vw;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  #shopify-section-{{ section.id }} .hr-find__button.button::before,
+  #shopify-section-{{ section.id }} .hr-find__button.button::after {
+    content: none;
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .hr-find {
+      padding: 12vw 0;
+      overflow: visible;
+      background: var(--hr-find-bg);
+    }
+
+    #shopify-section-{{ section.id }} .hr-find__band {
+      height: auto;
+    }
+
+    #shopify-section-{{ section.id }} .hr-find__container {
+      grid-template-columns: 1fr;
+      gap: 8vw;
+      width: 85vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-find__visual {
+      width: 85vw;
+      height: 95vw;
+      margin: -20vw 0 0;
+    }
+
+    #shopify-section-{{ section.id }} .hr-find__circle {
+      width: 76vw;
+      height: 76vw;
+      margin-left: 0;
+    }
+
+    #shopify-section-{{ section.id }} .hr-find__visual img {
+      width: 68vw;
+      height: 100%;
+      margin-left: 7vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-find__fallback {
+      width: 85vw;
+      height: 95vw;
+      margin: 0;
+      background-position: -18.5vw 0;
+      background-size: 246.5vw 95vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-find__content {
+      width: 85vw;
+      padding: 0 0 6vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-find__heading {
+      margin-bottom: 6vw;
+      padding: 2vw 3vw 2.4vw;
+      font-size: 8vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-find__subheading {
+      margin: 0 0 6vw;
+      font-size: 4vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-find__copy {
+      margin: 0 0 7vw;
+      font-size: 4.2vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-find__button.button {
+      gap: 2.5vw;
+      min-width: 56vw;
+      min-height: 12vw;
+      margin: 0;
+      padding: 2.5vw 6vw;
+      border-radius: 7vw;
+      font-size: 4.4vw;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Find Your Rinse",
+  "tag": "section",
+  "class": "section section-home-revamp-find",
+  "settings": [
+    { "type": "header", "content": "Image" },
+    { "type": "image_picker", "id": "image", "label": "Product image" },
+    { "type": "text", "id": "image_alt", "label": "Image alt text", "default": "SmartMouth Original mouthwash" },
+    { "type": "range", "id": "top_overflow", "min": 0, "max": 15, "step": 0.5, "unit": "vw", "label": "Top negative margin", "default": 7.5 },
+    { "type": "range", "id": "bottom_overflow", "min": 0, "max": 15, "step": 0.5, "unit": "vw", "label": "Bottom negative margin", "default": 6 },
+    { "type": "header", "content": "Content" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Find your rinse" },
+    { "type": "text", "id": "subheading", "label": "Subheading", "default": "Not sure which SmartMouth formula is right for you?" },
+    { "type": "richtext", "id": "copy", "label": "Body text", "default": "<p><strong>Answer 5 quick questions — get a personalized recommendation in 60 seconds</strong></p>" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "TAKE THE QUIZ" },
+    { "type": "url", "id": "button_link", "label": "Button link" },
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#B9DDCF" },
+    { "type": "color", "id": "circle_color", "label": "Circle", "default": "#7DB99D" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#062342" },
+    { "type": "color", "id": "title_background", "label": "Heading background", "default": "#008244" },
+    { "type": "color", "id": "title_color", "label": "Heading text", "default": "#FFFFFF" },
+    { "type": "color", "id": "button_color", "label": "Button", "default": "#FF7600" },
+    { "type": "color", "id": "button_text_color", "label": "Button text", "default": "#FFFFFF" }
+  ],
+  "presets": [
+    {
+      "name": "Find Your Rinse",
+      "category": "Home Revamp"
+    }
+  ]
+}
+{% endschema %}
+
+{% comment %}
+  The composite mockup is cropped as the default left-side visual. Selecting a transparent
+  product image activates the editable circle and true top/bottom negative-margin controls.
+{% endcomment %}
