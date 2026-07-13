@@ -11,6 +11,43 @@
   "name": "t:sections.footer.name",
   "type": "footer",
   "sections": {
+    "smt_home_revamp_klaviyo_signup_Mrmhfh": {
+      "type": "smt-home-revamp-klaviyo-signup",
+      "blocks": {
+        "background_color_9mFpqU": {
+          "type": "background_color",
+          "settings": {
+            "color": "#cde8e3"
+          }
+        },
+        "background_color_LrrLmb": {
+          "type": "background_color",
+          "settings": {
+            "color": "#d8d1ee"
+          }
+        }
+      },
+      "block_order": [
+        "background_color_9mFpqU",
+        "background_color_LrrLmb"
+      ],
+      "name": "Klaviyo Email Signup",
+      "settings": {
+        "form_id": "R5Rhv9",
+        "visual_button_label": "SUBMIT",
+        "heading_top": "We love saving",
+        "heading_bottom": "you from bad breath",
+        "subheading": "Sign up for coupons, offers & updates",
+        "randomize_background": true,
+        "background_color": "#ADD2EC",
+        "heading_background": "#205085",
+        "heading_color": "#FFFFFF",
+        "text_color": "#205085",
+        "input_background": "#FFFFFF",
+        "button_color": "#FF7701",
+        "button_text_color": "#FFFFFF"
+      }
+    },
     "available_in_BGCVXY": {
       "type": "available-in",
       "disabled": true,
@@ -142,6 +179,7 @@
     }
   },
   "order": [
+    "smt_home_revamp_klaviyo_signup_Mrmhfh",
     "available_in_BGCVXY",
     "newsletter_bar_WMzUjf",
     "smartmouth_footer_NkMreL",
