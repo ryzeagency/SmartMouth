@@ -103,7 +103,8 @@
         "product_WLddqt": {
           "type": "product",
           "settings": {
-            "product": "",
+            "product": "smartmouthtm-original-activated-mouthwash-16oz",
+            "image": "shopify://shop_images/smt-revamp-reason-badbreath.webp",
             "custom_title": "SmartMouth™ Original Liposomal Evening Mouthwash",
             "custom_link": "",
             "badge_text": "BAD BREATH",
@@ -115,7 +116,8 @@
         "product_DTcrYL": {
           "type": "product",
           "settings": {
-            "product": "",
+            "product": "smartmouthtm-dry-mouth-activated-mouthwash-16oz",
+            "image": "shopify://shop_images/smt-revamp-reason-drymouth.webp",
             "custom_title": "SmartMouth™ Dry Mouth Activated Mouthwash",
             "custom_link": "",
             "badge_text": "DRY MOUTH",
@@ -127,7 +129,8 @@
         "product_FKjHkm": {
           "type": "product",
           "settings": {
-            "product": "",
+            "product": "smartmouthtm-clinical-activated-mouthwash-16oz",
+            "image": "shopify://shop_images/smt-revamp-reason-oralhealth.webp",
             "custom_title": "SmartMouth™ Clinical Activated Mouthwash",
             "custom_link": "",
             "badge_text": "ORAL HEALTH",
@@ -139,7 +142,8 @@
         "product_hpYPVi": {
           "type": "product",
           "settings": {
-            "product": "",
+            "product": "smartmouthtm-advanced-liposomal-evening-mouthwash-16oz",
+            "image": "shopify://shop_images/smt-revamp-reason-nighttime.webp",
             "custom_title": "SmartMouth™ Advanced Liposomal Evening Mouthwash",
             "custom_link": "",
             "badge_text": "NIGHT TIME",
