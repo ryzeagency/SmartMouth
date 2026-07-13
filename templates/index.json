@@ -464,19 +464,44 @@
         "amazon_link": "",
         "shop_label": "SHOP ONLINE",
         "shop_link": "",
-        "background_color": "#9A96BC",
-        "glass_color": "#E2DCFA",
+        "background_color": "#9a96bc",
+        "glass_color": "#e2dcfa",
         "glass_opacity": 22,
-        "text_color": "#FFFFFF",
-        "heading_background": "#865CE6",
-        "heading_color": "#FFFFFF",
-        "heading_accent_color": "#C8B7FF",
-        "button_color": "#FF7701",
-        "button_text_color": "#FFFFFF"
+        "text_color": "#ffffff",
+        "heading_background": "#865ce6",
+        "heading_color": "#ffffff",
+        "heading_accent_color": "#c8b7ff",
+        "button_color": "#ff7701",
+        "button_text_color": "#ffffff"
       }
     },
     "smt_home_revamp_klaviyo_signup_37qfYc": {
       "type": "smt-home-revamp-klaviyo-signup",
+      "blocks": {
+        "background_color_4ED3dT": {
+          "type": "background_color",
+          "settings": {
+            "color": "#D1CFF0"
+          }
+        },
+        "background_color_jymzQx": {
+          "type": "background_color",
+          "settings": {
+            "color": "#F1E1A9"
+          }
+        },
+        "background_color_AyEpQE": {
+          "type": "background_color",
+          "settings": {
+            "color": "#ADD2EC"
+          }
+        }
+      },
+      "block_order": [
+        "background_color_4ED3dT",
+        "background_color_jymzQx",
+        "background_color_AyEpQE"
+      ],
       "name": "Klaviyo Email Signup",
       "settings": {
         "form_id": "R5Rhv9",
@@ -484,13 +509,14 @@
         "heading_top": "We love saving",
         "heading_bottom": "you from bad breath",
         "subheading": "Sign up for coupons, offers & updates",
-        "background_color": "#ADD2EC",
+        "randomize_background": true,
+        "background_color": "#add2ec",
         "heading_background": "#205085",
-        "heading_color": "#FFFFFF",
+        "heading_color": "#ffffff",
         "text_color": "#205085",
-        "input_background": "#FFFFFF",
-        "button_color": "#FF7701",
-        "button_text_color": "#FFFFFF"
+        "input_background": "#ffffff",
+        "button_color": "#ff7701",
+        "button_text_color": "#ffffff"
       }
     }
   },
