@@ -52,7 +52,8 @@
           "type": "brand",
           "settings": {
             "logo": "shopify://shop_images/smartmouth-logo.png",
-            "logo_width": 160,
+            "logo_width": 250,
+            "logo_width_mobile": 62,
             "text": "<p>Results may vary. 24-hour bad breath protection results associated with twice daily use. SmartMouth products are not intended to diagnose, treat, cure, or prevent any disease. All SmartMouth products come with our guarantee that ensures SmartMouth will work exactly as described on this website or your money back. Always consult your healthcare professional.</p>"
           }
         },
@@ -78,6 +79,7 @@
         "social_linkedin": "https://www.linkedin.com/company/smartmouth-oral-health-labs/",
         "social_instagram": "https://www.instagram.com/smartmouthwash/",
         "social_tiktok": "https://www.tiktok.com/@smartmouthwash",
+        "copyright_name": "SmartMouth™",
         "copyright_text": "All Rights Reserved.",
         "padding_top": 80,
         "padding_bottom": 60
