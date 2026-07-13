@@ -266,7 +266,7 @@
             "position": "left",
             "card_width": 16,
             "top_offset": -2.5,
-            "side_offset": 41,
+            "side_offset": 42,
             "animation_delay": 0,
             "background_color": "#205085",
             "text_color": "#ffffff",
