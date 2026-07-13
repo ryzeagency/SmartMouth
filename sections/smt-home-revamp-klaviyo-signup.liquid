@@ -15,6 +15,18 @@
       <div class="klaviyo-form-{{ section.settings.form_id | escape }}"></div>
     </div>
   </div>
+
+  {%- if section.settings.randomize_background -%}
+    <div class="hr-klaviyo__background-options" hidden aria-hidden="true">
+      <span data-random-background="{{ section.settings.background_color }}"></span>
+      {%- for block in section.blocks -%}
+        <span
+          data-random-background="{{ block.settings.color }}"
+          {{ block.shopify_attributes }}
+        ></span>
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
 </section>
 
 <style>
@@ -116,23 +128,21 @@
 
   #shopify-section-{{ section.id }} .hr-klaviyo__form-wrap input[type='email'] {
     width: 100% !important;
-    padding: 0 1.25vw !important;
+    padding: .95vw 1.25vw !important;
     color: var(--hr-klaviyo-text) !important;
     background: var(--hr-klaviyo-input) !important;
     border: 0 !important;
-    border-radius: 50px !important;
+    border-radius: 0 !important;
     box-shadow: none !important;
     font-family: var(--font-body-family) !important;
     font-size: 1.05vw !important;
     line-height: 1 !important;
     box-sizing: border-box !important;
-    height: 65px;
-    margin-left: 75px;
   }
 
   #shopify-section-{{ section.id }} .hr-klaviyo__form-wrap button.klaviyo-form-button {
     width: 100% !important;
-    padding: 0 1.5vw !important;
+    padding: .95vw 1.5vw !important;
     color: var(--hr-klaviyo-button-text) !important;
     background: var(--hr-klaviyo-button) !important;
     border: 0 !important;
@@ -144,8 +154,6 @@
     line-height: 1 !important;
     text-transform: uppercase !important;
     box-sizing: border-box !important;
-    height: 65px;
-    margin-right: 75px;
   }
 
   #shopify-section-{{ section.id }} .hr-klaviyo__form-wrap button.klaviyo-form-button::after {
@@ -220,6 +228,29 @@
   }
 </style>
 
+{%- if section.settings.randomize_background -%}
+  <script>
+    (() => {
+      const section = document.querySelector('#shopify-section-{{ section.id }} .hr-klaviyo');
+
+      if (!section || section.dataset.randomBackgroundReady === 'true') return;
+
+      const colors = [...new Set(
+        Array.from(section.querySelectorAll('[data-random-background]'))
+          .map((option) => option.dataset.randomBackground)
+          .filter(Boolean)
+      )];
+
+      if (colors.length > 0) {
+        const randomIndex = Math.floor(Math.random() * colors.length);
+        section.style.setProperty('--hr-klaviyo-bg', colors[randomIndex]);
+      }
+
+      section.dataset.randomBackgroundReady = 'true';
+    })();
+  </script>
+{%- endif -%}
+
 {% schema %}
 {
   "name": "Klaviyo Email Signup",
@@ -270,9 +301,16 @@
       "content": "Colors"
     },
     {
+      "type": "checkbox",
+      "id": "randomize_background",
+      "label": "Random background each visit",
+      "default": true,
+      "info": "Randomly uses the primary background or one of the additional background color blocks whenever the page loads."
+    },
+    {
       "type": "color",
       "id": "background_color",
-      "label": "Background",
+      "label": "Primary background",
       "default": "#ADD2EC"
     },
     {
@@ -312,10 +350,39 @@
       "default": "#FFFFFF"
     }
   ],
+  "blocks": [
+    {
+      "type": "background_color",
+      "name": "Background color",
+      "settings": [
+        {
+          "type": "color",
+          "id": "color",
+          "label": "Color",
+          "default": "#CDE8E3"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 12,
   "presets": [
     {
       "name": "Klaviyo Email Signup",
-      "category": "Home Revamp"
+      "category": "Home Revamp",
+      "blocks": [
+        {
+          "type": "background_color",
+          "settings": {
+            "color": "#CDE8E3"
+          }
+        },
+        {
+          "type": "background_color",
+          "settings": {
+            "color": "#D8D1EE"
+          }
+        }
+      ]
     }
   ]
 }
