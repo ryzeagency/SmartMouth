@@ -34,9 +34,167 @@
         "button_color": "#ff7600",
         "button_text_color": "#ffffff"
       }
+    },
+    "smt_home_revamp_logo_marquee_k3xkz8": {
+      "type": "smt-home-revamp-logo-marquee",
+      "blocks": {
+        "logo_CUQrdW": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/smt-revamp-gq.png",
+            "fallback_logo": "today",
+            "logo_text": "TODAY",
+            "alt": "",
+            "logo_width": 6,
+            "link": ""
+          }
+        },
+        "logo_hA3LnE": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/smt-revamp-today.png",
+            "fallback_logo": "yahoo",
+            "logo_text": "Yahoo!",
+            "alt": "",
+            "logo_width": 5,
+            "link": ""
+          }
+        },
+        "logo_kheyyn": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/smt-revamp-mens-journal.png",
+            "fallback_logo": "mens-journal",
+            "logo_text": "MEN'S JOURNAL",
+            "alt": "",
+            "logo_width": 12,
+            "link": ""
+          }
+        },
+        "logo_HpmTwW": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/smt-revamp-yahoo.png",
+            "fallback_logo": "gq",
+            "logo_text": "GQ",
+            "alt": "",
+            "logo_width": 6,
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "logo_CUQrdW",
+        "logo_hA3LnE",
+        "logo_kheyyn",
+        "logo_HpmTwW"
+      ],
+      "name": "Home Revamp Logos",
+      "settings": {
+        "accessible_label": "As featured in",
+        "background_color": "#8BC1E4",
+        "speed": 24,
+        "pause_hover": true
+      }
+    },
+    "smt_home_revamp_reason_to_pour_ifexUk": {
+      "type": "smt-home-revamp-reason-to-pour",
+      "blocks": {
+        "product_WLddqt": {
+          "type": "product",
+          "settings": {
+            "product": "",
+            "custom_title": "SmartMouth™ Original Liposomal Evening Mouthwash",
+            "custom_link": "",
+            "badge_text": "BAD BREATH",
+            "badge_color": "#008244",
+            "badge_text_color": "#FFFFFF",
+            "fallback_card": "1"
+          }
+        },
+        "product_DTcrYL": {
+          "type": "product",
+          "settings": {
+            "product": "",
+            "custom_title": "SmartMouth™ Dry Mouth Activated Mouthwash",
+            "custom_link": "",
+            "badge_text": "DRY MOUTH",
+            "badge_color": "#5e00b8",
+            "badge_text_color": "#FFFFFF",
+            "fallback_card": "2"
+          }
+        },
+        "product_FKjHkm": {
+          "type": "product",
+          "settings": {
+            "product": "",
+            "custom_title": "SmartMouth™ Clinical Activated Mouthwash",
+            "custom_link": "",
+            "badge_text": "ORAL HEALTH",
+            "badge_color": "#245a8d",
+            "badge_text_color": "#FFFFFF",
+            "fallback_card": "3"
+          }
+        },
+        "product_hpYPVi": {
+          "type": "product",
+          "settings": {
+            "product": "",
+            "custom_title": "SmartMouth™ Advanced Liposomal Evening Mouthwash",
+            "custom_link": "",
+            "badge_text": "NIGHT TIME",
+            "badge_color": "#9c91d3",
+            "badge_text_color": "#FFFFFF",
+            "fallback_card": "4"
+          }
+        }
+      },
+      "block_order": [
+        "product_WLddqt",
+        "product_DTcrYL",
+        "product_FKjHkm",
+        "product_hpYPVi"
+      ],
+      "name": "Reason to Pour",
+      "settings": {
+        "heading_prefix": "What’s your",
+        "heading_accent": "reason",
+        "heading_suffix": "to pour?",
+        "heading": "What’s your reason to pour?",
+        "button_label": "SHOP ALL PRODUCTS",
+        "button_link": "",
+        "background_color": "#FFFFFF",
+        "text_color": "#062342",
+        "accent_color": "#8FD7CD",
+        "link_color": "#1F568D"
+      }
+    },
+    "smt_home_revamp_find_your_rinse_zhddc7": {
+      "type": "smt-home-revamp-find-your-rinse",
+      "name": "Find Your Rinse",
+      "settings": {
+        "image_alt": "SmartMouth Original mouthwash",
+        "top_overflow": 7.5,
+        "bottom_overflow": 6,
+        "heading": "Find your rinse",
+        "subheading": "Not sure which SmartMouth formula is right for you?",
+        "copy": "<p><strong>Answer 5 quick questions — get a personalized recommendation in 60 seconds</strong></p>",
+        "button_label": "TAKE THE QUIZ",
+        "button_link": "",
+        "background_color": "#B9DDCF",
+        "circle_color": "#7DB99D",
+        "text_color": "#062342",
+        "title_background": "#008244",
+        "title_color": "#FFFFFF",
+        "button_color": "#FF7600",
+        "button_text_color": "#FFFFFF"
+      }
     }
   },
   "order": [
-    "smt_home_revamp_hero_WND8LW"
+    "smt_home_revamp_hero_WND8LW",
+    "smt_home_revamp_logo_marquee_k3xkz8",
+    "smt_home_revamp_reason_to_pour_ifexUk",
+    "smt_home_revamp_find_your_rinse_zhddc7"
   ]
 }
