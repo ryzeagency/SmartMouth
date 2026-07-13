@@ -13,6 +13,7 @@
   "sections": {
     "available_in_BGCVXY": {
       "type": "available-in",
+      "disabled": true,
       "name": "Where to Buy",
       "settings": {
         "bg_color": "#fafafa",
@@ -34,6 +35,7 @@
     },
     "newsletter_bar_WMzUjf": {
       "type": "newsletter-bar",
+      "disabled": true,
       "name": "Newsletter Banner",
       "settings": {
         "bg_color": "#0073c8",
