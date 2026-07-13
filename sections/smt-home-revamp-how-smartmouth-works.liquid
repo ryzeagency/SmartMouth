@@ -1,0 +1,716 @@
+{% liquid
+  assign science_link = section.settings.button_link | default: '/pages/the-science'
+%}
+
+<section
+  class="hr-science"
+  data-science-section="{{ section.id }}"
+  aria-labelledby="ScienceHeading-{{ section.id }}"
+>
+  <div class="hr-science__container">
+    <div class="hr-science__content">
+      {% if section.settings.eyebrow != blank %}
+        <p class="hr-science__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      {% endif %}
+
+      {% if section.settings.heading_prefix != blank or section.settings.heading_accent != blank or section.settings.heading_suffix != blank %}
+        <h2 class="hr-science__heading" id="ScienceHeading-{{ section.id }}">
+          {{ section.settings.heading_prefix | escape }}<span>{{ section.settings.heading_accent | escape }}</span>{{ section.settings.heading_suffix | escape }}
+        </h2>
+      {% endif %}
+
+      {% if section.settings.intro != blank %}
+        <div class="hr-science__intro rte">{{ section.settings.intro }}</div>
+      {% endif %}
+
+      <ul class="hr-science__bullets list-unstyled" role="list">
+        {% for block in section.blocks %}
+          {% if block.type == 'bullet' %}
+            <li class="hr-science__bullet" {{ block.shopify_attributes }}>
+              <span class="hr-science__arrow" aria-hidden="true">→</span>
+              <span>{{ block.settings.text | escape }}</span>
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+
+      {% if section.settings.button_label != blank %}
+        <a class="button hr-science__button" href="{{ science_link }}">
+          {{ section.settings.button_label | escape }}
+        </a>
+      {% endif %}
+    </div>
+
+    <div class="hr-science__visual">
+      {% for block in section.blocks %}
+        {% if block.type == 'solution' %}
+          {% liquid
+            assign delay_seconds = block.settings.animation_delay | times: 0.1
+          %}
+          <article
+            class="hr-science__solution hr-science__solution--{{ block.settings.position }}"
+            style="
+              --solution-width: {{ block.settings.card_width }}vw;
+              --solution-top: {{ block.settings.top_offset }}vw;
+              --solution-offset: {{ block.settings.side_offset }}vw;
+              --solution-bg: {{ block.settings.background_color }};
+              --solution-text: {{ block.settings.text_color }};
+              --solution-label-bg: {{ block.settings.label_background }};
+              --solution-label-text: {{ block.settings.label_color }};
+              --solution-delay: {{ delay_seconds }}s;
+            "
+            {{ block.shopify_attributes }}
+          >
+            {% if block.settings.label != blank %}
+              <h3 class="hr-science__solution-label">{{ block.settings.label | escape }}</h3>
+            {% endif %}
+
+            {% if block.settings.body != blank %}
+              <p class="hr-science__solution-copy">
+                {{ block.settings.body | escape | newline_to_br }}
+              </p>
+            {% endif %}
+          </article>
+        {% endif %}
+      {% endfor %}
+
+      <div class="hr-science__product">
+        {% if section.settings.product_image != blank %}
+          {{
+            section.settings.product_image
+            | image_url: width: 1600
+            | image_tag:
+              widths: '500, 750, 1000, 1200, 1400, 1600',
+              sizes: '(min-width: 750px) 25.15vw, 60vw',
+              loading: 'lazy',
+              alt: section.settings.image_alt
+          }}
+        {% else %}
+          <img
+            src="{{ 'howsmart-img.webp' | asset_url }}"
+            alt="{{ section.settings.image_alt | escape }}"
+            width="515"
+            height="598"
+            loading="lazy"
+          >
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --hr-science-bg: {{ section.settings.background_color }};
+    --hr-science-text: {{ section.settings.text_color }};
+    --hr-science-blue: {{ section.settings.heading_background }};
+    --hr-science-heading-text: {{ section.settings.heading_color }};
+    --hr-science-accent: {{ section.settings.accent_color }};
+    --hr-science-arrow: {{ section.settings.arrow_color }};
+    --hr-science-button: {{ section.settings.button_color }};
+    --hr-science-button-text: {{ section.settings.button_text_color }};
+  }
+
+  #shopify-section-{{ section.id }} .hr-science {
+    overflow: hidden;
+    padding: 4.65vw 0 5vw;
+    color: var(--hr-science-text);
+    background: var(--hr-science-bg);
+  }
+
+  #shopify-section-{{ section.id }} .hr-science__container {
+    position: relative;
+    width: 85vw;
+    margin: 0 auto;
+  }
+
+  #shopify-section-{{ section.id }} .hr-science__content {
+    position: relative;
+    z-index: 4;
+    width: 34vw;
+    margin-left: 1vw;
+  }
+
+  #shopify-section-{{ section.id }} .hr-science__eyebrow {
+    margin: 0 0 .55vw 1vw;
+    color: var(--hr-science-blue);
+    font-size: 1.5vw;
+    font-weight: 500;
+    letter-spacing: .02vw;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  #shopify-section-{{ section.id }} .hr-science__heading {
+    display: table;
+    margin: 0 0 1.25vw;
+    padding: .55vw .9vw .65vw;
+    color: var(--hr-science-heading-text);
+    background: var(--hr-science-blue);
+    font-family: var(--font-heading-family);
+    font-size: 2.4vw;
+    font-style: var(--font-heading-style);
+    font-weight: var(--font-heading-weight);
+    letter-spacing: 0;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  #shopify-section-{{ section.id }} .hr-science__heading span {
+    color: var(--hr-science-accent);
+  }
+
+  #shopify-section-{{ section.id }} .hr-science__intro {
+    max-width: 33vw;
+    margin: 0 0 1.25vw 1.3vw;
+    color: inherit;
+    font-size: 1.12vw;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  #shopify-section-{{ section.id }} .hr-science__intro p {
+    margin: 0;
+  }
+
+  #shopify-section-{{ section.id }} .hr-science__bullets {
+    display: grid;
+    gap: 1.1vw;
+    margin: 0 0 2.65vw 1.45vw;
+  }
+
+  #shopify-section-{{ section.id }} .hr-science__bullet {
+    display: grid;
+    grid-template-columns: 1.55vw minmax(0, 1fr);
+    align-items: start;
+    gap: .65vw;
+    font-size: 1.1vw;
+    font-weight: 500;
+    line-height: 1.3;
+  }
+
+  #shopify-section-{{ section.id }} .hr-science__arrow {
+    color: var(--hr-science-arrow);
+    font-size: 1.8vw;
+    font-weight: 400;
+    line-height: .72;
+  }
+
+  #shopify-section-{{ section.id }} .hr-science__button.button {
+    min-width: 18vw;
+    margin-left: 1.3vw;
+    padding: .9vw 1.8vw;
+    color: var(--hr-science-button-text);
+    background: var(--hr-science-button);
+    border: 0;
+    border-radius: 2vw;
+    font-size: 1.18vw;
+    font-weight: 800;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  #shopify-section-{{ section.id }} .hr-science__button.button::before,
+  #shopify-section-{{ section.id }} .hr-science__button.button::after {
+    content: none;
+  }
+
+  #shopify-section-{{ section.id }} .hr-science__visual {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
+  #shopify-section-{{ section.id }} .hr-science__product {
+    position: absolute;
+    top: -4.65vw;
+    right: 9.5vw;
+    z-index: 3;
+    width: 25.15vw;
+    pointer-events: none;
+  }
+
+  #shopify-section-{{ section.id }} .hr-science__product img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  #shopify-section-{{ section.id }} .hr-science__solution {
+    position: absolute;
+    top: var(--solution-top);
+    z-index: 2;
+    width: var(--solution-width);
+    padding: 1.85vw 1.55vw 1.55vw;
+    color: var(--solution-text);
+    background: var(--solution-bg);
+    box-sizing: border-box;
+    opacity: 0;
+    transition:
+      opacity 1.15s ease var(--solution-delay),
+      transform 1.35s cubic-bezier(.2, .75, .3, 1) var(--solution-delay);
+  }
+
+  #shopify-section-{{ section.id }} .hr-science__solution--left {
+    left: var(--solution-offset);
+    transform: translateX(-5vw);
+  }
+
+  #shopify-section-{{ section.id }} .hr-science__solution--right {
+    right: var(--solution-offset);
+    transform: translateX(5vw);
+  }
+
+  #shopify-section-{{ section.id }} .hr-science.is-visible .hr-science__solution {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  #shopify-section-{{ section.id }} .hr-science__solution-label {
+    display: table;
+    margin: 0 0 .75vw;
+    padding: .35vw 1.05vw .42vw;
+    color: var(--solution-label-text);
+    background: var(--solution-label-bg);
+    border-radius: 2vw;
+    font-family: var(--font-heading-family);
+    font-size: 1.15vw;
+    font-style: var(--font-heading-style);
+    font-weight: var(--font-heading-weight);
+    letter-spacing: 0;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  #shopify-section-{{ section.id }} .hr-science__solution-copy {
+    margin: 0;
+    font-size: 1.08vw;
+    font-weight: 500;
+    line-height: 1.3;
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .hr-science {
+      padding: 14vw 0 12vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-science__content {
+      width: 85vw;
+      margin: 0;
+    }
+
+    #shopify-section-{{ section.id }} .hr-science__eyebrow {
+      margin: 0 0 3vw;
+      font-size: 4.5vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-science__heading {
+      margin-bottom: 6vw;
+      padding: 2vw 3vw 2.4vw;
+      font-size: 7.2vw;
+      white-space: normal;
+    }
+
+    #shopify-section-{{ section.id }} .hr-science__intro {
+      max-width: none;
+      margin: 0 0 7vw;
+      font-size: 4.2vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-science__bullets {
+      gap: 4vw;
+      margin: 0 0 9vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-science__bullet {
+      grid-template-columns: 7vw minmax(0, 1fr);
+      gap: 2vw;
+      font-size: 4.1vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-science__arrow {
+      font-size: 7vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-science__button.button {
+      min-width: 66vw;
+      margin: 0;
+      padding: 3.4vw 6vw;
+      border-radius: 8vw;
+      font-size: 4.2vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-science__visual {
+      position: relative;
+      inset: auto;
+      width: 85vw;
+      aspect-ratio: .8;
+      margin-top: 12vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-science__product {
+      top: 0;
+      right: 12vw;
+      width: 60vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-science__solution {
+      width: 54vw;
+      padding: 5vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-science__solution--left {
+      top: 10vw;
+      left: 0;
+    }
+
+    #shopify-section-{{ section.id }} .hr-science__solution--right {
+      top: 59vw;
+      right: 0;
+    }
+
+    #shopify-section-{{ section.id }} .hr-science__solution-label {
+      margin-bottom: 3vw;
+      padding: 1.5vw 4vw 1.8vw;
+      border-radius: 7vw;
+      font-size: 4.2vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-science__solution-copy {
+      font-size: 3.8vw;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #shopify-section-{{ section.id }} .hr-science__solution {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  (() => {
+    const section = document.querySelector('[data-science-section="{{ section.id }}"]');
+
+    if (!section || section.dataset.animationReady === 'true') return;
+
+    section.dataset.animationReady = 'true';
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      section.classList.add('is-visible');
+      return;
+    }
+
+    if (!('IntersectionObserver' in window)) {
+      section.classList.add('is-visible');
+      return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+
+        section.classList.add('is-visible');
+        observer.disconnect();
+      });
+    }, { threshold: 0.25 });
+
+    observer.observe(section);
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "How SmartMouth Works",
+  "tag": "section",
+  "class": "section section-home-revamp-science",
+  "max_blocks": 8,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "THE SCIENCE"
+    },
+    {
+      "type": "text",
+      "id": "heading_prefix",
+      "label": "Heading before accent",
+      "default": "How "
+    },
+    {
+      "type": "text",
+      "id": "heading_accent",
+      "label": "Heading accent",
+      "default": "SmartMouth"
+    },
+    {
+      "type": "text",
+      "id": "heading_suffix",
+      "label": "Heading after accent",
+      "default": " works"
+    },
+    {
+      "type": "richtext",
+      "id": "intro",
+      "label": "Introduction",
+      "default": "<p>The two solutions have to be kept separate until the moment you pour — that’s what activates billions of zinc ions. Pour it in, use it fresh.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "EXPLORE THE SCIENCE"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Product image"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image",
+      "label": "Product image"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Image alt text",
+      "default": "SmartMouth two-solution bottle pouring into a cup"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#FBF5E3"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#06203C"
+    },
+    {
+      "type": "color",
+      "id": "heading_background",
+      "label": "Heading background",
+      "default": "#205085"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading text",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Heading accent",
+      "default": "#8CD1C4"
+    },
+    {
+      "type": "color",
+      "id": "arrow_color",
+      "label": "Arrows",
+      "default": "#04783F"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button",
+      "default": "#FF7701"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text",
+      "default": "#FFFFFF"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "bullet",
+      "name": "Bullet",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Two chambers, two solutions — kept apart until you pour"
+        }
+      ]
+    },
+    {
+      "type": "solution",
+      "name": "Solution card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "SOLUTION #1"
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "Body",
+          "default": "Instantly Eliminates\nExisting Sulfur Gas\n(AKA Bad Breath)"
+        },
+        {
+          "type": "select",
+          "id": "position",
+          "label": "Side and animation direction",
+          "default": "left",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ]
+        },
+        {
+          "type": "range",
+          "id": "card_width",
+          "min": 12,
+          "max": 22,
+          "step": 0.5,
+          "unit": "vw",
+          "label": "Desktop width",
+          "default": 16
+        },
+        {
+          "type": "range",
+          "id": "top_offset",
+          "min": -6,
+          "max": 15,
+          "step": 0.5,
+          "unit": "vw",
+          "label": "Desktop top offset",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "side_offset",
+          "min": -5,
+          "max": 50,
+          "step": 1,
+          "unit": "vw",
+          "label": "Desktop side offset",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "animation_delay",
+          "min": 0,
+          "max": 10,
+          "step": 1,
+          "unit": "x",
+          "label": "Animation delay",
+          "default": 0,
+          "info": "Each step adds 0.1 second."
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Background",
+          "default": "#205085"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text",
+          "default": "#FFFFFF"
+        },
+        {
+          "type": "color",
+          "id": "label_background",
+          "label": "Label background",
+          "default": "#A9D7EE"
+        },
+        {
+          "type": "color",
+          "id": "label_color",
+          "label": "Label text",
+          "default": "#06203C"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "How SmartMouth Works",
+      "category": "Home Revamp",
+      "blocks": [
+        {
+          "type": "bullet",
+          "settings": {
+            "text": "Two chambers, two solutions — kept apart until you pour"
+          }
+        },
+        {
+          "type": "bullet",
+          "settings": {
+            "text": "Pouring combines them — activating zinc ions instantly"
+          }
+        },
+        {
+          "type": "bullet",
+          "settings": {
+            "text": "Green means fresh and ready · blue means pour again"
+          }
+        },
+        {
+          "type": "solution",
+          "settings": {
+            "label": "SOLUTION #1",
+            "body": "Instantly Eliminates\nExisting Sulfur Gas\n(AKA Bad Breath)",
+            "position": "left",
+            "card_width": 16,
+            "top_offset": -2.5,
+            "side_offset": 41,
+            "animation_delay": 0,
+            "background_color": "#205085",
+            "text_color": "#FFFFFF",
+            "label_background": "#A9D7EE",
+            "label_color": "#06203C"
+          }
+        },
+        {
+          "type": "solution",
+          "settings": {
+            "label": "SOLUTION #2",
+            "body": "Activates Billions of Zinc\nIons to Block\nGerms & Prevent\nNew Bad Breath",
+            "position": "right",
+            "card_width": 15.5,
+            "top_offset": 1.5,
+            "side_offset": -1,
+            "animation_delay": 2,
+            "background_color": "#04783F",
+            "text_color": "#FFFFFF",
+            "label_background": "#8CD1C4",
+            "label_color": "#06203C"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
