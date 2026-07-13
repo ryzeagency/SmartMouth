@@ -194,12 +194,52 @@
         "button_color": "#ff7600",
         "button_text_color": "#ffffff"
       }
+    },
+    "smt_home_revamp_smart_zinc_gYfGTQ": {
+      "type": "smt-home-revamp-smart-zinc",
+      "blocks": {
+        "card_cdXBVp": {
+          "type": "card",
+          "settings": {
+            "heading": "The problem",
+            "lead": "Germs + protein = sulfur gas",
+            "body": "<p>Bacteria in your mouth eat protein from saliva and release stinky sulfur gas. That’s bad breath — and normal mouthwash just covers it up.</p>",
+            "background_color": "#bde3dd"
+          }
+        },
+        "card_jz6TpB": {
+          "type": "card",
+          "settings": {
+            "heading": "The solution",
+            "lead": "Zinc ions block the gas at the source",
+            "body": "<p>When our two solutions combine, they activate billions of zinc ions that block germs from producing sulfur — preventing bad breath for a full 24 hours.</p>",
+            "background_color": "#cfe2f4"
+          }
+        }
+      },
+      "block_order": [
+        "card_cdXBVp",
+        "card_jz6TpB"
+      ],
+      "name": "Smart-Zinc Technology",
+      "settings": {
+        "eyebrow": "SMART-ZINC™ TECHNOLOGY",
+        "heading_prefix": "Sulfur gas is the real cause of",
+        "heading_accent": "bad breath.",
+        "subheading": "Most mouthwashes mask it. SmartMouth eliminates it — for 24 hours — with just 2 rinses.",
+        "show_virus": true,
+        "virus_image": "shopify://shop_images/sulfur-virus.webp",
+        "background_color": "#FFFFFF",
+        "text_color": "#062342",
+        "accent_color": "#8FD7CD"
+      }
     }
   },
   "order": [
     "smt_home_revamp_hero_WND8LW",
     "smt_home_revamp_logo_marquee_k3xkz8",
     "smt_home_revamp_reason_to_pour_ifexUk",
-    "smt_home_revamp_find_your_rinse_zhddc7"
+    "smt_home_revamp_find_your_rinse_zhddc7",
+    "smt_home_revamp_smart_zinc_gYfGTQ"
   ]
 }
