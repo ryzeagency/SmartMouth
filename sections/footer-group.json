@@ -11,6 +11,30 @@
   "name": "t:sections.footer.name",
   "type": "footer",
   "sections": {
+    "about_find_your_match_GNc9DJ": {
+      "type": "about-find-your-match",
+      "name": "About Find Your Match",
+      "settings": {
+        "heading_first_line": "Every mouth is different.",
+        "heading_second_line": "Find your match.",
+        "body": "<p>Mouthwash, toothpaste, mints and travel packs — all built on the same Smart-Zinc™ Technology. Find the right one for you.</p>",
+        "button_label": "TAKE THE QUIZ",
+        "button_link": "",
+        "image": "shopify://shop_images/smart-mout-original.webp",
+        "image_alt": "SmartMouth Original mouthwash bottle",
+        "bottle_width": 20.5,
+        "bottle_offset": 1.5,
+        "circle_size": 32.5,
+        "circle_offset": 2.5,
+        "background_color": "#B3DFCA",
+        "circle_color": "#479B70",
+        "heading_background": "#00833D",
+        "heading_color": "#FFFFFF",
+        "text_color": "#092847",
+        "button_color": "#FF6D00",
+        "button_text_color": "#FFFFFF"
+      }
+    },
     "smt_home_revamp_klaviyo_signup_Mrmhfh": {
       "type": "smt-home-revamp-klaviyo-signup",
       "blocks": {
@@ -39,13 +63,13 @@
         "heading_bottom": "you from bad breath",
         "subheading": "Sign up for coupons, offers & updates",
         "randomize_background": true,
-        "background_color": "#ADD2EC",
+        "background_color": "#add2ec",
         "heading_background": "#205085",
-        "heading_color": "#FFFFFF",
+        "heading_color": "#ffffff",
         "text_color": "#205085",
-        "input_background": "#FFFFFF",
-        "button_color": "#FF7701",
-        "button_text_color": "#FFFFFF"
+        "input_background": "#ffffff",
+        "button_color": "#ff7701",
+        "button_text_color": "#ffffff"
       }
     },
     "available_in_BGCVXY": {
@@ -179,6 +203,7 @@
     }
   },
   "order": [
+    "about_find_your_match_GNc9DJ",
     "smt_home_revamp_klaviyo_signup_Mrmhfh",
     "available_in_BGCVXY",
     "newsletter_bar_WMzUjf",
