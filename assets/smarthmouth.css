@@ -779,3 +779,7 @@ product-info .loop-w-btn-group-purchase-option {
     position: relative;
     padding: 1.25vw;
 }
+
+product-info .product__title h1 {
+    font-size: 35px;
+}
