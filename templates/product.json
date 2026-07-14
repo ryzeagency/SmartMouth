@@ -149,6 +149,104 @@
         "padding_bottom": 52
       }
     },
+    "product_revamp_smart_zinc_technology_zfVPVw": {
+      "type": "product-revamp-smart-zinc-technology",
+      "blocks": {
+        "information_card_3q8Bpj": {
+          "type": "information_card",
+          "settings": {
+            "heading": "The problem",
+            "body": "<p>Germs + protein in your saliva = sulfur gas. That’s bad breath. And that’s what other mouthwashes ignore.</p>",
+            "background_color": "#bfe5de"
+          }
+        },
+        "information_card_YTQNEi": {
+          "type": "information_card",
+          "settings": {
+            "heading": "The Solution",
+            "body": "<p>When the two solutions combine, billions of zinc ions are activated — blocking germs from producing sulfur gas for 24 hours.</p>",
+            "background_color": "#d2e4f5"
+          }
+        }
+      },
+      "block_order": [
+        "information_card_3q8Bpj",
+        "information_card_YTQNEi"
+      ],
+      "name": "Product Smart-Zinc",
+      "settings": {
+        "eyebrow": "SMART-ZINC™ TECHNOLOGY",
+        "heading": "Sulfur gas is the real cause of",
+        "heading_highlight": "bad breath.",
+        "subheading": "<p>Most mouthwashes mask bad breath with flavor and alcohol. SmartMouth goes to the source — blocking germs from producing the sulfur gas that causes it, for a full 24 hours.</p>",
+        "card_position": "right",
+        "card_width": 36,
+        "desktop_background": "shopify://shop_images/smart-zinc-techno.webp",
+        "desktop_background_position": "center center",
+        "mobile_background_position": "center center",
+        "mobile_padding_top": 12,
+        "mobile_padding_bottom": 12,
+        "background_color": "#FFFFFF",
+        "text_color": "#092847",
+        "highlight_color": "#80D3C9"
+      }
+    },
+    "product_revamp_how_to_use_8Efi3M": {
+      "type": "product-revamp-how-to-use",
+      "blocks": {
+        "step_B7fmWJ": {
+          "type": "step",
+          "settings": {
+            "heading": "Pour the Sulfur Eliminator (green cap)",
+            "body": "<p>Open the green cap and pour to the 10mL mark on the provided cup.</p>"
+          }
+        },
+        "step_twJP7t": {
+          "type": "step",
+          "settings": {
+            "heading": "Add the Zinc Activator (blue cap)",
+            "body": "<p>Open the blue cap and pour to the 20mL mark in the same cup.</p>"
+          }
+        },
+        "step_3VDgwD": {
+          "type": "step",
+          "settings": {
+            "heading": "Swish for 30 seconds",
+            "body": "<p>Rinse thoroughly for 30 seconds. Spit out — do not swallow. Do not eat or drink for 30 minutes after rinsing.</p>"
+          }
+        },
+        "step_7wgjEN": {
+          "type": "step",
+          "settings": {
+            "heading": "Repeat twice daily",
+            "body": "<p>Morning and evening. Two rinses a day delivers 24-hour bad breath protection.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "step_B7fmWJ",
+        "step_twJP7t",
+        "step_3VDgwD",
+        "step_7wgjEN"
+      ],
+      "name": "Product How To Use",
+      "settings": {
+        "heading": "How to use:",
+        "card_position": "left",
+        "card_width": 48,
+        "desktop_background": "shopify://shop_images/how-to-use.webp",
+        "desktop_background_position": "center center",
+        "mobile_background_position": "center center",
+        "mobile_padding_top": 12,
+        "mobile_padding_bottom": 12,
+        "card_background": "#E6F2F4",
+        "card_opacity": 85,
+        "text_color": "#092847",
+        "number_background": "#20588F",
+        "number_text_color": "#FFFFFF",
+        "background_color": "#DCEFF1"
+      }
+    },
     "product_customer_review_zzHYdM": {
       "type": "product-customer-review",
       "name": "Amazon Reviews",
@@ -207,21 +305,23 @@
         "amazon_link": "",
         "shop_label": "SHOP ONLINE",
         "shop_link": "",
-        "background_color": "#9A96BC",
-        "glass_color": "#E2DCFA",
+        "background_color": "#9a96bc",
+        "glass_color": "#e2dcfa",
         "glass_opacity": 22,
-        "text_color": "#FFFFFF",
-        "heading_background": "#865CE6",
-        "heading_color": "#FFFFFF",
-        "heading_accent_color": "#C8B7FF",
-        "button_color": "#FF7701",
-        "button_text_color": "#FFFFFF"
+        "text_color": "#ffffff",
+        "heading_background": "#865ce6",
+        "heading_color": "#ffffff",
+        "heading_accent_color": "#c8b7ff",
+        "button_color": "#ff7701",
+        "button_text_color": "#ffffff"
       }
     }
   },
   "order": [
     "main",
     "related-products",
+    "product_revamp_smart_zinc_technology_zfVPVw",
+    "product_revamp_how_to_use_8Efi3M",
     "product_customer_review_zzHYdM",
     "smt_home_revamp_available_q7eJxW"
   ]
