@@ -138,21 +138,9 @@
         "padding_bottom": 76
       }
     },
-    "product_mouthwash_info_EEaENx": {
-      "type": "product-mouthwash-info",
-      "name": "Mouthwash Product Info",
-      "settings": {
-        "p1_title": "The Science Behind Fresh Breath",
-        "p1_text": "<p>SmartMouth™ is not your ordinary mouthwash for bad breath. What sets it apart is our patented zinc ion technology, contained within our Original Activated Breath Rinse. This technology activates as you mix Solution 1 and Solution 2, producing a powerful zinc ion solution scientifically proven to neutralize the sulfur gases that cause bad breath. By addressing bad breath at its source, SmartMouth™ ensures that once your breath is fresh, it remains that way throughout the day and night.</p><p>When it comes to bad breath prevention mouthwash, SmartMouth™ stands unrivaled. Our commitment to quality and science-backed solutions means that each bottle of SmartMouth™ Original Activated Breath Rinse is designed to give you confidence in every smile and conversation.</p>",
-        "p1_image": "shopify://shop_images/before-after-mouthwash.jpg",
-        "p2_image": "shopify://shop_images/How-it-works-v1-w-title-scaled.png",
-        "p3_image": "shopify://shop_images/fresh-breath-that-lasts.jpg",
-        "p3_title": "Fresh Breath That Lasts",
-        "p3_text": "<p>Our commitment to innovation and quality means you’re getting a product that’s been carefully crafted to meet your needs. The patented zinc ion technology in SmartMouth™ Dry Mouth Relief Mouthwash is the result of rigorous research and a deep understanding of oral health science.</p><p>Don’t let dry mouth hold you back any longer. Discover the refreshing, moisturizing relief of SmartMouth™ Dry Mouth Activated Oral Rinse and step into a world of comfort and confidence. Try it today and feel the immediate difference it makes.</p>"
-      }
-    },
     "related-products": {
       "type": "related-products",
+      "disabled": true,
       "settings": {
         "heading": "<strong>You may also like</strong>",
         "heading_size": "h1",
@@ -171,6 +159,7 @@
     },
     "product_customer_review_zzHYdM": {
       "type": "product-customer-review",
+      "disabled": true,
       "name": "Amazon Reviews",
       "settings": {
         "heading": "Customer Reviews",
@@ -179,12 +168,70 @@
         "padding_top": 48,
         "padding_bottom": 48
       }
+    },
+    "smt_home_revamp_available_q7eJxW": {
+      "type": "smt-home-revamp-available",
+      "blocks": {
+        "retailer_TmgHrA": {
+          "type": "retailer",
+          "settings": {
+            "image": "shopify://shop_images/walmart.png",
+            "logo_style": "walmart",
+            "text": "Walmart",
+            "alt": "Walmart",
+            "logo_width": 14,
+            "logo_color": "#0071ce",
+            "link": ""
+          }
+        },
+        "retailer_r79K6Y": {
+          "type": "retailer",
+          "settings": {
+            "image": "shopify://shop_images/walgreens.png",
+            "logo_style": "walgreens",
+            "text": "Walgreens",
+            "alt": "Walgreens",
+            "logo_width": 15,
+            "logo_color": "#e31837",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "retailer_TmgHrA",
+        "retailer_r79K6Y"
+      ],
+      "name": "Available Nationwide",
+      "settings": {
+        "background_image": "shopify://shop_images/ChatGPT_Image_Jul_13_2026_04_03_58_PM.webp",
+        "bottle_image": "shopify://shop_images/smartmouth-bottle.webp",
+        "bottle_alt": "SmartMouth Dry Mouth mouthwash",
+        "heading_prefix": "Available at",
+        "heading_accent": "40,000+",
+        "heading_suffix": "stores nationwide",
+        "body": "<p>Available at Walmart · Walgreens.<br/><strong>Or skip the trip and subscribe online.</strong></p>",
+        "store_label": "FIND A STORE NEAR ME",
+        "store_link": "",
+        "amazon_label": "SHOP ON AMAZON",
+        "amazon_link": "",
+        "shop_label": "SHOP ONLINE",
+        "shop_link": "",
+        "background_color": "#9A96BC",
+        "glass_color": "#E2DCFA",
+        "glass_opacity": 22,
+        "text_color": "#FFFFFF",
+        "heading_background": "#865CE6",
+        "heading_color": "#FFFFFF",
+        "heading_accent_color": "#C8B7FF",
+        "button_color": "#FF7701",
+        "button_text_color": "#FFFFFF"
+      }
     }
   },
   "order": [
     "main",
-    "product_mouthwash_info_EEaENx",
     "related-products",
-    "product_customer_review_zzHYdM"
+    "product_customer_review_zzHYdM",
+    "smt_home_revamp_available_q7eJxW"
   ]
 }
