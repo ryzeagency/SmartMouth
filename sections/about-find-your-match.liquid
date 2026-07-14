@@ -1,0 +1,404 @@
+{%- assign bottle_alt = section.settings.image_alt | default: 'SmartMouth Original mouthwash bottle' -%}
+
+<section class="about-match" aria-labelledby="AboutMatchHeading-{{ section.id }}">
+  <div class="about-match__inner">
+    <div class="about-match__visual">
+      <span class="about-match__circle" aria-hidden="true"></span>
+
+      {%- if section.settings.image != blank -%}
+        <img
+          class="about-match__bottle"
+          src="{{ section.settings.image | image_url: width: 1000 }}"
+          srcset="
+            {{ section.settings.image | image_url: width: 400 }} 400w,
+            {{ section.settings.image | image_url: width: 600 }} 600w,
+            {{ section.settings.image | image_url: width: 800 }} 800w,
+            {{ section.settings.image | image_url: width: 1000 }} 1000w
+          "
+          sizes="(min-width: 750px) {{ section.settings.bottle_width }}vw, 45vw"
+          width="{{ section.settings.image.width }}"
+          height="{{ section.settings.image.height }}"
+          alt="{{ section.settings.image.alt | default: bottle_alt | escape }}"
+          loading="lazy"
+        >
+      {%- else -%}
+        <img
+          class="about-match__bottle"
+          src="{{ '7f45423d-441c-410e-98a0-a7b404b70f87.png' | asset_url }}"
+          width="394"
+          height="688"
+          alt="{{ bottle_alt | escape }}"
+          loading="lazy"
+        >
+      {%- endif -%}
+    </div>
+
+    <div class="about-match__content">
+      <h2 class="about-match__heading" id="AboutMatchHeading-{{ section.id }}">
+        {%- if section.settings.heading_first_line != blank -%}
+          <span>{{ section.settings.heading_first_line | escape }}</span>
+        {%- endif -%}
+        {%- if section.settings.heading_second_line != blank -%}
+          <span>{{ section.settings.heading_second_line | escape }}</span>
+        {%- endif -%}
+      </h2>
+
+      {%- if section.settings.body != blank -%}
+        <div class="about-match__body rte">{{ section.settings.body }}</div>
+      {%- endif -%}
+
+      {%- if section.settings.button_label != blank -%}
+        {%- if section.settings.button_link != blank -%}
+          <a class="about-match__button" href="{{ section.settings.button_link }}">
+            <span>{{ section.settings.button_label | escape }}</span>
+            <span aria-hidden="true">→</span>
+          </a>
+        {%- else -%}
+          <span class="about-match__button">
+            <span>{{ section.settings.button_label | escape }}</span>
+            <span aria-hidden="true">→</span>
+          </span>
+        {%- endif -%}
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --about-body-size: 1vw;
+    --about-body-size-mobile: 4vw;
+    --about-match-background: {{ section.settings.background_color }};
+    --about-match-circle: {{ section.settings.circle_color }};
+    --about-match-heading-background: {{ section.settings.heading_background }};
+    --about-match-heading-text: {{ section.settings.heading_color }};
+    --about-match-text: {{ section.settings.text_color }};
+    --about-match-button: {{ section.settings.button_color }};
+    --about-match-button-text: {{ section.settings.button_text_color }};
+    --about-match-bottle-width: {{ section.settings.bottle_width }}vw;
+    --about-match-circle-size: {{ section.settings.circle_size }}vw;
+    --about-match-bottle-offset: {{ section.settings.bottle_offset }}vw;
+    --about-match-circle-offset: {{ section.settings.circle_offset }}vw;
+  }
+
+  #shopify-section-{{ section.id }} .about-match {
+    padding: 1.3vw 0 0.5vw;
+    color: var(--about-match-text);
+    background: var(--about-match-background);
+  }
+
+  #shopify-section-{{ section.id }} .about-match__inner {
+    display: grid;
+    grid-template-columns: 36vw minmax(0, 1fr);
+    align-items: center;
+    column-gap: 8.7vw;
+    width: 85vw;
+    margin-inline: auto;
+  }
+
+  #shopify-section-{{ section.id }} .about-match__visual {
+    display: grid;
+    align-items: start;
+    justify-items: center;
+    width: 36vw;
+  }
+
+  #shopify-section-{{ section.id }} .about-match__circle,
+  #shopify-section-{{ section.id }} .about-match__bottle {
+    grid-area: 1 / 1;
+  }
+
+  #shopify-section-{{ section.id }} .about-match__circle {
+    z-index: 0;
+    width: var(--about-match-circle-size);
+    aspect-ratio: 1;
+    margin-top: var(--about-match-circle-offset);
+    background: var(--about-match-circle);
+    border-radius: 50%;
+  }
+
+  #shopify-section-{{ section.id }} .about-match__bottle {
+    z-index: 1;
+    display: block;
+    width: var(--about-match-bottle-width);
+    max-width: 100%;
+    object-fit: contain;
+    transform: translateX(var(--about-match-bottle-offset));
+  }
+
+  #shopify-section-{{ section.id }} .about-match__content {
+    min-width: 0;
+  }
+
+  #shopify-section-{{ section.id }} .about-match__heading {
+    margin: 0;
+    color: var(--about-match-heading-text);
+    font-family: var(--font-heading-family);
+    font-size: 2.35vw;
+    font-style: var(--font-heading-style);
+    font-weight: var(--font-heading-weight);
+    letter-spacing: 0;
+    line-height: 1;
+  }
+
+  #shopify-section-{{ section.id }} .about-match__heading span {
+    display: table;
+    padding: 0.45vw 1vw 0.6vw;
+    background: var(--about-match-heading-background);
+  }
+
+  #shopify-section-{{ section.id }} .about-match__heading span + span {
+    margin-top: -0.05vw;
+  }
+
+  #shopify-section-{{ section.id }} .about-match__body {
+    max-width: 31vw;
+    margin-top: 1.15vw;
+    color: var(--about-match-text);
+    font-family: var(--font-body-family);
+    font-size: var(--about-body-size);
+    font-style: var(--font-body-style);
+    font-weight: var(--font-body-weight);
+    line-height: 1.4;
+  }
+
+  #shopify-section-{{ section.id }} .about-match__body p {
+    margin: 0;
+  }
+
+  #shopify-section-{{ section.id }} .about-match__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45vw;
+    margin-top: 1.75vw;
+    padding: 0.9vw 1.8vw 1vw;
+    color: var(--about-match-button-text);
+    background: var(--about-match-button);
+    border-radius: 2vw;
+    font-family: var(--font-body-family);
+    font-size: 1.05vw;
+    font-style: var(--font-body-style);
+    font-weight: 800;
+    line-height: 1;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: opacity 180ms ease, transform 180ms ease;
+  }
+
+  #shopify-section-{{ section.id }} a.about-match__button:hover {
+    opacity: 0.82;
+    transform: translateY(-0.1vw);
+  }
+
+  #shopify-section-{{ section.id }} a.about-match__button:focus-visible {
+    outline: 0.15vw solid var(--about-match-heading-background);
+    outline-offset: 0.2vw;
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .about-match {
+      padding: 8vw 0 14vw;
+    }
+
+    #shopify-section-{{ section.id }} .about-match__inner {
+      grid-template-columns: 1fr;
+      row-gap: 10vw;
+    }
+
+    #shopify-section-{{ section.id }} .about-match__visual {
+      width: 78vw;
+      margin-inline: auto;
+    }
+
+    #shopify-section-{{ section.id }} .about-match__circle {
+      width: 70vw;
+      margin-top: 5vw;
+    }
+
+    #shopify-section-{{ section.id }} .about-match__bottle {
+      width: 45vw;
+      transform: translateX(3vw);
+    }
+
+    #shopify-section-{{ section.id }} .about-match__heading {
+      font-size: 8.2vw;
+    }
+
+    #shopify-section-{{ section.id }} .about-match__heading span {
+      padding: 1.8vw 3vw 2.2vw;
+    }
+
+    #shopify-section-{{ section.id }} .about-match__body {
+      max-width: none;
+      margin-top: 6vw;
+      font-size: var(--about-body-size-mobile);
+      line-height: 1.45;
+    }
+
+    #shopify-section-{{ section.id }} .about-match__button {
+      gap: 2vw;
+      margin-top: 7vw;
+      padding: 3.8vw 7vw 4.2vw;
+      border-radius: 8vw;
+      font-size: 4vw;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #shopify-section-{{ section.id }} .about-match__button {
+      transition: none;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "About Find Your Match",
+  "tag": "section",
+  "class": "section section-about-find-your-match",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "heading_first_line",
+      "label": "First heading line",
+      "default": "Every mouth is different."
+    },
+    {
+      "type": "text",
+      "id": "heading_second_line",
+      "label": "Second heading line",
+      "default": "Find your match."
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Body",
+      "default": "<p>Mouthwash, toothpaste, mints and travel packs — all built on the same Smart-Zinc™ Technology. Find the right one for you.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "TAKE THE QUIZ"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Bottle"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Bottle image",
+      "info": "Leave blank to use 7f45423d-441c-410e-98a0-a7b404b70f87.png from theme assets."
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Image alt text",
+      "default": "SmartMouth Original mouthwash bottle"
+    },
+    {
+      "type": "range",
+      "id": "bottle_width",
+      "min": 16,
+      "max": 26,
+      "step": 0.5,
+      "unit": "vw",
+      "label": "Desktop bottle width",
+      "default": 20.5
+    },
+    {
+      "type": "range",
+      "id": "bottle_offset",
+      "min": -5,
+      "max": 5,
+      "step": 0.5,
+      "unit": "vw",
+      "label": "Bottle horizontal offset",
+      "default": 1.5
+    },
+    {
+      "type": "range",
+      "id": "circle_size",
+      "min": 28,
+      "max": 38,
+      "step": 0.5,
+      "unit": "vw",
+      "label": "Circle size",
+      "default": 32.5
+    },
+    {
+      "type": "range",
+      "id": "circle_offset",
+      "min": 0,
+      "max": 6,
+      "step": 0.5,
+      "unit": "vw",
+      "label": "Circle vertical offset",
+      "default": 2.5
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Section background",
+      "default": "#B3DFCA"
+    },
+    {
+      "type": "color",
+      "id": "circle_color",
+      "label": "Circle background",
+      "default": "#479B70"
+    },
+    {
+      "type": "color",
+      "id": "heading_background",
+      "label": "Heading background",
+      "default": "#00833D"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading text",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Body text",
+      "default": "#092847"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button background",
+      "default": "#FF6D00"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text",
+      "default": "#FFFFFF"
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Find Your Match",
+      "category": "About Revamp"
+    }
+  ]
+}
+{% endschema %}
