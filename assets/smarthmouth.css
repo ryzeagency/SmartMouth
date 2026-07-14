@@ -735,3 +735,7 @@ product-info > .page-width {
     padding: 5vw;
     border-radius: 2.5VW;
 }
+
+.es-badge-container {
+    background: transparent;
+}
