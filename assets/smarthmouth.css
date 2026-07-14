@@ -769,7 +769,7 @@ product-info .loop-w-btn-group-purchase-option-price {
     color: #205085;
 }
 
-.loop-w-btn-group-purchase-option-discount-badge {
+product-info .loop-w-btn-group-purchase-option-discount-badge {
     position: absolute;
     left: 0;
     right: 0;
@@ -779,7 +779,7 @@ product-info .loop-w-btn-group-purchase-option-price {
     color: #fff;
 }
 
-.loop-w-btn-group-purchase-option {
+product-info .loop-w-btn-group-purchase-option {
     position: relative;
     padding: 1.25vw;
 }
