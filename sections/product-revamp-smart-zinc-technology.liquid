@@ -1,0 +1,416 @@
+<section
+  class="product-tech product-tech--cards-{{ section.settings.card_position }}"
+  aria-labelledby="ProductTechHeading-{{ section.id }}"
+>
+  <div class="product-tech__inner">
+    <header class="product-tech__header">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="product-tech__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      {%- endif -%}
+
+      <h2 class="product-tech__heading" id="ProductTechHeading-{{ section.id }}">
+        {{ section.settings.heading | escape }}{% if section.settings.heading_highlight != blank %}
+          <em>{{ section.settings.heading_highlight | escape }}</em>
+        {% endif %}
+      </h2>
+
+      {%- if section.settings.subheading != blank -%}
+        <div class="product-tech__subheading rte">{{ section.settings.subheading }}</div>
+      {%- endif -%}
+    </header>
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="product-tech__cards-area">
+        <div class="product-tech__cards" role="list">
+          {%- for block in section.blocks -%}
+            <article
+              class="product-tech__card"
+              style="--product-tech-card-background: {{ block.settings.background_color }};"
+              role="listitem"
+              {{ block.shopify_attributes }}
+            >
+              {%- if block.settings.heading != blank -%}
+                <h3>{{ block.settings.heading | escape }}</h3>
+              {%- endif -%}
+              {%- if block.settings.body != blank -%}
+                <div class="product-tech__card-body rte">{{ block.settings.body }}</div>
+              {%- endif -%}
+            </article>
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --product-body-size: 1vw;
+    --product-body-size-mobile: 4vw;
+    --product-tech-background: {{ section.settings.background_color }};
+    --product-tech-text: {{ section.settings.text_color }};
+    --product-tech-highlight: {{ section.settings.highlight_color }};
+    --product-tech-card-width: {{ section.settings.card_width }}vw;
+  }
+
+  #shopify-section-{{ section.id }} .product-tech {
+    padding: 3.8vw 0 5.5vw;
+    color: var(--product-tech-text);
+    background-color: var(--product-tech-background);
+    background-image: {% if section.settings.desktop_background != blank %}url('{{ section.settings.desktop_background | image_url: width: 3840 }}'){% else %}none{% endif %};
+    background-repeat: no-repeat;
+    background-position: {{ section.settings.desktop_background_position }};
+    background-size: cover;
+  }
+
+  #shopify-section-{{ section.id }} .product-tech__inner {
+    width: 85vw;
+    margin-inline: auto;
+  }
+
+  #shopify-section-{{ section.id }} .product-tech__header {
+    text-align: center;
+  }
+
+  #shopify-section-{{ section.id }} .product-tech__eyebrow {
+    margin: 0 0 0.7vw;
+    color: inherit;
+    font-family: var(--font-body-family);
+    font-size: 1.45vw;
+    font-style: var(--font-body-style);
+    font-weight: 500;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  #shopify-section-{{ section.id }} .product-tech__heading {
+    margin: 0;
+    color: inherit;
+    font-family: var(--font-heading-family);
+    font-size: 2.55vw;
+    font-style: var(--font-heading-style);
+    font-weight: var(--font-heading-weight);
+    letter-spacing: 0;
+    line-height: 1.05;
+  }
+
+  #shopify-section-{{ section.id }} .product-tech__heading em {
+    color: var(--product-tech-highlight);
+    font-style: inherit;
+  }
+
+  #shopify-section-{{ section.id }} .product-tech__subheading {
+    max-width: 70vw;
+    margin: 1.25vw auto 0;
+    color: inherit;
+    font-family: var(--font-body-family);
+    font-size: 1.1vw;
+    font-style: italic;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+
+  #shopify-section-{{ section.id }} .product-tech__subheading p,
+  #shopify-section-{{ section.id }} .product-tech__card-body p {
+    margin: 0;
+  }
+
+  #shopify-section-{{ section.id }} .product-tech__cards-area {
+    display: flex;
+    width: 70vw;
+    margin: 3vw auto 0;
+  }
+
+  #shopify-section-{{ section.id }} .product-tech--cards-left .product-tech__cards-area {
+    justify-content: flex-start;
+  }
+
+  #shopify-section-{{ section.id }} .product-tech--cards-right .product-tech__cards-area {
+    justify-content: flex-end;
+  }
+
+  #shopify-section-{{ section.id }} .product-tech__cards {
+    display: grid;
+    gap: 1.15vw;
+    width: var(--product-tech-card-width);
+  }
+
+  #shopify-section-{{ section.id }} .product-tech__card {
+    padding: 2.25vw 2.15vw 2.45vw;
+    color: inherit;
+    background: var(--product-tech-card-background);
+  }
+
+  #shopify-section-{{ section.id }} .product-tech__card h3 {
+    margin: 0 0 1vw;
+    color: inherit;
+    font-family: var(--font-heading-family);
+    font-size: 1.85vw;
+    font-style: var(--font-heading-style);
+    font-weight: var(--font-heading-weight);
+    line-height: 1.1;
+  }
+
+  #shopify-section-{{ section.id }} .product-tech__card-body {
+    color: inherit;
+    font-family: var(--font-body-family);
+    font-size: var(--product-body-size);
+    font-style: var(--font-body-style);
+    font-weight: var(--font-body-weight);
+    line-height: 1.3;
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .product-tech {
+      padding: {{ section.settings.mobile_padding_top }}vw 0 {{ section.settings.mobile_padding_bottom }}vw;
+      background-image: {% if section.settings.mobile_background != blank %}url('{{ section.settings.mobile_background | image_url: width: 1600 }}'){% elsif section.settings.desktop_background != blank %}url('{{ section.settings.desktop_background | image_url: width: 1600 }}'){% else %}none{% endif %};
+      background-position: {{ section.settings.mobile_background_position }};
+    }
+
+    #shopify-section-{{ section.id }} .product-tech__eyebrow {
+      margin-bottom: 3vw;
+      font-size: 4vw;
+    }
+
+    #shopify-section-{{ section.id }} .product-tech__heading {
+      font-size: 8vw;
+    }
+
+    #shopify-section-{{ section.id }} .product-tech__subheading {
+      max-width: none;
+      margin-top: 5vw;
+      font-size: var(--product-body-size-mobile);
+      line-height: 1.45;
+    }
+
+    #shopify-section-{{ section.id }} .product-tech__cards-area {
+      width: 85vw;
+      margin-top: 10vw;
+    }
+
+    #shopify-section-{{ section.id }} .product-tech__cards {
+      gap: 5vw;
+      width: 85vw;
+    }
+
+    #shopify-section-{{ section.id }} .product-tech__card {
+      padding: 7vw 6vw;
+    }
+
+    #shopify-section-{{ section.id }} .product-tech__card h3 {
+      margin-bottom: 3vw;
+      font-size: 7vw;
+    }
+
+    #shopify-section-{{ section.id }} .product-tech__card-body {
+      font-size: var(--product-body-size-mobile);
+      line-height: 1.45;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Product Smart-Zinc",
+  "tag": "section",
+  "class": "section section-product-revamp-technology",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "SMART-ZINC™ TECHNOLOGY"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Sulfur gas is the real cause of"
+    },
+    {
+      "type": "text",
+      "id": "heading_highlight",
+      "label": "Highlighted heading text",
+      "default": "bad breath."
+    },
+    {
+      "type": "richtext",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "<p>Most mouthwashes mask bad breath with flavor and alcohol. SmartMouth goes to the source — blocking germs from producing the sulfur gas that causes it, for a full 24 hours.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Desktop cards"
+    },
+    {
+      "type": "select",
+      "id": "card_position",
+      "label": "Card position",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "right"
+    },
+    {
+      "type": "range",
+      "id": "card_width",
+      "min": 30,
+      "max": 45,
+      "step": 1,
+      "unit": "vw",
+      "label": "Card width",
+      "default": 36
+    },
+    {
+      "type": "header",
+      "content": "Background images"
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_background",
+      "label": "Desktop background"
+    },
+    {
+      "type": "select",
+      "id": "desktop_background_position",
+      "label": "Desktop image position",
+      "options": [
+        { "value": "center center", "label": "Center" },
+        { "value": "center top", "label": "Top" },
+        { "value": "center bottom", "label": "Bottom" },
+        { "value": "left center", "label": "Left" },
+        { "value": "right center", "label": "Right" }
+      ],
+      "default": "center center"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_background",
+      "label": "Mobile background",
+      "info": "Falls back to the desktop image when blank."
+    },
+    {
+      "type": "select",
+      "id": "mobile_background_position",
+      "label": "Mobile image position",
+      "options": [
+        { "value": "center center", "label": "Center" },
+        { "value": "center top", "label": "Top" },
+        { "value": "center bottom", "label": "Bottom" },
+        { "value": "left center", "label": "Left" },
+        { "value": "right center", "label": "Right" }
+      ],
+      "default": "center center"
+    },
+    {
+      "type": "header",
+      "content": "Mobile spacing"
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "vw",
+      "label": "Top spacing",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "vw",
+      "label": "Bottom spacing",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background fallback",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#092847"
+    },
+    {
+      "type": "color",
+      "id": "highlight_color",
+      "label": "Highlighted heading",
+      "default": "#80D3C9"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "information_card",
+      "name": "Information card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "The problem"
+        },
+        {
+          "type": "richtext",
+          "id": "body",
+          "label": "Body",
+          "default": "<p>Germs + protein in your saliva = sulfur gas. That’s bad breath. And that’s what other mouthwashes ignore.</p>"
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Background",
+          "default": "#BFE5DE"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Smart-Zinc",
+      "category": "Product Revamp",
+      "blocks": [
+        {
+          "type": "information_card",
+          "settings": {
+            "heading": "The problem",
+            "body": "<p>Germs + protein in your saliva = sulfur gas. That’s bad breath. And that’s what other mouthwashes ignore.</p>",
+            "background_color": "#BFE5DE"
+          }
+        },
+        {
+          "type": "information_card",
+          "settings": {
+            "heading": "The Solution",
+            "body": "<p>When the two solutions combine, billions of zinc ions are activated — blocking germs from producing sulfur gas for 24 hours.</p>",
+            "background_color": "#D2E4F5"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
