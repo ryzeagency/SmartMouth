@@ -169,6 +169,17 @@
         "padding_bottom": 48
       }
     },
+    "product_customer_review_MJXLBB": {
+      "type": "product-customer-review",
+      "name": "Amazon Reviews",
+      "settings": {
+        "heading": "Customer Reviews",
+        "text_alignment": "center",
+        "background_color": "#ffffff",
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
     "smt_home_revamp_available_q7eJxW": {
       "type": "smt-home-revamp-available",
       "blocks": {
@@ -232,6 +243,7 @@
     "main",
     "related-products",
     "product_customer_review_zzHYdM",
+    "product_customer_review_MJXLBB",
     "smt_home_revamp_available_q7eJxW"
   ]
 }
