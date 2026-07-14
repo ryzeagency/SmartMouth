@@ -193,6 +193,52 @@
         "check_color": "#00833D"
       }
     },
+    "product_revamp_what_it_does_XV9NWG": {
+      "type": "product-revamp-what-it-does",
+      "blocks": {
+        "benefit_WxdYpE": {
+          "type": "benefit",
+          "settings": {
+            "heading": "24-hour bad breath protection",
+            "body": "<p>Two rinses a day keeps bad breath away — morning and evening, for all-day confidence.</p>"
+          }
+        },
+        "benefit_dCU6kG": {
+          "type": "benefit",
+          "settings": {
+            "heading": "No more morning breath",
+            "body": "<p>SmartMouth’s dual-solution formula stops odor-causing bacteria overnight, so you wake up fresh.</p>"
+          }
+        },
+        "benefit_XyeAPe": {
+          "type": "benefit",
+          "settings": {
+            "heading": "Works through coffee, garlic, onions",
+            "body": "<p>Because it blocks sulfur production at the source, not just covers it up temporarily.</p>"
+          }
+        },
+        "benefit_F7iUny": {
+          "type": "benefit",
+          "settings": {
+            "heading": "Safe for the whole family",
+            "body": "<p>Alcohol-free, safe for kids 6+ and safe for diabetics. Paraben-free</p>"
+          }
+        }
+      },
+      "block_order": [
+        "benefit_WxdYpE",
+        "benefit_dCU6kG",
+        "benefit_XyeAPe",
+        "benefit_F7iUny"
+      ],
+      "name": "Product What It Does",
+      "settings": {
+        "heading": "What it does. Who it’s for.",
+        "background_color": "#FBF6E6",
+        "card_background": "#FFFFFF",
+        "text_color": "#092847"
+      }
+    },
     "product_revamp_smart_zinc_technology_zfVPVw": {
       "type": "product-revamp-smart-zinc-technology",
       "blocks": {
@@ -365,6 +411,7 @@
     "main",
     "related-products",
     "product_revamp_why_bottle_zm4ppQ",
+    "product_revamp_what_it_does_XV9NWG",
     "product_revamp_smart_zinc_technology_zfVPVw",
     "product_revamp_how_to_use_8Efi3M",
     "product_customer_review_zzHYdM",
