@@ -28,9 +28,9 @@
         "body": "<p>SmartMouth™ has done one thing since 1993 — and done it better than anyone: eliminate bad breath at the source and keep it gone, all day, every day.</p>",
         "image_position": "right",
         "image_width": 35,
-        "background_color": "#24588E",
-        "text_color": "#FFFFFF",
-        "highlight_color": "#FF7200",
+        "background_color": "#24588e",
+        "text_color": "#ffffff",
+        "highlight_color": "#ff7200",
         "padding_top": 7.5,
         "padding_bottom": 8.5
       }
@@ -93,8 +93,8 @@
       "settings": {
         "accessible_label": "SmartMouth by the numbers",
         "animation_duration": 2.5,
-        "background_color": "#88CFC6",
-        "text_color": "#FFFFFF"
+        "background_color": "#88cfc6",
+        "text_color": "#ffffff"
       }
     },
     "about_photograph_pXdmFG": {
@@ -106,15 +106,17 @@
         "heading_second_line": "Nobody was solving it.",
         "body": "<p>In 1993, Dr. Marvin Cohen — a leading authority on the study of bad breath — recognized a problem no one was addressing: every product on the market only masked bad breath temporarily, because none of them eliminated the underlying cause.</p><p>The real cause of bad breath is sulfur gas, produced when bacteria in your mouth consume protein particles from your saliva. No amount of mint flavour or alcohol can stop that process. Dr. Cohen knew a smarter approach was needed.</p><p>Years of research led him to zinc ion technology — a patented system that activates when two solutions combine, releasing billions of zinc ions that block germs from producing sulfur gas entirely. Not for an hour. For 24 hours.</p>",
         "quote": "Nothing on the market addressed the underlying issue. Preventing bad breath required a smarter approach.",
-        "image_rotation": -7,
+        "image": "shopify://shop_images/photograph-man-about.webp",
+        "image_alt": "Dr. Marvin Cohen holding an early SmartMouth bottle",
         "image_margin_top": -5.5,
         "image_margin_bottom": -3.5,
         "image_margin_start": -1.5,
-        "background_color": "#E4F2FA",
+        "enable_animation": true,
+        "animation_duration": 1.6,
+        "background_color": "#e4f2fa",
         "text_color": "#092847",
         "eyebrow_color": "#205085",
-        "accent_color": "#7FD1C8",
-        "frame_color": "#FFFFFF"
+        "accent_color": "#7fd1c8"
       }
     },
     "smt_home_revamp_logo_marquee_B66QDn": {
@@ -174,7 +176,7 @@
       "name": "Home Revamp Logos",
       "settings": {
         "accessible_label": "As featured in",
-        "background_color": "#8BC1E4",
+        "background_color": "#8bc1e4",
         "speed": 30,
         "pause_hover": true
       }
