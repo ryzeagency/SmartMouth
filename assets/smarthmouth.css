@@ -796,3 +796,17 @@ product-info small#shopify-buyer-consent {
 product-info .product-form__buttons {
     max-width: 100%;
 }
+
+product-info .product-form__submit {
+    background: #205085;
+    color: #fff;
+    font-size: 18px;
+    height: 60px;
+    font-weight: 700;
+    border-radius: 50px;
+    text-transform: uppercase;
+}
+
+product-info .product-form__submit::before, product-info .product-form__submit::after {
+    display: none;
+}
