@@ -757,8 +757,8 @@ product-info > .page-width {
 .loop-w-btn-group-purchase-option-selected .loop-w-btn-group-purchase-option-label, .loop-w-btn-group-purchase-option-selected .loop-w-btn-group-purchase-option-price {color: #fff;}
 
 .loop-w-btn-group-purchase-option-price {
-    font-size: 25px;
-    font-weight: 700;
+    font-size: 25px !important;
+    font-weight: 700 !important;
 }
 
 .loop-w-btn-group-purchase-option-price {
