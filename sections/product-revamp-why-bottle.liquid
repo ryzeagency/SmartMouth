@@ -1,0 +1,408 @@
+<section
+  class="product-bottle product-bottle--image-{{ section.settings.image_position }}"
+  aria-labelledby="ProductBottleHeading-{{ section.id }}"
+>
+  <div class="product-bottle__inner">
+    <div class="product-bottle__media">
+      {%- if section.settings.image != blank -%}
+        <img
+          class="product-bottle__image"
+          src="{{ section.settings.image | image_url: width: 1800 }}"
+          srcset="
+            {{ section.settings.image | image_url: width: 800 }} 800w,
+            {{ section.settings.image | image_url: width: 1200 }} 1200w,
+            {{ section.settings.image | image_url: width: 1600 }} 1600w,
+            {{ section.settings.image | image_url: width: 1800 }} 1800w
+          "
+          sizes="(min-width: 750px) {{ section.settings.image_width }}vw, 85vw"
+          width="{{ section.settings.image.width }}"
+          height="{{ section.settings.image.height }}"
+          alt="{{ section.settings.image.alt | default: section.settings.image_alt | escape }}"
+          loading="lazy"
+        >
+      {%- endif -%}
+    </div>
+
+    <div class="product-bottle__content">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="product-bottle__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      {%- endif -%}
+
+      <h2 class="product-bottle__heading" id="ProductBottleHeading-{{ section.id }}">
+        {{- section.settings.heading | escape | newline_to_br -}}
+      </h2>
+
+      {%- if section.blocks.size > 0 -%}
+        <ul class="product-bottle__list" role="list">
+          {%- for block in section.blocks -%}
+            <li
+              class="product-bottle__item"
+              style="--product-bottle-icon-width: {{ block.settings.icon_width }}vw;"
+              {{ block.shopify_attributes }}
+            >
+              <span class="product-bottle__icon-wrap" aria-hidden="true">
+                {%- if block.settings.icon != blank -%}
+                  <img
+                    class="product-bottle__icon"
+                    src="{{ block.settings.icon | image_url: width: 300 }}"
+                    srcset="
+                      {{ block.settings.icon | image_url: width: 120 }} 120w,
+                      {{ block.settings.icon | image_url: width: 200 }} 200w,
+                      {{ block.settings.icon | image_url: width: 300 }} 300w
+                    "
+                    sizes="(min-width: 750px) {{ block.settings.icon_width }}vw, 8vw"
+                    width="{{ block.settings.icon.width }}"
+                    height="{{ block.settings.icon.height }}"
+                    alt=""
+                    loading="lazy"
+                  >
+                {%- else -%}
+                  <span class="product-bottle__fallback-check">✓</span>
+                {%- endif -%}
+              </span>
+
+              {%- if block.settings.body != blank -%}
+                <div class="product-bottle__item-body rte">{{ block.settings.body }}</div>
+              {%- endif -%}
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --product-body-size: 1vw;
+    --product-body-size-mobile: 4vw;
+    --product-bottle-background: {{ section.settings.background_color }};
+    --product-bottle-text: {{ section.settings.text_color }};
+    --product-bottle-check: {{ section.settings.check_color }};
+    --product-bottle-image-width: {{ section.settings.image_width }}vw;
+    --product-bottle-content-width: calc(80.5vw - var(--product-bottle-image-width));
+    --product-bottle-radius: {{ section.settings.image_radius }}vw;
+  }
+
+  #shopify-section-{{ section.id }} .product-bottle {
+    padding: 2.85vw 0 3.05vw;
+    color: var(--product-bottle-text);
+    background: var(--product-bottle-background);
+  }
+
+  #shopify-section-{{ section.id }} .product-bottle__inner {
+    display: grid;
+    grid-template-columns: var(--product-bottle-image-width) minmax(0, var(--product-bottle-content-width));
+    align-items: center;
+    column-gap: 4.5vw;
+    width: 85vw;
+    margin-inline: auto;
+  }
+
+  #shopify-section-{{ section.id }} .product-bottle--image-right .product-bottle__inner {
+    grid-template-columns: minmax(0, var(--product-bottle-content-width)) var(--product-bottle-image-width);
+  }
+
+  #shopify-section-{{ section.id }} .product-bottle--image-right .product-bottle__media {
+    order: 2;
+  }
+
+  #shopify-section-{{ section.id }} .product-bottle--image-right .product-bottle__content {
+    order: 1;
+  }
+
+  #shopify-section-{{ section.id }} .product-bottle__media,
+  #shopify-section-{{ section.id }} .product-bottle__image {
+    display: block;
+    width: 100%;
+  }
+
+  #shopify-section-{{ section.id }} .product-bottle__image {
+    border-radius: var(--product-bottle-radius);
+    object-fit: contain;
+  }
+
+  #shopify-section-{{ section.id }} .product-bottle__content {
+    min-width: 0;
+  }
+
+  #shopify-section-{{ section.id }} .product-bottle__eyebrow {
+    margin: 0 0 1vw;
+    color: inherit;
+    font-family: var(--font-body-family);
+    font-size: 1.5vw;
+    font-style: var(--font-body-style);
+    font-weight: 500;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  #shopify-section-{{ section.id }} .product-bottle__heading {
+    margin: 0;
+    color: inherit;
+    font-family: var(--font-heading-family);
+    font-size: 2.5vw;
+    font-style: var(--font-heading-style);
+    font-weight: var(--font-heading-weight);
+    letter-spacing: 0;
+    line-height: 1.15;
+  }
+
+  #shopify-section-{{ section.id }} .product-bottle__list {
+    display: grid;
+    gap: 1.45vw;
+    padding: 0;
+    margin: 2.25vw 0 0;
+    list-style: none;
+  }
+
+  #shopify-section-{{ section.id }} .product-bottle__item {
+    display: grid;
+    grid-template-columns: var(--product-bottle-icon-width) minmax(0, 1fr);
+    align-items: start;
+    column-gap: 0.75vw;
+  }
+
+  #shopify-section-{{ section.id }} .product-bottle__icon-wrap {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    width: var(--product-bottle-icon-width);
+  }
+
+  #shopify-section-{{ section.id }} .product-bottle__icon {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    object-fit: contain;
+  }
+
+  #shopify-section-{{ section.id }} .product-bottle__fallback-check {
+    color: var(--product-bottle-check);
+    font-family: var(--font-body-family);
+    font-size: 1.8vw;
+    font-weight: 800;
+    line-height: 0.8;
+  }
+
+  #shopify-section-{{ section.id }} .product-bottle__item-body {
+    color: inherit;
+    font-family: var(--font-body-family);
+    font-size: var(--product-body-size);
+    font-style: var(--font-body-style);
+    font-weight: var(--font-body-weight);
+    line-height: 1.35;
+  }
+
+  #shopify-section-{{ section.id }} .product-bottle__item-body p {
+    margin: 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .product-bottle {
+      padding: 12vw 0 14vw;
+    }
+
+    #shopify-section-{{ section.id }} .product-bottle__inner,
+    #shopify-section-{{ section.id }} .product-bottle--image-right .product-bottle__inner {
+      grid-template-columns: 1fr;
+      row-gap: 10vw;
+    }
+
+    #shopify-section-{{ section.id }} .product-bottle--image-right .product-bottle__media {
+      order: 2;
+    }
+
+    #shopify-section-{{ section.id }} .product-bottle__image {
+      border-radius: 4vw;
+    }
+
+    #shopify-section-{{ section.id }} .product-bottle__eyebrow {
+      margin-bottom: 4vw;
+      font-size: 4vw;
+    }
+
+    #shopify-section-{{ section.id }} .product-bottle__heading {
+      font-size: 8.5vw;
+    }
+
+    #shopify-section-{{ section.id }} .product-bottle__list {
+      gap: 7vw;
+      margin-top: 9vw;
+    }
+
+    #shopify-section-{{ section.id }} .product-bottle__item {
+      grid-template-columns: 8vw minmax(0, 1fr);
+      column-gap: 4vw;
+    }
+
+    #shopify-section-{{ section.id }} .product-bottle__icon-wrap {
+      width: 8vw;
+    }
+
+    #shopify-section-{{ section.id }} .product-bottle__fallback-check {
+      font-size: 7vw;
+    }
+
+    #shopify-section-{{ section.id }} .product-bottle__item-body {
+      font-size: var(--product-body-size-mobile);
+      line-height: 1.45;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Product Why Bottle",
+  "tag": "section",
+  "class": "section section-product-revamp-why-bottle",
+  "max_blocks": 8,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "WHY THE BOTTLE LOOKS LIKE THAT"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Two solutions.\nKept separate until\nthe moment you pour."
+    },
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Image alt text",
+      "default": "SmartMouth dual-solution bottle pouring into a cup"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image position",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "image_width",
+      "min": 30,
+      "max": 50,
+      "step": 1,
+      "unit": "vw",
+      "label": "Desktop image width",
+      "default": 44
+    },
+    {
+      "type": "range",
+      "id": "image_radius",
+      "min": 0,
+      "max": 4,
+      "step": 0.5,
+      "unit": "vw",
+      "label": "Image corner radius",
+      "default": 1
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#092847"
+    },
+    {
+      "type": "color",
+      "id": "check_color",
+      "label": "Fallback checkmark",
+      "default": "#00833D"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "check_item",
+      "name": "Checklist item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Checkmark image",
+          "info": "Leave blank to use the text checkmark."
+        },
+        {
+          "type": "range",
+          "id": "icon_width",
+          "min": 1,
+          "max": 4,
+          "step": 0.5,
+          "unit": "vw",
+          "label": "Desktop icon width",
+          "default": 1.5
+        },
+        {
+          "type": "richtext",
+          "id": "body",
+          "label": "Text",
+          "default": "<p>The Sulfur Eliminator destroys the sulfur gas that causes bad breath</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Why Bottle",
+      "category": "Product Revamp",
+      "blocks": [
+        {
+          "type": "check_item",
+          "settings": {
+            "body": "<p>The Sulfur Eliminator destroys the sulfur gas that causes bad breath</p>"
+          }
+        },
+        {
+          "type": "check_item",
+          "settings": {
+            "body": "<p>Pouring combines them — activating billions of zinc ions instantly</p>"
+          }
+        },
+        {
+          "type": "check_item",
+          "settings": {
+            "body": "<p>Green means freshly activated and ready to use — always rinse immediately after pouring</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
