@@ -79,6 +79,7 @@
     padding: 8.45vw 0 4.75vw;
     color: var(--about-technology-text);
     background: var(--about-technology-background);
+    overflow: hidden;
   }
 
   #shopify-section-{{ section.id }} .about-technology__inner {
@@ -149,6 +150,8 @@
     display: block;
     width: 100%;
     object-fit: contain;
+    height: auto;
+    transform: scale(1.25) translateY(2vw);
   }
 
   #shopify-section-{{ section.id }} .about-technology__cards {
