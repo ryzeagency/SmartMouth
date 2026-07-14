@@ -119,6 +119,120 @@
         "accent_color": "#7fd1c8"
       }
     },
+    "about_technology_Qz8yJ4": {
+      "type": "about-technology",
+      "blocks": {
+        "technology_card_EhXKwX": {
+          "type": "technology_card",
+          "settings": {
+            "heading": "The problem",
+            "body": "<p>Germs + protein in your saliva = sulfur gas. That’s the real cause of bad breath — and what other mouthwashes ignore entirely.</p>"
+          }
+        },
+        "technology_card_j9CJXM": {
+          "type": "technology_card",
+          "settings": {
+            "heading": "The activation",
+            "body": "<p>Pouring Solution 1 (Sulfur Eliminator) and Solution 2 (Zinc Activator) together triggers a chemical reaction that releases billions of active zinc ions.</p>"
+          }
+        },
+        "technology_card_XeB8k9": {
+          "type": "technology_card",
+          "settings": {
+            "heading": "The result",
+            "body": "<p>Zinc ions block germs from producing sulfur gas — eliminating bad breath and preventing it from returning for a full 24 hours with just two rinses.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "technology_card_EhXKwX",
+        "technology_card_j9CJXM",
+        "technology_card_XeB8k9"
+      ],
+      "name": "About Technology",
+      "settings": {
+        "eyebrow": "THE TECHNOLOGY",
+        "heading": "Smart-Zinc™ Technology —\nthe only mouthwash that\neliminates bad breath at its source.",
+        "body": "<p>When our two solutions combine in the cup, billions of zinc ions are released. These zinc ions block germs from consuming protein in your saliva — stopping sulfur gas production entirely. Not temporarily. For 24 hours.</p><p>It’s a genuinely different mechanism from every other mouthwash on the market — and it’s protected by multiple patents that no other brand can replicate.</p>",
+        "image": "shopify://shop_images/howsmart-img.webp",
+        "image_alt": "SmartMouth dual-solution bottle pouring into a cup",
+        "background_color": "#FBF6E6",
+        "text_color": "#092847",
+        "eyebrow_color": "#205085",
+        "card_background": "#FFFFFF",
+        "card_border_color": "#205085"
+      }
+    },
+    "about_mission_TQxCNT": {
+      "type": "about-mission",
+      "name": "About Mission",
+      "settings": {
+        "eyebrow": "OUR MISSION",
+        "heading_first_line": "Making people healthier.",
+        "heading_second_line": "One product at a time.",
+        "body": "<p>SmartMouth was never just about fresh breath. From the beginning, our founders believed that oral health is a gateway to overall health — and that a product that genuinely worked could change people’s lives, not just their morning routine.</p><p>The link between oral health and heart disease, diabetes and other systemic conditions is well established. That’s why SmartMouth is built to actually address the root cause — not paper over it.</p>",
+        "image_alt": "SmartMouth mission",
+        "image_position": "first",
+        "image_width": 43,
+        "background_color": "#FFFFFF",
+        "text_color": "#092847",
+        "eyebrow_color": "#205085",
+        "heading_background": "#24588E",
+        "heading_first_color": "#FFFFFF",
+        "heading_second_color": "#87D2C8"
+      }
+    },
+    "about_product_standards_wR8mEW": {
+      "type": "about-product-standards",
+      "blocks": {
+        "standard_khm3BQ": {
+          "type": "standard",
+          "settings": {
+            "icon_width": 5.5,
+            "title": "Zero alcohol",
+            "description": "No burn, no dryness — in every formula"
+          }
+        },
+        "standard_bhRWAd": {
+          "type": "standard",
+          "settings": {
+            "icon_width": 5.5,
+            "title": "Paraben-free",
+            "description": "Clean formulas you can use every day"
+          }
+        },
+        "standard_PAbgj6": {
+          "type": "standard",
+          "settings": {
+            "icon_width": 5.5,
+            "title": "Safe for kids 6+",
+            "description": "Safe for the whole family,,"
+          }
+        },
+        "standard_f7FjE9": {
+          "type": "standard",
+          "settings": {
+            "icon_width": 5.5,
+            "title": "Dentist developed",
+            "description": "Recommended by dental professionals nationwide"
+          }
+        }
+      },
+      "block_order": [
+        "standard_khm3BQ",
+        "standard_bhRWAd",
+        "standard_PAbgj6",
+        "standard_f7FjE9"
+      ],
+      "name": "About Product Standards",
+      "settings": {
+        "heading": "Every SmartMouth product. Every time.",
+        "background_color": "#24588E",
+        "text_color": "#FFFFFF",
+        "heading_background": "#8DD4CA",
+        "heading_color": "#FFFFFF"
+      }
+    },
     "smt_home_revamp_logo_marquee_B66QDn": {
       "type": "smt-home-revamp-logo-marquee",
       "blocks": {
@@ -187,6 +301,9 @@
     "about_hero_iWT8WP",
     "about_numbers_dDF3zE",
     "about_photograph_pXdmFG",
+    "about_technology_Qz8yJ4",
+    "about_mission_TQxCNT",
+    "about_product_standards_wR8mEW",
     "smt_home_revamp_logo_marquee_B66QDn"
   ]
 }
