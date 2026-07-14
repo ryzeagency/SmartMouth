@@ -160,7 +160,7 @@
             "fallback_logo": "gq",
             "logo_text": "GQ",
             "alt": "",
-            "logo_width": 6,
+            "logo_width": 12,
             "link": ""
           }
         }
@@ -175,7 +175,7 @@
       "settings": {
         "accessible_label": "As featured in",
         "background_color": "#8BC1E4",
-        "speed": 24,
+        "speed": 30,
         "pause_hover": true
       }
     }
