@@ -149,6 +149,50 @@
         "padding_bottom": 52
       }
     },
+    "product_revamp_why_bottle_zm4ppQ": {
+      "type": "product-revamp-why-bottle",
+      "blocks": {
+        "check_item_c9kkxE": {
+          "type": "check_item",
+          "settings": {
+            "icon_width": 1.5,
+            "body": "<p>The Sulfur Eliminator destroys the sulfur gas that causes bad breath</p>"
+          }
+        },
+        "check_item_TD8JG3": {
+          "type": "check_item",
+          "settings": {
+            "icon_width": 1.5,
+            "body": "<p>Pouring combines them — activating billions of zinc ions instantly</p>"
+          }
+        },
+        "check_item_3WTUC8": {
+          "type": "check_item",
+          "settings": {
+            "icon_width": 1.5,
+            "body": "<p>Green means freshly activated and ready to use — always rinse immediately after pouring</p>"
+          }
+        }
+      },
+      "block_order": [
+        "check_item_c9kkxE",
+        "check_item_TD8JG3",
+        "check_item_3WTUC8"
+      ],
+      "name": "Product Why Bottle",
+      "settings": {
+        "eyebrow": "WHY THE BOTTLE LOOKS LIKE THAT",
+        "heading": "Two solutions.\nKept separate until\nthe moment you pour.",
+        "image": "shopify://shop_images/why-the-bottle.webp",
+        "image_alt": "SmartMouth dual-solution bottle pouring into a cup",
+        "image_position": "left",
+        "image_width": 44,
+        "image_radius": 1,
+        "background_color": "#FFFFFF",
+        "text_color": "#092847",
+        "check_color": "#00833D"
+      }
+    },
     "product_revamp_smart_zinc_technology_zfVPVw": {
       "type": "product-revamp-smart-zinc-technology",
       "blocks": {
@@ -186,9 +230,9 @@
         "mobile_background_position": "center center",
         "mobile_padding_top": 12,
         "mobile_padding_bottom": 12,
-        "background_color": "#FFFFFF",
+        "background_color": "#ffffff",
         "text_color": "#092847",
-        "highlight_color": "#80D3C9"
+        "highlight_color": "#80d3c9"
       }
     },
     "product_revamp_how_to_use_8Efi3M": {
@@ -239,12 +283,12 @@
         "mobile_background_position": "center center",
         "mobile_padding_top": 12,
         "mobile_padding_bottom": 12,
-        "card_background": "#E6F2F4",
+        "card_background": "#e6f2f4",
         "card_opacity": 85,
         "text_color": "#092847",
-        "number_background": "#20588F",
-        "number_text_color": "#FFFFFF",
-        "background_color": "#DCEFF1"
+        "number_background": "#20588f",
+        "number_text_color": "#ffffff",
+        "background_color": "#dceff1"
       }
     },
     "product_customer_review_zzHYdM": {
@@ -320,6 +364,7 @@
   "order": [
     "main",
     "related-products",
+    "product_revamp_why_bottle_zm4ppQ",
     "product_revamp_smart_zinc_technology_zfVPVw",
     "product_revamp_how_to_use_8Efi3M",
     "product_customer_review_zzHYdM",
