@@ -788,3 +788,7 @@ product-info .price-item {
     font-size: 30px;
     font-weight: 700;
 }
+
+small#shopify-buyer-consent {
+    display: none;
+}
