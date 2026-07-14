@@ -744,7 +744,7 @@ product-info > .page-width {
     background: transparent;
 }
 
-.loop-widget-container {
+product-info .loop-widget-container {
     background-color: #ADD2EC;
     padding: 1vw;
     border-radius: 1vw;
@@ -761,11 +761,11 @@ product-info .loop-w-btn-group-purchase-option-price {
     font-weight: 700;
 }
 
-.loop-w-btn-group-purchase-option-price {
+product-info .loop-w-btn-group-purchase-option-price {
     color: #205085;
 }
 
-.loop-w-btn-group-purchase-option-label {
+product-info .loop-w-btn-group-purchase-option-label {
     color: #205085;
 }
 
