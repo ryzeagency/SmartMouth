@@ -155,6 +155,7 @@
         "check_item_c9kkxE": {
           "type": "check_item",
           "settings": {
+            "icon": "shopify://shop_images/checkmark-smt.png",
             "icon_width": 1.5,
             "body": "<p>The Sulfur Eliminator destroys the sulfur gas that causes bad breath</p>"
           }
@@ -162,6 +163,7 @@
         "check_item_TD8JG3": {
           "type": "check_item",
           "settings": {
+            "icon": "shopify://shop_images/checkmark-smt.png",
             "icon_width": 1.5,
             "body": "<p>Pouring combines them — activating billions of zinc ions instantly</p>"
           }
@@ -169,6 +171,7 @@
         "check_item_3WTUC8": {
           "type": "check_item",
           "settings": {
+            "icon": "shopify://shop_images/checkmark-smt.png",
             "icon_width": 1.5,
             "body": "<p>Green means freshly activated and ready to use — always rinse immediately after pouring</p>"
           }
