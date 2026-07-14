@@ -156,10 +156,10 @@
         "body": "<p>When our two solutions combine in the cup, billions of zinc ions are released. These zinc ions block germs from consuming protein in your saliva — stopping sulfur gas production entirely. Not temporarily. For 24 hours.</p><p>It’s a genuinely different mechanism from every other mouthwash on the market — and it’s protected by multiple patents that no other brand can replicate.</p>",
         "image": "shopify://shop_images/howsmart-img.webp",
         "image_alt": "SmartMouth dual-solution bottle pouring into a cup",
-        "background_color": "#FBF6E6",
+        "background_color": "#fbf6e6",
         "text_color": "#092847",
         "eyebrow_color": "#205085",
-        "card_background": "#FFFFFF",
+        "card_background": "#ffffff",
         "card_border_color": "#205085"
       }
     },
@@ -174,44 +174,48 @@
         "image_alt": "SmartMouth mission",
         "image_position": "first",
         "image_width": 43,
-        "background_color": "#FFFFFF",
+        "background_color": "#ffffff",
         "text_color": "#092847",
         "eyebrow_color": "#205085",
-        "heading_background": "#24588E",
-        "heading_first_color": "#FFFFFF",
-        "heading_second_color": "#87D2C8"
+        "heading_background": "#24588e",
+        "heading_first_color": "#ffffff",
+        "heading_second_color": "#87d2c8"
       }
     },
-    "about_product_standards_wR8mEW": {
+    "about_product_standards_iPY39d": {
       "type": "about-product-standards",
       "blocks": {
-        "standard_khm3BQ": {
+        "standard_dWTmbW": {
           "type": "standard",
           "settings": {
+            "icon": "shopify://shop_images/zero-alcohol.png",
             "icon_width": 5.5,
             "title": "Zero alcohol",
             "description": "No burn, no dryness — in every formula"
           }
         },
-        "standard_bhRWAd": {
+        "standard_P6hBFe": {
           "type": "standard",
           "settings": {
+            "icon": "shopify://shop_images/paraben-free.png",
             "icon_width": 5.5,
             "title": "Paraben-free",
             "description": "Clean formulas you can use every day"
           }
         },
-        "standard_PAbgj6": {
+        "standard_wipgTt": {
           "type": "standard",
           "settings": {
+            "icon": "shopify://shop_images/safe-for-lids.png",
             "icon_width": 5.5,
             "title": "Safe for kids 6+",
             "description": "Safe for the whole family,,"
           }
         },
-        "standard_f7FjE9": {
+        "standard_eyzNBc": {
           "type": "standard",
           "settings": {
+            "icon": "shopify://shop_images/dentist-developed.png",
             "icon_width": 5.5,
             "title": "Dentist developed",
             "description": "Recommended by dental professionals nationwide"
@@ -219,10 +223,10 @@
         }
       },
       "block_order": [
-        "standard_khm3BQ",
-        "standard_bhRWAd",
-        "standard_PAbgj6",
-        "standard_f7FjE9"
+        "standard_dWTmbW",
+        "standard_P6hBFe",
+        "standard_wipgTt",
+        "standard_eyzNBc"
       ],
       "name": "About Product Standards",
       "settings": {
@@ -303,7 +307,7 @@
     "about_photograph_pXdmFG",
     "about_technology_Qz8yJ4",
     "about_mission_TQxCNT",
-    "about_product_standards_wR8mEW",
+    "about_product_standards_iPY39d",
     "smt_home_revamp_logo_marquee_B66QDn"
   ]
 }
