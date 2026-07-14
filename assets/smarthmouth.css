@@ -739,3 +739,47 @@ product-info > .page-width {
 .es-badge-container {
     background: transparent;
 }
+
+.es-badge-container {
+    background: transparent;
+}
+
+.loop-widget-container {
+    background-color: #ADD2EC;
+    padding: 1vw;
+    border-radius: 1vw;
+}
+
+.loop-w-btn-group-purchase-option-selected {
+    background-color: #205085;
+}
+
+.loop-w-btn-group-purchase-option-selected .loop-w-btn-group-purchase-option-label, .loop-w-btn-group-purchase-option-selected .loop-w-btn-group-purchase-option-price {color: #fff;}
+
+.loop-w-btn-group-purchase-option-price {
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.loop-w-btn-group-purchase-option-price {
+    color: #205085;
+}
+
+.loop-w-btn-group-purchase-option-label {
+    color: #205085;
+}
+
+.loop-w-btn-group-purchase-option-discount-badge {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    top: -10px;
+    background-color: #FF7701;
+    color: #fff;
+}
+
+.loop-w-btn-group-purchase-option {
+    position: relative;
+    padding: 1.25vw;
+}
