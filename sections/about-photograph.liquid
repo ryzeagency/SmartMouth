@@ -1,0 +1,355 @@
+<section class="about-photograph" aria-labelledby="AboutPhotographHeading-{{ section.id }}">
+  <div class="about-photograph__inner">
+    <div class="about-photograph__media-wrap">
+      <figure class="about-photograph__frame">
+        {%- if section.settings.image != blank -%}
+          <img
+            class="about-photograph__image"
+            src="{{ section.settings.image | image_url: width: 1600 }}"
+            srcset="
+              {{ section.settings.image | image_url: width: 700 }} 700w,
+              {{ section.settings.image | image_url: width: 1000 }} 1000w,
+              {{ section.settings.image | image_url: width: 1300 }} 1300w,
+              {{ section.settings.image | image_url: width: 1600 }} 1600w
+            "
+            sizes="(min-width: 750px) 39vw, 75vw"
+            width="{{ section.settings.image.width }}"
+            height="{{ section.settings.image.height }}"
+            alt="{{ section.settings.image.alt | default: section.settings.eyebrow | escape }}"
+            loading="lazy"
+          >
+        {%- else -%}
+          {{ 'image' | placeholder_svg_tag: 'about-photograph__placeholder' }}
+        {%- endif -%}
+      </figure>
+    </div>
+
+    <div class="about-photograph__content">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="about-photograph__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      {%- endif -%}
+
+      <h2 class="about-photograph__heading" id="AboutPhotographHeading-{{ section.id }}">
+        {%- if section.settings.heading_first_line != blank -%}
+          <span>{{ section.settings.heading_first_line | escape }}</span>
+        {%- endif -%}
+        {%- if section.settings.heading_second_line != blank -%}
+          <span>{{ section.settings.heading_second_line | escape }}</span>
+        {%- endif -%}
+      </h2>
+
+      {%- if section.settings.body != blank -%}
+        <div class="about-photograph__body rte">{{ section.settings.body }}</div>
+      {%- endif -%}
+
+      {%- if section.settings.quote != blank -%}
+        <blockquote class="about-photograph__quote">
+          <p>“{{ section.settings.quote | escape }}”</p>
+        </blockquote>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --about-body-size: 1vw;
+    --about-body-size-mobile: 4vw;
+    --about-photograph-background: {{ section.settings.background_color }};
+    --about-photograph-text: {{ section.settings.text_color }};
+    --about-photograph-eyebrow: {{ section.settings.eyebrow_color }};
+    --about-photograph-accent: {{ section.settings.accent_color }};
+    --about-photograph-frame: {{ section.settings.frame_color }};
+    --about-photograph-rotation: {{ section.settings.image_rotation }}deg;
+    --about-photograph-margin-top: {{ section.settings.image_margin_top }}vw;
+    --about-photograph-margin-bottom: {{ section.settings.image_margin_bottom }}vw;
+    --about-photograph-margin-start: {{ section.settings.image_margin_start }}vw;
+  }
+
+  #shopify-section-{{ section.id }} .about-photograph {
+    padding: 5.45vw 0 5.3vw;
+    color: var(--about-photograph-text);
+    background: var(--about-photograph-background);
+  }
+
+  #shopify-section-{{ section.id }} .about-photograph__inner {
+    display: grid;
+    grid-template-columns: 44vw minmax(0, 1fr);
+    align-items: start;
+    column-gap: 5vw;
+    width: 85vw;
+    margin-inline: auto;
+  }
+
+  #shopify-section-{{ section.id }} .about-photograph__media-wrap {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    margin: var(--about-photograph-margin-top) 0 var(--about-photograph-margin-bottom) var(--about-photograph-margin-start);
+  }
+
+  #shopify-section-{{ section.id }} .about-photograph__frame {
+    width: 100%;
+    padding: 3vw 3vw 4.2vw;
+    margin: 0;
+    background: var(--about-photograph-frame);
+    box-shadow: 0 0.35vw 0.8vw rgba(15, 47, 78, 0.12);
+    transform: rotate(var(--about-photograph-rotation));
+    transform-origin: center;
+    box-sizing: border-box;
+  }
+
+  #shopify-section-{{ section.id }} .about-photograph__image,
+  #shopify-section-{{ section.id }} .about-photograph__placeholder {
+    display: block;
+    width: 100%;
+    background: #d8e4eb;
+  }
+
+  #shopify-section-{{ section.id }} .about-photograph__image {
+    object-fit: contain;
+  }
+
+  #shopify-section-{{ section.id }} .about-photograph__content {
+    min-width: 0;
+  }
+
+  #shopify-section-{{ section.id }} .about-photograph__eyebrow {
+    margin: 0 0 1.15vw;
+    color: var(--about-photograph-eyebrow);
+    font-family: var(--font-body-family);
+    font-size: 1.2vw;
+    font-style: var(--font-body-style);
+    font-weight: 500;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  #shopify-section-{{ section.id }} .about-photograph__heading {
+    margin: 0 0 1.2vw;
+    color: inherit;
+    font-family: var(--font-heading-family);
+    font-size: 2.45vw;
+    font-style: var(--font-heading-style);
+    font-weight: var(--font-heading-weight);
+    letter-spacing: 0;
+    line-height: 1.03;
+  }
+
+  #shopify-section-{{ section.id }} .about-photograph__heading span {
+    display: block;
+  }
+
+  #shopify-section-{{ section.id }} .about-photograph__body,
+  #shopify-section-{{ section.id }} .about-photograph__quote {
+    color: inherit;
+    font-family: var(--font-body-family);
+    font-size: var(--about-body-size);
+    line-height: 1.22;
+  }
+
+  #shopify-section-{{ section.id }} .about-photograph__body {
+    font-style: var(--font-body-style);
+    font-weight: var(--font-body-weight);
+  }
+
+  #shopify-section-{{ section.id }} .about-photograph__body p {
+    margin: 0 0 1.35vw;
+  }
+
+  #shopify-section-{{ section.id }} .about-photograph__body p:last-child {
+    margin-bottom: 0;
+  }
+
+  #shopify-section-{{ section.id }} .about-photograph__quote {
+    margin: 1.65vw 0 0;
+    padding: 0 0 0 1.1vw;
+    font-style: italic;
+    font-weight: 700;
+    border-left: 0.28vw solid var(--about-photograph-accent);
+  }
+
+  #shopify-section-{{ section.id }} .about-photograph__quote p {
+    margin: 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .about-photograph {
+      padding: 14vw 0;
+    }
+
+    #shopify-section-{{ section.id }} .about-photograph__inner {
+      grid-template-columns: 1fr;
+      row-gap: 14vw;
+    }
+
+    #shopify-section-{{ section.id }} .about-photograph__media-wrap {
+      width: 80vw;
+      margin: -5vw auto 0;
+    }
+
+    #shopify-section-{{ section.id }} .about-photograph__frame {
+      padding: 5vw 5vw 7vw;
+      box-shadow: 0 1vw 2.5vw rgba(15, 47, 78, 0.12);
+    }
+
+    #shopify-section-{{ section.id }} .about-photograph__eyebrow {
+      margin-bottom: 4vw;
+      font-size: 4vw;
+    }
+
+    #shopify-section-{{ section.id }} .about-photograph__heading {
+      margin-bottom: 6vw;
+      font-size: 8.5vw;
+    }
+
+    #shopify-section-{{ section.id }} .about-photograph__body,
+    #shopify-section-{{ section.id }} .about-photograph__quote {
+      font-size: var(--about-body-size-mobile);
+      line-height: 1.45;
+    }
+
+    #shopify-section-{{ section.id }} .about-photograph__body p {
+      margin-bottom: 5vw;
+    }
+
+    #shopify-section-{{ section.id }} .about-photograph__quote {
+      margin-top: 7vw;
+      padding-left: 4vw;
+      border-left-width: 1vw;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "About Photograph",
+  "tag": "section",
+  "class": "section section-about-photograph",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "WHERE IT BEGAN"
+    },
+    {
+      "type": "text",
+      "id": "heading_first_line",
+      "label": "First heading line",
+      "default": "Bad breath had a real cause."
+    },
+    {
+      "type": "text",
+      "id": "heading_second_line",
+      "label": "Second heading line",
+      "default": "Nobody was solving it."
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Body",
+      "default": "<p>In 1993, Dr. Marvin Cohen — a leading authority on the study of bad breath — recognized a problem no one was addressing: every product on the market only masked bad breath temporarily, because none of them eliminated the underlying cause.</p><p>The real cause of bad breath is sulfur gas, produced when bacteria in your mouth consume protein particles from your saliva. No amount of mint flavour or alcohol can stop that process. Dr. Cohen knew a smarter approach was needed.</p><p>Years of research led him to zinc ion technology — a patented system that activates when two solutions combine, releasing billions of zinc ions that block germs from producing sulfur gas entirely. Not for an hour. For 24 hours.</p>"
+    },
+    {
+      "type": "textarea",
+      "id": "quote",
+      "label": "Quote",
+      "default": "Nothing on the market addressed the underlying issue. Preventing bad breath required a smarter approach."
+    },
+    {
+      "type": "header",
+      "content": "Photograph"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Photograph"
+    },
+    {
+      "type": "range",
+      "id": "image_rotation",
+      "min": -10,
+      "max": 10,
+      "step": 1,
+      "unit": "deg",
+      "label": "Rotation",
+      "default": -7
+    },
+    {
+      "type": "range",
+      "id": "image_margin_top",
+      "min": -12,
+      "max": 12,
+      "step": 0.5,
+      "unit": "vw",
+      "label": "Top margin",
+      "default": -5.5
+    },
+    {
+      "type": "range",
+      "id": "image_margin_bottom",
+      "min": -12,
+      "max": 12,
+      "step": 0.5,
+      "unit": "vw",
+      "label": "Bottom margin",
+      "default": -3.5
+    },
+    {
+      "type": "range",
+      "id": "image_margin_start",
+      "min": -8,
+      "max": 8,
+      "step": 0.5,
+      "unit": "vw",
+      "label": "Left margin",
+      "default": -1.5
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#E4F2FA"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#092847"
+    },
+    {
+      "type": "color",
+      "id": "eyebrow_color",
+      "label": "Eyebrow",
+      "default": "#205085"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Quote accent",
+      "default": "#7FD1C8"
+    },
+    {
+      "type": "color",
+      "id": "frame_color",
+      "label": "Photograph frame",
+      "default": "#FFFFFF"
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Photograph",
+      "category": "About Revamp"
+    }
+  ]
+}
+{% endschema %}

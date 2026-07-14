@@ -1,0 +1,314 @@
+{%- liquid
+  assign has_image = false
+  if section.settings.image != blank
+    assign has_image = true
+  endif
+-%}
+
+<section
+  class="about-hero about-hero--image-{{ section.settings.image_position }}{% unless has_image %} about-hero--no-image{% endunless %}"
+  aria-labelledby="AboutHeroHeading-{{ section.id }}"
+>
+  <div class="about-hero__inner">
+    <div class="about-hero__content">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="about-hero__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      {%- endif -%}
+
+      <h1 class="about-hero__heading" id="AboutHeroHeading-{{ section.id }}">
+        {%- if section.settings.heading_first_line != blank -%}
+          <span>{{ section.settings.heading_first_line | escape }}</span>
+        {%- endif -%}
+        <span>
+          {{ section.settings.heading_second_line | escape }}{% if section.settings.heading_highlight != blank %}
+            <em>{{ section.settings.heading_highlight | escape }}</em>
+          {% endif %}
+        </span>
+      </h1>
+
+      {%- if section.settings.body != blank -%}
+        <div class="about-hero__body rte">{{ section.settings.body }}</div>
+      {%- endif -%}
+    </div>
+
+    {%- if has_image -%}
+      <div class="about-hero__media">
+        <img
+          class="about-hero__image"
+          src="{{ section.settings.image | image_url: width: 1400 }}"
+          srcset="
+            {{ section.settings.image | image_url: width: 600 }} 600w,
+            {{ section.settings.image | image_url: width: 900 }} 900w,
+            {{ section.settings.image | image_url: width: 1200 }} 1200w,
+            {{ section.settings.image | image_url: width: 1400 }} 1400w
+          "
+          sizes="(min-width: 750px) {{ section.settings.image_width }}vw, 85vw"
+          width="{{ section.settings.image.width }}"
+          height="{{ section.settings.image.height }}"
+          alt="{{ section.settings.image.alt | default: section.settings.eyebrow | escape }}"
+          loading="eager"
+          fetchpriority="high"
+        >
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --about-body-size: 1vw;
+    --about-body-size-mobile: 4vw;
+    --about-hero-background: {{ section.settings.background_color }};
+    --about-hero-text: {{ section.settings.text_color }};
+    --about-hero-highlight: {{ section.settings.highlight_color }};
+    --about-hero-image-width: {{ section.settings.image_width }}vw;
+  }
+
+  #shopify-section-{{ section.id }} .about-hero {
+    padding: {{ section.settings.padding_top }}vw 0 {{ section.settings.padding_bottom }}vw;
+    color: var(--about-hero-text);
+    background: var(--about-hero-background);
+  }
+
+  #shopify-section-{{ section.id }} .about-hero__inner {
+    display: grid;
+    grid-template-columns: minmax(0, calc(80vw - var(--about-hero-image-width))) var(--about-hero-image-width);
+    align-items: center;
+    column-gap: 5vw;
+    width: 85vw;
+    margin-inline: auto;
+  }
+
+  #shopify-section-{{ section.id }} .about-hero--no-image .about-hero__inner {
+    display: block;
+  }
+
+  #shopify-section-{{ section.id }} .about-hero__content {
+    max-width: 48vw;
+  }
+
+  #shopify-section-{{ section.id }} .about-hero--image-left .about-hero__media {
+    order: -1;
+  }
+
+  #shopify-section-{{ section.id }} .about-hero__eyebrow {
+    margin: 0 0 1.65vw;
+    color: inherit;
+    font-family: var(--font-body-family);
+    font-size: 1.1vw;
+    font-style: var(--font-body-style);
+    font-weight: 500;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  #shopify-section-{{ section.id }} .about-hero__heading {
+    margin: 0 0 1.85vw;
+    color: inherit;
+    font-family: var(--font-heading-family);
+    font-size: 2.8vw;
+    font-style: var(--font-heading-style);
+    font-weight: var(--font-heading-weight);
+    letter-spacing: 0;
+    line-height: 1.05;
+  }
+
+  #shopify-section-{{ section.id }} .about-hero__heading span {
+    display: block;
+  }
+
+  #shopify-section-{{ section.id }} .about-hero__heading em {
+    color: var(--about-hero-highlight);
+    font-style: inherit;
+  }
+
+  #shopify-section-{{ section.id }} .about-hero__body {
+    max-width: 44vw;
+    color: inherit;
+    font-family: var(--font-body-family);
+    font-size: var(--about-body-size);
+    font-style: var(--font-body-style);
+    font-weight: var(--font-body-weight);
+    line-height: 1.35;
+  }
+
+  #shopify-section-{{ section.id }} .about-hero__body p {
+    margin: 0;
+  }
+
+  #shopify-section-{{ section.id }} .about-hero__media,
+  #shopify-section-{{ section.id }} .about-hero__image {
+    display: block;
+    width: 100%;
+  }
+
+  #shopify-section-{{ section.id }} .about-hero__image {
+    object-fit: contain;
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .about-hero {
+      padding: 14vw 0;
+    }
+
+    #shopify-section-{{ section.id }} .about-hero__inner {
+      grid-template-columns: 1fr;
+      row-gap: 10vw;
+    }
+
+    #shopify-section-{{ section.id }} .about-hero__content,
+    #shopify-section-{{ section.id }} .about-hero__body {
+      max-width: none;
+    }
+
+    #shopify-section-{{ section.id }} .about-hero__eyebrow {
+      margin-bottom: 5vw;
+      font-size: 4vw;
+    }
+
+    #shopify-section-{{ section.id }} .about-hero__heading {
+      margin-bottom: 6vw;
+      font-size: 9vw;
+    }
+
+    #shopify-section-{{ section.id }} .about-hero__body {
+      font-size: var(--about-body-size-mobile);
+      line-height: 1.45;
+    }
+
+    #shopify-section-{{ section.id }} .about-hero--image-left .about-hero__media {
+      order: 0;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "About Hero",
+  "tag": "section",
+  "class": "section section-about-hero",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "OUR STORY"
+    },
+    {
+      "type": "text",
+      "id": "heading_first_line",
+      "label": "First heading line",
+      "default": "Saving you from bad breath"
+    },
+    {
+      "type": "text",
+      "id": "heading_second_line",
+      "label": "Second heading line",
+      "default": "since"
+    },
+    {
+      "type": "text",
+      "id": "heading_highlight",
+      "label": "Highlighted heading text",
+      "default": "1993."
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Body",
+      "default": "<p>SmartMouth™ has done one thing since 1993 — and done it better than anyone: eliminate bad breath at the source and keep it gone, all day, every day.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image position",
+      "options": [
+        {
+          "value": "right",
+          "label": "Right"
+        },
+        {
+          "value": "left",
+          "label": "Left"
+        }
+      ],
+      "default": "right"
+    },
+    {
+      "type": "range",
+      "id": "image_width",
+      "min": 25,
+      "max": 50,
+      "step": 1,
+      "unit": "vw",
+      "label": "Desktop image width",
+      "default": 35
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#24588E"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "highlight_color",
+      "label": "Highlighted text",
+      "default": "#FF7200"
+    },
+    {
+      "type": "header",
+      "content": "Desktop spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 3,
+      "max": 12,
+      "step": 0.5,
+      "unit": "vw",
+      "label": "Top padding",
+      "default": 7.5
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 3,
+      "max": 12,
+      "step": 0.5,
+      "unit": "vw",
+      "label": "Bottom padding",
+      "default": 8.5
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Hero",
+      "category": "About Revamp"
+    }
+  ]
+}
+{% endschema %}

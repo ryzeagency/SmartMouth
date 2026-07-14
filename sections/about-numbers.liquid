@@ -1,0 +1,357 @@
+<section
+  class="about-numbers"
+  data-about-numbers="{{ section.id }}"
+  data-animation-duration="{{ section.settings.animation_duration | times: 1000 }}"
+  aria-label="{{ section.settings.accessible_label | escape }}"
+>
+  <div class="about-numbers__inner">
+    <ul class="about-numbers__grid" role="list">
+      {%- for block in section.blocks -%}
+        <li class="about-numbers__item" {{ block.shopify_attributes }}>
+          <span
+            class="about-numbers__value"
+            data-about-counter
+            data-target="{{ block.settings.target_number | replace: ',', '' | escape }}"
+            data-prefix="{{ block.settings.prefix | escape }}"
+            data-suffix="{{ block.settings.suffix | escape }}"
+            data-format="{{ block.settings.number_format }}"
+            aria-label="{{ block.settings.prefix | append: block.settings.target_number | append: block.settings.suffix | escape }}"
+          >
+            {{- block.settings.prefix | escape -}}0{{- block.settings.suffix | escape -}}
+          </span>
+
+          <p class="about-numbers__label">
+            {%- if block.settings.label_top != blank -%}
+              <span>{{ block.settings.label_top | escape }}</span>
+            {%- endif -%}
+            {%- if block.settings.label_bottom != blank -%}
+              <span>{{ block.settings.label_bottom | escape }}</span>
+            {%- endif -%}
+          </p>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --about-body-size: 1vw;
+    --about-body-size-mobile: 4vw;
+    --about-numbers-background: {{ section.settings.background_color }};
+    --about-numbers-text: {{ section.settings.text_color }};
+  }
+
+  #shopify-section-{{ section.id }} .about-numbers {
+    padding: 2.35vw 0 2.15vw;
+    color: var(--about-numbers-text);
+    background: var(--about-numbers-background);
+  }
+
+  #shopify-section-{{ section.id }} .about-numbers__inner {
+    width: 85vw;
+    margin-inline: auto;
+  }
+
+  #shopify-section-{{ section.id }} .about-numbers__grid {
+    display: grid;
+    grid-template-columns: repeat({{ section.blocks.size | at_least: 1 }}, minmax(0, 1fr));
+    align-items: start;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  #shopify-section-{{ section.id }} .about-numbers__item {
+    min-width: 0;
+    padding-inline: 1.25vw;
+    text-align: center;
+  }
+
+  #shopify-section-{{ section.id }} .about-numbers__value {
+    display: block;
+    color: inherit;
+    font-family: var(--font-heading-family);
+    font-size: 2.75vw;
+    font-style: var(--font-heading-style);
+    font-weight: var(--font-heading-weight);
+    letter-spacing: 0;
+    line-height: 1;
+  }
+
+  #shopify-section-{{ section.id }} .about-numbers__label {
+    margin: 0.9vw 0 0;
+    color: inherit;
+    font-family: var(--font-body-family);
+    font-size: var(--about-body-size);
+    font-style: var(--font-body-style);
+    font-weight: 700;
+    line-height: 1.4;
+  }
+
+  #shopify-section-{{ section.id }} .about-numbers__label span {
+    display: block;
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .about-numbers {
+      padding: 12vw 0;
+    }
+
+    #shopify-section-{{ section.id }} .about-numbers__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12vw 6vw;
+    }
+
+    #shopify-section-{{ section.id }} .about-numbers__item {
+      padding-inline: 1vw;
+    }
+
+    #shopify-section-{{ section.id }} .about-numbers__value {
+      font-size: 9vw;
+    }
+
+    #shopify-section-{{ section.id }} .about-numbers__label {
+      margin-top: 3vw;
+      font-size: var(--about-body-size-mobile);
+      line-height: 1.4;
+    }
+  }
+</style>
+
+<script>
+  (() => {
+    const section = document.querySelector('[data-about-numbers="{{ section.id }}"]');
+
+    if (!section || section.dataset.counterReady === 'true') return;
+
+    section.dataset.counterReady = 'true';
+
+    const counters = Array.from(section.querySelectorAll('[data-about-counter]'));
+    const duration = Number(section.dataset.animationDuration) || 2500;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let hasAnimated = false;
+
+    const formatNumber = (value, format) => {
+      if (format === 'compact') {
+        return new Intl.NumberFormat('en-US', {
+          notation: 'compact',
+          maximumFractionDigits: 1
+        }).format(value).replace('.0', '');
+      }
+
+      if (format === 'comma') {
+        return new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 }).format(value);
+      }
+
+      return Math.round(value).toString();
+    };
+
+    const renderCounter = (counter, value) => {
+      const prefix = counter.dataset.prefix || '';
+      const suffix = counter.dataset.suffix || '';
+      counter.textContent = `${prefix}${formatNumber(value, counter.dataset.format)}${suffix}`;
+    };
+
+    const showFinalValues = () => {
+      counters.forEach((counter) => {
+        renderCounter(counter, Number(counter.dataset.target) || 0);
+      });
+    };
+
+    const animateCounters = () => {
+      if (hasAnimated) return;
+
+      hasAnimated = true;
+
+      if (reducedMotion) {
+        showFinalValues();
+        return;
+      }
+
+      const startTime = performance.now();
+
+      const update = (currentTime) => {
+        const progress = Math.min((currentTime - startTime) / duration, 1);
+        const easedProgress = 1 - Math.pow(1 - progress, 4);
+
+        counters.forEach((counter) => {
+          const target = Number(counter.dataset.target) || 0;
+          let value = target * easedProgress;
+
+          if (progress < 1 && Number.isInteger(target) && target > 0) {
+            value = Math.min(target - 1, Math.floor(value));
+          }
+
+          renderCounter(counter, progress === 1 ? target : value);
+        });
+
+        if (progress < 1) {
+          window.requestAnimationFrame(update);
+        }
+      };
+
+      window.requestAnimationFrame(update);
+    };
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        if (!entries.some((entry) => entry.isIntersecting)) return;
+
+        observer.disconnect();
+        animateCounters();
+      }, { threshold: 0.3 });
+
+      observer.observe(section);
+    } else {
+      animateCounters();
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "About Numbers",
+  "tag": "section",
+  "class": "section section-about-numbers",
+  "max_blocks": 8,
+  "settings": [
+    {
+      "type": "text",
+      "id": "accessible_label",
+      "label": "Accessible section label",
+      "default": "SmartMouth by the numbers"
+    },
+    {
+      "type": "range",
+      "id": "animation_duration",
+      "min": 1,
+      "max": 5,
+      "step": 0.5,
+      "unit": "s",
+      "label": "Counter duration",
+      "default": 2.5,
+      "info": "The counter begins quickly and eases near its target."
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#88CFC6"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#FFFFFF"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "number",
+      "name": "Number",
+      "settings": [
+        {
+          "type": "text",
+          "id": "target_number",
+          "label": "Target number",
+          "default": "1993",
+          "info": "Enter digits only, without the prefix or suffix."
+        },
+        {
+          "type": "text",
+          "id": "prefix",
+          "label": "Prefix"
+        },
+        {
+          "type": "text",
+          "id": "suffix",
+          "label": "Suffix"
+        },
+        {
+          "type": "select",
+          "id": "number_format",
+          "label": "Number format",
+          "options": [
+            {
+              "value": "standard",
+              "label": "Standard"
+            },
+            {
+              "value": "comma",
+              "label": "Comma separated"
+            },
+            {
+              "value": "compact",
+              "label": "Compact, such as 40K"
+            }
+          ],
+          "default": "standard"
+        },
+        {
+          "type": "text",
+          "id": "label_top",
+          "label": "First label line",
+          "default": "Founded by"
+        },
+        {
+          "type": "text",
+          "id": "label_bottom",
+          "label": "Second label line",
+          "default": "Dr. Marvin Cohen"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Numbers",
+      "category": "About Revamp",
+      "blocks": [
+        {
+          "type": "number",
+          "settings": {
+            "target_number": "1993",
+            "number_format": "standard",
+            "label_top": "Founded by",
+            "label_bottom": "Dr. Marvin Cohen"
+          }
+        },
+        {
+          "type": "number",
+          "settings": {
+            "target_number": "24",
+            "suffix": "hr",
+            "number_format": "standard",
+            "label_top": "Bad breath protection",
+            "label_bottom": "with 2 rinses"
+          }
+        },
+        {
+          "type": "number",
+          "settings": {
+            "target_number": "40000",
+            "suffix": "+",
+            "number_format": "compact",
+            "label_top": "Retail locations",
+            "label_bottom": "nationwide"
+          }
+        },
+        {
+          "type": "number",
+          "settings": {
+            "target_number": "13",
+            "number_format": "standard",
+            "label_top": "Published research",
+            "label_bottom": "projects by our founder"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
