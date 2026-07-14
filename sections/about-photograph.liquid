@@ -1,6 +1,12 @@
+{%- assign photograph_alt = section.settings.image_alt | default: 'Dr. Marvin Cohen holding an early SmartMouth bottle' -%}
+
 <section class="about-photograph" aria-labelledby="AboutPhotographHeading-{{ section.id }}">
   <div class="about-photograph__inner">
-    <div class="about-photograph__media-wrap">
+    <div
+      class="about-photograph__media-wrap"
+      data-about-photograph-media
+      style="--about-photograph-animation-duration: {{ section.settings.animation_duration }}s;"
+    >
       <figure class="about-photograph__frame">
         {%- if section.settings.image != blank -%}
           <img
@@ -15,11 +21,18 @@
             sizes="(min-width: 750px) 39vw, 75vw"
             width="{{ section.settings.image.width }}"
             height="{{ section.settings.image.height }}"
-            alt="{{ section.settings.image.alt | default: section.settings.eyebrow | escape }}"
+            alt="{{ section.settings.image.alt | default: photograph_alt | escape }}"
             loading="lazy"
           >
         {%- else -%}
-          {{ 'image' | placeholder_svg_tag: 'about-photograph__placeholder' }}
+          <img
+            class="about-photograph__image"
+            src="{{ 'photograph-,an.png' | asset_url }}"
+            width="872"
+            height="960"
+            alt="{{ photograph_alt | escape }}"
+            loading="lazy"
+          >
         {%- endif -%}
       </figure>
     </div>
@@ -59,8 +72,6 @@
     --about-photograph-text: {{ section.settings.text_color }};
     --about-photograph-eyebrow: {{ section.settings.eyebrow_color }};
     --about-photograph-accent: {{ section.settings.accent_color }};
-    --about-photograph-frame: {{ section.settings.frame_color }};
-    --about-photograph-rotation: {{ section.settings.image_rotation }}deg;
     --about-photograph-margin-top: {{ section.settings.image_margin_top }}vw;
     --about-photograph-margin-bottom: {{ section.settings.image_margin_bottom }}vw;
     --about-photograph-margin-start: {{ section.settings.image_margin_start }}vw;
@@ -90,24 +101,26 @@
 
   #shopify-section-{{ section.id }} .about-photograph__frame {
     width: 100%;
-    padding: 3vw 3vw 4.2vw;
     margin: 0;
-    background: var(--about-photograph-frame);
-    box-shadow: 0 0.35vw 0.8vw rgba(15, 47, 78, 0.12);
-    transform: rotate(var(--about-photograph-rotation));
-    transform-origin: center;
-    box-sizing: border-box;
-  }
-
-  #shopify-section-{{ section.id }} .about-photograph__image,
-  #shopify-section-{{ section.id }} .about-photograph__placeholder {
-    display: block;
-    width: 100%;
-    background: #d8e4eb;
   }
 
   #shopify-section-{{ section.id }} .about-photograph__image {
+    display: block;
+    width: 100%;
     object-fit: contain;
+  }
+
+  #shopify-section-{{ section.id }} .about-photograph__media-wrap.is-reveal-pending {
+    opacity: 0;
+    transform: translateX(-6vw);
+    transition:
+      opacity var(--about-photograph-animation-duration) ease,
+      transform var(--about-photograph-animation-duration) cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  #shopify-section-{{ section.id }} .about-photograph__media-wrap.is-reveal-pending.is-visible {
+    opacity: 1;
+    transform: translateX(0);
   }
 
   #shopify-section-{{ section.id }} .about-photograph__content {
@@ -188,11 +201,6 @@
       margin: -5vw auto 0;
     }
 
-    #shopify-section-{{ section.id }} .about-photograph__frame {
-      padding: 5vw 5vw 7vw;
-      box-shadow: 0 1vw 2.5vw rgba(15, 47, 78, 0.12);
-    }
-
     #shopify-section-{{ section.id }} .about-photograph__eyebrow {
       margin-bottom: 4vw;
       font-size: 4vw;
@@ -219,7 +227,44 @@
       border-left-width: 1vw;
     }
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    #shopify-section-{{ section.id }} .about-photograph__media-wrap.is-reveal-pending {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
 </style>
+
+{%- if section.settings.enable_animation -%}
+  <script>
+    (() => {
+      const section = document.getElementById('shopify-section-{{ section.id }}');
+      const media = section?.querySelector('[data-about-photograph-media]');
+
+      if (!media || media.dataset.revealReady === 'true') return;
+
+      media.dataset.revealReady = 'true';
+
+      if (
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        || !('IntersectionObserver' in window)
+      ) return;
+
+      media.classList.add('is-reveal-pending');
+
+      const observer = new IntersectionObserver((entries) => {
+        if (!entries.some((entry) => entry.isIntersecting)) return;
+
+        media.classList.add('is-visible');
+        observer.disconnect();
+      }, { threshold: 0.2 });
+
+      window.requestAnimationFrame(() => observer.observe(media));
+    })();
+  </script>
+{%- endif -%}
 
 {% schema %}
 {
@@ -268,17 +313,14 @@
     {
       "type": "image_picker",
       "id": "image",
-      "label": "Photograph"
+      "label": "Photograph",
+      "info": "Leave blank to use photograph-,an.png from theme assets."
     },
     {
-      "type": "range",
-      "id": "image_rotation",
-      "min": -10,
-      "max": 10,
-      "step": 1,
-      "unit": "deg",
-      "label": "Rotation",
-      "default": -7
+      "type": "text",
+      "id": "image_alt",
+      "label": "Photograph alt text",
+      "default": "Dr. Marvin Cohen holding an early SmartMouth bottle"
     },
     {
       "type": "range",
@@ -312,6 +354,26 @@
     },
     {
       "type": "header",
+      "content": "Entrance animation"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_animation",
+      "label": "Enable fade from left",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "animation_duration",
+      "min": 1,
+      "max": 3,
+      "step": 0.2,
+      "unit": "s",
+      "label": "Animation duration",
+      "default": 1.6
+    },
+    {
+      "type": "header",
       "content": "Colors"
     },
     {
@@ -337,12 +399,6 @@
       "id": "accent_color",
       "label": "Quote accent",
       "default": "#7FD1C8"
-    },
-    {
-      "type": "color",
-      "id": "frame_color",
-      "label": "Photograph frame",
-      "default": "#FFFFFF"
     }
   ],
   "presets": [
