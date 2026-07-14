@@ -792,3 +792,7 @@ product-info .price-item {
 small#shopify-buyer-consent {
     display: none;
 }
+
+.product-form__buttons {
+    max-width: 100%;
+}
