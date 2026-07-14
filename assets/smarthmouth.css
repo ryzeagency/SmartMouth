@@ -728,3 +728,10 @@
   border-radius: 8px;
   font-weight: 600;
 }
+
+product-info > .page-width {
+    max-width: 85vw;
+    background-color: #E7F2F9;
+    padding: 5vw;
+    border-radius: 2.5VW;
+}
