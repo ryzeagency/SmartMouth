@@ -783,3 +783,8 @@ product-info .loop-w-btn-group-purchase-option {
 product-info .product__title h1 {
     font-size: 35px;
 }
+
+product-info .price-item {
+    font-size: 30px;
+    font-weight: 700;
+}
