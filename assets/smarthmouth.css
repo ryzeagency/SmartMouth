@@ -789,10 +789,10 @@ product-info .price-item {
     font-weight: 700;
 }
 
-small#shopify-buyer-consent {
+product-info small#shopify-buyer-consent {
     display: none;
 }
 
-.product-form__buttons {
+product-info .product-form__buttons {
     max-width: 100%;
 }
