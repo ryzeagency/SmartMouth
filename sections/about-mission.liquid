@@ -1,0 +1,337 @@
+{%- liquid
+  assign has_image = false
+  if section.settings.image != blank
+    assign has_image = true
+  endif
+-%}
+
+<section
+  class="about-mission about-mission--image-{{ section.settings.image_position }}{% unless has_image %} about-mission--no-image{% endunless %}"
+  aria-labelledby="AboutMissionHeading-{{ section.id }}"
+>
+  <div class="about-mission__inner">
+    <div class="about-mission__media">
+      {%- if has_image -%}
+        <img
+          class="about-mission__image"
+          src="{{ section.settings.image | image_url: width: 1600 }}"
+          srcset="
+            {{ section.settings.image | image_url: width: 700 }} 700w,
+            {{ section.settings.image | image_url: width: 1000 }} 1000w,
+            {{ section.settings.image | image_url: width: 1300 }} 1300w,
+            {{ section.settings.image | image_url: width: 1600 }} 1600w
+          "
+          sizes="(min-width: 750px) {{ section.settings.image_width }}vw, 85vw"
+          width="{{ section.settings.image.width }}"
+          height="{{ section.settings.image.height }}"
+          alt="{{ section.settings.image.alt | default: section.settings.image_alt | escape }}"
+          loading="lazy"
+        >
+      {%- endif -%}
+    </div>
+
+    <div class="about-mission__content">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="about-mission__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      {%- endif -%}
+
+      <h2 class="about-mission__heading" id="AboutMissionHeading-{{ section.id }}">
+        {%- if section.settings.heading_first_line != blank -%}
+          <span class="about-mission__heading-line about-mission__heading-line--first">
+            {{- section.settings.heading_first_line | escape -}}
+          </span>
+        {%- endif -%}
+        {%- if section.settings.heading_second_line != blank -%}
+          <span class="about-mission__heading-line about-mission__heading-line--second">
+            {{- section.settings.heading_second_line | escape -}}
+          </span>
+        {%- endif -%}
+      </h2>
+
+      {%- if section.settings.body != blank -%}
+        <div class="about-mission__body rte">{{ section.settings.body }}</div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --about-body-size: 1vw;
+    --about-body-size-mobile: 4vw;
+    --about-mission-background: {{ section.settings.background_color }};
+    --about-mission-text: {{ section.settings.text_color }};
+    --about-mission-eyebrow: {{ section.settings.eyebrow_color }};
+    --about-mission-heading-background: {{ section.settings.heading_background }};
+    --about-mission-heading-first: {{ section.settings.heading_first_color }};
+    --about-mission-heading-second: {{ section.settings.heading_second_color }};
+    --about-mission-image-width: {{ section.settings.image_width }}vw;
+    --about-mission-content-width: calc(80vw - var(--about-mission-image-width));
+  }
+
+  #shopify-section-{{ section.id }} .about-mission {
+    padding: 5.85vw 0 4.8vw;
+    color: var(--about-mission-text);
+    background: var(--about-mission-background);
+  }
+
+  #shopify-section-{{ section.id }} .about-mission__inner {
+    display: grid;
+    grid-template-columns: var(--about-mission-image-width) minmax(0, var(--about-mission-content-width));
+    align-items: center;
+    column-gap: 5vw;
+    width: 85vw;
+    margin-inline: auto;
+  }
+
+  #shopify-section-{{ section.id }} .about-mission--image-second .about-mission__inner {
+    grid-template-columns: minmax(0, var(--about-mission-content-width)) var(--about-mission-image-width);
+  }
+
+  #shopify-section-{{ section.id }} .about-mission--image-second .about-mission__media {
+    order: 2;
+  }
+
+  #shopify-section-{{ section.id }} .about-mission--image-second .about-mission__content {
+    order: 1;
+  }
+
+  #shopify-section-{{ section.id }} .about-mission__media,
+  #shopify-section-{{ section.id }} .about-mission__image {
+    display: block;
+    width: 100%;
+  }
+
+  #shopify-section-{{ section.id }} .about-mission__image {
+    object-fit: contain;
+  }
+
+  #shopify-section-{{ section.id }} .about-mission__content {
+    min-width: 0;
+  }
+
+  #shopify-section-{{ section.id }} .about-mission__eyebrow {
+    margin: 0 0 0.85vw 1vw;
+    color: var(--about-mission-eyebrow);
+    font-family: var(--font-body-family);
+    font-size: 1.2vw;
+    font-style: var(--font-body-style);
+    font-weight: 500;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  #shopify-section-{{ section.id }} .about-mission__heading {
+    margin: 0;
+    color: inherit;
+    font-family: var(--font-heading-family);
+    font-size: 2.35vw;
+    font-style: var(--font-heading-style);
+    font-weight: var(--font-heading-weight);
+    letter-spacing: 0;
+    line-height: 1;
+  }
+
+  #shopify-section-{{ section.id }} .about-mission__heading-line {
+    display: table;
+    padding: 0.55vw 0.85vw 0.65vw;
+    background: var(--about-mission-heading-background);
+  }
+
+  #shopify-section-{{ section.id }} .about-mission__heading-line--first {
+    color: var(--about-mission-heading-first);
+  }
+
+  #shopify-section-{{ section.id }} .about-mission__heading-line--second {
+    margin-top: -0.05vw;
+    color: var(--about-mission-heading-second);
+  }
+
+  #shopify-section-{{ section.id }} .about-mission__body {
+    max-width: 33vw;
+    margin: 1.7vw 0 0 1vw;
+    color: inherit;
+    font-family: var(--font-body-family);
+    font-size: var(--about-body-size);
+    font-style: var(--font-body-style);
+    font-weight: var(--font-body-weight);
+    line-height: 1.22;
+  }
+
+  #shopify-section-{{ section.id }} .about-mission__body p {
+    margin: 0 0 1.45vw;
+  }
+
+  #shopify-section-{{ section.id }} .about-mission__body p:last-child {
+    margin-bottom: 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .about-mission {
+      padding: 14vw 0;
+    }
+
+    #shopify-section-{{ section.id }} .about-mission__inner,
+    #shopify-section-{{ section.id }} .about-mission--image-second .about-mission__inner {
+      grid-template-columns: 1fr;
+      row-gap: 10vw;
+    }
+
+    #shopify-section-{{ section.id }} .about-mission--no-image .about-mission__media {
+      display: none;
+    }
+
+    #shopify-section-{{ section.id }} .about-mission--image-second .about-mission__media {
+      order: 2;
+    }
+
+    #shopify-section-{{ section.id }} .about-mission__eyebrow {
+      margin: 0 0 4vw;
+      font-size: 4vw;
+    }
+
+    #shopify-section-{{ section.id }} .about-mission__heading {
+      font-size: 8.2vw;
+    }
+
+    #shopify-section-{{ section.id }} .about-mission__heading-line {
+      padding: 1.8vw 3vw 2.2vw;
+    }
+
+    #shopify-section-{{ section.id }} .about-mission__body {
+      max-width: none;
+      margin: 7vw 0 0;
+      font-size: var(--about-body-size-mobile);
+      line-height: 1.45;
+    }
+
+    #shopify-section-{{ section.id }} .about-mission__body p {
+      margin-bottom: 5vw;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "About Mission",
+  "tag": "section",
+  "class": "section section-about-mission",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "OUR MISSION"
+    },
+    {
+      "type": "text",
+      "id": "heading_first_line",
+      "label": "First heading line",
+      "default": "Making people healthier."
+    },
+    {
+      "type": "text",
+      "id": "heading_second_line",
+      "label": "Second heading line",
+      "default": "One product at a time."
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Body",
+      "default": "<p>SmartMouth was never just about fresh breath. From the beginning, our founders believed that oral health is a gateway to overall health — and that a product that genuinely worked could change people’s lives, not just their morning routine.</p><p>The link between oral health and heart disease, diabetes and other systemic conditions is well established. That’s why SmartMouth is built to actually address the root cause — not paper over it.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Image alt text",
+      "default": "SmartMouth mission"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image position",
+      "options": [
+        {
+          "value": "first",
+          "label": "First"
+        },
+        {
+          "value": "second",
+          "label": "Second"
+        }
+      ],
+      "default": "first"
+    },
+    {
+      "type": "range",
+      "id": "image_width",
+      "min": 25,
+      "max": 45,
+      "step": 1,
+      "unit": "vw",
+      "label": "Desktop image width",
+      "default": 43
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Body text",
+      "default": "#092847"
+    },
+    {
+      "type": "color",
+      "id": "eyebrow_color",
+      "label": "Eyebrow",
+      "default": "#205085"
+    },
+    {
+      "type": "color",
+      "id": "heading_background",
+      "label": "Heading background",
+      "default": "#24588E"
+    },
+    {
+      "type": "color",
+      "id": "heading_first_color",
+      "label": "First heading line",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "heading_second_color",
+      "label": "Second heading line",
+      "default": "#87D2C8"
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Mission",
+      "category": "About Revamp"
+    }
+  ]
+}
+{% endschema %}

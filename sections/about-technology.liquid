@@ -1,0 +1,370 @@
+{%- assign technology_alt = section.settings.image_alt | default: 'SmartMouth dual-solution bottle pouring into a cup' -%}
+
+<section class="about-technology" aria-labelledby="AboutTechnologyHeading-{{ section.id }}">
+  <div class="about-technology__inner">
+    <div class="about-technology__top">
+      <div class="about-technology__content">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="about-technology__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+        {%- endif -%}
+
+        <h2 class="about-technology__heading" id="AboutTechnologyHeading-{{ section.id }}">
+          {{- section.settings.heading | escape | newline_to_br -}}
+        </h2>
+
+        {%- if section.settings.body != blank -%}
+          <div class="about-technology__body rte">{{ section.settings.body }}</div>
+        {%- endif -%}
+      </div>
+
+      <div class="about-technology__media">
+        {%- if section.settings.image != blank -%}
+          <img
+            class="about-technology__image"
+            src="{{ section.settings.image | image_url: width: 1200 }}"
+            srcset="
+              {{ section.settings.image | image_url: width: 500 }} 500w,
+              {{ section.settings.image | image_url: width: 800 }} 800w,
+              {{ section.settings.image | image_url: width: 1000 }} 1000w,
+              {{ section.settings.image | image_url: width: 1200 }} 1200w
+            "
+            sizes="(min-width: 750px) 23vw, 58vw"
+            width="{{ section.settings.image.width }}"
+            height="{{ section.settings.image.height }}"
+            alt="{{ section.settings.image.alt | default: technology_alt | escape }}"
+            loading="lazy"
+          >
+        {%- else -%}
+          <img
+            class="about-technology__image"
+            src="{{ 'howsmart-img.webp' | asset_url }}"
+            width="515"
+            height="598"
+            alt="{{ technology_alt | escape }}"
+            loading="lazy"
+          >
+        {%- endif -%}
+      </div>
+    </div>
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="about-technology__cards" role="list">
+        {%- for block in section.blocks -%}
+          <article class="about-technology__card" role="listitem" {{ block.shopify_attributes }}>
+            {%- if block.settings.heading != blank -%}
+              <h3>{{ block.settings.heading | escape }}</h3>
+            {%- endif -%}
+            {%- if block.settings.body != blank -%}
+              <div class="about-technology__card-body rte">{{ block.settings.body }}</div>
+            {%- endif -%}
+          </article>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --about-body-size: 1vw;
+    --about-body-size-mobile: 4vw;
+    --about-technology-background: {{ section.settings.background_color }};
+    --about-technology-text: {{ section.settings.text_color }};
+    --about-technology-eyebrow: {{ section.settings.eyebrow_color }};
+    --about-technology-card-background: {{ section.settings.card_background }};
+    --about-technology-card-border: {{ section.settings.card_border_color }};
+  }
+
+  #shopify-section-{{ section.id }} .about-technology {
+    padding: 8.45vw 0 4.75vw;
+    color: var(--about-technology-text);
+    background: var(--about-technology-background);
+  }
+
+  #shopify-section-{{ section.id }} .about-technology__inner {
+    width: 85vw;
+    margin-inline: auto;
+  }
+
+  #shopify-section-{{ section.id }} .about-technology__top {
+    display: grid;
+    grid-template-columns: 42vw 23vw;
+    align-items: start;
+    column-gap: 5vw;
+    width: 70vw;
+    margin-inline: auto;
+  }
+
+  #shopify-section-{{ section.id }} .about-technology__eyebrow {
+    margin: 0 0 0.7vw;
+    color: var(--about-technology-eyebrow);
+    font-family: var(--font-body-family);
+    font-size: 1.2vw;
+    font-style: var(--font-body-style);
+    font-weight: 500;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  #shopify-section-{{ section.id }} .about-technology__heading {
+    margin: 0 0 1.8vw;
+    color: inherit;
+    font-family: var(--font-heading-family);
+    font-size: 2.45vw;
+    font-style: var(--font-heading-style);
+    font-weight: var(--font-heading-weight);
+    letter-spacing: 0;
+    line-height: 1.06;
+  }
+
+  #shopify-section-{{ section.id }} .about-technology__body,
+  #shopify-section-{{ section.id }} .about-technology__card-body {
+    color: inherit;
+    font-family: var(--font-body-family);
+    font-size: var(--about-body-size);
+    font-style: var(--font-body-style);
+    font-weight: var(--font-body-weight);
+    line-height: 1.22;
+  }
+
+  #shopify-section-{{ section.id }} .about-technology__body {
+    max-width: 34vw;
+  }
+
+  #shopify-section-{{ section.id }} .about-technology__body p {
+    margin: 0 0 1.45vw;
+  }
+
+  #shopify-section-{{ section.id }} .about-technology__body p:last-child,
+  #shopify-section-{{ section.id }} .about-technology__card-body p {
+    margin: 0;
+  }
+
+  #shopify-section-{{ section.id }} .about-technology__media {
+    width: 100%;
+    margin-top: -8.45vw;
+  }
+
+  #shopify-section-{{ section.id }} .about-technology__image {
+    display: block;
+    width: 100%;
+    object-fit: contain;
+  }
+
+  #shopify-section-{{ section.id }} .about-technology__cards {
+    display: grid;
+    grid-template-columns: repeat({{ section.blocks.size | at_least: 1 }}, minmax(0, 1fr));
+    gap: 0.9vw;
+    width: 78vw;
+    margin: 2.55vw auto 0;
+  }
+
+  #shopify-section-{{ section.id }} .about-technology__card {
+    padding: 1.35vw 1.65vw 1.25vw;
+    color: inherit;
+    background: var(--about-technology-card-background);
+    border: 0.16vw solid var(--about-technology-card-border);
+    border-radius: 0.8vw;
+  }
+
+  #shopify-section-{{ section.id }} .about-technology__card h3 {
+    margin: 0 0 0.35vw;
+    color: var(--about-technology-card-border);
+    font-family: var(--font-body-family);
+    font-size: 1.4vw;
+    font-style: var(--font-body-style);
+    font-weight: 500;
+    line-height: 1.15;
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .about-technology {
+      padding: 14vw 0;
+    }
+
+    #shopify-section-{{ section.id }} .about-technology__top {
+      grid-template-columns: 1fr;
+      row-gap: 10vw;
+      width: 85vw;
+    }
+
+    #shopify-section-{{ section.id }} .about-technology__eyebrow {
+      margin-bottom: 3vw;
+      font-size: 4vw;
+    }
+
+    #shopify-section-{{ section.id }} .about-technology__heading {
+      margin-bottom: 6vw;
+      font-size: 8.5vw;
+    }
+
+    #shopify-section-{{ section.id }} .about-technology__body,
+    #shopify-section-{{ section.id }} .about-technology__card-body {
+      font-size: var(--about-body-size-mobile);
+      line-height: 1.45;
+    }
+
+    #shopify-section-{{ section.id }} .about-technology__body {
+      max-width: none;
+    }
+
+    #shopify-section-{{ section.id }} .about-technology__body p {
+      margin-bottom: 5vw;
+    }
+
+    #shopify-section-{{ section.id }} .about-technology__media {
+      width: 58vw;
+      margin: 0 auto;
+    }
+
+    #shopify-section-{{ section.id }} .about-technology__cards {
+      grid-template-columns: 1fr;
+      gap: 4vw;
+      width: 85vw;
+      margin-top: 12vw;
+    }
+
+    #shopify-section-{{ section.id }} .about-technology__card {
+      padding: 6vw;
+      border-width: 0.6vw;
+      border-radius: 3vw;
+    }
+
+    #shopify-section-{{ section.id }} .about-technology__card h3 {
+      margin-bottom: 2vw;
+      font-size: 5.5vw;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "About Technology",
+  "tag": "section",
+  "class": "section section-about-technology",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "THE TECHNOLOGY"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Smart-Zinc™ Technology —\nthe only mouthwash that\neliminates bad breath at its source."
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Body",
+      "default": "<p>When our two solutions combine in the cup, billions of zinc ions are released. These zinc ions block germs from consuming protein in your saliva — stopping sulfur gas production entirely. Not temporarily. For 24 hours.</p><p>It’s a genuinely different mechanism from every other mouthwash on the market — and it’s protected by multiple patents that no other brand can replicate.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Technology image",
+      "info": "Leave blank to use howsmart-img.webp from theme assets."
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Image alt text",
+      "default": "SmartMouth dual-solution bottle pouring into a cup"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#FBF6E6"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#092847"
+    },
+    {
+      "type": "color",
+      "id": "eyebrow_color",
+      "label": "Eyebrow",
+      "default": "#205085"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "card_border_color",
+      "label": "Card border and heading",
+      "default": "#205085"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "technology_card",
+      "name": "Technology card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "The problem"
+        },
+        {
+          "type": "richtext",
+          "id": "body",
+          "label": "Body",
+          "default": "<p>Germs + protein in your saliva = sulfur gas. That’s the real cause of bad breath — and what other mouthwashes ignore entirely.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Technology",
+      "category": "About Revamp",
+      "blocks": [
+        {
+          "type": "technology_card",
+          "settings": {
+            "heading": "The problem",
+            "body": "<p>Germs + protein in your saliva = sulfur gas. That’s the real cause of bad breath — and what other mouthwashes ignore entirely.</p>"
+          }
+        },
+        {
+          "type": "technology_card",
+          "settings": {
+            "heading": "The activation",
+            "body": "<p>Pouring Solution 1 (Sulfur Eliminator) and Solution 2 (Zinc Activator) together triggers a chemical reaction that releases billions of active zinc ions.</p>"
+          }
+        },
+        {
+          "type": "technology_card",
+          "settings": {
+            "heading": "The result",
+            "body": "<p>Zinc ions block germs from producing sulfur gas — eliminating bad breath and preventing it from returning for a full 24 hours with just two rinses.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
