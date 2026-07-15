@@ -181,6 +181,7 @@
         "autoplay_interval": 3,
         "card_width": 31,
         "card_gap": 7,
+        "stars_image": "shopify://shop_images/reviews-stars.png",
         "stars_image_width": 11,
         "background_color": "#e7e5f6",
         "heading_background": "#5503a7",
