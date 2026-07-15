@@ -116,11 +116,13 @@
 
   #shopify-section-{{ section.id }} .how-to-hero__card {
     box-sizing: border-box;
-    width: {{ section.settings.card_width }}vw;
+    width: 42vw;
     padding: 3.4vw 3.7vw 3.6vw;
     border-radius: 0.55vw;
-    background: rgba(var(--how-to-hero-card-rgb), var(--how-to-hero-card-opacity));
     text-align: center;
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(5px);
   }
 
   #shopify-section-{{ section.id }} .how-to-hero__eyebrow {
