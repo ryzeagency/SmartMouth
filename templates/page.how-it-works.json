@@ -107,12 +107,152 @@
         "subheading_color": "#3C218A",
         "detail_background": "#FBF4D9"
       }
+    },
+    "smt_home_revamp_testimonials_eGNnq8": {
+      "type": "smt-home-revamp-testimonials",
+      "blocks": {
+        "testimonial_wezjec": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "In just 24 hours, I saw a major improvement. Now I feel confident in pursuing my dreams. Your products are truly a lifesaver.",
+            "author": "Nikia",
+            "author_label": "Verified User",
+            "background_color": "#FFFFFF"
+          }
+        },
+        "testimonial_JbAexh": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "I just want to say thank you for this amazing product. For years I have struggled with dry mouth due to my autoimmune disease. In just 24 hours, I saw a major improvement. Now I feel confident in pursuing my dreams. Your products are truly a lifesaver. I will be a customer for life!",
+            "author": "Alan",
+            "author_label": "Verified User",
+            "background_color": "#FFFFFF"
+          }
+        },
+        "testimonial_X3KHYj": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "You win… I tried to not have fresh breath after rinsing with SmartMouth by eating garlic, onions, fermented beans, pepperoni, and coffee. But my breath was fresh again after an hour of eating those things. I am a fan for life.",
+            "author": "Mika",
+            "author_label": "Verified User",
+            "background_color": "#FFFFFF"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_wezjec",
+        "testimonial_JbAexh",
+        "testimonial_X3KHYj"
+      ],
+      "name": "What People Are Saying",
+      "settings": {
+        "heading_top": "What people",
+        "heading_bottom": "are saying",
+        "slider_label": "Customer testimonials",
+        "initial_slide": 2,
+        "enable_autoplay": true,
+        "autoplay_interval": 3,
+        "card_width": 31,
+        "card_gap": 7,
+        "stars_image_width": 11,
+        "background_color": "#E7E5F6",
+        "heading_background": "#5503A7",
+        "heading_top_color": "#FFFFFF",
+        "heading_bottom_color": "#A9D7EE",
+        "text_color": "#182A4A",
+        "border_color": "#205085",
+        "star_color": "#FFB400"
+      }
+    },
+    "about_product_standards_mPpk7H": {
+      "type": "about-product-standards",
+      "blocks": {
+        "standard_XYErDA": {
+          "type": "standard",
+          "settings": {
+            "icon": "shopify://shop_images/zero-alcohol-blue.png",
+            "icon_width": 5.5,
+            "title": "Zero alcohol",
+            "description": "No burn, no dryness — in every formula"
+          }
+        },
+        "standard_6ip6gf": {
+          "type": "standard",
+          "settings": {
+            "icon": "shopify://shop_images/safe-for-kids-blue.png",
+            "icon_width": 5.5,
+            "title": "Paraben-free",
+            "description": "Clean formulas you can use every day"
+          }
+        },
+        "standard_wn6HFD": {
+          "type": "standard",
+          "settings": {
+            "icon_width": 5.5,
+            "title": "Safe for kids 6+",
+            "description": "Safe for the whole family,,"
+          }
+        },
+        "standard_tB8n6E": {
+          "type": "standard",
+          "settings": {
+            "icon": "shopify://shop_images/dentist-developed-blue.png",
+            "icon_width": 5.5,
+            "title": "Dentist developed",
+            "description": "Recommended by dental professionals nationwide"
+          }
+        }
+      },
+      "block_order": [
+        "standard_XYErDA",
+        "standard_6ip6gf",
+        "standard_wn6HFD",
+        "standard_tB8n6E"
+      ],
+      "name": "About Product Standards",
+      "settings": {
+        "heading": "Every SmartMouth product. Every time.",
+        "background_color": "#E5F6F2",
+        "text_color": "#205085",
+        "heading_background": "#205085",
+        "heading_color": "#FFFFFF"
+      }
+    },
+    "about_find_your_match_izrqrE": {
+      "type": "about-find-your-match",
+      "name": "About Find Your Match",
+      "settings": {
+        "heading_first_line": "Every mouth is different.",
+        "heading_second_line": "Find your match.",
+        "body": "<p>Mouthwash, toothpaste, mints and travel packs — all built on the same Smart-Zinc™ Technology. Find the right one for you.</p>",
+        "button_label": "TAKE THE QUIZ",
+        "button_link": "",
+        "image": "shopify://shop_images/smart-mout-original.webp",
+        "image_alt": "SmartMouth Original mouthwash bottle",
+        "bottle_width": 20.5,
+        "bottle_offset": 1.5,
+        "circle_size": 32.5,
+        "circle_offset": 2.5,
+        "background_color": "#ADD2EC",
+        "circle_color": "#7BA5C8",
+        "heading_background": "#00833D",
+        "heading_color": "#FFFFFF",
+        "text_color": "#092847",
+        "button_color": "#FF6D00",
+        "button_text_color": "#FFFFFF"
+      }
     }
   },
   "order": [
     "main",
     "how_to_hero_VDxPnf",
     "how_to_video_w3hwrC",
-    "how_to_sulfur_gas_CEhCNc"
+    "how_to_sulfur_gas_CEhCNc",
+    "smt_home_revamp_testimonials_eGNnq8",
+    "about_product_standards_mPpk7H",
+    "about_find_your_match_izrqrE"
   ]
 }
