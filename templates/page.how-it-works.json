@@ -28,15 +28,17 @@
         "card_width": 42,
         "padding_top": 14,
         "padding_bottom": 10,
+        "media_type": "video",
+        "desktop_video": "shopify://files/videos/hf_20260714_220232_83ba8b3b-7c7f-467e-b2ca-7f367a8ca4e9.mp4",
         "desktop_background": "shopify://shop_images/how-to-smartmouth-img.webp",
         "desktop_background_position": "center center",
         "mobile_background_position": "center center",
         "mobile_padding_top": 18,
         "mobile_padding_bottom": 18,
-        "background_color": "#0DA5E5",
-        "card_background": "#22AFE8",
+        "background_color": "#0da5e5",
+        "card_background": "#22afe8",
         "card_opacity": 65,
-        "text_color": "#FFFFFF"
+        "text_color": "#ffffff"
       }
     },
     "how_to_video_w3hwrC": {
@@ -54,12 +56,12 @@
         "aspect_ratio": "2.5 / 1",
         "padding_top": 3,
         "padding_bottom": 3,
-        "background_color": "#FFFFFF",
-        "text_color": "#06264A",
-        "subheading_color": "#3C218A",
-        "border_color": "#8C8C8C",
+        "background_color": "#ffffff",
+        "text_color": "#06264a",
+        "subheading_color": "#3c218a",
+        "border_color": "#8c8c8c",
         "border_radius": 1,
-        "placeholder_background": "#FFFFFF"
+        "placeholder_background": "#ffffff"
       }
     },
     "how_to_sulfur_gas_CEhCNc": {
@@ -71,7 +73,7 @@
             "heading": "The problem",
             "emphasis": "Germs + Protein in Your Saliva = Sulfur Gas",
             "body": "<p>Bacteria in your mouth break down protein particles in your saliva — producing sulfur compounds that are detectable by the human nose even at a few parts per billion. That’s bad breath. And it’s a process that never stops on its own.</p>",
-            "background_color": "#BFE5DE"
+            "background_color": "#bfe5de"
           }
         },
         "card_fbn8Qn": {
@@ -102,10 +104,10 @@
         "virus_bottom_offset": -0.5,
         "padding_top": 3,
         "padding_bottom": 3,
-        "background_color": "#FFFFFF",
-        "text_color": "#06264A",
-        "subheading_color": "#3C218A",
-        "detail_background": "#FBF4D9"
+        "background_color": "#ffffff",
+        "text_color": "#06264a",
+        "subheading_color": "#3c218a",
+        "detail_background": "#fbf4d9"
       }
     },
     "smt_home_revamp_testimonials_eGNnq8": {
@@ -138,7 +140,7 @@
             "quote": "In just 24 hours, I saw a major improvement. Now I feel confident in pursuing my dreams. Your products are truly a lifesaver.",
             "author": "Nikia",
             "author_label": "Verified User",
-            "background_color": "#FFFFFF"
+            "background_color": "#ffffff"
           }
         },
         "testimonial_JbAexh": {
@@ -148,7 +150,7 @@
             "quote": "I just want to say thank you for this amazing product. For years I have struggled with dry mouth due to my autoimmune disease. In just 24 hours, I saw a major improvement. Now I feel confident in pursuing my dreams. Your products are truly a lifesaver. I will be a customer for life!",
             "author": "Alan",
             "author_label": "Verified User",
-            "background_color": "#FFFFFF"
+            "background_color": "#ffffff"
           }
         },
         "testimonial_X3KHYj": {
@@ -158,7 +160,7 @@
             "quote": "You win… I tried to not have fresh breath after rinsing with SmartMouth by eating garlic, onions, fermented beans, pepperoni, and coffee. But my breath was fresh again after an hour of eating those things. I am a fan for life.",
             "author": "Mika",
             "author_label": "Verified User",
-            "background_color": "#FFFFFF"
+            "background_color": "#ffffff"
           }
         }
       },
@@ -180,13 +182,13 @@
         "card_width": 31,
         "card_gap": 7,
         "stars_image_width": 11,
-        "background_color": "#E7E5F6",
-        "heading_background": "#5503A7",
-        "heading_top_color": "#FFFFFF",
-        "heading_bottom_color": "#A9D7EE",
-        "text_color": "#182A4A",
+        "background_color": "#e7e5f6",
+        "heading_background": "#5503a7",
+        "heading_top_color": "#ffffff",
+        "heading_bottom_color": "#a9d7ee",
+        "text_color": "#182a4a",
         "border_color": "#205085",
-        "star_color": "#FFB400"
+        "star_color": "#ffb400"
       }
     },
     "about_product_standards_mPpk7H": {
@@ -237,10 +239,10 @@
       "name": "About Product Standards",
       "settings": {
         "heading": "Every SmartMouth product. Every time.",
-        "background_color": "#E5F6F2",
+        "background_color": "#e5f6f2",
         "text_color": "#205085",
         "heading_background": "#205085",
-        "heading_color": "#FFFFFF"
+        "heading_color": "#ffffff"
       }
     },
     "about_find_your_match_izrqrE": {
@@ -258,13 +260,13 @@
         "bottle_offset": 1.5,
         "circle_size": 32.5,
         "circle_offset": 2.5,
-        "background_color": "#ADD2EC",
-        "circle_color": "#7BA5C8",
-        "heading_background": "#00833D",
-        "heading_color": "#FFFFFF",
+        "background_color": "#add2ec",
+        "circle_color": "#7ba5c8",
+        "heading_background": "#00833d",
+        "heading_color": "#ffffff",
         "text_color": "#092847",
-        "button_color": "#FF6D00",
-        "button_text_color": "#FFFFFF"
+        "button_color": "#ff6d00",
+        "button_text_color": "#ffffff"
       }
     }
   },
