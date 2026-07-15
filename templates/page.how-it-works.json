@@ -207,7 +207,7 @@
         "standard_6ip6gf": {
           "type": "standard",
           "settings": {
-            "icon": "shopify://shop_images/safe-for-kids-blue.png",
+            "icon": "shopify://shop_images/paraben-free-blue.png",
             "icon_width": 5.5,
             "title": "Paraben-free",
             "description": "Clean formulas you can use every day"
@@ -216,6 +216,7 @@
         "standard_wn6HFD": {
           "type": "standard",
           "settings": {
+            "icon": "shopify://shop_images/safe-for-kids-blue.png",
             "icon_width": 5.5,
             "title": "Safe for kids 6+",
             "description": "Safe for the whole family,,"
