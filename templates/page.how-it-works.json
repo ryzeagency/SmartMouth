@@ -111,6 +111,26 @@
     "smt_home_revamp_testimonials_eGNnq8": {
       "type": "smt-home-revamp-testimonials",
       "blocks": {
+        "testimonial_qzrXih": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "In just 24 hours, I saw a major improvement. Now I feel confident in pursuing my dreams. Your products are truly a lifesaver.",
+            "author": "Nikia",
+            "author_label": "Verified User",
+            "background_color": "#ffffff"
+          }
+        },
+        "testimonial_Rx4468": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "In just 24 hours, I saw a major improvement. Now I feel confident in pursuing my dreams. Your products are truly a lifesaver.",
+            "author": "Nikia",
+            "author_label": "Verified User",
+            "background_color": "#ffffff"
+          }
+        },
         "testimonial_wezjec": {
           "type": "testimonial",
           "settings": {
@@ -143,6 +163,8 @@
         }
       },
       "block_order": [
+        "testimonial_qzrXih",
+        "testimonial_Rx4468",
         "testimonial_wezjec",
         "testimonial_JbAexh",
         "testimonial_X3KHYj"
