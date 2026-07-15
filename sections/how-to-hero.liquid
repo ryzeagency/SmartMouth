@@ -1,0 +1,321 @@
+{% liquid
+  assign hero_label = section.settings.heading | default: section.settings.eyebrow | strip_html
+%}
+
+<section
+  class="how-to-hero how-to-hero--{{ section.settings.card_position }}"
+  aria-label="{{ hero_label | escape }}"
+>
+  <div class="how-to-hero__container">
+    <div class="how-to-hero__card">
+      {% if section.settings.eyebrow != blank %}
+        <p class="how-to-hero__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      {% endif %}
+
+      {% if section.settings.heading != blank %}
+        <h1 class="how-to-hero__heading">{{ section.settings.heading | escape }}</h1>
+      {% endif %}
+
+      {% if section.settings.body != blank %}
+        <div class="how-to-hero__body rte">{{ section.settings.body }}</div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --how-to-body-size: 1vw;
+    --how-to-hero-text: {{ section.settings.text_color }};
+    --how-to-hero-card-rgb: {{ section.settings.card_background.red }}, {{ section.settings.card_background.green }}, {{ section.settings.card_background.blue }};
+    --how-to-hero-card-opacity: {{ section.settings.card_opacity | divided_by: 100.0 }};
+  }
+
+  #shopify-section-{{ section.id }} .how-to-hero {
+    background-color: {{ section.settings.background_color }};
+    background-image: {% if section.settings.desktop_background != blank %}url('{{ section.settings.desktop_background | image_url: width: 3840 }}'){% else %}none{% endif %};
+    background-position: {{ section.settings.desktop_background_position }};
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: var(--how-to-hero-text);
+    padding-block: {{ section.settings.padding_top }}vw {{ section.settings.padding_bottom }}vw;
+  }
+
+  #shopify-section-{{ section.id }} .how-to-hero__container {
+    display: flex;
+    width: 85vw;
+    margin-inline: auto;
+  }
+
+  #shopify-section-{{ section.id }} .how-to-hero--left .how-to-hero__container {
+    justify-content: flex-start;
+  }
+
+  #shopify-section-{{ section.id }} .how-to-hero--center .how-to-hero__container {
+    justify-content: center;
+  }
+
+  #shopify-section-{{ section.id }} .how-to-hero--right .how-to-hero__container {
+    justify-content: flex-end;
+  }
+
+  #shopify-section-{{ section.id }} .how-to-hero__card {
+    box-sizing: border-box;
+    width: {{ section.settings.card_width }}vw;
+    padding: 3.4vw 3.7vw 3.6vw;
+    border-radius: 0.55vw;
+    background: rgba(var(--how-to-hero-card-rgb), var(--how-to-hero-card-opacity));
+    text-align: center;
+  }
+
+  #shopify-section-{{ section.id }} .how-to-hero__eyebrow {
+    margin: 0 0 1.25vw;
+    color: inherit;
+    font-family: var(--font-body-family);
+    font-size: 1.45vw;
+    font-style: var(--font-body-style);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  #shopify-section-{{ section.id }} .how-to-hero__heading {
+    margin: 0;
+    color: inherit;
+    font-family: var(--font-heading-family);
+    font-size: 2.55vw;
+    font-style: var(--font-heading-style);
+    font-weight: var(--font-heading-weight);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+  }
+
+  #shopify-section-{{ section.id }} .how-to-hero__body {
+    max-width: 35vw;
+    margin: 1.35vw auto 0;
+    color: inherit;
+    font-family: var(--font-body-family);
+    font-size: var(--how-to-body-size);
+    font-style: var(--font-body-style);
+    font-weight: var(--font-body-weight);
+    line-height: 1.35;
+  }
+
+  #shopify-section-{{ section.id }} .how-to-hero__body > * {
+    margin-block: 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} {
+      --how-to-body-size: 4vw;
+    }
+
+    #shopify-section-{{ section.id }} .how-to-hero {
+      {% if section.settings.mobile_background != blank %}
+        background-image: url('{{ section.settings.mobile_background | image_url: width: 1500 }}');
+      {% endif %}
+      background-position: {{ section.settings.mobile_background_position }};
+      padding-block: {{ section.settings.mobile_padding_top }}vw {{ section.settings.mobile_padding_bottom }}vw;
+    }
+
+    #shopify-section-{{ section.id }} .how-to-hero__container {
+      justify-content: center;
+    }
+
+    #shopify-section-{{ section.id }} .how-to-hero__card {
+      width: 85vw;
+      padding: 9vw 7vw;
+      border-radius: 2vw;
+    }
+
+    #shopify-section-{{ section.id }} .how-to-hero__eyebrow {
+      margin-bottom: 3.5vw;
+      font-size: 4.5vw;
+    }
+
+    #shopify-section-{{ section.id }} .how-to-hero__heading {
+      font-size: 8.4vw;
+    }
+
+    #shopify-section-{{ section.id }} .how-to-hero__body {
+      max-width: none;
+      margin-top: 4vw;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "How To Hero",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "SMART-ZINC™ TECHNOLOGY"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "How SmartMouth™ Works"
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Body",
+      "default": "<p>SmartMouth™’s patented formula combines a sulfur eliminating solution with a zinc ion activating solution — kept separate until you pour. The result: bad breath eliminated instantly and prevented for 24 hours with just two rinses a day.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "card_position",
+      "label": "Card position",
+      "default": "right",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "card_width",
+      "min": 30,
+      "max": 60,
+      "step": 1,
+      "unit": "vw",
+      "label": "Card width",
+      "default": 42
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 2,
+      "max": 24,
+      "step": 1,
+      "unit": "vw",
+      "label": "Desktop top spacing",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 2,
+      "max": 24,
+      "step": 1,
+      "unit": "vw",
+      "label": "Desktop bottom spacing",
+      "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Background images"
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_background",
+      "label": "Desktop background"
+    },
+    {
+      "type": "select",
+      "id": "desktop_background_position",
+      "label": "Desktop image position",
+      "default": "center center",
+      "options": [
+        { "value": "left center", "label": "Left" },
+        { "value": "center center", "label": "Center" },
+        { "value": "right center", "label": "Right" }
+      ]
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_background",
+      "label": "Mobile background"
+    },
+    {
+      "type": "select",
+      "id": "mobile_background_position",
+      "label": "Mobile image position",
+      "default": "center center",
+      "options": [
+        { "value": "left center", "label": "Left" },
+        { "value": "center center", "label": "Center" },
+        { "value": "right center", "label": "Right" }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Mobile spacing"
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "vw",
+      "label": "Top spacing",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "vw",
+      "label": "Bottom spacing",
+      "default": 18
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#0DA5E5"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card background",
+      "default": "#22AFE8"
+    },
+    {
+      "type": "range",
+      "id": "card_opacity",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Card opacity",
+      "default": 65
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#FFFFFF"
+    }
+  ],
+  "presets": [
+    {
+      "name": "How To Hero",
+      "category": "How To Revamp"
+    }
+  ]
+}
+{% endschema %}

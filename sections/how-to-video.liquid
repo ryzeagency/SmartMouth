@@ -1,0 +1,361 @@
+{% liquid
+  assign show_video = false
+  assign show_image = false
+
+  if section.settings.media_type == 'video' and section.settings.video != blank
+    assign show_video = true
+  elsif section.settings.media_type == 'image' and section.settings.image != blank
+    assign show_image = true
+  elsif section.settings.video != blank
+    assign show_video = true
+  elsif section.settings.image != blank
+    assign show_image = true
+  endif
+%}
+
+<section class="how-to-video" aria-labelledby="HowToVideoHeading-{{ section.id }}">
+  <div class="how-to-video__container">
+    <header class="how-to-video__header">
+      {% if section.settings.eyebrow != blank %}
+        <p class="how-to-video__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      {% endif %}
+
+      {% if section.settings.heading != blank %}
+        <h2 id="HowToVideoHeading-{{ section.id }}" class="how-to-video__heading">
+          {{ section.settings.heading | escape }}
+        </h2>
+      {% endif %}
+
+      {% if section.settings.subheading != blank %}
+        <div class="how-to-video__subheading rte">{{ section.settings.subheading }}</div>
+      {% endif %}
+    </header>
+
+    <div
+      class="how-to-video__media"
+      style="--how-to-media-ratio: {{ section.settings.aspect_ratio }};"
+    >
+      {% if show_video %}
+        {{
+          section.settings.video
+          | video_tag:
+            controls: true,
+            preload: 'metadata',
+            playsinline: true,
+            image_size: '2400x',
+            class: 'how-to-video__asset'
+        }}
+      {% elsif show_image %}
+        {{
+          section.settings.image
+          | image_url: width: 3000
+          | image_tag:
+            widths: '750, 1100, 1500, 2000, 2500, 3000',
+            sizes: '(min-width: 750px) 75vw, 85vw',
+            class: 'how-to-video__asset',
+            loading: 'lazy',
+            alt: section.settings.image_alt
+        }}
+      {% else %}
+        <div class="how-to-video__placeholder" aria-label="Video or image placeholder">
+          <span>{{ section.settings.placeholder_text | escape }}</span>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --how-to-body-size: 1vw;
+  }
+
+  #shopify-section-{{ section.id }} .how-to-video {
+    background: {{ section.settings.background_color }};
+    color: {{ section.settings.text_color }};
+    padding-block: {{ section.settings.padding_top }}vw {{ section.settings.padding_bottom }}vw;
+  }
+
+  #shopify-section-{{ section.id }} .how-to-video__container {
+    width: 85vw;
+    margin-inline: auto;
+  }
+
+  #shopify-section-{{ section.id }} .how-to-video__header {
+    max-width: 69vw;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  #shopify-section-{{ section.id }} .how-to-video__eyebrow {
+    margin: 0 0 1.35vw;
+    color: inherit;
+    font-family: var(--font-body-family);
+    font-size: 1.45vw;
+    font-style: var(--font-body-style);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  #shopify-section-{{ section.id }} .how-to-video__heading {
+    margin: 0;
+    color: inherit;
+    font-family: var(--font-heading-family);
+    font-size: 2.55vw;
+    font-style: var(--font-heading-style);
+    font-weight: var(--font-heading-weight);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+  }
+
+  #shopify-section-{{ section.id }} .how-to-video__subheading {
+    max-width: 51vw;
+    margin: 1.45vw auto 0;
+    color: {{ section.settings.subheading_color }};
+    font-family: var(--font-body-family);
+    font-size: var(--how-to-body-size);
+    font-style: var(--font-body-style);
+    font-weight: var(--font-body-weight);
+    line-height: 1.35;
+  }
+
+  #shopify-section-{{ section.id }} .how-to-video__subheading > * {
+    margin-block: 0;
+  }
+
+  #shopify-section-{{ section.id }} .how-to-video__media {
+    width: {{ section.settings.media_width }}vw;
+    margin: 3.25vw auto 0;
+  }
+
+  #shopify-section-{{ section.id }} .how-to-video__asset,
+  #shopify-section-{{ section.id }} .how-to-video__placeholder {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    aspect-ratio: var(--how-to-media-ratio);
+    border: 0.08vw solid {{ section.settings.border_color }};
+    border-radius: {{ section.settings.border_radius }}vw;
+    object-fit: cover;
+    overflow: hidden;
+  }
+
+  #shopify-section-{{ section.id }} .how-to-video__placeholder {
+    display: grid;
+    place-items: center;
+    background: {{ section.settings.placeholder_background }};
+    color: inherit;
+    font-family: var(--font-heading-family);
+    font-size: 2.5vw;
+    font-weight: var(--font-heading-weight);
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} {
+      --how-to-body-size: 4vw;
+    }
+
+    #shopify-section-{{ section.id }} .how-to-video {
+      padding-block: 12vw;
+    }
+
+    #shopify-section-{{ section.id }} .how-to-video__header {
+      max-width: none;
+    }
+
+    #shopify-section-{{ section.id }} .how-to-video__eyebrow {
+      margin-bottom: 3.5vw;
+      font-size: 4.4vw;
+    }
+
+    #shopify-section-{{ section.id }} .how-to-video__heading {
+      font-size: 8vw;
+    }
+
+    #shopify-section-{{ section.id }} .how-to-video__subheading {
+      max-width: none;
+      margin-top: 4vw;
+    }
+
+    #shopify-section-{{ section.id }} .how-to-video__media {
+      width: 85vw;
+      margin-top: 8vw;
+    }
+
+    #shopify-section-{{ section.id }} .how-to-video__asset,
+    #shopify-section-{{ section.id }} .how-to-video__placeholder {
+      aspect-ratio: 16 / 9;
+      border-width: 0.25vw;
+      border-radius: {{ section.settings.border_radius | times: 2.5 }}vw;
+    }
+
+    #shopify-section-{{ section.id }} .how-to-video__placeholder {
+      font-size: 8vw;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "How To Video",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "ALL-DAY BAD BREATH PREVENTION"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Sulfur gas is the real cause of bad breath."
+    },
+    {
+      "type": "richtext",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "<p>Most mouthwashes mask the symptom. SmartMouth™ eliminates the cause — then prevents it from coming back for 24 hours.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Media"
+    },
+    {
+      "type": "select",
+      "id": "media_type",
+      "label": "Media type",
+      "default": "video",
+      "options": [
+        { "value": "video", "label": "Video" },
+        { "value": "image", "label": "Image" }
+      ]
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Video"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Image alt text",
+      "default": "SmartMouth bad breath prevention demonstration"
+    },
+    {
+      "type": "text",
+      "id": "placeholder_text",
+      "label": "Placeholder text",
+      "default": "VIDEO"
+    },
+    {
+      "type": "range",
+      "id": "media_width",
+      "min": 50,
+      "max": 85,
+      "step": 1,
+      "unit": "vw",
+      "label": "Desktop media width",
+      "default": 61
+    },
+    {
+      "type": "select",
+      "id": "aspect_ratio",
+      "label": "Desktop aspect ratio",
+      "default": "2.5 / 1",
+      "options": [
+        { "value": "2.5 / 1", "label": "Wide" },
+        { "value": "16 / 9", "label": "Landscape" },
+        { "value": "1 / 1", "label": "Square" }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "unit": "vw",
+      "label": "Top spacing",
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "unit": "vw",
+      "label": "Bottom spacing",
+      "default": 3
+    },
+    {
+      "type": "header",
+      "content": "Colors and border"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Heading text",
+      "default": "#06264A"
+    },
+    {
+      "type": "color",
+      "id": "subheading_color",
+      "label": "Subheading text",
+      "default": "#3C218A"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Media border",
+      "default": "#8C8C8C"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "min": 0,
+      "max": 3,
+      "step": 0.1,
+      "unit": "vw",
+      "label": "Border radius",
+      "default": 1
+    },
+    {
+      "type": "color",
+      "id": "placeholder_background",
+      "label": "Placeholder background",
+      "default": "#FFFFFF"
+    }
+  ],
+  "presets": [
+    {
+      "name": "How To Video",
+      "category": "How To Revamp"
+    }
+  ]
+}
+{% endschema %}

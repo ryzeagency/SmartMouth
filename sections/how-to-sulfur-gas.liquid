@@ -1,0 +1,466 @@
+<section class="how-to-sulfur" aria-labelledby="HowToSulfurHeading-{{ section.id }}">
+  <div class="how-to-sulfur__container">
+    <header class="how-to-sulfur__header">
+      {% if section.settings.eyebrow != blank %}
+        <p class="how-to-sulfur__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      {% endif %}
+
+      {% if section.settings.heading != blank %}
+        <h2 id="HowToSulfurHeading-{{ section.id }}" class="how-to-sulfur__heading">
+          {{ section.settings.heading | escape }}
+        </h2>
+      {% endif %}
+
+      {% if section.settings.subheading != blank %}
+        <div class="how-to-sulfur__subheading rte">{{ section.settings.subheading }}</div>
+      {% endif %}
+    </header>
+
+    <div class="how-to-sulfur__content">
+      <div class="how-to-sulfur__cards">
+        {% for block in section.blocks %}
+          <article
+            class="how-to-sulfur__card"
+            style="--how-to-card-background: {{ block.settings.background_color }};"
+            {{ block.shopify_attributes }}
+          >
+            {% if block.settings.heading != blank %}
+              <h3 class="how-to-sulfur__card-heading">{{ block.settings.heading | escape }}</h3>
+            {% endif %}
+
+            {% if block.settings.emphasis != blank %}
+              <p class="how-to-sulfur__card-emphasis">{{ block.settings.emphasis | escape }}</p>
+            {% endif %}
+
+            {% if block.settings.body != blank %}
+              <div class="how-to-sulfur__card-body rte">{{ block.settings.body }}</div>
+            {% endif %}
+          </article>
+        {% endfor %}
+      </div>
+
+      <article class="how-to-sulfur__detail">
+        <div class="how-to-sulfur__detail-copy">
+          {% if section.settings.detail_heading != blank %}
+            <h3 class="how-to-sulfur__detail-heading">{{ section.settings.detail_heading | escape }}</h3>
+          {% endif %}
+
+          {% if section.settings.detail_body != blank %}
+            <div class="how-to-sulfur__detail-body rte">{{ section.settings.detail_body }}</div>
+          {% endif %}
+        </div>
+
+        {% if section.settings.virus_image != blank %}
+          <div class="how-to-sulfur__virus">
+            {{
+              section.settings.virus_image
+              | image_url: width: 900
+              | image_tag:
+                widths: '300, 450, 600, 750, 900',
+                sizes: '(min-width: 750px) 18vw, 45vw',
+                loading: 'lazy',
+                alt: section.settings.virus_alt
+            }}
+          </div>
+        {% endif %}
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --how-to-body-size: 1vw;
+  }
+
+  #shopify-section-{{ section.id }} .how-to-sulfur {
+    background: {{ section.settings.background_color }};
+    color: {{ section.settings.text_color }};
+    padding-block: {{ section.settings.padding_top }}vw {{ section.settings.padding_bottom }}vw;
+  }
+
+  #shopify-section-{{ section.id }} .how-to-sulfur__container {
+    width: 85vw;
+    margin-inline: auto;
+  }
+
+  #shopify-section-{{ section.id }} .how-to-sulfur__header {
+    max-width: 69vw;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  #shopify-section-{{ section.id }} .how-to-sulfur__eyebrow {
+    margin: 0 0 1.35vw;
+    color: inherit;
+    font-family: var(--font-body-family);
+    font-size: 1.45vw;
+    font-style: var(--font-body-style);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  #shopify-section-{{ section.id }} .how-to-sulfur__heading {
+    margin: 0;
+    color: inherit;
+    font-family: var(--font-heading-family);
+    font-size: 2.55vw;
+    font-style: var(--font-heading-style);
+    font-weight: var(--font-heading-weight);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+  }
+
+  #shopify-section-{{ section.id }} .how-to-sulfur__subheading {
+    max-width: 50vw;
+    margin: 1.45vw auto 0;
+    color: {{ section.settings.subheading_color }};
+    font-family: var(--font-body-family);
+    font-size: var(--how-to-body-size);
+    font-style: var(--font-body-style);
+    font-weight: var(--font-body-weight);
+    line-height: 1.35;
+  }
+
+  #shopify-section-{{ section.id }} .how-to-sulfur__subheading > *,
+  #shopify-section-{{ section.id }} .how-to-sulfur__card-body > *,
+  #shopify-section-{{ section.id }} .how-to-sulfur__detail-body > * {
+    margin-block: 0;
+  }
+
+  #shopify-section-{{ section.id }} .how-to-sulfur__content {
+    width: 74vw;
+    margin: 3vw auto 0;
+  }
+
+  #shopify-section-{{ section.id }} .how-to-sulfur__cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5vw;
+  }
+
+  #shopify-section-{{ section.id }} .how-to-sulfur__card {
+    box-sizing: border-box;
+    padding: 2.25vw 2.1vw 2.35vw;
+    background: var(--how-to-card-background);
+  }
+
+  #shopify-section-{{ section.id }} .how-to-sulfur__card-heading,
+  #shopify-section-{{ section.id }} .how-to-sulfur__detail-heading {
+    margin: 0;
+    color: inherit;
+    font-family: var(--font-heading-family);
+    font-size: 2vw;
+    font-style: var(--font-heading-style);
+    font-weight: var(--font-heading-weight);
+    line-height: 1.1;
+  }
+
+  #shopify-section-{{ section.id }} .how-to-sulfur__card-emphasis {
+    margin: 1vw 0 0;
+    color: inherit;
+    font-family: var(--font-body-family);
+    font-size: 1.25vw;
+    font-style: var(--font-body-style);
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  #shopify-section-{{ section.id }} .how-to-sulfur__card-body,
+  #shopify-section-{{ section.id }} .how-to-sulfur__detail-body {
+    margin-top: 0.8vw;
+    color: inherit;
+    font-family: var(--font-body-family);
+    font-size: var(--how-to-body-size);
+    font-style: var(--font-body-style);
+    font-weight: var(--font-body-weight);
+    line-height: 1.32;
+  }
+
+  #shopify-section-{{ section.id }} .how-to-sulfur__detail {
+    position: relative;
+    box-sizing: border-box;
+    margin-top: 1.6vw;
+    padding: 2.45vw 18vw 2.7vw 2.1vw;
+    background: {{ section.settings.detail_background }};
+  }
+
+  #shopify-section-{{ section.id }} .how-to-sulfur__virus {
+    position: absolute;
+    right: {{ section.settings.virus_right_offset }}vw;
+    bottom: {{ section.settings.virus_bottom_offset }}vw;
+    width: {{ section.settings.virus_width }}vw;
+    pointer-events: none;
+  }
+
+  #shopify-section-{{ section.id }} .how-to-sulfur__virus img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} {
+      --how-to-body-size: 4vw;
+    }
+
+    #shopify-section-{{ section.id }} .how-to-sulfur {
+      padding-block: 12vw;
+    }
+
+    #shopify-section-{{ section.id }} .how-to-sulfur__header,
+    #shopify-section-{{ section.id }} .how-to-sulfur__subheading,
+    #shopify-section-{{ section.id }} .how-to-sulfur__content {
+      width: auto;
+      max-width: none;
+    }
+
+    #shopify-section-{{ section.id }} .how-to-sulfur__eyebrow {
+      margin-bottom: 3.5vw;
+      font-size: 4.4vw;
+    }
+
+    #shopify-section-{{ section.id }} .how-to-sulfur__heading {
+      font-size: 8vw;
+    }
+
+    #shopify-section-{{ section.id }} .how-to-sulfur__subheading {
+      margin-top: 4vw;
+    }
+
+    #shopify-section-{{ section.id }} .how-to-sulfur__content {
+      margin-top: 8vw;
+    }
+
+    #shopify-section-{{ section.id }} .how-to-sulfur__cards {
+      grid-template-columns: 1fr;
+      gap: 4vw;
+    }
+
+    #shopify-section-{{ section.id }} .how-to-sulfur__card,
+    #shopify-section-{{ section.id }} .how-to-sulfur__detail {
+      padding: 7vw;
+    }
+
+    #shopify-section-{{ section.id }} .how-to-sulfur__card-heading,
+    #shopify-section-{{ section.id }} .how-to-sulfur__detail-heading {
+      font-size: 7vw;
+    }
+
+    #shopify-section-{{ section.id }} .how-to-sulfur__card-emphasis {
+      margin-top: 3vw;
+      font-size: 4.6vw;
+    }
+
+    #shopify-section-{{ section.id }} .how-to-sulfur__card-body,
+    #shopify-section-{{ section.id }} .how-to-sulfur__detail-body {
+      margin-top: 3vw;
+    }
+
+    #shopify-section-{{ section.id }} .how-to-sulfur__detail {
+      margin-top: 4vw;
+    }
+
+    #shopify-section-{{ section.id }} .how-to-sulfur__virus {
+      position: static;
+      width: 45vw;
+      margin: 6vw 0 -3vw auto;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "How To Sulfur Gas",
+  "tag": "section",
+  "class": "section",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "ALL-DAY BAD BREATH PREVENTION"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Sulfur gas is the real cause of bad breath."
+    },
+    {
+      "type": "richtext",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "<p>Most mouthwashes mask the symptom. SmartMouth™ eliminates the cause — then prevents it from coming back for 24 hours.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Bottom card"
+    },
+    {
+      "type": "text",
+      "id": "detail_heading",
+      "label": "Heading",
+      "default": "Why sulfur gas smells so bad"
+    },
+    {
+      "type": "richtext",
+      "id": "detail_body",
+      "label": "Body",
+      "default": "<p>The compounds bacteria produce — specifically hydrogen sulfide and methyl mercaptan — are among the most odorous substances known. Even at concentrations of just a few parts per billion, they’re immediately detectable by the human nose. That’s why bad breath can feel so persistent: the source is microscopic, but the smell is instant.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "virus_image",
+      "label": "Virus image"
+    },
+    {
+      "type": "text",
+      "id": "virus_alt",
+      "label": "Virus image alt text",
+      "default": "Illustration representing odor-producing sulfur gas"
+    },
+    {
+      "type": "range",
+      "id": "virus_width",
+      "min": 10,
+      "max": 25,
+      "step": 0.5,
+      "unit": "vw",
+      "label": "Virus width",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "virus_right_offset",
+      "min": -5,
+      "max": 10,
+      "step": 0.5,
+      "unit": "vw",
+      "label": "Virus right offset",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "virus_bottom_offset",
+      "min": -5,
+      "max": 5,
+      "step": 0.5,
+      "unit": "vw",
+      "label": "Virus bottom offset",
+      "default": -0.5
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "unit": "vw",
+      "label": "Top spacing",
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "unit": "vw",
+      "label": "Bottom spacing",
+      "default": 3
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#06264A"
+    },
+    {
+      "type": "color",
+      "id": "subheading_color",
+      "label": "Subheading text",
+      "default": "#3C218A"
+    },
+    {
+      "type": "color",
+      "id": "detail_background",
+      "label": "Bottom card background",
+      "default": "#FBF4D9"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Information card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "The problem"
+        },
+        {
+          "type": "textarea",
+          "id": "emphasis",
+          "label": "Emphasized text",
+          "default": "Germs + Protein in Your Saliva = Sulfur Gas"
+        },
+        {
+          "type": "richtext",
+          "id": "body",
+          "label": "Body",
+          "default": "<p>Bacteria in your mouth break down protein particles in your saliva — producing sulfur compounds that are detectable by the human nose even at a few parts per billion. That’s bad breath. And it’s a process that never stops on its own.</p>"
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Background",
+          "default": "#BFE5DE"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "How To Sulfur Gas",
+      "category": "How To Revamp",
+      "blocks": [
+        {
+          "type": "card"
+        },
+        {
+          "type": "card",
+          "settings": {
+            "heading": "The Solution",
+            "emphasis": "Germs + SmartMouth™ Zinc Ions = No More Bad Breath",
+            "body": "<p>When SmartMouth™’s two solutions combine, billions of zinc ions are released. They bond to germs and block them from producing sulfur gas entirely — eliminating bad breath instantly and preventing it from returning for 24 hours.</p>",
+            "background_color": "#D2E4F5"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
