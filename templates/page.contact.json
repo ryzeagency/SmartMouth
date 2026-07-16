@@ -9,6 +9,16 @@
  */
 {
   "sections": {
+    "blog_page_banner_wGKfVY": {
+      "type": "blog-page-banner",
+      "name": "Blog Page Banner",
+      "settings": {
+        "desktop_image": "shopify://shop_images/Legal_Pages_banner.png",
+        "top_subtitle": "",
+        "title": "Contact us",
+        "bottom_subtitle": ""
+      }
+    },
     "main": {
       "type": "main-page",
       "settings": {
@@ -31,6 +41,7 @@
     }
   },
   "order": [
+    "blog_page_banner_wGKfVY",
     "main",
     "form"
   ]
