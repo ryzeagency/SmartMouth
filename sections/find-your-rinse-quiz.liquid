@@ -27,14 +27,6 @@
 
 <div class="sm-quiz" data-sm-quiz="{{ section.id }}">
   <div class="sm-quiz__wrap">
-    <div class="sm-quiz__header">
-      {% if section.settings.title != blank %}
-        <h2 class="sm-quiz__logo">{{ section.settings.title | escape }}</h2>
-      {% endif %}
-      {% if section.settings.subtitle != blank %}
-        <p class="sm-quiz__sub">{{ section.settings.subtitle | escape }}</p>
-      {% endif %}
-    </div>
 
     {%- if request.design_mode -%}
       {%- assign unconnected = 0 -%}
