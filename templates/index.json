@@ -144,11 +144,11 @@
           "type": "product",
           "settings": {
             "product": "smartmouthtm-advanced-liposomal-evening-mouthwash-16oz",
-            "image": "shopify://shop_images/NEW_SMT.png",
+            "image": "shopify://shop_images/VIT_C.png",
             "custom_title": "SmartMouth™ Advanced Liposomal Evening Mouthwash",
             "custom_link": "https://smartmouth.com/collections/all?sort_by=manual&filter.p.m.custom.benefits_filter=Advanced+Liposomal+Technology&filter.v.price.gte=&filter.v.price.lte=",
             "badge_text": "New",
-            "badge_color": "#FF7701",
+            "badge_color": "#ff7701",
             "badge_text_color": "#ffffff",
             "fallback_card": "4"
           }
