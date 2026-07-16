@@ -67,7 +67,11 @@
   #shopify-section-{{ section.id }} .about-hero {
     padding: {{ section.settings.padding_top }}vw 0 {{ section.settings.padding_bottom }}vw;
     color: var(--about-hero-text);
-    background: var(--about-hero-background);
+    background-color: var(--about-hero-background);
+    background-image: {% if section.settings.desktop_background != blank %}url('{{ section.settings.desktop_background | image_url: width: 3840 }}'){% else %}none{% endif %};
+    background-position: {{ section.settings.desktop_background_position }};
+    background-repeat: no-repeat;
+    background-size: cover;
   }
 
   #shopify-section-{{ section.id }} .about-hero__inner {
@@ -148,6 +152,10 @@
 
   @media screen and (max-width: 749px) {
     #shopify-section-{{ section.id }} .about-hero {
+      {% if section.settings.mobile_background != blank %}
+        background-image: url('{{ section.settings.mobile_background | image_url: width: 1500 }}');
+      {% endif %}
+      background-position: {{ section.settings.mobile_background_position }};
       padding: 14vw 0;
     }
 
@@ -184,7 +192,7 @@
 
 {% schema %}
 {
-  "name": "About Hero",
+  "name": "About Hero Backgrounds",
   "tag": "section",
   "class": "section section-about-hero",
   "settings": [
@@ -259,6 +267,60 @@
     },
     {
       "type": "header",
+      "content": "Background images"
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_background",
+      "label": "Desktop background image"
+    },
+    {
+      "type": "select",
+      "id": "desktop_background_position",
+      "label": "Desktop background position",
+      "default": "center center",
+      "options": [
+        {
+          "value": "left center",
+          "label": "Left"
+        },
+        {
+          "value": "center center",
+          "label": "Center"
+        },
+        {
+          "value": "right center",
+          "label": "Right"
+        }
+      ]
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_background",
+      "label": "Mobile background image"
+    },
+    {
+      "type": "select",
+      "id": "mobile_background_position",
+      "label": "Mobile background position",
+      "default": "center center",
+      "options": [
+        {
+          "value": "left center",
+          "label": "Left"
+        },
+        {
+          "value": "center center",
+          "label": "Center"
+        },
+        {
+          "value": "right center",
+          "label": "Right"
+        }
+      ]
+    },
+    {
+      "type": "header",
       "content": "Colors"
     },
     {
@@ -306,9 +368,10 @@
   ],
   "presets": [
     {
-      "name": "About Hero",
+      "name": "About Hero Backgrounds",
       "category": "About Revamp"
     }
   ]
 }
 {% endschema %}
+
