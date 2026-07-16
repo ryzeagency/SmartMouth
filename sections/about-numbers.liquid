@@ -8,16 +8,27 @@
     <ul class="about-numbers__grid" role="list">
       {%- for block in section.blocks -%}
         <li class="about-numbers__item" {{ block.shopify_attributes }}>
-          <span
-            class="about-numbers__value"
-            data-about-counter
-            data-target="{{ block.settings.target_number | replace: ',', '' | escape }}"
-            data-prefix="{{ block.settings.prefix | escape }}"
-            data-suffix="{{ block.settings.suffix | escape }}"
-            data-format="{{ block.settings.number_format }}"
-            aria-label="{{ block.settings.prefix | append: block.settings.target_number | append: block.settings.suffix | escape }}"
-          >
-            {{- block.settings.prefix | escape -}}0{{- block.settings.suffix | escape -}}
+          <span class="about-numbers__value-row">
+            {%- if block.settings.icon != blank -%}
+              <span class="about-numbers__icon" aria-hidden="true">
+                {{
+                  block.settings.icon
+                  | image_url: width: 200
+                  | image_tag: widths: '100, 150, 200', loading: 'lazy', alt: ''
+                }}
+              </span>
+            {%- endif -%}
+            <span
+              class="about-numbers__value"
+              data-about-counter
+              data-target="{{ block.settings.target_number | replace: ',', '' | escape }}"
+              data-prefix="{{ block.settings.prefix | escape }}"
+              data-suffix="{{ block.settings.suffix | escape }}"
+              data-format="{{ block.settings.number_format }}"
+              aria-label="{{ block.settings.prefix | append: block.settings.target_number | append: block.settings.suffix | escape }}"
+            >
+              {{- block.settings.prefix | escape -}}0{{- block.settings.suffix | escape -}}
+            </span>
           </span>
 
           <p class="about-numbers__label">
@@ -68,6 +79,25 @@
     text-align: center;
   }
 
+  #shopify-section-{{ section.id }} .about-numbers__value-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65vw;
+  }
+
+  #shopify-section-{{ section.id }} .about-numbers__icon {
+    display: block;
+    flex: 0 0 auto;
+    width: {{ section.settings.icon_size }}vw;
+  }
+
+  #shopify-section-{{ section.id }} .about-numbers__icon img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
   #shopify-section-{{ section.id }} .about-numbers__value {
     display: block;
     color: inherit;
@@ -107,6 +137,14 @@
       padding-inline: 1vw;
     }
 
+    #shopify-section-{{ section.id }} .about-numbers__value-row {
+      gap: 2vw;
+    }
+
+    #shopify-section-{{ section.id }} .about-numbers__icon {
+      width: {{ section.settings.icon_size | times: 3 }}vw;
+    }
+
     #shopify-section-{{ section.id }} .about-numbers__value {
       font-size: 9vw;
     }
@@ -132,25 +170,35 @@
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     let hasAnimated = false;
 
-    const formatNumber = (value, format) => {
+    const decimalsOf = (str) => {
+      const frac = String(str).split('.')[1];
+      return frac ? frac.length : 0;
+    };
+
+    const formatNumber = (value, format, decimals) => {
       if (format === 'compact') {
-        return new Intl.NumberFormat('en-US', {
+        const compact = new Intl.NumberFormat('en-US', {
           notation: 'compact',
-          maximumFractionDigits: 1
-        }).format(value).replace('.0', '');
+          maximumFractionDigits: Math.max(1, decimals)
+        }).format(value);
+        return decimals === 0 ? compact.replace('.0', '') : compact;
       }
 
       if (format === 'comma') {
-        return new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 }).format(value);
+        return new Intl.NumberFormat('en-US', {
+          minimumFractionDigits: decimals,
+          maximumFractionDigits: decimals
+        }).format(value);
       }
 
-      return Math.round(value).toString();
+      return decimals > 0 ? value.toFixed(decimals) : Math.round(value).toString();
     };
 
     const renderCounter = (counter, value) => {
       const prefix = counter.dataset.prefix || '';
       const suffix = counter.dataset.suffix || '';
-      counter.textContent = `${prefix}${formatNumber(value, counter.dataset.format)}${suffix}`;
+      const decimals = decimalsOf(counter.dataset.target);
+      counter.textContent = `${prefix}${formatNumber(value, counter.dataset.format, decimals)}${suffix}`;
     };
 
     const showFinalValues = () => {
@@ -177,9 +225,10 @@
 
         counters.forEach((counter) => {
           const target = Number(counter.dataset.target) || 0;
+          const decimals = decimalsOf(counter.dataset.target);
           let value = target * easedProgress;
 
-          if (progress < 1 && Number.isInteger(target) && target > 0) {
+          if (progress < 1 && decimals === 0 && Number.isInteger(target) && target > 0) {
             value = Math.min(target - 1, Math.floor(value));
           }
 
@@ -234,6 +283,17 @@
       "info": "The counter begins quickly and eases near its target."
     },
     {
+      "type": "range",
+      "id": "icon_size",
+      "min": 1.5,
+      "max": 5,
+      "step": 0.5,
+      "unit": "vw",
+      "label": "Icon size",
+      "default": 2.5,
+      "info": "Applies to all block icons. Scales up automatically on mobile."
+    },
+    {
       "type": "header",
       "content": "Colors"
     },
@@ -256,11 +316,17 @@
       "name": "Number",
       "settings": [
         {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon",
+          "info": "Optional — shown beside the number. Transparent PNG or SVG recommended."
+        },
+        {
           "type": "text",
           "id": "target_number",
           "label": "Target number",
           "default": "1993",
-          "info": "Enter digits only, without the prefix or suffix."
+          "info": "Digits only, without prefix or suffix. Decimals allowed, e.g. 4.8 — the counter keeps the same decimal places."
         },
         {
           "type": "text",
