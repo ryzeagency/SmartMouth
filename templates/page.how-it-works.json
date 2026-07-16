@@ -474,21 +474,11 @@
     "smt_home_revamp_testimonials_eGNnq8": {
       "type": "smt-home-revamp-testimonials",
       "blocks": {
-        "testimonial_qzrXih": {
-          "type": "testimonial",
-          "settings": {
-            "rating": 5,
-            "quote": "In just 24 hours, I saw a major improvement. Now I feel confident in pursuing my dreams. Your products are truly a lifesaver.",
-            "author": "Nikia",
-            "author_label": "Verified User",
-            "background_color": "#ffffff"
-          }
-        },
         "testimonial_Rx4468": {
           "type": "testimonial",
           "settings": {
             "rating": 5,
-            "quote": "In just 24 hours, I saw a major improvement. Now I feel confident in pursuing my dreams. Your products are truly a lifesaver.",
+            "quote": "I just want to say thank you for this amazing product. For years I have struggled with dry mouth due to my autoimmune disease. In just 24 hours, I saw a major improvement. Now I feel confident in pursuing my dreams. Your products are truly a lifesaver. I will be a customer for life!",
             "author": "Nikia",
             "author_label": "Verified User",
             "background_color": "#ffffff"
@@ -498,8 +488,8 @@
           "type": "testimonial",
           "settings": {
             "rating": 5,
-            "quote": "In just 24 hours, I saw a major improvement. Now I feel confident in pursuing my dreams. Your products are truly a lifesaver.",
-            "author": "Nikia",
+            "quote": "I tried SmartMouth oral rinse and was amazed! It made my mouth feel great with no burn or harsh chemical aftertaste. I suffer from bad sinuses and seasonal allergies which create a lot of drainage and leads to unpleasant breath. I have been using this product for a week now and I immediately see the difference it has made. I am a very frugal person, but I will spend the money if the the product is worth it. I’m definitely a loyal customer now!",
+            "author": "Elizabeth",
             "author_label": "Verified User",
             "background_color": "#ffffff"
           }
@@ -526,7 +516,6 @@
         }
       },
       "block_order": [
-        "testimonial_qzrXih",
         "testimonial_Rx4468",
         "testimonial_wezjec",
         "testimonial_JbAexh",
