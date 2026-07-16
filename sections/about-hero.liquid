@@ -67,7 +67,6 @@
   #shopify-section-{{ section.id }} .about-hero {
     padding: {{ section.settings.padding_top }}vw 0 {{ section.settings.padding_bottom }}vw;
     color: var(--about-hero-text);
-    background-color: var(--about-hero-background);
     background-image: {% if section.settings.desktop_background != blank %}url('{{ section.settings.desktop_background | image_url: width: 3840 }}'){% else %}none{% endif %};
     background-position: {{ section.settings.desktop_background_position }};
     background-repeat: no-repeat;
@@ -89,6 +88,8 @@
 
   #shopify-section-{{ section.id }} .about-hero__content {
     max-width: 48vw;
+    background-color: var(--about-hero-background);
+    padding: 3vw 4vw;
   }
 
   #shopify-section-{{ section.id }} .about-hero--image-left .about-hero__media {
@@ -167,6 +168,10 @@
     #shopify-section-{{ section.id }} .about-hero__content,
     #shopify-section-{{ section.id }} .about-hero__body {
       max-width: none;
+    }
+    
+    #shopify-section-{{ section.id }} .about-hero__content {
+      padding: 6vw 5vw;
     }
 
     #shopify-section-{{ section.id }} .about-hero__eyebrow {
@@ -374,4 +379,3 @@
   ]
 }
 {% endschema %}
-
