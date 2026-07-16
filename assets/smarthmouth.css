@@ -818,3 +818,9 @@ product-info .quantity::before {
 product-info .quantity::after {
     border-radius: 25px;
 }
+
+product-info .accordion__title {
+    color: #06203C !important;
+    font-size: 18px;
+    font-weight: 500;
+}
