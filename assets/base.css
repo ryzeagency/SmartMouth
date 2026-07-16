@@ -2368,7 +2368,7 @@ sticky-header .header {
 @media screen and (min-width: 750px) {
 
   .announcement-bar__message {
-      font-size: 15px;
+      font-size: 15px; 
   }
 
   ul.list-menu:not(.header__submenu) > li:last-child {
