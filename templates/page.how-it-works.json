@@ -58,7 +58,7 @@
         "padding_bottom": 3,
         "background_color": "#ffffff",
         "text_color": "#06264a",
-        "subheading_color": "#3c218a",
+        "subheading_color": "#06203C",
         "border_color": "#8c8c8c",
         "border_radius": 1,
         "placeholder_background": "#ffffff"
@@ -106,7 +106,7 @@
         "padding_bottom": 3,
         "background_color": "#ffffff",
         "text_color": "#06264a",
-        "subheading_color": "#3c218a",
+        "subheading_color": "#06203C",
         "detail_background": "#fbf4d9"
       }
     },
@@ -461,15 +461,15 @@
         "padding_bottom": 6,
         "mobile_padding_top": 14,
         "mobile_padding_bottom": 14,
-        "background_color": "#FFFFFF",
-        "text_color": "#06264A",
-        "panel_background": "#FFFFFF",
-        "panel_border_color": "#06264A",
-        "divider_color": "#D8E4EC",
-        "question_color": "#06264A",
-        "answer_color": "#496A86",
-        "accent_color": "#285B91",
-        "icon_background": "#F2F7FA"
+        "background_color": "#ffffff",
+        "text_color": "#06264a",
+        "panel_background": "#ffffff",
+        "panel_border_color": "#06264a",
+        "divider_color": "#d8e4ec",
+        "question_color": "#06264a",
+        "answer_color": "#496a86",
+        "accent_color": "#285b91",
+        "icon_background": "#f2f7fa"
       }
     },
     "smt_home_revamp_testimonials_eGNnq8": {
