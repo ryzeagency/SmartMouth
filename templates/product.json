@@ -396,6 +396,7 @@
         "retailer_TmgHrA",
         "retailer_r79K6Y"
       ],
+      "disabled": true,
       "name": "Available Nationwide",
       "settings": {
         "background_image": "shopify://shop_images/ChatGPT_Image_Jul_13_2026_04_03_58_PM.webp",
