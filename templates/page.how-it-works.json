@@ -28,8 +28,6 @@
         "card_width": 42,
         "padding_top": 14,
         "padding_bottom": 10,
-        "media_type": "video",
-        "desktop_video": "shopify://files/videos/hf_20260714_220232_83ba8b3b-7c7f-467e-b2ca-7f367a8ca4e9.mp4",
         "desktop_background": "shopify://shop_images/how-to-smartmouth-img.webp",
         "desktop_background_position": "center center",
         "mobile_background_position": "center center",
@@ -48,8 +46,9 @@
         "eyebrow": "ALL-DAY BAD BREATH PREVENTION",
         "heading": "Sulfur gas is the real cause of bad breath.",
         "subheading": "<p>Most mouthwashes mask the symptom. SmartMouth™ eliminates the cause — then prevents it from coming back for 24 hours.</p>",
-        "media_type": "video",
-        "video": "shopify://files/videos/hf_20260714_220232_83ba8b3b-7c7f-467e-b2ca-7f367a8ca4e9.mp4",
+        "media_type": "external",
+        "video_url": "https://www.youtube.com/watch?v=U_MK_PQkT0M",
+        "external_autoplay": false,
         "image_alt": "SmartMouth bad breath prevention demonstration",
         "placeholder_text": "VIDEO",
         "media_width": 61,
@@ -58,7 +57,7 @@
         "padding_bottom": 3,
         "background_color": "#ffffff",
         "text_color": "#06264a",
-        "subheading_color": "#06203C",
+        "subheading_color": "#06203c",
         "border_color": "#8c8c8c",
         "border_radius": 1,
         "placeholder_background": "#ffffff"
@@ -106,7 +105,7 @@
         "padding_bottom": 3,
         "background_color": "#ffffff",
         "text_color": "#06264a",
-        "subheading_color": "#06203C",
+        "subheading_color": "#06203c",
         "detail_background": "#fbf4d9"
       }
     },
