@@ -11,13 +11,25 @@
   "sections": {
     "main": {
       "type": "main-page",
+      "disabled": true,
       "settings": {
         "padding_top": 60,
         "padding_bottom": 60
       }
+    },
+    "blog_page_banner_3Xzixp": {
+      "type": "blog-page-banner",
+      "name": "Blog Page Banner",
+      "settings": {
+        "desktop_image": "shopify://shop_images/Legal_Pages_banner.png",
+        "top_subtitle": "",
+        "title": "{{ page.title }}",
+        "bottom_subtitle": ""
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "blog_page_banner_3Xzixp"
   ]
 }
