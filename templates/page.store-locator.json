@@ -11,9 +11,20 @@
   "sections": {
     "main": {
       "type": "main-page",
+      "disabled": true,
       "settings": {
         "padding_top": 28,
         "padding_bottom": 28
+      }
+    },
+    "smart_mouth_full_image_7txXVf": {
+      "type": "smart-mouth-full-image",
+      "name": "Full Width Image",
+      "settings": {
+        "image": "shopify://shop_images/STORE_LOCATOR.png",
+        "contained_layout": false,
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "custom_liquid_CeTHYe": {
@@ -29,6 +40,7 @@
   },
   "order": [
     "main",
+    "smart_mouth_full_image_7txXVf",
     "custom_liquid_CeTHYe"
   ]
 }
