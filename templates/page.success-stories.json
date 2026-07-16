@@ -28,6 +28,7 @@
         "card_width": 42,
         "padding_top": 10,
         "padding_bottom": 10,
+        "mobile_use_image": false,
         "desktop_background": "shopify://shop_images/successstories.png",
         "desktop_background_position": "left center",
         "mobile_background_position": "center center",
@@ -159,7 +160,7 @@
           "type": "testimonial",
           "settings": {
             "rating": 5,
-            "quote": "I tried SmartMouth oral rinse and was amazed! It made my mouth feel great with no burn or harsh chemical aftertaste. I suffer from bad sinuses and seasonal allergies which create a lot of drainage and leads to unpleasant breath. I have been using this product for a week now and I immediately see the difference it has made. I am a very frugal person, but I will spend the money if the the product is worth it. I’m definitely a loyal customer now!",
+            "quote": "I have been using this product for a week now and I immediately see the difference it has made. I am a very frugal person, but I will spend the money if the the product is worth it. I’m definitely a loyal customer now!",
             "author": "Elizabeth",
             "author_label": "Verified User",
             "background_color": "#ffffff"
