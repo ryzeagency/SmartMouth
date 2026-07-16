@@ -13,10 +13,27 @@
       "type": "blog-page-banner",
       "name": "Blog Page Banner",
       "settings": {
-        "desktop_image": "shopify://shop_images/blog-banners.png",
+        "desktop_image": "shopify://shop_images/BLOG_1_V2.png",
         "top_subtitle": "THE BLOG",
         "title": "{{ blog.title }}",
-        "bottom_subtitle": "Science, oral health and the real story behind fresh breath."
+        "bottom_subtitle": "Science, oral health and the real story behind fresh breath.",
+        "desktop_height": 30,
+        "mobile_height": 90,
+        "desktop_image_position": "center center",
+        "mobile_image_position": "center center",
+        "horizontal_alignment": "center",
+        "vertical_alignment": "center",
+        "content_width": 60,
+        "background_color": "#ffdd57",
+        "top_subtitle_color": "#FFFFFF",
+        "title_color": "#FFFFFF",
+        "bottom_subtitle_color": "#FFFFFF",
+        "top_subtitle_size": 1,
+        "title_size": 2.6,
+        "bottom_subtitle_size": 1,
+        "mobile_top_subtitle_size": 4,
+        "mobile_title_size": 9,
+        "mobile_bottom_subtitle_size": 4
       }
     },
     "main": {
