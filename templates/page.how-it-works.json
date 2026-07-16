@@ -28,6 +28,8 @@
         "card_width": 42,
         "padding_top": 14,
         "padding_bottom": 10,
+        "background_video": "shopify://files/videos/hf_20260714_220232_83ba8b3b-7c7f-467e-b2ca-7f367a8ca4e9.mp4",
+        "mobile_use_image": false,
         "desktop_background": "shopify://shop_images/how-to-smartmouth-img.webp",
         "desktop_background_position": "center center",
         "mobile_background_position": "center center",
