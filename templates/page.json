@@ -16,7 +16,24 @@
         "desktop_image": "shopify://shop_images/Legal_Pages_banner.png",
         "top_subtitle": "",
         "title": "{{ page.title }}",
-        "bottom_subtitle": ""
+        "bottom_subtitle": "",
+        "desktop_height": 20,
+        "mobile_height": 90,
+        "desktop_image_position": "center center",
+        "mobile_image_position": "center center",
+        "horizontal_alignment": "center",
+        "vertical_alignment": "center",
+        "content_width": 60,
+        "background_color": "#234E7C",
+        "top_subtitle_color": "#06264a",
+        "title_color": "#06264a",
+        "bottom_subtitle_color": "#06264a",
+        "top_subtitle_size": 1,
+        "title_size": 2.6,
+        "bottom_subtitle_size": 1,
+        "mobile_top_subtitle_size": 4,
+        "mobile_title_size": 9,
+        "mobile_bottom_subtitle_size": 4
       }
     },
     "main": {
