@@ -1,13 +1,18 @@
 {% liquid
   assign show_video = false
+  assign show_external = false
   assign show_image = false
 
   if section.settings.media_type == 'video' and section.settings.video != blank
     assign show_video = true
+  elsif section.settings.media_type == 'external' and section.settings.video_url != blank
+    assign show_external = true
   elsif section.settings.media_type == 'image' and section.settings.image != blank
     assign show_image = true
   elsif section.settings.video != blank
     assign show_video = true
+  elsif section.settings.video_url != blank
+    assign show_external = true
   elsif section.settings.image != blank
     assign show_image = true
   endif
@@ -45,6 +50,35 @@
             image_size: '2400x',
             class: 'how-to-video__asset'
         }}
+      {% elsif show_external %}
+        {%- liquid
+          assign external_title = section.settings.heading | default: 'Video' | escape
+          assign autoplay_flag = 0
+          if section.settings.external_autoplay
+            assign autoplay_flag = 1
+          endif
+        -%}
+        {% if section.settings.video_url.type == 'youtube' %}
+          <iframe
+            class="how-to-video__asset how-to-video__iframe"
+            src="https://www.youtube-nocookie.com/embed/{{ section.settings.video_url.id }}?rel=0&modestbranding=1&playsinline=1{% if section.settings.external_autoplay %}&autoplay=1&mute=1&loop=1&playlist={{ section.settings.video_url.id }}{% endif %}"
+            title="{{ external_title }}"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
+        {% elsif section.settings.video_url.type == 'vimeo' %}
+          <iframe
+            class="how-to-video__asset how-to-video__iframe"
+            src="https://player.vimeo.com/video/{{ section.settings.video_url.id }}?dnt=1&autoplay={{ autoplay_flag }}{% if section.settings.external_autoplay %}&muted=1&loop=1&background=0{% endif %}"
+            title="{{ external_title }}"
+            allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
+        {% endif %}
       {% elsif show_image %}
         {{
           section.settings.image
@@ -142,6 +176,11 @@
     overflow: hidden;
   }
 
+  #shopify-section-{{ section.id }} .how-to-video__iframe {
+    border-style: solid;
+    background: #000;
+  }
+
   #shopify-section-{{ section.id }} .how-to-video__placeholder {
     display: grid;
     place-items: center;
@@ -235,14 +274,29 @@
       "label": "Media type",
       "default": "video",
       "options": [
-        { "value": "video", "label": "Video" },
+        { "value": "video", "label": "Video (Shopify-hosted)" },
+        { "value": "external", "label": "YouTube / Vimeo URL" },
         { "value": "image", "label": "Image" }
       ]
     },
     {
       "type": "video",
       "id": "video",
-      "label": "Video"
+      "label": "Video (Shopify-hosted)"
+    },
+    {
+      "type": "video_url",
+      "id": "video_url",
+      "label": "YouTube or Vimeo URL",
+      "accept": ["youtube", "vimeo"],
+      "info": "Used when media type is set to YouTube / Vimeo URL."
+    },
+    {
+      "type": "checkbox",
+      "id": "external_autoplay",
+      "label": "Autoplay external video",
+      "default": false,
+      "info": "Plays muted and looped (browsers require mute for autoplay)."
     },
     {
       "type": "image_picker",
