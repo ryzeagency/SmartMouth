@@ -38,6 +38,19 @@
             style="--indicator-card-background: {{ block.settings.background_color }}; --indicator-card-text: {{ block.settings.text_color }};"
             {{ block.shopify_attributes }}
           >
+            {% if block.settings.image != blank %}
+              <div class="how-to-indicator__card-image">
+                {{ 
+                  block.settings.image 
+                  | image_url: width: 800 
+                  | image_tag: 
+                    widths: '400, 600, 800',
+                    sizes: '(min-width: 750px) 20vw, 40vw',
+                    loading: 'lazy'
+                }}
+              </div>
+            {% endif %}
+
             {% if block.settings.heading != blank %}
               <h3 class="how-to-indicator__card-heading">{{ block.settings.heading | escape }}</h3>
             {% endif %}
@@ -152,6 +165,17 @@
     text-align: center;
   }
 
+  #shopify-section-{{ section.id }} .how-to-indicator__card-image {
+    margin-bottom: 1.5vw;
+  }
+
+  #shopify-section-{{ section.id }} .how-to-indicator__card-image img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+
   #shopify-section-{{ section.id }} .how-to-indicator__visual--has-image .how-to-indicator__card {
     padding-top: 10.7vw;
   }
@@ -216,6 +240,10 @@
       border-radius: 2vw;
     }
 
+    #shopify-section-{{ section.id }} .how-to-indicator__card-image {
+      margin-bottom: 4vw;
+    }
+
     #shopify-section-{{ section.id }} .how-to-indicator__visual--has-image .how-to-indicator__card {
       padding-top: 23vw;
     }
@@ -266,7 +294,7 @@
     {
       "type": "image_picker",
       "id": "indicator_image",
-      "label": "Combined image"
+      "label": "Combined image (Optional over cards)"
     },
     {
       "type": "text",
@@ -360,6 +388,11 @@
       "type": "indicator",
       "name": "Indicator card",
       "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Card image"
+        },
         {
           "type": "text",
           "id": "heading",
