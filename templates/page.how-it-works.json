@@ -110,6 +110,158 @@
         "detail_background": "#fbf4d9"
       }
     },
+    "how_to_how_it_works_xkA9MN": {
+      "type": "how-to-how-it-works",
+      "blocks": {
+        "step_T4CLzc": {
+          "type": "step",
+          "settings": {
+            "heading": "You pour the two solutions together",
+            "body": "<p>SmartMouth™’s dual-chamber bottle keeps the Sulfur Eliminating Solution and the Zinc Ion Activating Solution completely separate until the moment you pour them into the cup.</p>"
+          }
+        },
+        "step_Anm97Q": {
+          "type": "step",
+          "settings": {
+            "heading": "A chemical reaction releases billions of zinc ions",
+            "body": "<p>When the two solutions combine in the cup, a chemical reaction occurs that instantly activates billions of zinc ions. The solution turns green — that’s your signal that it’s freshly activated and ready to work.</p>"
+          }
+        },
+        "step_QLTicL": {
+          "type": "step",
+          "settings": {
+            "heading": "The Sulfur Eliminator destroys existing bad breath",
+            "body": "<p>The Sulfur Eliminating Solution immediately destroys any sulfur gas already present in your mouth — giving you instant fresh breath from the first rinse.</p>"
+          }
+        },
+        "step_eqUjgM": {
+          "type": "step",
+          "settings": {
+            "heading": "Zinc ions block germs from producing more",
+            "body": "<p>The billions of activated zinc ions bond to the germs in your mouth and prevent them from consuming protein particles. No protein consumption means no sulfur gas production — and no bad breath returning for 12 hours per rinse, 24 hours with two rinses a day.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "step_T4CLzc",
+        "step_Anm97Q",
+        "step_QLTicL",
+        "step_eqUjgM"
+      ],
+      "name": "How To How It Works",
+      "settings": {
+        "eyebrow": "HOW IT WORKS, STEP BY STEP",
+        "heading": "Two rinses a day. 24 hours of fresh breath.",
+        "intro": "<p>SmartMouth™ works in two ways: elimination and prevention. Every time you pour.</p>",
+        "desktop_background": "shopify://shop_images/how-it-works-bg.webp",
+        "desktop_background_position": "center center",
+        "mobile_background_position": "center center",
+        "background_color": "#55546F",
+        "card_position": "right",
+        "card_width": 62,
+        "card_background": "#A5A5C7",
+        "card_opacity": 55,
+        "blur_strength": 1.2,
+        "text_color": "#FFFFFF",
+        "dot_color": "#D5CBFF",
+        "padding_top": 3,
+        "padding_bottom": 3,
+        "mobile_padding_top": 16,
+        "mobile_padding_bottom": 16
+      }
+    },
+    "how_to_dual_chamber_CHUNwh": {
+      "type": "how-to-dual-chamber",
+      "blocks": {
+        "solution_T8FeKk": {
+          "type": "solution",
+          "settings": {
+            "side": "blue",
+            "heading": "Zinc Rich Activator (blue cap)",
+            "body": "<p>Releases billions of zinc ions when poured — bonds to germs and prevents sulfur gas production for 12 hours per rinse.</p>",
+            "virus_image": "shopify://shop_images/blue-cap-virus.webp",
+            "virus_alt": "Solution molecule illustration",
+            "virus_width": 4,
+            "background_color": "#285B91",
+            "text_color": "#FFFFFF"
+          }
+        },
+        "solution_niLURi": {
+          "type": "solution",
+          "settings": {
+            "side": "green",
+            "heading": "Sulfur Eliminator (green cap)",
+            "body": "<p>Destroys existing sulfur gas in your mouth on contact — instant fresh breath from the first rinse.</p>",
+            "virus_image": "shopify://shop_images/green-cap-virus.webp",
+            "virus_alt": "Solution molecule illustration",
+            "virus_width": 4,
+            "background_color": "#008641",
+            "text_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "solution_T8FeKk",
+        "solution_niLURi"
+      ],
+      "name": "How To Dual Chamber",
+      "settings": {
+        "eyebrow": "THE DUAL-CHAMBER BOTTLE",
+        "heading": "Scientifically designed to keep the power of zinc ion activation in your hands — every pour.",
+        "desktop_illustration": "shopify://shop_images/dual-chamber-bottle-img.webp",
+        "illustration_alt": "SmartMouth dual-chamber bottle pouring both solutions",
+        "desktop_image_width": 29,
+        "mobile_image_width": 85,
+        "background_color": "#FFFFFF",
+        "text_color": "#06264A",
+        "padding_top": 4,
+        "padding_bottom": 1,
+        "mobile_padding_top": 12,
+        "mobile_padding_bottom": 12
+      }
+    },
+    "how_to_color_indicator_PWmWXJ": {
+      "type": "how-to-color-indicator",
+      "blocks": {
+        "indicator_88dbPi": {
+          "type": "indicator",
+          "settings": {
+            "heading": "Green = Ready",
+            "body": "<p>The solution is freshly activated and the zinc ions are ready to bind to germs. This is when SmartMouth™ is at full potency — rinse immediately.</p>",
+            "background_color": "#DDF9F2",
+            "text_color": "#06264A"
+          }
+        },
+        "indicator_xm7Vdk": {
+          "type": "indicator",
+          "settings": {
+            "heading": "Blue = pour again",
+            "body": "<p>If you wait 5 minutes after pouring, the solution turns blue — meaning the zinc ions are no longer as effective at preventing bad breath. Pour a fresh cup.</p>",
+            "background_color": "#cde5f8",
+            "text_color": "#285b91"
+          }
+        }
+      },
+      "block_order": [
+        "indicator_88dbPi",
+        "indicator_xm7Vdk"
+      ],
+      "name": "How To Color Indicator",
+      "settings": {
+        "eyebrow": "THE COLOR INDICATOR",
+        "heading": "You activate the zinc ions.",
+        "body": "<p>When the two solutions come together, a chemical reaction occurs that instantly releases billions of zinc ions. Here’s what the color tells you.</p>",
+        "image_alt": "Green ready cup and blue pour-again cup indicators",
+        "visual_width": 41,
+        "image_width": 41,
+        "background_color": "#FBF4E3",
+        "text_color": "#06264A",
+        "padding_top": 5,
+        "padding_bottom": 4,
+        "mobile_padding_top": 12,
+        "mobile_padding_bottom": 12
+      }
+    },
     "smt_home_revamp_testimonials_eGNnq8": {
       "type": "smt-home-revamp-testimonials",
       "blocks": {
@@ -277,6 +429,9 @@
     "how_to_hero_VDxPnf",
     "how_to_video_w3hwrC",
     "how_to_sulfur_gas_CEhCNc",
+    "how_to_how_it_works_xkA9MN",
+    "how_to_dual_chamber_CHUNwh",
+    "how_to_color_indicator_PWmWXJ",
     "smt_home_revamp_testimonials_eGNnq8",
     "about_product_standards_mPpk7H",
     "about_find_your_match_izrqrE"
