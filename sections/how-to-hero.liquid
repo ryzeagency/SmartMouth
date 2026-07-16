@@ -1,11 +1,32 @@
 {% liquid
   assign hero_label = section.settings.heading | default: section.settings.eyebrow | strip_html
+
+  assign has_video = false
+  if section.settings.background_video != blank
+    assign has_video = true
+  endif
 %}
 
 <section
-  class="how-to-hero how-to-hero--{{ section.settings.card_position }}"
+  class="how-to-hero how-to-hero--{{ section.settings.card_position }}{% if has_video %} how-to-hero--has-video{% endif %}"
   aria-label="{{ hero_label | escape }}"
 >
+  {% if has_video %}
+    <div class="how-to-hero__video" aria-hidden="true">
+      {{
+        section.settings.background_video
+        | video_tag:
+          autoplay: true,
+          loop: true,
+          muted: true,
+          controls: false,
+          playsinline: true,
+          preload: 'metadata',
+          image_size: '1920x'
+      }}
+    </div>
+  {% endif %}
+
   <div class="how-to-hero__container">
     <div class="how-to-hero__card">
       {% if section.settings.eyebrow != blank %}
@@ -32,8 +53,10 @@
   }
 
   #shopify-section-{{ section.id }} .how-to-hero {
+    position: relative;
+    overflow: hidden;
     background-color: {{ section.settings.background_color }};
-    background-image: {% if section.settings.desktop_background != blank %}url('{{ section.settings.desktop_background | image_url: width: 3840 }}'){% else %}none{% endif %};
+    background-image: {% if has_video %}none{% elsif section.settings.desktop_background != blank %}url('{{ section.settings.desktop_background | image_url: width: 3840 }}'){% else %}none{% endif %};
     background-position: {{ section.settings.desktop_background_position }};
     background-repeat: no-repeat;
     background-size: cover;
@@ -41,7 +64,23 @@
     padding-block: {{ section.settings.padding_top }}vw {{ section.settings.padding_bottom }}vw;
   }
 
+  #shopify-section-{{ section.id }} .how-to-hero__video {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  #shopify-section-{{ section.id }} .how-to-hero__video video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: {{ section.settings.desktop_background_position }};
+  }
+
   #shopify-section-{{ section.id }} .how-to-hero__container {
+    position: relative;
+    z-index: 1;
     display: flex;
     width: 85vw;
     margin-inline: auto;
@@ -112,11 +151,29 @@
     }
 
     #shopify-section-{{ section.id }} .how-to-hero {
-      {% if section.settings.mobile_background != blank %}
+      {% liquid
+        assign show_mobile_image = false
+        if section.settings.mobile_background != blank
+          if has_video == false or section.settings.mobile_use_image
+            assign show_mobile_image = true
+          endif
+        endif
+      %}
+      {% if show_mobile_image %}
         background-image: url('{{ section.settings.mobile_background | image_url: width: 1500 }}');
       {% endif %}
       background-position: {{ section.settings.mobile_background_position }};
       padding-block: {{ section.settings.mobile_padding_top }}vw {{ section.settings.mobile_padding_bottom }}vw;
+    }
+
+    {% if has_video and section.settings.mobile_use_image %}
+      #shopify-section-{{ section.id }} .how-to-hero__video {
+        display: none;
+      }
+    {% endif %}
+
+    #shopify-section-{{ section.id }} .how-to-hero__video video {
+      object-position: {{ section.settings.mobile_background_position }};
     }
 
     #shopify-section-{{ section.id }} .how-to-hero__container {
@@ -144,6 +201,25 @@
     }
   }
 </style>
+
+{% if has_video %}
+  <script>
+    (() => {
+      const video = document.querySelector('#shopify-section-{{ section.id }} .how-to-hero__video video');
+      if (!video) return;
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const apply = () => {
+        if (reduced.matches) {
+          video.pause();
+        } else {
+          video.play().catch(() => {});
+        }
+      };
+      apply();
+      reduced.addEventListener?.('change', apply);
+    })();
+  </script>
+{% endif %}
 
 {% schema %}
 {
@@ -217,6 +293,23 @@
       "unit": "vw",
       "label": "Desktop bottom spacing",
       "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Background video"
+    },
+    {
+      "type": "video",
+      "id": "background_video",
+      "label": "Background video",
+      "info": "Plays muted, looped, and fills the section. When set, the background images below are not used."
+    },
+    {
+      "type": "checkbox",
+      "id": "mobile_use_image",
+      "label": "Use background image on mobile instead of video",
+      "default": false,
+      "info": "Hides the video on small screens and shows the mobile background image — saves data for mobile visitors."
     },
     {
       "type": "header",
