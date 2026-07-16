@@ -810,3 +810,11 @@ product-info .product-form__submit {
 product-info .product-form__submit::before, product-info .product-form__submit::after {
     display: none;
 }
+
+product-info .quantity::before {
+    background: transparent;
+}
+
+product-info .quantity::after {
+    border-radius: 25px;
+}
