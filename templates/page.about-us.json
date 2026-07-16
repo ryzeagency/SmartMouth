@@ -93,7 +93,7 @@
       "settings": {
         "accessible_label": "SmartMouth by the numbers",
         "animation_duration": 2.5,
-        "background_color": "#88cfc6",
+        "background_color": "#047840",
         "text_color": "#ffffff"
       }
     },
@@ -314,13 +314,13 @@
         "bottle_offset": 1.5,
         "circle_size": 32.5,
         "circle_offset": 2.5,
-        "background_color": "#B3DFCA",
-        "circle_color": "#479B70",
-        "heading_background": "#00833D",
-        "heading_color": "#FFFFFF",
+        "background_color": "#b3dfca",
+        "circle_color": "#479b70",
+        "heading_background": "#00833d",
+        "heading_color": "#ffffff",
         "text_color": "#092847",
-        "button_color": "#FF6D00",
-        "button_text_color": "#FFFFFF"
+        "button_color": "#ff6d00",
+        "button_text_color": "#ffffff"
       }
     }
   },
