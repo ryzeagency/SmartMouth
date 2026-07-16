@@ -152,6 +152,46 @@
     text-decoration: underline;
   }
 
+  #shopify-section-{{ section.id }} .sm-footer-bar {
+    background: {{ section.settings.bar_bg_color }};
+    color: {{ section.settings.bar_text_color }};
+    padding-block: {{ section.settings.bar_padding_top | divided_by: 19.2 }}vw {{ section.settings.bar_padding_bottom | divided_by: 19.2 }}vw;
+  }
+
+  #shopify-section-{{ section.id }} .sm-footer-bar__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.6vw 2vw;
+    width: 85vw;
+    margin-inline: auto;
+  }
+
+  #shopify-section-{{ section.id }} .sm-footer-bar__copyright,
+  #shopify-section-{{ section.id }} .sm-footer-bar__credit {
+    margin: 0;
+    font-size: 0.72vw;
+    line-height: 1.5;
+  }
+
+  #shopify-section-{{ section.id }} .sm-footer-bar__credit a {
+    color: inherit;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 0.2vw;
+    transition: opacity 180ms ease;
+  }
+
+  #shopify-section-{{ section.id }} .sm-footer-bar__credit a:hover {
+    opacity: 0.7;
+  }
+
+  #shopify-section-{{ section.id }} .sm-footer-bar__credit a:focus-visible {
+    outline: 0.1vw solid currentColor;
+    outline-offset: 0.22vw;
+  }
+
   @media screen and (max-width: 989px) {
     #shopify-section-{{ section.id }} .sm-footer {
       padding-block: 8vw 10vw;
@@ -213,6 +253,15 @@
       font-size: 2vw;
       letter-spacing: 0.04vw;
     }
+
+    #shopify-section-{{ section.id }} .sm-footer-bar {
+      padding-block: 2.5vw;
+    }
+
+    #shopify-section-{{ section.id }} .sm-footer-bar__copyright,
+    #shopify-section-{{ section.id }} .sm-footer-bar__credit {
+      font-size: 2vw;
+    }
   }
 
   @media screen and (max-width: 749px) {
@@ -267,11 +316,28 @@
       font-size: 3.5vw;
       letter-spacing: 0.06vw;
     }
+
+    #shopify-section-{{ section.id }} .sm-footer-bar {
+      padding-block: 4vw;
+    }
+
+    #shopify-section-{{ section.id }} .sm-footer-bar__inner {
+      flex-direction: column;
+      justify-content: center;
+      gap: 1.5vw;
+      text-align: center;
+    }
+
+    #shopify-section-{{ section.id }} .sm-footer-bar__copyright,
+    #shopify-section-{{ section.id }} .sm-footer-bar__credit {
+      font-size: 3vw;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
     #shopify-section-{{ section.id }} .sm-footer__social-link,
-    #shopify-section-{{ section.id }} .sm-footer__link {
+    #shopify-section-{{ section.id }} .sm-footer__link,
+    #shopify-section-{{ section.id }} .sm-footer-bar__credit a {
       transition: none;
     }
   }
@@ -344,9 +410,11 @@
               </ul>
             {%- endif -%}
 
-            <p class="sm-footer__copyright">
-              &copy; {{ 'now' | date: '%Y' }} {{ section.settings.copyright_name | default: shop.name | escape }}. {{ section.settings.copyright_text | escape }}
-            </p>
+            {%- if section.settings.show_brand_copyright -%}
+              <p class="sm-footer__copyright">
+                &copy; {{ 'now' | date: '%Y' }} {{ section.settings.copyright_name | default: shop.name | escape }}. {{ section.settings.copyright_text | escape }}
+              </p>
+            {%- endif -%}
           </div>
 
         {%- when 'multi_menu' -%}
@@ -385,6 +453,26 @@
     {%- endfor -%}
   </div>
 </footer>
+
+{%- if section.settings.show_bottom_bar -%}
+  <div class="sm-footer-bar">
+    <div class="sm-footer-bar__inner">
+      <p class="sm-footer-bar__copyright">
+        &copy; {{ 'now' | date: '%Y' }} {{ section.settings.copyright_name | default: shop.name | escape }}. {{ section.settings.copyright_text | escape }}
+      </p>
+      {%- if section.settings.credit_name != blank -%}
+        <p class="sm-footer-bar__credit">
+          {{ section.settings.credit_prefix | escape }}
+          {%- if section.settings.credit_url != blank %}
+            <a href="{{ section.settings.credit_url }}" target="_blank" rel="noopener">{{ section.settings.credit_name | escape }}</a>
+          {%- else %}
+            {{ section.settings.credit_name | escape }}
+          {%- endif -%}
+        </p>
+      {%- endif -%}
+    </div>
+  </div>
+{%- endif -%}
 
 {% schema %}
 {
@@ -448,6 +536,74 @@
       "id": "copyright_text",
       "label": "Copyright text",
       "default": "All Rights Reserved."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_brand_copyright",
+      "label": "Also show copyright in the logo column",
+      "default": false,
+      "info": "The copyright now lives in the slim bottom bar. Enable this to show it in both places."
+    },
+    {
+      "type": "header",
+      "content": "Bottom bar",
+      "info": "Slim strip below the footer with the copyright and agency credit."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_bottom_bar",
+      "label": "Show bottom bar",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "credit_prefix",
+      "label": "Credit text",
+      "default": "Built by"
+    },
+    {
+      "type": "text",
+      "id": "credit_name",
+      "label": "Credit link label",
+      "default": "Ryze Agency"
+    },
+    {
+      "type": "url",
+      "id": "credit_url",
+      "label": "Credit link URL",
+      "info": "e.g. https://ryzeagency.com"
+    },
+    {
+      "type": "color",
+      "id": "bar_bg_color",
+      "label": "Bar background",
+      "default": "#205085"
+    },
+    {
+      "type": "color",
+      "id": "bar_text_color",
+      "label": "Bar text",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "bar_padding_top",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Bar top padding at 1920px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "bar_padding_bottom",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Bar bottom padding at 1920px",
+      "default": 14
     },
     {
       "type": "header",
