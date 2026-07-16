@@ -37,6 +37,51 @@
         padding-bottom: {{ section.settings.padding_bottom }}px;
       }
     }
+
+  #shopify-section-{{ section.id }} .product__benefits {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1.6rem 3.2rem;
+    margin: 0.8rem 0;
+  }
+
+  #shopify-section-{{ section.id }} .product__benefit {
+    display: flex;
+    align-items: center;
+    gap: 1.1rem;
+    color: var(--benefit-text-color, #2a4b9b);
+  }
+
+  #shopify-section-{{ section.id }} .product__benefit-icon {
+    flex: 0 0 auto;
+  }
+
+  #shopify-section-{{ section.id }} .product__benefit-icon img {
+    display: block;
+    width: var(--benefit-icon-width, 56px);
+    height: auto;
+  }
+
+  #shopify-section-{{ section.id }} .product__benefit-text {
+    margin: 0;
+    font-size: 1.7rem;
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .product__benefits {
+      gap: 1.4rem 2.4rem;
+    }
+
+    #shopify-section-{{ section.id }} .product__benefit-text {
+      font-size: 1.5rem;
+    }
+  }
   {%- endstyle -%}
 
   <script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
@@ -227,6 +272,49 @@
                     </div>
                   </details>
                 </div>
+              {%- when 'benefit_item' -%}
+                {%- liquid
+                  assign prev_i = forloop.index0 | minus: 1
+                  assign next_i = forloop.index0 | plus: 1
+
+                  assign open_row = false
+                  if forloop.first
+                    assign open_row = true
+                  elsif section.blocks[prev_i].type != 'benefit_item'
+                    assign open_row = true
+                  endif
+
+                  assign close_row = false
+                  if forloop.last
+                    assign close_row = true
+                  elsif section.blocks[next_i].type != 'benefit_item'
+                    assign close_row = true
+                  endif
+                -%}
+                {%- if open_row -%}
+                  <div class="product__benefits quick-add-hidden">
+                {%- endif -%}
+                <div
+                  class="product__benefit"
+                  style="--benefit-text-color: {{ block.settings.text_color }}; --benefit-icon-width: {{ block.settings.icon_width }}px;"
+                  {{ block.shopify_attributes }}
+                >
+                  {%- if block.settings.image != blank -%}
+                    <div class="product__benefit-icon">
+                      {{
+                        block.settings.image
+                        | image_url: width: 200
+                        | image_tag: widths: '100, 150, 200', loading: 'lazy', alt: ''
+                      }}
+                    </div>
+                  {%- endif -%}
+                  {%- if block.settings.text != blank -%}
+                    <p class="product__benefit-text">{{ block.settings.text | newline_to_br }}</p>
+                  {%- endif -%}
+                </div>
+                {%- if close_row -%}
+                  </div>
+                {%- endif -%}  
               {%- when 'amazon_review_badge' -%}
                 <div class="product__code-output" {{ block.shopify_attributes }}>
                   {{ product.metafields.custom.product_amazon_customer_reviews.value }}
@@ -1170,6 +1258,44 @@
           "type": "page",
           "id": "page",
           "label": "t:sections.main-product.blocks.collapsible_tab.settings.page.label"
+        }
+      ]
+    },
+      {
+      "type": "benefit_item",
+      "name": "Benefit item",
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Consecutive Benefit item blocks are shown together in one row. Add one block per benefit."
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Icon image"
+        },
+        {
+          "type": "range",
+          "id": "icon_width",
+          "min": 24,
+          "max": 120,
+          "step": 4,
+          "unit": "px",
+          "label": "Icon width",
+          "default": 56
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "2 rinses\na day",
+          "info": "Press Enter to split the text onto two lines."
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text color",
+          "default": "#2A4B9B"
         }
       ]
     },
