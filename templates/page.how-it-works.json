@@ -156,14 +156,14 @@
         "desktop_background": "shopify://shop_images/how-it-works-bg.webp",
         "desktop_background_position": "center center",
         "mobile_background_position": "center center",
-        "background_color": "#55546F",
+        "background_color": "#55546f",
         "card_position": "right",
         "card_width": 62,
-        "card_background": "#A5A5C7",
+        "card_background": "#a5a5c7",
         "card_opacity": 55,
         "blur_strength": 1.2,
-        "text_color": "#FFFFFF",
-        "dot_color": "#D5CBFF",
+        "text_color": "#ffffff",
+        "dot_color": "#d5cbff",
         "padding_top": 3,
         "padding_bottom": 3,
         "mobile_padding_top": 16,
@@ -182,8 +182,8 @@
             "virus_image": "shopify://shop_images/blue-cap-virus.webp",
             "virus_alt": "Solution molecule illustration",
             "virus_width": 4,
-            "background_color": "#285B91",
-            "text_color": "#FFFFFF"
+            "background_color": "#285b91",
+            "text_color": "#ffffff"
           }
         },
         "solution_niLURi": {
@@ -212,8 +212,8 @@
         "illustration_alt": "SmartMouth dual-chamber bottle pouring both solutions",
         "desktop_image_width": 29,
         "mobile_image_width": 85,
-        "background_color": "#FFFFFF",
-        "text_color": "#06264A",
+        "background_color": "#ffffff",
+        "text_color": "#06264a",
         "padding_top": 4,
         "padding_bottom": 1,
         "mobile_padding_top": 12,
@@ -226,19 +226,21 @@
         "indicator_88dbPi": {
           "type": "indicator",
           "settings": {
+            "image": "shopify://shop_images/green-ready.webp",
             "heading": "Green = Ready",
             "body": "<p>The solution is freshly activated and the zinc ions are ready to bind to germs. This is when SmartMouth™ is at full potency — rinse immediately.</p>",
-            "background_color": "#DDF9F2",
-            "text_color": "#06264A"
+            "background_color": "#ddf9f2",
+            "text_color": "#06264a"
           }
         },
         "indicator_xm7Vdk": {
           "type": "indicator",
           "settings": {
+            "image": "shopify://shop_images/blue-pour.webp",
             "heading": "Blue = pour again",
             "body": "<p>If you wait 5 minutes after pouring, the solution turns blue — meaning the zinc ions are no longer as effective at preventing bad breath. Pour a fresh cup.</p>",
             "background_color": "#cde5f8",
-            "text_color": "#285b91"
+            "text_color": "#205085"
           }
         }
       },
@@ -254,8 +256,8 @@
         "image_alt": "Green ready cup and blue pour-again cup indicators",
         "visual_width": 41,
         "image_width": 41,
-        "background_color": "#FBF4E3",
-        "text_color": "#06264A",
+        "background_color": "#fbf4e3",
+        "text_color": "#06264a",
         "padding_top": 5,
         "padding_bottom": 4,
         "mobile_padding_top": 12,
