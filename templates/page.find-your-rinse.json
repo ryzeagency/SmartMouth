@@ -448,7 +448,7 @@
         "accent_dark_color": "#005a52",
         "accent_light_color": "#e0f5f3",
         "accent_mid_color": "#b2e0da",
-        "padding_top": 24,
+        "padding_top": 60,
         "padding_bottom": 60
       }
     }
