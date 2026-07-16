@@ -9,6 +9,16 @@
  */
 {
   "sections": {
+    "blog_page_banner_tgejCT": {
+      "type": "blog-page-banner",
+      "name": "Blog Page Banner",
+      "settings": {
+        "desktop_image": "shopify://shop_images/blog-banners.png",
+        "top_subtitle": "THE BLOG",
+        "title": "{{ blog.title }}",
+        "bottom_subtitle": "Science, oral health and the real story behind fresh breath."
+      }
+    },
     "main": {
       "type": "main-blog",
       "settings": {
@@ -17,18 +27,8 @@
         "image_height": "medium",
         "show_date": true,
         "show_author": false,
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
-    "blog_page_banner_tgejCT": {
-      "type": "blog-page-banner",
-      "name": "Blog Page Banner",
-      "settings": {
-        "desktop_image": "shopify://shop_images/blog-banners.png",
-        "top_subtitle": "THE BLOG",
-        "title": "The SmartMouth Journal",
-        "bottom_subtitle": "Science, oral health and the real story behind fresh breath."
+        "padding_top": 60,
+        "padding_bottom": 60
       }
     }
   },
