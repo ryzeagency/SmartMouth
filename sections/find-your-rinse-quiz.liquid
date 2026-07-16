@@ -36,6 +36,22 @@
       {% endif %}
     </div>
 
+    {%- if request.design_mode -%}
+      {%- assign assigned_count = 0 -%}
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'quiz_product' and block.settings.product != blank -%}
+          {%- assign assigned_count = assigned_count | plus: 1 -%}
+        {%- endif -%}
+      {%- endfor -%}
+      {%- if assigned_count < section.blocks.size -%}
+        <div class="sm-quiz__setup-notice">
+          <strong>Setup:</strong> {{ section.blocks.size | minus: assigned_count }} of {{ section.blocks.size }} quiz blocks have no product assigned.
+          They currently use fallback name/price and can't be added to cart. Open each block and pick its product.
+          (Only visible in the theme editor.)
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+
     <div class="sm-quiz__card">
       <div class="sm-quiz__prog"><div class="sm-quiz__prog-fill" data-quiz-progress style="width:0%"></div></div>
 
@@ -62,7 +78,7 @@
           </button>
           <div class="sm-quiz__gate-privacy">We never share your email. Unsubscribe any time.</div>
 
-          {% form 'customer', class: 'sm-quiz__hidden-form', data-quiz-newsletter-form: '' %}
+          {% form 'customer', class: 'sm-quiz__hidden-form' %}
             <input type="hidden" name="contact[tags]" value="quiz,prospect">
             <input type="email" name="contact[email]" data-quiz-newsletter-email>
           {% endform %}
@@ -174,18 +190,19 @@
     "products": [
       {%- assign printed = false -%}
       {%- for block in section.blocks -%}
-        {%- if block.type == 'quiz_product' and block.settings.product != blank -%}
-          {%- assign p = block.settings.product -%}
+        {%- assign p = block.settings.product -%}
+        {%- if block.type == 'quiz_product' -%}
+          {%- if p != blank or block.settings.display_name != blank -%}
           {%- if printed %},{% endif -%}
           {%- assign printed = true -%}
           {
-            "id": {{ p.id }},
-            "variantId": {{ p.selected_or_first_available_variant.id | json }},
+            "id": {% if p != blank %}{{ p.id }}{% else %}{{ 9000000 | plus: forloop.index }}{% endif %},
+            "variantId": {% if p != blank %}{{ p.selected_or_first_available_variant.id | json }}{% else %}null{% endif %},
             "name": {{ block.settings.display_name | default: p.title | json }},
-            "url": {{ p.url | json }},
-            "image": {% if p.featured_image %}{{ p.featured_image | image_url: width: 480 | json }}{% else %}""{% endif %},
-            "priceN": {{ p.price | divided_by: 100.0 }},
-            "inStock": {{ p.available | json }},
+            "url": {% if p != blank %}{{ p.url | json }}{% else %}""{% endif %},
+            "image": {% if p != blank and p.featured_image %}{{ p.featured_image | image_url: width: 480 | json }}{% elsif block.settings.fallback_image != blank %}{{ block.settings.fallback_image | image_url: width: 480 | json }}{% else %}""{% endif %},
+            "priceN": {% if p != blank %}{{ p.price | divided_by: 100.0 }}{% else %}{{ block.settings.fallback_price | default: 0 }}{% endif %},
+            "inStock": {% if p != blank %}{{ p.available | json }}{% else %}true{% endif %},
             "cat": {{ block.settings.category | json }},
             "benefits": {{ block.settings.benefits | json }},
             "concern": {{ block.settings.concern | json }},
@@ -199,6 +216,7 @@
             "primaryReason": {{ block.settings.primary_reason | json }},
             "addonReason": {{ block.settings.addon_reason | json }}
           }
+          {%- endif -%}
         {%- endif -%}
       {%- endfor -%}
     ]
@@ -236,6 +254,7 @@
   #shopify-section-{{ section.id }} .sm-quiz__header { text-align: center; margin-bottom: 24px; }
   #shopify-section-{{ section.id }} .sm-quiz__logo { margin: 0 0 4px; font-size: 22px; font-weight: 700; color: var(--sm-navy); letter-spacing: .04em; }
   #shopify-section-{{ section.id }} .sm-quiz__sub { margin: 0; font-size: 13px; color: var(--sm-mid); }
+  #shopify-section-{{ section.id }} .sm-quiz__setup-notice { max-width: 680px; margin: 0 auto 16px; padding: 12px 16px; border: 1px solid var(--sm-amber); border-radius: 10px; background: #fff8ec; color: #7a5200; font-size: 12px; line-height: 1.55; }
   #shopify-section-{{ section.id }} .sm-quiz__card { background: var(--sm-white); border-radius: 14px; border: 1px solid var(--sm-border); overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,.07); }
   #shopify-section-{{ section.id }} .sm-quiz__prog { height: 4px; background: var(--sm-border); }
   #shopify-section-{{ section.id }} .sm-quiz__prog-fill { height: 100%; background: var(--sm-teal); border-radius: 2px; transition: width .4s ease; }
@@ -411,7 +430,7 @@
     const startQuiz = (withEmail) => {
       if (withEmail && gate) {
         const email = el('[data-quiz-email]')?.value.trim();
-        const form = el('[data-quiz-newsletter-form]');
+        const form = el('.sm-quiz__hidden-form');
         if (email && form) {
           const emailField = el('[data-quiz-newsletter-email]');
           emailField.value = email;
@@ -506,36 +525,59 @@
       ? `<img src="${esc(p.image)}" alt="${esc(p.name)}" loading="lazy">`
       : '';
 
+    const imgWrap = (p, cls) => p.url
+      ? `<a class="${cls}" href="${esc(p.url)}">${cardImg(p)}</a>`
+      : `<div class="${cls}">${cardImg(p)}</div>`;
+
+    const nameHtml = (p) => p.url ? `<a href="${esc(p.url)}">${esc(p.name)}</a>` : esc(p.name);
+
+    const addBtn = (p, cls, label = 'Add to cart') => {
+      if (!p.inStock) return `<button type="button" class="${cls}" disabled>Out of stock</button>`;
+      if (p.variantId) return `<button type="button" class="${cls}" data-quiz-add="${p.variantId}">${label}</button>`;
+      if (p.url) return `<a class="${cls}" href="${esc(p.url)}" style="display:block;text-align:center;text-decoration:none;">View product</a>`;
+      return `<button type="button" class="${cls}" disabled>${label}</button>`;
+    };
+
     const showResults = () => {
       els('.sm-quiz__step').forEach((s) => s.classList.remove('is-active'));
       progress.style.width = '100%';
       results.classList.add('is-active');
 
+      if (!products.length) {
+        el('.sm-quiz__pair').style.display = 'none';
+        el('[data-quiz-bundle]').style.display = 'none';
+        el('.sm-quiz__grid-sec').style.display = 'none';
+        el('[data-quiz-results]').insertAdjacentHTML(
+          'beforeend',
+          '<p style="font-size:13px;color:var(--sm-mid);">Product recommendations are being set up — please check back soon.</p>'
+        );
+        return;
+      }
+
       const sorted = products.map((p) => ({ ...p, sc: scoreP(p) })).sort((a, b) => b.sc - a.sc);
       const primary = sorted[0];
-      if (!primary) return;
       const addon = pickAddon(primary);
       matchedPrimary = primary;
       matchedAddon = addon;
 
       el('[data-quiz-primary]').innerHTML = `
         <div class="sm-quiz__p-label"><i class="ti ti-crown"></i> Primary formula</div>
-        <a class="sm-quiz__p-img" href="${esc(primary.url)}">${cardImg(primary)}</a>
-        <div class="sm-quiz__p-name"><a href="${esc(primary.url)}">${esc(primary.name)}</a></div>
+        ${imgWrap(primary, 'sm-quiz__p-img')}
+        <div class="sm-quiz__p-name">${nameHtml(primary)}</div>
         <div class="sm-quiz__p-price">${fmt(primary.priceN)}</div>
         <div class="sm-quiz__p-tags">${primary.benefits.map((b) => `<span class="sm-quiz__p-tag">${esc(b)}</span>`).join('')}</div>
         <div class="sm-quiz__p-why">${esc(primary.primaryReason || 'Matched to your answers for maximum effectiveness.')}</div>
-        <button type="button" class="sm-quiz__p-add" data-quiz-add="${primary.variantId}">Add to cart</button>`;
+        ${addBtn(primary, 'sm-quiz__p-add')}`;
 
       if (addon) {
         el('[data-quiz-addon]').innerHTML = `
           <div class="sm-quiz__a-label"><i class="ti ti-sparkles"></i> Recommended add-on</div>
-          <a class="sm-quiz__a-img" href="${esc(addon.url)}">${cardImg(addon)}</a>
-          <div class="sm-quiz__a-name"><a href="${esc(addon.url)}">${esc(addon.name)}</a></div>
+          ${imgWrap(addon, 'sm-quiz__a-img')}
+          <div class="sm-quiz__a-name">${nameHtml(addon)}</div>
           <div class="sm-quiz__a-price">${fmt(addon.priceN)}</div>
           <div class="sm-quiz__a-tags">${addon.benefits.map((b) => `<span class="sm-quiz__a-tag">${esc(b)}</span>`).join('')}</div>
           <div class="sm-quiz__a-why">${esc(addon.addonReason || 'A great complement to your primary formula.')}</div>
-          <button type="button" class="sm-quiz__a-add" data-quiz-add="${addon.variantId}">Add to cart</button>`;
+          ${addBtn(addon, 'sm-quiz__a-add')}`;
       }
 
       const bundle = el('[data-quiz-bundle]');
@@ -580,14 +622,17 @@
             : !p.inStock
               ? '<span class="sm-quiz__pc-badge" style="background:#aaa;">Sold out</span>'
               : '';
+        const gridImg = p.url
+          ? `<a class="sm-quiz__pi" href="${esc(p.url)}">${cardImg(p)}${badge}</a>`
+          : `<div class="sm-quiz__pi">${cardImg(p)}${badge}</div>`;
         return `
           <div class="sm-quiz__pc${(isPrimary || isAddon) ? ' is-match' : ''}${p.inStock ? '' : ' is-dimmed'}" data-cat="${esc(p.cat)}">
-            <a class="sm-quiz__pi" href="${esc(p.url)}">${cardImg(p)}${badge}</a>
+            ${gridImg}
             <div class="sm-quiz__pb">
-              <div class="sm-quiz__pn"><a href="${esc(p.url)}">${esc(p.name)}</a></div>
+              <div class="sm-quiz__pn">${nameHtml(p)}</div>
               <div class="sm-quiz__pp">${fmt(p.priceN)}</div>
               <div class="sm-quiz__pbens">${p.benefits.slice(0, 2).map((b) => `<span class="sm-quiz__pben">${esc(b)}</span>`).join('')}</div>
-              <button type="button" class="sm-quiz__padd" data-quiz-add="${p.variantId}" ${p.inStock ? '' : 'disabled'}>${p.inStock ? 'Add to cart' : 'Out of stock'}</button>
+              ${addBtn(p, 'sm-quiz__padd')}
             </div>
           </div>`;
       }).join('');
@@ -648,8 +693,10 @@
         case 'results': if (!action.disabled) showResults(); break;
         case 'retake': retake(); break;
         case 'add-bundle': {
-          const ids = [matchedPrimary, matchedAddon].filter(Boolean).map((p) => p.variantId);
-          addToCart(ids, action);
+          const ids = [matchedPrimary, matchedAddon]
+            .filter((p) => p && p.variantId)
+            .map((p) => p.variantId);
+          if (ids.length) addToCart(ids, action);
           break;
         }
       }
@@ -696,8 +743,10 @@
       "type": "quiz_product",
       "name": "Quiz product",
       "settings": [
-        { "type": "product", "id": "product", "label": "Product", "info": "Required — blocks without a product are skipped." },
-        { "type": "text", "id": "display_name", "label": "Display name override", "info": "Leave blank to use the product title." },
+        { "type": "product", "id": "product", "label": "Product", "info": "Pick the real product here — it supplies the live price, image, stock status and add-to-cart." },
+        { "type": "text", "id": "display_name", "label": "Display name override", "info": "Leave blank to use the product title. If no product is picked, this name is shown with the fallback price below (no add-to-cart)." },
+        { "type": "number", "id": "fallback_price", "label": "Fallback price", "info": "Only used while no product is assigned." },
+        { "type": "image_picker", "id": "fallback_image", "label": "Fallback image", "info": "Only used while no product is assigned." },
         {
           "type": "select",
           "id": "category",
@@ -733,25 +782,25 @@
       "name": "Find Your Rinse Quiz",
       "category": "Quiz",
       "blocks": [
-        { "type": "quiz_product", "settings": { "display_name": "Original Activated Mouthwash (16oz)", "category": "mouthwash", "benefits": "24hr breath, Zinc ion", "concern": "breath", "duration": "new, prevention", "lifestyle": "none, coffee, smoker", "location": "home, both, work", "experience": "new_to_mouthwash, switching", "addon_for": "", "is_starter": true, "primary_reason": "The original zinc ion formula — gentle, effective, and the right starting point for everyday fresh-breath protection." } },
-        { "type": "quiz_product", "settings": { "display_name": "Clinical Activated Mouthwash (16oz)", "category": "mouthwash", "benefits": "24hr breath, Anti-gingivitis, Anti-plaque", "concern": "breath, gum", "duration": "months, years", "lifestyle": "smoker, coffee, none", "location": "home, both, work", "experience": "nothing_worked, want_stronger, switching", "addon_for": "", "is_clinical": true, "primary_reason": "Clinical strength targets bad breath and gum health simultaneously — the go-to when the problem has been persistent." } },
-        { "type": "quiz_product", "settings": { "display_name": "Dry Mouth Activated Mouthwash (16oz)", "category": "mouthwash", "benefits": "24hr breath, Dry mouth relief", "concern": "dry, breath", "duration": "new, months, years", "lifestyle": "medication, none", "location": "home, both, work", "experience": "nothing_worked, want_stronger, new_to_mouthwash", "addon_for": "", "is_clinical": true, "is_starter": true, "primary_reason": "Specifically formulated for dry mouth — delivers relief and 24-hour breath protection in one rinse." } },
-        { "type": "quiz_product", "settings": { "display_name": "Mouth Sore Activated Mouthwash (16oz)", "category": "mouthwash", "benefits": "Soothing, Canker sore relief", "concern": "sore", "duration": "new, months, years", "lifestyle": "none, medication", "location": "home, both", "experience": "nothing_worked, new_to_mouthwash, want_stronger", "addon_for": "", "is_starter": true, "primary_reason": "A gentle, soothing formula designed to calm canker sores and oral irritation while keeping breath fresh." } },
-        { "type": "quiz_product", "settings": { "display_name": "Gum Health Activated Mouthwash (16oz)", "category": "mouthwash", "benefits": "Anti-gingivitis, Anti-plaque", "concern": "gum", "duration": "new, months, years", "lifestyle": "none, coffee", "location": "home, both", "experience": "nothing_worked, want_stronger, switching", "addon_for": "", "is_clinical": true, "primary_reason": "Advanced anti-gingivitis and anti-plaque actives — formulated specifically where gum health is the priority." } },
-        { "type": "quiz_product", "settings": { "display_name": "Advanced Liposomal Vitamin C (16oz)", "category": "liposomal", "benefits": "Liposomal tech, Vitamin C, Gum health", "concern": "gum, breath", "duration": "years, months", "lifestyle": "none, coffee", "location": "home, both", "experience": "nothing_worked, want_stronger, switching", "addon_for": "gum, breath", "primary_reason": "Liposomal Vitamin C delivers the deepest tissue nourishment — the most advanced formula in the lineup.", "addon_reason": "Vitamin C liposomal tech delivers deeper gum nourishment alongside your daily rinse." } },
-        { "type": "quiz_product", "settings": { "display_name": "Advanced Liposomal Morning (16oz)", "category": "liposomal", "benefits": "Liposomal tech, Morning formula", "concern": "breath, gum", "duration": "years, months", "lifestyle": "none, coffee, smoker", "location": "home, both", "experience": "nothing_worked, want_stronger, switching", "addon_for": "breath, gum", "primary_reason": "Liposomal morning formula — engineered for the highest-impact rinse of the day.", "addon_reason": "A dedicated morning liposomal formula adds a powerful AM layer on top of your evening rinse." } },
-        { "type": "quiz_product", "settings": { "display_name": "Advanced Liposomal Evening (16oz)", "category": "liposomal", "benefits": "Liposomal tech, Evening formula", "concern": "breath, gum", "duration": "years, months", "lifestyle": "none, coffee, smoker", "location": "home, both", "experience": "nothing_worked, want_stronger, switching", "addon_for": "breath, gum", "primary_reason": "Liposomal evening formula — works overnight so you wake up to genuinely fresh breath.", "addon_reason": "Evening liposomal formula works overnight — maximises the protection you've already started." } },
-        { "type": "quiz_product", "settings": { "display_name": "Original Activated Mouthwash (32oz)", "category": "mouthwash", "benefits": "24hr breath, Value size", "concern": "breath", "duration": "new, prevention", "lifestyle": "none", "location": "home", "experience": "switching, new_to_mouthwash", "addon_for": "" } },
-        { "type": "quiz_product", "settings": { "display_name": "Clinical Activated Mouthwash (32oz)", "category": "mouthwash", "benefits": "Clinical strength, Value size", "concern": "breath, gum", "duration": "months, years", "lifestyle": "smoker, coffee, none", "location": "home", "experience": "nothing_worked, want_stronger, switching", "addon_for": "", "is_clinical": true, "primary_reason": "Same clinical strength, bigger bottle — the right move when you know this is your formula." } },
-        { "type": "quiz_product", "settings": { "display_name": "Anti-Cavity + Zinc Toothpaste (3.4oz)", "category": "toothpaste", "benefits": "Cavity protection, Zinc", "concern": "breath, gum", "duration": "new, prevention, months", "lifestyle": "none, coffee", "location": "home, both, work", "experience": "new_to_mouthwash, switching, want_stronger", "addon_for": "breath, gum, sore, dry", "primary_reason": "Zinc toothpaste pairs perfectly with your mouthwash — reinforcing protection at every brush.", "addon_reason": "Zinc toothpaste reinforces your mouthwash protection at every brush — the natural next step in your routine." } },
-        { "type": "quiz_product", "settings": { "display_name": "Anti-Cavity + Zinc Toothpaste (6oz)", "category": "toothpaste", "benefits": "Cavity protection, Zinc, Value size", "concern": "breath, gum", "duration": "new, prevention, months", "lifestyle": "none, coffee", "location": "home", "experience": "new_to_mouthwash, switching, want_stronger", "addon_for": "breath, gum, sore, dry", "addon_reason": "The 6oz tube keeps your whole routine zinc-powered without running out — best value for daily use." } },
-        { "type": "quiz_product", "settings": { "display_name": "Dry Mouth Dual-Action Mints", "category": "mints", "benefits": "Dry mouth, On-the-go", "concern": "dry", "duration": "new, months", "lifestyle": "medication, none", "location": "travel, both, work", "experience": "new_to_mouthwash, nothing_worked", "addon_for": "dry, breath", "primary_reason": "Portable dry mouth relief — keeps you comfortable throughout the day, anywhere you go.", "addon_reason": "Keep dry mouth relief on hand all day — small enough for any bag, effective enough to notice." } },
-        { "type": "quiz_product", "settings": { "display_name": "Original Single Packs — 10 Ct", "category": "travel", "benefits": "Travel, Single-use", "concern": "breath", "duration": "new, prevention, months", "lifestyle": "none, coffee", "location": "travel, both, work", "experience": "new_to_mouthwash, switching", "addon_for": "breath", "primary_reason": "Same great formula in single-use packs — your routine goes wherever you do.", "addon_reason": "Take your routine anywhere — same formula, single-use packs for travel or on the go." } },
-        { "type": "quiz_product", "settings": { "display_name": "Clinical Single Packs — 50 Ct", "category": "travel", "benefits": "Travel, Clinical, 50 ct", "concern": "breath, gum", "duration": "months, years", "lifestyle": "smoker, coffee, none", "location": "travel, both, work", "experience": "nothing_worked, want_stronger", "addon_for": "gum, breath", "is_clinical": true, "primary_reason": "Clinical strength in a 50-pack — the right choice for frequent travelers who don't want to compromise.", "addon_reason": "50 clinical packs means your routine never gets interrupted — perfect if you travel frequently." } },
-        { "type": "quiz_product", "settings": { "display_name": "Dry Mouth Single Packs — 50 Ct", "category": "travel", "benefits": "Travel, Dry mouth, 50 ct", "concern": "dry", "duration": "months, years", "lifestyle": "medication", "location": "travel, both", "experience": "nothing_worked, want_stronger", "addon_for": "dry" } },
-        { "type": "quiz_product", "settings": { "display_name": "Original Single Packs — 50 Ct", "category": "travel", "benefits": "Travel, Value, 50 ct", "concern": "breath", "duration": "months, years, prevention", "lifestyle": "none, coffee", "location": "travel, both, work", "experience": "switching, want_stronger", "addon_for": "breath", "addon_reason": "50 original packs keeps you covered for months — best value for consistent travel use." } },
-        { "type": "quiz_product", "settings": { "display_name": "Clinical 2-Bottle Activated System", "category": "system", "benefits": "2-bottle system, Clinical strength", "concern": "breath, gum", "duration": "months, years", "lifestyle": "smoker, coffee, none", "location": "home, both", "experience": "nothing_worked, want_stronger, switching", "addon_for": "", "is_clinical": true } },
-        { "type": "quiz_product", "settings": { "display_name": "Original 2-Bottle Activated System", "category": "system", "benefits": "2-bottle system, 24hr breath", "concern": "breath", "duration": "new, prevention", "lifestyle": "none", "location": "home", "experience": "new_to_mouthwash, switching", "addon_for": "", "is_starter": true } }
+        { "type": "quiz_product", "settings": { "display_name": "Original Activated Mouthwash (16oz)", "fallback_price": 10.99, "category": "mouthwash", "benefits": "24hr breath, Zinc ion", "concern": "breath", "duration": "new, prevention", "lifestyle": "none, coffee, smoker", "location": "home, both, work", "experience": "new_to_mouthwash, switching", "addon_for": "", "is_starter": true, "primary_reason": "The original zinc ion formula — gentle, effective, and the right starting point for everyday fresh-breath protection." } },
+        { "type": "quiz_product", "settings": { "display_name": "Clinical Activated Mouthwash (16oz)", "fallback_price": 13.99, "category": "mouthwash", "benefits": "24hr breath, Anti-gingivitis, Anti-plaque", "concern": "breath, gum", "duration": "months, years", "lifestyle": "smoker, coffee, none", "location": "home, both, work", "experience": "nothing_worked, want_stronger, switching", "addon_for": "", "is_clinical": true, "primary_reason": "Clinical strength targets bad breath and gum health simultaneously — the go-to when the problem has been persistent." } },
+        { "type": "quiz_product", "settings": { "display_name": "Dry Mouth Activated Mouthwash (16oz)", "fallback_price": 11.99, "category": "mouthwash", "benefits": "24hr breath, Dry mouth relief", "concern": "dry, breath", "duration": "new, months, years", "lifestyle": "medication, none", "location": "home, both, work", "experience": "nothing_worked, want_stronger, new_to_mouthwash", "addon_for": "", "is_clinical": true, "is_starter": true, "primary_reason": "Specifically formulated for dry mouth — delivers relief and 24-hour breath protection in one rinse." } },
+        { "type": "quiz_product", "settings": { "display_name": "Mouth Sore Activated Mouthwash (16oz)", "fallback_price": 12.99, "category": "mouthwash", "benefits": "Soothing, Canker sore relief", "concern": "sore", "duration": "new, months, years", "lifestyle": "none, medication", "location": "home, both", "experience": "nothing_worked, new_to_mouthwash, want_stronger", "addon_for": "", "is_starter": true, "primary_reason": "A gentle, soothing formula designed to calm canker sores and oral irritation while keeping breath fresh." } },
+        { "type": "quiz_product", "settings": { "display_name": "Gum Health Activated Mouthwash (16oz)", "fallback_price": 13.99, "category": "mouthwash", "benefits": "Anti-gingivitis, Anti-plaque", "concern": "gum", "duration": "new, months, years", "lifestyle": "none, coffee", "location": "home, both", "experience": "nothing_worked, want_stronger, switching", "addon_for": "", "is_clinical": true, "primary_reason": "Advanced anti-gingivitis and anti-plaque actives — formulated specifically where gum health is the priority." } },
+        { "type": "quiz_product", "settings": { "display_name": "Advanced Liposomal Vitamin C (16oz)", "fallback_price": 13.99, "category": "liposomal", "benefits": "Liposomal tech, Vitamin C, Gum health", "concern": "gum, breath", "duration": "years, months", "lifestyle": "none, coffee", "location": "home, both", "experience": "nothing_worked, want_stronger, switching", "addon_for": "gum, breath", "primary_reason": "Liposomal Vitamin C delivers the deepest tissue nourishment — the most advanced formula in the lineup.", "addon_reason": "Vitamin C liposomal tech delivers deeper gum nourishment alongside your daily rinse." } },
+        { "type": "quiz_product", "settings": { "display_name": "Advanced Liposomal Morning (16oz)", "fallback_price": 13.99, "category": "liposomal", "benefits": "Liposomal tech, Morning formula", "concern": "breath, gum", "duration": "years, months", "lifestyle": "none, coffee, smoker", "location": "home, both", "experience": "nothing_worked, want_stronger, switching", "addon_for": "breath, gum", "primary_reason": "Liposomal morning formula — engineered for the highest-impact rinse of the day.", "addon_reason": "A dedicated morning liposomal formula adds a powerful AM layer on top of your evening rinse." } },
+        { "type": "quiz_product", "settings": { "display_name": "Advanced Liposomal Evening (16oz)", "fallback_price": 13.99, "category": "liposomal", "benefits": "Liposomal tech, Evening formula", "concern": "breath, gum", "duration": "years, months", "lifestyle": "none, coffee, smoker", "location": "home, both", "experience": "nothing_worked, want_stronger, switching", "addon_for": "breath, gum", "primary_reason": "Liposomal evening formula — works overnight so you wake up to genuinely fresh breath.", "addon_reason": "Evening liposomal formula works overnight — maximises the protection you've already started." } },
+        { "type": "quiz_product", "settings": { "display_name": "Original Activated Mouthwash (32oz)", "fallback_price": 19.99, "category": "mouthwash", "benefits": "24hr breath, Value size", "concern": "breath", "duration": "new, prevention", "lifestyle": "none", "location": "home", "experience": "switching, new_to_mouthwash", "addon_for": "" } },
+        { "type": "quiz_product", "settings": { "display_name": "Clinical Activated Mouthwash (32oz)", "fallback_price": 24.99, "category": "mouthwash", "benefits": "Clinical strength, Value size", "concern": "breath, gum", "duration": "months, years", "lifestyle": "smoker, coffee, none", "location": "home", "experience": "nothing_worked, want_stronger, switching", "addon_for": "", "is_clinical": true, "primary_reason": "Same clinical strength, bigger bottle — the right move when you know this is your formula." } },
+        { "type": "quiz_product", "settings": { "display_name": "Anti-Cavity + Zinc Toothpaste (3.4oz)", "fallback_price": 7.99, "category": "toothpaste", "benefits": "Cavity protection, Zinc", "concern": "breath, gum", "duration": "new, prevention, months", "lifestyle": "none, coffee", "location": "home, both, work", "experience": "new_to_mouthwash, switching, want_stronger", "addon_for": "breath, gum, sore, dry", "primary_reason": "Zinc toothpaste pairs perfectly with your mouthwash — reinforcing protection at every brush.", "addon_reason": "Zinc toothpaste reinforces your mouthwash protection at every brush — the natural next step in your routine." } },
+        { "type": "quiz_product", "settings": { "display_name": "Anti-Cavity + Zinc Toothpaste (6oz)", "fallback_price": 9.99, "category": "toothpaste", "benefits": "Cavity protection, Zinc, Value size", "concern": "breath, gum", "duration": "new, prevention, months", "lifestyle": "none, coffee", "location": "home", "experience": "new_to_mouthwash, switching, want_stronger", "addon_for": "breath, gum, sore, dry", "addon_reason": "The 6oz tube keeps your whole routine zinc-powered without running out — best value for daily use." } },
+        { "type": "quiz_product", "settings": { "display_name": "Dry Mouth Dual-Action Mints", "fallback_price": 3.99, "category": "mints", "benefits": "Dry mouth, On-the-go", "concern": "dry", "duration": "new, months", "lifestyle": "medication, none", "location": "travel, both, work", "experience": "new_to_mouthwash, nothing_worked", "addon_for": "dry, breath", "primary_reason": "Portable dry mouth relief — keeps you comfortable throughout the day, anywhere you go.", "addon_reason": "Keep dry mouth relief on hand all day — small enough for any bag, effective enough to notice." } },
+        { "type": "quiz_product", "settings": { "display_name": "Original Single Packs — 10 Ct", "fallback_price": 8.99, "category": "travel", "benefits": "Travel, Single-use", "concern": "breath", "duration": "new, prevention, months", "lifestyle": "none, coffee", "location": "travel, both, work", "experience": "new_to_mouthwash, switching", "addon_for": "breath", "primary_reason": "Same great formula in single-use packs — your routine goes wherever you do.", "addon_reason": "Take your routine anywhere — same formula, single-use packs for travel or on the go." } },
+        { "type": "quiz_product", "settings": { "display_name": "Clinical Single Packs — 50 Ct", "fallback_price": 59.99, "category": "travel", "benefits": "Travel, Clinical, 50 ct", "concern": "breath, gum", "duration": "months, years", "lifestyle": "smoker, coffee, none", "location": "travel, both, work", "experience": "nothing_worked, want_stronger", "addon_for": "gum, breath", "is_clinical": true, "primary_reason": "Clinical strength in a 50-pack — the right choice for frequent travelers who don't want to compromise.", "addon_reason": "50 clinical packs means your routine never gets interrupted — perfect if you travel frequently." } },
+        { "type": "quiz_product", "settings": { "display_name": "Dry Mouth Single Packs — 50 Ct", "fallback_price": 54.99, "category": "travel", "benefits": "Travel, Dry mouth, 50 ct", "concern": "dry", "duration": "months, years", "lifestyle": "medication", "location": "travel, both", "experience": "nothing_worked, want_stronger", "addon_for": "dry" } },
+        { "type": "quiz_product", "settings": { "display_name": "Original Single Packs — 50 Ct", "fallback_price": 44.99, "category": "travel", "benefits": "Travel, Value, 50 ct", "concern": "breath", "duration": "months, years, prevention", "lifestyle": "none, coffee", "location": "travel, both, work", "experience": "switching, want_stronger", "addon_for": "breath", "addon_reason": "50 original packs keeps you covered for months — best value for consistent travel use." } },
+        { "type": "quiz_product", "settings": { "display_name": "Clinical 2-Bottle Activated System", "fallback_price": 24.99, "category": "system", "benefits": "2-bottle system, Clinical strength", "concern": "breath, gum", "duration": "months, years", "lifestyle": "smoker, coffee, none", "location": "home, both", "experience": "nothing_worked, want_stronger, switching", "addon_for": "", "is_clinical": true } },
+        { "type": "quiz_product", "settings": { "display_name": "Original 2-Bottle Activated System", "fallback_price": 21.99, "category": "system", "benefits": "2-bottle system, 24hr breath", "concern": "breath", "duration": "new, prevention", "lifestyle": "none", "location": "home", "experience": "new_to_mouthwash, switching", "addon_for": "", "is_starter": true } }
       ]
     }
   ]
