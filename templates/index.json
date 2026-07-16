@@ -15,12 +15,13 @@
       "settings": {
         "image": "shopify://shop_images/smt-revamp-hero-bg.webp",
         "video": "shopify://files/videos/hf_20260622_194813_3b0a0eaa-1282-40f5-9411-1877191ef375.mp4",
-        "media_alt": "SmartMouth mouthwash being poured in a bathroom",
+        "mobile_video": "shopify://files/videos/mobile banner.mp4",
         "media_position": "center center",
         "mobile_position": "center center",
+        "mobile_space_above": 40,
+        "mobile_space_below": 8,
         "panel_position": "left",
         "review_text": "4.5 avg. | 8.8K+ Trusted Reviews",
-        "review_accessible": "4.5 out of 5 stars from more than 8,800 trusted reviews",
         "heading": "The smarter\nmouthwash",
         "copy": "<p><strong>The only mouthwash scientifically proven to eliminate & prevent bad breath for 24 hours — </strong><em><strong>with just 2 rinses a day.</strong></em></p>",
         "icon_1": "shopify://shop_images/smt-revamp-hero-icon-1.png",
@@ -32,8 +33,7 @@
         "panel_color": "#24588d",
         "text_color": "#ffffff",
         "star_color": "#ffc857",
-        "button_color": "#ff7600",
-        "button_text_color": "#ffffff"
+        "button_color": "#ff7600"
       }
     },
     "smt_home_revamp_logo_marquee_k3xkz8": {
