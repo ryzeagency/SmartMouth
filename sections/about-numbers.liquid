@@ -9,15 +9,6 @@
       {%- for block in section.blocks -%}
         <li class="about-numbers__item" {{ block.shopify_attributes }}>
           <span class="about-numbers__value-row">
-            {%- if block.settings.icon != blank -%}
-              <span class="about-numbers__icon" aria-hidden="true">
-                {{
-                  block.settings.icon
-                  | image_url: width: 200
-                  | image_tag: widths: '100, 150, 200', loading: 'lazy', alt: ''
-                }}
-              </span>
-            {%- endif -%}
             <span
               class="about-numbers__value"
               data-about-counter
@@ -29,6 +20,15 @@
             >
               {{- block.settings.prefix | escape -}}0{{- block.settings.suffix | escape -}}
             </span>
+            {%- if block.settings.icon != blank -%}
+              <span class="about-numbers__icon" aria-hidden="true">
+                {{
+                  block.settings.icon
+                  | image_url: width: 200
+                  | image_tag: widths: '100, 150, 200', loading: 'lazy', alt: ''
+                }}
+              </span>
+            {%- endif -%}
           </span>
 
           <p class="about-numbers__label">
