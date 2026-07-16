@@ -23,7 +23,7 @@
     aria-label="{{ section.settings.slider_label | escape }}"
     tabindex="0"
   >
-    <div class="hr-testimonials__track" role="list">
+    <div class="hr-testimonials__track" data-testimonials-track role="list">
       {% for block in section.blocks %}
         <article
           class="hr-testimonials__slide"
@@ -166,6 +166,11 @@
     scroll-behavior: auto;
     scroll-snap-type: none;
     user-select: none;
+  }
+
+  #shopify-section-{{ section.id }} .hr-testimonials__viewport.is-teleporting {
+    scroll-behavior: auto;
+    scroll-snap-type: none;
   }
 
   #shopify-section-{{ section.id }} .hr-testimonials__track {
@@ -363,34 +368,70 @@
   (() => {
     const section = document.querySelector('[data-testimonials-section="{{ section.id }}"]');
     const viewport = section?.querySelector('[data-testimonials-viewport]');
+    const track = section?.querySelector('[data-testimonials-track]');
 
-    if (!section || !viewport || viewport.dataset.sliderReady === 'true') return;
+    if (!section || !viewport || !track || viewport.dataset.sliderReady === 'true') return;
 
     viewport.dataset.sliderReady = 'true';
 
-    const slides = Array.from(viewport.querySelectorAll('[data-testimonial-slide]'));
+    const realSlides = Array.from(track.querySelectorAll('[data-testimonial-slide]'));
+    const realCount = realSlides.length;
 
-    if (slides.length === 0) return;
+    if (realCount === 0) return;
+
+    const loopEnabled = realCount > 1;
+
+    /* ------------------------------------------------------------------
+       Seamless loop: clone the full set of slides once before and once
+       after the real set. When the scroll position drifts into a clone
+       zone, we silently teleport it back by exactly one "set width", so
+       there is always another card on both sides — no empty space at the
+       start or end, and no visible rewind when autoplay wraps around.
+    ------------------------------------------------------------------ */
+    const makeClone = (slide) => {
+      const clone = slide.cloneNode(true);
+      clone.removeAttribute('data-testimonial-slide');
+      clone.setAttribute('data-testimonial-clone', '');
+      clone.setAttribute('aria-hidden', 'true');
+      clone.setAttribute('role', 'presentation');
+      clone.querySelectorAll('[id]').forEach((el) => el.removeAttribute('id'));
+      clone.querySelectorAll('a, button, [tabindex]').forEach((el) => el.setAttribute('tabindex', '-1'));
+      return clone;
+    };
+
+    if (loopEnabled) {
+      track.prepend(...realSlides.map(makeClone));
+      track.append(...realSlides.map(makeClone));
+    }
+
+    const allSlides = Array.from(track.children);
+    const firstRealIndex = loopEnabled ? realCount : 0;
 
     const requestedIndex = {{ section.settings.initial_slide | minus: 1 }};
-    const initialIndex = Math.max(0, Math.min(requestedIndex, slides.length - 1));
-    const autoplayEnabled = section.dataset.testimonialsAutoplay === 'true' && slides.length > 1;
+    const initialIndex = firstRealIndex + Math.max(0, Math.min(requestedIndex, realCount - 1));
+    const autoplayEnabled = section.dataset.testimonialsAutoplay === 'true' && loopEnabled;
     const autoplayInterval = Number(section.dataset.testimonialsInterval) || 3000;
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-    let currentIndex = initialIndex;
     let autoplayTimer = null;
+    let settleTimer = null;
     let isDragging = false;
     let isPointerInside = false;
     let startX = 0;
     let startScrollLeft = 0;
 
+    const centerLeftOf = (slide) =>
+      slide.offsetLeft - ((viewport.clientWidth - slide.offsetWidth) / 2);
+
+    const setWidth = () =>
+      loopEnabled ? allSlides[realCount].offsetLeft - allSlides[0].offsetLeft : 0;
+
     const closestSlideIndex = () => {
       const viewportCenter = viewport.scrollLeft + (viewport.clientWidth / 2);
 
-      return slides.reduce((closestIndex, slide, index) => {
+      return allSlides.reduce((closestIndex, slide, index) => {
         const slideCenter = slide.offsetLeft + (slide.offsetWidth / 2);
-        const closestCenter = slides[closestIndex].offsetLeft + (slides[closestIndex].offsetWidth / 2);
+        const closestCenter = allSlides[closestIndex].offsetLeft + (allSlides[closestIndex].offsetWidth / 2);
 
         return Math.abs(slideCenter - viewportCenter) < Math.abs(closestCenter - viewportCenter)
           ? index
@@ -398,12 +439,35 @@
       }, 0);
     };
 
-    const centerSlide = (index, behavior = 'smooth') => {
-      currentIndex = ((index % slides.length) + slides.length) % slides.length;
+    const teleportTo = (left) => {
+      viewport.classList.add('is-teleporting');
+      viewport.scrollLeft = left;
+      // Force the style change to apply before restoring smooth scrolling.
+      void viewport.offsetWidth;
+      viewport.classList.remove('is-teleporting');
+    };
 
-      const slide = slides[currentIndex];
-      const left = slide.offsetLeft - ((viewport.clientWidth - slide.offsetWidth) / 2);
-      viewport.scrollTo({ left, behavior });
+    /* If we've settled inside a clone zone, jump back into the real set. */
+    const normalize = () => {
+      if (!loopEnabled || isDragging) return;
+
+      const width = setWidth();
+      if (!width) return;
+
+      const min = centerLeftOf(allSlides[firstRealIndex]);
+      const max = centerLeftOf(allSlides[firstRealIndex + realCount - 1]);
+      const current = viewport.scrollLeft;
+
+      if (current < min - 1) {
+        teleportTo(current + width);
+      } else if (current > max + 1) {
+        teleportTo(current - width);
+      }
+    };
+
+    const centerSlide = (index, behavior = 'smooth') => {
+      const clamped = Math.max(0, Math.min(index, allSlides.length - 1));
+      viewport.scrollTo({ left: centerLeftOf(allSlides[clamped]), behavior });
     };
 
     const stopAutoplay = () => {
@@ -426,11 +490,26 @@
       ) return;
 
       autoplayTimer = window.setTimeout(() => {
-        currentIndex = closestSlideIndex();
-        centerSlide(currentIndex + 1);
+        normalize();
+        centerSlide(closestSlideIndex() + 1);
         startAutoplay();
       }, autoplayInterval);
     };
+
+    /* Normalize once scrolling has settled (covers autoplay, drag and snap). */
+    const scheduleNormalize = () => {
+      if (settleTimer !== null) window.clearTimeout(settleTimer);
+      settleTimer = window.setTimeout(() => {
+        settleTimer = null;
+        normalize();
+      }, 120);
+    };
+
+    if ('onscrollend' in window) {
+      viewport.addEventListener('scrollend', normalize);
+    } else {
+      viewport.addEventListener('scroll', scheduleNormalize, { passive: true });
+    }
 
     requestAnimationFrame(() => {
       centerSlide(initialIndex, 'auto');
@@ -441,6 +520,7 @@
       if (event.button !== 0) return;
 
       stopAutoplay();
+      normalize();
       isDragging = true;
       startX = event.clientX;
       startScrollLeft = viewport.scrollLeft;
@@ -464,6 +544,7 @@
         viewport.releasePointerCapture(event.pointerId);
       }
 
+      normalize();
       centerSlide(closestSlideIndex());
       startAutoplay();
     };
@@ -476,9 +557,9 @@
 
       event.preventDefault();
       stopAutoplay();
+      normalize();
 
-      currentIndex = closestSlideIndex();
-      centerSlide(currentIndex + (event.key === 'ArrowRight' ? 1 : -1));
+      centerSlide(closestSlideIndex() + (event.key === 'ArrowRight' ? 1 : -1));
     });
 
     viewport.addEventListener('mouseenter', () => {
@@ -494,6 +575,16 @@
     viewport.addEventListener('focusin', stopAutoplay);
     viewport.addEventListener('focusout', () => {
       window.requestAnimationFrame(startAutoplay);
+    });
+
+    let resizeTimer = null;
+    window.addEventListener('resize', () => {
+      if (resizeTimer !== null) window.clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(() => {
+        resizeTimer = null;
+        normalize();
+        centerSlide(closestSlideIndex(), 'auto');
+      }, 150);
     });
 
     document.addEventListener('visibilitychange', () => {
@@ -734,7 +825,8 @@
 {% endschema %}
 
 {% comment %}
-  This full-width slider uses native scroll snapping in the same spirit as Dawn's
-  slider component, with no external JavaScript dependency. Autoplay pauses for
-  interaction, hidden tabs, and reduced-motion preferences.
+  Infinite loop: the full slide set is cloned once before and once after the
+  real slides. Whenever scrolling settles inside a clone zone, the scroll
+  position is instantly shifted by one set-width back into the real zone, so
+  the strip never shows its ends. Clones are aria-hidden and untabbable.
 {% endcomment %}
