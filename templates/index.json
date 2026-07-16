@@ -14,6 +14,7 @@
       "name": "Home Revamp Hero",
       "settings": {
         "image": "shopify://shop_images/smt-revamp-hero-bg.webp",
+        "video": "shopify://files/videos/hf_20260622_194813_3b0a0eaa-1282-40f5-9411-1877191ef375.mp4",
         "media_alt": "SmartMouth mouthwash being poured in a bathroom",
         "media_position": "center center",
         "mobile_position": "center center",
