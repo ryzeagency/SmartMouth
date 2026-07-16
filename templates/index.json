@@ -15,7 +15,7 @@
       "settings": {
         "image": "shopify://shop_images/smt-revamp-hero-bg.webp",
         "video": "shopify://files/videos/hf_20260622_194813_3b0a0eaa-1282-40f5-9411-1877191ef375.mp4",
-        "mobile_video": "shopify://files/videos/mobile banner.mp4",
+        "mobile_video": "shopify://files/videos/mobile bannerlarge.mp4",
         "media_position": "center center",
         "mobile_position": "center center",
         "mobile_space_above": 40,
