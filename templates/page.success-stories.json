@@ -26,18 +26,17 @@
         "body": "<p>SmartMouth™’s patented formula combines a sulfur eliminating solution with a zinc ion activating solution — kept separate until you pour. The result: bad breath eliminated instantly and prevented for 24 hours with just two rinses a day.</p>",
         "card_position": "right",
         "card_width": 42,
-        "padding_top": 14,
+        "padding_top": 10,
         "padding_bottom": 10,
-        "media_type": "image",
         "desktop_background": "shopify://shop_images/successstories.png",
-        "desktop_background_position": "center center",
+        "desktop_background_position": "left center",
         "mobile_background_position": "center center",
         "mobile_padding_top": 10,
         "mobile_padding_bottom": 10,
-        "background_color": "#0DA5E5",
+        "background_color": "#0da5e5",
         "card_background": "#047840",
         "card_opacity": 100,
-        "text_color": "#FFFFFF"
+        "text_color": "#ffffff"
       }
     },
     "about_numbers_pRPLUF": {
@@ -99,7 +98,7 @@
         "accessible_label": "SmartMouth by the numbers",
         "animation_duration": 2.5,
         "background_color": "#205085",
-        "text_color": "#FFFFFF"
+        "text_color": "#ffffff"
       }
     },
     "how_to_video_7MwGVG": {
@@ -117,12 +116,12 @@
         "aspect_ratio": "2.5 / 1",
         "padding_top": 3,
         "padding_bottom": 3,
-        "background_color": "#FFFFFF",
-        "text_color": "#06264A",
-        "subheading_color": "#3C218A",
-        "border_color": "#8C8C8C",
+        "background_color": "#ffffff",
+        "text_color": "#06264a",
+        "subheading_color": "#3c218a",
+        "border_color": "#8c8c8c",
         "border_radius": 1,
-        "placeholder_background": "#FFFFFF"
+        "placeholder_background": "#ffffff"
       }
     },
     "how_to_video_GA9ihM": {
@@ -140,12 +139,12 @@
         "aspect_ratio": "2.5 / 1",
         "padding_top": 2,
         "padding_bottom": 3,
-        "background_color": "#FFFFFF",
-        "text_color": "#06264A",
-        "subheading_color": "#3C218A",
-        "border_color": "#8C8C8C",
+        "background_color": "#ffffff",
+        "text_color": "#06264a",
+        "subheading_color": "#3c218a",
+        "border_color": "#8c8c8c",
         "border_radius": 1,
-        "placeholder_background": "#FFFFFF"
+        "placeholder_background": "#ffffff"
       }
     },
     "smt_home_revamp_testimonials_cAgdBt": {
@@ -158,7 +157,7 @@
             "quote": "In just 24 hours, I saw a major improvement. Now I feel confident in pursuing my dreams. Your products are truly a lifesaver.",
             "author": "Nikia",
             "author_label": "Verified User",
-            "background_color": "#FFFFFF"
+            "background_color": "#ffffff"
           }
         },
         "testimonial_gAdWtK": {
@@ -168,7 +167,7 @@
             "quote": "I just want to say thank you for this amazing product. For years I have struggled with dry mouth due to my autoimmune disease. In just 24 hours, I saw a major improvement. Now I feel confident in pursuing my dreams. Your products are truly a lifesaver. I will be a customer for life!",
             "author": "Alan",
             "author_label": "Verified User",
-            "background_color": "#FFFFFF"
+            "background_color": "#ffffff"
           }
         },
         "testimonial_Jxhe3C": {
@@ -178,7 +177,7 @@
             "quote": "You win… I tried to not have fresh breath after rinsing with SmartMouth by eating garlic, onions, fermented beans, pepperoni, and coffee. But my breath was fresh again after an hour of eating those things. I am a fan for life.",
             "author": "Mika",
             "author_label": "Verified User",
-            "background_color": "#FFFFFF"
+            "background_color": "#ffffff"
           }
         }
       },
@@ -198,13 +197,13 @@
         "card_width": 31,
         "card_gap": 7,
         "stars_image_width": 11,
-        "background_color": "#D1EDE7",
+        "background_color": "#d1ede7",
         "heading_background": "#205085",
-        "heading_top_color": "#FFFFFF",
-        "heading_bottom_color": "#A9D7EE",
-        "text_color": "#182A4A",
+        "heading_top_color": "#ffffff",
+        "heading_bottom_color": "#a9d7ee",
+        "text_color": "#182a4a",
         "border_color": "#205085",
-        "star_color": "#FFB400"
+        "star_color": "#ffb400"
       }
     },
     "smt_home_revamp_available_Hdama7": {
@@ -254,15 +253,15 @@
         "amazon_link": "",
         "shop_label": "SHOP ONLINE",
         "shop_link": "",
-        "background_color": "#9A96BC",
-        "glass_color": "#E2DCFA",
+        "background_color": "#9a96bc",
+        "glass_color": "#e2dcfa",
         "glass_opacity": 22,
-        "text_color": "#FFFFFF",
-        "heading_background": "#865CE6",
-        "heading_color": "#FFFFFF",
-        "heading_accent_color": "#C8B7FF",
-        "button_color": "#FF7701",
-        "button_text_color": "#FFFFFF"
+        "text_color": "#ffffff",
+        "heading_background": "#865ce6",
+        "heading_color": "#ffffff",
+        "heading_accent_color": "#c8b7ff",
+        "button_color": "#ff7701",
+        "button_text_color": "#ffffff"
       }
     }
   },
