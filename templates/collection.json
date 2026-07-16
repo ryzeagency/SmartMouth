@@ -11,10 +11,21 @@
   "sections": {
     "banner": {
       "type": "main-collection-banner",
+      "disabled": true,
       "settings": {
         "show_collection_description": true,
         "show_collection_image": false,
         "color_scheme": "scheme-1"
+      }
+    },
+    "blog_page_banner_fFXkkb": {
+      "type": "blog-page-banner",
+      "name": "Blog Page Banner",
+      "settings": {
+        "desktop_image": "shopify://shop_images/blog-banners.png",
+        "top_subtitle": "",
+        "title": "{{ collection.title }}",
+        "bottom_subtitle": ""
       }
     },
     "product-grid": {
@@ -40,6 +51,7 @@
   },
   "order": [
     "banner",
+    "blog_page_banner_fFXkkb",
     "product-grid"
   ]
 }
