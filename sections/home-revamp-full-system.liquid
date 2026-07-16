@@ -1,0 +1,633 @@
+{% liquid
+  assign section_label = section.settings.heading | default: section.settings.eyebrow | strip_html
+%}
+
+<section class="home-full-system" aria-label="{{ section_label | escape }}">
+  <div class="home-full-system__container">
+    <header class="home-full-system__header">
+      {% if section.settings.eyebrow != blank %}
+        <p class="home-full-system__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      {% endif %}
+
+      {% if section.settings.heading != blank %}
+        <h2 class="home-full-system__heading">{{ section.settings.heading | escape }}</h2>
+      {% endif %}
+
+      {% if section.settings.body != blank %}
+        <div class="home-full-system__body rte">{{ section.settings.body }}</div>
+      {% endif %}
+    </header>
+
+    {% if section.blocks.size > 0 %}
+      <div class="home-full-system__grid">
+        {% for block in section.blocks %}
+          {% liquid
+            assign card_product = block.settings.product
+            assign card_image = block.settings.custom_image
+            if card_image == blank and card_product != blank
+              assign card_image = card_product.featured_image
+            endif
+
+            assign card_title = block.settings.title
+            if card_title == blank and card_product != blank
+              assign card_title = card_product.title
+            endif
+
+            assign card_url = block.settings.link
+            if card_url == blank and card_product != blank
+              assign card_url = card_product.url
+            endif
+            if card_url == blank
+              assign card_url = routes.all_products_collection_url
+            endif
+
+            assign card_price = block.settings.price_text
+            if card_price == blank and card_product != blank
+              assign formatted_price = card_product.price | money
+              if card_product.price_varies
+                assign card_price = 'From ' | append: formatted_price
+              else
+                assign card_price = formatted_price
+              endif
+            endif
+
+            assign card_alt = block.settings.image_alt
+            if card_alt == blank and card_image.alt != blank
+              assign card_alt = card_image.alt
+            endif
+            if card_alt == blank
+              assign card_alt = card_title
+            endif
+          %}
+
+          <article class="home-full-system__card" {{ block.shopify_attributes }}>
+            <a class="home-full-system__image-link" href="{{ card_url }}" aria-label="{{ card_title | escape }}">
+              {% if card_image != blank %}
+                {{
+                  card_image
+                  | image_url: width: 1600
+                  | image_tag:
+                    widths: '400, 600, 800, 1000, 1300, 1600',
+                    sizes: '(min-width: 990px) 28vw, (min-width: 750px) 42vw, 85vw',
+                    class: 'home-full-system__image',
+                    loading: 'lazy',
+                    alt: card_alt
+                }}
+              {% else %}
+                {{ 'product-1' | placeholder_svg_tag: 'home-full-system__placeholder' }}
+              {% endif %}
+            </a>
+
+            <div class="home-full-system__card-content">
+              {% if block.settings.category != blank %}
+                <p class="home-full-system__category">{{ block.settings.category | escape }}</p>
+              {% endif %}
+
+              {% if card_title != blank %}
+                <h3 class="home-full-system__card-title">
+                  <a href="{{ card_url }}">{{ card_title | escape }}</a>
+                </h3>
+              {% endif %}
+
+              {% if block.settings.description != blank %}
+                <div class="home-full-system__description rte">{{ block.settings.description }}</div>
+              {% elsif card_product != blank and card_product.description != blank %}
+                <p class="home-full-system__description">
+                  {{ card_product.description | strip_html | truncatewords: 24 }}
+                </p>
+              {% endif %}
+
+              {% if card_price != blank %}
+                <p class="home-full-system__price">{{ card_price | escape }}</p>
+              {% endif %}
+
+              {% if block.settings.button_label != blank %}
+                <a class="button button--primary home-full-system__button" href="{{ card_url }}">
+                  {{ block.settings.button_label | escape }}
+                </a>
+              {% endif %}
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --home-system-body-size: 1vw;
+  }
+
+  #shopify-section-{{ section.id }} .home-full-system {
+    background: {{ section.settings.background_color }};
+    color: {{ section.settings.text_color }};
+    padding-block: {{ section.settings.padding_top }}vw {{ section.settings.padding_bottom }}vw;
+  }
+
+  #shopify-section-{{ section.id }} .home-full-system__container {
+    width: 85vw;
+    margin-inline: auto;
+  }
+
+  #shopify-section-{{ section.id }} .home-full-system__header {
+    max-width: 58vw;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  #shopify-section-{{ section.id }} .home-full-system__eyebrow {
+    margin: 0 0 1.25vw;
+    color: inherit;
+    font-family: var(--font-body-family);
+    font-size: 1.45vw;
+    font-style: var(--font-body-style);
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+
+  #shopify-section-{{ section.id }} .home-full-system__heading {
+    margin: 0;
+    color: inherit;
+    font-family: var(--font-heading-family);
+    font-size: 2.55vw;
+    font-style: var(--font-heading-style);
+    font-weight: var(--font-heading-weight);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+  }
+
+  #shopify-section-{{ section.id }} .home-full-system__body,
+  #shopify-section-{{ section.id }} .home-full-system__description {
+    color: inherit;
+    font-family: var(--font-body-family);
+    font-size: var(--home-system-body-size);
+    font-style: var(--font-body-style);
+    font-weight: var(--font-body-weight);
+    line-height: 1.4;
+  }
+
+  #shopify-section-{{ section.id }} .home-full-system__body {
+    margin-top: 1.15vw;
+  }
+
+  #shopify-section-{{ section.id }} .home-full-system__body > *,
+  #shopify-section-{{ section.id }} .home-full-system__description > * {
+    margin-block: 0;
+  }
+
+  #shopify-section-{{ section.id }} .home-full-system__grid {
+    display: grid;
+    grid-template-columns: repeat({{ section.settings.cards_per_row }}, minmax(0, 1fr));
+    gap: {{ section.settings.card_gap }}vw;
+    margin-top: 3.5vw;
+  }
+
+  #shopify-section-{{ section.id }} .home-full-system__card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    overflow: hidden;
+    border: 0.05vw solid {{ section.settings.card_border_color }};
+    border-radius: {{ section.settings.card_radius }}vw;
+    background: {{ section.settings.card_background }};
+    box-shadow: 0 0.5vw 1.8vw rgba(6, 38, 74, 0.06);
+  }
+
+  #shopify-section-{{ section.id }} .home-full-system__image-link {
+    display: block;
+    aspect-ratio: {{ section.settings.image_ratio }};
+    overflow: hidden;
+    background: {{ section.settings.image_background }};
+  }
+
+  #shopify-section-{{ section.id }} .home-full-system__image,
+  #shopify-section-{{ section.id }} .home-full-system__placeholder {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  #shopify-section-{{ section.id }} .home-full-system__image {
+    box-sizing: border-box;
+    padding: 1.4vw;
+    transition: transform 300ms ease;
+  }
+
+  #shopify-section-{{ section.id }} .home-full-system__image-link:hover .home-full-system__image {
+    transform: scale(1.025);
+  }
+
+  #shopify-section-{{ section.id }} .home-full-system__placeholder {
+    color: rgba(6, 38, 74, 0.18);
+  }
+
+  #shopify-section-{{ section.id }} .home-full-system__card-content {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    padding: 1.55vw;
+  }
+
+  #shopify-section-{{ section.id }} .home-full-system__category {
+    margin: 0 0 0.5vw;
+    color: {{ section.settings.accent_color }};
+    font-family: var(--font-body-family);
+    font-size: 0.7vw;
+    font-style: var(--font-body-style);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  #shopify-section-{{ section.id }} .home-full-system__card-title {
+    margin: 0;
+    color: inherit;
+    font-family: var(--font-heading-family);
+    font-size: 1.35vw;
+    font-style: var(--font-heading-style);
+    font-weight: var(--font-heading-weight);
+    line-height: 1.15;
+  }
+
+  #shopify-section-{{ section.id }} .home-full-system__card-title a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  #shopify-section-{{ section.id }} .home-full-system__description {
+    margin: 0.8vw 0 0;
+    color: {{ section.settings.description_color }};
+  }
+
+  #shopify-section-{{ section.id }} .home-full-system__price {
+    margin: 1.1vw 0 0;
+    color: inherit;
+    font-family: var(--font-body-family);
+    font-size: 0.95vw;
+    font-style: var(--font-body-style);
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  #shopify-section-{{ section.id }} .home-full-system__button {
+    width: 100%;
+    min-width: 0;
+    margin-top: auto;
+    padding: 0.8vw 1.2vw;
+    border-color: {{ section.settings.button_background }};
+    border-radius: 999vw;
+    background: {{ section.settings.button_background }};
+    color: {{ section.settings.button_text_color }};
+    font-size: 0.85vw;
+    text-decoration: none;
+  }
+
+  #shopify-section-{{ section.id }} .home-full-system__description:not(:last-child),
+  #shopify-section-{{ section.id }} .home-full-system__price:not(:last-child) {
+    margin-bottom: 1.3vw;
+  }
+
+  @media screen and (max-width: 989px) and (min-width: 750px) {
+    #shopify-section-{{ section.id }} .home-full-system__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} {
+      --home-system-body-size: 4vw;
+    }
+
+    #shopify-section-{{ section.id }} .home-full-system {
+      padding-block: 12vw;
+    }
+
+    #shopify-section-{{ section.id }} .home-full-system__header {
+      max-width: none;
+    }
+
+    #shopify-section-{{ section.id }} .home-full-system__eyebrow {
+      margin-bottom: 3vw;
+      font-size: 4.5vw;
+    }
+
+    #shopify-section-{{ section.id }} .home-full-system__heading {
+      font-size: 8vw;
+    }
+
+    #shopify-section-{{ section.id }} .home-full-system__body {
+      margin-top: 4vw;
+    }
+
+    #shopify-section-{{ section.id }} .home-full-system__grid {
+      grid-template-columns: 1fr;
+      gap: 6vw;
+      margin-top: 8vw;
+    }
+
+    #shopify-section-{{ section.id }} .home-full-system__card {
+      border-width: 0.2vw;
+      border-radius: {{ section.settings.card_radius | times: 2.5 }}vw;
+      box-shadow: 0 2vw 6vw rgba(6, 38, 74, 0.08);
+    }
+
+    #shopify-section-{{ section.id }} .home-full-system__image {
+      padding: 5vw;
+    }
+
+    #shopify-section-{{ section.id }} .home-full-system__card-content {
+      padding: 6vw;
+    }
+
+    #shopify-section-{{ section.id }} .home-full-system__category {
+      margin-bottom: 2vw;
+      font-size: 3vw;
+    }
+
+    #shopify-section-{{ section.id }} .home-full-system__card-title {
+      font-size: 6vw;
+    }
+
+    #shopify-section-{{ section.id }} .home-full-system__description {
+      margin-top: 3vw;
+    }
+
+    #shopify-section-{{ section.id }} .home-full-system__price {
+      margin-top: 4vw;
+      font-size: 4vw;
+    }
+
+    #shopify-section-{{ section.id }} .home-full-system__button {
+      margin-top: 5vw;
+      padding: 3.5vw 5vw;
+      font-size: 4vw;
+    }
+
+    #shopify-section-{{ section.id }} .home-full-system__description:not(:last-child),
+    #shopify-section-{{ section.id }} .home-full-system__price:not(:last-child) {
+      margin-bottom: 5vw;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #shopify-section-{{ section.id }} .home-full-system__image {
+      transition: none;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Home Full System",
+  "tag": "section",
+  "class": "section",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "THE FULL SMARTMOUTH™ SYSTEM"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Mouthwash is just the beginning."
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Body",
+      "default": "<p>Every SmartMouth™ product is built on the same Smart-Zinc™ Technology. Extend your protection through every part of your routine — brush, rinse, go.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Card layout"
+    },
+    {
+      "type": "range",
+      "id": "cards_per_row",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "label": "Cards per row",
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "card_gap",
+      "min": 1,
+      "max": 4,
+      "step": 0.1,
+      "unit": "vw",
+      "label": "Card gap",
+      "default": 1.5
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "label": "Image ratio",
+      "default": "1 / 1",
+      "options": [
+        { "value": "1 / 1", "label": "Square" },
+        { "value": "4 / 3", "label": "Landscape" },
+        { "value": "3 / 4", "label": "Portrait" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "min": 0,
+      "max": 2,
+      "step": 0.1,
+      "unit": "vw",
+      "label": "Card corner radius",
+      "default": 0.8
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "unit": "vw",
+      "label": "Top spacing",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "unit": "vw",
+      "label": "Bottom spacing",
+      "default": 5
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#06264A"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description text",
+      "default": "#496A86"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Category text",
+      "default": "#285B91"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "image_background",
+      "label": "Image background",
+      "default": "#F2F7FA"
+    },
+    {
+      "type": "color",
+      "id": "card_border_color",
+      "label": "Card border",
+      "default": "#D8E4EC"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Button background",
+      "default": "#FF6B00"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text",
+      "default": "#FFFFFF"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product_card",
+      "name": "Product card",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "type": "image_picker",
+          "id": "custom_image",
+          "label": "Custom image"
+        },
+        {
+          "type": "text",
+          "id": "image_alt",
+          "label": "Custom image alt text"
+        },
+        {
+          "type": "text",
+          "id": "category",
+          "label": "Category"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Custom title"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Custom description"
+        },
+        {
+          "type": "text",
+          "id": "price_text",
+          "label": "Custom price text"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "SHOP NOW"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Custom link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Home Full System",
+      "category": "Home Revamp",
+      "blocks": [
+        {
+          "type": "product_card",
+          "settings": {
+            "category": "TOOTHPASTE",
+            "title": "Anti-Cavity + Zinc Toothpaste",
+            "description": "<p>Zinc-powered brushing that works with your mouthwash — not alongside it independently.</p>",
+            "price_text": "From $7.99",
+            "button_label": "SHOP TOOTHPASTE"
+          }
+        },
+        {
+          "type": "product_card",
+          "settings": {
+            "category": "MINTS",
+            "title": "Dry Mouth Dual-Action Mints",
+            "description": "<p>On-the-go dry mouth relief — small enough for any bag, effective enough to notice.</p>",
+            "price_text": "$3.99",
+            "button_label": "SHOP MINTS"
+          }
+        },
+        {
+          "type": "product_card",
+          "settings": {
+            "category": "TRAVEL PACKS",
+            "title": "Single-Use Packs",
+            "description": "<p>Same Smart-Zinc™ formula in a TSA-friendly pack. Your routine doesn’t stop when you travel.</p>",
+            "price_text": "From $8.99",
+            "button_label": "SHOP TRAVEL PACKS"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
