@@ -311,7 +311,7 @@
         "heading_second_line": "Find your match.",
         "body": "<p>Mouthwash, toothpaste, mints and travel packs — all built on the same Smart-Zinc™ Technology. Find the right one for you.</p>",
         "button_label": "TAKE THE QUIZ",
-        "button_link": "",
+        "button_link": "shopify://pages/find-your-rinse",
         "image": "shopify://shop_images/smart-mout-original.webp",
         "image_alt": "SmartMouth Original mouthwash bottle",
         "bottle_width": 20.5,
