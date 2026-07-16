@@ -91,10 +91,22 @@
             "page": ""
           }
         },
-        "share": {
-          "type": "share",
+        "benefit_item_VAJLrK": {
+          "type": "benefit_item",
           "settings": {
-            "share_label": "Share"
+            "image": "shopify://shop_images/2rinsesadayblue.png",
+            "icon_width": 56,
+            "text": "2 rinses\na day",
+            "text_color": "#2a4b9b"
+          }
+        },
+        "benefit_item_k3jhfx": {
+          "type": "benefit_item",
+          "settings": {
+            "image": "shopify://shop_images/24hourprtectionblue.png",
+            "icon_width": 56,
+            "text": "24-hour\nProtection",
+            "text_color": "#2a4b9b"
           }
         }
       },
@@ -112,7 +124,8 @@
         "collapsible-row-0",
         "collapsible-row-1",
         "collapsible-row-2",
-        "share"
+        "benefit_item_VAJLrK",
+        "benefit_item_k3jhfx"
       ],
       "settings": {
         "enable_sticky_info": true,
@@ -191,9 +204,9 @@
         "image_position": "left",
         "image_width": 44,
         "image_radius": 1,
-        "background_color": "#FFFFFF",
+        "background_color": "#ffffff",
         "text_color": "#092847",
-        "check_color": "#00833D"
+        "check_color": "#00833d"
       }
     },
     "product_revamp_what_it_does_XV9NWG": {
@@ -237,8 +250,8 @@
       "name": "Product What It Does",
       "settings": {
         "heading": "What it does. Who it’s for.",
-        "background_color": "#FBF6E6",
-        "card_background": "#FFFFFF",
+        "background_color": "#fbf6e6",
+        "card_background": "#ffffff",
         "text_color": "#092847"
       }
     },
