@@ -131,7 +131,7 @@
           "type": "product",
           "settings": {
             "product": "smartmouthtm-clinical-activated-mouthwash-16oz",
-            "image": "shopify://shop_images/ORAL_HEALTH.png",
+            "image": "shopify://shop_images/CLINICAL_SMT.png",
             "custom_title": "SmartMouth™ Clinical Activated Mouthwash",
             "custom_link": "https://smartmouth.com/collections/all?sort_by=manual&filter.p.m.custom.benefits_filter=Anti-Gingivitis+%26+Anti-Plaque&filter.p.m.custom.benefits_filter=Canker+%26+Mouth+Sore+Relief&filter.p.m.custom.benefits_filter=Cavity+Protection&filter.v.price.gte=&filter.v.price.lte=",
             "badge_text": "ORAL HEALTH",
@@ -144,11 +144,11 @@
           "type": "product",
           "settings": {
             "product": "smartmouthtm-advanced-liposomal-evening-mouthwash-16oz",
-            "image": "shopify://shop_images/reason-to-pour-evening.webp",
+            "image": "shopify://shop_images/NEW_SMT.png",
             "custom_title": "SmartMouth™ Advanced Liposomal Evening Mouthwash",
             "custom_link": "https://smartmouth.com/collections/all?sort_by=manual&filter.p.m.custom.benefits_filter=Advanced+Liposomal+Technology&filter.v.price.gte=&filter.v.price.lte=",
             "badge_text": "New",
-            "badge_color": "#9c91d3",
+            "badge_color": "#FF7701",
             "badge_text_color": "#ffffff",
             "fallback_card": "4"
           }
