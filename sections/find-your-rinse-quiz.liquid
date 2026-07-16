@@ -545,6 +545,27 @@
     };
 
     /* ---------------- Cart ---------------- */
+
+    /* Dawn integration: ask /cart/add.js to re-render the theme's cart
+       sections and hand them to the <cart-drawer> (or <cart-notification>)
+       element, exactly like Dawn's own product forms do. This makes the
+       drawer open and update instantly instead of only after a refresh. */
+    const getThemeCart = () =>
+      document.querySelector('cart-drawer') || document.querySelector('cart-notification');
+
+    const refreshCartBubble = async () => {
+      try {
+        const res = await fetch(routesRoot + '?sections=cart-icon-bubble');
+        const sections = await res.json();
+        const bubble = document.getElementById('cart-icon-bubble');
+        if (bubble && sections['cart-icon-bubble']) {
+          const doc = new DOMParser().parseFromString(sections['cart-icon-bubble'], 'text/html');
+          const fresh = doc.getElementById('cart-icon-bubble') || doc.querySelector('.shopify-section');
+          if (fresh) bubble.innerHTML = fresh.innerHTML;
+        }
+      } catch (e) { /* non-critical */ }
+    };
+
     const addToCart = async (variantIds, button) => {
       if (!variantIds.length) return;
       const original = button.textContent;
@@ -554,18 +575,52 @@
         if (settings.discountCode && variantIds.length > 1) {
           await fetch(routesRoot + 'discount/' + encodeURIComponent(settings.discountCode)).catch(() => {});
         }
+
+        const themeCart = getThemeCart();
+        const payload = { items: variantIds.map((id) => ({ id, quantity: 1 })) };
+        if (themeCart && typeof themeCart.getSectionsToRender === 'function') {
+          payload.sections = themeCart.getSectionsToRender().map((s) => s.id);
+          payload.sections_url = window.location.pathname;
+        }
+
         const res = await fetch(routesRoot + 'cart/add.js', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ items: variantIds.map((id) => ({ id, quantity: 1 })) })
+          body: JSON.stringify(payload)
         });
         if (!res.ok) throw new Error('add failed');
+        const data = await res.json().catch(() => null);
+
         if (settings.redirectToCart) {
           window.location.href = routesRoot + 'cart';
           return;
         }
-        button.textContent = 'Added ✓';
+
+        let drawerUpdated = false;
+        if (themeCart && data && data.sections && typeof themeCart.renderContents === 'function') {
+          try {
+            /* multi-item responses put items in an array; Dawn's
+               cart-notification expects key/id at the top level */
+            if (!data.key && data.items && data.items.length) data.key = data.items[0].key;
+            if (!data.id && data.items && data.items.length) data.id = data.items[0].id;
+            if (typeof themeCart.setActiveElement === 'function') {
+              themeCart.setActiveElement(document.activeElement);
+            }
+            themeCart.renderContents(data);
+            drawerUpdated = true;
+          } catch (e) { /* fall through to bubble refresh */ }
+        }
+        if (!drawerUpdated) await refreshCartBubble();
+
+        /* Notify Dawn's pub/sub so other components stay in sync */
+        if (typeof window.publish === 'function' && window.PUB_SUB_EVENTS && window.PUB_SUB_EVENTS.cartUpdate) {
+          try {
+            window.publish(window.PUB_SUB_EVENTS.cartUpdate, { source: 'find-your-rinse-quiz', cartData: data });
+          } catch (e) { /* non-critical */ }
+        }
         document.dispatchEvent(new CustomEvent('cart:refresh', { bubbles: true }));
+
+        button.textContent = 'Added ✓';
         setTimeout(() => { button.textContent = original; button.disabled = false; }, 2200);
       } catch (e) {
         button.textContent = 'Try again';
