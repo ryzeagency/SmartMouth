@@ -45,6 +45,7 @@
         "number_XGiiLk": {
           "type": "number",
           "settings": {
+            "icon": "shopify://shop_images/staricon.png",
             "target_number": "4.8",
             "prefix": "",
             "suffix": "",
@@ -97,6 +98,7 @@
       "settings": {
         "accessible_label": "SmartMouth by the numbers",
         "animation_duration": 2.5,
+        "icon_size": 2.5,
         "background_color": "#205085",
         "text_color": "#ffffff"
       }
