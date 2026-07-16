@@ -16,9 +16,416 @@
         "padding_top": 60,
         "padding_bottom": 60
       }
+    },
+    "find_your_rinse_quiz_wFhbyJ": {
+      "type": "find-your-rinse-quiz",
+      "blocks": {
+        "quiz_product_HRKWe7": {
+          "type": "quiz_product",
+          "settings": {
+            "product": "",
+            "display_name": "Original Activated Mouthwash (16oz)",
+            "category": "mouthwash",
+            "benefits": "24hr breath, Zinc ion",
+            "concern": "breath",
+            "duration": "new, prevention",
+            "lifestyle": "none, coffee, smoker",
+            "location": "home, both, work",
+            "experience": "new_to_mouthwash, switching",
+            "addon_for": "",
+            "is_clinical": false,
+            "is_starter": true,
+            "primary_reason": "The original zinc ion formula — gentle, effective, and the right starting point for everyday fresh-breath protection.",
+            "addon_reason": ""
+          }
+        },
+        "quiz_product_XQbhpw": {
+          "type": "quiz_product",
+          "settings": {
+            "product": "",
+            "display_name": "Clinical Activated Mouthwash (16oz)",
+            "category": "mouthwash",
+            "benefits": "24hr breath, Anti-gingivitis, Anti-plaque",
+            "concern": "breath, gum",
+            "duration": "months, years",
+            "lifestyle": "smoker, coffee, none",
+            "location": "home, both, work",
+            "experience": "nothing_worked, want_stronger, switching",
+            "addon_for": "",
+            "is_clinical": true,
+            "is_starter": false,
+            "primary_reason": "Clinical strength targets bad breath and gum health simultaneously — the go-to when the problem has been persistent.",
+            "addon_reason": ""
+          }
+        },
+        "quiz_product_UrJrPi": {
+          "type": "quiz_product",
+          "settings": {
+            "product": "",
+            "display_name": "Dry Mouth Activated Mouthwash (16oz)",
+            "category": "mouthwash",
+            "benefits": "24hr breath, Dry mouth relief",
+            "concern": "dry, breath",
+            "duration": "new, months, years",
+            "lifestyle": "medication, none",
+            "location": "home, both, work",
+            "experience": "nothing_worked, want_stronger, new_to_mouthwash",
+            "addon_for": "",
+            "is_clinical": true,
+            "is_starter": true,
+            "primary_reason": "Specifically formulated for dry mouth — delivers relief and 24-hour breath protection in one rinse.",
+            "addon_reason": ""
+          }
+        },
+        "quiz_product_w4Akiy": {
+          "type": "quiz_product",
+          "settings": {
+            "product": "",
+            "display_name": "Mouth Sore Activated Mouthwash (16oz)",
+            "category": "mouthwash",
+            "benefits": "Soothing, Canker sore relief",
+            "concern": "sore",
+            "duration": "new, months, years",
+            "lifestyle": "none, medication",
+            "location": "home, both",
+            "experience": "nothing_worked, new_to_mouthwash, want_stronger",
+            "addon_for": "",
+            "is_clinical": false,
+            "is_starter": true,
+            "primary_reason": "A gentle, soothing formula designed to calm canker sores and oral irritation while keeping breath fresh.",
+            "addon_reason": ""
+          }
+        },
+        "quiz_product_7AfUeb": {
+          "type": "quiz_product",
+          "settings": {
+            "product": "",
+            "display_name": "Gum Health Activated Mouthwash (16oz)",
+            "category": "mouthwash",
+            "benefits": "Anti-gingivitis, Anti-plaque",
+            "concern": "gum",
+            "duration": "new, months, years",
+            "lifestyle": "none, coffee",
+            "location": "home, both",
+            "experience": "nothing_worked, want_stronger, switching",
+            "addon_for": "",
+            "is_clinical": true,
+            "is_starter": false,
+            "primary_reason": "Advanced anti-gingivitis and anti-plaque actives — formulated specifically where gum health is the priority.",
+            "addon_reason": ""
+          }
+        },
+        "quiz_product_3mJTUJ": {
+          "type": "quiz_product",
+          "settings": {
+            "product": "",
+            "display_name": "Advanced Liposomal Vitamin C (16oz)",
+            "category": "liposomal",
+            "benefits": "Liposomal tech, Vitamin C, Gum health",
+            "concern": "gum, breath",
+            "duration": "years, months",
+            "lifestyle": "none, coffee",
+            "location": "home, both",
+            "experience": "nothing_worked, want_stronger, switching",
+            "addon_for": "gum, breath",
+            "is_clinical": false,
+            "is_starter": false,
+            "primary_reason": "Liposomal Vitamin C delivers the deepest tissue nourishment — the most advanced formula in the lineup.",
+            "addon_reason": "Vitamin C liposomal tech delivers deeper gum nourishment alongside your daily rinse."
+          }
+        },
+        "quiz_product_R4gh8d": {
+          "type": "quiz_product",
+          "settings": {
+            "product": "",
+            "display_name": "Advanced Liposomal Morning (16oz)",
+            "category": "liposomal",
+            "benefits": "Liposomal tech, Morning formula",
+            "concern": "breath, gum",
+            "duration": "years, months",
+            "lifestyle": "none, coffee, smoker",
+            "location": "home, both",
+            "experience": "nothing_worked, want_stronger, switching",
+            "addon_for": "breath, gum",
+            "is_clinical": false,
+            "is_starter": false,
+            "primary_reason": "Liposomal morning formula — engineered for the highest-impact rinse of the day.",
+            "addon_reason": "A dedicated morning liposomal formula adds a powerful AM layer on top of your evening rinse."
+          }
+        },
+        "quiz_product_38qDHt": {
+          "type": "quiz_product",
+          "settings": {
+            "product": "",
+            "display_name": "Advanced Liposomal Evening (16oz)",
+            "category": "liposomal",
+            "benefits": "Liposomal tech, Evening formula",
+            "concern": "breath, gum",
+            "duration": "years, months",
+            "lifestyle": "none, coffee, smoker",
+            "location": "home, both",
+            "experience": "nothing_worked, want_stronger, switching",
+            "addon_for": "breath, gum",
+            "is_clinical": false,
+            "is_starter": false,
+            "primary_reason": "Liposomal evening formula — works overnight so you wake up to genuinely fresh breath.",
+            "addon_reason": "Evening liposomal formula works overnight — maximises the protection you've already started."
+          }
+        },
+        "quiz_product_cUNDzw": {
+          "type": "quiz_product",
+          "settings": {
+            "product": "",
+            "display_name": "Original Activated Mouthwash (32oz)",
+            "category": "mouthwash",
+            "benefits": "24hr breath, Value size",
+            "concern": "breath",
+            "duration": "new, prevention",
+            "lifestyle": "none",
+            "location": "home",
+            "experience": "switching, new_to_mouthwash",
+            "addon_for": "",
+            "is_clinical": false,
+            "is_starter": false,
+            "primary_reason": "",
+            "addon_reason": ""
+          }
+        },
+        "quiz_product_3rfM7Q": {
+          "type": "quiz_product",
+          "settings": {
+            "product": "",
+            "display_name": "Clinical Activated Mouthwash (32oz)",
+            "category": "mouthwash",
+            "benefits": "Clinical strength, Value size",
+            "concern": "breath, gum",
+            "duration": "months, years",
+            "lifestyle": "smoker, coffee, none",
+            "location": "home",
+            "experience": "nothing_worked, want_stronger, switching",
+            "addon_for": "",
+            "is_clinical": true,
+            "is_starter": false,
+            "primary_reason": "Same clinical strength, bigger bottle — the right move when you know this is your formula.",
+            "addon_reason": ""
+          }
+        },
+        "quiz_product_h7dAAx": {
+          "type": "quiz_product",
+          "settings": {
+            "product": "",
+            "display_name": "Anti-Cavity + Zinc Toothpaste (3.4oz)",
+            "category": "toothpaste",
+            "benefits": "Cavity protection, Zinc",
+            "concern": "breath, gum",
+            "duration": "new, prevention, months",
+            "lifestyle": "none, coffee",
+            "location": "home, both, work",
+            "experience": "new_to_mouthwash, switching, want_stronger",
+            "addon_for": "breath, gum, sore, dry",
+            "is_clinical": false,
+            "is_starter": false,
+            "primary_reason": "Zinc toothpaste pairs perfectly with your mouthwash — reinforcing protection at every brush.",
+            "addon_reason": "Zinc toothpaste reinforces your mouthwash protection at every brush — the natural next step in your routine."
+          }
+        },
+        "quiz_product_FT8hpi": {
+          "type": "quiz_product",
+          "settings": {
+            "product": "",
+            "display_name": "Anti-Cavity + Zinc Toothpaste (6oz)",
+            "category": "toothpaste",
+            "benefits": "Cavity protection, Zinc, Value size",
+            "concern": "breath, gum",
+            "duration": "new, prevention, months",
+            "lifestyle": "none, coffee",
+            "location": "home",
+            "experience": "new_to_mouthwash, switching, want_stronger",
+            "addon_for": "breath, gum, sore, dry",
+            "is_clinical": false,
+            "is_starter": false,
+            "primary_reason": "",
+            "addon_reason": "The 6oz tube keeps your whole routine zinc-powered without running out — best value for daily use."
+          }
+        },
+        "quiz_product_CL7rQ4": {
+          "type": "quiz_product",
+          "settings": {
+            "product": "",
+            "display_name": "Dry Mouth Dual-Action Mints",
+            "category": "mints",
+            "benefits": "Dry mouth, On-the-go",
+            "concern": "dry",
+            "duration": "new, months",
+            "lifestyle": "medication, none",
+            "location": "travel, both, work",
+            "experience": "new_to_mouthwash, nothing_worked",
+            "addon_for": "dry, breath",
+            "is_clinical": false,
+            "is_starter": false,
+            "primary_reason": "Portable dry mouth relief — keeps you comfortable throughout the day, anywhere you go.",
+            "addon_reason": "Keep dry mouth relief on hand all day — small enough for any bag, effective enough to notice."
+          }
+        },
+        "quiz_product_9VgjEW": {
+          "type": "quiz_product",
+          "settings": {
+            "product": "",
+            "display_name": "Original Single Packs — 10 Ct",
+            "category": "travel",
+            "benefits": "Travel, Single-use",
+            "concern": "breath",
+            "duration": "new, prevention, months",
+            "lifestyle": "none, coffee",
+            "location": "travel, both, work",
+            "experience": "new_to_mouthwash, switching",
+            "addon_for": "breath",
+            "is_clinical": false,
+            "is_starter": false,
+            "primary_reason": "Same great formula in single-use packs — your routine goes wherever you do.",
+            "addon_reason": "Take your routine anywhere — same formula, single-use packs for travel or on the go."
+          }
+        },
+        "quiz_product_PRqpkj": {
+          "type": "quiz_product",
+          "settings": {
+            "product": "",
+            "display_name": "Clinical Single Packs — 50 Ct",
+            "category": "travel",
+            "benefits": "Travel, Clinical, 50 ct",
+            "concern": "breath, gum",
+            "duration": "months, years",
+            "lifestyle": "smoker, coffee, none",
+            "location": "travel, both, work",
+            "experience": "nothing_worked, want_stronger",
+            "addon_for": "gum, breath",
+            "is_clinical": true,
+            "is_starter": false,
+            "primary_reason": "Clinical strength in a 50-pack — the right choice for frequent travelers who don't want to compromise.",
+            "addon_reason": "50 clinical packs means your routine never gets interrupted — perfect if you travel frequently."
+          }
+        },
+        "quiz_product_iYNQzf": {
+          "type": "quiz_product",
+          "settings": {
+            "product": "",
+            "display_name": "Dry Mouth Single Packs — 50 Ct",
+            "category": "travel",
+            "benefits": "Travel, Dry mouth, 50 ct",
+            "concern": "dry",
+            "duration": "months, years",
+            "lifestyle": "medication",
+            "location": "travel, both",
+            "experience": "nothing_worked, want_stronger",
+            "addon_for": "dry",
+            "is_clinical": false,
+            "is_starter": false,
+            "primary_reason": "",
+            "addon_reason": ""
+          }
+        },
+        "quiz_product_JrPHiX": {
+          "type": "quiz_product",
+          "settings": {
+            "product": "",
+            "display_name": "Original Single Packs — 50 Ct",
+            "category": "travel",
+            "benefits": "Travel, Value, 50 ct",
+            "concern": "breath",
+            "duration": "months, years, prevention",
+            "lifestyle": "none, coffee",
+            "location": "travel, both, work",
+            "experience": "switching, want_stronger",
+            "addon_for": "breath",
+            "is_clinical": false,
+            "is_starter": false,
+            "primary_reason": "",
+            "addon_reason": "50 original packs keeps you covered for months — best value for consistent travel use."
+          }
+        },
+        "quiz_product_8CJxXV": {
+          "type": "quiz_product",
+          "settings": {
+            "product": "",
+            "display_name": "Clinical 2-Bottle Activated System",
+            "category": "system",
+            "benefits": "2-bottle system, Clinical strength",
+            "concern": "breath, gum",
+            "duration": "months, years",
+            "lifestyle": "smoker, coffee, none",
+            "location": "home, both",
+            "experience": "nothing_worked, want_stronger, switching",
+            "addon_for": "",
+            "is_clinical": true,
+            "is_starter": false,
+            "primary_reason": "",
+            "addon_reason": ""
+          }
+        },
+        "quiz_product_pnLECh": {
+          "type": "quiz_product",
+          "settings": {
+            "product": "",
+            "display_name": "Original 2-Bottle Activated System",
+            "category": "system",
+            "benefits": "2-bottle system, 24hr breath",
+            "concern": "breath",
+            "duration": "new, prevention",
+            "lifestyle": "none",
+            "location": "home",
+            "experience": "new_to_mouthwash, switching",
+            "addon_for": "",
+            "is_clinical": false,
+            "is_starter": true,
+            "primary_reason": "",
+            "addon_reason": ""
+          }
+        }
+      },
+      "block_order": [
+        "quiz_product_HRKWe7",
+        "quiz_product_XQbhpw",
+        "quiz_product_UrJrPi",
+        "quiz_product_w4Akiy",
+        "quiz_product_7AfUeb",
+        "quiz_product_3mJTUJ",
+        "quiz_product_R4gh8d",
+        "quiz_product_38qDHt",
+        "quiz_product_cUNDzw",
+        "quiz_product_3rfM7Q",
+        "quiz_product_h7dAAx",
+        "quiz_product_FT8hpi",
+        "quiz_product_CL7rQ4",
+        "quiz_product_9VgjEW",
+        "quiz_product_PRqpkj",
+        "quiz_product_iYNQzf",
+        "quiz_product_JrPHiX",
+        "quiz_product_8CJxXV",
+        "quiz_product_pnLECh"
+      ],
+      "name": "Find Your Rinse Quiz",
+      "settings": {
+        "title": "SmartMouth™",
+        "subtitle": "Find Your Rinse — personalized formula finder",
+        "enable_email_gate": true,
+        "gate_heading": "Get your personalized SmartMouth formula",
+        "gate_text": "Enter your email and we'll send your results — plus a coupon for your first order.",
+        "gate_button": "Find my formula",
+        "redirect_to_cart": false,
+        "bundle_discount_code": "",
+        "bundle_discount_percent": 10,
+        "background_color": "#F0F3F5",
+        "accent_color": "#00897B",
+        "accent_dark_color": "#005A52",
+        "accent_light_color": "#E0F5F3",
+        "accent_mid_color": "#B2E0DA",
+        "padding_top": 24,
+        "padding_bottom": 60
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "find_your_rinse_quiz_wFhbyJ"
   ]
 }
