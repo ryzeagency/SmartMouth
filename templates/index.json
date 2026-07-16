@@ -333,7 +333,7 @@
             "description": "<p>Zinc-powered brushing that works with your mouthwash — not alongside it independently.</p>",
             "price_text": "From $7.99",
             "button_label": "SHOP TOOTHPASTE",
-            "link": ""
+            "link": "shopify://collections/toothpaste"
           }
         },
         "product_card_6n373j": {
@@ -347,7 +347,7 @@
             "description": "<p>On-the-go dry mouth relief — small enough for any bag, effective enough to notice.</p>",
             "price_text": "$3.99",
             "button_label": "SHOP MINTS",
-            "link": ""
+            "link": "shopify://collections/mints"
           }
         },
         "product_card_JDpamH": {
@@ -361,7 +361,7 @@
             "description": "<p>Same Smart-Zinc™ formula in a TSA-friendly pack. Your routine doesn’t stop when you travel.</p>",
             "price_text": "From $8.99",
             "button_label": "SHOP TRAVEL PACKS",
-            "link": ""
+            "link": "shopify://collections/travel-size"
           }
         }
       },
@@ -381,15 +381,15 @@
         "card_radius": 0.8,
         "padding_top": 4,
         "padding_bottom": 5,
-        "background_color": "#FFFFFF",
-        "text_color": "#06264A",
-        "description_color": "#496A86",
-        "accent_color": "#285B91",
-        "card_background": "#FFFFFF",
-        "image_background": "#FFFFFF",
-        "card_border_color": "#FFFFFF",
-        "button_background": "#FF6B00",
-        "button_text_color": "#FFFFFF"
+        "background_color": "#ffffff",
+        "text_color": "#06264a",
+        "description_color": "#496a86",
+        "accent_color": "#285b91",
+        "card_background": "#ffffff",
+        "image_background": "#ffffff",
+        "card_border_color": "#ffffff",
+        "button_background": "#ff6b00",
+        "button_text_color": "#ffffff"
       }
     },
     "smt_home_revamp_delivered_LPxhWa": {
