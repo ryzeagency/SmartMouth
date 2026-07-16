@@ -1,0 +1,759 @@
+{% comment %}
+  ============================================================================
+  SMARTMOUTH — FIND YOUR RINSE QUIZ (Shopify section)
+  ============================================================================
+  Converted from the standalone HTML prototype.
+
+  - Every product is a section block with a Shopify product picker: price,
+    image, availability, URL and variant ID are pulled from the real product.
+    The matching data (concern / duration / lifestyle / location / experience
+    / add-on-for) lives in per-block text settings.
+  - The preset pre-fills all 19 blocks with the quiz metadata from the
+    prototype — you only need to open each block and pick the product.
+  - Blocks without a product assigned are skipped.
+  - "Add to cart" uses /cart/add.js (real cart). Optional redirect to /cart.
+  - The bundle bar only advertises a saving if you enter a discount code in
+    the section settings; the code is applied automatically before checkout.
+  - The email gate posts to Shopify's customer form (newsletter signup).
+  ============================================================================
+{% endcomment %}
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+
+{%- liquid
+  assign gate_enabled = section.settings.enable_email_gate
+-%}
+
+<div class="sm-quiz" data-sm-quiz="{{ section.id }}">
+  <div class="sm-quiz__wrap">
+    <div class="sm-quiz__header">
+      {% if section.settings.title != blank %}
+        <h2 class="sm-quiz__logo">{{ section.settings.title | escape }}</h2>
+      {% endif %}
+      {% if section.settings.subtitle != blank %}
+        <p class="sm-quiz__sub">{{ section.settings.subtitle | escape }}</p>
+      {% endif %}
+    </div>
+
+    <div class="sm-quiz__card">
+      <div class="sm-quiz__prog"><div class="sm-quiz__prog-fill" data-quiz-progress style="width:0%"></div></div>
+
+      {% if gate_enabled %}
+        <div class="sm-quiz__gate" data-quiz-gate>
+          <div class="sm-quiz__gate-ico"><i class="ti ti-mail"></i></div>
+          <div class="sm-quiz__gate-h">{{ section.settings.gate_heading }}</div>
+          <div class="sm-quiz__gate-sub">{{ section.settings.gate_text | escape }}</div>
+          <div class="sm-quiz__gate-form">
+            <input
+              class="sm-quiz__gate-input"
+              data-quiz-email
+              type="email"
+              placeholder="Your email address"
+              autocomplete="email"
+              aria-label="Email address"
+            >
+            <button type="button" class="sm-quiz__gate-btn" data-quiz-action="start-with-email">
+              {{ section.settings.gate_button | escape }} &rarr;
+            </button>
+          </div>
+          <button type="button" class="sm-quiz__gate-skip" data-quiz-action="start">
+            Skip — just show me the quiz
+          </button>
+          <div class="sm-quiz__gate-privacy">We never share your email. Unsubscribe any time.</div>
+
+          {% form 'customer', class: 'sm-quiz__hidden-form', data-quiz-newsletter-form: '' %}
+            <input type="hidden" name="contact[tags]" value="quiz,prospect">
+            <input type="email" name="contact[email]" data-quiz-newsletter-email>
+          {% endform %}
+        </div>
+      {% endif %}
+
+      {%- comment -%} ------------------------- QUESTIONS ------------------------- {%- endcomment -%}
+      <div class="sm-quiz__step{% unless gate_enabled %} is-active{% endunless %}" data-quiz-step="1">
+        <div class="sm-quiz__q-label">Question 1 of 5</div>
+        <div class="sm-quiz__q-text">What&rsquo;s your main concern?</div>
+        <div class="sm-quiz__opts">
+          <button type="button" class="sm-quiz__opt" data-q="1" data-v="breath"><span class="sm-quiz__opt-ico"><i class="ti ti-wind"></i></span><span><span class="sm-quiz__opt-t">Bad breath</span><span class="sm-quiz__opt-d">I want all-day fresh breath confidence</span></span></button>
+          <button type="button" class="sm-quiz__opt" data-q="1" data-v="dry"><span class="sm-quiz__opt-ico"><i class="ti ti-droplet-off"></i></span><span><span class="sm-quiz__opt-t">Dry mouth</span><span class="sm-quiz__opt-d">My mouth feels dry, especially at night</span></span></button>
+          <button type="button" class="sm-quiz__opt" data-q="1" data-v="gum"><span class="sm-quiz__opt-ico"><i class="ti ti-heart-rate-monitor"></i></span><span><span class="sm-quiz__opt-t">Gum health</span><span class="sm-quiz__opt-d">Sensitivity, bleeding or plaque buildup</span></span></button>
+          <button type="button" class="sm-quiz__opt" data-q="1" data-v="sore"><span class="sm-quiz__opt-ico"><i class="ti ti-bandage"></i></span><span><span class="sm-quiz__opt-t">Mouth sores</span><span class="sm-quiz__opt-d">Canker sores or oral irritation</span></span></button>
+        </div>
+        <div class="sm-quiz__nav"><span></span><button type="button" class="sm-quiz__next" data-quiz-next="1" disabled data-quiz-action="goto" data-target="2">Next <i class="ti ti-arrow-right"></i></button></div>
+      </div>
+
+      <div class="sm-quiz__step" data-quiz-step="2">
+        <div class="sm-quiz__q-label">Question 2 of 5</div>
+        <div class="sm-quiz__q-text">How long have you been dealing with it?</div>
+        <div class="sm-quiz__opts">
+          <button type="button" class="sm-quiz__opt" data-q="2" data-v="new"><span class="sm-quiz__opt-ico"><i class="ti ti-clock"></i></span><span><span class="sm-quiz__opt-t">Just noticed it</span><span class="sm-quiz__opt-d">It&rsquo;s relatively new for me</span></span></button>
+          <button type="button" class="sm-quiz__opt" data-q="2" data-v="months"><span class="sm-quiz__opt-ico"><i class="ti ti-calendar"></i></span><span><span class="sm-quiz__opt-t">A few months</span><span class="sm-quiz__opt-d">It&rsquo;s been building for a while</span></span></button>
+          <button type="button" class="sm-quiz__opt" data-q="2" data-v="years"><span class="sm-quiz__opt-ico"><i class="ti ti-calendar-repeat"></i></span><span><span class="sm-quiz__opt-t">Years</span><span class="sm-quiz__opt-d">It&rsquo;s been a persistent issue</span></span></button>
+          <button type="button" class="sm-quiz__opt" data-q="2" data-v="prevention"><span class="sm-quiz__opt-ico"><i class="ti ti-shield-check"></i></span><span><span class="sm-quiz__opt-t">I want to prevent it</span><span class="sm-quiz__opt-d">No issue yet — keeping it that way</span></span></button>
+        </div>
+        <div class="sm-quiz__nav"><button type="button" class="sm-quiz__back" data-quiz-action="goto" data-target="1"><i class="ti ti-arrow-left"></i> Back</button><button type="button" class="sm-quiz__next" data-quiz-next="2" disabled data-quiz-action="goto" data-target="3">Next <i class="ti ti-arrow-right"></i></button></div>
+      </div>
+
+      <div class="sm-quiz__step" data-quiz-step="3">
+        <div class="sm-quiz__q-label">Question 3 of 5</div>
+        <div class="sm-quiz__q-text">Do any of these apply to you?</div>
+        <div class="sm-quiz__opts">
+          <button type="button" class="sm-quiz__opt" data-q="3" data-v="smoker"><span class="sm-quiz__opt-ico"><i class="ti ti-smoking"></i></span><span><span class="sm-quiz__opt-t">Smoker or vaper</span><span class="sm-quiz__opt-d">Tobacco or e-cigarette use</span></span></button>
+          <button type="button" class="sm-quiz__opt" data-q="3" data-v="coffee"><span class="sm-quiz__opt-ico"><i class="ti ti-coffee"></i></span><span><span class="sm-quiz__opt-t">Coffee drinker</span><span class="sm-quiz__opt-d">Daily coffee, tea, or strong foods</span></span></button>
+          <button type="button" class="sm-quiz__opt" data-q="3" data-v="medication"><span class="sm-quiz__opt-ico"><i class="ti ti-pill"></i></span><span><span class="sm-quiz__opt-t">On medication</span><span class="sm-quiz__opt-d">Dry mouth is a known side effect</span></span></button>
+          <button type="button" class="sm-quiz__opt" data-q="3" data-v="none"><span class="sm-quiz__opt-ico"><i class="ti ti-minus"></i></span><span><span class="sm-quiz__opt-t">None of these</span><span class="sm-quiz__opt-d">No specific lifestyle factors</span></span></button>
+        </div>
+        <div class="sm-quiz__nav"><button type="button" class="sm-quiz__back" data-quiz-action="goto" data-target="2"><i class="ti ti-arrow-left"></i> Back</button><button type="button" class="sm-quiz__next" data-quiz-next="3" disabled data-quiz-action="goto" data-target="4">Next <i class="ti ti-arrow-right"></i></button></div>
+      </div>
+
+      <div class="sm-quiz__step" data-quiz-step="4">
+        <div class="sm-quiz__q-label">Question 4 of 5</div>
+        <div class="sm-quiz__q-text">Where will you mainly use it?</div>
+        <div class="sm-quiz__opts">
+          <button type="button" class="sm-quiz__opt" data-q="4" data-v="home"><span class="sm-quiz__opt-ico"><i class="ti ti-home"></i></span><span><span class="sm-quiz__opt-t">At home</span><span class="sm-quiz__opt-d">Part of my morning and evening routine</span></span></button>
+          <button type="button" class="sm-quiz__opt" data-q="4" data-v="travel"><span class="sm-quiz__opt-ico"><i class="ti ti-plane"></i></span><span><span class="sm-quiz__opt-t">On the go</span><span class="sm-quiz__opt-d">I travel a lot and need something portable</span></span></button>
+          <button type="button" class="sm-quiz__opt" data-q="4" data-v="both"><span class="sm-quiz__opt-ico"><i class="ti ti-refresh"></i></span><span><span class="sm-quiz__opt-t">Both</span><span class="sm-quiz__opt-d">I need options for home and travel</span></span></button>
+          <button type="button" class="sm-quiz__opt" data-q="4" data-v="work"><span class="sm-quiz__opt-ico"><i class="ti ti-briefcase"></i></span><span><span class="sm-quiz__opt-t">At work too</span><span class="sm-quiz__opt-d">I want something I can use during the day</span></span></button>
+        </div>
+        <div class="sm-quiz__nav"><button type="button" class="sm-quiz__back" data-quiz-action="goto" data-target="3"><i class="ti ti-arrow-left"></i> Back</button><button type="button" class="sm-quiz__next" data-quiz-next="4" disabled data-quiz-action="goto" data-target="5">Next <i class="ti ti-arrow-right"></i></button></div>
+      </div>
+
+      <div class="sm-quiz__step" data-quiz-step="5">
+        <div class="sm-quiz__q-label">Question 5 of 5</div>
+        <div class="sm-quiz__q-text">Have you tried other mouthwashes before?</div>
+        <div class="sm-quiz__opts">
+          <button type="button" class="sm-quiz__opt" data-q="5" data-v="nothing_worked"><span class="sm-quiz__opt-ico"><i class="ti ti-x"></i></span><span><span class="sm-quiz__opt-t">Yes — nothing has worked</span><span class="sm-quiz__opt-d">I&rsquo;ve tried several and still have the problem</span></span></button>
+          <button type="button" class="sm-quiz__opt" data-q="5" data-v="want_stronger"><span class="sm-quiz__opt-ico"><i class="ti ti-trending-up"></i></span><span><span class="sm-quiz__opt-t">Yes — I want something stronger</span><span class="sm-quiz__opt-d">What I use works, but I want better results</span></span></button>
+          <button type="button" class="sm-quiz__opt" data-q="5" data-v="new_to_mouthwash"><span class="sm-quiz__opt-ico"><i class="ti ti-sparkles"></i></span><span><span class="sm-quiz__opt-t">I&rsquo;m new to mouthwash</span><span class="sm-quiz__opt-d">Starting fresh, want the right foundation</span></span></button>
+          <button type="button" class="sm-quiz__opt" data-q="5" data-v="switching"><span class="sm-quiz__opt-ico"><i class="ti ti-arrows-exchange"></i></span><span><span class="sm-quiz__opt-t">Switching from SmartMouth</span><span class="sm-quiz__opt-d">I use it already but want to upgrade</span></span></button>
+        </div>
+        <div class="sm-quiz__nav"><button type="button" class="sm-quiz__back" data-quiz-action="goto" data-target="4"><i class="ti ti-arrow-left"></i> Back</button><button type="button" class="sm-quiz__next" data-quiz-next="5" disabled data-quiz-action="results">See my formula <i class="ti ti-arrow-right"></i></button></div>
+      </div>
+
+      {%- comment -%} ------------------------- RESULTS ------------------------- {%- endcomment -%}
+      <div class="sm-quiz__results" data-quiz-results>
+        <div class="sm-quiz__results-label">Your personalized SmartMouth routine</div>
+        <div class="sm-quiz__pair">
+          <div class="sm-quiz__primary" data-quiz-primary></div>
+          <div class="sm-quiz__div"><span class="sm-quiz__div-line"></span><span class="sm-quiz__plus"><i class="ti ti-plus"></i></span><span class="sm-quiz__div-line"></span></div>
+          <div class="sm-quiz__addon" data-quiz-addon></div>
+        </div>
+        <div class="sm-quiz__bundle" data-quiz-bundle>
+          <div class="sm-quiz__bundle-left">
+            <span class="sm-quiz__bundle-ico"><i class="ti ti-gift"></i></span>
+            <span><span class="sm-quiz__bundle-h">Get both together</span><span class="sm-quiz__bundle-s" data-quiz-bundle-sub></span></span>
+          </div>
+          <div class="sm-quiz__bundle-right">
+            <span><span class="sm-quiz__bundle-was" data-quiz-bundle-was></span><span class="sm-quiz__bundle-now" data-quiz-bundle-now></span></span>
+            <button type="button" class="sm-quiz__bundle-btn" data-quiz-action="add-bundle">Add both to cart</button>
+          </div>
+        </div>
+        <div class="sm-quiz__retake-row">
+          <button type="button" class="sm-quiz__retake" data-quiz-action="retake"><i class="ti ti-refresh"></i> Retake quiz</button>
+          <span class="sm-quiz__retake-hint">or browse all products below</span>
+        </div>
+        <div class="sm-quiz__grid-sec">
+          <div class="sm-quiz__grid-h">All SmartMouth products</div>
+          <div class="sm-quiz__grid-s">Your matches are highlighted</div>
+          <div class="sm-quiz__pills" data-quiz-pills></div>
+          <div class="sm-quiz__pgrid" data-quiz-grid></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="application/json" data-quiz-data="{{ section.id }}">
+  {
+    "settings": {
+      "redirectToCart": {{ section.settings.redirect_to_cart | json }},
+      "discountCode": {{ section.settings.bundle_discount_code | strip | json }},
+      "discountPercent": {{ section.settings.bundle_discount_percent | json }},
+      "currency": {{ cart.currency.symbol | json }}
+    },
+    "products": [
+      {%- assign printed = false -%}
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'quiz_product' and block.settings.product != blank -%}
+          {%- assign p = block.settings.product -%}
+          {%- if printed %},{% endif -%}
+          {%- assign printed = true -%}
+          {
+            "id": {{ p.id }},
+            "variantId": {{ p.selected_or_first_available_variant.id | json }},
+            "name": {{ block.settings.display_name | default: p.title | json }},
+            "url": {{ p.url | json }},
+            "image": {% if p.featured_image %}{{ p.featured_image | image_url: width: 480 | json }}{% else %}""{% endif %},
+            "priceN": {{ p.price | divided_by: 100.0 }},
+            "inStock": {{ p.available | json }},
+            "cat": {{ block.settings.category | json }},
+            "benefits": {{ block.settings.benefits | json }},
+            "concern": {{ block.settings.concern | json }},
+            "duration": {{ block.settings.duration | json }},
+            "lifestyle": {{ block.settings.lifestyle | json }},
+            "location": {{ block.settings.location | json }},
+            "experience": {{ block.settings.experience | json }},
+            "addonFor": {{ block.settings.addon_for | json }},
+            "clinical": {{ block.settings.is_clinical | json }},
+            "starter": {{ block.settings.is_starter | json }},
+            "primaryReason": {{ block.settings.primary_reason | json }},
+            "addonReason": {{ block.settings.addon_reason | json }}
+          }
+        {%- endif -%}
+      {%- endfor -%}
+    ]
+  }
+</script>
+
+<style>
+  #shopify-section-{{ section.id }} .sm-quiz {
+    --sm-teal: {{ section.settings.accent_color }};
+    --sm-teal-d: {{ section.settings.accent_dark_color }};
+    --sm-teal-l: {{ section.settings.accent_light_color }};
+    --sm-teal-m: {{ section.settings.accent_mid_color }};
+    --sm-navy: #0d1f2d;
+    --sm-slate: #3d5163;
+    --sm-mid: #7a95a6;
+    --sm-light: #f4f7f9;
+    --sm-white: #ffffff;
+    --sm-border: #dde5ea;
+    --sm-green: #00c48c;
+    --sm-amber: #f59e0b;
+
+    font-family: 'DM Sans', sans-serif;
+    background: {{ section.settings.background_color }};
+    padding: {{ section.settings.padding_top }}px 16px {{ section.settings.padding_bottom }}px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  #shopify-section-{{ section.id }} .sm-quiz *,
+  #shopify-section-{{ section.id }} .sm-quiz *::before,
+  #shopify-section-{{ section.id }} .sm-quiz *::after { box-sizing: border-box; }
+
+  #shopify-section-{{ section.id }} .sm-quiz button { font-family: inherit; }
+
+  #shopify-section-{{ section.id }} .sm-quiz__wrap { max-width: 680px; margin: 0 auto; }
+  #shopify-section-{{ section.id }} .sm-quiz__header { text-align: center; margin-bottom: 24px; }
+  #shopify-section-{{ section.id }} .sm-quiz__logo { margin: 0 0 4px; font-size: 22px; font-weight: 700; color: var(--sm-navy); letter-spacing: .04em; }
+  #shopify-section-{{ section.id }} .sm-quiz__sub { margin: 0; font-size: 13px; color: var(--sm-mid); }
+  #shopify-section-{{ section.id }} .sm-quiz__card { background: var(--sm-white); border-radius: 14px; border: 1px solid var(--sm-border); overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,.07); }
+  #shopify-section-{{ section.id }} .sm-quiz__prog { height: 4px; background: var(--sm-border); }
+  #shopify-section-{{ section.id }} .sm-quiz__prog-fill { height: 100%; background: var(--sm-teal); border-radius: 2px; transition: width .4s ease; }
+
+  /* Email gate */
+  #shopify-section-{{ section.id }} .sm-quiz__gate { padding: 40px 32px; text-align: center; }
+  #shopify-section-{{ section.id }} .sm-quiz__gate-ico { width: 56px; height: 56px; border-radius: 50%; background: var(--sm-teal-l); display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; }
+  #shopify-section-{{ section.id }} .sm-quiz__gate-ico i { font-size: 26px; color: var(--sm-teal); }
+  #shopify-section-{{ section.id }} .sm-quiz__gate-h { font-size: 22px; font-weight: 600; color: var(--sm-navy); margin-bottom: 8px; line-height: 1.3; }
+  #shopify-section-{{ section.id }} .sm-quiz__gate-sub { font-size: 13px; color: var(--sm-mid); line-height: 1.65; margin: 0 auto 28px; max-width: 380px; }
+  #shopify-section-{{ section.id }} .sm-quiz__gate-form { display: flex; flex-direction: column; gap: 10px; max-width: 360px; margin: 0 auto; }
+  #shopify-section-{{ section.id }} .sm-quiz__gate-input { height: 46px; border: 1px solid var(--sm-border); border-radius: 8px; padding: 0 16px; font-size: 13px; font-family: inherit; color: var(--sm-navy); outline: none; transition: border-color .15s; background: var(--sm-white); }
+  #shopify-section-{{ section.id }} .sm-quiz__gate-input:focus { border-color: var(--sm-teal); }
+  #shopify-section-{{ section.id }} .sm-quiz__gate-btn { height: 46px; background: var(--sm-teal); color: #fff; border: none; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; letter-spacing: .03em; transition: opacity .15s; }
+  #shopify-section-{{ section.id }} .sm-quiz__gate-btn:hover { opacity: .88; }
+  #shopify-section-{{ section.id }} .sm-quiz__gate-skip { font-size: 11px; color: var(--sm-mid); margin-top: 10px; cursor: pointer; text-decoration: underline; background: none; border: none; padding: 0; }
+  #shopify-section-{{ section.id }} .sm-quiz__gate-skip:hover { color: var(--sm-slate); }
+  #shopify-section-{{ section.id }} .sm-quiz__gate-privacy { font-size: 10px; color: var(--sm-mid); margin-top: 8px; line-height: 1.5; }
+  #shopify-section-{{ section.id }} .sm-quiz__hidden-form { display: none; }
+
+  /* Questions */
+  #shopify-section-{{ section.id }} .sm-quiz__step { display: none; padding: 32px; }
+  #shopify-section-{{ section.id }} .sm-quiz__step.is-active { display: block; }
+  #shopify-section-{{ section.id }} .sm-quiz__q-label { font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--sm-mid); margin-bottom: 8px; }
+  #shopify-section-{{ section.id }} .sm-quiz__q-text { font-size: 20px; font-weight: 500; line-height: 1.3; margin-bottom: 22px; color: var(--sm-navy); }
+  #shopify-section-{{ section.id }} .sm-quiz__opts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 22px; }
+  #shopify-section-{{ section.id }} .sm-quiz__opt { border: 1px solid var(--sm-border); border-radius: 12px; padding: 16px; cursor: pointer; background: var(--sm-white); text-align: left; display: flex; align-items: flex-start; gap: 12px; transition: all .15s; }
+  #shopify-section-{{ section.id }} .sm-quiz__opt:hover { background: var(--sm-light); border-color: var(--sm-teal-m); }
+  #shopify-section-{{ section.id }} .sm-quiz__opt.is-selected { border: 2px solid var(--sm-teal); background: var(--sm-teal-l); padding: 15px; }
+  #shopify-section-{{ section.id }} .sm-quiz__opt-ico { width: 34px; height: 34px; border-radius: 8px; background: var(--sm-light); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  #shopify-section-{{ section.id }} .sm-quiz__opt-ico i { font-size: 17px; color: var(--sm-teal); }
+  #shopify-section-{{ section.id }} .sm-quiz__opt.is-selected .sm-quiz__opt-ico { background: var(--sm-teal-m); }
+  #shopify-section-{{ section.id }} .sm-quiz__opt-t { display: block; font-size: 13px; font-weight: 500; margin-bottom: 2px; color: var(--sm-navy); }
+  #shopify-section-{{ section.id }} .sm-quiz__opt-d { display: block; font-size: 11px; color: var(--sm-mid); line-height: 1.4; }
+  #shopify-section-{{ section.id }} .sm-quiz__opt.is-selected .sm-quiz__opt-t { color: var(--sm-teal-d); }
+  #shopify-section-{{ section.id }} .sm-quiz__nav { display: flex; align-items: center; justify-content: space-between; }
+  #shopify-section-{{ section.id }} .sm-quiz__back { font-size: 13px; color: var(--sm-mid); background: none; border: none; cursor: pointer; padding: 0; display: flex; align-items: center; gap: 4px; }
+  #shopify-section-{{ section.id }} .sm-quiz__back:hover { color: var(--sm-navy); }
+  #shopify-section-{{ section.id }} .sm-quiz__next { background: var(--sm-teal); color: #fff; border: none; border-radius: 22px; padding: 11px 26px; font-size: 13px; font-weight: 600; cursor: pointer; transition: opacity .15s; }
+  #shopify-section-{{ section.id }} .sm-quiz__next:disabled { opacity: .35; cursor: default; }
+  #shopify-section-{{ section.id }} .sm-quiz__next:not(:disabled):hover { opacity: .88; }
+
+  /* Results */
+  #shopify-section-{{ section.id }} .sm-quiz__results { display: none; padding: 32px; }
+  #shopify-section-{{ section.id }} .sm-quiz__results.is-active { display: block; }
+  #shopify-section-{{ section.id }} .sm-quiz__results-label { font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--sm-teal); margin-bottom: 10px; }
+  #shopify-section-{{ section.id }} .sm-quiz__pair { display: grid; grid-template-columns: 1fr auto 1fr; border: 1px solid var(--sm-border); border-radius: 14px; overflow: hidden; margin-bottom: 18px; }
+  #shopify-section-{{ section.id }} .sm-quiz__primary { background: var(--sm-navy); padding: 22px; }
+  #shopify-section-{{ section.id }} .sm-quiz__p-label { font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--sm-green); margin-bottom: 12px; display: flex; align-items: center; gap: 5px; }
+  #shopify-section-{{ section.id }} .sm-quiz__p-img { height: 120px; background: rgba(255,255,255,.07); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; overflow: hidden; }
+  #shopify-section-{{ section.id }} .sm-quiz__p-img img { max-height: 110px; max-width: 90%; object-fit: contain; }
+  #shopify-section-{{ section.id }} .sm-quiz__p-name { font-size: 13px; font-weight: 500; color: #fff; line-height: 1.3; margin-bottom: 5px; }
+  #shopify-section-{{ section.id }} .sm-quiz__p-name a { color: inherit; text-decoration: none; }
+  #shopify-section-{{ section.id }} .sm-quiz__p-name a:hover { text-decoration: underline; }
+  #shopify-section-{{ section.id }} .sm-quiz__p-price { font-size: 16px; font-weight: 500; color: var(--sm-green); margin-bottom: 8px; }
+  #shopify-section-{{ section.id }} .sm-quiz__p-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 10px; }
+  #shopify-section-{{ section.id }} .sm-quiz__p-tag { font-size: 10px; padding: 2px 8px; border-radius: 10px; background: rgba(0,196,140,.15); color: var(--sm-green); border: .5px solid rgba(0,196,140,.3); }
+  #shopify-section-{{ section.id }} .sm-quiz__p-why { font-size: 11px; color: rgba(255,255,255,.5); line-height: 1.5; margin-bottom: 14px; }
+  #shopify-section-{{ section.id }} .sm-quiz__p-add { width: 100%; background: var(--sm-teal); color: #fff; border: none; border-radius: 20px; padding: 10px; font-size: 12px; font-weight: 600; cursor: pointer; }
+  #shopify-section-{{ section.id }} .sm-quiz__p-add:hover { background: var(--sm-teal-d); }
+  #shopify-section-{{ section.id }} .sm-quiz__div { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 4px; background: var(--sm-light); }
+  #shopify-section-{{ section.id }} .sm-quiz__plus { width: 30px; height: 30px; border-radius: 50%; background: var(--sm-white); border: 1px solid var(--sm-border); display: flex; align-items: center; justify-content: center; }
+  #shopify-section-{{ section.id }} .sm-quiz__plus i { font-size: 14px; color: var(--sm-mid); }
+  #shopify-section-{{ section.id }} .sm-quiz__div-line { flex: 1; width: .5px; background: var(--sm-border); }
+  #shopify-section-{{ section.id }} .sm-quiz__addon { background: var(--sm-white); padding: 22px; }
+  #shopify-section-{{ section.id }} .sm-quiz__a-label { font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--sm-mid); margin-bottom: 12px; display: flex; align-items: center; gap: 5px; }
+  #shopify-section-{{ section.id }} .sm-quiz__a-img { height: 120px; background: var(--sm-light); border: 1px solid var(--sm-border); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; overflow: hidden; }
+  #shopify-section-{{ section.id }} .sm-quiz__a-img img { max-height: 110px; max-width: 90%; object-fit: contain; }
+  #shopify-section-{{ section.id }} .sm-quiz__a-name { font-size: 13px; font-weight: 500; color: var(--sm-navy); line-height: 1.3; margin-bottom: 5px; }
+  #shopify-section-{{ section.id }} .sm-quiz__a-name a { color: inherit; text-decoration: none; }
+  #shopify-section-{{ section.id }} .sm-quiz__a-name a:hover { text-decoration: underline; }
+  #shopify-section-{{ section.id }} .sm-quiz__a-price { font-size: 16px; font-weight: 500; color: var(--sm-teal); margin-bottom: 8px; }
+  #shopify-section-{{ section.id }} .sm-quiz__a-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 10px; }
+  #shopify-section-{{ section.id }} .sm-quiz__a-tag { font-size: 10px; padding: 2px 8px; border-radius: 10px; background: var(--sm-teal-l); color: var(--sm-teal-d); border: .5px solid var(--sm-teal-m); }
+  #shopify-section-{{ section.id }} .sm-quiz__a-why { font-size: 11px; color: var(--sm-mid); line-height: 1.5; margin-bottom: 14px; }
+  #shopify-section-{{ section.id }} .sm-quiz__a-add { width: 100%; border: 1px solid var(--sm-teal); border-radius: 20px; padding: 10px; font-size: 12px; font-weight: 500; color: var(--sm-teal); background: transparent; cursor: pointer; }
+  #shopify-section-{{ section.id }} .sm-quiz__a-add:hover { background: var(--sm-teal); color: #fff; }
+
+  /* Bundle bar */
+  #shopify-section-{{ section.id }} .sm-quiz__bundle { background: var(--sm-light); border: 1px solid var(--sm-border); border-radius: 12px; padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
+  #shopify-section-{{ section.id }} .sm-quiz__bundle-left { display: flex; align-items: center; gap: 10px; }
+  #shopify-section-{{ section.id }} .sm-quiz__bundle-ico { width: 36px; height: 36px; border-radius: 8px; background: var(--sm-white); border: 1px solid var(--sm-border); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  #shopify-section-{{ section.id }} .sm-quiz__bundle-ico i { font-size: 18px; color: var(--sm-teal); }
+  #shopify-section-{{ section.id }} .sm-quiz__bundle-h { display: block; font-size: 13px; font-weight: 500; color: var(--sm-navy); margin-bottom: 2px; }
+  #shopify-section-{{ section.id }} .sm-quiz__bundle-s { display: block; font-size: 11px; color: var(--sm-mid); }
+  #shopify-section-{{ section.id }} .sm-quiz__bundle-right { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  #shopify-section-{{ section.id }} .sm-quiz__bundle-was { display: block; font-size: 11px; color: var(--sm-mid); text-decoration: line-through; }
+  #shopify-section-{{ section.id }} .sm-quiz__bundle-now { display: block; font-size: 16px; font-weight: 500; color: var(--sm-teal); }
+  #shopify-section-{{ section.id }} .sm-quiz__bundle-btn { background: var(--sm-navy); color: #fff; border: none; border-radius: 20px; padding: 10px 18px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+
+  /* Retake + grid */
+  #shopify-section-{{ section.id }} .sm-quiz__retake-row { display: flex; align-items: center; gap: 10px; margin-bottom: 24px; }
+  #shopify-section-{{ section.id }} .sm-quiz__retake { font-size: 13px; color: var(--sm-mid); background: none; border: 1px solid var(--sm-border); border-radius: 16px; padding: 8px 18px; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; }
+  #shopify-section-{{ section.id }} .sm-quiz__retake:hover { background: var(--sm-light); }
+  #shopify-section-{{ section.id }} .sm-quiz__retake-hint { font-size: 12px; color: var(--sm-mid); }
+  #shopify-section-{{ section.id }} .sm-quiz__grid-sec { border-top: 1px solid var(--sm-border); padding-top: 24px; }
+  #shopify-section-{{ section.id }} .sm-quiz__grid-h { font-size: 16px; font-weight: 600; color: var(--sm-navy); margin-bottom: 3px; }
+  #shopify-section-{{ section.id }} .sm-quiz__grid-s { font-size: 12px; color: var(--sm-mid); margin-bottom: 14px; }
+  #shopify-section-{{ section.id }} .sm-quiz__pills { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
+  #shopify-section-{{ section.id }} .sm-quiz__pill { font-size: 11px; padding: 5px 12px; border-radius: 12px; border: 1px solid var(--sm-border); cursor: pointer; background: var(--sm-white); color: var(--sm-mid); transition: all .15s; }
+  #shopify-section-{{ section.id }} .sm-quiz__pill:hover { background: var(--sm-light); }
+  #shopify-section-{{ section.id }} .sm-quiz__pill.is-on { background: var(--sm-navy); color: #fff; border-color: var(--sm-navy); }
+  #shopify-section-{{ section.id }} .sm-quiz__pgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)); gap: 10px; }
+  #shopify-section-{{ section.id }} .sm-quiz__pc { border: 1px solid var(--sm-border); border-radius: 12px; overflow: hidden; background: var(--sm-white); transition: border-color .15s; }
+  #shopify-section-{{ section.id }} .sm-quiz__pc:hover { border-color: var(--sm-teal-m); }
+  #shopify-section-{{ section.id }} .sm-quiz__pc.is-match { border: 2px solid var(--sm-teal); }
+  #shopify-section-{{ section.id }} .sm-quiz__pc.is-hidden { display: none; }
+  #shopify-section-{{ section.id }} .sm-quiz__pc.is-dimmed { opacity: .5; }
+  #shopify-section-{{ section.id }} .sm-quiz__pi { height: 90px; background: var(--sm-light); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+  #shopify-section-{{ section.id }} .sm-quiz__pi img { max-height: 82px; max-width: 88%; object-fit: contain; }
+  #shopify-section-{{ section.id }} .sm-quiz__pc-badge { position: absolute; top: 5px; left: 5px; font-size: 9px; padding: 2px 6px; border-radius: 8px; font-weight: 600; color: #fff; }
+  #shopify-section-{{ section.id }} .sm-quiz__pb { padding: 9px 10px 11px; }
+  #shopify-section-{{ section.id }} .sm-quiz__pn { font-size: 11px; font-weight: 500; margin-bottom: 3px; line-height: 1.35; color: var(--sm-navy); }
+  #shopify-section-{{ section.id }} .sm-quiz__pn a { color: inherit; text-decoration: none; }
+  #shopify-section-{{ section.id }} .sm-quiz__pn a:hover { text-decoration: underline; }
+  #shopify-section-{{ section.id }} .sm-quiz__pp { font-size: 12px; font-weight: 500; color: var(--sm-teal); margin-bottom: 6px; }
+  #shopify-section-{{ section.id }} .sm-quiz__pbens { display: flex; flex-wrap: wrap; gap: 3px; margin-bottom: 8px; }
+  #shopify-section-{{ section.id }} .sm-quiz__pben { font-size: 9px; padding: 1px 5px; border-radius: 8px; background: var(--sm-teal-l); color: var(--sm-teal-d); border: .5px solid var(--sm-teal-m); }
+  #shopify-section-{{ section.id }} .sm-quiz__padd { width: 100%; border: 1px solid var(--sm-border); border-radius: 10px; padding: 5px; font-size: 11px; color: var(--sm-mid); background: transparent; cursor: pointer; transition: all .15s; }
+  #shopify-section-{{ section.id }} .sm-quiz__padd:hover:not(:disabled) { border-color: var(--sm-teal); color: var(--sm-teal); }
+  #shopify-section-{{ section.id }} .sm-quiz__padd:disabled { cursor: default; }
+
+  @media screen and (max-width: 600px) {
+    #shopify-section-{{ section.id }} .sm-quiz__opts { grid-template-columns: 1fr; }
+    #shopify-section-{{ section.id }} .sm-quiz__pair { grid-template-columns: 1fr; }
+    #shopify-section-{{ section.id }} .sm-quiz__div { flex-direction: row; padding: 4px 0; }
+    #shopify-section-{{ section.id }} .sm-quiz__div-line { width: auto; height: .5px; flex: 1; }
+    #shopify-section-{{ section.id }} .sm-quiz__step, #shopify-section-{{ section.id }} .sm-quiz__results, #shopify-section-{{ section.id }} .sm-quiz__gate { padding: 24px 18px; }
+  }
+</style>
+
+<script>
+  (() => {
+    const root = document.querySelector('[data-sm-quiz="{{ section.id }}"]');
+    const dataEl = document.querySelector('[data-quiz-data="{{ section.id }}"]');
+    if (!root || !dataEl || root.dataset.quizReady === 'true') return;
+    root.dataset.quizReady = 'true';
+
+    const { settings, products } = JSON.parse(dataEl.textContent);
+    const listify = (v) => String(v || '').split(',').map((s) => s.trim().toLowerCase()).filter(Boolean);
+
+    products.forEach((p) => {
+      p.benefits = String(p.benefits || '').split(',').map((s) => s.trim()).filter(Boolean);
+      p.concern = listify(p.concern);
+      p.duration = listify(p.duration);
+      p.lifestyle = listify(p.lifestyle);
+      p.location = listify(p.location);
+      p.experience = listify(p.experience);
+      p.addonFor = listify(p.addonFor);
+    });
+
+    const ans = {};
+    const el = (sel) => root.querySelector(sel);
+    const els = (sel) => Array.from(root.querySelectorAll(sel));
+    const fmt = (n) => (settings.currency || '$') + n.toFixed(2);
+    const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+    const progress = el('[data-quiz-progress]');
+    const gate = el('[data-quiz-gate]');
+    const results = el('[data-quiz-results]');
+
+    const scrollTop = () => root.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    const goTo = (n) => {
+      els('.sm-quiz__step').forEach((s) => s.classList.remove('is-active'));
+      results.classList.remove('is-active');
+      const step = el(`[data-quiz-step="${n}"]`);
+      if (step) step.classList.add('is-active');
+      progress.style.width = (n * 20) + '%';
+      scrollTop();
+    };
+
+    const startQuiz = (withEmail) => {
+      if (withEmail && gate) {
+        const email = el('[data-quiz-email]')?.value.trim();
+        const form = el('[data-quiz-newsletter-form]');
+        if (email && form) {
+          const emailField = el('[data-quiz-newsletter-email]');
+          emailField.value = email;
+          fetch(form.action, { method: 'POST', body: new FormData(form) }).catch(() => {});
+        }
+      }
+      if (gate) gate.style.display = 'none';
+      goTo(1);
+    };
+
+    /* ---------------- Scoring (ported from the prototype) ---------------- */
+    const scoreP = (p) => {
+      if (!p.inStock) return -99;
+      let s = 0;
+      if (p.concern.includes(ans[1])) s += 6;
+      if (p.duration.includes(ans[2])) s += 3;
+      if ((ans[2] === 'years' || ans[2] === 'months') && (p.cat === 'liposomal' || p.clinical)) s += 2;
+      if (p.lifestyle.includes(ans[3])) s += 2;
+      if (ans[3] === 'medication' && p.concern.includes('dry')) s += 3;
+      if (ans[3] === 'smoker' && (p.cat === 'liposomal' || p.clinical)) s += 2;
+      if (ans[4] === 'travel' && p.cat === 'travel') s += 5;
+      if (ans[4] === 'travel' && p.cat === 'mints') s += 3;
+      if ((ans[4] === 'both' || ans[4] === 'work') && (p.cat === 'travel' || p.cat === 'mints')) s += 2;
+      if (ans[4] === 'home' && (p.cat === 'mouthwash' || p.cat === 'liposomal')) s += 1;
+      if (ans[5] === 'nothing_worked' && p.cat === 'liposomal') s += 5;
+      if (ans[5] === 'nothing_worked' && p.clinical) s += 3;
+      if (ans[5] === 'want_stronger' && (p.cat === 'liposomal' || p.clinical)) s += 4;
+      if (ans[5] === 'new_to_mouthwash' && p.starter) s += 4;
+      if (ans[5] === 'switching' && (p.cat === 'liposomal' || p.clinical)) s += 3;
+      return s;
+    };
+
+    const pickAddon = (primary) => {
+      const concern = ans[1];
+      const location = ans[4];
+      const cands = products.filter((p) => {
+        if (!p.inStock || p.id === primary.id) return false;
+        if (p.cat === primary.cat && p.cat !== 'toothpaste') return false;
+        return p.addonFor.includes(concern);
+      });
+      if (!cands.length) {
+        return products.find((p) => p.cat === 'toothpaste' && p.inStock && p.id !== primary.id)
+          || products.find((p) => p.inStock && p.id !== primary.id);
+      }
+      return cands
+        .map((p) => {
+          let s = 0;
+          if (p.addonFor.includes(concern)) s += 3;
+          if ((location === 'travel' || location === 'both' || location === 'work') && p.cat === 'travel') s += 3;
+          if ((location === 'travel' || location === 'work') && p.cat === 'mints') s += 2;
+          if (p.cat === 'toothpaste') s += 2;
+          if (concern === 'dry' && p.cat === 'mints') s += 3;
+          return { p, s };
+        })
+        .sort((a, b) => b.s - a.s)[0].p;
+    };
+
+    /* ---------------- Cart ---------------- */
+    const addToCart = async (variantIds, button) => {
+      if (!variantIds.length) return;
+      const original = button.textContent;
+      button.textContent = 'Adding…';
+      button.disabled = true;
+      try {
+        if (settings.discountCode && variantIds.length > 1) {
+          await fetch('/discount/' + encodeURIComponent(settings.discountCode)).catch(() => {});
+        }
+        const res = await fetch('/cart/add.js', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ items: variantIds.map((id) => ({ id, quantity: 1 })) })
+        });
+        if (!res.ok) throw new Error('add failed');
+        if (settings.redirectToCart) {
+          window.location.href = '/cart';
+          return;
+        }
+        button.textContent = 'Added ✓';
+        document.dispatchEvent(new CustomEvent('cart:refresh', { bubbles: true }));
+        setTimeout(() => { button.textContent = original; button.disabled = false; }, 2200);
+      } catch (e) {
+        button.textContent = 'Try again';
+        button.disabled = false;
+      }
+    };
+
+    /* ---------------- Results rendering ---------------- */
+    let matchedPrimary = null;
+    let matchedAddon = null;
+
+    const cardImg = (p) => p.image
+      ? `<img src="${esc(p.image)}" alt="${esc(p.name)}" loading="lazy">`
+      : '';
+
+    const showResults = () => {
+      els('.sm-quiz__step').forEach((s) => s.classList.remove('is-active'));
+      progress.style.width = '100%';
+      results.classList.add('is-active');
+
+      const sorted = products.map((p) => ({ ...p, sc: scoreP(p) })).sort((a, b) => b.sc - a.sc);
+      const primary = sorted[0];
+      if (!primary) return;
+      const addon = pickAddon(primary);
+      matchedPrimary = primary;
+      matchedAddon = addon;
+
+      el('[data-quiz-primary]').innerHTML = `
+        <div class="sm-quiz__p-label"><i class="ti ti-crown"></i> Primary formula</div>
+        <a class="sm-quiz__p-img" href="${esc(primary.url)}">${cardImg(primary)}</a>
+        <div class="sm-quiz__p-name"><a href="${esc(primary.url)}">${esc(primary.name)}</a></div>
+        <div class="sm-quiz__p-price">${fmt(primary.priceN)}</div>
+        <div class="sm-quiz__p-tags">${primary.benefits.map((b) => `<span class="sm-quiz__p-tag">${esc(b)}</span>`).join('')}</div>
+        <div class="sm-quiz__p-why">${esc(primary.primaryReason || 'Matched to your answers for maximum effectiveness.')}</div>
+        <button type="button" class="sm-quiz__p-add" data-quiz-add="${primary.variantId}">Add to cart</button>`;
+
+      if (addon) {
+        el('[data-quiz-addon]').innerHTML = `
+          <div class="sm-quiz__a-label"><i class="ti ti-sparkles"></i> Recommended add-on</div>
+          <a class="sm-quiz__a-img" href="${esc(addon.url)}">${cardImg(addon)}</a>
+          <div class="sm-quiz__a-name"><a href="${esc(addon.url)}">${esc(addon.name)}</a></div>
+          <div class="sm-quiz__a-price">${fmt(addon.priceN)}</div>
+          <div class="sm-quiz__a-tags">${addon.benefits.map((b) => `<span class="sm-quiz__a-tag">${esc(b)}</span>`).join('')}</div>
+          <div class="sm-quiz__a-why">${esc(addon.addonReason || 'A great complement to your primary formula.')}</div>
+          <button type="button" class="sm-quiz__a-add" data-quiz-add="${addon.variantId}">Add to cart</button>`;
+      }
+
+      const bundle = el('[data-quiz-bundle]');
+      if (addon) {
+        bundle.style.display = '';
+        const total = primary.priceN + addon.priceN;
+        const pct = settings.discountCode ? (settings.discountPercent || 0) : 0;
+        const save = total * (pct / 100);
+        el('[data-quiz-bundle-was]').textContent = pct ? fmt(total) : '';
+        el('[data-quiz-bundle-now]').textContent = pct ? `${fmt(total - save)} (save ${fmt(save)})` : fmt(total);
+        el('[data-quiz-bundle-sub]').textContent = pct
+          ? `${primary.name.split(' ').slice(0, 3).join(' ')} + ${addon.name.split(' ').slice(0, 3).join(' ')} — ${pct}% off together`
+          : `${primary.name.split(' ').slice(0, 3).join(' ')} + ${addon.name.split(' ').slice(0, 3).join(' ')}`;
+      } else {
+        bundle.style.display = 'none';
+      }
+
+      renderPills();
+      renderGrid();
+      scrollTop();
+    };
+
+    /* ---------------- All-products grid ---------------- */
+    const CAT_LABELS = { mouthwash: 'Mouthwash', liposomal: 'Liposomal', toothpaste: 'Toothpaste', mints: 'Mints', travel: 'Travel size', system: 'Systems' };
+
+    const renderPills = () => {
+      const pills = el('[data-quiz-pills]');
+      const cats = [...new Set(products.map((p) => p.cat))];
+      pills.innerHTML = `<button type="button" class="sm-quiz__pill is-on" data-quiz-filter="all">All (${products.length})</button>`
+        + cats.map((c) => `<button type="button" class="sm-quiz__pill" data-quiz-filter="${esc(c)}">${esc(CAT_LABELS[c] || c)}</button>`).join('');
+    };
+
+    const renderGrid = () => {
+      const grid = el('[data-quiz-grid]');
+      grid.innerHTML = products.map((p) => {
+        const isPrimary = matchedPrimary && p.id === matchedPrimary.id;
+        const isAddon = matchedAddon && p.id === matchedAddon.id;
+        const badge = isPrimary
+          ? '<span class="sm-quiz__pc-badge" style="background:var(--sm-teal);">Your pick</span>'
+          : isAddon
+            ? '<span class="sm-quiz__pc-badge" style="background:var(--sm-amber);">Add-on</span>'
+            : !p.inStock
+              ? '<span class="sm-quiz__pc-badge" style="background:#aaa;">Sold out</span>'
+              : '';
+        return `
+          <div class="sm-quiz__pc${(isPrimary || isAddon) ? ' is-match' : ''}${p.inStock ? '' : ' is-dimmed'}" data-cat="${esc(p.cat)}">
+            <a class="sm-quiz__pi" href="${esc(p.url)}">${cardImg(p)}${badge}</a>
+            <div class="sm-quiz__pb">
+              <div class="sm-quiz__pn"><a href="${esc(p.url)}">${esc(p.name)}</a></div>
+              <div class="sm-quiz__pp">${fmt(p.priceN)}</div>
+              <div class="sm-quiz__pbens">${p.benefits.slice(0, 2).map((b) => `<span class="sm-quiz__pben">${esc(b)}</span>`).join('')}</div>
+              <button type="button" class="sm-quiz__padd" data-quiz-add="${p.variantId}" ${p.inStock ? '' : 'disabled'}>${p.inStock ? 'Add to cart' : 'Out of stock'}</button>
+            </div>
+          </div>`;
+      }).join('');
+    };
+
+    const retake = () => {
+      Object.keys(ans).forEach((k) => delete ans[k]);
+      els('.sm-quiz__opt').forEach((b) => b.classList.remove('is-selected'));
+      els('[data-quiz-next]').forEach((b) => { b.disabled = true; });
+      results.classList.remove('is-active');
+      matchedPrimary = null;
+      matchedAddon = null;
+      progress.style.width = '0%';
+      if (gate) {
+        gate.style.display = '';
+        els('.sm-quiz__step').forEach((s) => s.classList.remove('is-active'));
+      } else {
+        goTo(1);
+      }
+      scrollTop();
+    };
+
+    /* ---------------- Event delegation ---------------- */
+    root.addEventListener('click', (event) => {
+      const opt = event.target.closest('.sm-quiz__opt');
+      if (opt && root.contains(opt)) {
+        const q = opt.dataset.q;
+        els(`.sm-quiz__opt[data-q="${q}"]`).forEach((b) => b.classList.remove('is-selected'));
+        opt.classList.add('is-selected');
+        ans[q] = opt.dataset.v;
+        const next = el(`[data-quiz-next="${q}"]`);
+        if (next) next.disabled = false;
+        return;
+      }
+
+      const addBtn = event.target.closest('[data-quiz-add]');
+      if (addBtn) {
+        addToCart([Number(addBtn.dataset.quizAdd)], addBtn);
+        return;
+      }
+
+      const pill = event.target.closest('[data-quiz-filter]');
+      if (pill) {
+        els('.sm-quiz__pill').forEach((p) => p.classList.remove('is-on'));
+        pill.classList.add('is-on');
+        const cat = pill.dataset.quizFilter;
+        els('.sm-quiz__pc').forEach((c) => c.classList.toggle('is-hidden', cat !== 'all' && c.dataset.cat !== cat));
+        return;
+      }
+
+      const action = event.target.closest('[data-quiz-action]');
+      if (!action) return;
+
+      switch (action.dataset.quizAction) {
+        case 'start': startQuiz(false); break;
+        case 'start-with-email': startQuiz(true); break;
+        case 'goto': if (!action.disabled) goTo(Number(action.dataset.target)); break;
+        case 'results': if (!action.disabled) showResults(); break;
+        case 'retake': retake(); break;
+        case 'add-bundle': {
+          const ids = [matchedPrimary, matchedAddon].filter(Boolean).map((p) => p.variantId);
+          addToCart(ids, action);
+          break;
+        }
+      }
+    });
+
+    const emailInput = el('[data-quiz-email]');
+    if (emailInput) {
+      emailInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') startQuiz(true); });
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Find Your Rinse Quiz",
+  "tag": "section",
+  "class": "section",
+  "max_blocks": 30,
+  "settings": [
+    { "type": "header", "content": "Header" },
+    { "type": "text", "id": "title", "label": "Title", "default": "SmartMouth™" },
+    { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "Find Your Rinse — personalized formula finder" },
+    { "type": "header", "content": "Email gate" },
+    { "type": "checkbox", "id": "enable_email_gate", "label": "Show email capture before the quiz", "default": true },
+    { "type": "text", "id": "gate_heading", "label": "Gate heading", "default": "Get your personalized SmartMouth formula" },
+    { "type": "text", "id": "gate_text", "label": "Gate text", "default": "Enter your email and we'll send your results — plus a coupon for your first order." },
+    { "type": "text", "id": "gate_button", "label": "Gate button label", "default": "Find my formula" },
+    { "type": "header", "content": "Cart & bundle" },
+    { "type": "checkbox", "id": "redirect_to_cart", "label": "Go to cart page after adding", "default": false },
+    { "type": "text", "id": "bundle_discount_code", "label": "Bundle discount code", "info": "Create a discount code in Shopify admin (e.g. QUIZ10) and enter it here. It's applied automatically when both items are added together. Leave blank to show the bundle without a discount claim." },
+    { "type": "range", "id": "bundle_discount_percent", "min": 5, "max": 50, "step": 5, "unit": "%", "label": "Bundle discount amount (display)", "default": 10, "info": "Must match the discount code's actual value." },
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "background_color", "label": "Section background", "default": "#F0F3F5" },
+    { "type": "color", "id": "accent_color", "label": "Accent", "default": "#00897B" },
+    { "type": "color", "id": "accent_dark_color", "label": "Accent dark", "default": "#005A52" },
+    { "type": "color", "id": "accent_light_color", "label": "Accent light", "default": "#E0F5F3" },
+    { "type": "color", "id": "accent_mid_color", "label": "Accent mid", "default": "#B2E0DA" },
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "Top padding", "default": 24 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "Bottom padding", "default": 60 }
+  ],
+  "blocks": [
+    {
+      "type": "quiz_product",
+      "name": "Quiz product",
+      "settings": [
+        { "type": "product", "id": "product", "label": "Product", "info": "Required — blocks without a product are skipped." },
+        { "type": "text", "id": "display_name", "label": "Display name override", "info": "Leave blank to use the product title." },
+        {
+          "type": "select",
+          "id": "category",
+          "label": "Category",
+          "options": [
+            { "value": "mouthwash", "label": "Mouthwash" },
+            { "value": "liposomal", "label": "Liposomal" },
+            { "value": "toothpaste", "label": "Toothpaste" },
+            { "value": "mints", "label": "Mints" },
+            { "value": "travel", "label": "Travel size" },
+            { "value": "system", "label": "Systems" }
+          ],
+          "default": "mouthwash"
+        },
+        { "type": "text", "id": "benefits", "label": "Benefit tags", "info": "Comma separated, e.g. 24hr breath, Zinc ion" },
+        { "type": "header", "content": "Quiz matching" },
+        { "type": "text", "id": "concern", "label": "Matches concerns", "info": "Comma separated: breath, dry, gum, sore" },
+        { "type": "text", "id": "duration", "label": "Matches durations", "info": "new, months, years, prevention" },
+        { "type": "text", "id": "lifestyle", "label": "Matches lifestyles", "info": "smoker, coffee, medication, none" },
+        { "type": "text", "id": "location", "label": "Matches locations", "info": "home, travel, both, work" },
+        { "type": "text", "id": "experience", "label": "Matches experience", "info": "nothing_worked, want_stronger, new_to_mouthwash, switching" },
+        { "type": "text", "id": "addon_for", "label": "Add-on for concerns", "info": "Concerns this product can be recommended as an add-on for. Leave blank if never an add-on." },
+        { "type": "checkbox", "id": "is_clinical", "label": "Clinical-strength formula", "default": false },
+        { "type": "checkbox", "id": "is_starter", "label": "Good starter product", "default": false, "info": "Boosted for people new to mouthwash." },
+        { "type": "header", "content": "Recommendation copy" },
+        { "type": "textarea", "id": "primary_reason", "label": "Why (as primary pick)" },
+        { "type": "textarea", "id": "addon_reason", "label": "Why (as add-on)" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Find Your Rinse Quiz",
+      "category": "Quiz",
+      "blocks": [
+        { "type": "quiz_product", "settings": { "display_name": "Original Activated Mouthwash (16oz)", "category": "mouthwash", "benefits": "24hr breath, Zinc ion", "concern": "breath", "duration": "new, prevention", "lifestyle": "none, coffee, smoker", "location": "home, both, work", "experience": "new_to_mouthwash, switching", "addon_for": "", "is_starter": true, "primary_reason": "The original zinc ion formula — gentle, effective, and the right starting point for everyday fresh-breath protection." } },
+        { "type": "quiz_product", "settings": { "display_name": "Clinical Activated Mouthwash (16oz)", "category": "mouthwash", "benefits": "24hr breath, Anti-gingivitis, Anti-plaque", "concern": "breath, gum", "duration": "months, years", "lifestyle": "smoker, coffee, none", "location": "home, both, work", "experience": "nothing_worked, want_stronger, switching", "addon_for": "", "is_clinical": true, "primary_reason": "Clinical strength targets bad breath and gum health simultaneously — the go-to when the problem has been persistent." } },
+        { "type": "quiz_product", "settings": { "display_name": "Dry Mouth Activated Mouthwash (16oz)", "category": "mouthwash", "benefits": "24hr breath, Dry mouth relief", "concern": "dry, breath", "duration": "new, months, years", "lifestyle": "medication, none", "location": "home, both, work", "experience": "nothing_worked, want_stronger, new_to_mouthwash", "addon_for": "", "is_clinical": true, "is_starter": true, "primary_reason": "Specifically formulated for dry mouth — delivers relief and 24-hour breath protection in one rinse." } },
+        { "type": "quiz_product", "settings": { "display_name": "Mouth Sore Activated Mouthwash (16oz)", "category": "mouthwash", "benefits": "Soothing, Canker sore relief", "concern": "sore", "duration": "new, months, years", "lifestyle": "none, medication", "location": "home, both", "experience": "nothing_worked, new_to_mouthwash, want_stronger", "addon_for": "", "is_starter": true, "primary_reason": "A gentle, soothing formula designed to calm canker sores and oral irritation while keeping breath fresh." } },
+        { "type": "quiz_product", "settings": { "display_name": "Gum Health Activated Mouthwash (16oz)", "category": "mouthwash", "benefits": "Anti-gingivitis, Anti-plaque", "concern": "gum", "duration": "new, months, years", "lifestyle": "none, coffee", "location": "home, both", "experience": "nothing_worked, want_stronger, switching", "addon_for": "", "is_clinical": true, "primary_reason": "Advanced anti-gingivitis and anti-plaque actives — formulated specifically where gum health is the priority." } },
+        { "type": "quiz_product", "settings": { "display_name": "Advanced Liposomal Vitamin C (16oz)", "category": "liposomal", "benefits": "Liposomal tech, Vitamin C, Gum health", "concern": "gum, breath", "duration": "years, months", "lifestyle": "none, coffee", "location": "home, both", "experience": "nothing_worked, want_stronger, switching", "addon_for": "gum, breath", "primary_reason": "Liposomal Vitamin C delivers the deepest tissue nourishment — the most advanced formula in the lineup.", "addon_reason": "Vitamin C liposomal tech delivers deeper gum nourishment alongside your daily rinse." } },
+        { "type": "quiz_product", "settings": { "display_name": "Advanced Liposomal Morning (16oz)", "category": "liposomal", "benefits": "Liposomal tech, Morning formula", "concern": "breath, gum", "duration": "years, months", "lifestyle": "none, coffee, smoker", "location": "home, both", "experience": "nothing_worked, want_stronger, switching", "addon_for": "breath, gum", "primary_reason": "Liposomal morning formula — engineered for the highest-impact rinse of the day.", "addon_reason": "A dedicated morning liposomal formula adds a powerful AM layer on top of your evening rinse." } },
+        { "type": "quiz_product", "settings": { "display_name": "Advanced Liposomal Evening (16oz)", "category": "liposomal", "benefits": "Liposomal tech, Evening formula", "concern": "breath, gum", "duration": "years, months", "lifestyle": "none, coffee, smoker", "location": "home, both", "experience": "nothing_worked, want_stronger, switching", "addon_for": "breath, gum", "primary_reason": "Liposomal evening formula — works overnight so you wake up to genuinely fresh breath.", "addon_reason": "Evening liposomal formula works overnight — maximises the protection you've already started." } },
+        { "type": "quiz_product", "settings": { "display_name": "Original Activated Mouthwash (32oz)", "category": "mouthwash", "benefits": "24hr breath, Value size", "concern": "breath", "duration": "new, prevention", "lifestyle": "none", "location": "home", "experience": "switching, new_to_mouthwash", "addon_for": "" } },
+        { "type": "quiz_product", "settings": { "display_name": "Clinical Activated Mouthwash (32oz)", "category": "mouthwash", "benefits": "Clinical strength, Value size", "concern": "breath, gum", "duration": "months, years", "lifestyle": "smoker, coffee, none", "location": "home", "experience": "nothing_worked, want_stronger, switching", "addon_for": "", "is_clinical": true, "primary_reason": "Same clinical strength, bigger bottle — the right move when you know this is your formula." } },
+        { "type": "quiz_product", "settings": { "display_name": "Anti-Cavity + Zinc Toothpaste (3.4oz)", "category": "toothpaste", "benefits": "Cavity protection, Zinc", "concern": "breath, gum", "duration": "new, prevention, months", "lifestyle": "none, coffee", "location": "home, both, work", "experience": "new_to_mouthwash, switching, want_stronger", "addon_for": "breath, gum, sore, dry", "primary_reason": "Zinc toothpaste pairs perfectly with your mouthwash — reinforcing protection at every brush.", "addon_reason": "Zinc toothpaste reinforces your mouthwash protection at every brush — the natural next step in your routine." } },
+        { "type": "quiz_product", "settings": { "display_name": "Anti-Cavity + Zinc Toothpaste (6oz)", "category": "toothpaste", "benefits": "Cavity protection, Zinc, Value size", "concern": "breath, gum", "duration": "new, prevention, months", "lifestyle": "none, coffee", "location": "home", "experience": "new_to_mouthwash, switching, want_stronger", "addon_for": "breath, gum, sore, dry", "addon_reason": "The 6oz tube keeps your whole routine zinc-powered without running out — best value for daily use." } },
+        { "type": "quiz_product", "settings": { "display_name": "Dry Mouth Dual-Action Mints", "category": "mints", "benefits": "Dry mouth, On-the-go", "concern": "dry", "duration": "new, months", "lifestyle": "medication, none", "location": "travel, both, work", "experience": "new_to_mouthwash, nothing_worked", "addon_for": "dry, breath", "primary_reason": "Portable dry mouth relief — keeps you comfortable throughout the day, anywhere you go.", "addon_reason": "Keep dry mouth relief on hand all day — small enough for any bag, effective enough to notice." } },
+        { "type": "quiz_product", "settings": { "display_name": "Original Single Packs — 10 Ct", "category": "travel", "benefits": "Travel, Single-use", "concern": "breath", "duration": "new, prevention, months", "lifestyle": "none, coffee", "location": "travel, both, work", "experience": "new_to_mouthwash, switching", "addon_for": "breath", "primary_reason": "Same great formula in single-use packs — your routine goes wherever you do.", "addon_reason": "Take your routine anywhere — same formula, single-use packs for travel or on the go." } },
+        { "type": "quiz_product", "settings": { "display_name": "Clinical Single Packs — 50 Ct", "category": "travel", "benefits": "Travel, Clinical, 50 ct", "concern": "breath, gum", "duration": "months, years", "lifestyle": "smoker, coffee, none", "location": "travel, both, work", "experience": "nothing_worked, want_stronger", "addon_for": "gum, breath", "is_clinical": true, "primary_reason": "Clinical strength in a 50-pack — the right choice for frequent travelers who don't want to compromise.", "addon_reason": "50 clinical packs means your routine never gets interrupted — perfect if you travel frequently." } },
+        { "type": "quiz_product", "settings": { "display_name": "Dry Mouth Single Packs — 50 Ct", "category": "travel", "benefits": "Travel, Dry mouth, 50 ct", "concern": "dry", "duration": "months, years", "lifestyle": "medication", "location": "travel, both", "experience": "nothing_worked, want_stronger", "addon_for": "dry" } },
+        { "type": "quiz_product", "settings": { "display_name": "Original Single Packs — 50 Ct", "category": "travel", "benefits": "Travel, Value, 50 ct", "concern": "breath", "duration": "months, years, prevention", "lifestyle": "none, coffee", "location": "travel, both, work", "experience": "switching, want_stronger", "addon_for": "breath", "addon_reason": "50 original packs keeps you covered for months — best value for consistent travel use." } },
+        { "type": "quiz_product", "settings": { "display_name": "Clinical 2-Bottle Activated System", "category": "system", "benefits": "2-bottle system, Clinical strength", "concern": "breath, gum", "duration": "months, years", "lifestyle": "smoker, coffee, none", "location": "home, both", "experience": "nothing_worked, want_stronger, switching", "addon_for": "", "is_clinical": true } },
+        { "type": "quiz_product", "settings": { "display_name": "Original 2-Bottle Activated System", "category": "system", "benefits": "2-bottle system, 24hr breath", "concern": "breath", "duration": "new, prevention", "lifestyle": "none", "location": "home", "experience": "new_to_mouthwash, switching", "addon_for": "", "is_starter": true } }
+      ]
+    }
+  ]
+}
+{% endschema %}
