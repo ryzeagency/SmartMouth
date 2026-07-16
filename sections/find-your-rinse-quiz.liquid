@@ -18,7 +18,7 @@
   ============================================================================
 {% endcomment %}
 
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 
 {%- liquid
@@ -218,20 +218,24 @@
 
 <style>
   #shopify-section-{{ section.id }} .sm-quiz {
-    --sm-teal: {{ section.settings.accent_color }};
-    --sm-teal-d: {{ section.settings.accent_dark_color }};
-    --sm-teal-l: {{ section.settings.accent_light_color }};
-    --sm-teal-m: {{ section.settings.accent_mid_color }};
-    --sm-navy: #0d1f2d;
+    /* Brand palette */
+    --sm-blue: #205085;      /* primary */
+    --sm-orange: #ff7701;    /* secondary accent */
+    --sm-green: #008244;     /* savings / success */
+
+    --sm-teal: var(--sm-blue);
+    --sm-teal-d: #16406b;
+    --sm-teal-l: #e9f0f7;
+    --sm-teal-m: #bcd1e5;
+    --sm-navy: var(--sm-blue);
     --sm-slate: #3d5163;
     --sm-mid: #7a95a6;
     --sm-light: #f4f7f9;
     --sm-white: #ffffff;
     --sm-border: #dde5ea;
-    --sm-green: #00c48c;
-    --sm-amber: #f59e0b;
+    --sm-amber: var(--sm-orange);
 
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Poppins', sans-serif;
     background: #fff;
     padding: {{ section.settings.padding_top }}px 16px {{ section.settings.padding_bottom }}px;
     -webkit-font-smoothing: antialiased;
@@ -245,9 +249,9 @@
 
   #shopify-section-{{ section.id }} .sm-quiz__wrap { max-width: 680px; margin: 0 auto; }
   #shopify-section-{{ section.id }} .sm-quiz__header { text-align: center; margin-bottom: 24px; }
-  #shopify-section-{{ section.id }} .sm-quiz__logo { margin: 0 0 4px; font-size: 22px; font-weight: 700; color: var(--sm-navy); letter-spacing: .04em; }
-  #shopify-section-{{ section.id }} .sm-quiz__sub { margin: 0; font-size: 13px; color: var(--sm-mid); }
-  #shopify-section-{{ section.id }} .sm-quiz__setup-notice { max-width: 680px; margin: 0 auto 16px; padding: 12px 16px; border: 1px solid var(--sm-amber); border-radius: 10px; background: #fff8ec; color: #7a5200; font-size: 12px; line-height: 1.55; }
+  #shopify-section-{{ section.id }} .sm-quiz__logo { margin: 0 0 4px; font-size: 15px; font-weight: 700; color: var(--sm-navy); letter-spacing: .04em; }
+  #shopify-section-{{ section.id }} .sm-quiz__sub { margin: 0; font-size: 15px; color: var(--sm-mid); }
+  #shopify-section-{{ section.id }} .sm-quiz__setup-notice { max-width: 680px; margin: 0 auto 16px; padding: 12px 16px; border: 1px solid var(--sm-amber); border-radius: 10px; background: #fff8ec; color: #7a5200; font-size: 15px; line-height: 1.55; }
   #shopify-section-{{ section.id }} .sm-quiz__card { background: var(--sm-white); border-radius: 14px; border: 1px solid var(--sm-border); overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,.07); }
   #shopify-section-{{ section.id }} .sm-quiz__prog { height: 4px; background: var(--sm-border); }
   #shopify-section-{{ section.id }} .sm-quiz__prog-fill { height: 100%; background: var(--sm-teal); border-radius: 2px; transition: width .4s ease; }
@@ -255,99 +259,99 @@
   /* Email gate */
   #shopify-section-{{ section.id }} .sm-quiz__gate { padding: 40px 32px; text-align: center; }
   #shopify-section-{{ section.id }} .sm-quiz__gate-ico { width: 56px; height: 56px; border-radius: 50%; background: var(--sm-teal-l); display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; }
-  #shopify-section-{{ section.id }} .sm-quiz__gate-ico i { font-size: 26px; color: var(--sm-teal); }
-  #shopify-section-{{ section.id }} .sm-quiz__gate-h { font-size: 22px; font-weight: 600; color: var(--sm-navy); margin-bottom: 8px; line-height: 1.3; }
-  #shopify-section-{{ section.id }} .sm-quiz__gate-sub { font-size: 13px; color: var(--sm-mid); line-height: 1.65; margin: 0 auto 28px; max-width: 380px; }
+  #shopify-section-{{ section.id }} .sm-quiz__gate-ico i { font-size: 15px; color: var(--sm-teal); }
+  #shopify-section-{{ section.id }} .sm-quiz__gate-h { font-size: 25px; font-weight: 600; color: var(--sm-navy); margin-bottom: 8px; line-height: 1.3; }
+  #shopify-section-{{ section.id }} .sm-quiz__gate-sub { font-size: 15px; color: var(--sm-mid); line-height: 1.65; margin: 0 auto 28px; max-width: 380px; }
   #shopify-section-{{ section.id }} .sm-quiz__gate-form { display: flex; flex-direction: column; gap: 10px; max-width: 360px; margin: 0 auto; }
-  #shopify-section-{{ section.id }} .sm-quiz__gate-input { height: 46px; border: 1px solid var(--sm-border); border-radius: 8px; padding: 0 16px; font-size: 13px; font-family: inherit; color: var(--sm-navy); outline: none; transition: border-color .15s; background: var(--sm-white); }
+  #shopify-section-{{ section.id }} .sm-quiz__gate-input { height: 46px; border: 1px solid var(--sm-border); border-radius: 8px; padding: 0 16px; font-size: 15px; font-family: inherit; color: var(--sm-navy); outline: none; transition: border-color .15s; background: var(--sm-white); }
   #shopify-section-{{ section.id }} .sm-quiz__gate-input:focus { border-color: var(--sm-teal); }
-  #shopify-section-{{ section.id }} .sm-quiz__gate-btn { height: 46px; background: var(--sm-teal); color: #fff; border: none; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; letter-spacing: .03em; transition: opacity .15s; }
+  #shopify-section-{{ section.id }} .sm-quiz__gate-btn { height: 46px; background: var(--sm-teal); color: #fff; border: none; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; letter-spacing: .03em; transition: opacity .15s; }
   #shopify-section-{{ section.id }} .sm-quiz__gate-btn:hover { opacity: .88; }
-  #shopify-section-{{ section.id }} .sm-quiz__gate-skip { font-size: 11px; color: var(--sm-mid); margin-top: 10px; cursor: pointer; text-decoration: underline; background: none; border: none; padding: 0; }
+  #shopify-section-{{ section.id }} .sm-quiz__gate-skip { font-size: 15px; color: var(--sm-mid); margin-top: 10px; cursor: pointer; text-decoration: underline; background: none; border: none; padding: 0; }
   #shopify-section-{{ section.id }} .sm-quiz__gate-skip:hover { color: var(--sm-slate); }
-  #shopify-section-{{ section.id }} .sm-quiz__gate-privacy { font-size: 10px; color: var(--sm-mid); margin-top: 8px; line-height: 1.5; }
+  #shopify-section-{{ section.id }} .sm-quiz__gate-privacy { font-size: 15px; color: var(--sm-mid); margin-top: 8px; line-height: 1.5; }
   #shopify-section-{{ section.id }} .sm-quiz__hidden-form { display: none; }
 
   /* Questions */
   #shopify-section-{{ section.id }} .sm-quiz__step { display: none; padding: 32px; }
   #shopify-section-{{ section.id }} .sm-quiz__step.is-active { display: block; }
-  #shopify-section-{{ section.id }} .sm-quiz__q-label { font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--sm-mid); margin-bottom: 8px; }
-  #shopify-section-{{ section.id }} .sm-quiz__q-text { font-size: 20px; font-weight: 500; line-height: 1.3; margin-bottom: 22px; color: var(--sm-navy); }
+  #shopify-section-{{ section.id }} .sm-quiz__q-label { font-size: 15px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--sm-mid); margin-bottom: 8px; }
+  #shopify-section-{{ section.id }} .sm-quiz__q-text { font-size: 25px; font-weight: 500; line-height: 1.3; margin-bottom: 22px; color: var(--sm-navy); }
   #shopify-section-{{ section.id }} .sm-quiz__opts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 22px; }
   #shopify-section-{{ section.id }} .sm-quiz__opt { border: 1px solid var(--sm-border); border-radius: 12px; padding: 16px; cursor: pointer; background: var(--sm-white); text-align: left; display: flex; align-items: flex-start; gap: 12px; transition: all .15s; }
   #shopify-section-{{ section.id }} .sm-quiz__opt:hover { background: var(--sm-light); border-color: var(--sm-teal-m); }
   #shopify-section-{{ section.id }} .sm-quiz__opt.is-selected { border: 2px solid var(--sm-teal); background: var(--sm-teal-l); padding: 15px; }
   #shopify-section-{{ section.id }} .sm-quiz__opt-ico { width: 34px; height: 34px; border-radius: 8px; background: var(--sm-light); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-  #shopify-section-{{ section.id }} .sm-quiz__opt-ico i { font-size: 17px; color: var(--sm-teal); }
+  #shopify-section-{{ section.id }} .sm-quiz__opt-ico i { font-size: 15px; color: var(--sm-teal); }
   #shopify-section-{{ section.id }} .sm-quiz__opt.is-selected .sm-quiz__opt-ico { background: var(--sm-teal-m); }
-  #shopify-section-{{ section.id }} .sm-quiz__opt-t { display: block; font-size: 13px; font-weight: 500; margin-bottom: 2px; color: var(--sm-navy); }
-  #shopify-section-{{ section.id }} .sm-quiz__opt-d { display: block; font-size: 11px; color: var(--sm-mid); line-height: 1.4; }
+  #shopify-section-{{ section.id }} .sm-quiz__opt-t { display: block; font-size: 15px; font-weight: 500; margin-bottom: 2px; color: var(--sm-navy); }
+  #shopify-section-{{ section.id }} .sm-quiz__opt-d { display: block; font-size: 15px; color: var(--sm-mid); line-height: 1.4; }
   #shopify-section-{{ section.id }} .sm-quiz__opt.is-selected .sm-quiz__opt-t { color: var(--sm-teal-d); }
   #shopify-section-{{ section.id }} .sm-quiz__nav { display: flex; align-items: center; justify-content: space-between; }
-  #shopify-section-{{ section.id }} .sm-quiz__back { font-size: 13px; color: var(--sm-mid); background: none; border: none; cursor: pointer; padding: 0; display: flex; align-items: center; gap: 4px; }
+  #shopify-section-{{ section.id }} .sm-quiz__back { font-size: 15px; color: var(--sm-mid); background: none; border: none; cursor: pointer; padding: 0; display: flex; align-items: center; gap: 4px; }
   #shopify-section-{{ section.id }} .sm-quiz__back:hover { color: var(--sm-navy); }
-  #shopify-section-{{ section.id }} .sm-quiz__next { background: var(--sm-teal); color: #fff; border: none; border-radius: 22px; padding: 11px 26px; font-size: 13px; font-weight: 600; cursor: pointer; transition: opacity .15s; }
+  #shopify-section-{{ section.id }} .sm-quiz__next { background: var(--sm-teal); color: #fff; border: none; border-radius: 22px; padding: 11px 26px; font-size: 15px; font-weight: 600; cursor: pointer; transition: opacity .15s; }
   #shopify-section-{{ section.id }} .sm-quiz__next:disabled { opacity: .35; cursor: default; }
   #shopify-section-{{ section.id }} .sm-quiz__next:not(:disabled):hover { opacity: .88; }
 
   /* Results */
   #shopify-section-{{ section.id }} .sm-quiz__results { display: none; padding: 32px; }
   #shopify-section-{{ section.id }} .sm-quiz__results.is-active { display: block; }
-  #shopify-section-{{ section.id }} .sm-quiz__results-label { font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--sm-teal); margin-bottom: 10px; }
+  #shopify-section-{{ section.id }} .sm-quiz__results-label { font-size: 15px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--sm-teal); margin-bottom: 10px; }
   #shopify-section-{{ section.id }} .sm-quiz__pair { display: grid; grid-template-columns: 1fr auto 1fr; border: 1px solid var(--sm-border); border-radius: 14px; overflow: hidden; margin-bottom: 18px; }
   #shopify-section-{{ section.id }} .sm-quiz__primary { background: var(--sm-navy); padding: 22px; }
-  #shopify-section-{{ section.id }} .sm-quiz__p-label { font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--sm-green); margin-bottom: 12px; display: flex; align-items: center; gap: 5px; }
+  #shopify-section-{{ section.id }} .sm-quiz__p-label { font-size: 15px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--sm-orange); margin-bottom: 12px; display: flex; align-items: center; gap: 5px; }
   #shopify-section-{{ section.id }} .sm-quiz__p-img { height: 120px; background: rgba(255,255,255,.07); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; overflow: hidden; }
   #shopify-section-{{ section.id }} .sm-quiz__p-img img { max-height: 110px; max-width: 90%; object-fit: contain; }
-  #shopify-section-{{ section.id }} .sm-quiz__p-name { font-size: 13px; font-weight: 500; color: #fff; line-height: 1.3; margin-bottom: 5px; }
+  #shopify-section-{{ section.id }} .sm-quiz__p-name { font-size: 15px; font-weight: 500; color: #fff; line-height: 1.3; margin-bottom: 5px; }
   #shopify-section-{{ section.id }} .sm-quiz__p-name a { color: inherit; text-decoration: none; }
   #shopify-section-{{ section.id }} .sm-quiz__p-name a:hover { text-decoration: underline; }
-  #shopify-section-{{ section.id }} .sm-quiz__p-price { font-size: 16px; font-weight: 500; color: var(--sm-green); margin-bottom: 8px; }
+  #shopify-section-{{ section.id }} .sm-quiz__p-price { font-size: 15px; font-weight: 500; color: var(--sm-orange); margin-bottom: 8px; }
   #shopify-section-{{ section.id }} .sm-quiz__p-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 10px; }
-  #shopify-section-{{ section.id }} .sm-quiz__p-tag { font-size: 10px; padding: 2px 8px; border-radius: 10px; background: rgba(0,196,140,.15); color: var(--sm-green); border: .5px solid rgba(0,196,140,.3); }
-  #shopify-section-{{ section.id }} .sm-quiz__p-why { font-size: 11px; color: rgba(255,255,255,.5); line-height: 1.5; margin-bottom: 14px; }
-  #shopify-section-{{ section.id }} .sm-quiz__p-add { width: 100%; background: var(--sm-teal); color: #fff; border: none; border-radius: 20px; padding: 10px; font-size: 12px; font-weight: 600; cursor: pointer; }
+  #shopify-section-{{ section.id }} .sm-quiz__p-tag { font-size: 15px; padding: 2px 8px; border-radius: 10px; background: rgba(255,119,1,.16); color: #ffb377; border: .5px solid rgba(255,119,1,.4); }
+  #shopify-section-{{ section.id }} .sm-quiz__p-why { font-size: 15px; color: rgba(255,255,255,.5); line-height: 1.5; margin-bottom: 14px; }
+  #shopify-section-{{ section.id }} .sm-quiz__p-add { width: 100%; background: var(--sm-teal); color: #fff; border: none; border-radius: 20px; padding: 10px; font-size: 15px; font-weight: 600; cursor: pointer; }
   #shopify-section-{{ section.id }} .sm-quiz__p-add:hover { background: var(--sm-teal-d); }
   #shopify-section-{{ section.id }} .sm-quiz__div { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 4px; background: var(--sm-light); }
   #shopify-section-{{ section.id }} .sm-quiz__plus { width: 30px; height: 30px; border-radius: 50%; background: var(--sm-white); border: 1px solid var(--sm-border); display: flex; align-items: center; justify-content: center; }
-  #shopify-section-{{ section.id }} .sm-quiz__plus i { font-size: 14px; color: var(--sm-mid); }
+  #shopify-section-{{ section.id }} .sm-quiz__plus i { font-size: 15px; color: var(--sm-mid); }
   #shopify-section-{{ section.id }} .sm-quiz__div-line { flex: 1; width: .5px; background: var(--sm-border); }
   #shopify-section-{{ section.id }} .sm-quiz__addon { background: var(--sm-white); padding: 22px; }
-  #shopify-section-{{ section.id }} .sm-quiz__a-label { font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--sm-mid); margin-bottom: 12px; display: flex; align-items: center; gap: 5px; }
+  #shopify-section-{{ section.id }} .sm-quiz__a-label { font-size: 15px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--sm-mid); margin-bottom: 12px; display: flex; align-items: center; gap: 5px; }
   #shopify-section-{{ section.id }} .sm-quiz__a-img { height: 120px; background: var(--sm-light); border: 1px solid var(--sm-border); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; overflow: hidden; }
   #shopify-section-{{ section.id }} .sm-quiz__a-img img { max-height: 110px; max-width: 90%; object-fit: contain; }
-  #shopify-section-{{ section.id }} .sm-quiz__a-name { font-size: 13px; font-weight: 500; color: var(--sm-navy); line-height: 1.3; margin-bottom: 5px; }
+  #shopify-section-{{ section.id }} .sm-quiz__a-name { font-size: 15px; font-weight: 500; color: var(--sm-navy); line-height: 1.3; margin-bottom: 5px; }
   #shopify-section-{{ section.id }} .sm-quiz__a-name a { color: inherit; text-decoration: none; }
   #shopify-section-{{ section.id }} .sm-quiz__a-name a:hover { text-decoration: underline; }
-  #shopify-section-{{ section.id }} .sm-quiz__a-price { font-size: 16px; font-weight: 500; color: var(--sm-teal); margin-bottom: 8px; }
+  #shopify-section-{{ section.id }} .sm-quiz__a-price { font-size: 15px; font-weight: 500; color: var(--sm-teal); margin-bottom: 8px; }
   #shopify-section-{{ section.id }} .sm-quiz__a-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 10px; }
-  #shopify-section-{{ section.id }} .sm-quiz__a-tag { font-size: 10px; padding: 2px 8px; border-radius: 10px; background: var(--sm-teal-l); color: var(--sm-teal-d); border: .5px solid var(--sm-teal-m); }
-  #shopify-section-{{ section.id }} .sm-quiz__a-why { font-size: 11px; color: var(--sm-mid); line-height: 1.5; margin-bottom: 14px; }
-  #shopify-section-{{ section.id }} .sm-quiz__a-add { width: 100%; border: 1px solid var(--sm-teal); border-radius: 20px; padding: 10px; font-size: 12px; font-weight: 500; color: var(--sm-teal); background: transparent; cursor: pointer; }
+  #shopify-section-{{ section.id }} .sm-quiz__a-tag { font-size: 15px; padding: 2px 8px; border-radius: 10px; background: var(--sm-teal-l); color: var(--sm-teal-d); border: .5px solid var(--sm-teal-m); }
+  #shopify-section-{{ section.id }} .sm-quiz__a-why { font-size: 15px; color: var(--sm-mid); line-height: 1.5; margin-bottom: 14px; }
+  #shopify-section-{{ section.id }} .sm-quiz__a-add { width: 100%; border: 1px solid var(--sm-teal); border-radius: 20px; padding: 10px; font-size: 15px; font-weight: 500; color: var(--sm-teal); background: transparent; cursor: pointer; }
   #shopify-section-{{ section.id }} .sm-quiz__a-add:hover { background: var(--sm-teal); color: #fff; }
 
   /* Bundle bar */
   #shopify-section-{{ section.id }} .sm-quiz__bundle { background: var(--sm-light); border: 1px solid var(--sm-border); border-radius: 12px; padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
   #shopify-section-{{ section.id }} .sm-quiz__bundle-left { display: flex; align-items: center; gap: 10px; }
   #shopify-section-{{ section.id }} .sm-quiz__bundle-ico { width: 36px; height: 36px; border-radius: 8px; background: var(--sm-white); border: 1px solid var(--sm-border); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-  #shopify-section-{{ section.id }} .sm-quiz__bundle-ico i { font-size: 18px; color: var(--sm-teal); }
-  #shopify-section-{{ section.id }} .sm-quiz__bundle-h { display: block; font-size: 13px; font-weight: 500; color: var(--sm-navy); margin-bottom: 2px; }
-  #shopify-section-{{ section.id }} .sm-quiz__bundle-s { display: block; font-size: 11px; color: var(--sm-mid); }
+  #shopify-section-{{ section.id }} .sm-quiz__bundle-ico i { font-size: 15px; color: var(--sm-teal); }
+  #shopify-section-{{ section.id }} .sm-quiz__bundle-h { display: block; font-size: 15px; font-weight: 500; color: var(--sm-navy); margin-bottom: 2px; }
+  #shopify-section-{{ section.id }} .sm-quiz__bundle-s { display: block; font-size: 15px; color: var(--sm-mid); }
   #shopify-section-{{ section.id }} .sm-quiz__bundle-right { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-  #shopify-section-{{ section.id }} .sm-quiz__bundle-was { display: block; font-size: 11px; color: var(--sm-mid); text-decoration: line-through; }
-  #shopify-section-{{ section.id }} .sm-quiz__bundle-now { display: block; font-size: 16px; font-weight: 500; color: var(--sm-teal); }
-  #shopify-section-{{ section.id }} .sm-quiz__bundle-btn { background: var(--sm-navy); color: #fff; border: none; border-radius: 20px; padding: 10px 18px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+  #shopify-section-{{ section.id }} .sm-quiz__bundle-was { display: block; font-size: 15px; color: var(--sm-mid); text-decoration: line-through; }
+  #shopify-section-{{ section.id }} .sm-quiz__bundle-now { display: block; font-size: 15px; font-weight: 500; color: var(--sm-green); }
+  #shopify-section-{{ section.id }} .sm-quiz__bundle-btn { background: var(--sm-navy); color: #fff; border: none; border-radius: 20px; padding: 10px 18px; font-size: 15px; font-weight: 600; cursor: pointer; white-space: nowrap; }
 
   /* Retake + grid */
   #shopify-section-{{ section.id }} .sm-quiz__retake-row { display: flex; align-items: center; gap: 10px; margin-bottom: 24px; }
-  #shopify-section-{{ section.id }} .sm-quiz__retake { font-size: 13px; color: var(--sm-mid); background: none; border: 1px solid var(--sm-border); border-radius: 16px; padding: 8px 18px; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; }
+  #shopify-section-{{ section.id }} .sm-quiz__retake { font-size: 15px; color: var(--sm-mid); background: none; border: 1px solid var(--sm-border); border-radius: 16px; padding: 8px 18px; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; }
   #shopify-section-{{ section.id }} .sm-quiz__retake:hover { background: var(--sm-light); }
-  #shopify-section-{{ section.id }} .sm-quiz__retake-hint { font-size: 12px; color: var(--sm-mid); }
+  #shopify-section-{{ section.id }} .sm-quiz__retake-hint { font-size: 15px; color: var(--sm-mid); }
   #shopify-section-{{ section.id }} .sm-quiz__grid-sec { border-top: 1px solid var(--sm-border); padding-top: 24px; }
-  #shopify-section-{{ section.id }} .sm-quiz__grid-h { font-size: 16px; font-weight: 600; color: var(--sm-navy); margin-bottom: 3px; }
-  #shopify-section-{{ section.id }} .sm-quiz__grid-s { font-size: 12px; color: var(--sm-mid); margin-bottom: 14px; }
+  #shopify-section-{{ section.id }} .sm-quiz__grid-h { font-size: 25px; font-weight: 600; color: var(--sm-navy); margin-bottom: 3px; }
+  #shopify-section-{{ section.id }} .sm-quiz__grid-s { font-size: 15px; color: var(--sm-mid); margin-bottom: 14px; }
   #shopify-section-{{ section.id }} .sm-quiz__pills { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
-  #shopify-section-{{ section.id }} .sm-quiz__pill { font-size: 11px; padding: 5px 12px; border-radius: 12px; border: 1px solid var(--sm-border); cursor: pointer; background: var(--sm-white); color: var(--sm-mid); transition: all .15s; }
+  #shopify-section-{{ section.id }} .sm-quiz__pill { font-size: 15px; padding: 5px 12px; border-radius: 12px; border: 1px solid var(--sm-border); cursor: pointer; background: var(--sm-white); color: var(--sm-mid); transition: all .15s; }
   #shopify-section-{{ section.id }} .sm-quiz__pill:hover { background: var(--sm-light); }
   #shopify-section-{{ section.id }} .sm-quiz__pill.is-on { background: var(--sm-navy); color: #fff; border-color: var(--sm-navy); }
   #shopify-section-{{ section.id }} .sm-quiz__pgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)); gap: 10px; }
@@ -358,15 +362,15 @@
   #shopify-section-{{ section.id }} .sm-quiz__pc.is-dimmed { opacity: .5; }
   #shopify-section-{{ section.id }} .sm-quiz__pi { height: 90px; background: var(--sm-light); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
   #shopify-section-{{ section.id }} .sm-quiz__pi img { max-height: 82px; max-width: 88%; object-fit: contain; }
-  #shopify-section-{{ section.id }} .sm-quiz__pc-badge { position: absolute; top: 5px; left: 5px; font-size: 9px; padding: 2px 6px; border-radius: 8px; font-weight: 600; color: #fff; }
+  #shopify-section-{{ section.id }} .sm-quiz__pc-badge { position: absolute; top: 5px; left: 5px; font-size: 15px; padding: 2px 6px; border-radius: 8px; font-weight: 600; color: #fff; }
   #shopify-section-{{ section.id }} .sm-quiz__pb { padding: 9px 10px 11px; }
-  #shopify-section-{{ section.id }} .sm-quiz__pn { font-size: 11px; font-weight: 500; margin-bottom: 3px; line-height: 1.35; color: var(--sm-navy); }
+  #shopify-section-{{ section.id }} .sm-quiz__pn { font-size: 15px; font-weight: 500; margin-bottom: 3px; line-height: 1.35; color: var(--sm-navy); }
   #shopify-section-{{ section.id }} .sm-quiz__pn a { color: inherit; text-decoration: none; }
   #shopify-section-{{ section.id }} .sm-quiz__pn a:hover { text-decoration: underline; }
-  #shopify-section-{{ section.id }} .sm-quiz__pp { font-size: 12px; font-weight: 500; color: var(--sm-teal); margin-bottom: 6px; }
+  #shopify-section-{{ section.id }} .sm-quiz__pp { font-size: 15px; font-weight: 500; color: var(--sm-teal); margin-bottom: 6px; }
   #shopify-section-{{ section.id }} .sm-quiz__pbens { display: flex; flex-wrap: wrap; gap: 3px; margin-bottom: 8px; }
-  #shopify-section-{{ section.id }} .sm-quiz__pben { font-size: 9px; padding: 1px 5px; border-radius: 8px; background: var(--sm-teal-l); color: var(--sm-teal-d); border: .5px solid var(--sm-teal-m); }
-  #shopify-section-{{ section.id }} .sm-quiz__padd { width: 100%; border: 1px solid var(--sm-border); border-radius: 10px; padding: 5px; font-size: 11px; color: var(--sm-mid); background: transparent; cursor: pointer; transition: all .15s; }
+  #shopify-section-{{ section.id }} .sm-quiz__pben { font-size: 15px; padding: 1px 5px; border-radius: 8px; background: var(--sm-teal-l); color: var(--sm-teal-d); border: .5px solid var(--sm-teal-m); }
+  #shopify-section-{{ section.id }} .sm-quiz__padd { width: 100%; border: 1px solid var(--sm-border); border-radius: 10px; padding: 5px; font-size: 15px; color: var(--sm-mid); background: transparent; cursor: pointer; transition: all .15s; }
   #shopify-section-{{ section.id }} .sm-quiz__padd:hover:not(:disabled) { border-color: var(--sm-teal); color: var(--sm-teal); }
   #shopify-section-{{ section.id }} .sm-quiz__padd:disabled { cursor: default; }
 
@@ -821,65 +825,242 @@
   "class": "section",
   "max_blocks": 30,
   "settings": [
-    { "type": "header", "content": "Header" },
-    { "type": "text", "id": "title", "label": "Title", "default": "SmartMouth™" },
-    { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "Find Your Rinse — personalized formula finder" },
-    { "type": "header", "content": "Email gate" },
-    { "type": "checkbox", "id": "enable_email_gate", "label": "Show email capture before the quiz", "default": true },
-    { "type": "text", "id": "gate_heading", "label": "Gate heading", "default": "Get your personalized SmartMouth formula" },
-    { "type": "text", "id": "gate_text", "label": "Gate text", "default": "Enter your email and we'll send your results — plus a coupon for your first order." },
-    { "type": "text", "id": "gate_button", "label": "Gate button label", "default": "Find my formula" },
-    { "type": "header", "content": "Cart & bundle" },
-    { "type": "checkbox", "id": "redirect_to_cart", "label": "Go to cart page after adding", "default": false },
-    { "type": "text", "id": "bundle_discount_code", "label": "Bundle discount code", "info": "Create a discount code in Shopify admin (e.g. QUIZ10) and enter it here. It's applied automatically when both items are added together. Leave blank to show the bundle without a discount claim." },
-    { "type": "range", "id": "bundle_discount_percent", "min": 5, "max": 50, "step": 5, "unit": "%", "label": "Bundle discount amount (display)", "default": 10, "info": "Must match the discount code's actual value." },
-    { "type": "header", "content": "Colors" },
-    { "type": "color", "id": "background_color", "label": "Section background", "default": "#F0F3F5" },
-    { "type": "color", "id": "accent_color", "label": "Accent", "default": "#00897B" },
-    { "type": "color", "id": "accent_dark_color", "label": "Accent dark", "default": "#005A52" },
-    { "type": "color", "id": "accent_light_color", "label": "Accent light", "default": "#E0F5F3" },
-    { "type": "color", "id": "accent_mid_color", "label": "Accent mid", "default": "#B2E0DA" },
-    { "type": "header", "content": "Spacing" },
-    { "type": "range", "id": "padding_top", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "Top padding", "default": 24 },
-    { "type": "range", "id": "padding_bottom", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "Bottom padding", "default": 60 }
+    {
+      "type": "header",
+      "content": "Header"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "SmartMouth™"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Find Your Rinse — personalized formula finder"
+    },
+    {
+      "type": "header",
+      "content": "Email gate"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_email_gate",
+      "label": "Show email capture before the quiz",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "gate_heading",
+      "label": "Gate heading",
+      "default": "Get your personalized SmartMouth formula"
+    },
+    {
+      "type": "text",
+      "id": "gate_text",
+      "label": "Gate text",
+      "default": "Enter your email and we'll send your results — plus a coupon for your first order."
+    },
+    {
+      "type": "text",
+      "id": "gate_button",
+      "label": "Gate button label",
+      "default": "Find my formula"
+    },
+    {
+      "type": "header",
+      "content": "Cart & bundle"
+    },
+    {
+      "type": "checkbox",
+      "id": "redirect_to_cart",
+      "label": "Go to cart page after adding",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "bundle_discount_code",
+      "label": "Bundle discount code",
+      "info": "Create a discount code in Shopify admin (e.g. QUIZ10) and enter it here. It's applied automatically when both items are added together. Leave blank to show the bundle without a discount claim."
+    },
+    {
+      "type": "range",
+      "id": "bundle_discount_percent",
+      "min": 5,
+      "max": 50,
+      "step": 5,
+      "unit": "%",
+      "label": "Bundle discount amount (display)",
+      "default": 10,
+      "info": "Must match the discount code's actual value."
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 60
+    }
   ],
   "blocks": [
     {
       "type": "quiz_product",
       "name": "Quiz product",
       "settings": [
-        { "type": "product", "id": "product", "label": "Product", "info": "Pick the real product here — it supplies the live price, image, stock status and add-to-cart." },
-        { "type": "text", "id": "handle", "label": "Product handle (auto-connect)", "info": "If no product is picked above, the quiz loads live price, image, stock and add-to-cart from this handle (e.g. smartmouthtm-original-activated-mouthwash-16oz)." },
-        { "type": "text", "id": "display_name", "label": "Display name override", "info": "Leave blank to use the product title. If no product is picked, this name is shown with the fallback price below (no add-to-cart)." },
-        { "type": "number", "id": "fallback_price", "label": "Fallback price", "info": "Only used while no product is assigned." },
-        { "type": "image_picker", "id": "fallback_image", "label": "Fallback image", "info": "Only used while no product is assigned." },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product",
+          "info": "Pick the real product here — it supplies the live price, image, stock status and add-to-cart."
+        },
+        {
+          "type": "text",
+          "id": "handle",
+          "label": "Product handle (auto-connect)",
+          "info": "If no product is picked above, the quiz loads live price, image, stock and add-to-cart from this handle (e.g. smartmouthtm-original-activated-mouthwash-16oz)."
+        },
+        {
+          "type": "text",
+          "id": "display_name",
+          "label": "Display name override",
+          "info": "Leave blank to use the product title. If no product is picked, this name is shown with the fallback price below (no add-to-cart)."
+        },
+        {
+          "type": "number",
+          "id": "fallback_price",
+          "label": "Fallback price",
+          "info": "Only used while no product is assigned."
+        },
+        {
+          "type": "image_picker",
+          "id": "fallback_image",
+          "label": "Fallback image",
+          "info": "Only used while no product is assigned."
+        },
         {
           "type": "select",
           "id": "category",
           "label": "Category",
           "options": [
-            { "value": "mouthwash", "label": "Mouthwash" },
-            { "value": "liposomal", "label": "Liposomal" },
-            { "value": "toothpaste", "label": "Toothpaste" },
-            { "value": "mints", "label": "Mints" },
-            { "value": "travel", "label": "Travel size" },
-            { "value": "system", "label": "Systems" }
+            {
+              "value": "mouthwash",
+              "label": "Mouthwash"
+            },
+            {
+              "value": "liposomal",
+              "label": "Liposomal"
+            },
+            {
+              "value": "toothpaste",
+              "label": "Toothpaste"
+            },
+            {
+              "value": "mints",
+              "label": "Mints"
+            },
+            {
+              "value": "travel",
+              "label": "Travel size"
+            },
+            {
+              "value": "system",
+              "label": "Systems"
+            }
           ],
           "default": "mouthwash"
         },
-        { "type": "text", "id": "benefits", "label": "Benefit tags", "info": "Comma separated, e.g. 24hr breath, Zinc ion" },
-        { "type": "header", "content": "Quiz matching" },
-        { "type": "text", "id": "concern", "label": "Matches concerns", "info": "Comma separated: breath, dry, gum, sore" },
-        { "type": "text", "id": "duration", "label": "Matches durations", "info": "new, months, years, prevention" },
-        { "type": "text", "id": "lifestyle", "label": "Matches lifestyles", "info": "smoker, coffee, medication, none" },
-        { "type": "text", "id": "location", "label": "Matches locations", "info": "home, travel, both, work" },
-        { "type": "text", "id": "experience", "label": "Matches experience", "info": "nothing_worked, want_stronger, new_to_mouthwash, switching" },
-        { "type": "text", "id": "addon_for", "label": "Add-on for concerns", "info": "Concerns this product can be recommended as an add-on for. Leave blank if never an add-on." },
-        { "type": "checkbox", "id": "is_clinical", "label": "Clinical-strength formula", "default": false },
-        { "type": "checkbox", "id": "is_starter", "label": "Good starter product", "default": false, "info": "Boosted for people new to mouthwash." },
-        { "type": "header", "content": "Recommendation copy" },
-        { "type": "textarea", "id": "primary_reason", "label": "Why (as primary pick)" },
-        { "type": "textarea", "id": "addon_reason", "label": "Why (as add-on)" }
+        {
+          "type": "text",
+          "id": "benefits",
+          "label": "Benefit tags",
+          "info": "Comma separated, e.g. 24hr breath, Zinc ion"
+        },
+        {
+          "type": "header",
+          "content": "Quiz matching"
+        },
+        {
+          "type": "text",
+          "id": "concern",
+          "label": "Matches concerns",
+          "info": "Comma separated: breath, dry, gum, sore"
+        },
+        {
+          "type": "text",
+          "id": "duration",
+          "label": "Matches durations",
+          "info": "new, months, years, prevention"
+        },
+        {
+          "type": "text",
+          "id": "lifestyle",
+          "label": "Matches lifestyles",
+          "info": "smoker, coffee, medication, none"
+        },
+        {
+          "type": "text",
+          "id": "location",
+          "label": "Matches locations",
+          "info": "home, travel, both, work"
+        },
+        {
+          "type": "text",
+          "id": "experience",
+          "label": "Matches experience",
+          "info": "nothing_worked, want_stronger, new_to_mouthwash, switching"
+        },
+        {
+          "type": "text",
+          "id": "addon_for",
+          "label": "Add-on for concerns",
+          "info": "Concerns this product can be recommended as an add-on for. Leave blank if never an add-on."
+        },
+        {
+          "type": "checkbox",
+          "id": "is_clinical",
+          "label": "Clinical-strength formula",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "is_starter",
+          "label": "Good starter product",
+          "default": false,
+          "info": "Boosted for people new to mouthwash."
+        },
+        {
+          "type": "header",
+          "content": "Recommendation copy"
+        },
+        {
+          "type": "textarea",
+          "id": "primary_reason",
+          "label": "Why (as primary pick)"
+        },
+        {
+          "type": "textarea",
+          "id": "addon_reason",
+          "label": "Why (as add-on)"
+        }
       ]
     }
   ],
@@ -888,25 +1069,342 @@
       "name": "Find Your Rinse Quiz",
       "category": "Quiz",
       "blocks": [
-        { "type": "quiz_product", "settings": { "display_name": "Original Activated Mouthwash (16oz)", "handle": "smartmouthtm-original-activated-mouthwash-16oz", "fallback_price": 10.99, "category": "mouthwash", "benefits": "24hr breath, Zinc ion", "concern": "breath", "duration": "new, prevention", "lifestyle": "none, coffee, smoker", "location": "home, both, work", "experience": "new_to_mouthwash, switching", "addon_for": "", "is_starter": true, "primary_reason": "The original zinc ion formula — gentle, effective, and the right starting point for everyday fresh-breath protection." } },
-        { "type": "quiz_product", "settings": { "display_name": "Clinical Activated Mouthwash (16oz)", "handle": "smartmouthtm-clinical-activated-mouthwash-16oz", "fallback_price": 13.99, "category": "mouthwash", "benefits": "24hr breath, Anti-gingivitis, Anti-plaque", "concern": "breath, gum", "duration": "months, years", "lifestyle": "smoker, coffee, none", "location": "home, both, work", "experience": "nothing_worked, want_stronger, switching", "addon_for": "", "is_clinical": true, "primary_reason": "Clinical strength targets bad breath and gum health simultaneously — the go-to when the problem has been persistent." } },
-        { "type": "quiz_product", "settings": { "display_name": "Dry Mouth Activated Mouthwash (16oz)", "handle": "smartmouthtm-dry-mouth-activated-mouthwash-16oz", "fallback_price": 11.99, "category": "mouthwash", "benefits": "24hr breath, Dry mouth relief", "concern": "dry, breath", "duration": "new, months, years", "lifestyle": "medication, none", "location": "home, both, work", "experience": "nothing_worked, want_stronger, new_to_mouthwash", "addon_for": "", "is_clinical": true, "is_starter": true, "primary_reason": "Specifically formulated for dry mouth — delivers relief and 24-hour breath protection in one rinse." } },
-        { "type": "quiz_product", "settings": { "display_name": "Mouth Sore Activated Mouthwash (16oz)", "handle": "smartmouthtm-mouth-sore-activated-mouthwash-16oz", "fallback_price": 12.99, "category": "mouthwash", "benefits": "Soothing, Canker sore relief", "concern": "sore", "duration": "new, months, years", "lifestyle": "none, medication", "location": "home, both", "experience": "nothing_worked, new_to_mouthwash, want_stronger", "addon_for": "", "is_starter": true, "primary_reason": "A gentle, soothing formula designed to calm canker sores and oral irritation while keeping breath fresh." } },
-        { "type": "quiz_product", "settings": { "display_name": "Gum Health Activated Mouthwash (16oz)", "handle": "smartmouthtm-gum-health-activated-mouthwash-16oz", "fallback_price": 13.99, "category": "mouthwash", "benefits": "Anti-gingivitis, Anti-plaque", "concern": "gum", "duration": "new, months, years", "lifestyle": "none, coffee", "location": "home, both", "experience": "nothing_worked, want_stronger, switching", "addon_for": "", "is_clinical": true, "primary_reason": "Advanced anti-gingivitis and anti-plaque actives — formulated specifically where gum health is the priority." } },
-        { "type": "quiz_product", "settings": { "display_name": "Advanced Liposomal Vitamin C (16oz)", "handle": "smartmouthtm-advanced-liposomal-vitamin-c-mouthwash-16oz", "fallback_price": 13.99, "category": "liposomal", "benefits": "Liposomal tech, Vitamin C, Gum health", "concern": "gum, breath", "duration": "years, months", "lifestyle": "none, coffee", "location": "home, both", "experience": "nothing_worked, want_stronger, switching", "addon_for": "gum, breath", "primary_reason": "Liposomal Vitamin C delivers the deepest tissue nourishment — the most advanced formula in the lineup.", "addon_reason": "Vitamin C liposomal tech delivers deeper gum nourishment alongside your daily rinse." } },
-        { "type": "quiz_product", "settings": { "display_name": "Advanced Liposomal Morning (16oz)", "handle": "smartmouthtm-advanced-liposomal-morning-mouthwash-16oz", "fallback_price": 13.99, "category": "liposomal", "benefits": "Liposomal tech, Morning formula", "concern": "breath, gum", "duration": "years, months", "lifestyle": "none, coffee, smoker", "location": "home, both", "experience": "nothing_worked, want_stronger, switching", "addon_for": "breath, gum", "primary_reason": "Liposomal morning formula — engineered for the highest-impact rinse of the day.", "addon_reason": "A dedicated morning liposomal formula adds a powerful AM layer on top of your evening rinse." } },
-        { "type": "quiz_product", "settings": { "display_name": "Advanced Liposomal Evening (16oz)", "handle": "smartmouthtm-advanced-liposomal-evening-mouthwash-16oz", "fallback_price": 13.99, "category": "liposomal", "benefits": "Liposomal tech, Evening formula", "concern": "breath, gum", "duration": "years, months", "lifestyle": "none, coffee, smoker", "location": "home, both", "experience": "nothing_worked, want_stronger, switching", "addon_for": "breath, gum", "primary_reason": "Liposomal evening formula — works overnight so you wake up to genuinely fresh breath.", "addon_reason": "Evening liposomal formula works overnight — maximises the protection you've already started." } },
-        { "type": "quiz_product", "settings": { "display_name": "Original Activated Mouthwash (32oz)", "handle": "smartmouthtm-original-activated-mouthwash-32oz", "fallback_price": 19.99, "category": "mouthwash", "benefits": "24hr breath, Value size", "concern": "breath", "duration": "new, prevention", "lifestyle": "none", "location": "home", "experience": "switching, new_to_mouthwash", "addon_for": "" } },
-        { "type": "quiz_product", "settings": { "display_name": "Clinical Activated Mouthwash (32oz)", "handle": "smartmouthtm-clinical-activated-mouthwash-32oz", "fallback_price": 24.99, "category": "mouthwash", "benefits": "Clinical strength, Value size", "concern": "breath, gum", "duration": "months, years", "lifestyle": "smoker, coffee, none", "location": "home", "experience": "nothing_worked, want_stronger, switching", "addon_for": "", "is_clinical": true, "primary_reason": "Same clinical strength, bigger bottle — the right move when you know this is your formula." } },
-        { "type": "quiz_product", "settings": { "display_name": "Anti-Cavity + Zinc Toothpaste (3.4oz)", "handle": "smartmouthtm-anti-cavity-zinc-toothpaste-34oz", "fallback_price": 7.99, "category": "toothpaste", "benefits": "Cavity protection, Zinc", "concern": "breath, gum", "duration": "new, prevention, months", "lifestyle": "none, coffee", "location": "home, both, work", "experience": "new_to_mouthwash, switching, want_stronger", "addon_for": "breath, gum, sore, dry", "primary_reason": "Zinc toothpaste pairs perfectly with your mouthwash — reinforcing protection at every brush.", "addon_reason": "Zinc toothpaste reinforces your mouthwash protection at every brush — the natural next step in your routine." } },
-        { "type": "quiz_product", "settings": { "display_name": "Anti-Cavity + Zinc Toothpaste (6oz)", "handle": "smartmouthtm-anti-cavity-zinc-toothpaste-6oz", "fallback_price": 10.79, "category": "toothpaste", "benefits": "Cavity protection, Zinc, Value size", "concern": "breath, gum", "duration": "new, prevention, months", "lifestyle": "none, coffee", "location": "home", "experience": "new_to_mouthwash, switching, want_stronger", "addon_for": "breath, gum, sore, dry", "addon_reason": "The 6oz tube keeps your whole routine zinc-powered without running out — best value for daily use." } },
-        { "type": "quiz_product", "settings": { "display_name": "Dry Mouth Dual-Action Mints", "handle": "smartmouthtm-dry-mouth-dual-action-mints", "fallback_price": 3.99, "category": "mints", "benefits": "Dry mouth, On-the-go", "concern": "dry", "duration": "new, months", "lifestyle": "medication, none", "location": "travel, both, work", "experience": "new_to_mouthwash, nothing_worked", "addon_for": "dry, breath", "primary_reason": "Portable dry mouth relief — keeps you comfortable throughout the day, anywhere you go.", "addon_reason": "Keep dry mouth relief on hand all day — small enough for any bag, effective enough to notice." } },
-        { "type": "quiz_product", "settings": { "display_name": "Original Single Packs — 10 Ct", "handle": "smartmouthtm-original-activated-mouthwash-single-packs-10-ct", "fallback_price": 8.99, "category": "travel", "benefits": "Travel, Single-use", "concern": "breath", "duration": "new, prevention, months", "lifestyle": "none, coffee", "location": "travel, both, work", "experience": "new_to_mouthwash, switching", "addon_for": "breath", "primary_reason": "Same great formula in single-use packs — your routine goes wherever you do.", "addon_reason": "Take your routine anywhere — same formula, single-use packs for travel or on the go." } },
-        { "type": "quiz_product", "settings": { "display_name": "Clinical Single Packs — 50 Ct", "handle": "smartmouthtm-clinical-single-packs-50-ct", "fallback_price": 59.99, "category": "travel", "benefits": "Travel, Clinical, 50 ct", "concern": "breath, gum", "duration": "months, years", "lifestyle": "smoker, coffee, none", "location": "travel, both, work", "experience": "nothing_worked, want_stronger", "addon_for": "gum, breath", "is_clinical": true, "primary_reason": "Clinical strength in a 50-pack — the right choice for frequent travelers who don't want to compromise.", "addon_reason": "50 clinical packs means your routine never gets interrupted — perfect if you travel frequently." } },
-        { "type": "quiz_product", "settings": { "display_name": "Dry Mouth Single Packs — 50 Ct", "handle": "smartmouthtm-dry-mouth-single-packs-50-ct", "fallback_price": 54.99, "category": "travel", "benefits": "Travel, Dry mouth, 50 ct", "concern": "dry", "duration": "months, years", "lifestyle": "medication", "location": "travel, both", "experience": "nothing_worked, want_stronger", "addon_for": "dry" } },
-        { "type": "quiz_product", "settings": { "display_name": "Original Single Packs — 50 Ct", "handle": "smartmouthtm-original-single-packs-50-ct", "fallback_price": 44.99, "category": "travel", "benefits": "Travel, Value, 50 ct", "concern": "breath", "duration": "months, years, prevention", "lifestyle": "none, coffee", "location": "travel, both, work", "experience": "switching, want_stronger", "addon_for": "breath", "addon_reason": "50 original packs keeps you covered for months — best value for consistent travel use." } },
-        { "type": "quiz_product", "settings": { "display_name": "Clinical 2-Bottle Activated System", "handle": "smartmouthtm-clinical-2-bottle-activated-mouthwash-system", "fallback_price": 33.99, "category": "system", "benefits": "2-bottle system, Clinical strength", "concern": "breath, gum", "duration": "months, years", "lifestyle": "smoker, coffee, none", "location": "home, both", "experience": "nothing_worked, want_stronger, switching", "addon_for": "", "is_clinical": true } },
-        { "type": "quiz_product", "settings": { "display_name": "Original 2-Bottle Activated System", "handle": "smartmouthtm-original-2-bottle-activated-mouthwash-system", "fallback_price": 26.99, "category": "system", "benefits": "2-bottle system, 24hr breath", "concern": "breath", "duration": "new, prevention", "lifestyle": "none", "location": "home", "experience": "new_to_mouthwash, switching", "addon_for": "", "is_starter": true } }
+        {
+          "type": "quiz_product",
+          "settings": {
+            "display_name": "Original Activated Mouthwash (16oz)",
+            "handle": "smartmouthtm-original-activated-mouthwash-16oz",
+            "fallback_price": 10.99,
+            "category": "mouthwash",
+            "benefits": "24hr breath, Zinc ion",
+            "concern": "breath",
+            "duration": "new, prevention",
+            "lifestyle": "none, coffee, smoker",
+            "location": "home, both, work",
+            "experience": "new_to_mouthwash, switching",
+            "addon_for": "",
+            "is_starter": true,
+            "primary_reason": "The original zinc ion formula — gentle, effective, and the right starting point for everyday fresh-breath protection."
+          }
+        },
+        {
+          "type": "quiz_product",
+          "settings": {
+            "display_name": "Clinical Activated Mouthwash (16oz)",
+            "handle": "smartmouthtm-clinical-activated-mouthwash-16oz",
+            "fallback_price": 13.99,
+            "category": "mouthwash",
+            "benefits": "24hr breath, Anti-gingivitis, Anti-plaque",
+            "concern": "breath, gum",
+            "duration": "months, years",
+            "lifestyle": "smoker, coffee, none",
+            "location": "home, both, work",
+            "experience": "nothing_worked, want_stronger, switching",
+            "addon_for": "",
+            "is_clinical": true,
+            "primary_reason": "Clinical strength targets bad breath and gum health simultaneously — the go-to when the problem has been persistent."
+          }
+        },
+        {
+          "type": "quiz_product",
+          "settings": {
+            "display_name": "Dry Mouth Activated Mouthwash (16oz)",
+            "handle": "smartmouthtm-dry-mouth-activated-mouthwash-16oz",
+            "fallback_price": 11.99,
+            "category": "mouthwash",
+            "benefits": "24hr breath, Dry mouth relief",
+            "concern": "dry, breath",
+            "duration": "new, months, years",
+            "lifestyle": "medication, none",
+            "location": "home, both, work",
+            "experience": "nothing_worked, want_stronger, new_to_mouthwash",
+            "addon_for": "",
+            "is_clinical": true,
+            "is_starter": true,
+            "primary_reason": "Specifically formulated for dry mouth — delivers relief and 24-hour breath protection in one rinse."
+          }
+        },
+        {
+          "type": "quiz_product",
+          "settings": {
+            "display_name": "Mouth Sore Activated Mouthwash (16oz)",
+            "handle": "smartmouthtm-mouth-sore-activated-mouthwash-16oz",
+            "fallback_price": 12.99,
+            "category": "mouthwash",
+            "benefits": "Soothing, Canker sore relief",
+            "concern": "sore",
+            "duration": "new, months, years",
+            "lifestyle": "none, medication",
+            "location": "home, both",
+            "experience": "nothing_worked, new_to_mouthwash, want_stronger",
+            "addon_for": "",
+            "is_starter": true,
+            "primary_reason": "A gentle, soothing formula designed to calm canker sores and oral irritation while keeping breath fresh."
+          }
+        },
+        {
+          "type": "quiz_product",
+          "settings": {
+            "display_name": "Gum Health Activated Mouthwash (16oz)",
+            "handle": "smartmouthtm-gum-health-activated-mouthwash-16oz",
+            "fallback_price": 13.99,
+            "category": "mouthwash",
+            "benefits": "Anti-gingivitis, Anti-plaque",
+            "concern": "gum",
+            "duration": "new, months, years",
+            "lifestyle": "none, coffee",
+            "location": "home, both",
+            "experience": "nothing_worked, want_stronger, switching",
+            "addon_for": "",
+            "is_clinical": true,
+            "primary_reason": "Advanced anti-gingivitis and anti-plaque actives — formulated specifically where gum health is the priority."
+          }
+        },
+        {
+          "type": "quiz_product",
+          "settings": {
+            "display_name": "Advanced Liposomal Vitamin C (16oz)",
+            "handle": "smartmouthtm-advanced-liposomal-vitamin-c-mouthwash-16oz",
+            "fallback_price": 13.99,
+            "category": "liposomal",
+            "benefits": "Liposomal tech, Vitamin C, Gum health",
+            "concern": "gum, breath",
+            "duration": "years, months",
+            "lifestyle": "none, coffee",
+            "location": "home, both",
+            "experience": "nothing_worked, want_stronger, switching",
+            "addon_for": "gum, breath",
+            "primary_reason": "Liposomal Vitamin C delivers the deepest tissue nourishment — the most advanced formula in the lineup.",
+            "addon_reason": "Vitamin C liposomal tech delivers deeper gum nourishment alongside your daily rinse."
+          }
+        },
+        {
+          "type": "quiz_product",
+          "settings": {
+            "display_name": "Advanced Liposomal Morning (16oz)",
+            "handle": "smartmouthtm-advanced-liposomal-morning-mouthwash-16oz",
+            "fallback_price": 13.99,
+            "category": "liposomal",
+            "benefits": "Liposomal tech, Morning formula",
+            "concern": "breath, gum",
+            "duration": "years, months",
+            "lifestyle": "none, coffee, smoker",
+            "location": "home, both",
+            "experience": "nothing_worked, want_stronger, switching",
+            "addon_for": "breath, gum",
+            "primary_reason": "Liposomal morning formula — engineered for the highest-impact rinse of the day.",
+            "addon_reason": "A dedicated morning liposomal formula adds a powerful AM layer on top of your evening rinse."
+          }
+        },
+        {
+          "type": "quiz_product",
+          "settings": {
+            "display_name": "Advanced Liposomal Evening (16oz)",
+            "handle": "smartmouthtm-advanced-liposomal-evening-mouthwash-16oz",
+            "fallback_price": 13.99,
+            "category": "liposomal",
+            "benefits": "Liposomal tech, Evening formula",
+            "concern": "breath, gum",
+            "duration": "years, months",
+            "lifestyle": "none, coffee, smoker",
+            "location": "home, both",
+            "experience": "nothing_worked, want_stronger, switching",
+            "addon_for": "breath, gum",
+            "primary_reason": "Liposomal evening formula — works overnight so you wake up to genuinely fresh breath.",
+            "addon_reason": "Evening liposomal formula works overnight — maximises the protection you've already started."
+          }
+        },
+        {
+          "type": "quiz_product",
+          "settings": {
+            "display_name": "Original Activated Mouthwash (32oz)",
+            "handle": "smartmouthtm-original-activated-mouthwash-32oz",
+            "fallback_price": 19.99,
+            "category": "mouthwash",
+            "benefits": "24hr breath, Value size",
+            "concern": "breath",
+            "duration": "new, prevention",
+            "lifestyle": "none",
+            "location": "home",
+            "experience": "switching, new_to_mouthwash",
+            "addon_for": ""
+          }
+        },
+        {
+          "type": "quiz_product",
+          "settings": {
+            "display_name": "Clinical Activated Mouthwash (32oz)",
+            "handle": "smartmouthtm-clinical-activated-mouthwash-32oz",
+            "fallback_price": 24.99,
+            "category": "mouthwash",
+            "benefits": "Clinical strength, Value size",
+            "concern": "breath, gum",
+            "duration": "months, years",
+            "lifestyle": "smoker, coffee, none",
+            "location": "home",
+            "experience": "nothing_worked, want_stronger, switching",
+            "addon_for": "",
+            "is_clinical": true,
+            "primary_reason": "Same clinical strength, bigger bottle — the right move when you know this is your formula."
+          }
+        },
+        {
+          "type": "quiz_product",
+          "settings": {
+            "display_name": "Anti-Cavity + Zinc Toothpaste (3.4oz)",
+            "handle": "smartmouthtm-anti-cavity-zinc-toothpaste-34oz",
+            "fallback_price": 7.99,
+            "category": "toothpaste",
+            "benefits": "Cavity protection, Zinc",
+            "concern": "breath, gum",
+            "duration": "new, prevention, months",
+            "lifestyle": "none, coffee",
+            "location": "home, both, work",
+            "experience": "new_to_mouthwash, switching, want_stronger",
+            "addon_for": "breath, gum, sore, dry",
+            "primary_reason": "Zinc toothpaste pairs perfectly with your mouthwash — reinforcing protection at every brush.",
+            "addon_reason": "Zinc toothpaste reinforces your mouthwash protection at every brush — the natural next step in your routine."
+          }
+        },
+        {
+          "type": "quiz_product",
+          "settings": {
+            "display_name": "Anti-Cavity + Zinc Toothpaste (6oz)",
+            "handle": "smartmouthtm-anti-cavity-zinc-toothpaste-6oz",
+            "fallback_price": 10.79,
+            "category": "toothpaste",
+            "benefits": "Cavity protection, Zinc, Value size",
+            "concern": "breath, gum",
+            "duration": "new, prevention, months",
+            "lifestyle": "none, coffee",
+            "location": "home",
+            "experience": "new_to_mouthwash, switching, want_stronger",
+            "addon_for": "breath, gum, sore, dry",
+            "addon_reason": "The 6oz tube keeps your whole routine zinc-powered without running out — best value for daily use."
+          }
+        },
+        {
+          "type": "quiz_product",
+          "settings": {
+            "display_name": "Dry Mouth Dual-Action Mints",
+            "handle": "smartmouthtm-dry-mouth-dual-action-mints",
+            "fallback_price": 3.99,
+            "category": "mints",
+            "benefits": "Dry mouth, On-the-go",
+            "concern": "dry",
+            "duration": "new, months",
+            "lifestyle": "medication, none",
+            "location": "travel, both, work",
+            "experience": "new_to_mouthwash, nothing_worked",
+            "addon_for": "dry, breath",
+            "primary_reason": "Portable dry mouth relief — keeps you comfortable throughout the day, anywhere you go.",
+            "addon_reason": "Keep dry mouth relief on hand all day — small enough for any bag, effective enough to notice."
+          }
+        },
+        {
+          "type": "quiz_product",
+          "settings": {
+            "display_name": "Original Single Packs — 10 Ct",
+            "handle": "smartmouthtm-original-activated-mouthwash-single-packs-10-ct",
+            "fallback_price": 8.99,
+            "category": "travel",
+            "benefits": "Travel, Single-use",
+            "concern": "breath",
+            "duration": "new, prevention, months",
+            "lifestyle": "none, coffee",
+            "location": "travel, both, work",
+            "experience": "new_to_mouthwash, switching",
+            "addon_for": "breath",
+            "primary_reason": "Same great formula in single-use packs — your routine goes wherever you do.",
+            "addon_reason": "Take your routine anywhere — same formula, single-use packs for travel or on the go."
+          }
+        },
+        {
+          "type": "quiz_product",
+          "settings": {
+            "display_name": "Clinical Single Packs — 50 Ct",
+            "handle": "smartmouthtm-clinical-single-packs-50-ct",
+            "fallback_price": 59.99,
+            "category": "travel",
+            "benefits": "Travel, Clinical, 50 ct",
+            "concern": "breath, gum",
+            "duration": "months, years",
+            "lifestyle": "smoker, coffee, none",
+            "location": "travel, both, work",
+            "experience": "nothing_worked, want_stronger",
+            "addon_for": "gum, breath",
+            "is_clinical": true,
+            "primary_reason": "Clinical strength in a 50-pack — the right choice for frequent travelers who don't want to compromise.",
+            "addon_reason": "50 clinical packs means your routine never gets interrupted — perfect if you travel frequently."
+          }
+        },
+        {
+          "type": "quiz_product",
+          "settings": {
+            "display_name": "Dry Mouth Single Packs — 50 Ct",
+            "handle": "smartmouthtm-dry-mouth-single-packs-50-ct",
+            "fallback_price": 54.99,
+            "category": "travel",
+            "benefits": "Travel, Dry mouth, 50 ct",
+            "concern": "dry",
+            "duration": "months, years",
+            "lifestyle": "medication",
+            "location": "travel, both",
+            "experience": "nothing_worked, want_stronger",
+            "addon_for": "dry"
+          }
+        },
+        {
+          "type": "quiz_product",
+          "settings": {
+            "display_name": "Original Single Packs — 50 Ct",
+            "handle": "smartmouthtm-original-single-packs-50-ct",
+            "fallback_price": 44.99,
+            "category": "travel",
+            "benefits": "Travel, Value, 50 ct",
+            "concern": "breath",
+            "duration": "months, years, prevention",
+            "lifestyle": "none, coffee",
+            "location": "travel, both, work",
+            "experience": "switching, want_stronger",
+            "addon_for": "breath",
+            "addon_reason": "50 original packs keeps you covered for months — best value for consistent travel use."
+          }
+        },
+        {
+          "type": "quiz_product",
+          "settings": {
+            "display_name": "Clinical 2-Bottle Activated System",
+            "handle": "smartmouthtm-clinical-2-bottle-activated-mouthwash-system",
+            "fallback_price": 33.99,
+            "category": "system",
+            "benefits": "2-bottle system, Clinical strength",
+            "concern": "breath, gum",
+            "duration": "months, years",
+            "lifestyle": "smoker, coffee, none",
+            "location": "home, both",
+            "experience": "nothing_worked, want_stronger, switching",
+            "addon_for": "",
+            "is_clinical": true
+          }
+        },
+        {
+          "type": "quiz_product",
+          "settings": {
+            "display_name": "Original 2-Bottle Activated System",
+            "handle": "smartmouthtm-original-2-bottle-activated-mouthwash-system",
+            "fallback_price": 26.99,
+            "category": "system",
+            "benefits": "2-bottle system, 24hr breath",
+            "concern": "breath",
+            "duration": "new, prevention",
+            "lifestyle": "none",
+            "location": "home",
+            "experience": "new_to_mouthwash, switching",
+            "addon_for": "",
+            "is_starter": true
+          }
+        }
       ]
     }
   ]
