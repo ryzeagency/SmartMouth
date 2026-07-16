@@ -171,15 +171,16 @@
         "heading_first_line": "Making people healthier.",
         "heading_second_line": "One product at a time.",
         "body": "<p>SmartMouth was never just about fresh breath. From the beginning, our founders believed that oral health is a gateway to overall health — and that a product that genuinely worked could change people’s lives, not just their morning routine.</p><p>The link between oral health and heart disease, diabetes and other systemic conditions is well established. That’s why SmartMouth is built to actually address the root cause — not paper over it.</p>",
+        "image": "shopify://shop_images/our-mission-image.webp",
         "image_alt": "SmartMouth mission",
         "image_position": "first",
         "image_width": 43,
-        "background_color": "#ffffff",
+        "background_color": "#D5EEEA",
         "text_color": "#092847",
         "eyebrow_color": "#205085",
-        "heading_background": "#24588e",
+        "heading_background": "#047840",
         "heading_first_color": "#ffffff",
-        "heading_second_color": "#87d2c8"
+        "heading_second_color": "#FFFFFF"
       }
     },
     "about_product_standards_iPY39d": {
