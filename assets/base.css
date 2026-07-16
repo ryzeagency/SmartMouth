@@ -2368,7 +2368,7 @@ sticky-header .header {
 @media screen and (min-width: 750px) {
 
   ul.list-menu:not(.header__submenu) > li:last-child {
-      background: #058449;
+      background: #FF7701;
       border-radius: 25px;
       padding: 0 25px;
       margin-left: 10px;
