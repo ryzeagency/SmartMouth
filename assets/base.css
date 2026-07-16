@@ -2621,6 +2621,10 @@ sticky-header .header {
   position: relative;
 }
 
+.header__icons svg {
+    color: #205085;
+}
+
 .header__icon--menu[aria-expanded='true']::before {
   content: '';
   top: 100%;
