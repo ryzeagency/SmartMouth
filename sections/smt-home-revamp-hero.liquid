@@ -1,23 +1,57 @@
 {% liquid
   assign hero_link = section.settings.button_link | default: '/pages/find-your-rinse'
+  assign has_background_video = false
+  if section.settings.video != blank or section.settings.mobile_video != blank
+    assign has_background_video = true
+  endif
+
+  assign desktop_video = section.settings.video
+  if desktop_video == blank
+    assign desktop_video = section.settings.mobile_video
+  endif
+
+  assign media_alt = section.settings.image.alt
+  if media_alt == blank
+    assign media_alt = section.settings.mobile_image.alt
+  endif
+  if media_alt == blank
+    assign media_alt = section.settings.heading | strip_html
+  endif
 %}
 
 <section
-  class="hr-hero hr-hero--{{ section.settings.panel_position }}"
+  class="hr-hero hr-hero--{{ section.settings.panel_position }}{% if section.settings.video != blank and section.settings.mobile_video != blank %} hr-hero--has-mobile-video{% endif %}"
   aria-labelledby="HeroHeading-{{ section.id }}"
 >
   <div class="hr-hero__media" aria-hidden="true">
-    {% if section.settings.video != blank %}
+    {% if has_background_video %}
       {{
-        section.settings.video
+        desktop_video
         | video_tag:
           autoplay: true,
           loop: true,
           muted: true,
           controls: false,
+          playsinline: true,
           preload: 'metadata',
-          image_size: '3840x'
+          image_size: '3840x',
+          class: 'hr-hero__video hr-hero__video--desktop'
       }}
+
+      {% if section.settings.video != blank and section.settings.mobile_video != blank %}
+        {{
+          section.settings.mobile_video
+          | video_tag:
+            autoplay: true,
+            loop: true,
+            muted: true,
+            controls: false,
+            playsinline: true,
+            preload: 'metadata',
+            image_size: '1500x',
+            class: 'hr-hero__video hr-hero__video--mobile'
+        }}
+      {% endif %}
     {% else %}
       <picture>
         {% if section.settings.mobile_image != blank %}
@@ -35,12 +69,12 @@
               sizes: '100vw',
               loading: 'eager',
               fetchpriority: 'high',
-              alt: section.settings.media_alt
+              alt: media_alt
           }}
         {% else %}
           <img
             src="{{ 'e23e95e9-577a-4957-8742-9c754791e3e1.png' | asset_url }}"
-            alt="{{ section.settings.media_alt | escape }}"
+            alt="{{ media_alt | escape }}"
             width="2048"
             height="833"
             loading="eager"
@@ -54,7 +88,7 @@
   <div class="hr-hero__container">
     <div class="hr-hero__panel">
       {% if section.settings.review_text != blank %}
-        <div class="hr-hero__reviews" aria-label="{{ section.settings.review_accessible | escape }}">
+        <div class="hr-hero__reviews" aria-label="{{ section.settings.review_text | escape }}">
           <span class="hr-hero__stars" aria-hidden="true">★★★★★</span>
           <span>{{ section.settings.review_text | escape }}</span>
         </div>
@@ -118,12 +152,13 @@
     --hr-hero-text: {{ section.settings.text_color }};
     --hr-hero-star: {{ section.settings.star_color }};
     --hr-hero-button: {{ section.settings.button_color }};
-    --hr-hero-button-text: {{ section.settings.button_text_color }};
+    --hr-hero-button-text: {{ section.settings.text_color }};
+    --hr-mobile-space-above: {{ section.settings.mobile_space_above }}vw;
+    --hr-mobile-space-below: {{ section.settings.mobile_space_below }}vw;
   }
 
   #shopify-section-{{ section.id }} .hr-hero {
     position: relative;
-    min-height: 40.67vw;
     overflow: hidden;
     color: var(--hr-hero-text);
     background: #b8ddeb;
@@ -146,6 +181,10 @@
     object-position: {{ section.settings.media_position }};
   }
 
+  #shopify-section-{{ section.id }} .hr-hero__video--mobile {
+    display: none;
+  }
+
   #shopify-section-{{ section.id }} .hr-hero__container {
     position: relative;
     z-index: 1;
@@ -153,7 +192,6 @@
     align-items: center;
     justify-content: flex-start;
     width: 85vw;
-    min-height: 40.67vw;
     margin: 0 auto;
     padding: 4.64vw 0;
     box-sizing: border-box;
@@ -168,7 +206,6 @@
     flex-direction: column;
     justify-content: center;
     width: 35.25vw;
-    min-height: 31.54vw;
     padding: 2.83vw 4.55vw;
     color: var(--hr-hero-text);
     background: var(--hr-hero-blue);
@@ -273,14 +310,17 @@
   }
 
   @media screen and (max-width: 749px) {
-    #shopify-section-{{ section.id }} .hr-hero,
-    #shopify-section-{{ section.id }} .hr-hero__container {
-      min-height: 145vw;
-    }
-
     #shopify-section-{{ section.id }} .hr-hero__media img,
     #shopify-section-{{ section.id }} .hr-hero__media video {
       object-position: {{ section.settings.mobile_position }};
+    }
+
+    #shopify-section-{{ section.id }} .hr-hero--has-mobile-video .hr-hero__video--desktop {
+      display: none;
+    }
+
+    #shopify-section-{{ section.id }} .hr-hero__video--mobile {
+      display: block;
     }
 
     #shopify-section-{{ section.id }} .hr-hero__container,
@@ -288,12 +328,11 @@
       align-items: flex-end;
       justify-content: center;
       width: 85vw;
-      padding: 8vw 0;
+      padding: var(--hr-mobile-space-above) 0 var(--hr-mobile-space-below);
     }
 
     #shopify-section-{{ section.id }} .hr-hero__panel {
       width: 85vw;
-      min-height: 0;
       padding: 8vw 7vw;
       border-radius: 1.6vw;
     }
@@ -303,6 +342,10 @@
       margin-bottom: 2vw;
       font-size: 3.4vw;
       white-space: normal;
+      flex-direction: column;
+      justify-content: flex-end;
+      text-align: left;
+      align-items: flex-start;
     }
 
     #shopify-section-{{ section.id }} .hr-hero__stars {
@@ -312,13 +355,13 @@
 
     #shopify-section-{{ section.id }} .hr-hero__heading {
       margin-bottom: 3.5vw;
-      font-size: 10vw;
+      font-size: 7vw;
     }
 
     #shopify-section-{{ section.id }} .hr-hero__copy {
       max-width: none;
       margin-bottom: 6vw;
-      font-size: 4vw;
+      font-size: 3vw;
     }
 
     #shopify-section-{{ section.id }} .hr-hero__benefits {
@@ -329,13 +372,13 @@
 
     #shopify-section-{{ section.id }} .hr-hero__benefit {
       gap: 2vw;
-      font-size: 4.3vw;
+      font-size: 3.5vw;
     }
 
     #shopify-section-{{ section.id }} .hr-hero__benefit-icon {
-      flex-basis: 10vw;
-      width: 10vw;
-      height: 10vw;
+      flex-basis: 6vw;
+      width: 6vw;
+      height: 6vw;
     }
 
     #shopify-section-{{ section.id }} .hr-hero__button.button {
@@ -350,15 +393,26 @@
 
 {% schema %}
 {
-  "name": "Home Revamp Hero",
+  "name": "Home Hero Video",
   "tag": "section",
   "class": "section section-home-revamp-hero",
   "settings": [
     { "type": "header", "content": "Media" },
     { "type": "image_picker", "id": "image", "label": "Background image" },
     { "type": "image_picker", "id": "mobile_image", "label": "Mobile background image" },
-    { "type": "video", "id": "video", "label": "Background video" },
-    { "type": "text", "id": "media_alt", "label": "Image alt text", "default": "SmartMouth mouthwash being poured in a bathroom" },
+    { "type": "header", "content": "Video backgrounds" },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Desktop video upload",
+      "info": "Adding either video disables both image backgrounds."
+    },
+    {
+      "type": "video",
+      "id": "mobile_video",
+      "label": "Mobile video upload",
+      "info": "Used below 750px. If blank, the desktop video is reused."
+    },
     {
       "type": "select",
       "id": "media_position",
@@ -381,6 +435,26 @@
         { "value": "right center", "label": "Right" }
       ]
     },
+    {
+      "type": "range",
+      "id": "mobile_space_above",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "vw",
+      "label": "Mobile space above card",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "mobile_space_below",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "vw",
+      "label": "Mobile space below card",
+      "default": 8
+    },
     { "type": "header", "content": "Content" },
     {
       "type": "select",
@@ -393,7 +467,6 @@
       ]
     },
     { "type": "text", "id": "review_text", "label": "Review text", "default": "4.5 avg. | 8.8K+ Trusted Reviews" },
-    { "type": "text", "id": "review_accessible", "label": "Accessible review label", "default": "4.5 out of 5 stars from more than 8,800 trusted reviews" },
     { "type": "textarea", "id": "heading", "label": "Heading", "default": "The smarter\nmouthwash" },
     { "type": "richtext", "id": "copy", "label": "Body text", "default": "<p><strong>The only mouthwash scientifically proven to eliminate &amp; prevent bad breath for 24 hours — <em>with just 2 rinses a day.</em></strong></p>" },
     { "type": "image_picker", "id": "icon_1", "label": "First benefit icon" },
@@ -402,16 +475,14 @@
     { "type": "textarea", "id": "benefit_2", "label": "Second benefit", "default": "24-HOUR\nPROTECTION" },
     { "type": "text", "id": "button_label", "label": "Button label", "default": "FIND YOUR RINSE" },
     { "type": "url", "id": "button_link", "label": "Button link" },
-    { "type": "header", "content": "Colors" },
     { "type": "color", "id": "panel_color", "label": "Blue block", "default": "#24588D" },
     { "type": "color", "id": "text_color", "label": "Text", "default": "#FFFFFF" },
     { "type": "color", "id": "star_color", "label": "Stars", "default": "#FFC857" },
-    { "type": "color", "id": "button_color", "label": "Button", "default": "#FF7600" },
-    { "type": "color", "id": "button_text_color", "label": "Button text", "default": "#FFFFFF" }
+    { "type": "color", "id": "button_color", "label": "Button", "default": "#FF7600" }
   ],
   "presets": [
     {
-      "name": "Home Revamp Hero",
+      "name": "Home Hero Video",
       "category": "Home Revamp"
     }
   ]
@@ -422,3 +493,4 @@
   The supplied fallback is a composite mockup. Replace the background image or video
   before moving the content block to the right so the embedded left-side panel is removed.
 {% endcomment %}
+
