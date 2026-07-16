@@ -118,6 +118,15 @@
         "social_tiktok": "https://www.tiktok.com/@smartmouthwash",
         "copyright_name": "SmartMouth™",
         "copyright_text": "All Rights Reserved.",
+        "show_brand_copyright": false,
+        "show_bottom_bar": true,
+        "credit_prefix": "Built by",
+        "credit_name": "Ryze Agency",
+        "credit_url": "https://ryzeagency.com/",
+        "bar_bg_color": "#205085",
+        "bar_text_color": "#ffffff",
+        "bar_padding_top": 14,
+        "bar_padding_bottom": 14,
         "padding_top": 80,
         "padding_bottom": 60
       }
