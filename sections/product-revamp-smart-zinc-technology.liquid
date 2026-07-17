@@ -161,6 +161,11 @@
   }
 
   @media screen and (max-width: 749px) {
+
+    #shopify-section-{{ section.id }} .product-tech__header {
+      text-align: left;
+    }
+
     #shopify-section-{{ section.id }} .product-tech {
       padding: {{ section.settings.mobile_padding_top }}vw 0 {{ section.settings.mobile_padding_bottom }}vw;
       background-image: {% if section.settings.mobile_background != blank %}url('{{ section.settings.mobile_background | image_url: width: 1600 }}'){% elsif section.settings.desktop_background != blank %}url('{{ section.settings.desktop_background | image_url: width: 1600 }}'){% else %}none{% endif %};
