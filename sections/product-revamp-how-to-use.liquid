@@ -5,7 +5,7 @@
   <div class="product-how-to__inner">
     <div class="product-how-to__card">
       <h2 class="product-how-to__heading" id="ProductHowToHeading-{{ section.id }}">
-        {{- section.settings.heading | escape -}}
+        {{- section.settings.heading | default: 'How to use:' | escape -}}
       </h2>
 
       {%- if section.blocks.size > 0 -%}
@@ -14,12 +14,27 @@
             <li class="product-how-to__step" {{ block.shopify_attributes }}>
               <span class="product-how-to__number" aria-hidden="true">{{ forloop.index }}</span>
               <div class="product-how-to__step-content">
-                {%- if block.settings.heading != blank -%}
-                  <h3>{{ block.settings.heading | escape }}</h3>
-                {%- endif -%}
-                {%- if block.settings.body != blank -%}
-                  <div class="product-how-to__step-body rte">{{ block.settings.body }}</div>
-                {%- endif -%}
+                <h3>{{ block.settings.heading | default: 'Pour the Sulfur Eliminator (green cap)' | escape }}</h3>
+                <div class="product-how-to__step-body rte">
+                  {{- block.settings.body | default: '<p>Open the green cap and pour to the 10mL mark on the provided cup.</p>' -}}
+                </div>
+              </div>
+            </li>
+          {%- endfor -%}
+        </ol>
+      {%- else -%}
+        {%- comment -%} No blocks configured — fall back to the default steps from the schema preset. {%- endcomment -%}
+        <ol class="product-how-to__steps" role="list">
+          {%- assign default_headings = 'Pour the Sulfur Eliminator (green cap)|Add the Zinc Activator (blue cap)|Swish for 30 seconds|Repeat twice daily' | split: '|' -%}
+          {%- assign default_bodies = 'Open the green cap and pour to the 10mL mark on the provided cup.|Open the blue cap and pour to the 20mL mark in the same cup.|Rinse thoroughly for 30 seconds. Spit out — do not swallow. Do not eat or drink for 30 minutes after rinsing.|Morning and evening. Two rinses a day delivers 24-hour bad breath protection.' | split: '|' -%}
+          {%- for default_heading in default_headings -%}
+            <li class="product-how-to__step">
+              <span class="product-how-to__number" aria-hidden="true">{{ forloop.index }}</span>
+              <div class="product-how-to__step-content">
+                <h3>{{ default_heading | escape }}</h3>
+                <div class="product-how-to__step-body rte">
+                  <p>{{ default_bodies[forloop.index0] | escape }}</p>
+                </div>
               </div>
             </li>
           {%- endfor -%}
