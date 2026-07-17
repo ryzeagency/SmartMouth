@@ -23,9 +23,27 @@
       "name": "Blog Page Banner",
       "settings": {
         "desktop_image": "shopify://shop_images/blog-banners.png",
+        "mobile_image": "shopify://shop_images/blog-banners.png",
         "top_subtitle": "",
         "title": "{{ collection.title }}",
-        "bottom_subtitle": ""
+        "bottom_subtitle": "",
+        "desktop_height": 20,
+        "mobile_height": 60,
+        "desktop_image_position": "center center",
+        "mobile_image_position": "center center",
+        "horizontal_alignment": "center",
+        "vertical_alignment": "center",
+        "content_width": 60,
+        "background_color": "#ffdd57",
+        "top_subtitle_color": "#06264a",
+        "title_color": "#06264a",
+        "bottom_subtitle_color": "#06264a",
+        "top_subtitle_size": 1,
+        "title_size": 2.6,
+        "bottom_subtitle_size": 1,
+        "mobile_top_subtitle_size": 4,
+        "mobile_title_size": 7,
+        "mobile_bottom_subtitle_size": 4
       }
     },
     "product-grid": {
