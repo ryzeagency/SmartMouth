@@ -341,7 +341,7 @@
         "heading": "How to use:",
         "card_position": "left",
         "card_width": 48,
-        "desktop_background": "shopify://shop_images/how-to-use.webp",
+        "desktop_background": "{{ product.metafields.custom.how_to_use_background_image.value }}",
         "desktop_background_position": "center center",
         "mobile_background_position": "center center",
         "mobile_padding_top": 12,
