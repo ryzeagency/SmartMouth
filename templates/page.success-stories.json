@@ -154,20 +154,40 @@
         "placeholder_background": "#ffffff"
       }
     },
-    "smt_home_revamp_testimonials_cAgdBt": {
+    "smt_home_revamp_testimonials_84iMcA": {
       "type": "smt-home-revamp-testimonials",
       "blocks": {
-        "testimonial_EAi84Y": {
+        "testimonial_f3kDYR": {
           "type": "testimonial",
           "settings": {
             "rating": 5,
-            "quote": "I have been using this product for a week now and I immediately see the difference it has made. I am a very frugal person, but I will spend the money if the the product is worth it. I’m definitely a loyal customer now!",
-            "author": "Elizabeth",
+            "quote": "This is the one mouthwash I’ve ordered over four times, and I’ll keep ordering it. Nothing else has helped my dry mouth or bad breath, especially after meals with onions. I only need to use it in the morning and at night.",
+            "author": "Jennifer",
             "author_label": "Verified User",
             "background_color": "#ffffff"
           }
         },
-        "testimonial_DbLghp": {
+        "testimonial_TfgYF7": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "I’ve been using this mouthwash for 8 months as the last step before bed, and it’s made a huge difference in how clean my mouth feels and my morning breath.",
+            "author": "M. Morency",
+            "author_label": "Verified User",
+            "background_color": "#ffffff"
+          }
+        },
+        "testimonial_BDqQA7": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "I have been using SmartMouth for years now and find it to be the best mouthwash on the market. It is effective for eliminating bacteria and bad breath better than any of the other mouthwashes I have used.",
+            "author": "Amazon Customer",
+            "author_label": "Verified User",
+            "background_color": "#ffffff"
+          }
+        },
+        "testimonial_YAzDNz": {
           "type": "testimonial",
           "settings": {
             "rating": 5,
@@ -177,7 +197,7 @@
             "background_color": "#ffffff"
           }
         },
-        "testimonial_gAdWtK": {
+        "testimonial_GRJj7z": {
           "type": "testimonial",
           "settings": {
             "rating": 5,
@@ -187,7 +207,7 @@
             "background_color": "#ffffff"
           }
         },
-        "testimonial_Jxhe3C": {
+        "testimonial_U7zchJ": {
           "type": "testimonial",
           "settings": {
             "rating": 5,
@@ -199,10 +219,12 @@
         }
       },
       "block_order": [
-        "testimonial_EAi84Y",
-        "testimonial_DbLghp",
-        "testimonial_gAdWtK",
-        "testimonial_Jxhe3C"
+        "testimonial_f3kDYR",
+        "testimonial_TfgYF7",
+        "testimonial_BDqQA7",
+        "testimonial_YAzDNz",
+        "testimonial_GRJj7z",
+        "testimonial_U7zchJ"
       ],
       "name": "What People Are Saying",
       "settings": {
@@ -214,6 +236,7 @@
         "autoplay_interval": 3,
         "card_width": 31,
         "card_gap": 7,
+        "stars_image": "shopify://shop_images/reviews-stars.png",
         "stars_image_width": 11,
         "background_color": "#d1ede7",
         "heading_background": "#205085",
@@ -290,7 +313,7 @@
     "about_numbers_pRPLUF",
     "how_to_video_7MwGVG",
     "how_to_video_GA9ihM",
-    "smt_home_revamp_testimonials_cAgdBt",
+    "smt_home_revamp_testimonials_84iMcA",
     "smt_home_revamp_available_Hdama7"
   ]
 }
