@@ -257,9 +257,10 @@
       ],
       "name": "Available Nationwide",
       "settings": {
-        "background_image": "shopify://shop_images/ChatGPT_Image_Jul_13_2026_04_03_58_PM.webp",
-        "bottle_image": "shopify://shop_images/smartmouth-bottle.webp",
-        "bottle_alt": "SmartMouth Dry Mouth mouthwash",
+        "background_image": "shopify://shop_images/44499131-31fa-415a-b3ed-0cc6b109517d.webp",
+        "background_image_mobile": "shopify://shop_images/ChatGPT_Image_Jul_17_2026_11_34_19_AM.webp",
+        "mobile_content_margin_top": 0,
+        "mobile_content_margin_bottom": 60,
         "heading_prefix": "Available at",
         "heading_accent": "40,000+",
         "heading_suffix": "stores nationwide",
