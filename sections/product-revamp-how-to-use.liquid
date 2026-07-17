@@ -61,7 +61,7 @@
     background-color: var(--product-how-to-background);
     background-image: {% if section.settings.desktop_background != blank %}url('{{ section.settings.desktop_background | image_url: width: 3840 }}'){% else %}none{% endif %};
     background-repeat: no-repeat;
-    background-position: {{ section.settings.desktop_background_position }};
+    background-position: center right;
     background-size: cover;
   }
 
