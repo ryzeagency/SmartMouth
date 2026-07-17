@@ -311,7 +311,7 @@
 
     #shopify-section-{{ section.id }} .hr-available__glass {
       width: 85vw;
-      margin: 0;
+      margin: {{ section.settings.mobile_content_margin_top }}vw 0 {{ section.settings.mobile_content_margin_bottom }}vw;
       overflow: visible;
       border-width: .2vw;
       backdrop-filter: blur(2vw) saturate(115%);
@@ -319,7 +319,7 @@
     }
 
     #shopify-section-{{ section.id }} .hr-available__content {
-      padding: {{ section.settings.mobile_content_padding_top }}vw 7vw {{ section.settings.mobile_content_padding_bottom }}vw;
+      padding: 9vw 7vw;
       text-align: left;
     }
 
@@ -395,27 +395,27 @@
     {
       "type": "header",
       "content": "Mobile content spacing",
-      "info": "Push the content box down or up so it doesn't cover the focal point of the mobile background image."
+      "info": "Moves the whole content box down or up so the mobile background image's focal point stays visible."
     },
     {
       "type": "range",
-      "id": "mobile_content_padding_top",
+      "id": "mobile_content_margin_top",
       "min": 0,
       "max": 120,
       "step": 5,
       "unit": "vw",
-      "label": "Content top padding (mobile)",
+      "label": "Content top margin (mobile)",
       "default": 80
     },
     {
       "type": "range",
-      "id": "mobile_content_padding_bottom",
+      "id": "mobile_content_margin_bottom",
       "min": 0,
       "max": 120,
       "step": 5,
       "unit": "vw",
-      "label": "Content bottom padding (mobile)",
-      "default": 10
+      "label": "Content bottom margin (mobile)",
+      "default": 0
     },
     {
       "type": "header",
