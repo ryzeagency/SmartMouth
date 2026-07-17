@@ -216,29 +216,25 @@
         "benefit_WxdYpE": {
           "type": "benefit",
           "settings": {
-            "heading": "24-hour bad breath protection",
-            "body": "<p>Two rinses a day keeps bad breath away — morning and evening, for all-day confidence.</p>"
+            "body": "{{ product.metafields.custom.what_it_does_1 | metafield_tag }}"
           }
         },
         "benefit_dCU6kG": {
           "type": "benefit",
           "settings": {
-            "heading": "No more morning breath",
-            "body": "<p>SmartMouth’s dual-solution formula stops odor-causing bacteria overnight, so you wake up fresh.</p>"
+            "body": "{{ product.metafields.custom.what_it_does_2 | metafield_tag }}"
           }
         },
         "benefit_XyeAPe": {
           "type": "benefit",
           "settings": {
-            "heading": "Works through coffee, garlic, onions",
-            "body": "<p>Because it blocks sulfur production at the source, not just covers it up temporarily.</p>"
+            "body": "{{ product.metafields.custom.what_it_does_3 | metafield_tag }}"
           }
         },
         "benefit_F7iUny": {
           "type": "benefit",
           "settings": {
-            "heading": "Safe for the whole family",
-            "body": "<p>Alcohol-free, safe for kids 12+ and safe for diabetics. Paraben-free</p>"
+            "body": "{{ product.metafields.custom.what_it_does_4 | metafield_tag }}"
           }
         }
       },
@@ -251,6 +247,7 @@
       "name": "Product What It Does",
       "settings": {
         "heading": "What it does. Who it’s for.",
+        "subheading": "",
         "background_color": "#fbf6e6",
         "card_background": "#ffffff",
         "text_color": "#092847"
