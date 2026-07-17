@@ -833,6 +833,7 @@ product-info .accordion__title {
 
   main#MainContent product-info {
     padding-top: 0;
+    padding-bottom: 0;
 }
 
 main#MainContent product-info .page-width {
