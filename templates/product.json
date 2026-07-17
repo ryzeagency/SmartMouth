@@ -279,6 +279,7 @@
       ],
       "name": "Product Smart-Zinc",
       "settings": {
+        "visibility_collection": "mouthwash",
         "eyebrow": "SMART-ZINC™ TECHNOLOGY",
         "heading": "Sulfur gas is the real cause of",
         "heading_highlight": "bad breath.",
