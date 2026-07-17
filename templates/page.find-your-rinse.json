@@ -22,9 +22,27 @@
       "name": "Blog Page Banner",
       "settings": {
         "desktop_image": "shopify://shop_images/blog-banners.png",
+        "mobile_image": "shopify://shop_images/blog-banners.png",
         "top_subtitle": "",
         "title": "Find Your Rinse",
-        "bottom_subtitle": "Personalized formula finder"
+        "bottom_subtitle": "Personalized formula finder",
+        "desktop_height": 20,
+        "mobile_height": 55,
+        "desktop_image_position": "center center",
+        "mobile_image_position": "center center",
+        "horizontal_alignment": "center",
+        "vertical_alignment": "center",
+        "content_width": 60,
+        "background_color": "#ffdd57",
+        "top_subtitle_color": "#06264a",
+        "title_color": "#06264a",
+        "bottom_subtitle_color": "#06264a",
+        "top_subtitle_size": 1,
+        "title_size": 2.6,
+        "bottom_subtitle_size": 1,
+        "mobile_top_subtitle_size": 4,
+        "mobile_title_size": 6.5,
+        "mobile_bottom_subtitle_size": 3.5
       }
     },
     "find_your_rinse_quiz_wFhbyJ": {
@@ -443,11 +461,6 @@
         "redirect_to_cart": false,
         "bundle_discount_code": "",
         "bundle_discount_percent": 10,
-        "background_color": "#f0f3f5",
-        "accent_color": "#00897b",
-        "accent_dark_color": "#005a52",
-        "accent_light_color": "#e0f5f3",
-        "accent_mid_color": "#b2e0da",
         "padding_top": 60,
         "padding_bottom": 60
       }
