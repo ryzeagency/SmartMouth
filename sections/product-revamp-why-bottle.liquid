@@ -1,3 +1,21 @@
+{%- liquid
+  # Visibility: if a collection is chosen, only show this section when the
+  # current product belongs to it. No collection chosen = always show.
+  assign show_section = true
+  if section.settings.visibility_collection != blank
+    assign show_section = false
+    if product != blank
+      for visibility_check in product.collections
+        if visibility_check.handle == section.settings.visibility_collection.handle
+          assign show_section = true
+          break
+        endif
+      endfor
+    endif
+  endif
+-%}
+
+{%- if show_section -%}
 <section
   class="product-bottle product-bottle--image-{{ section.settings.image_position }}"
   aria-labelledby="ProductBottleHeading-{{ section.id }}"
@@ -251,6 +269,12 @@
     }
   }
 </style>
+{%- elsif request.design_mode -%}
+  <div style="width: 85vw; margin: 1vw auto; padding: 1vw 1.5vw; border: 1px dashed #b0813a; border-radius: .5vw; background: #fff8ec; color: #7a5200; font-family: var(--font-body-family, sans-serif); font-size: 14px; line-height: 1.5;">
+    <strong>"Product Why Bottle" is hidden on this product</strong> — it only shows for products in the
+    "{{ section.settings.visibility_collection.title | escape }}" collection. This notice is only visible in the theme editor.
+  </div>
+{%- endif -%}
 
 {% schema %}
 {
@@ -259,6 +283,16 @@
   "class": "section section-product-revamp-why-bottle",
   "max_blocks": 8,
   "settings": [
+    {
+      "type": "header",
+      "content": "Visibility"
+    },
+    {
+      "type": "collection",
+      "id": "visibility_collection",
+      "label": "Show only for collection",
+      "info": "The section appears only on products that belong to this collection. Leave empty to show on every product."
+    },
     {
       "type": "header",
       "content": "Content"
