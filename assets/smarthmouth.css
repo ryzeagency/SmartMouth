@@ -824,3 +824,11 @@ product-info .accordion__title {
     font-size: 18px;
     font-weight: 500;
 }
+
+@media screen and (max-width: 749px) {
+
+  .list-menu__item {
+    font-size: 3.5vw;
+  }
+
+}
