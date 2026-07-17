@@ -28,7 +28,7 @@
         "title": "{{ collection.title }}",
         "bottom_subtitle": "",
         "desktop_height": 20,
-        "mobile_height": 60,
+        "mobile_height": 50,
         "desktop_image_position": "center center",
         "mobile_image_position": "center center",
         "horizontal_alignment": "center",
