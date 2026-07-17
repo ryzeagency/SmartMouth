@@ -420,32 +420,32 @@
     "smt_home_revamp_testimonials_84iMcA": {
       "type": "smt-home-revamp-testimonials",
       "blocks": {
-        "testimonial_GAtXcw": {
+        "testimonial_f3kDYR": {
           "type": "testimonial",
           "settings": {
             "rating": 5,
-            "quote": "In just 24 hours, I saw a major improvement. Now I feel confident in pursuing my dreams. Your products are truly a lifesaver.",
-            "author": "Nikia",
+            "quote": "This is the one mouthwash I’ve ordered over four times, and I’ll keep ordering it. Nothing else has helped my dry mouth or bad breath, especially after meals with onions. I only need to use it in the morning and at night.",
+            "author": "Jennifer",
             "author_label": "Verified User",
             "background_color": "#ffffff"
           }
         },
-        "testimonial_NAGHM9": {
+        "testimonial_TfgYF7": {
           "type": "testimonial",
           "settings": {
             "rating": 5,
-            "quote": "I love SmartMouth and have been using it for years. As a cigar smoker, it’s important to know that this fantastic mouthwash exists. Now they’ve improved their dispensing system. Awesome family owned company, which I love supporting.",
-            "author": "Alan",
+            "quote": "I’ve been using this mouthwash for 8 months as the last step before bed, and it’s made a huge difference in how clean my mouth feels and my morning breath.",
+            "author": "M. Morency",
             "author_label": "Verified User",
             "background_color": "#ffffff"
           }
         },
-        "testimonial_YdhFeQ": {
+        "testimonial_BDqQA7": {
           "type": "testimonial",
           "settings": {
             "rating": 5,
-            "quote": "You win… I tried to not have fresh breath after rinsing with SmartMouth by eating garlic, onions, fermented beans, pepperoni, and coffee. But my breath was fresh again after an hour of eating those things. I am a fan for life.",
-            "author": "Mika",
+            "quote": "I have been using SmartMouth for years now and find it to be the best mouthwash on the market. It is effective for eliminating bacteria and bad breath better than any of the other mouthwashes I have used.",
+            "author": "Amazon Customer",
             "author_label": "Verified User",
             "background_color": "#ffffff"
           }
@@ -482,9 +482,9 @@
         }
       },
       "block_order": [
-        "testimonial_GAtXcw",
-        "testimonial_NAGHM9",
-        "testimonial_YdhFeQ",
+        "testimonial_f3kDYR",
+        "testimonial_TfgYF7",
+        "testimonial_BDqQA7",
         "testimonial_YAzDNz",
         "testimonial_GRJj7z",
         "testimonial_U7zchJ"
