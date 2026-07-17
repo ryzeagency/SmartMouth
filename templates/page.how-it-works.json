@@ -529,30 +529,50 @@
         "icon_background": "#f2f7fa"
       }
     },
-    "smt_home_revamp_testimonials_eGNnq8": {
+    "smt_home_revamp_testimonials_84iMcA": {
       "type": "smt-home-revamp-testimonials",
       "blocks": {
-        "testimonial_Rx4468": {
+        "testimonial_f3kDYR": {
           "type": "testimonial",
           "settings": {
             "rating": 5,
-            "quote": "I just want to say thank you for this amazing product. For years I have struggled with dry mouth due to my autoimmune disease. In just 24 hours, I saw a major improvement. Now I feel confident in pursuing my dreams. Your products are truly a lifesaver. I will be a customer for life!",
+            "quote": "This is the one mouthwash I’ve ordered over four times, and I’ll keep ordering it. Nothing else has helped my dry mouth or bad breath, especially after meals with onions. I only need to use it in the morning and at night.",
+            "author": "Jennifer",
+            "author_label": "Verified User",
+            "background_color": "#ffffff"
+          }
+        },
+        "testimonial_TfgYF7": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "I’ve been using this mouthwash for 8 months as the last step before bed, and it’s made a huge difference in how clean my mouth feels and my morning breath.",
+            "author": "M. Morency",
+            "author_label": "Verified User",
+            "background_color": "#ffffff"
+          }
+        },
+        "testimonial_BDqQA7": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "I have been using SmartMouth for years now and find it to be the best mouthwash on the market. It is effective for eliminating bacteria and bad breath better than any of the other mouthwashes I have used.",
+            "author": "Amazon Customer",
+            "author_label": "Verified User",
+            "background_color": "#ffffff"
+          }
+        },
+        "testimonial_YAzDNz": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "In just 24 hours, I saw a major improvement. Now I feel confident in pursuing my dreams. Your products are truly a lifesaver.",
             "author": "Nikia",
             "author_label": "Verified User",
             "background_color": "#ffffff"
           }
         },
-        "testimonial_wezjec": {
-          "type": "testimonial",
-          "settings": {
-            "rating": 5,
-            "quote": "I tried SmartMouth oral rinse and was amazed! It made my mouth feel great with no burn or harsh chemical aftertaste. I suffer from bad sinuses and seasonal allergies which create a lot of drainage and leads to unpleasant breath. I have been using this product for a week now and I immediately see the difference it has made. I am a very frugal person, but I will spend the money if the the product is worth it. I’m definitely a loyal customer now!",
-            "author": "Elizabeth",
-            "author_label": "Verified User",
-            "background_color": "#ffffff"
-          }
-        },
-        "testimonial_JbAexh": {
+        "testimonial_GRJj7z": {
           "type": "testimonial",
           "settings": {
             "rating": 5,
@@ -562,7 +582,7 @@
             "background_color": "#ffffff"
           }
         },
-        "testimonial_X3KHYj": {
+        "testimonial_U7zchJ": {
           "type": "testimonial",
           "settings": {
             "rating": 5,
@@ -574,10 +594,12 @@
         }
       },
       "block_order": [
-        "testimonial_Rx4468",
-        "testimonial_wezjec",
-        "testimonial_JbAexh",
-        "testimonial_X3KHYj"
+        "testimonial_f3kDYR",
+        "testimonial_TfgYF7",
+        "testimonial_BDqQA7",
+        "testimonial_YAzDNz",
+        "testimonial_GRJj7z",
+        "testimonial_U7zchJ"
       ],
       "name": "What People Are Saying",
       "settings": {
@@ -591,8 +613,8 @@
         "card_gap": 7,
         "stars_image": "shopify://shop_images/reviews-stars.png",
         "stars_image_width": 11,
-        "background_color": "#e7e5f6",
-        "heading_background": "#5503a7",
+        "background_color": "#d1ede7",
+        "heading_background": "#205085",
         "heading_top_color": "#ffffff",
         "heading_bottom_color": "#a9d7ee",
         "text_color": "#182a4a",
@@ -690,7 +712,7 @@
     "how_to_dual_chamber_CHUNwh",
     "how_to_color_indicator_PWmWXJ",
     "how_to_faq_accordion_JqXBR3",
-    "smt_home_revamp_testimonials_eGNnq8",
+    "smt_home_revamp_testimonials_84iMcA",
     "about_product_standards_mPpk7H",
     "about_find_your_match_izrqrE"
   ]
