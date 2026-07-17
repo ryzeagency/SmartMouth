@@ -14,12 +14,12 @@
       "name": "Blog Page Banner",
       "settings": {
         "desktop_image": "shopify://shop_images/Legal_Pages_banner.png",
-        "mobile_image": "shopify://shop_images/Legal_Pages_banner.png",
+        "mobile_image": "shopify://shop_images/Legal_Pages_banner.webp",
         "top_subtitle": "",
         "title": "{{ page.title }}",
         "bottom_subtitle": "",
         "desktop_height": 20,
-        "mobile_height": 60,
+        "mobile_height": 65,
         "desktop_image_position": "center center",
         "mobile_image_position": "center center",
         "horizontal_alignment": "center",
@@ -33,7 +33,7 @@
         "title_size": 2.6,
         "bottom_subtitle_size": 1,
         "mobile_top_subtitle_size": 4,
-        "mobile_title_size": 9,
+        "mobile_title_size": 6.5,
         "mobile_bottom_subtitle_size": 4
       }
     },
