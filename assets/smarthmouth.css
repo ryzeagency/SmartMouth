@@ -831,4 +831,25 @@ product-info .accordion__title {
       font-size: 3.5vw;
   }
 
+  main#MainContent product-info {
+    padding-top: 0;
+}
+
+main#MainContent product-info .page-width {
+    max-width: 100%;
+    border-ra: 0;
+}
+
+main#MainContent product-info .product__title h1 {
+    font-size: 6vw;
+}
+
+main#MainContent product-info .loop-widget-container {
+    padding: 3vw;
+}
+
+main#MainContent product-info .loop-w-btn-group-purchase-option {
+    padding: 5vw 2.5vw;
+}
+
 } 
