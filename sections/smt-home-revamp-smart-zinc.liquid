@@ -180,8 +180,6 @@
 
   #shopify-section-{{ section.id }} .hr-zinc__virus-float--left {
     animation-name: hr-zinc-float-left-{{ section.id }};
-    animation-duration: 4.8s;
-    animation-delay: .75s;
   }
 
   #shopify-section-{{ section.id }} .hr-zinc__virus-float {
@@ -276,7 +274,7 @@
     }
 
     50% {
-      transform: translate3d(0, -.65vw, 0) rotate(-1.5deg);
+      transform: translate3d(0, .55vw, 0) rotate(-1.5deg);
     }
   }
 
@@ -317,7 +315,8 @@
     }
 
     #shopify-section-{{ section.id }} .hr-zinc__virus-entrance--left {
-      top: 33vw;
+      top: auto;
+      bottom: -6vw;
       right: auto;
       left: -12vw;
       transform: translateX(-16vw);
@@ -370,7 +369,7 @@
       }
 
       50% {
-        transform: translate3d(0, -1.8vw, 0) rotate(-1.5deg);
+        transform: translate3d(0, 1.5vw, 0) rotate(-1.5deg);
       }
     }
   }
