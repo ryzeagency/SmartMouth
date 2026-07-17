@@ -32,12 +32,12 @@
         "mobile_use_image": false,
         "desktop_background": "shopify://shop_images/how-to-smartmouth-img.webp",
         "desktop_background_position": "center center",
-        "mobile_background_position": "center center",
-        "mobile_padding_top": 18,
-        "mobile_padding_bottom": 18,
+        "mobile_background_position": "left center",
+        "mobile_padding_top": 80,
+        "mobile_padding_bottom": 10,
         "background_color": "#0da5e5",
         "card_background": "#22afe8",
-        "card_opacity": 65,
+        "card_opacity": 45,
         "text_color": "#ffffff"
       }
     },
@@ -114,9 +114,9 @@
         "virus_image": "shopify://shop_images/sulfur-virus.webp",
         "show_virus_2": true,
         "virus_image_2": "shopify://shop_images/sulfur-gas0virus.webp",
-        "background_color": "#FFFFFF",
+        "background_color": "#ffffff",
         "text_color": "#062342",
-        "accent_color": "#8FD7CD"
+        "accent_color": "#8fd7cd"
       }
     },
     "how_to_sulfur_gas_CEhCNc": {
