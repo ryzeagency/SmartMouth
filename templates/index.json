@@ -205,6 +205,7 @@
             "heading": "The Problem",
             "lead": "Germs + protein = sulfur gas",
             "body": "<p>Bacteria in your mouth eat protein from saliva and release stinky sulfur gas. That’s bad breath — and normal mouthwash just covers it up.</p>",
+            "full_width": false,
             "background_color": "#bde3dd"
           }
         },
@@ -214,6 +215,7 @@
             "heading": "The Answer",
             "lead": "Zinc ions block the gas at the source",
             "body": "<p>When our two solutions combine, they activate billions of zinc ions that block germs from producing sulfur — preventing bad breath for a full 24 hours.</p>",
+            "full_width": false,
             "background_color": "#cfe2f4"
           }
         }
