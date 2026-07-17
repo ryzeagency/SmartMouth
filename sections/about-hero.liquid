@@ -157,7 +157,7 @@
         background-image: url('{{ section.settings.mobile_background | image_url: width: 1500 }}');
       {% endif %}
       background-position: {{ section.settings.mobile_background_position }};
-      padding: 14vw 0;
+      padding: {{ section.settings.mobile_padding_top }}vw 0 {{ section.settings.mobile_padding_bottom }}vw;
     }
 
     #shopify-section-{{ section.id }} .about-hero__inner {
@@ -369,6 +369,30 @@
       "unit": "vw",
       "label": "Bottom padding",
       "default": 8.5
+    },
+    {
+      "type": "header",
+      "content": "Mobile spacing"
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "vw",
+      "label": "Top padding",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "vw",
+      "label": "Bottom padding",
+      "default": 14
     }
   ],
   "presets": [
