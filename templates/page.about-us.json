@@ -30,15 +30,12 @@
         "image_width": 35,
         "desktop_background": "shopify://shop_images/1793435f-7cd8-45c0-88c8-c8f98a19bc71_1.webp",
         "desktop_background_position": "center center",
-        "mobile_background": "shopify://shop_images/about-us-banner.webp",
         "mobile_background_position": "center center",
         "background_color": "#24588e",
         "text_color": "#ffffff",
         "highlight_color": "#ff7200",
         "padding_top": 7.5,
-        "padding_bottom": 8.5,
-        "mobile_padding_top": 40,
-        "mobile_padding_bottom": 10
+        "padding_bottom": 8.5
       }
     },
     "about_numbers_dDF3zE": {
