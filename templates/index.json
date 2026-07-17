@@ -230,6 +230,8 @@
         "subheading": "Most mouthwashes mask it. SmartMouth eliminates it — for 24 hours — with just 2 rinses.",
         "show_virus": true,
         "virus_image": "shopify://shop_images/sulfur-virus.webp",
+        "show_virus_2": true,
+        "virus_image_2": "shopify://shop_images/sulfur-gas0virus.webp",
         "background_color": "#ffffff",
         "text_color": "#062342",
         "accent_color": "#8fd7cd"
