@@ -304,29 +304,29 @@
         "step_B7fmWJ": {
           "type": "step",
           "settings": {
-            "heading": "",
-            "body": "<p>Open the green cap and pour to the 10mL mark on the provided cup.</p>"
+            "heading": "{{ product.metafields.custom.how_to_use_1.value }}",
+            "body": "{{ product.metafields.custom.how_to_use_1_description | metafield_tag }}"
           }
         },
         "step_twJP7t": {
           "type": "step",
           "settings": {
-            "heading": "Add the Zinc Activator (blue cap)",
-            "body": "<p>Open the blue cap and pour to the 20mL mark in the same cup.</p>"
+            "heading": "{{ product.metafields.custom.how_to_use_2.value }}",
+            "body": "{{ product.metafields.custom.how_to_use_2_description | metafield_tag }}"
           }
         },
         "step_3VDgwD": {
           "type": "step",
           "settings": {
-            "heading": "Swish for 30 seconds",
-            "body": "<p>Rinse thoroughly for 30 seconds. Spit out — do not swallow. Do not eat or drink for 30 minutes after rinsing.</p>"
+            "heading": "{{ product.metafields.custom.how_to_use_3.value }}",
+            "body": "{{ product.metafields.custom.how_to_use_3_description | metafield_tag }}"
           }
         },
         "step_7wgjEN": {
           "type": "step",
           "settings": {
-            "heading": "Repeat twice daily",
-            "body": "<p>Morning and evening. Two rinses a day delivers 24-hour bad breath protection.</p>"
+            "heading": "{{ product.metafields.custom.how_to_use_4.value }}",
+            "body": "{{ product.metafields.custom.how_to_use_4_description | metafield_tag }}"
           }
         }
       },
