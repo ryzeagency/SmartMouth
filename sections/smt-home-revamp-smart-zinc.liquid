@@ -43,6 +43,26 @@
       </div>
     {% endif %}
 
+    {% if section.settings.show_virus_2 %}
+      <div class="hr-zinc__virus-entrance hr-zinc__virus-entrance--left" aria-hidden="true">
+        <div class="hr-zinc__virus-float hr-zinc__virus-float--left">
+          {% if section.settings.virus_image_2 != blank %}
+            {{
+              section.settings.virus_image_2
+              | image_url: width: 800
+              | image_tag:
+                widths: '250, 375, 500, 750, 800',
+                sizes: '(min-width: 750px) 13.0208vw, 32vw',
+                loading: 'lazy',
+                alt: ''
+            }}
+          {% else %}
+            <span class="hr-zinc__virus-fallback"></span>
+          {% endif %}
+        </div>
+      </div>
+    {% endif %}
+
     <div class="hr-zinc__cards" role="list">
       {% for block in section.blocks %}
         <article
@@ -151,6 +171,19 @@
     transform: translateX(0);
   }
 
+  #shopify-section-{{ section.id }} .hr-zinc__virus-entrance--left {
+    top: 1.1vw;
+    right: auto;
+    left: -.35vw;
+    transform: translateX(-5vw);
+  }
+
+  #shopify-section-{{ section.id }} .hr-zinc__virus-float--left {
+    animation-name: hr-zinc-float-left-{{ section.id }};
+    animation-duration: 4.8s;
+    animation-delay: .75s;
+  }
+
   #shopify-section-{{ section.id }} .hr-zinc__virus-float {
     width: 100%;
     aspect-ratio: 1;
@@ -237,6 +270,16 @@
     }
   }
 
+  @keyframes hr-zinc-float-left-{{ section.id }} {
+    0%, 100% {
+      transform: translate3d(0, 0, 0) rotate(0deg);
+    }
+
+    50% {
+      transform: translate3d(0, -.65vw, 0) rotate(-1.5deg);
+    }
+  }
+
   @media screen and (max-width: 749px) {
     #shopify-section-{{ section.id }} {
       --hr-zinc-virus-size: 32vw;
@@ -271,6 +314,13 @@
       top: 40vw;
       right: -12vw;
       transform: translateX(16vw);
+    }
+
+    #shopify-section-{{ section.id }} .hr-zinc__virus-entrance--left {
+      top: 33vw;
+      right: auto;
+      left: -12vw;
+      transform: translateX(-16vw);
     }
 
     #shopify-section-{{ section.id }} .hr-zinc__virus-fallback {
@@ -311,6 +361,16 @@
 
       50% {
         transform: translate3d(0, -1.5vw, 0) rotate(1.5deg);
+      }
+    }
+
+    @keyframes hr-zinc-float-left-{{ section.id }} {
+      0%, 100% {
+        transform: translate3d(0, 0, 0) rotate(0deg);
+      }
+
+      50% {
+        transform: translate3d(0, -1.8vw, 0) rotate(-1.5deg);
       }
     }
   }
@@ -408,6 +468,23 @@
       "type": "image_picker",
       "id": "virus_image",
       "label": "Virus image"
+    },
+    {
+      "type": "header",
+      "content": "Second virus (left side)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_virus_2",
+      "label": "Show second virus image",
+      "default": true,
+      "info": "Enters from the left and floats in the opposite rotation."
+    },
+    {
+      "type": "image_picker",
+      "id": "virus_image_2",
+      "label": "Second virus image",
+      "info": "Leave blank to reuse the built-in fallback artwork."
     },
     {
       "type": "header",
