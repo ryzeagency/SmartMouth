@@ -66,7 +66,7 @@
     <div class="hr-zinc__cards" role="list">
       {% for block in section.blocks %}
         <article
-          class="hr-zinc__card"
+          class="hr-zinc__card{% if block.settings.full_width %} hr-zinc__card--wide{% endif %}"
           style="--card-background: {{ block.settings.background_color }};"
           role="listitem"
           {{ block.shopify_attributes }}
@@ -227,6 +227,14 @@
     padding: 2.15vw;
     background: var(--card-background);
     box-sizing: border-box;
+  }
+
+  #shopify-section-{{ section.id }} .hr-zinc__card--wide {
+    grid-column: 1 / -1;
+  }
+
+  #shopify-section-{{ section.id }} .hr-zinc__card--wide .hr-zinc__card-body {
+    max-width: none;
   }
 
   #shopify-section-{{ section.id }} .hr-zinc__card-heading {
@@ -534,6 +542,13 @@
           "default": "<p>Bacteria in your mouth eat protein from saliva and release stinky sulfur gas. That’s bad breath — and normal mouthwash just covers it up.</p>"
         },
         {
+          "type": "checkbox",
+          "id": "full_width",
+          "label": "Full width",
+          "default": false,
+          "info": "Spans both columns — for a wide card below the pair, like \"Why sulfur gas smells so bad\"."
+        },
+        {
           "type": "color",
           "id": "background_color",
           "label": "Background",
@@ -563,6 +578,16 @@
             "lead": "Zinc ions block the gas at the source",
             "body": "<p>When our two solutions combine, they activate billions of zinc ions that block germs from producing sulfur — preventing bad breath for a full 24 hours.</p>",
             "background_color": "#CFE2F4"
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "heading": "Why sulfur gas smells so bad",
+            "lead": "",
+            "body": "<p>The compounds bacteria produce — specifically hydrogen sulfide and methyl mercaptan — are among the most odorous substances known. Even at concentrations of just a few parts per billion, they’re immediately detectable by the human nose. That’s why bad breath can feel so persistent: the source is microscopic, but the smell is instant.</p>",
+            "background_color": "#F8EFD4",
+            "full_width": true
           }
         }
       ]
