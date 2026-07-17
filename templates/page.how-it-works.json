@@ -65,6 +65,60 @@
         "placeholder_background": "#ffffff"
       }
     },
+    "smt_home_revamp_smart_zinc_XE6wp8": {
+      "type": "smt-home-revamp-smart-zinc",
+      "blocks": {
+        "card_XYLtka": {
+          "type": "card",
+          "settings": {
+            "heading": "The problem",
+            "lead": "Germs + protein = sulfur gas",
+            "body": "<p>Bacteria in your mouth eat protein from saliva and release stinky sulfur gas. That’s bad breath — and normal mouthwash just covers it up.</p>",
+            "full_width": false,
+            "background_color": "#bde3dd"
+          }
+        },
+        "card_zTc4iL": {
+          "type": "card",
+          "settings": {
+            "heading": "The solution",
+            "lead": "Zinc ions block the gas at the source",
+            "body": "<p>When our two solutions combine, they activate billions of zinc ions that block germs from producing sulfur — preventing bad breath for a full 24 hours.</p>",
+            "full_width": false,
+            "background_color": "#cfe2f4"
+          }
+        },
+        "card_KeYCGJ": {
+          "type": "card",
+          "settings": {
+            "heading": "Why sulfur gas smells so bad",
+            "lead": "",
+            "body": "<p>The compounds bacteria produce — specifically hydrogen sulfide and methyl mercaptan — are among the most odorous substances known. Even at concentrations of just a few parts per billion, they’re immediately detectable by the human nose. That’s why bad breath can feel so persistent: the source is microscopic, but the smell is instant.</p>",
+            "full_width": true,
+            "background_color": "#f8efd4"
+          }
+        }
+      },
+      "block_order": [
+        "card_XYLtka",
+        "card_zTc4iL",
+        "card_KeYCGJ"
+      ],
+      "name": "Smart-Zinc Technology",
+      "settings": {
+        "eyebrow": "SMART-ZINC™ TECHNOLOGY",
+        "heading_prefix": "Sulfur gas is the real cause of",
+        "heading_accent": "bad breath.",
+        "subheading": "Most mouthwashes mask it. SmartMouth eliminates it — for 24 hours — with just 2 rinses.",
+        "show_virus": true,
+        "virus_image": "shopify://shop_images/sulfur-virus.webp",
+        "show_virus_2": true,
+        "virus_image_2": "shopify://shop_images/sulfur-gas0virus.webp",
+        "background_color": "#FFFFFF",
+        "text_color": "#062342",
+        "accent_color": "#8FD7CD"
+      }
+    },
     "how_to_sulfur_gas_CEhCNc": {
       "type": "how-to-sulfur-gas",
       "blocks": {
@@ -629,6 +683,7 @@
     "main",
     "how_to_hero_VDxPnf",
     "how_to_video_w3hwrC",
+    "smt_home_revamp_smart_zinc_XE6wp8",
     "how_to_sulfur_gas_CEhCNc",
     "how_to_how_it_works_xkA9MN",
     "how_to_dual_chamber_CHUNwh",
