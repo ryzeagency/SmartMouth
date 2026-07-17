@@ -197,6 +197,7 @@
       ],
       "name": "Product Why Bottle",
       "settings": {
+        "visibility_collection": "mouthwash",
         "eyebrow": "WHY THE BOTTLE LOOKS LIKE THAT",
         "heading": "Two solutions.\nKept separate until\nthe moment you pour.",
         "image": "shopify://shop_images/why-the-bottle.webp",
@@ -400,8 +401,8 @@
       "name": "Available Nationwide",
       "settings": {
         "background_image": "shopify://shop_images/ChatGPT_Image_Jul_13_2026_04_03_58_PM.webp",
-        "bottle_image": "shopify://shop_images/smartmouth-bottle.webp",
-        "bottle_alt": "SmartMouth Dry Mouth mouthwash",
+        "mobile_content_margin_top": 80,
+        "mobile_content_margin_bottom": 0,
         "heading_prefix": "Available at",
         "heading_accent": "40,000+",
         "heading_suffix": "stores nationwide",
