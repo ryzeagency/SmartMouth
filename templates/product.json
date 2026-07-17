@@ -246,8 +246,8 @@
       ],
       "name": "Product What It Does",
       "settings": {
-        "heading": "What it does. Who it’s for.",
-        "subheading": "",
+        "heading": "{{ product.metafields.custom.what_it_does_section_title.value }}",
+        "subheading": "{{ product.metafields.custom.what_it_does_section_subtitle.value }}",
         "background_color": "#fbf6e6",
         "card_background": "#ffffff",
         "text_color": "#092847"
