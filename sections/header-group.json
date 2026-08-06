@@ -23,6 +23,7 @@
         },
         "announcement-bar-0": {
           "type": "announcement",
+          "disabled": true,
           "settings": {
             "text": "FREE SHIPPING ON ORDERS over $50 · SUBSCRIBE & SAVE 10% + NEVER RUN OUT",
             "link": ""
