@@ -14,6 +14,13 @@
     "announcement-bar": {
       "type": "announcement-bar",
       "blocks": {
+        "announcement_Ax3tFW": {
+          "type": "announcement",
+          "settings": {
+            "text": "Fresh Breath Day: 10% Off + Free Shipping, No Minimum — Use Code FRESHBREATH10",
+            "link": ""
+          }
+        },
         "announcement-bar-0": {
           "type": "announcement",
           "settings": {
@@ -23,6 +30,7 @@
         }
       },
       "block_order": [
+        "announcement_Ax3tFW",
         "announcement-bar-0"
       ],
       "settings": {
