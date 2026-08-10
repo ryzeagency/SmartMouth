@@ -166,6 +166,11 @@
           "atc_selector": "",
           "enable_repete_buy_button": "true"
         }
+      },
+      "4637414262065226582": {
+        "type": "shopify://apps/thanhbt-discounts-combine/blocks/thanhbt-discounts-combine/402d53c4-09ba-41ba-bcdd-fc89b3fd4ff4",
+        "disabled": false,
+        "settings": {}
       }
     },
     "color_schemes": {
@@ -193,7 +198,7 @@
       },
       "scheme-3": {
         "settings": {
-          "background": "#ADD2EC",
+          "background": "#add2ec",
           "background_gradient": "",
           "text": "#205085",
           "button": "#ffffff",
