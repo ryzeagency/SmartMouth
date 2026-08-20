@@ -263,7 +263,7 @@
         "standard_dWTmbW": {
           "type": "standard",
           "settings": {
-            "icon": "shopify://shop_images/zero-alcohol.png",
+            "icon": "shopify://shop_images/zero-alcohol-blue.png",
             "icon_width": 5.5,
             "title": "Zero alcohol",
             "description": "No burn, no dryness — in every formula"
@@ -272,7 +272,7 @@
         "standard_P6hBFe": {
           "type": "standard",
           "settings": {
-            "icon": "shopify://shop_images/paraben-free.png",
+            "icon": "shopify://shop_images/paraben-free-blue.png",
             "icon_width": 5.5,
             "title": "Paraben-free",
             "description": "Clean formulas you can use every day"
@@ -281,7 +281,7 @@
         "standard_wipgTt": {
           "type": "standard",
           "settings": {
-            "icon": "shopify://shop_images/safe-for-lids.png",
+            "icon": "shopify://shop_images/safe-for-kids-blue.png",
             "icon_width": 5.5,
             "title": "Safe for kids 12+",
             "description": "Safe for the whole family"
@@ -290,7 +290,7 @@
         "standard_eyzNBc": {
           "type": "standard",
           "settings": {
-            "icon": "shopify://shop_images/dentist-developed.png",
+            "icon": "shopify://shop_images/dentist-developed-blue.png",
             "icon_width": 5.5,
             "title": "Dentist developed",
             "description": "Recommended by dental professionals nationwide"
@@ -306,12 +306,12 @@
       "name": "About Product Standards",
       "settings": {
         "heading": "Every SmartMouth product. Every time.",
-        "background_color": "#24588e",
-        "text_color": "#ffffff",
-        "heading_background": "#8dd4ca",
+        "background_color": "#E5F6F2",
+        "text_color": "#205085",
+        "heading_background": "#205085",
         "heading_color": "#ffffff"
       }
-    },
+    }
   },
   "order": [
     "smt_home_revamp_hero_WND8LW",
