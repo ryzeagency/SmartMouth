@@ -256,12 +256,68 @@
         "border_color": "#205085",
         "star_color": "#ffb400"
       }
-    }
+    },
+    "about_product_standards_iPY39d": {
+      "type": "about-product-standards",
+      "blocks": {
+        "standard_dWTmbW": {
+          "type": "standard",
+          "settings": {
+            "icon": "shopify://shop_images/zero-alcohol.png",
+            "icon_width": 5.5,
+            "title": "Zero alcohol",
+            "description": "No burn, no dryness — in every formula"
+          }
+        },
+        "standard_P6hBFe": {
+          "type": "standard",
+          "settings": {
+            "icon": "shopify://shop_images/paraben-free.png",
+            "icon_width": 5.5,
+            "title": "Paraben-free",
+            "description": "Clean formulas you can use every day"
+          }
+        },
+        "standard_wipgTt": {
+          "type": "standard",
+          "settings": {
+            "icon": "shopify://shop_images/safe-for-lids.png",
+            "icon_width": 5.5,
+            "title": "Safe for kids 12+",
+            "description": "Safe for the whole family"
+          }
+        },
+        "standard_eyzNBc": {
+          "type": "standard",
+          "settings": {
+            "icon": "shopify://shop_images/dentist-developed.png",
+            "icon_width": 5.5,
+            "title": "Dentist developed",
+            "description": "Recommended by dental professionals nationwide"
+          }
+        }
+      },
+      "block_order": [
+        "standard_dWTmbW",
+        "standard_P6hBFe",
+        "standard_wipgTt",
+        "standard_eyzNBc"
+      ],
+      "name": "About Product Standards",
+      "settings": {
+        "heading": "Every SmartMouth product. Every time.",
+        "background_color": "#24588e",
+        "text_color": "#ffffff",
+        "heading_background": "#8dd4ca",
+        "heading_color": "#ffffff"
+      }
+    },
   },
   "order": [
     "smt_home_revamp_hero_WND8LW",
     "smt_home_revamp_smart_zinc_gYfGTQ",
     "smt_home_revamp_how_smartmouth_works_Yawt8z",
-    "smt_home_revamp_testimonials_84iMcA"
+    "smt_home_revamp_testimonials_84iMcA",
+    "about_product_standards_iPY39d"
   ]
 }
