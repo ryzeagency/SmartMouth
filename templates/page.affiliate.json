@@ -201,6 +201,82 @@
         "button_text_color": "#ffffff"
       }
     },
+    "smt_home_revamp_reason_to_pour_ifexUk": {
+      "type": "smt-home-revamp-reason-to-pour",
+      "blocks": {
+        "product_WLddqt": {
+          "type": "product",
+          "settings": {
+            "product": "smartmouthtm-original-activated-mouthwash-16oz",
+            "image": "shopify://shop_images/reason-to-pour-original.webp",
+            "custom_title": "SmartMouth™ Original Liposomal Evening Mouthwash",
+            "custom_link": "https://smartmouth.com/collections/all?sort_by=manual&filter.p.m.custom.benefits_filter=24HR+Bad+Breath+Prevention&filter.v.price.gte=&filter.v.price.lte=",
+            "badge_text": "BAD BREATH",
+            "badge_color": "#008244",
+            "badge_text_color": "#ffffff",
+            "fallback_card": "1"
+          }
+        },
+        "product_DTcrYL": {
+          "type": "product",
+          "settings": {
+            "product": "smartmouthtm-dry-mouth-activated-mouthwash-16oz",
+            "image": "shopify://shop_images/bedb46dd-11db-400b-ada4-fead8e117f1f.webp",
+            "custom_title": "SmartMouth™ Dry Mouth Activated Mouthwash",
+            "custom_link": "https://smartmouth.com/collections/all?sort_by=manual&filter.p.m.custom.benefits_filter=Dry+Mouth+Support&filter.v.price.gte=&filter.v.price.lte=",
+            "badge_text": "DRY MOUTH",
+            "badge_color": "#5e00b8",
+            "badge_text_color": "#ffffff",
+            "fallback_card": "2"
+          }
+        },
+        "product_FKjHkm": {
+          "type": "product",
+          "settings": {
+            "product": "smartmouthtm-clinical-activated-mouthwash-16oz",
+            "image": "shopify://shop_images/CLINICAL_SMT.png",
+            "custom_title": "SmartMouth™ Clinical Activated Mouthwash",
+            "custom_link": "https://smartmouth.com/collections/all?sort_by=manual&filter.p.m.custom.benefits_filter=Anti-Gingivitis+%26+Anti-Plaque&filter.p.m.custom.benefits_filter=Canker+%26+Mouth+Sore+Relief&filter.p.m.custom.benefits_filter=Cavity+Protection&filter.v.price.gte=&filter.v.price.lte=",
+            "badge_text": "ORAL HEALTH",
+            "badge_color": "#245a8d",
+            "badge_text_color": "#ffffff",
+            "fallback_card": "3"
+          }
+        },
+        "product_hpYPVi": {
+          "type": "product",
+          "settings": {
+            "product": "smartmouthtm-advanced-liposomal-evening-mouthwash-16oz",
+            "image": "shopify://shop_images/VIT_C.png",
+            "custom_title": "SmartMouth™ Advanced Liposomal Evening Mouthwash",
+            "custom_link": "https://smartmouth.com/collections/all?sort_by=manual&filter.p.m.custom.benefits_filter=Advanced+Liposomal+Technology&filter.v.price.gte=&filter.v.price.lte=",
+            "badge_text": "New",
+            "badge_color": "#ff7701",
+            "badge_text_color": "#ffffff",
+            "fallback_card": "4"
+          }
+        }
+      },
+      "block_order": [
+        "product_WLddqt",
+        "product_DTcrYL",
+        "product_FKjHkm",
+        "product_hpYPVi"
+      ],
+      "name": "Reason to Pour",
+      "settings": {
+        "heading_prefix": "What’s your",
+        "heading_accent": "reason",
+        "heading_suffix": "to pour?",
+        "heading": "What’s your reason to pour?",
+        "button_label": "SHOP ALL PRODUCTS",
+        "button_link": "shopify://collections/all",
+        "background_color": "#ffffff",
+        "text_color": "#062342",
+        "accent_color": "#8fd7cd",
+        "link_color": "#1f568d"
+      }
+    },
     "smt_home_revamp_testimonials_84iMcA": {
       "type": "smt-home-revamp-testimonials",
       "blocks": {
@@ -355,6 +431,7 @@
     "affiliate_verified_creators_jyBbKU",
     "smt_home_revamp_smart_zinc_gYfGTQ",
     "smt_home_revamp_how_smartmouth_works_Yawt8z",
+    "smt_home_revamp_reason_to_pour_ifexUk",
     "smt_home_revamp_testimonials_84iMcA",
     "about_product_standards_iPY39d"
   ]
