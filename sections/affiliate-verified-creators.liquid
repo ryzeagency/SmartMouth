@@ -151,28 +151,32 @@
   }
 
   #shopify-section-{{ section.id }} .hr-creators__main {
-    display: grid;
-    grid-template-columns: 60.41667vw minmax(0, 1fr);
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: flex-start;
     gap: 2.5vw;
-    align-items: start;
   }
 
   #shopify-section-{{ section.id }} .hr-creators__card {
-    position: relative;
-    min-width: 0;
+    display: flex;
+    flex: 0 0 60.41667vw;
+    align-items: flex-end;
+    box-sizing: border-box;
+    width: 60.41667vw;
     height: 18.125vw;
+    margin: 0;
+    padding: 0;
     background: var(--hr-creators-card);
     border-radius: 1.5625vw;
     box-shadow: 0 .35vw 1.05vw rgba(6, 35, 66, .08);
   }
 
   #shopify-section-{{ section.id }} .hr-creators__portrait {
-    position: absolute;
-    bottom: 0;
-    left: 1.5vw;
-    z-index: 2;
+    flex: 0 0 21.25vw;
+    box-sizing: border-box;
     width: 21.25vw;
     height: 24.63542vw;
+    margin: 0 0 0 1.5vw;
     overflow: hidden;
     pointer-events: none;
   }
@@ -189,19 +193,18 @@
   }
 
   #shopify-section-{{ section.id }} .hr-creators__portrait--fallback .hr-creators__portrait-fallback {
-    position: absolute;
-    top: -4.32292vw;
-    left: -3.28125vw;
     width: 100vw;
     max-width: none;
     height: auto;
+    margin: -4.32292vw 0 0 -3.28125vw;
   }
 
   #shopify-section-{{ section.id }} .hr-creators__testimonial {
-    position: relative;
-    z-index: 3;
+    flex: 0 0 34.8vw;
+    align-self: flex-start;
+    box-sizing: border-box;
     width: 34.8vw;
-    margin: 0 0 0 22.55vw;
+    margin: 0 0 0 -.2vw;
     padding-top: 3.45vw;
   }
 
@@ -266,7 +269,9 @@
   }
 
   #shopify-section-{{ section.id }} .hr-creators__intro {
-    min-width: 0;
+    flex: 0 0 30.52083vw;
+    box-sizing: border-box;
+    width: 30.52083vw;
     padding-top: 2.55vw;
     text-align: center;
   }
@@ -300,20 +305,11 @@
   }
 
   #shopify-section-{{ section.id }} .hr-creators__heading-accent {
-    position: relative;
-    z-index: 0;
     display: inline-block;
-  }
-
-  #shopify-section-{{ section.id }} .hr-creators__heading-accent::after {
-    content: '';
-    position: absolute;
-    right: -.06em;
-    bottom: .02em;
-    left: -.06em;
-    z-index: -1;
-    height: .2em;
-    background: var(--hr-creators-mint);
+    background-image: linear-gradient(var(--hr-creators-mint), var(--hr-creators-mint));
+    background-repeat: no-repeat;
+    background-size: calc(100% + .12em) .2em;
+    background-position: left -.06em bottom .02em;
   }
 
   #shopify-section-{{ section.id }} .hr-creators__subheading {
@@ -340,10 +336,12 @@
   }
 
   #shopify-section-{{ section.id }} .hr-creators__cta-wrap--orange {
+    flex: 0 0 31.5vw;
     width: 31.5vw;
   }
 
   #shopify-section-{{ section.id }} .hr-creators__cta-wrap--mint {
+    flex: 0 0 26.8vw;
     width: 26.8vw;
   }
 
@@ -399,31 +397,36 @@
     }
 
     #shopify-section-{{ section.id }} .hr-creators__main {
-      display: block;
+      flex-direction: column;
+      gap: 0;
     }
 
     #shopify-section-{{ section.id }} .hr-creators__card {
+      flex: 0 0 auto;
+      flex-direction: column;
+      align-items: stretch;
+      width: 100%;
       height: auto;
       min-height: 0;
-      padding: 60vw 6vw 8vw;
+      padding: 0 6vw 8vw;
       border-radius: 5vw;
     }
 
     #shopify-section-{{ section.id }} .hr-creators__portrait {
-      top: -25vw;
-      left: 50%;
+      flex: 0 0 auto;
       width: 70vw;
       height: 85vw;
-      transform: translateX(-50%);
+      margin: -25vw auto 0;
     }
 
     #shopify-section-{{ section.id }} .hr-creators__portrait--fallback .hr-creators__portrait-fallback {
-      top: -14.9vw;
-      left: -11.5vw;
       width: 345vw;
+      margin: -14.9vw 0 0 -11.5vw;
     }
 
     #shopify-section-{{ section.id }} .hr-creators__testimonial {
+      flex: 0 0 auto;
+      align-self: stretch;
       width: auto;
       margin: 0;
       padding: 0;
@@ -460,6 +463,8 @@
     }
 
     #shopify-section-{{ section.id }} .hr-creators__intro {
+      flex: 0 0 auto;
+      width: auto;
       margin-top: 12vw;
       padding: 0;
     }
@@ -489,6 +494,7 @@
 
     #shopify-section-{{ section.id }} .hr-creators__cta-wrap--orange,
     #shopify-section-{{ section.id }} .hr-creators__cta-wrap--mint {
+      flex: 0 0 auto;
       width: 100%;
     }
 
@@ -729,17 +735,3 @@
   ]
 }
 {% endschema %}
-
-{% comment %}
-  The supplied 1920px mockup is used only as the fallback crop for the creator/product
-  image because no isolated portrait asset was attached. Replacing Creator image in the
-  Theme Editor will use that image while preserving the layout.
-
-  The supplied text attachments contain existing Home Revamp section code rather than literal
-  style.css/base.css files, so this section reuses the same theme font variables, button class,
-  and preset conventions visible in those files.
-
-  Theme typography and Home Revamp preset conventions follow the supplied section files:
-  :contentReference[oaicite:0]{index=0}
-  :contentReference[oaicite:1]{index=1}
-{% endcomment %}
