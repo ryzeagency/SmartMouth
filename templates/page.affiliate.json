@@ -36,6 +36,60 @@
         "button_color": "#ff7600"
       }
     },
+    "affiliate_verified_creators_jyBbKU": {
+      "type": "affiliate-verified-creators",
+      "blocks": {
+        "cta_UUNrLY": {
+          "type": "cta",
+          "settings": {
+            "style": "orange",
+            "strong_text": "10% OFF + FREE SHIPPING →",
+            "regular_text": "USE CODE XXX",
+            "link": "",
+            "aria_label": "Use creator discount code"
+          }
+        },
+        "cta_gTRCmQ": {
+          "type": "cta",
+          "settings": {
+            "style": "mint",
+            "strong_text": "SHOP [AFFILIATE NAME]’S PICKS →",
+            "regular_text": "",
+            "link": "",
+            "aria_label": "Shop affiliate picks"
+          }
+        }
+      },
+      "block_order": [
+        "cta_UUNrLY",
+        "cta_gTRCmQ"
+      ],
+      "name": "Affiliate Verified Creators",
+      "settings": {
+        "creator_image": "shopify://shop_images/affiliate-image.webp",
+        "image_alt": "Lifestyle creator holding SmartMouth mouthwash",
+        "quote_line_1": "“I used to worry about bad breath.",
+        "quote_line_2_before": "SmartMouth gives me",
+        "quote_line_2_accent": "24-hour confidence",
+        "quote_line_3": "with just two rinses a day.”",
+        "username": "@username",
+        "creator_role": "LIFESTYLE CREATOR",
+        "eyebrow": "VERIFIED INFLUENCERS. REAL RESULTS.",
+        "heading_line_1": "Trusted by creators",
+        "heading_line_2_prefix": "who",
+        "heading_line_2_accent": "don’t settle.",
+        "subheading_line_1": "They put SmartMouth to the test - and made it their",
+        "subheading_line_2": "everyday essential for all-day confidence.",
+        "background_color": "#FFFFFF",
+        "card_background": "#FAF4E3",
+        "text_color": "#082440",
+        "accent_color": "#8FD4C9",
+        "pill_background": "#D2EEE7",
+        "orange_color": "#FF7800",
+        "orange_text_color": "#FFFFFF",
+        "mint_text_color": "#082440"
+      }
+    },
     "smt_home_revamp_smart_zinc_gYfGTQ": {
       "type": "smt-home-revamp-smart-zinc",
       "blocks": {
@@ -306,7 +360,7 @@
       "name": "About Product Standards",
       "settings": {
         "heading": "Every SmartMouth product. Every time.",
-        "background_color": "#E5F6F2",
+        "background_color": "#e5f6f2",
         "text_color": "#205085",
         "heading_background": "#205085",
         "heading_color": "#ffffff"
@@ -315,6 +369,7 @@
   },
   "order": [
     "smt_home_revamp_hero_WND8LW",
+    "affiliate_verified_creators_jyBbKU",
     "smt_home_revamp_smart_zinc_gYfGTQ",
     "smt_home_revamp_how_smartmouth_works_Yawt8z",
     "smt_home_revamp_testimonials_84iMcA",
