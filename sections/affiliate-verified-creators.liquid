@@ -1,132 +1,131 @@
-<section
-  class="hr-creators"
-  aria-labelledby="CreatorsHeading-{{ section.id }}"
->
-  <div class="hr-creators__main">
-    <article class="hr-creators__card">
-      <div class="hr-creators__portrait{% if section.settings.creator_image == blank %} hr-creators__portrait--fallback{% endif %}">
-        {% if section.settings.creator_image != blank %}
-          {{
-            section.settings.creator_image
-            | image_url: width: 900
-            | image_tag:
-              widths: '320, 480, 640, 750, 900',
-              sizes: '(min-width: 750px) 21.2vw, 70vw',
-              loading: 'lazy',
-              class: 'hr-creators__portrait-image',
-              alt: section.settings.image_alt
-          }}
-        {% else %}
-          <img
-            class="hr-creators__portrait-image hr-creators__portrait-fallback"
-            src="{{ '126abc55-6280-4cec-b2d8-4e12574cf277.png' | asset_url }}"
-            alt="{{ section.settings.image_alt | escape }}"
-            width="1920"
-            height="800"
-            loading="lazy"
-          >
-        {% endif %}
-      </div>
-
-      <figure class="hr-creators__testimonial">
-        <blockquote class="hr-creators__quote">
-          {% if section.settings.quote_line_1 != blank %}
-            <span class="hr-creators__quote-line">{{ section.settings.quote_line_1 | escape }}</span>
+<section class="hr-creators">
+  <div class="hr-creators__inner" aria-labelledby="CreatorsHeading-{{ section.id }}">
+    <div class="hr-creators__main">
+      <article class="hr-creators__card">
+        <div class="hr-creators__portrait{% if section.settings.creator_image == blank %} hr-creators__portrait--fallback{% endif %}">
+          {% if section.settings.creator_image != blank %}
+            {{
+              section.settings.creator_image
+              | image_url: width: 900
+              | image_tag:
+                widths: '320, 480, 640, 750, 900',
+                sizes: '(min-width: 750px) 21.2vw, 70vw',
+                loading: 'lazy',
+                class: 'hr-creators__portrait-image',
+                alt: section.settings.image_alt
+            }}
+          {% else %}
+            <img
+              class="hr-creators__portrait-image hr-creators__portrait-fallback"
+              src="{{ '126abc55-6280-4cec-b2d8-4e12574cf277.png' | asset_url }}"
+              alt="{{ section.settings.image_alt | escape }}"
+              width="1920"
+              height="800"
+              loading="lazy"
+            >
           {% endif %}
+        </div>
 
-          {% if section.settings.quote_line_2_before != blank or section.settings.quote_line_2_accent != blank %}
-            <span class="hr-creators__quote-line">
-              {{ section.settings.quote_line_2_before | escape }}{% if section.settings.quote_line_2_before != blank and section.settings.quote_line_2_accent != blank %} {% endif %}<span class="hr-creators__quote-accent">{{ section.settings.quote_line_2_accent | escape }}</span>
-            </span>
-          {% endif %}
-
-          {% if section.settings.quote_line_3 != blank %}
-            <span class="hr-creators__quote-line">{{ section.settings.quote_line_3 | escape }}</span>
-          {% endif %}
-        </blockquote>
-
-        {% if section.settings.username != blank or section.settings.creator_role != blank %}
-          <figcaption class="hr-creators__creator">
-            {% if section.settings.username != blank %}
-              <span class="hr-creators__username">{{ section.settings.username | escape }}</span>
+        <figure class="hr-creators__testimonial">
+          <blockquote class="hr-creators__quote">
+            {% if section.settings.quote_line_1 != blank %}
+              <span class="hr-creators__quote-line">{{ section.settings.quote_line_1 | escape }}</span>
             {% endif %}
-            {% if section.settings.creator_role != blank %}
-              <span class="hr-creators__role">{{ section.settings.creator_role | escape }}</span>
-            {% endif %}
-          </figcaption>
-        {% endif %}
-      </figure>
-    </article>
 
-    <header class="hr-creators__intro">
-      {% if section.settings.eyebrow != blank %}
-        <p class="hr-creators__eyebrow">{{ section.settings.eyebrow | escape }}</p>
-      {% endif %}
-
-      {% if section.settings.heading_line_1 != blank or section.settings.heading_line_2_prefix != blank or section.settings.heading_line_2_accent != blank %}
-        <h2 class="hr-creators__heading" id="CreatorsHeading-{{ section.id }}">
-          {% if section.settings.heading_line_1 != blank %}
-            <span class="hr-creators__heading-line">{{ section.settings.heading_line_1 | escape }}</span>
-          {% endif %}
-
-          {% if section.settings.heading_line_2_prefix != blank or section.settings.heading_line_2_accent != blank %}
-            <span class="hr-creators__heading-line">
-              {{ section.settings.heading_line_2_prefix | escape }}{% if section.settings.heading_line_2_prefix != blank and section.settings.heading_line_2_accent != blank %} {% endif %}<span class="hr-creators__heading-accent">{{ section.settings.heading_line_2_accent | escape }}</span>
-            </span>
-          {% endif %}
-        </h2>
-      {% endif %}
-
-      {% if section.settings.subheading_line_1 != blank or section.settings.subheading_line_2 != blank %}
-        <p class="hr-creators__subheading">
-          {% if section.settings.subheading_line_1 != blank %}
-            <span>{{ section.settings.subheading_line_1 | escape }}</span>
-          {% endif %}
-          {% if section.settings.subheading_line_2 != blank %}
-            <span>{{ section.settings.subheading_line_2 | escape }}</span>
-          {% endif %}
-        </p>
-      {% endif %}
-    </header>
-  </div>
-
-  {% if section.blocks.size > 0 %}
-    <div class="hr-creators__ctas" aria-label="Creator offers">
-      {% for block in section.blocks %}
-        {% if block.type == 'cta' %}
-          <div
-            class="hr-creators__cta-wrap hr-creators__cta-wrap--{{ block.settings.style }}"
-            {{ block.shopify_attributes }}
-          >
-            {% capture cta_content %}
-              {% if block.settings.strong_text != blank %}
-                <strong>{{ block.settings.strong_text | escape }}</strong>
-              {% endif %}
-              {% if block.settings.regular_text != blank %}
-                <span>{{ block.settings.regular_text | escape }}</span>
-              {% endif %}
-            {% endcapture %}
-
-            {% if block.settings.link != blank %}
-              <a
-                class="button hr-creators__cta hr-creators__cta--{{ block.settings.style }}"
-                href="{{ block.settings.link }}"
-                {% if block.settings.aria_label != blank %}
-                  aria-label="{{ block.settings.aria_label | escape }}"
-                {% endif %}
-              >
-                {{ cta_content }}
-              </a>
-            {% else %}
-              <span class="button hr-creators__cta hr-creators__cta--{{ block.settings.style }}">
-                {{ cta_content }}
+            {% if section.settings.quote_line_2_before != blank or section.settings.quote_line_2_accent != blank %}
+              <span class="hr-creators__quote-line">
+                {{ section.settings.quote_line_2_before | escape }}{% if section.settings.quote_line_2_before != blank and section.settings.quote_line_2_accent != blank %} {% endif %}<span class="hr-creators__quote-accent">{{ section.settings.quote_line_2_accent | escape }}</span>
               </span>
             {% endif %}
-          </div>
+
+            {% if section.settings.quote_line_3 != blank %}
+              <span class="hr-creators__quote-line">{{ section.settings.quote_line_3 | escape }}</span>
+            {% endif %}
+          </blockquote>
+
+          {% if section.settings.username != blank or section.settings.creator_role != blank %}
+            <figcaption class="hr-creators__creator">
+              {% if section.settings.username != blank %}
+                <span class="hr-creators__username">{{ section.settings.username | escape }}</span>
+              {% endif %}
+              {% if section.settings.creator_role != blank %}
+                <span class="hr-creators__role">{{ section.settings.creator_role | escape }}</span>
+              {% endif %}
+            </figcaption>
+          {% endif %}
+        </figure>
+      </article>
+
+      <header class="hr-creators__intro">
+        {% if section.settings.eyebrow != blank %}
+          <p class="hr-creators__eyebrow">{{ section.settings.eyebrow | escape }}</p>
         {% endif %}
-      {% endfor %}
+
+        {% if section.settings.heading_line_1 != blank or section.settings.heading_line_2_prefix != blank or section.settings.heading_line_2_accent != blank %}
+          <h2 class="hr-creators__heading" id="CreatorsHeading-{{ section.id }}">
+            {% if section.settings.heading_line_1 != blank %}
+              <span class="hr-creators__heading-line">{{ section.settings.heading_line_1 | escape }}</span>
+            {% endif %}
+
+            {% if section.settings.heading_line_2_prefix != blank or section.settings.heading_line_2_accent != blank %}
+              <span class="hr-creators__heading-line">
+                {{ section.settings.heading_line_2_prefix | escape }}{% if section.settings.heading_line_2_prefix != blank and section.settings.heading_line_2_accent != blank %} {% endif %}<span class="hr-creators__heading-accent">{{ section.settings.heading_line_2_accent | escape }}</span>
+              </span>
+            {% endif %}
+          </h2>
+        {% endif %}
+
+        {% if section.settings.subheading_line_1 != blank or section.settings.subheading_line_2 != blank %}
+          <p class="hr-creators__subheading">
+            {% if section.settings.subheading_line_1 != blank %}
+              <span>{{ section.settings.subheading_line_1 | escape }}</span>
+            {% endif %}
+            {% if section.settings.subheading_line_2 != blank %}
+              <span>{{ section.settings.subheading_line_2 | escape }}</span>
+            {% endif %}
+          </p>
+        {% endif %}
+      </header>
     </div>
-  {% endif %}
+
+    {% if section.blocks.size > 0 %}
+      <div class="hr-creators__ctas" aria-label="Creator offers">
+        {% for block in section.blocks %}
+          {% if block.type == 'cta' %}
+            <div
+              class="hr-creators__cta-wrap hr-creators__cta-wrap--{{ block.settings.style }}"
+              {{ block.shopify_attributes }}
+            >
+              {% capture cta_content %}
+                {% if block.settings.strong_text != blank %}
+                  <strong>{{ block.settings.strong_text | escape }}</strong>
+                {% endif %}
+                {% if block.settings.regular_text != blank %}
+                  <span>{{ block.settings.regular_text | escape }}</span>
+                {% endif %}
+              {% endcapture %}
+
+              {% if block.settings.link != blank %}
+                <a
+                  class="button hr-creators__cta hr-creators__cta--{{ block.settings.style }}"
+                  href="{{ block.settings.link }}"
+                  {% if block.settings.aria_label != blank %}
+                    aria-label="{{ block.settings.aria_label | escape }}"
+                  {% endif %}
+                >
+                  {{ cta_content }}
+                </a>
+              {% else %}
+                <span class="button hr-creators__cta hr-creators__cta--{{ block.settings.style }}">
+                  {{ cta_content }}
+                </span>
+              {% endif %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
 </section>
 
 <style>
@@ -139,44 +138,69 @@
     --hr-creators-orange: {{ section.settings.orange_color }};
     --hr-creators-orange-text: {{ section.settings.orange_text_color }};
     --hr-creators-mint-text: {{ section.settings.mint_text_color }};
+
+    overflow: hidden;
+    background: var(--hr-creators-background);
   }
 
+  /* The container. Every unit below is cqw = 1% of THIS box, not the viewport. */
   #shopify-section-{{ section.id }} .hr-creators {
+    container-type: inline-size;
+    container-name: hr-creators;
     box-sizing: border-box;
-    overflow: hidden;
     width: 100%;
-    padding: 10.78125vw 3.28125vw 5.72917vw;
+    max-width: {{ section.settings.content_width }}%;
+    margin-inline: auto;
     color: var(--hr-creators-text);
-    background: var(--hr-creators-background);
+  }
+
+  #shopify-section-{{ section.id }} .hr-creators__inner {
+    /* Layout tokens - change these, everything else recalculates */
+    --hr-pad-x: 3.28125cqw;
+    --hr-pad-top: 10.78125cqw;
+    --hr-pad-bottom: 5.72917cqw;
+    --hr-col-gap: 2.5cqw;
+    --hr-card-w: 60.41667cqw;
+    --hr-card-h: 18.125cqw;
+    --hr-card-radius: 1.5625cqw;
+    --hr-portrait-w: 21.25cqw;
+    --hr-portrait-h: 24.63542cqw;
+    --hr-portrait-x: 1.5cqw;
+    --hr-quote-overlap: .2cqw;
+    --hr-quote-end-gap: 3.06667cqw;
+
+    box-sizing: border-box;
+    width: 100%;
+    padding: var(--hr-pad-top) var(--hr-pad-x) var(--hr-pad-bottom);
   }
 
   #shopify-section-{{ section.id }} .hr-creators__main {
     display: flex;
     flex-wrap: nowrap;
     align-items: flex-start;
-    gap: 2.5vw;
+    gap: var(--hr-col-gap);
   }
 
   #shopify-section-{{ section.id }} .hr-creators__card {
     display: flex;
-    flex: 0 0 60.41667vw;
+    flex: 0 0 var(--hr-card-w);
     align-items: flex-end;
     box-sizing: border-box;
-    width: 60.41667vw;
-    height: 18.125vw;
+    width: var(--hr-card-w);
+    height: var(--hr-card-h);
     margin: 0;
     padding: 0;
     background: var(--hr-creators-card);
-    border-radius: 1.5625vw;
-    box-shadow: 0 .35vw 1.05vw rgba(6, 35, 66, .08);
+    border-radius: var(--hr-card-radius);
+    box-shadow: 0 .35cqw 1.05cqw rgba(6, 35, 66, .08);
   }
 
   #shopify-section-{{ section.id }} .hr-creators__portrait {
-    flex: 0 0 21.25vw;
+    flex: 0 0 var(--hr-portrait-w);
     box-sizing: border-box;
-    width: 21.25vw;
-    height: 24.63542vw;
-    margin: 0 0 0 1.5vw;
+    width: var(--hr-portrait-w);
+    height: var(--hr-portrait-h);
+    margin: 0 0 0 var(--hr-portrait-x);
     overflow: hidden;
     pointer-events: none;
   }
@@ -193,19 +217,21 @@
   }
 
   #shopify-section-{{ section.id }} .hr-creators__portrait--fallback .hr-creators__portrait-fallback {
-    width: 100vw;
+    width: 100cqw;
     max-width: none;
     height: auto;
-    margin: -4.32292vw 0 0 -3.28125vw;
+    margin: -4.32292cqw 0 0 calc(var(--hr-pad-x) * -1);
   }
 
+  /* Takes whatever the portrait leaves behind - never fights it for space */
   #shopify-section-{{ section.id }} .hr-creators__testimonial {
-    flex: 0 0 34.8vw;
+    flex: 1 1 auto;
     align-self: flex-start;
     box-sizing: border-box;
-    width: 34.8vw;
-    margin: 0 0 0 -.2vw;
-    padding-top: 3.45vw;
+    min-width: 0;
+    margin: 0 0 0 calc(var(--hr-quote-overlap) * -1);
+    padding-top: 3.45cqw;
+    padding-right: var(--hr-quote-end-gap);
   }
 
   #shopify-section-{{ section.id }} .hr-creators__quote {
@@ -213,7 +239,7 @@
     padding: 0;
     color: inherit;
     font-family: var(--font-heading-family);
-    font-size: 1.61vw;
+    font-size: 1.61cqw;
     font-style: var(--font-heading-style);
     font-weight: var(--font-heading-weight);
     letter-spacing: 0;
@@ -234,33 +260,33 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-top: 1.62vw;
-    margin-left: -.9vw;
+    margin-top: 1.62cqw;
+    margin-left: -.9cqw;
   }
 
   #shopify-section-{{ section.id }} .hr-creators__username {
     display: inline-flex;
     align-items: center;
     justify-content: flex-start;
-    min-width: 9.65vw;
-    min-height: 2.35vw;
-    padding: .25vw .95vw;
+    min-width: 9.65cqw;
+    min-height: 2.35cqw;
+    padding: .25cqw .95cqw;
     color: var(--hr-creators-text);
     background: var(--hr-creators-pill);
-    border-radius: 2vw;
+    border-radius: 2cqw;
     box-sizing: border-box;
     font-family: var(--font-heading-family);
-    font-size: 1.04vw;
+    font-size: 1.04cqw;
     font-style: var(--font-heading-style);
     font-weight: var(--font-heading-weight);
     line-height: 1;
   }
 
   #shopify-section-{{ section.id }} .hr-creators__role {
-    margin-top: .45vw;
-    margin-left: .9vw;
+    margin-top: .45cqw;
+    margin-left: .9cqw;
     font-family: var(--font-body-family);
-    font-size: .82vw;
+    font-size: .82cqw;
     font-style: var(--font-body-style);
     font-weight: 500;
     letter-spacing: 0;
@@ -268,22 +294,23 @@
     text-transform: uppercase;
   }
 
+  /* Also fluid - absorbs the remainder of the row */
   #shopify-section-{{ section.id }} .hr-creators__intro {
-    flex: 0 0 30.52083vw;
+    flex: 1 1 auto;
     box-sizing: border-box;
-    width: 30.52083vw;
-    padding-top: 2.55vw;
+    min-width: 0;
+    padding-top: 2.55cqw;
     text-align: center;
   }
 
   #shopify-section-{{ section.id }} .hr-creators__eyebrow {
-    margin: 0 0 1.05vw;
+    margin: 0 0 1.05cqw;
     color: inherit;
     font-family: var(--font-body-family);
-    font-size: 1.55vw;
+    font-size: 1.55cqw;
     font-style: var(--font-body-style);
     font-weight: 500;
-    letter-spacing: .01vw;
+    letter-spacing: .01cqw;
     line-height: 1.1;
     text-transform: uppercase;
   }
@@ -292,7 +319,7 @@
     margin: 0;
     color: inherit;
     font-family: var(--font-heading-family);
-    font-size: 2.5vw;
+    font-size: 2.5cqw;
     font-style: var(--font-heading-style);
     font-weight: var(--font-heading-weight);
     letter-spacing: 0;
@@ -313,10 +340,10 @@
   }
 
   #shopify-section-{{ section.id }} .hr-creators__subheading {
-    margin: 2.65vw 0 0;
+    margin: 2.65cqw 0 0;
     color: inherit;
     font-family: var(--font-body-family);
-    font-size: 1.18vw;
+    font-size: 1.18cqw;
     font-style: italic;
     font-weight: 500;
     line-height: 1.38;
@@ -331,18 +358,18 @@
     display: flex;
     align-items: stretch;
     justify-content: center;
-    gap: 1.9vw;
-    margin-top: 2.96875vw;
+    gap: 1.9cqw;
+    margin-top: 2.96875cqw;
   }
 
   #shopify-section-{{ section.id }} .hr-creators__cta-wrap--orange {
-    flex: 0 0 31.5vw;
-    width: 31.5vw;
+    flex: 0 1 31.5cqw;
+    min-width: 0;
   }
 
   #shopify-section-{{ section.id }} .hr-creators__cta-wrap--mint {
-    flex: 0 0 26.8vw;
-    width: 26.8vw;
+    flex: 0 1 26.8cqw;
+    min-width: 0;
   }
 
   #shopify-section-{{ section.id }} .hr-creators__cta.button {
@@ -352,15 +379,15 @@
     gap: .35em;
     width: 100%;
     min-width: 0;
-    height: 4.16667vw;
+    height: 4.16667cqw;
     margin: 0;
-    padding: 0 1.35vw;
+    padding: 0 1.35cqw;
     border: 0;
-    border-radius: 2.25vw;
+    border-radius: 2.25cqw;
     box-sizing: border-box;
     box-shadow: none;
     font-family: var(--font-heading-family);
-    font-size: 1.32vw;
+    font-size: 1.32cqw;
     font-style: var(--font-heading-style);
     font-weight: 400;
     letter-spacing: 0;
@@ -391,9 +418,16 @@
     font-weight: var(--font-heading-weight);
   }
 
-  @media screen and (max-width: 749px) {
-    #shopify-section-{{ section.id }} .hr-creators {
-      padding: 18vw 5vw 12vw;
+  /* Breakpoint is now the container's width, not the viewport's */
+  @container hr-creators (max-width: 749px) {
+    #shopify-section-{{ section.id }} .hr-creators__inner {
+      --hr-pad-x: 5cqw;
+      --hr-pad-top: 18cqw;
+      --hr-pad-bottom: 12cqw;
+      --hr-card-radius: 5cqw;
+      --hr-portrait-w: 70cqw;
+      --hr-portrait-h: 85cqw;
+      --hr-portrait-pull: 25cqw;
     }
 
     #shopify-section-{{ section.id }} .hr-creators__main {
@@ -408,20 +442,17 @@
       width: 100%;
       height: auto;
       min-height: 0;
-      padding: 0 6vw 8vw;
-      border-radius: 5vw;
+      padding: 0 6cqw 8cqw;
     }
 
     #shopify-section-{{ section.id }} .hr-creators__portrait {
       flex: 0 0 auto;
-      width: 70vw;
-      height: 85vw;
-      margin: -25vw auto 0;
+      margin: calc(var(--hr-portrait-pull) * -1) auto 0;
     }
 
     #shopify-section-{{ section.id }} .hr-creators__portrait--fallback .hr-creators__portrait-fallback {
-      width: 345vw;
-      margin: -14.9vw 0 0 -11.5vw;
+      width: 345cqw;
+      margin: -14.9cqw 0 0 -11.5cqw;
     }
 
     #shopify-section-{{ section.id }} .hr-creators__testimonial {
@@ -433,7 +464,7 @@
     }
 
     #shopify-section-{{ section.id }} .hr-creators__quote {
-      font-size: 4.7vw;
+      font-size: 4.7cqw;
       line-height: 1.35;
     }
 
@@ -444,52 +475,52 @@
     }
 
     #shopify-section-{{ section.id }} .hr-creators__creator {
-      margin-top: 6vw;
+      margin-top: 6cqw;
       margin-left: 0;
     }
 
     #shopify-section-{{ section.id }} .hr-creators__username {
-      min-width: 36vw;
-      min-height: 10vw;
-      padding: 1.5vw 4vw;
-      border-radius: 6vw;
-      font-size: 4.2vw;
+      min-width: 36cqw;
+      min-height: 10cqw;
+      padding: 1.5cqw 4cqw;
+      border-radius: 6cqw;
+      font-size: 4.2cqw;
     }
 
     #shopify-section-{{ section.id }} .hr-creators__role {
-      margin-top: 2.3vw;
-      margin-left: 1vw;
-      font-size: 3.2vw;
+      margin-top: 2.3cqw;
+      margin-left: 1cqw;
+      font-size: 3.2cqw;
     }
 
     #shopify-section-{{ section.id }} .hr-creators__intro {
       flex: 0 0 auto;
       width: auto;
-      margin-top: 12vw;
+      margin-top: 12cqw;
       padding: 0;
     }
 
     #shopify-section-{{ section.id }} .hr-creators__eyebrow {
-      margin-bottom: 4vw;
-      font-size: 4.3vw;
+      margin-bottom: 4cqw;
+      font-size: 4.3cqw;
       line-height: 1.15;
     }
 
     #shopify-section-{{ section.id }} .hr-creators__heading {
-      font-size: 8vw;
+      font-size: 8cqw;
       line-height: 1.03;
     }
 
     #shopify-section-{{ section.id }} .hr-creators__subheading {
-      margin-top: 6vw;
-      font-size: 4.1vw;
+      margin-top: 6cqw;
+      font-size: 4.1cqw;
       line-height: 1.4;
     }
 
     #shopify-section-{{ section.id }} .hr-creators__ctas {
       flex-direction: column;
-      gap: 4vw;
-      margin-top: 10vw;
+      gap: 4cqw;
+      margin-top: 10cqw;
     }
 
     #shopify-section-{{ section.id }} .hr-creators__cta-wrap--orange,
@@ -499,11 +530,11 @@
     }
 
     #shopify-section-{{ section.id }} .hr-creators__cta.button {
-      min-height: 14vw;
+      min-height: 14cqw;
       height: auto;
-      padding: 3.8vw 5vw;
-      border-radius: 8vw;
-      font-size: 4vw;
+      padding: 3.8cqw 5cqw;
+      border-radius: 8cqw;
+      font-size: 4cqw;
       line-height: 1.1;
       white-space: normal;
     }
@@ -517,6 +548,21 @@
   "class": "section section-home-revamp-creators",
   "max_blocks": 4,
   "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "content_width",
+      "label": "Content width",
+      "min": 50,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 100,
+      "info": "Everything scales with this - type, spacing and image offsets stay in proportion."
+    },
     {
       "type": "header",
       "content": "Creator testimonial"
