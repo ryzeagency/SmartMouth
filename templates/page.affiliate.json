@@ -1,0 +1,52 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "blog_page_banner_3Xzixp": {
+      "type": "blog-page-banner",
+      "name": "Blog Page Banner",
+      "settings": {
+        "desktop_image": "shopify://shop_images/Legal_Pages_banner.png",
+        "mobile_image": "shopify://shop_images/Legal_Pages_banner.webp",
+        "top_subtitle": "",
+        "title": "{{ page.title }}",
+        "bottom_subtitle": "",
+        "desktop_height": 20,
+        "mobile_height": 65,
+        "desktop_image_position": "center center",
+        "mobile_image_position": "center center",
+        "horizontal_alignment": "center",
+        "vertical_alignment": "center",
+        "content_width": 60,
+        "background_color": "#234e7c",
+        "top_subtitle_color": "#06264a",
+        "title_color": "#06264a",
+        "bottom_subtitle_color": "#06264a",
+        "top_subtitle_size": 1,
+        "title_size": 2.6,
+        "bottom_subtitle_size": 1,
+        "mobile_top_subtitle_size": 4,
+        "mobile_title_size": 6.5,
+        "mobile_bottom_subtitle_size": 4
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    }
+  },
+  "order": [
+    "blog_page_banner_3Xzixp",
+    "main"
+  ]
+}
