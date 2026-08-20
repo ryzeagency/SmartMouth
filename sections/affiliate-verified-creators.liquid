@@ -1,9 +1,6 @@
 <section
   class="hr-influencers{% if section.settings.creator_image != blank %} hr-influencers--has-custom-image{% endif %}"
-  data-influencers-section="{{ section.id }}"
-  {% if section.settings.heading_line_1 != blank or section.settings.heading_line_2_prefix != blank or section.settings.heading_accent != blank %}
-    aria-labelledby="InfluencersHeading-{{ section.id }}"
-  {% endif %}
+  aria-labelledby="InfluencersHeading-{{ section.id }}"
 >
   <div class="hr-influencers__container">
     <div class="hr-influencers__main">
@@ -28,64 +25,53 @@
                 class="hr-influencers__creator-fallback"
                 src="{{ '3bf1079d-8584-4ad6-8743-b0772db481bd.png' | asset_url }}"
                 alt="{{ section.settings.creator_image_alt | escape }}"
-                width="2048"
-                height="818"
+                width="1920"
+                height="768"
                 loading="lazy"
-                decoding="async"
               >
             {% endif %}
           </div>
 
           <div class="hr-influencers__creator-content">
-            {% if section.settings.quote_line_1 != blank
-              or section.settings.quote_line_2_prefix != blank
-              or section.settings.quote_accent != blank
-              or section.settings.quote_line_3 != blank
-            %}
-              <blockquote class="hr-influencers__quote">
-                {% if section.settings.quote_line_1 != blank %}
-                  <span class="hr-influencers__quote-line">
-                    {{ section.settings.quote_line_1 | escape }}
-                  </span>
-                {% endif %}
+            <blockquote class="hr-influencers__quote">
+              {% if section.settings.quote_line_1 != blank %}
+                <span class="hr-influencers__quote-line">
+                  {{ section.settings.quote_line_1 | escape }}
+                </span>
+              {% endif %}
 
-                {% if section.settings.quote_line_2_prefix != blank or section.settings.quote_accent != blank %}
-                  <span class="hr-influencers__quote-line">
-                    {% if section.settings.quote_line_2_prefix != blank %}
-                      {{ section.settings.quote_line_2_prefix | escape }}
-                    {% endif %}
-                    {% if section.settings.quote_line_2_prefix != blank and section.settings.quote_accent != blank %} {% endif %}
-                    {% if section.settings.quote_accent != blank %}
-                      <span class="hr-influencers__quote-accent">
-                        {{- section.settings.quote_accent | escape -}}
-                      </span>
-                    {% endif %}
-                  </span>
-                {% endif %}
+              {% if section.settings.quote_line_2_prefix != blank or section.settings.quote_accent != blank %}
+                <span class="hr-influencers__quote-line">
+                  {{ section.settings.quote_line_2_prefix | escape }}
+                  {% if section.settings.quote_line_2_prefix != blank and section.settings.quote_accent != blank %} {% endif %}
+                  {% if section.settings.quote_accent != blank %}
+                    <span class="hr-influencers__quote-accent">
+                      {{- section.settings.quote_accent | escape -}}
+                    </span>
+                  {% endif %}
+                </span>
+              {% endif %}
 
-                {% if section.settings.quote_line_3 != blank %}
-                  <span class="hr-influencers__quote-line">
-                    {{ section.settings.quote_line_3 | escape }}
-                  </span>
-                {% endif %}
-              </blockquote>
-            {% endif %}
+              {% if section.settings.quote_line_3 != blank %}
+                <span class="hr-influencers__quote-line">
+                  {{ section.settings.quote_line_3 | escape }}
+                </span>
+              {% endif %}
+            </blockquote>
 
-            {% if section.settings.username != blank or section.settings.creator_type != blank %}
-              <footer class="hr-influencers__creator-credit">
-                {% if section.settings.username != blank %}
-                  <span class="hr-influencers__username">
-                    {{ section.settings.username | escape }}
-                  </span>
-                {% endif %}
+            <footer class="hr-influencers__creator-credit">
+              {% if section.settings.username != blank %}
+                <span class="hr-influencers__username">
+                  {{ section.settings.username | escape }}
+                </span>
+              {% endif %}
 
-                {% if section.settings.creator_type != blank %}
-                  <span class="hr-influencers__creator-type">
-                    {{ section.settings.creator_type | escape }}
-                  </span>
-                {% endif %}
-              </footer>
-            {% endif %}
+              {% if section.settings.creator_type != blank %}
+                <span class="hr-influencers__creator-type">
+                  {{ section.settings.creator_type | escape }}
+                </span>
+              {% endif %}
+            </footer>
           </div>
         </article>
       </div>
@@ -97,35 +83,28 @@
           </p>
         {% endif %}
 
-        {% if section.settings.heading_line_1 != blank
-          or section.settings.heading_line_2_prefix != blank
-          or section.settings.heading_accent != blank
-        %}
-          <h2
-            class="hr-influencers__heading"
-            id="InfluencersHeading-{{ section.id }}"
-          >
-            {% if section.settings.heading_line_1 != blank %}
-              <span class="hr-influencers__heading-line">
-                {{ section.settings.heading_line_1 | escape }}
-              </span>
-            {% endif %}
+        <h2
+          class="hr-influencers__heading"
+          id="InfluencersHeading-{{ section.id }}"
+        >
+          {% if section.settings.heading_line_1 != blank %}
+            <span class="hr-influencers__heading-line">
+              {{ section.settings.heading_line_1 | escape }}
+            </span>
+          {% endif %}
 
-            {% if section.settings.heading_line_2_prefix != blank or section.settings.heading_accent != blank %}
-              <span class="hr-influencers__heading-line">
-                {% if section.settings.heading_line_2_prefix != blank %}
-                  {{ section.settings.heading_line_2_prefix | escape }}
-                {% endif %}
-                {% if section.settings.heading_line_2_prefix != blank and section.settings.heading_accent != blank %} {% endif %}
-                {% if section.settings.heading_accent != blank %}
-                  <span class="hr-influencers__heading-accent">
-                    {{- section.settings.heading_accent | escape -}}
-                  </span>
-                {% endif %}
-              </span>
-            {% endif %}
-          </h2>
-        {% endif %}
+          {% if section.settings.heading_line_2_prefix != blank or section.settings.heading_accent != blank %}
+            <span class="hr-influencers__heading-line">
+              {{ section.settings.heading_line_2_prefix | escape }}
+              {% if section.settings.heading_line_2_prefix != blank and section.settings.heading_accent != blank %} {% endif %}
+              {% if section.settings.heading_accent != blank %}
+                <span class="hr-influencers__heading-accent">
+                  {{- section.settings.heading_accent | escape -}}
+                </span>
+              {% endif %}
+            </span>
+          {% endif %}
+        </h2>
 
         {% if section.settings.subheading != blank %}
           <p class="hr-influencers__subheading">
@@ -135,8 +114,16 @@
       </header>
     </div>
 
-    {% if section.blocks.size > 0 %}
-      <div class="hr-influencers__actions">
+    {%- comment -%}
+      New section instances receive the two CTA blocks through the preset.
+
+      Existing section instances do not automatically receive newly-added
+      preset blocks in Shopify, so the two editable section-setting CTAs below
+      are used as a fallback whenever no blocks exist.
+    {%- endcomment -%}
+
+    <div class="hr-influencers__actions">
+      {% if section.blocks.size > 0 %}
         {% for block in section.blocks %}
           <div
             class="hr-influencers__action"
@@ -146,36 +133,125 @@
             "
             {{ block.shopify_attributes }}
           >
-            {% capture action_content %}
-              {% if block.settings.strong_text_before != blank %}
-                <strong>{{ block.settings.strong_text_before | escape }}</strong>
-              {% endif %}
-
-              {% if block.settings.regular_text != blank %}
-                <span>{{ block.settings.regular_text | escape }}</span>
-              {% endif %}
-
-              {% if block.settings.strong_text_after != blank %}
-                <strong>{{ block.settings.strong_text_after | escape }}</strong>
-              {% endif %}
-            {% endcapture %}
-
             {% if block.settings.link != blank %}
               <a
                 class="button hr-influencers__button"
                 href="{{ block.settings.link }}"
               >
-                {{ action_content }}
+                {% if block.settings.strong_text_before != blank %}
+                  <strong>{{ block.settings.strong_text_before | escape }}</strong>
+                {% endif %}
+
+                {% if block.settings.regular_text != blank %}
+                  <span>{{ block.settings.regular_text | escape }}</span>
+                {% endif %}
+
+                {% if block.settings.strong_text_after != blank %}
+                  <strong>{{ block.settings.strong_text_after | escape }}</strong>
+                {% endif %}
               </a>
             {% else %}
               <span class="button hr-influencers__button">
-                {{ action_content }}
+                {% if block.settings.strong_text_before != blank %}
+                  <strong>{{ block.settings.strong_text_before | escape }}</strong>
+                {% endif %}
+
+                {% if block.settings.regular_text != blank %}
+                  <span>{{ block.settings.regular_text | escape }}</span>
+                {% endif %}
+
+                {% if block.settings.strong_text_after != blank %}
+                  <strong>{{ block.settings.strong_text_after | escape }}</strong>
+                {% endif %}
               </span>
             {% endif %}
           </div>
         {% endfor %}
-      </div>
-    {% endif %}
+
+      {% else %}
+        <div
+          class="hr-influencers__action"
+          style="
+            --action-background: {{ section.settings.cta_1_background }};
+            --action-text: {{ section.settings.cta_1_text_color }};
+          "
+        >
+          {% if section.settings.cta_1_link != blank %}
+            <a
+              class="button hr-influencers__button"
+              href="{{ section.settings.cta_1_link }}"
+            >
+              {% if section.settings.cta_1_bold_before != blank %}
+                <strong>{{ section.settings.cta_1_bold_before | escape }}</strong>
+              {% endif %}
+
+              {% if section.settings.cta_1_regular != blank %}
+                <span>{{ section.settings.cta_1_regular | escape }}</span>
+              {% endif %}
+
+              {% if section.settings.cta_1_bold_after != blank %}
+                <strong>{{ section.settings.cta_1_bold_after | escape }}</strong>
+              {% endif %}
+            </a>
+          {% else %}
+            <span class="button hr-influencers__button">
+              {% if section.settings.cta_1_bold_before != blank %}
+                <strong>{{ section.settings.cta_1_bold_before | escape }}</strong>
+              {% endif %}
+
+              {% if section.settings.cta_1_regular != blank %}
+                <span>{{ section.settings.cta_1_regular | escape }}</span>
+              {% endif %}
+
+              {% if section.settings.cta_1_bold_after != blank %}
+                <strong>{{ section.settings.cta_1_bold_after | escape }}</strong>
+              {% endif %}
+            </span>
+          {% endif %}
+        </div>
+
+        <div
+          class="hr-influencers__action"
+          style="
+            --action-background: {{ section.settings.cta_2_background }};
+            --action-text: {{ section.settings.cta_2_text_color }};
+          "
+        >
+          {% if section.settings.cta_2_link != blank %}
+            <a
+              class="button hr-influencers__button"
+              href="{{ section.settings.cta_2_link }}"
+            >
+              {% if section.settings.cta_2_bold_before != blank %}
+                <strong>{{ section.settings.cta_2_bold_before | escape }}</strong>
+              {% endif %}
+
+              {% if section.settings.cta_2_regular != blank %}
+                <span>{{ section.settings.cta_2_regular | escape }}</span>
+              {% endif %}
+
+              {% if section.settings.cta_2_bold_after != blank %}
+                <strong>{{ section.settings.cta_2_bold_after | escape }}</strong>
+              {% endif %}
+            </a>
+          {% else %}
+            <span class="button hr-influencers__button">
+              {% if section.settings.cta_2_bold_before != blank %}
+                <strong>{{ section.settings.cta_2_bold_before | escape }}</strong>
+              {% endif %}
+
+              {% if section.settings.cta_2_regular != blank %}
+                <span>{{ section.settings.cta_2_regular | escape }}</span>
+              {% endif %}
+
+              {% if section.settings.cta_2_bold_after != blank %}
+                <strong>{{ section.settings.cta_2_bold_after | escape }}</strong>
+              {% endif %}
+            </span>
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
   </div>
 </section>
 
@@ -244,11 +320,6 @@
     object-position: left bottom;
   }
 
-  /*
-    Desktop fallback:
-    the supplied reference is a composite mockup, so the source image is
-    positioned as a sprite to expose only the creator/product area.
-  */
   #shopify-section-{{ section.id }} .hr-influencers__creator-fallback {
     position: absolute;
     top: -4.395vw;
@@ -270,7 +341,7 @@
   #shopify-section-{{ section.id }} .hr-influencers__quote {
     margin: 0;
     padding: 0;
-    color: var(--hr-influencers-text);
+    color: inherit;
     font-family: var(--font-heading-family);
     font-size: 1.55vw;
     font-style: var(--font-heading-style);
@@ -314,12 +385,10 @@
     display: block;
     margin-top: .48vw;
     margin-left: .88vw;
-    color: var(--hr-influencers-text);
     font-family: var(--font-body-family);
     font-size: .8vw;
     font-style: var(--font-body-style);
     font-weight: 400;
-    letter-spacing: 0;
     line-height: 1.1;
     text-transform: uppercase;
   }
@@ -332,7 +401,6 @@
 
   #shopify-section-{{ section.id }} .hr-influencers__eyebrow {
     margin: 0 0 1.05vw;
-    color: var(--hr-influencers-text);
     font-family: var(--font-body-family);
     font-size: 1.45vw;
     font-style: var(--font-body-style);
@@ -345,7 +413,7 @@
 
   #shopify-section-{{ section.id }} .hr-influencers__heading {
     margin: 0;
-    color: var(--hr-influencers-text);
+    color: inherit;
     font-family: var(--font-heading-family);
     font-size: 2.35vw;
     font-style: var(--font-heading-style);
@@ -360,8 +428,6 @@
   }
 
   #shopify-section-{{ section.id }} .hr-influencers__heading-accent {
-    position: relative;
-    z-index: 0;
     display: inline;
     background:
       linear-gradient(
@@ -370,8 +436,7 @@
         transparent 58%,
         var(--hr-influencers-heading-underline) 58%,
         var(--hr-influencers-heading-underline) 87%,
-        transparent 87%,
-        transparent 100%
+        transparent 87%
       );
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;
@@ -380,7 +445,6 @@
   #shopify-section-{{ section.id }} .hr-influencers__subheading {
     max-width: 27.7vw;
     margin: 2.25vw auto 0;
-    color: var(--hr-influencers-text);
     font-family: var(--font-body-family);
     font-size: 1.15vw;
     font-style: italic;
@@ -389,29 +453,35 @@
     line-height: 1.36;
   }
 
+  /*
+    CTA row from the reference:
+    585px + 498px with a 37px gap at 1920px.
+  */
   #shopify-section-{{ section.id }} .hr-influencers__actions {
     display: grid;
-    grid-template-columns: 30.5vw 25.9vw;
-    gap: 1.95vw;
-    width: 58.35vw;
-    margin: 2.98vw auto 0;
+    grid-template-columns: 30.47vw 25.94vw;
+    gap: 1.93vw;
+    justify-content: center;
+    width: 100%;
+    margin-top: 2.98vw;
   }
 
   #shopify-section-{{ section.id }} .hr-influencers__action {
+    display: flex;
     min-width: 0;
   }
 
   #shopify-section-{{ section.id }} .hr-influencers__button.button {
-    display: inline-flex;
+    display: flex;
     align-items: center;
     justify-content: center;
     gap: .34em;
     width: 100%;
-    height: 3.95vw;
     min-width: 0;
+    height: 4.06vw;
     min-height: 0;
     margin: 0;
-    padding: 0 2.15vw;
+    padding: 0 1.9vw;
     border: 0;
     border-radius: 999px;
     color: var(--action-text);
@@ -419,7 +489,7 @@
     box-shadow: none;
     box-sizing: border-box;
     font-family: var(--font-body-family);
-    font-size: 1.25vw;
+    font-size: 1.26vw;
     font-style: var(--font-body-style);
     font-weight: 400;
     letter-spacing: 0;
@@ -432,15 +502,12 @@
   #shopify-section-{{ section.id }} .hr-influencers__button.button::before,
   #shopify-section-{{ section.id }} .hr-influencers__button.button::after {
     display: none;
+    content: none;
     box-shadow: none;
   }
 
   #shopify-section-{{ section.id }} .hr-influencers__button strong {
     font-weight: 700;
-  }
-
-  #shopify-section-{{ section.id }} a.hr-influencers__button {
-    cursor: pointer;
   }
 
   #shopify-section-{{ section.id }} a.hr-influencers__button:hover {
@@ -474,10 +541,8 @@
     #shopify-section-{{ section.id }} .hr-influencers__creator-card {
       width: 100%;
       height: auto;
-      min-height: 0;
       margin-left: 0;
       border-radius: 6vw;
-      box-shadow: 0 1vw 5vw rgba(6, 32, 60, .08);
     }
 
     #shopify-section-{{ section.id }} .hr-influencers__creator-media--fallback {
@@ -486,7 +551,6 @@
 
     #shopify-section-{{ section.id }} .hr-influencers__creator-media--custom {
       top: -20vw;
-      right: auto;
       bottom: auto;
       left: 50%;
       width: 58vw;
@@ -511,10 +575,6 @@
 
     #shopify-section-{{ section.id }} .hr-influencers__quote-line {
       white-space: normal;
-    }
-
-    #shopify-section-{{ section.id }} .hr-influencers__quote-line + .hr-influencers__quote-line {
-      margin-top: 1vw;
     }
 
     #shopify-section-{{ section.id }} .hr-influencers__creator-credit {
@@ -543,13 +603,11 @@
     #shopify-section-{{ section.id }} .hr-influencers__eyebrow {
       margin-bottom: 4vw;
       font-size: 3.9vw;
-      line-height: 1.2;
       white-space: normal;
     }
 
     #shopify-section-{{ section.id }} .hr-influencers__heading {
       font-size: 7vw;
-      line-height: 1.08;
     }
 
     #shopify-section-{{ section.id }} .hr-influencers__heading-line {
@@ -564,25 +622,19 @@
     }
 
     #shopify-section-{{ section.id }} .hr-influencers__actions {
-      display: grid;
       grid-template-columns: 1fr;
       gap: 4vw;
       width: 85vw;
-      margin-top: 10vw;
+      margin: 10vw auto 0;
     }
 
     #shopify-section-{{ section.id }} .hr-influencers__button.button {
-      height: auto;
       min-height: 14vw;
+      height: auto;
       padding: 3vw 5vw;
       font-size: 4vw;
       line-height: 1.15;
       white-space: normal;
-    }
-
-    #shopify-section-{{ section.id }} a.hr-influencers__button:focus-visible {
-      outline-width: .5vw;
-      outline-offset: .8vw;
     }
   }
 </style>
@@ -602,7 +654,7 @@
       "type": "image_picker",
       "id": "creator_image",
       "label": "Creator image",
-      "info": "Upload the isolated creator/product image when available. The supplied desktop mockup is used as the fallback."
+      "info": "Upload the isolated creator/product image when available."
     },
     {
       "type": "text",
@@ -679,6 +731,82 @@
       "id": "subheading",
       "label": "Subheading",
       "default": "They put SmartMouth to the test – and made it their everyday essential for all-day confidence."
+    },
+    {
+      "type": "header",
+      "content": "Default button 1"
+    },
+    {
+      "type": "text",
+      "id": "cta_1_bold_before",
+      "label": "Bold text before",
+      "default": "10% OFF + FREE SHIPPING →"
+    },
+    {
+      "type": "text",
+      "id": "cta_1_regular",
+      "label": "Regular text",
+      "default": "USE CODE"
+    },
+    {
+      "type": "text",
+      "id": "cta_1_bold_after",
+      "label": "Bold text after",
+      "default": "XXX"
+    },
+    {
+      "type": "url",
+      "id": "cta_1_link",
+      "label": "Link"
+    },
+    {
+      "type": "color",
+      "id": "cta_1_background",
+      "label": "Background",
+      "default": "#FF7701"
+    },
+    {
+      "type": "color",
+      "id": "cta_1_text_color",
+      "label": "Text",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Default button 2"
+    },
+    {
+      "type": "text",
+      "id": "cta_2_bold_before",
+      "label": "Bold text before",
+      "default": "SHOP [AFFILIATE NAME]’s PICKS →"
+    },
+    {
+      "type": "text",
+      "id": "cta_2_regular",
+      "label": "Regular text"
+    },
+    {
+      "type": "text",
+      "id": "cta_2_bold_after",
+      "label": "Bold text after"
+    },
+    {
+      "type": "url",
+      "id": "cta_2_link",
+      "label": "Link"
+    },
+    {
+      "type": "color",
+      "id": "cta_2_background",
+      "label": "Background",
+      "default": "#8CD1C4"
+    },
+    {
+      "type": "color",
+      "id": "cta_2_text_color",
+      "label": "Text",
+      "default": "#06203C"
     },
     {
       "type": "header",
@@ -792,10 +920,3 @@
   ]
 }
 {% endschema %}
-
-{% comment %}
-  The supplied creator artwork is embedded in the composite desktop mockup rather
-  than provided as an isolated transparent asset. The mockup file is therefore
-  cropped as a desktop fallback. Uploading the isolated creator image through the
-  section setting will replace that fallback and is used for the mobile layout.
-{% endcomment %}
