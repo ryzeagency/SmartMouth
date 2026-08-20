@@ -38,56 +38,39 @@
     },
     "affiliate_verified_creators_jyBbKU": {
       "type": "affiliate-verified-creators",
-      "blocks": {
-        "cta_UUNrLY": {
-          "type": "cta",
-          "settings": {
-            "style": "orange",
-            "strong_text": "10% OFF + FREE SHIPPING →",
-            "regular_text": "USE CODE XXX",
-            "link": "",
-            "aria_label": "Use creator discount code"
-          }
-        },
-        "cta_gTRCmQ": {
-          "type": "cta",
-          "settings": {
-            "style": "mint",
-            "strong_text": "SHOP [AFFILIATE NAME]’S PICKS →",
-            "regular_text": "",
-            "link": "",
-            "aria_label": "Shop affiliate picks"
-          }
-        }
-      },
-      "block_order": [
-        "cta_UUNrLY",
-        "cta_gTRCmQ"
-      ],
       "name": "Affiliate Verified Creators",
       "settings": {
         "creator_image": "shopify://shop_images/affiliate-image.webp",
-        "image_alt": "Lifestyle creator holding SmartMouth mouthwash",
+        "creator_image_alt": "Lifestyle creator holding a SmartMouth bottle",
         "quote_line_1": "“I used to worry about bad breath.",
-        "quote_line_2_before": "SmartMouth gives me",
-        "quote_line_2_accent": "24-hour confidence",
+        "quote_line_2_prefix": "SmartMouth gives me",
+        "quote_accent": "24-hour confidence",
         "quote_line_3": "with just two rinses a day.”",
         "username": "@username",
-        "creator_role": "LIFESTYLE CREATOR",
+        "creator_type": "LIFESTYLE CREATOR",
         "eyebrow": "VERIFIED INFLUENCERS. REAL RESULTS.",
         "heading_line_1": "Trusted by creators",
         "heading_line_2_prefix": "who",
-        "heading_line_2_accent": "don’t settle.",
-        "subheading_line_1": "They put SmartMouth to the test - and made it their",
-        "subheading_line_2": "everyday essential for all-day confidence.",
-        "background_color": "#FFFFFF",
-        "card_background": "#FAF4E3",
+        "heading_accent": "don’t settle.",
+        "subheading": "They put SmartMouth to the test – and made it their everyday essential for all-day confidence.",
+        "cta_1_bold_before": "10% OFF + FREE SHIPPING →",
+        "cta_1_regular": "USE CODE",
+        "cta_1_bold_after": "XXX",
+        "cta_1_link": "",
+        "cta_1_background": "#ff7701",
+        "cta_1_text_color": "#ffffff",
+        "cta_2_bold_before": "SHOP [AFFILIATE NAME]’s PICKS →",
+        "cta_2_regular": "",
+        "cta_2_bold_after": "",
+        "cta_2_link": "",
+        "cta_2_background": "#8cd1c4",
+        "cta_2_text_color": "#06203c",
+        "background_color": "#ffffff",
         "text_color": "#082440",
-        "accent_color": "#8FD4C9",
-        "pill_background": "#D2EEE7",
-        "orange_color": "#FF7800",
-        "orange_text_color": "#FFFFFF",
-        "mint_text_color": "#082440"
+        "card_background_color": "#fbf5e3",
+        "quote_accent_color": "#8cd1c4",
+        "heading_underline_color": "#b0e0d7",
+        "badge_background_color": "#d6ead9"
       }
     },
     "smt_home_revamp_smart_zinc_gYfGTQ": {
