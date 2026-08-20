@@ -1,127 +1,178 @@
-<section class="hr-creators">
-  <div class="hr-creators__inner" aria-labelledby="CreatorsHeading-{{ section.id }}">
-    <div class="hr-creators__main">
-      <article class="hr-creators__card">
-        <div class="hr-creators__portrait{% if section.settings.creator_image == blank %} hr-creators__portrait--fallback{% endif %}">
-          {% if section.settings.creator_image != blank %}
-            {{
-              section.settings.creator_image
-              | image_url: width: 900
-              | image_tag:
-                widths: '320, 480, 640, 750, 900',
-                sizes: '(min-width: 750px) 21.2vw, 70vw',
-                loading: 'lazy',
-                class: 'hr-creators__portrait-image',
-                alt: section.settings.image_alt
-            }}
-          {% else %}
-            <img
-              class="hr-creators__portrait-image hr-creators__portrait-fallback"
-              src="{{ '126abc55-6280-4cec-b2d8-4e12574cf277.png' | asset_url }}"
-              alt="{{ section.settings.image_alt | escape }}"
-              width="1920"
-              height="800"
-              loading="lazy"
-            >
-          {% endif %}
-        </div>
+<section
+  class="hr-influencers{% if section.settings.creator_image != blank %} hr-influencers--has-custom-image{% endif %}"
+  data-influencers-section="{{ section.id }}"
+  {% if section.settings.heading_line_1 != blank or section.settings.heading_line_2_prefix != blank or section.settings.heading_accent != blank %}
+    aria-labelledby="InfluencersHeading-{{ section.id }}"
+  {% endif %}
+>
+  <div class="hr-influencers__container">
+    <div class="hr-influencers__main">
+      <div class="hr-influencers__testimonial">
+        <article class="hr-influencers__creator-card">
+          <div
+            class="hr-influencers__creator-media{% if section.settings.creator_image != blank %} hr-influencers__creator-media--custom{% else %} hr-influencers__creator-media--fallback{% endif %}"
+          >
+            {% if section.settings.creator_image != blank %}
+              {{
+                section.settings.creator_image
+                | image_url: width: 1000
+                | image_tag:
+                  widths: '320, 480, 640, 800, 1000',
+                  sizes: '(min-width: 750px) 18.07vw, 58vw',
+                  loading: 'lazy',
+                  class: 'hr-influencers__creator-image',
+                  alt: section.settings.creator_image_alt
+              }}
+            {% else %}
+              <img
+                class="hr-influencers__creator-fallback"
+                src="{{ '3bf1079d-8584-4ad6-8743-b0772db481bd.png' | asset_url }}"
+                alt="{{ section.settings.creator_image_alt | escape }}"
+                width="2048"
+                height="818"
+                loading="lazy"
+                decoding="async"
+              >
+            {% endif %}
+          </div>
 
-        <figure class="hr-creators__testimonial">
-          <blockquote class="hr-creators__quote">
-            {% if section.settings.quote_line_1 != blank %}
-              <span class="hr-creators__quote-line">{{ section.settings.quote_line_1 | escape }}</span>
+          <div class="hr-influencers__creator-content">
+            {% if section.settings.quote_line_1 != blank
+              or section.settings.quote_line_2_prefix != blank
+              or section.settings.quote_accent != blank
+              or section.settings.quote_line_3 != blank
+            %}
+              <blockquote class="hr-influencers__quote">
+                {% if section.settings.quote_line_1 != blank %}
+                  <span class="hr-influencers__quote-line">
+                    {{ section.settings.quote_line_1 | escape }}
+                  </span>
+                {% endif %}
+
+                {% if section.settings.quote_line_2_prefix != blank or section.settings.quote_accent != blank %}
+                  <span class="hr-influencers__quote-line">
+                    {% if section.settings.quote_line_2_prefix != blank %}
+                      {{ section.settings.quote_line_2_prefix | escape }}
+                    {% endif %}
+                    {% if section.settings.quote_line_2_prefix != blank and section.settings.quote_accent != blank %} {% endif %}
+                    {% if section.settings.quote_accent != blank %}
+                      <span class="hr-influencers__quote-accent">
+                        {{- section.settings.quote_accent | escape -}}
+                      </span>
+                    {% endif %}
+                  </span>
+                {% endif %}
+
+                {% if section.settings.quote_line_3 != blank %}
+                  <span class="hr-influencers__quote-line">
+                    {{ section.settings.quote_line_3 | escape }}
+                  </span>
+                {% endif %}
+              </blockquote>
             {% endif %}
 
-            {% if section.settings.quote_line_2_before != blank or section.settings.quote_line_2_accent != blank %}
-              <span class="hr-creators__quote-line">
-                {{ section.settings.quote_line_2_before | escape }}{% if section.settings.quote_line_2_before != blank and section.settings.quote_line_2_accent != blank %} {% endif %}<span class="hr-creators__quote-accent">{{ section.settings.quote_line_2_accent | escape }}</span>
+            {% if section.settings.username != blank or section.settings.creator_type != blank %}
+              <footer class="hr-influencers__creator-credit">
+                {% if section.settings.username != blank %}
+                  <span class="hr-influencers__username">
+                    {{ section.settings.username | escape }}
+                  </span>
+                {% endif %}
+
+                {% if section.settings.creator_type != blank %}
+                  <span class="hr-influencers__creator-type">
+                    {{ section.settings.creator_type | escape }}
+                  </span>
+                {% endif %}
+              </footer>
+            {% endif %}
+          </div>
+        </article>
+      </div>
+
+      <header class="hr-influencers__intro">
+        {% if section.settings.eyebrow != blank %}
+          <p class="hr-influencers__eyebrow">
+            {{ section.settings.eyebrow | escape }}
+          </p>
+        {% endif %}
+
+        {% if section.settings.heading_line_1 != blank
+          or section.settings.heading_line_2_prefix != blank
+          or section.settings.heading_accent != blank
+        %}
+          <h2
+            class="hr-influencers__heading"
+            id="InfluencersHeading-{{ section.id }}"
+          >
+            {% if section.settings.heading_line_1 != blank %}
+              <span class="hr-influencers__heading-line">
+                {{ section.settings.heading_line_1 | escape }}
               </span>
             {% endif %}
 
-            {% if section.settings.quote_line_3 != blank %}
-              <span class="hr-creators__quote-line">{{ section.settings.quote_line_3 | escape }}</span>
-            {% endif %}
-          </blockquote>
-
-          {% if section.settings.username != blank or section.settings.creator_role != blank %}
-            <figcaption class="hr-creators__creator">
-              {% if section.settings.username != blank %}
-                <span class="hr-creators__username">{{ section.settings.username | escape }}</span>
-              {% endif %}
-              {% if section.settings.creator_role != blank %}
-                <span class="hr-creators__role">{{ section.settings.creator_role | escape }}</span>
-              {% endif %}
-            </figcaption>
-          {% endif %}
-        </figure>
-      </article>
-
-      <header class="hr-creators__intro">
-        {% if section.settings.eyebrow != blank %}
-          <p class="hr-creators__eyebrow">{{ section.settings.eyebrow | escape }}</p>
-        {% endif %}
-
-        {% if section.settings.heading_line_1 != blank or section.settings.heading_line_2_prefix != blank or section.settings.heading_line_2_accent != blank %}
-          <h2 class="hr-creators__heading" id="CreatorsHeading-{{ section.id }}">
-            {% if section.settings.heading_line_1 != blank %}
-              <span class="hr-creators__heading-line">{{ section.settings.heading_line_1 | escape }}</span>
-            {% endif %}
-
-            {% if section.settings.heading_line_2_prefix != blank or section.settings.heading_line_2_accent != blank %}
-              <span class="hr-creators__heading-line">
-                {{ section.settings.heading_line_2_prefix | escape }}{% if section.settings.heading_line_2_prefix != blank and section.settings.heading_line_2_accent != blank %} {% endif %}<span class="hr-creators__heading-accent">{{ section.settings.heading_line_2_accent | escape }}</span>
+            {% if section.settings.heading_line_2_prefix != blank or section.settings.heading_accent != blank %}
+              <span class="hr-influencers__heading-line">
+                {% if section.settings.heading_line_2_prefix != blank %}
+                  {{ section.settings.heading_line_2_prefix | escape }}
+                {% endif %}
+                {% if section.settings.heading_line_2_prefix != blank and section.settings.heading_accent != blank %} {% endif %}
+                {% if section.settings.heading_accent != blank %}
+                  <span class="hr-influencers__heading-accent">
+                    {{- section.settings.heading_accent | escape -}}
+                  </span>
+                {% endif %}
               </span>
             {% endif %}
           </h2>
         {% endif %}
 
-        {% if section.settings.subheading_line_1 != blank or section.settings.subheading_line_2 != blank %}
-          <p class="hr-creators__subheading">
-            {% if section.settings.subheading_line_1 != blank %}
-              <span>{{ section.settings.subheading_line_1 | escape }}</span>
-            {% endif %}
-            {% if section.settings.subheading_line_2 != blank %}
-              <span>{{ section.settings.subheading_line_2 | escape }}</span>
-            {% endif %}
+        {% if section.settings.subheading != blank %}
+          <p class="hr-influencers__subheading">
+            {{ section.settings.subheading | escape }}
           </p>
         {% endif %}
       </header>
     </div>
 
     {% if section.blocks.size > 0 %}
-      <div class="hr-creators__ctas" aria-label="Creator offers">
+      <div class="hr-influencers__actions">
         {% for block in section.blocks %}
-          {% if block.type == 'cta' %}
-            <div
-              class="hr-creators__cta-wrap hr-creators__cta-wrap--{{ block.settings.style }}"
-              {{ block.shopify_attributes }}
-            >
-              {% capture cta_content %}
-                {% if block.settings.strong_text != blank %}
-                  <strong>{{ block.settings.strong_text | escape }}</strong>
-                {% endif %}
-                {% if block.settings.regular_text != blank %}
-                  <span>{{ block.settings.regular_text | escape }}</span>
-                {% endif %}
-              {% endcapture %}
-
-              {% if block.settings.link != blank %}
-                <a
-                  class="button hr-creators__cta hr-creators__cta--{{ block.settings.style }}"
-                  href="{{ block.settings.link }}"
-                  {% if block.settings.aria_label != blank %}
-                    aria-label="{{ block.settings.aria_label | escape }}"
-                  {% endif %}
-                >
-                  {{ cta_content }}
-                </a>
-              {% else %}
-                <span class="button hr-creators__cta hr-creators__cta--{{ block.settings.style }}">
-                  {{ cta_content }}
-                </span>
+          <div
+            class="hr-influencers__action"
+            style="
+              --action-background: {{ block.settings.background_color }};
+              --action-text: {{ block.settings.text_color }};
+            "
+            {{ block.shopify_attributes }}
+          >
+            {% capture action_content %}
+              {% if block.settings.strong_text_before != blank %}
+                <strong>{{ block.settings.strong_text_before | escape }}</strong>
               {% endif %}
-            </div>
-          {% endif %}
+
+              {% if block.settings.regular_text != blank %}
+                <span>{{ block.settings.regular_text | escape }}</span>
+              {% endif %}
+
+              {% if block.settings.strong_text_after != blank %}
+                <strong>{{ block.settings.strong_text_after | escape }}</strong>
+              {% endif %}
+            {% endcapture %}
+
+            {% if block.settings.link != blank %}
+              <a
+                class="button hr-influencers__button"
+                href="{{ block.settings.link }}"
+              >
+                {{ action_content }}
+              </a>
+            {% else %}
+              <span class="button hr-influencers__button">
+                {{ action_content }}
+              </span>
+            {% endif %}
+          </div>
         {% endfor %}
       </div>
     {% endif %}
@@ -130,439 +181,419 @@
 
 <style>
   #shopify-section-{{ section.id }} {
-    --hr-creators-background: {{ section.settings.background_color }};
-    --hr-creators-card: {{ section.settings.card_background }};
-    --hr-creators-text: {{ section.settings.text_color }};
-    --hr-creators-mint: {{ section.settings.accent_color }};
-    --hr-creators-pill: {{ section.settings.pill_background }};
-    --hr-creators-orange: {{ section.settings.orange_color }};
-    --hr-creators-orange-text: {{ section.settings.orange_text_color }};
-    --hr-creators-mint-text: {{ section.settings.mint_text_color }};
+    --hr-influencers-background: {{ section.settings.background_color }};
+    --hr-influencers-text: {{ section.settings.text_color }};
+    --hr-influencers-card: {{ section.settings.card_background_color }};
+    --hr-influencers-quote-accent: {{ section.settings.quote_accent_color }};
+    --hr-influencers-heading-underline: {{ section.settings.heading_underline_color }};
+    --hr-influencers-badge: {{ section.settings.badge_background_color }};
+  }
 
+  #shopify-section-{{ section.id }} .hr-influencers {
     overflow: hidden;
-    background: var(--hr-creators-background);
+    padding: 10.84vw 0 4.36vw;
+    color: var(--hr-influencers-text);
+    background: var(--hr-influencers-background);
   }
 
-  /* The container. Every unit below is cqw = 1% of THIS box, not the viewport. */
-  #shopify-section-{{ section.id }} .hr-creators {
-    container-type: inline-size;
-    container-name: hr-creators;
+  #shopify-section-{{ section.id }} .hr-influencers__container {
+    width: 85vw;
+    margin: 0 auto;
+  }
+
+  #shopify-section-{{ section.id }} .hr-influencers__main {
+    display: grid;
+    grid-template-columns: 54.8vw 27.7vw;
+    column-gap: 2.5vw;
+    align-items: start;
+  }
+
+  #shopify-section-{{ section.id }} .hr-influencers__testimonial {
+    min-width: 0;
+  }
+
+  #shopify-section-{{ section.id }} .hr-influencers__creator-card {
+    position: relative;
+    width: calc(100% + 2.8125vw);
+    height: 17.82vw;
+    margin-left: -2.8125vw;
+    overflow: visible;
+    border-radius: 1.45vw;
+    background: var(--hr-influencers-card);
+    box-shadow: 0 .15vw 1.1vw rgba(6, 32, 60, .1);
     box-sizing: border-box;
-    width: 100%;
-    max-width: {{ section.settings.content_width }}%;
-    margin-inline: auto;
-    color: var(--hr-creators-text);
   }
 
-  #shopify-section-{{ section.id }} .hr-creators__inner {
-    /* Layout tokens - change these, everything else recalculates */
-    --hr-pad-x: 3.28125cqw;
-    --hr-pad-top: 10.78125cqw;
-    --hr-pad-bottom: 5.72917cqw;
-    --hr-col-gap: 2.5cqw;
-    --hr-card-w: 60.41667cqw;
-    --hr-card-h: 18.125cqw;
-    --hr-card-radius: 1.5625cqw;
-    --hr-portrait-w: 21.25cqw;
-    --hr-portrait-h: 24.63542cqw;
-    --hr-portrait-x: 1.5cqw;
-    --hr-quote-overlap: .2cqw;
-    --hr-quote-end-gap: 3.06667cqw;
-
-    box-sizing: border-box;
-    width: 100%;
-    padding: var(--hr-pad-top) var(--hr-pad-x) var(--hr-pad-bottom);
-  }
-
-  #shopify-section-{{ section.id }} .hr-creators__main {
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: flex-start;
-    gap: var(--hr-col-gap);
-  }
-
-  #shopify-section-{{ section.id }} .hr-creators__card {
-    display: flex;
-    flex: 0 0 var(--hr-card-w);
-    align-items: flex-end;
-    box-sizing: border-box;
-    width: var(--hr-card-w);
-    height: var(--hr-card-h);
-    margin: 0;
-    padding: 0;
-    background: var(--hr-creators-card);
-    border-radius: var(--hr-card-radius);
-    box-shadow: 0 .35cqw 1.05cqw rgba(6, 35, 66, .08);
-  }
-
-  #shopify-section-{{ section.id }} .hr-creators__portrait {
-    flex: 0 0 var(--hr-portrait-w);
-    box-sizing: border-box;
-    width: var(--hr-portrait-w);
-    height: var(--hr-portrait-h);
-    margin: 0 0 0 var(--hr-portrait-x);
+  #shopify-section-{{ section.id }} .hr-influencers__creator-media {
+    position: absolute;
+    bottom: 0;
+    left: 1.367vw;
+    z-index: 2;
+    width: 18.07vw;
+    height: 24.27vw;
     overflow: hidden;
     pointer-events: none;
   }
 
-  #shopify-section-{{ section.id }} .hr-creators__portrait-image {
+  #shopify-section-{{ section.id }} .hr-influencers__creator-image {
     display: block;
-  }
-
-  #shopify-section-{{ section.id }} .hr-creators__portrait:not(.hr-creators__portrait--fallback) .hr-creators__portrait-image {
     width: 100%;
     height: 100%;
+    max-width: none;
     object-fit: contain;
     object-position: left bottom;
   }
 
-  #shopify-section-{{ section.id }} .hr-creators__portrait--fallback .hr-creators__portrait-fallback {
-    width: 100cqw;
+  /*
+    Desktop fallback:
+    the supplied reference is a composite mockup, so the source image is
+    positioned as a sprite to expose only the creator/product area.
+  */
+  #shopify-section-{{ section.id }} .hr-influencers__creator-fallback {
+    position: absolute;
+    top: -4.395vw;
+    left: -6.055vw;
+    display: block;
+    width: 100vw;
     max-width: none;
     height: auto;
-    margin: -4.32292cqw 0 0 calc(var(--hr-pad-x) * -1);
   }
 
-  /* Takes whatever the portrait leaves behind - never fights it for space */
-  #shopify-section-{{ section.id }} .hr-creators__testimonial {
-    flex: 1 1 auto;
-    align-self: flex-start;
+  #shopify-section-{{ section.id }} .hr-influencers__creator-content {
+    position: relative;
+    z-index: 3;
+    height: 100%;
+    padding: 3.32vw 2.2vw 0 21.48vw;
     box-sizing: border-box;
-    min-width: 0;
-    margin: 0 0 0 calc(var(--hr-quote-overlap) * -1);
-    padding-top: 3.45cqw;
-    padding-right: var(--hr-quote-end-gap);
   }
 
-  #shopify-section-{{ section.id }} .hr-creators__quote {
+  #shopify-section-{{ section.id }} .hr-influencers__quote {
     margin: 0;
     padding: 0;
-    color: inherit;
+    color: var(--hr-influencers-text);
     font-family: var(--font-heading-family);
-    font-size: 1.61cqw;
+    font-size: 1.55vw;
     font-style: var(--font-heading-style);
     font-weight: var(--font-heading-weight);
     letter-spacing: 0;
     line-height: 1.42;
-    border-left: 0;
   }
 
-  #shopify-section-{{ section.id }} .hr-creators__quote-line {
+  #shopify-section-{{ section.id }} .hr-influencers__quote-line {
     display: block;
     white-space: nowrap;
   }
 
-  #shopify-section-{{ section.id }} .hr-creators__quote-accent {
-    color: var(--hr-creators-mint);
+  #shopify-section-{{ section.id }} .hr-influencers__quote-accent {
+    color: var(--hr-influencers-quote-accent);
   }
 
-  #shopify-section-{{ section.id }} .hr-creators__creator {
+  #shopify-section-{{ section.id }} .hr-influencers__creator-credit {
+    margin-top: 1.95vw;
+    margin-left: -.88vw;
+  }
+
+  #shopify-section-{{ section.id }} .hr-influencers__username {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-top: 1.62cqw;
-    margin-left: -.9cqw;
-  }
-
-  #shopify-section-{{ section.id }} .hr-creators__username {
-    display: inline-flex;
     align-items: center;
-    justify-content: flex-start;
-    min-width: 9.65cqw;
-    min-height: 2.35cqw;
-    padding: .25cqw .95cqw;
-    color: var(--hr-creators-text);
-    background: var(--hr-creators-pill);
-    border-radius: 2cqw;
+    width: 9.5vw;
+    min-height: 2.25vw;
+    padding: 0 .9vw;
+    border-radius: 999px;
+    color: var(--hr-influencers-text);
+    background: var(--hr-influencers-badge);
     box-sizing: border-box;
-    font-family: var(--font-heading-family);
-    font-size: 1.04cqw;
-    font-style: var(--font-heading-style);
-    font-weight: var(--font-heading-weight);
+    font-family: var(--font-body-family);
+    font-size: 1.08vw;
+    font-style: var(--font-body-style);
+    font-weight: 700;
     line-height: 1;
   }
 
-  #shopify-section-{{ section.id }} .hr-creators__role {
-    margin-top: .45cqw;
-    margin-left: .9cqw;
+  #shopify-section-{{ section.id }} .hr-influencers__creator-type {
+    display: block;
+    margin-top: .48vw;
+    margin-left: .88vw;
+    color: var(--hr-influencers-text);
     font-family: var(--font-body-family);
-    font-size: .82cqw;
+    font-size: .8vw;
     font-style: var(--font-body-style);
-    font-weight: 500;
+    font-weight: 400;
     letter-spacing: 0;
     line-height: 1.1;
     text-transform: uppercase;
   }
 
-  /* Also fluid - absorbs the remainder of the row */
-  #shopify-section-{{ section.id }} .hr-creators__intro {
-    flex: 1 1 auto;
-    box-sizing: border-box;
+  #shopify-section-{{ section.id }} .hr-influencers__intro {
     min-width: 0;
-    padding-top: 2.55cqw;
+    padding-top: 2.55vw;
     text-align: center;
   }
 
-  #shopify-section-{{ section.id }} .hr-creators__eyebrow {
-    margin: 0 0 1.05cqw;
-    color: inherit;
+  #shopify-section-{{ section.id }} .hr-influencers__eyebrow {
+    margin: 0 0 1.05vw;
+    color: var(--hr-influencers-text);
     font-family: var(--font-body-family);
-    font-size: 1.55cqw;
+    font-size: 1.45vw;
     font-style: var(--font-body-style);
-    font-weight: 500;
-    letter-spacing: .01cqw;
-    line-height: 1.1;
+    font-weight: 600;
+    letter-spacing: .01vw;
+    line-height: 1.15;
     text-transform: uppercase;
+    white-space: nowrap;
   }
 
-  #shopify-section-{{ section.id }} .hr-creators__heading {
+  #shopify-section-{{ section.id }} .hr-influencers__heading {
     margin: 0;
-    color: inherit;
+    color: var(--hr-influencers-text);
     font-family: var(--font-heading-family);
-    font-size: 2.5cqw;
+    font-size: 2.35vw;
     font-style: var(--font-heading-style);
     font-weight: var(--font-heading-weight);
     letter-spacing: 0;
-    line-height: 1.02;
+    line-height: 1.08;
   }
 
-  #shopify-section-{{ section.id }} .hr-creators__heading-line {
+  #shopify-section-{{ section.id }} .hr-influencers__heading-line {
     display: block;
     white-space: nowrap;
   }
 
-  #shopify-section-{{ section.id }} .hr-creators__heading-accent {
-    display: inline-block;
-    background-image: linear-gradient(var(--hr-creators-mint), var(--hr-creators-mint));
-    background-repeat: no-repeat;
-    background-size: calc(100% + .12em) .2em;
-    background-position: left -.06em bottom .02em;
+  #shopify-section-{{ section.id }} .hr-influencers__heading-accent {
+    position: relative;
+    z-index: 0;
+    display: inline;
+    background:
+      linear-gradient(
+        to bottom,
+        transparent 0,
+        transparent 58%,
+        var(--hr-influencers-heading-underline) 58%,
+        var(--hr-influencers-heading-underline) 87%,
+        transparent 87%,
+        transparent 100%
+      );
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
   }
 
-  #shopify-section-{{ section.id }} .hr-creators__subheading {
-    margin: 2.65cqw 0 0;
-    color: inherit;
+  #shopify-section-{{ section.id }} .hr-influencers__subheading {
+    max-width: 27.7vw;
+    margin: 2.25vw auto 0;
+    color: var(--hr-influencers-text);
     font-family: var(--font-body-family);
-    font-size: 1.18cqw;
+    font-size: 1.15vw;
     font-style: italic;
-    font-weight: 500;
-    line-height: 1.38;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1.36;
   }
 
-  #shopify-section-{{ section.id }} .hr-creators__subheading span {
-    display: block;
-    white-space: nowrap;
+  #shopify-section-{{ section.id }} .hr-influencers__actions {
+    display: grid;
+    grid-template-columns: 30.5vw 25.9vw;
+    gap: 1.95vw;
+    width: 58.35vw;
+    margin: 2.98vw auto 0;
   }
 
-  #shopify-section-{{ section.id }} .hr-creators__ctas {
-    display: flex;
-    align-items: stretch;
-    justify-content: center;
-    gap: 1.9cqw;
-    margin-top: 2.96875cqw;
-  }
-
-  #shopify-section-{{ section.id }} .hr-creators__cta-wrap--orange {
-    flex: 0 1 31.5cqw;
+  #shopify-section-{{ section.id }} .hr-influencers__action {
     min-width: 0;
   }
 
-  #shopify-section-{{ section.id }} .hr-creators__cta-wrap--mint {
-    flex: 0 1 26.8cqw;
-    min-width: 0;
-  }
-
-  #shopify-section-{{ section.id }} .hr-creators__cta.button {
-    display: flex;
+  #shopify-section-{{ section.id }} .hr-influencers__button.button {
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: .35em;
+    gap: .34em;
     width: 100%;
+    height: 3.95vw;
     min-width: 0;
-    height: 4.16667cqw;
+    min-height: 0;
     margin: 0;
-    padding: 0 1.35cqw;
+    padding: 0 2.15vw;
     border: 0;
-    border-radius: 2.25cqw;
-    box-sizing: border-box;
+    border-radius: 999px;
+    color: var(--action-text);
+    background: var(--action-background);
     box-shadow: none;
-    font-family: var(--font-heading-family);
-    font-size: 1.32cqw;
-    font-style: var(--font-heading-style);
+    box-sizing: border-box;
+    font-family: var(--font-body-family);
+    font-size: 1.25vw;
+    font-style: var(--font-body-style);
     font-weight: 400;
     letter-spacing: 0;
     line-height: 1;
     text-align: center;
     text-decoration: none;
-    text-transform: uppercase;
     white-space: nowrap;
   }
 
-  #shopify-section-{{ section.id }} .hr-creators__cta.button::before,
-  #shopify-section-{{ section.id }} .hr-creators__cta.button::after {
-    content: none;
+  #shopify-section-{{ section.id }} .hr-influencers__button.button::before,
+  #shopify-section-{{ section.id }} .hr-influencers__button.button::after {
+    display: none;
+    box-shadow: none;
   }
 
-  #shopify-section-{{ section.id }} .hr-creators__cta strong {
-    font-weight: var(--font-heading-weight);
+  #shopify-section-{{ section.id }} .hr-influencers__button strong {
+    font-weight: 700;
   }
 
-  #shopify-section-{{ section.id }} .hr-creators__cta--orange {
-    color: var(--hr-creators-orange-text);
-    background: var(--hr-creators-orange);
+  #shopify-section-{{ section.id }} a.hr-influencers__button {
+    cursor: pointer;
   }
 
-  #shopify-section-{{ section.id }} .hr-creators__cta--mint {
-    color: var(--hr-creators-mint-text);
-    background: var(--hr-creators-mint);
-    font-weight: var(--font-heading-weight);
+  #shopify-section-{{ section.id }} a.hr-influencers__button:hover {
+    color: var(--action-text);
+    background: var(--action-background);
+    text-decoration: none;
   }
 
-  /* Breakpoint is now the container's width, not the viewport's */
-  @container hr-creators (max-width: 749px) {
-    #shopify-section-{{ section.id }} .hr-creators__inner {
-      --hr-pad-x: 5cqw;
-      --hr-pad-top: 18cqw;
-      --hr-pad-bottom: 12cqw;
-      --hr-card-radius: 5cqw;
-      --hr-portrait-w: 70cqw;
-      --hr-portrait-h: 85cqw;
-      --hr-portrait-pull: 25cqw;
+  #shopify-section-{{ section.id }} a.hr-influencers__button:focus-visible {
+    outline: .12vw solid currentColor;
+    outline-offset: .18vw;
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .hr-influencers {
+      padding: 12vw 0;
     }
 
-    #shopify-section-{{ section.id }} .hr-creators__main {
-      flex-direction: column;
-      gap: 0;
+    #shopify-section-{{ section.id }} .hr-influencers--has-custom-image {
+      padding-top: 28vw;
     }
 
-    #shopify-section-{{ section.id }} .hr-creators__card {
-      flex: 0 0 auto;
-      flex-direction: column;
-      align-items: stretch;
+    #shopify-section-{{ section.id }} .hr-influencers__container {
+      width: 85vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-influencers__main {
+      display: block;
+    }
+
+    #shopify-section-{{ section.id }} .hr-influencers__creator-card {
       width: 100%;
       height: auto;
       min-height: 0;
-      padding: 0 6cqw 8cqw;
+      margin-left: 0;
+      border-radius: 6vw;
+      box-shadow: 0 1vw 5vw rgba(6, 32, 60, .08);
     }
 
-    #shopify-section-{{ section.id }} .hr-creators__portrait {
-      flex: 0 0 auto;
-      margin: calc(var(--hr-portrait-pull) * -1) auto 0;
+    #shopify-section-{{ section.id }} .hr-influencers__creator-media--fallback {
+      display: none;
     }
 
-    #shopify-section-{{ section.id }} .hr-creators__portrait--fallback .hr-creators__portrait-fallback {
-      width: 345cqw;
-      margin: -14.9cqw 0 0 -11.5cqw;
+    #shopify-section-{{ section.id }} .hr-influencers__creator-media--custom {
+      top: -20vw;
+      right: auto;
+      bottom: auto;
+      left: 50%;
+      width: 58vw;
+      height: 70vw;
+      overflow: visible;
+      transform: translateX(-50%);
     }
 
-    #shopify-section-{{ section.id }} .hr-creators__testimonial {
-      flex: 0 0 auto;
-      align-self: stretch;
-      width: auto;
-      margin: 0;
-      padding: 0;
+    #shopify-section-{{ section.id }} .hr-influencers__creator-content {
+      height: auto;
+      padding: 8vw 7vw;
     }
 
-    #shopify-section-{{ section.id }} .hr-creators__quote {
-      font-size: 4.7cqw;
+    #shopify-section-{{ section.id }} .hr-influencers--has-custom-image .hr-influencers__creator-content {
+      padding-top: 55vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-influencers__quote {
+      font-size: 5.3vw;
       line-height: 1.35;
     }
 
-    #shopify-section-{{ section.id }} .hr-creators__quote-line,
-    #shopify-section-{{ section.id }} .hr-creators__heading-line,
-    #shopify-section-{{ section.id }} .hr-creators__subheading span {
+    #shopify-section-{{ section.id }} .hr-influencers__quote-line {
       white-space: normal;
     }
 
-    #shopify-section-{{ section.id }} .hr-creators__creator {
-      margin-top: 6cqw;
+    #shopify-section-{{ section.id }} .hr-influencers__quote-line + .hr-influencers__quote-line {
+      margin-top: 1vw;
+    }
+
+    #shopify-section-{{ section.id }} .hr-influencers__creator-credit {
+      margin-top: 6vw;
       margin-left: 0;
     }
 
-    #shopify-section-{{ section.id }} .hr-creators__username {
-      min-width: 36cqw;
-      min-height: 10cqw;
-      padding: 1.5cqw 4cqw;
-      border-radius: 6cqw;
-      font-size: 4.2cqw;
-    }
-
-    #shopify-section-{{ section.id }} .hr-creators__role {
-      margin-top: 2.3cqw;
-      margin-left: 1cqw;
-      font-size: 3.2cqw;
-    }
-
-    #shopify-section-{{ section.id }} .hr-creators__intro {
-      flex: 0 0 auto;
+    #shopify-section-{{ section.id }} .hr-influencers__username {
       width: auto;
-      margin-top: 12cqw;
-      padding: 0;
+      min-width: 38vw;
+      min-height: 11vw;
+      padding: 0 5vw;
+      font-size: 4.6vw;
     }
 
-    #shopify-section-{{ section.id }} .hr-creators__eyebrow {
-      margin-bottom: 4cqw;
-      font-size: 4.3cqw;
-      line-height: 1.15;
+    #shopify-section-{{ section.id }} .hr-influencers__creator-type {
+      margin-top: 2.5vw;
+      margin-left: 5vw;
+      font-size: 3.3vw;
     }
 
-    #shopify-section-{{ section.id }} .hr-creators__heading {
-      font-size: 8cqw;
-      line-height: 1.03;
+    #shopify-section-{{ section.id }} .hr-influencers__intro {
+      padding-top: 12vw;
     }
 
-    #shopify-section-{{ section.id }} .hr-creators__subheading {
-      margin-top: 6cqw;
-      font-size: 4.1cqw;
+    #shopify-section-{{ section.id }} .hr-influencers__eyebrow {
+      margin-bottom: 4vw;
+      font-size: 3.9vw;
+      line-height: 1.2;
+      white-space: normal;
+    }
+
+    #shopify-section-{{ section.id }} .hr-influencers__heading {
+      font-size: 7vw;
+      line-height: 1.08;
+    }
+
+    #shopify-section-{{ section.id }} .hr-influencers__heading-line {
+      white-space: normal;
+    }
+
+    #shopify-section-{{ section.id }} .hr-influencers__subheading {
+      max-width: 78vw;
+      margin-top: 6vw;
+      font-size: 4.2vw;
       line-height: 1.4;
     }
 
-    #shopify-section-{{ section.id }} .hr-creators__ctas {
-      flex-direction: column;
-      gap: 4cqw;
-      margin-top: 10cqw;
+    #shopify-section-{{ section.id }} .hr-influencers__actions {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 4vw;
+      width: 85vw;
+      margin-top: 10vw;
     }
 
-    #shopify-section-{{ section.id }} .hr-creators__cta-wrap--orange,
-    #shopify-section-{{ section.id }} .hr-creators__cta-wrap--mint {
-      flex: 0 0 auto;
-      width: 100%;
-    }
-
-    #shopify-section-{{ section.id }} .hr-creators__cta.button {
-      min-height: 14cqw;
+    #shopify-section-{{ section.id }} .hr-influencers__button.button {
       height: auto;
-      padding: 3.8cqw 5cqw;
-      border-radius: 8cqw;
-      font-size: 4cqw;
-      line-height: 1.1;
+      min-height: 14vw;
+      padding: 3vw 5vw;
+      font-size: 4vw;
+      line-height: 1.15;
       white-space: normal;
+    }
+
+    #shopify-section-{{ section.id }} a.hr-influencers__button:focus-visible {
+      outline-width: .5vw;
+      outline-offset: .8vw;
     }
   }
 </style>
 
 {% schema %}
 {
-  "name": "Verified Creators",
+  "name": "Verified Influencers",
   "tag": "section",
-  "class": "section section-home-revamp-creators",
-  "max_blocks": 4,
+  "class": "section section-home-revamp-influencers",
+  "max_blocks": 2,
   "settings": [
-    {
-      "type": "header",
-      "content": "Layout"
-    },
-    {
-      "type": "range",
-      "id": "content_width",
-      "label": "Content width",
-      "min": 50,
-      "max": 100,
-      "step": 1,
-      "unit": "%",
-      "default": 100,
-      "info": "Everything scales with this - type, spacing and image offsets stay in proportion."
-    },
     {
       "type": "header",
       "content": "Creator testimonial"
@@ -570,13 +601,14 @@
     {
       "type": "image_picker",
       "id": "creator_image",
-      "label": "Creator image"
+      "label": "Creator image",
+      "info": "Upload the isolated creator/product image when available. The supplied desktop mockup is used as the fallback."
     },
     {
       "type": "text",
-      "id": "image_alt",
-      "label": "Image alt text",
-      "default": "Lifestyle creator holding SmartMouth mouthwash"
+      "id": "creator_image_alt",
+      "label": "Creator image alt text",
+      "default": "Lifestyle creator holding a SmartMouth bottle"
     },
     {
       "type": "text",
@@ -586,13 +618,13 @@
     },
     {
       "type": "text",
-      "id": "quote_line_2_before",
-      "label": "Quote line 2 before accent",
+      "id": "quote_line_2_prefix",
+      "label": "Quote line 2",
       "default": "SmartMouth gives me"
     },
     {
       "type": "text",
-      "id": "quote_line_2_accent",
+      "id": "quote_accent",
       "label": "Quote accent",
       "default": "24-hour confidence"
     },
@@ -610,13 +642,13 @@
     },
     {
       "type": "text",
-      "id": "creator_role",
-      "label": "Creator role",
+      "id": "creator_type",
+      "label": "Creator type",
       "default": "LIFESTYLE CREATOR"
     },
     {
       "type": "header",
-      "content": "Section heading"
+      "content": "Intro"
     },
     {
       "type": "text",
@@ -633,26 +665,20 @@
     {
       "type": "text",
       "id": "heading_line_2_prefix",
-      "label": "Heading line 2 before accent",
+      "label": "Heading line 2",
       "default": "who"
     },
     {
       "type": "text",
-      "id": "heading_line_2_accent",
-      "label": "Heading line 2 accent",
+      "id": "heading_accent",
+      "label": "Heading accent",
       "default": "don’t settle."
     },
     {
-      "type": "text",
-      "id": "subheading_line_1",
-      "label": "Subheading line 1",
-      "default": "They put SmartMouth to the test - and made it their"
-    },
-    {
-      "type": "text",
-      "id": "subheading_line_2",
-      "label": "Subheading line 2",
-      "default": "everyday essential for all-day confidence."
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "They put SmartMouth to the test – and made it their everyday essential for all-day confidence."
     },
     {
       "type": "header",
@@ -666,79 +692,55 @@
     },
     {
       "type": "color",
-      "id": "card_background",
-      "label": "Testimonial card",
-      "default": "#FAF4E3"
-    },
-    {
-      "type": "color",
       "id": "text_color",
       "label": "Text",
-      "default": "#082440"
+      "default": "#06203C"
     },
     {
       "type": "color",
-      "id": "accent_color",
-      "label": "Mint accent",
-      "default": "#8FD4C9"
+      "id": "card_background_color",
+      "label": "Testimonial background",
+      "default": "#FBF5E3"
     },
     {
       "type": "color",
-      "id": "pill_background",
-      "label": "Username pill",
-      "default": "#D2EEE7"
+      "id": "quote_accent_color",
+      "label": "Quote accent",
+      "default": "#8CD1C4"
     },
     {
       "type": "color",
-      "id": "orange_color",
-      "label": "Orange CTA",
-      "default": "#FF7800"
+      "id": "heading_underline_color",
+      "label": "Heading underline",
+      "default": "#B0E0D7"
     },
     {
       "type": "color",
-      "id": "orange_text_color",
-      "label": "Orange CTA text",
-      "default": "#FFFFFF"
-    },
-    {
-      "type": "color",
-      "id": "mint_text_color",
-      "label": "Mint CTA text",
-      "default": "#082440"
+      "id": "badge_background_color",
+      "label": "Username badge",
+      "default": "#D6EAD9"
     }
   ],
   "blocks": [
     {
-      "type": "cta",
+      "type": "action",
       "name": "CTA button",
       "settings": [
         {
-          "type": "select",
-          "id": "style",
-          "label": "Style",
-          "default": "orange",
-          "options": [
-            {
-              "value": "orange",
-              "label": "Orange"
-            },
-            {
-              "value": "mint",
-              "label": "Mint"
-            }
-          ]
-        },
-        {
           "type": "text",
-          "id": "strong_text",
-          "label": "Bold text",
-          "default": "10% OFF + FREE SHIPPING →"
+          "id": "strong_text_before",
+          "label": "Bold text before",
+          "default": "SHOP [AFFILIATE NAME]’s PICKS →"
         },
         {
           "type": "text",
           "id": "regular_text",
-          "label": "Regular text",
-          "default": "USE CODE XXX"
+          "label": "Regular text"
+        },
+        {
+          "type": "text",
+          "id": "strong_text_after",
+          "label": "Bold text after"
         },
         {
           "type": "url",
@@ -746,34 +748,43 @@
           "label": "Link"
         },
         {
-          "type": "text",
-          "id": "aria_label",
-          "label": "Accessible label"
+          "type": "color",
+          "id": "background_color",
+          "label": "Background",
+          "default": "#8CD1C4"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text",
+          "default": "#06203C"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Affiliate Verified Creators",
-      "category": "Affiliate Page",
+      "name": "Verified Influencers",
+      "category": "Home Revamp",
       "blocks": [
         {
-          "type": "cta",
+          "type": "action",
           "settings": {
-            "style": "orange",
-            "strong_text": "10% OFF + FREE SHIPPING →",
-            "regular_text": "USE CODE XXX",
-            "aria_label": "Use creator discount code"
+            "strong_text_before": "10% OFF + FREE SHIPPING →",
+            "regular_text": "USE CODE",
+            "strong_text_after": "XXX",
+            "background_color": "#FF7701",
+            "text_color": "#FFFFFF"
           }
         },
         {
-          "type": "cta",
+          "type": "action",
           "settings": {
-            "style": "mint",
-            "strong_text": "SHOP [AFFILIATE NAME]’S PICKS →",
+            "strong_text_before": "SHOP [AFFILIATE NAME]’s PICKS →",
             "regular_text": "",
-            "aria_label": "Shop affiliate picks"
+            "strong_text_after": "",
+            "background_color": "#8CD1C4",
+            "text_color": "#06203C"
           }
         }
       ]
@@ -781,3 +792,10 @@
   ]
 }
 {% endschema %}
+
+{% comment %}
+  The supplied creator artwork is embedded in the composite desktop mockup rather
+  than provided as an isolated transparent asset. The mockup file is therefore
+  cropped as a desktop fallback. Uploading the isolated creator image through the
+  section setting will replace that fallback and is used for the mobile layout.
+{% endcomment %}
