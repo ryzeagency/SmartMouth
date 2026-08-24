@@ -12,7 +12,11 @@
       </div>
       <div class="cpi-image">
         {% if section.settings.p1_image %}
-          {{ section.settings.p1_image | image_url: width: 800 | image_tag: loading: 'lazy', alt: section.settings.p1_title }}
+          {% liquid
+            assign p1_alt = section.settings.p1_image.alt | default: section.settings.p1_title | strip
+          %}
+          {{ section.settings.p1_image | image_url: width: 800 | image_tag: loading: 'lazy', alt: p1_alt }}
+          {% render 'image-text-equivalent', image: section.settings.p1_image, fallback: section.settings.p1_title %}
         {% else %}
           {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
         {% endif %}
@@ -22,7 +26,11 @@
 
   <div class="cpi-section cpi-full-image">
     {% if section.settings.p2_image %}
-      {{ section.settings.p2_image | image_url: width: 2000 | image_tag: loading: 'lazy', class: 'cpi-banner-img', alt: 'How it works' }}
+      {% liquid
+        assign p2_alt = section.settings.p2_image.alt | default: 'How it works' | strip
+      %}
+      {{ section.settings.p2_image | image_url: width: 2000 | image_tag: loading: 'lazy', class: 'cpi-banner-img', alt: p2_alt }}
+      {% render 'image-text-equivalent', image: section.settings.p2_image, fallback: 'How it works' %}
     {% else %}
       {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg cpi-banner-img' }}
     {% endif %}
@@ -32,7 +40,11 @@
     <div class="cpi-container">
       <div class="cpi-image">
         {% if section.settings.p3_image %}
-          {{ section.settings.p3_image | image_url: width: 800 | image_tag: loading: 'lazy', alt: section.settings.p3_title }}
+          {% liquid
+            assign p3_alt = section.settings.p3_image.alt | default: section.settings.p3_title | strip
+          %}
+          {{ section.settings.p3_image | image_url: width: 800 | image_tag: loading: 'lazy', alt: p3_alt }}
+          {% render 'image-text-equivalent', image: section.settings.p3_image, fallback: section.settings.p3_title %}
         {% else %}
           {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
         {% endif %}

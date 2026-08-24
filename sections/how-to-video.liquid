@@ -80,6 +80,9 @@
           ></iframe>
         {% endif %}
       {% elsif show_image %}
+        {% liquid
+          assign video_image_alt = section.settings.image.alt | default: section.settings.image_alt | strip
+        %}
         {{
           section.settings.image
           | image_url: width: 3000
@@ -88,8 +91,9 @@
             sizes: '(min-width: 750px) 75vw, 85vw',
             class: 'how-to-video__asset',
             loading: 'lazy',
-            alt: section.settings.image_alt
+            alt: video_image_alt
         }}
+        {% render 'image-text-equivalent', image: section.settings.image, fallback: section.settings.image_alt %}
       {% else %}
         <div class="how-to-video__placeholder" aria-label="Video or image placeholder">
           <span>{{ section.settings.placeholder_text | escape }}</span>

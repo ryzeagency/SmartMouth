@@ -40,7 +40,10 @@
             >
               <div class="faq-accordion__answer">
                 {% if block.settings.answer_image != blank %}
-                  <div class="faq-accordion__answer-image">
+                  {% liquid
+                    assign answer_image_alt = block.settings.answer_image.alt | default: block.settings.answer_image_alt | strip
+                  %}
+                  <figure class="faq-accordion__answer-image">
                     {{
                       block.settings.answer_image
                       | image_url: width: 2000
@@ -48,9 +51,10 @@
                         widths: '600, 900, 1200, 1600, 2000',
                         sizes: '(min-width: 750px) 66vw, 78vw',
                         loading: 'lazy',
-                        alt: block.settings.answer_image_alt
+                        alt: answer_image_alt
                     }}
-                  </div>
+                    {% render 'image-text-equivalent', image: block.settings.answer_image, fallback: block.settings.answer_image_alt %}
+                  </figure>
                 {% endif %}
 
                 {% if block.settings.answer != blank %}
@@ -64,6 +68,50 @@
     {% endif %}
   </div>
 </section>
+
+{%- liquid
+  assign faq_count = 0
+  for block in section.blocks
+    if block.settings.question != blank and block.settings.answer != blank
+      assign faq_count = faq_count | plus: 1
+    endif
+  endfor
+-%}
+{%- if faq_count > 0 -%}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {%- assign faq_index = 0 -%}
+        {%- for block in section.blocks -%}
+          {%- if block.settings.question != blank and block.settings.answer != blank -%}
+            {%- assign faq_index = faq_index | plus: 1 -%}
+            {%- unless faq_index == 1 -%},{%- endunless -%}
+            {
+              "@type": "Question",
+              "name": {{ block.settings.question | json }},
+              "acceptedAnswer": {
+                "@type": "Answer"
+                {%- liquid
+                  assign faq_answer = block.settings.answer | strip_html | strip
+                  assign faq_image_alt = block.settings.answer_image.alt | default: block.settings.answer_image_alt | strip
+                  if faq_image_alt != blank
+                    assign faq_answer = faq_answer | append: ' ' | append: faq_image_alt
+                  endif
+                -%}
+                ,"text": {{ faq_answer | json }}
+                {%- if block.settings.answer_image != blank -%}
+                  ,"image": {{ block.settings.answer_image | image_url: width: 1600 | prepend: 'https:' | json }}
+                {%- endif -%}
+              }
+            }
+          {%- endif -%}
+        {%- endfor -%}
+      ]
+    }
+  </script>
+{%- endif -%}
 
 <style>
   #shopify-section-{{ section.id }} {
@@ -181,7 +229,7 @@
   }
 
   #shopify-section-{{ section.id }} .faq-accordion__answer-image {
-    margin-bottom: 1.2vw;
+    margin: 0 0 1.2vw;
   }
 
   #shopify-section-{{ section.id }} .faq-accordion__answer-image img {
@@ -502,7 +550,8 @@
         {
           "type": "text",
           "id": "answer_image_alt",
-          "label": "Answer image alt text"
+          "label": "Answer image alt text",
+          "info": "Used when the Shopify file has no alt text. Prefer setting alt on the image in Shopify."
         }
       ]
     }

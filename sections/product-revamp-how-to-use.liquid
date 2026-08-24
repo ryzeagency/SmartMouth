@@ -2,6 +2,7 @@
   class="product-how-to product-how-to--card-{{ section.settings.card_position }}"
   aria-labelledby="ProductHowToHeading-{{ section.id }}"
 >
+  {% render 'image-text-equivalent', image: section.settings.desktop_background, fallback: section.settings.mobile_background.alt %}
   <div class="product-how-to__inner">
     <div class="product-how-to__card">
       {%- if section.settings.heading != blank -%}
@@ -43,6 +44,44 @@
     </div>
   </div>
 </section>
+
+{%- if visible_steps > 1 -%}
+  {%- liquid
+    assign howto_name = section.settings.heading | strip
+    if howto_name == blank
+      assign howto_name = 'How to use'
+    endif
+    if product != blank
+      assign howto_name = howto_name | append: ' ' | append: product.title
+    endif
+  -%}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": {{ howto_name | json }},
+      "url": {{ canonical_url | json }}
+      {%- if product.featured_image -%}
+        ,"image": {{ product.featured_image | image_url: width: 1200 | prepend: 'https:' | json }}
+      {%- endif -%}
+      ,"step": [
+        {%- assign howto_step = 0 -%}
+        {%- for block in section.blocks -%}
+          {%- if block.settings.heading != blank or block.settings.body != blank -%}
+            {%- assign howto_step = howto_step | plus: 1 -%}
+            {%- unless howto_step == 1 -%},{%- endunless -%}
+            {
+              "@type": "HowToStep",
+              "position": {{ howto_step }},
+              "name": {{ block.settings.heading | default: block.settings.body | strip_html | json }},
+              "text": {{ block.settings.body | strip_html | json }}
+            }
+          {%- endif -%}
+        {%- endfor -%}
+      ]
+    }
+  </script>
+{%- endif -%}
 
 <style>
   #shopify-section-{{ section.id }} {

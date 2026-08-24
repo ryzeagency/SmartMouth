@@ -82,7 +82,7 @@
         <div class="hr-available__retailers" role="list" aria-label="Available retailers">
           {% for block in section.blocks %}
             {% liquid
-              assign retailer_alt = block.settings.alt | default: block.settings.text
+              assign retailer_alt = block.settings.image.alt | default: block.settings.alt | default: block.settings.text | strip
             %}
             <div
               class="hr-available__retailer hr-available__retailer--{{ block.settings.logo_style }}"

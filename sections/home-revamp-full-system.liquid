@@ -51,9 +51,9 @@
               endif
             endif
 
-            assign card_alt = block.settings.image_alt
-            if card_alt == blank and card_image.alt != blank
-              assign card_alt = card_image.alt
+            assign card_alt = card_image.alt
+            if card_alt == blank
+              assign card_alt = block.settings.image_alt
             endif
             if card_alt == blank
               assign card_alt = card_title
@@ -73,6 +73,7 @@
                     loading: 'lazy',
                     alt: card_alt
                 }}
+                {% render 'image-text-equivalent', image: card_image, fallback: card_alt %}
               {% else %}
                 {{ 'product-1' | placeholder_svg_tag: 'home-full-system__placeholder' }}
               {% endif %}
