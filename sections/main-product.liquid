@@ -82,6 +82,12 @@
       font-size: 1.5rem;
     }
   }
+
+  {% if product.tags contains 'bundle' %}
+      shopify-accelerated-checkout {
+        display: none !important;
+      }
+  {% endif %}
   {%- endstyle -%}
 
   <script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
