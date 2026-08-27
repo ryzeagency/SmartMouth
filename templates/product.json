@@ -60,6 +60,39 @@
             "show_gift_card_recipient": true
           }
         },
+        "retailer_availability_egaAwT": {
+          "type": "retailer_availability",
+          "settings": {
+            "label": "Available at",
+            "separator": "&",
+            "walmart_logo": "shopify://shop_images/walmart.png",
+            "walmart_alt": "Walmart",
+            "walmart_link": "shopify://pages/store-locator",
+            "walmart_width": 100,
+            "walgreens_logo": "shopify://shop_images/walgreens.png",
+            "walgreens_alt": "Walgreens",
+            "walgreens_link": "shopify://pages/store-locator",
+            "walgreens_width": 100,
+            "open_new_tab": true,
+            "layout": "row",
+            "alignment": "flex-start",
+            "text_alignment": "left",
+            "group_gap": 12,
+            "logo_gap": 10,
+            "text_color": "#121212",
+            "font_size": 16,
+            "font_weight": "600",
+            "show_background": false,
+            "background_color": "#f7f7f7",
+            "border_width": 0,
+            "border_color": "#e5e5e5",
+            "border_radius": 0,
+            "padding_vertical": 0,
+            "padding_horizontal": 0,
+            "margin_top": 16,
+            "margin_bottom": 16
+          }
+        },
         "description": {
           "type": "description",
           "settings": {}
@@ -120,6 +153,7 @@
         "loop_subscriptions_loop_widget_ndmjpf",
         "dates_rates_pdp_promise_J36xKc",
         "buy_buttons",
+        "retailer_availability_egaAwT",
         "description",
         "collapsible-row-0",
         "collapsible-row-1",
