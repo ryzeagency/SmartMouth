@@ -84,6 +84,11 @@
   }
 
   /* Retailer availability block */
+  #shopify-section-{{ section.id }} .product__retailer-block {
+    margin-top: var(--retailer-margin-top, 16px);
+    margin-bottom: var(--retailer-margin-bottom, 16px);
+  }
+
   #shopify-section-{{ section.id }} .product__retailer-availability {
     display: flex;
     flex-direction: var(--retailer-direction, row);
@@ -91,8 +96,8 @@
     align-items: var(--retailer-align-items, center);
     justify-content: var(--retailer-justify, flex-start);
     gap: var(--retailer-group-gap, 12px);
-    margin-top: var(--retailer-margin-top, 16px);
-    margin-bottom: var(--retailer-margin-bottom, 16px);
+    margin-top: 0;
+    margin-bottom: 0;
     padding: var(--retailer-padding-y, 0px) var(--retailer-padding-x, 0px);
     color: var(--retailer-text-color, #121212);
     background: var(--retailer-background, transparent);
@@ -136,6 +141,40 @@
     font-weight: var(--retailer-font-weight, 600);
     line-height: 1;
     color: inherit;
+  }
+
+  #shopify-section-{{ section.id }} .product__retailer-button-wrap {
+    display: flex;
+    justify-content: var(--retailer-button-justify, flex-start);
+    margin-top: var(--retailer-button-margin-top, 12px);
+  }
+
+  #shopify-section-{{ section.id }} .product__retailer-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--retailer-button-width, auto);
+    max-width: 100%;
+    padding: var(--retailer-button-padding-y, 12px) var(--retailer-button-padding-x, 24px);
+    color: var(--retailer-button-text-color, #ffffff);
+    background: var(--retailer-button-background, #121212);
+    border: var(--retailer-button-border-width, 0px) solid var(--retailer-button-border-color, #121212);
+    border-radius: var(--retailer-button-radius, 4px);
+    font: inherit;
+    font-weight: 600;
+    line-height: 1.2;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+
+  #shopify-section-{{ section.id }} a.product__retailer-button {
+    cursor: pointer;
+  }
+
+  #shopify-section-{{ section.id }} .product__retailer-button:hover {
+    color: var(--retailer-button-hover-text-color, #ffffff);
+    background: var(--retailer-button-hover-background, #333333);
   }
 
   @media screen and (max-width: 749px) {
@@ -398,9 +437,14 @@
 
                   assign walmart_style = '--retailer-logo-width: ' | append: block.settings.walmart_width | append: 'px;'
                   assign walgreens_style = '--retailer-logo-width: ' | append: block.settings.walgreens_width | append: 'px;'
+
+                  assign retailer_button_width = 'auto'
+                  if block.settings.button_width == 'full'
+                    assign retailer_button_width = '100%'
+                  endif
                 -%}
                 <div
-                  class="product__retailer-availability quick-add-hidden"
+                  class="product__retailer-block quick-add-hidden"
                   style="
                     --retailer-direction: {{ block.settings.layout }};
                     --retailer-justify: {{ retailer_justify }};
@@ -419,9 +463,22 @@
                     --retailer-border-width: {{ block.settings.border_width }}px;
                     --retailer-border-color: {{ block.settings.border_color }};
                     --retailer-radius: {{ block.settings.border_radius }}px;
+                    --retailer-button-justify: {{ block.settings.alignment }};
+                    --retailer-button-width: {{ retailer_button_width }};
+                    --retailer-button-background: {{ block.settings.button_background_color }};
+                    --retailer-button-text-color: {{ block.settings.button_text_color }};
+                    --retailer-button-hover-background: {{ block.settings.button_hover_background_color }};
+                    --retailer-button-hover-text-color: {{ block.settings.button_hover_text_color }};
+                    --retailer-button-border-width: {{ block.settings.button_border_width }}px;
+                    --retailer-button-border-color: {{ block.settings.button_border_color }};
+                    --retailer-button-radius: {{ block.settings.button_border_radius }}px;
+                    --retailer-button-padding-y: {{ block.settings.button_padding_vertical }}px;
+                    --retailer-button-padding-x: {{ block.settings.button_padding_horizontal }}px;
+                    --retailer-button-margin-top: {{ block.settings.button_margin_top }}px;
                   "
                   {{ block.shopify_attributes }}
                 >
+                  <div class="product__retailer-availability">
                   {%- if block.settings.label != blank -%}
                     <p class="product__retailer-label">{{ block.settings.label }}</p>
                   {%- endif -%}
@@ -485,6 +542,23 @@
                       {%- endif -%}
                     {%- endif -%}
                   </div>
+                </div>
+
+                  {%- if block.settings.show_button and block.settings.button_text != blank -%}
+                    <div class="product__retailer-button-wrap">
+                      {%- if block.settings.button_link != blank -%}
+                        <a
+                          class="product__retailer-button"
+                          href="{{ block.settings.button_link }}"
+                          {% if block.settings.open_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
+                        >
+                          {{ block.settings.button_text | escape }}
+                        </a>
+                      {%- else -%}
+                        <span class="product__retailer-button">{{ block.settings.button_text | escape }}</span>
+                      {%- endif -%}
+                    </div>
+                  {%- endif -%}
                 </div>
               {%- when 'amazon_review_badge' -%}
                 <div class="product__code-output" {{ block.shopify_attributes }}>{{ product.metafields.custom.product_amazon_customer_reviews.value }}</div>
@@ -1303,8 +1377,119 @@
         {
           "type": "checkbox",
           "id": "open_new_tab",
-          "label": "Open retailer links in a new tab",
+          "label": "Open retailer/button links in a new tab",
           "default": true
+        },
+        {
+          "type": "header",
+          "content": "Button"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_button",
+          "label": "Show button below retailer availability",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button text",
+          "default": "Shop now"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        },
+        {
+          "type": "select",
+          "id": "button_width",
+          "label": "Button width",
+          "options": [
+            { "value": "fit", "label": "Fit text" },
+            { "value": "full", "label": "Full width" }
+          ],
+          "default": "fit"
+        },
+        {
+          "type": "color",
+          "id": "button_background_color",
+          "label": "Button background",
+          "default": "#121212"
+        },
+        {
+          "type": "color",
+          "id": "button_text_color",
+          "label": "Button text color",
+          "default": "#FFFFFF"
+        },
+        {
+          "type": "color",
+          "id": "button_hover_background_color",
+          "label": "Button hover background",
+          "default": "#333333"
+        },
+        {
+          "type": "color",
+          "id": "button_hover_text_color",
+          "label": "Button hover text color",
+          "default": "#FFFFFF"
+        },
+        {
+          "type": "range",
+          "id": "button_border_width",
+          "min": 0,
+          "max": 4,
+          "step": 1,
+          "unit": "px",
+          "label": "Button border width",
+          "default": 0
+        },
+        {
+          "type": "color",
+          "id": "button_border_color",
+          "label": "Button border color",
+          "default": "#121212"
+        },
+        {
+          "type": "range",
+          "id": "button_border_radius",
+          "min": 0,
+          "max": 40,
+          "step": 2,
+          "unit": "px",
+          "label": "Button corner radius",
+          "default": 4
+        },
+        {
+          "type": "range",
+          "id": "button_padding_vertical",
+          "min": 6,
+          "max": 30,
+          "step": 2,
+          "unit": "px",
+          "label": "Button vertical padding",
+          "default": 12
+        },
+        {
+          "type": "range",
+          "id": "button_padding_horizontal",
+          "min": 10,
+          "max": 60,
+          "step": 2,
+          "unit": "px",
+          "label": "Button horizontal padding",
+          "default": 24
+        },
+        {
+          "type": "range",
+          "id": "button_margin_top",
+          "min": 0,
+          "max": 40,
+          "step": 2,
+          "unit": "px",
+          "label": "Space above button",
+          "default": 12
         },
         {
           "type": "header",
