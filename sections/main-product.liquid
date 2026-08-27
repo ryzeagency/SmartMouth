@@ -83,6 +83,67 @@
     }
   }
 
+  /* Retailer availability block */
+  #shopify-section-{{ section.id }} .product__retailer-availability {
+    display: flex;
+    flex-direction: var(--retailer-direction, row);
+    flex-wrap: wrap;
+    align-items: var(--retailer-align-items, center);
+    justify-content: var(--retailer-justify, flex-start);
+    gap: var(--retailer-group-gap, 12px);
+    margin-top: var(--retailer-margin-top, 16px);
+    margin-bottom: var(--retailer-margin-bottom, 16px);
+    padding: var(--retailer-padding-y, 0px) var(--retailer-padding-x, 0px);
+    color: var(--retailer-text-color, #121212);
+    background: var(--retailer-background, transparent);
+    border: var(--retailer-border-width, 0px) solid var(--retailer-border-color, #e5e5e5);
+    border-radius: var(--retailer-radius, 0px);
+    text-align: var(--retailer-text-align, left);
+  }
+
+  #shopify-section-{{ section.id }} .product__retailer-label {
+    margin: 0;
+    font-size: var(--retailer-font-size, 16px);
+    font-weight: var(--retailer-font-weight, 600);
+    line-height: 1.25;
+    color: inherit;
+  }
+
+  #shopify-section-{{ section.id }} .product__retailer-logos {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: var(--retailer-justify, flex-start);
+    gap: var(--retailer-logo-gap, 10px);
+  }
+
+  #shopify-section-{{ section.id }} .product__retailer-logo-link,
+  #shopify-section-{{ section.id }} .product__retailer-logo-wrap {
+    display: inline-flex;
+    align-items: center;
+    line-height: 0;
+  }
+
+  #shopify-section-{{ section.id }} .product__retailer-logo {
+    display: block;
+    width: var(--retailer-logo-width, 110px);
+    max-width: 100%;
+    height: auto;
+  }
+
+  #shopify-section-{{ section.id }} .product__retailer-separator {
+    font-size: var(--retailer-font-size, 16px);
+    font-weight: var(--retailer-font-weight, 600);
+    line-height: 1;
+    color: inherit;
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .product__retailer-availability {
+      gap: min(var(--retailer-group-gap, 12px), 10px);
+    }
+  }
+
   {% if product.tags contains 'bundle' %}
       shopify-accelerated-checkout {
         display: none !important;
@@ -321,6 +382,110 @@
                 {%- if close_row -%}
                   </div>
                 {%- endif -%}  
+              {%- when 'retailer_availability' -%}
+                {%- liquid
+                  assign retailer_background = 'transparent'
+                  if block.settings.show_background
+                    assign retailer_background = block.settings.background_color
+                  endif
+
+                  assign retailer_justify = block.settings.alignment
+                  assign retailer_align_items = 'center'
+                  if block.settings.layout == 'column'
+                    assign retailer_justify = 'flex-start'
+                    assign retailer_align_items = block.settings.alignment
+                  endif
+
+                  assign walmart_style = '--retailer-logo-width: ' | append: block.settings.walmart_width | append: 'px;'
+                  assign walgreens_style = '--retailer-logo-width: ' | append: block.settings.walgreens_width | append: 'px;'
+                -%}
+                <div
+                  class="product__retailer-availability quick-add-hidden"
+                  style="
+                    --retailer-direction: {{ block.settings.layout }};
+                    --retailer-justify: {{ retailer_justify }};
+                    --retailer-align-items: {{ retailer_align_items }};
+                    --retailer-text-align: {{ block.settings.text_alignment }};
+                    --retailer-group-gap: {{ block.settings.group_gap }}px;
+                    --retailer-logo-gap: {{ block.settings.logo_gap }}px;
+                    --retailer-margin-top: {{ block.settings.margin_top }}px;
+                    --retailer-margin-bottom: {{ block.settings.margin_bottom }}px;
+                    --retailer-padding-y: {{ block.settings.padding_vertical }}px;
+                    --retailer-padding-x: {{ block.settings.padding_horizontal }}px;
+                    --retailer-text-color: {{ block.settings.text_color }};
+                    --retailer-font-size: {{ block.settings.font_size }}px;
+                    --retailer-font-weight: {{ block.settings.font_weight }};
+                    --retailer-background: {{ retailer_background }};
+                    --retailer-border-width: {{ block.settings.border_width }}px;
+                    --retailer-border-color: {{ block.settings.border_color }};
+                    --retailer-radius: {{ block.settings.border_radius }}px;
+                  "
+                  {{ block.shopify_attributes }}
+                >
+                  {%- if block.settings.label != blank -%}
+                    <p class="product__retailer-label">{{ block.settings.label }}</p>
+                  {%- endif -%}
+
+                  <div class="product__retailer-logos">
+                    {%- if block.settings.walmart_logo != blank -%}
+                      {%- capture walmart_image -%}
+                        {{
+                          block.settings.walmart_logo
+                          | image_url: width: 800
+                          | image_tag:
+                            class: 'product__retailer-logo',
+                            widths: '80, 120, 160, 220, 320, 480, 640, 800',
+                            loading: 'lazy',
+                            alt: block.settings.walmart_alt,
+                            style: walmart_style
+                        }}
+                      {%- endcapture -%}
+                      {%- if block.settings.walmart_link != blank -%}
+                        <a
+                          class="product__retailer-logo-link"
+                          href="{{ block.settings.walmart_link }}"
+                          aria-label="{{ block.settings.walmart_alt | default: 'Walmart' | escape }}"
+                          {% if block.settings.open_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
+                        >
+                          {{ walmart_image }}
+                        </a>
+                      {%- else -%}
+                        <span class="product__retailer-logo-wrap">{{ walmart_image }}</span>
+                      {%- endif -%}
+                    {%- endif -%}
+
+                    {%- if block.settings.walmart_logo != blank and block.settings.walgreens_logo != blank and block.settings.separator != blank -%}
+                      <span class="product__retailer-separator">{{ block.settings.separator | escape }}</span>
+                    {%- endif -%}
+
+                    {%- if block.settings.walgreens_logo != blank -%}
+                      {%- capture walgreens_image -%}
+                        {{
+                          block.settings.walgreens_logo
+                          | image_url: width: 800
+                          | image_tag:
+                            class: 'product__retailer-logo',
+                            widths: '80, 120, 160, 220, 320, 480, 640, 800',
+                            loading: 'lazy',
+                            alt: block.settings.walgreens_alt,
+                            style: walgreens_style
+                        }}
+                      {%- endcapture -%}
+                      {%- if block.settings.walgreens_link != blank -%}
+                        <a
+                          class="product__retailer-logo-link"
+                          href="{{ block.settings.walgreens_link }}"
+                          aria-label="{{ block.settings.walgreens_alt | default: 'Walgreens' | escape }}"
+                          {% if block.settings.open_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
+                        >
+                          {{ walgreens_image }}
+                        </a>
+                      {%- else -%}
+                        <span class="product__retailer-logo-wrap">{{ walgreens_image }}</span>
+                      {%- endif -%}
+                    {%- endif -%}
+                  </div>
+                </div>
               {%- when 'amazon_review_badge' -%}
                 <div class="product__code-output" {{ block.shopify_attributes }}>
                   {{ product.metafields.custom.product_amazon_customer_reviews.value }}
@@ -1053,6 +1218,269 @@
           "id": "custom_liquid",
           "label": "t:sections.custom-liquid.settings.custom_liquid.label",
           "info": "t:sections.custom-liquid.settings.custom_liquid.info"
+        }
+      ]
+    },
+    {
+      "type": "retailer_availability",
+      "name": "Retailer availability",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Content"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "label",
+          "label": "Text",
+          "default": "Available at"
+        },
+        {
+          "type": "text",
+          "id": "separator",
+          "label": "Logo separator",
+          "default": "&"
+        },
+        {
+          "type": "header",
+          "content": "Walmart"
+        },
+        {
+          "type": "image_picker",
+          "id": "walmart_logo",
+          "label": "Walmart image"
+        },
+        {
+          "type": "text",
+          "id": "walmart_alt",
+          "label": "Walmart image alt text",
+          "default": "Walmart"
+        },
+        {
+          "type": "url",
+          "id": "walmart_link",
+          "label": "Walmart link"
+        },
+        {
+          "type": "range",
+          "id": "walmart_width",
+          "min": 40,
+          "max": 240,
+          "step": 5,
+          "unit": "px",
+          "label": "Walmart image width",
+          "default": 110
+        },
+        {
+          "type": "header",
+          "content": "Walgreens"
+        },
+        {
+          "type": "image_picker",
+          "id": "walgreens_logo",
+          "label": "Walgreens image"
+        },
+        {
+          "type": "text",
+          "id": "walgreens_alt",
+          "label": "Walgreens image alt text",
+          "default": "Walgreens"
+        },
+        {
+          "type": "url",
+          "id": "walgreens_link",
+          "label": "Walgreens link"
+        },
+        {
+          "type": "range",
+          "id": "walgreens_width",
+          "min": 40,
+          "max": 240,
+          "step": 5,
+          "unit": "px",
+          "label": "Walgreens image width",
+          "default": 110
+        },
+        {
+          "type": "checkbox",
+          "id": "open_new_tab",
+          "label": "Open retailer links in a new tab",
+          "default": true
+        },
+        {
+          "type": "header",
+          "content": "Layout"
+        },
+        {
+          "type": "select",
+          "id": "layout",
+          "label": "Layout",
+          "options": [
+            { "value": "row", "label": "Inline" },
+            { "value": "column", "label": "Stacked" }
+          ],
+          "default": "row"
+        },
+        {
+          "type": "select",
+          "id": "alignment",
+          "label": "Content alignment",
+          "options": [
+            { "value": "flex-start", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "flex-end", "label": "Right" }
+          ],
+          "default": "flex-start"
+        },
+        {
+          "type": "select",
+          "id": "text_alignment",
+          "label": "Text alignment",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ],
+          "default": "left"
+        },
+        {
+          "type": "range",
+          "id": "group_gap",
+          "min": 0,
+          "max": 40,
+          "step": 2,
+          "unit": "px",
+          "label": "Gap between text and logos",
+          "default": 12
+        },
+        {
+          "type": "range",
+          "id": "logo_gap",
+          "min": 0,
+          "max": 40,
+          "step": 2,
+          "unit": "px",
+          "label": "Gap between logos",
+          "default": 10
+        },
+        {
+          "type": "header",
+          "content": "Text style"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text color",
+          "default": "#121212"
+        },
+        {
+          "type": "range",
+          "id": "font_size",
+          "min": 10,
+          "max": 32,
+          "step": 1,
+          "unit": "px",
+          "label": "Text size",
+          "default": 16
+        },
+        {
+          "type": "select",
+          "id": "font_weight",
+          "label": "Text weight",
+          "options": [
+            { "value": "400", "label": "Regular" },
+            { "value": "500", "label": "Medium" },
+            { "value": "600", "label": "Semi bold" },
+            { "value": "700", "label": "Bold" }
+          ],
+          "default": "600"
+        },
+        {
+          "type": "header",
+          "content": "Box style"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_background",
+          "label": "Show background",
+          "default": false
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Background color",
+          "default": "#F7F7F7"
+        },
+        {
+          "type": "range",
+          "id": "border_width",
+          "min": 0,
+          "max": 4,
+          "step": 1,
+          "unit": "px",
+          "label": "Border width",
+          "default": 0
+        },
+        {
+          "type": "color",
+          "id": "border_color",
+          "label": "Border color",
+          "default": "#E5E5E5"
+        },
+        {
+          "type": "range",
+          "id": "border_radius",
+          "min": 0,
+          "max": 30,
+          "step": 2,
+          "unit": "px",
+          "label": "Corner radius",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "padding_vertical",
+          "min": 0,
+          "max": 40,
+          "step": 2,
+          "unit": "px",
+          "label": "Vertical padding",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "padding_horizontal",
+          "min": 0,
+          "max": 40,
+          "step": 2,
+          "unit": "px",
+          "label": "Horizontal padding",
+          "default": 0
+        },
+        {
+          "type": "header",
+          "content": "Spacing"
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "label": "Top margin",
+          "default": 16
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "label": "Bottom margin",
+          "default": 16
         }
       ]
     },
