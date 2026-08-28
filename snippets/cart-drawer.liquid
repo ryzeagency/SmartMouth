@@ -15,6 +15,91 @@
   .drawer {
     visibility: hidden;
   }
+
+  /* Labor Day tiered cart incentive */
+  .cart-drawer__labor-tiers {
+    margin: 0 0 1.6rem;
+    padding: 1.4rem;
+    border: 0.1rem solid rgba(var(--color-foreground), 0.14);
+    border-radius: 1.2rem;
+    background: rgba(var(--color-foreground), 0.035);
+  }
+
+  .cart-drawer__labor-eyebrow {
+    margin: 0 0 0.4rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .cart-drawer__labor-message {
+    margin: 0 0 1.2rem;
+    font-size: 1.3rem;
+    line-height: 1.45;
+  }
+
+  .cart-drawer__labor-progress {
+    position: relative;
+    height: 0.8rem;
+    margin-bottom: 1.1rem;
+    overflow: hidden;
+    border-radius: 999px;
+    background: rgba(var(--color-foreground), 0.12);
+  }
+
+  .cart-drawer__labor-progress-bar {
+    display: block;
+    width: var(--labor-progress, 0%);
+    height: 100%;
+    border-radius: inherit;
+    background: rgb(var(--color-foreground));
+    transition: width 250ms ease;
+  }
+
+  .cart-drawer__labor-tier-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.6rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .cart-drawer__labor-tier {
+    padding: 0.8rem 0.5rem;
+    border: 0.1rem solid rgba(var(--color-foreground), 0.14);
+    border-radius: 0.8rem;
+    text-align: center;
+    line-height: 1.25;
+  }
+
+  .cart-drawer__labor-tier.is-unlocked {
+    border-color: rgba(var(--color-foreground), 0.55);
+    background: rgba(var(--color-foreground), 0.08);
+  }
+
+  .cart-drawer__labor-tier strong,
+  .cart-drawer__labor-tier span {
+    display: block;
+  }
+
+  .cart-drawer__labor-tier strong {
+    font-size: 1.3rem;
+  }
+
+  .cart-drawer__labor-tier span {
+    margin-top: 0.2rem;
+    font-size: 1.05rem;
+    opacity: 0.76;
+  }
+
+  .cart-drawer__labor-auto {
+    margin: 0.9rem 0 0;
+    font-size: 1.1rem;
+    text-align: center;
+    opacity: 0.78;
+  }
 </style>
 
 <cart-drawer class="drawer{% if cart == empty %} is-empty{% endif %}">
@@ -514,6 +599,85 @@
             </cart-note>
           </details>
         {%- endif -%}
+
+        {%- unless cart == empty -%}
+          {%- liquid
+            assign labor_subtotal = cart.items_subtotal_price
+            assign labor_tier_10 = 5000
+            assign labor_tier_15 = 7500
+            assign labor_tier_20 = 10000
+
+            assign labor_progress = labor_subtotal | times: 100 | divided_by: labor_tier_20
+            if labor_progress > 100
+              assign labor_progress = 100
+            endif
+
+            assign labor_current_percent = 0
+            assign labor_next_percent = 10
+            assign labor_next_threshold = labor_tier_10
+
+            if labor_subtotal >= labor_tier_20
+              assign labor_current_percent = 20
+              assign labor_next_percent = 0
+              assign labor_next_threshold = 0
+            elsif labor_subtotal >= labor_tier_15
+              assign labor_current_percent = 15
+              assign labor_next_percent = 20
+              assign labor_next_threshold = labor_tier_20
+            elsif labor_subtotal >= labor_tier_10
+              assign labor_current_percent = 10
+              assign labor_next_percent = 15
+              assign labor_next_threshold = labor_tier_15
+            endif
+
+            if labor_next_threshold > 0
+              assign labor_amount_to_next = labor_next_threshold | minus: labor_subtotal
+            endif
+          -%}
+
+          <div class="cart-drawer__labor-tiers" aria-live="polite">
+            <p class="cart-drawer__labor-eyebrow">Labor Day savings</p>
+
+            <p class="cart-drawer__labor-message">
+              {%- if labor_current_percent == 20 -%}
+                <strong>20% off unlocked!</strong> You've reached our best Labor Day tier.
+              {%- elsif labor_current_percent > 0 -%}
+                <strong>{{ labor_current_percent }}% off unlocked!</strong>
+                Add {{ labor_amount_to_next | money }} more to unlock {{ labor_next_percent }}% off.
+              {%- else -%}
+                Add {{ labor_amount_to_next | money }} more to unlock 10% off.
+              {%- endif -%}
+            </p>
+
+            <div
+              class="cart-drawer__labor-progress"
+              role="progressbar"
+              aria-label="Labor Day discount progress"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-valuenow="{{ labor_progress }}"
+            >
+              <span class="cart-drawer__labor-progress-bar" style="--labor-progress: {{ labor_progress }}%;"></span>
+            </div>
+
+            <ul class="cart-drawer__labor-tier-list" aria-label="Labor Day discount tiers">
+              <li class="cart-drawer__labor-tier{% if labor_subtotal >= labor_tier_10 %} is-unlocked{% endif %}">
+                <strong>10% OFF</strong>
+                <span>$50+</span>
+              </li>
+              <li class="cart-drawer__labor-tier{% if labor_subtotal >= labor_tier_15 %} is-unlocked{% endif %}">
+                <strong>15% OFF</strong>
+                <span>$75+</span>
+              </li>
+              <li class="cart-drawer__labor-tier{% if labor_subtotal >= labor_tier_20 %} is-unlocked{% endif %}">
+                <strong>20% OFF</strong>
+                <span>$100+</span>
+              </li>
+            </ul>
+
+            <p class="cart-drawer__labor-auto">No code needed — automatically applied at checkout.</p>
+          </div>
+        {%- endunless -%}
 
         <!-- Start blocks -->
         <!-- Subtotals -->
