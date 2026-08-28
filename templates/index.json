@@ -98,6 +98,90 @@
         "pause_hover": true
       }
     },
+    "home_revamp_full_system_YQg9DH": {
+      "type": "home-revamp-full-system",
+      "blocks": {
+        "product_card_rUjGqH": {
+          "type": "product_card",
+          "settings": {
+            "product": "morning-night-routine",
+            "custom_image": "shopify://shop_images/SMT_-_Morning_Night_Bundle.png",
+            "image_alt": "",
+            "category": "",
+            "title": "Morning & Night Routine",
+            "description": "<p><em>Start strong and wind down right with two everyday essentials.</em></p>",
+            "original_price_text": "$27.98",
+            "price_text": "$26.58",
+            "button_label": "SHOP MORNING & NIGHT ROUTINE",
+            "add_to_cart_on_click": false,
+            "link": "shopify://products/morning-night-routine"
+          }
+        },
+        "product_card_KgNVri": {
+          "type": "product_card",
+          "settings": {
+            "product": "dry-mouth-relief-kit",
+            "custom_image": "shopify://shop_images/drymouthkit.webp",
+            "image_alt": "",
+            "category": "",
+            "title": "Dry Mouth Relief Kit",
+            "description": "<p><em>Target dry mouth day and night with this bestselling pair.</em></p>",
+            "original_price_text": "$19.97",
+            "price_text": "$18.97",
+            "button_label": "SHOP DRY MOUTH RELIEF KIT",
+            "add_to_cart_on_click": false,
+            "link": "shopify://products/dry-mouth-relief-kit"
+          }
+        },
+        "product_card_JgCrJF": {
+          "type": "product_card",
+          "settings": {
+            "product": "daily-oral-care-duo",
+            "custom_image": "shopify://shop_images/SMT-_Original_Bundle.png",
+            "image_alt": "",
+            "category": "",
+            "title": "Daily Oral Care Duo",
+            "description": "<p><em>Everything you need for a fresher, more complete oral care routine.</em></p>",
+            "original_price_text": "$21.78",
+            "price_text": "$20.69",
+            "button_label": "SHOP DAILY ORAL CARE DUO",
+            "add_to_cart_on_click": false,
+            "link": "shopify://products/daily-oral-care-duo"
+          }
+        }
+      },
+      "block_order": [
+        "product_card_rUjGqH",
+        "product_card_KgNVri",
+        "product_card_JgCrJF"
+      ],
+      "name": "Home Full System",
+      "settings": {
+        "eyebrow": "",
+        "heading": "Buy Together & Save",
+        "heading_highlight_text": "",
+        "body": "",
+        "cards_per_row": 3,
+        "card_gap": 1.5,
+        "image_ratio": "1 / 1",
+        "card_radius": 0.8,
+        "padding_top": 4,
+        "padding_bottom": 5,
+        "background_color": "#ffffff",
+        "text_color": "#06264a",
+        "heading_color": "#06264a",
+        "heading_highlight_color": "#8fd7cd",
+        "description_color": "#496a86",
+        "accent_color": "#285b91",
+        "original_price_color": "#7a8a99",
+        "sale_price_color": "#ff6b00",
+        "card_background": "#ffffff",
+        "image_background": "#ffffff",
+        "card_border_color": "#ffffff",
+        "button_background": "#ff6b00",
+        "button_text_color": "#ffffff"
+      }
+    },
     "smt_home_revamp_reason_to_pour_ifexUk": {
       "type": "smt-home-revamp-reason-to-pour",
       "blocks": {
@@ -573,6 +657,7 @@
   "order": [
     "smt_home_revamp_hero_WND8LW",
     "smt_home_revamp_logo_marquee_k3xkz8",
+    "home_revamp_full_system_YQg9DH",
     "smt_home_revamp_reason_to_pour_ifexUk",
     "smt_home_revamp_find_your_rinse_zhddc7",
     "smt_home_revamp_smart_zinc_gYfGTQ",
