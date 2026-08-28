@@ -1,3 +1,17 @@
+{%- liquid
+  assign hide_product_benefits = false
+
+  for tag in product.tags
+    assign tag_downcase = tag | downcase
+    if tag_downcase contains 'bundle'
+      assign hide_product_benefits = true
+      break
+    endif
+  endfor
+-%}
+
+{%- unless hide_product_benefits -%}
+
 <section class="product-benefits" aria-labelledby="ProductBenefitsHeading-{{ section.id }}">
   <div class="product-benefits__inner">
     <div class="product-benefits__content">
@@ -150,6 +164,8 @@
     }
   }
 </style>
+
+{% endunless %}
 
 {% schema %}
 {
