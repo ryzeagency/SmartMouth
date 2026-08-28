@@ -8,6 +8,29 @@
 {{ 'quantity-popover.css' | asset_url | stylesheet_tag }}
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 
+{%- comment -%}
+  ================================================================
+  LABOR DAY TIER CUSTOMIZATION
+  Edit the values below to reuse this cart incentive for any sale.
+  Thresholds are in cents: 5000 = $50.00, 7500 = $75.00, etc.
+  ================================================================
+{%- endcomment -%}
+{%- liquid
+  assign labor_promo_title = 'Labor Day savings'
+  assign labor_auto_message = 'No code needed — automatically applied at checkout.'
+  assign labor_best_tier_message = "You've reached our best Labor Day tier."
+
+  assign labor_tier_1_percent = 10
+  assign labor_tier_1_threshold = 5000
+  assign labor_tier_2_percent = 15
+  assign labor_tier_2_threshold = 7500
+  assign labor_tier_3_percent = 20
+  assign labor_tier_3_threshold = 10000
+
+  assign labor_bar_color = '#2071b9'
+  assign labor_bar_animation = true
+-%}
+
 <script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
 
@@ -49,13 +72,52 @@
   }
 
   .cart-drawer__labor-progress-bar {
+    position: relative;
     display: block;
     width: var(--labor-progress, 0%);
     height: 100%;
+    overflow: hidden;
     border-radius: inherit;
-    background: rgb(var(--color-foreground));
-    transition: width 250ms ease;
+    background: {{ labor_bar_color }};
+    transition: width 400ms cubic-bezier(0.22, 1, 0.36, 1);
   }
+
+  {%- if labor_bar_animation -%}
+    .cart-drawer__labor-progress-bar::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      width: 55%;
+      background: linear-gradient(
+        110deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.12) 35%,
+        rgba(255, 255, 255, 0.42) 50%,
+        rgba(255, 255, 255, 0.12) 65%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      transform: translateX(-130%);
+      animation: labor-progress-shimmer 1.9s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes labor-progress-shimmer {
+      0% {
+        transform: translateX(-130%);
+      }
+      62%,
+      100% {
+        transform: translateX(230%);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .cart-drawer__labor-progress-bar::after {
+        animation: none;
+        display: none;
+      }
+    }
+  {%- endif -%}
 
   .cart-drawer__labor-tier-list {
     display: grid;
@@ -603,31 +665,28 @@
         {%- unless cart == empty -%}
           {%- liquid
             assign labor_subtotal = cart.items_subtotal_price
-            assign labor_tier_10 = 5000
-            assign labor_tier_15 = 7500
-            assign labor_tier_20 = 10000
 
-            assign labor_progress = labor_subtotal | times: 100 | divided_by: labor_tier_20
+            assign labor_progress = labor_subtotal | times: 100 | divided_by: labor_tier_3_threshold
             if labor_progress > 100
               assign labor_progress = 100
             endif
 
             assign labor_current_percent = 0
-            assign labor_next_percent = 10
-            assign labor_next_threshold = labor_tier_10
+            assign labor_next_percent = labor_tier_1_percent
+            assign labor_next_threshold = labor_tier_1_threshold
 
-            if labor_subtotal >= labor_tier_20
-              assign labor_current_percent = 20
+            if labor_subtotal >= labor_tier_3_threshold
+              assign labor_current_percent = labor_tier_3_percent
               assign labor_next_percent = 0
               assign labor_next_threshold = 0
-            elsif labor_subtotal >= labor_tier_15
-              assign labor_current_percent = 15
-              assign labor_next_percent = 20
-              assign labor_next_threshold = labor_tier_20
-            elsif labor_subtotal >= labor_tier_10
-              assign labor_current_percent = 10
-              assign labor_next_percent = 15
-              assign labor_next_threshold = labor_tier_15
+            elsif labor_subtotal >= labor_tier_2_threshold
+              assign labor_current_percent = labor_tier_2_percent
+              assign labor_next_percent = labor_tier_3_percent
+              assign labor_next_threshold = labor_tier_3_threshold
+            elsif labor_subtotal >= labor_tier_1_threshold
+              assign labor_current_percent = labor_tier_1_percent
+              assign labor_next_percent = labor_tier_2_percent
+              assign labor_next_threshold = labor_tier_2_threshold
             endif
 
             if labor_next_threshold > 0
@@ -636,16 +695,16 @@
           -%}
 
           <div class="cart-drawer__labor-tiers" aria-live="polite">
-            <p class="cart-drawer__labor-eyebrow">Labor Day savings</p>
+            <p class="cart-drawer__labor-eyebrow">{{ labor_promo_title }}</p>
 
             <p class="cart-drawer__labor-message">
-              {%- if labor_current_percent == 20 -%}
-                <strong>20% off unlocked!</strong> You've reached our best Labor Day tier.
+              {%- if labor_current_percent == labor_tier_3_percent -%}
+                <strong>{{ labor_tier_3_percent }}% off unlocked!</strong> {{ labor_best_tier_message }}
               {%- elsif labor_current_percent > 0 -%}
                 <strong>{{ labor_current_percent }}% off unlocked!</strong>
                 Add {{ labor_amount_to_next | money }} more to unlock {{ labor_next_percent }}% off.
               {%- else -%}
-                Add {{ labor_amount_to_next | money }} more to unlock 10% off.
+                Add {{ labor_amount_to_next | money }} more to unlock {{ labor_tier_1_percent }}% off.
               {%- endif -%}
             </p>
 
@@ -661,21 +720,21 @@
             </div>
 
             <ul class="cart-drawer__labor-tier-list" aria-label="Labor Day discount tiers">
-              <li class="cart-drawer__labor-tier{% if labor_subtotal >= labor_tier_10 %} is-unlocked{% endif %}">
-                <strong>10% OFF</strong>
-                <span>$50+</span>
+              <li class="cart-drawer__labor-tier{% if labor_subtotal >= labor_tier_1_threshold %} is-unlocked{% endif %}">
+                <strong>{{ labor_tier_1_percent }}% OFF</strong>
+                <span>{{ labor_tier_1_threshold | money }}+</span>
               </li>
-              <li class="cart-drawer__labor-tier{% if labor_subtotal >= labor_tier_15 %} is-unlocked{% endif %}">
-                <strong>15% OFF</strong>
-                <span>$75+</span>
+              <li class="cart-drawer__labor-tier{% if labor_subtotal >= labor_tier_2_threshold %} is-unlocked{% endif %}">
+                <strong>{{ labor_tier_2_percent }}% OFF</strong>
+                <span>{{ labor_tier_2_threshold | money }}+</span>
               </li>
-              <li class="cart-drawer__labor-tier{% if labor_subtotal >= labor_tier_20 %} is-unlocked{% endif %}">
-                <strong>20% OFF</strong>
-                <span>$100+</span>
+              <li class="cart-drawer__labor-tier{% if labor_subtotal >= labor_tier_3_threshold %} is-unlocked{% endif %}">
+                <strong>{{ labor_tier_3_percent }}% OFF</strong>
+                <span>{{ labor_tier_3_threshold | money }}+</span>
               </li>
             </ul>
 
-            <p class="cart-drawer__labor-auto">No code needed — automatically applied at checkout.</p>
+            <p class="cart-drawer__labor-auto">{{ labor_auto_message }}</p>
           </div>
         {%- endunless -%}
 
