@@ -155,6 +155,7 @@
         "product_card_KgNVri",
         "product_card_JgCrJF"
       ],
+      "disabled": true,
       "name": "Home Full System",
       "settings": {
         "eyebrow": "",
@@ -166,7 +167,7 @@
         "image_ratio": "1 / 1",
         "card_radius": 0.8,
         "padding_top": 4,
-        "padding_bottom": 5,
+        "padding_bottom": 2,
         "background_color": "#ffffff",
         "text_color": "#06264a",
         "heading_color": "#06264a",
@@ -420,8 +421,10 @@
             "category": "TOOTHPASTE",
             "title": "Anti-Cavity + Zinc Toothpaste",
             "description": "<p>Zinc-powered brushing that works with your mouthwash — not alongside it independently.</p>",
+            "original_price_text": "",
             "price_text": "From $7.99",
             "button_label": "SHOP TOOTHPASTE",
+            "add_to_cart_on_click": false,
             "link": "shopify://collections/toothpaste"
           }
         },
@@ -434,8 +437,10 @@
             "category": "MINTS",
             "title": "Dry Mouth Dual-Action Mints",
             "description": "<p>On-the-go dry mouth relief — small enough for any bag, effective enough to notice.</p>",
+            "original_price_text": "",
             "price_text": "$3.99",
             "button_label": "SHOP MINTS",
+            "add_to_cart_on_click": false,
             "link": "shopify://collections/mints"
           }
         },
@@ -448,8 +453,10 @@
             "category": "TRAVEL PACKS",
             "title": "Single-Use Packs",
             "description": "<p>Same Smart-Zinc™ formula in a TSA-friendly pack. Your routine doesn’t stop when you travel.</p>",
+            "original_price_text": "",
             "price_text": "From $8.99",
             "button_label": "SHOP TRAVEL PACKS",
+            "add_to_cart_on_click": false,
             "link": "shopify://collections/travel-size"
           }
         }
@@ -463,6 +470,7 @@
       "settings": {
         "eyebrow": "THE FULL SMARTMOUTH™ SYSTEM",
         "heading": "Mouthwash is just the beginning.",
+        "heading_highlight_text": "",
         "body": "<p>Every SmartMouth™ mouthwash is built on the same Smart-Zinc™ Technology. Extend your protection through every part of your routine — brush, rinse, go.</p>",
         "cards_per_row": 3,
         "card_gap": 1.5,
@@ -472,8 +480,12 @@
         "padding_bottom": 5,
         "background_color": "#ffffff",
         "text_color": "#06264a",
+        "heading_color": "#06264a",
+        "heading_highlight_color": "#ff6b00",
         "description_color": "#496a86",
         "accent_color": "#285b91",
+        "original_price_color": "#7a8a99",
+        "sale_price_color": "#ff6b00",
         "card_background": "#ffffff",
         "image_background": "#ffffff",
         "card_border_color": "#ffffff",
