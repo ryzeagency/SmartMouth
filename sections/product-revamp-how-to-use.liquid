@@ -1,3 +1,17 @@
+{%- liquid
+  assign hide_product_benefits = false
+
+  for tag in product.tags
+    assign tag_downcase = tag | downcase
+    if tag_downcase contains 'bundle'
+      assign hide_product_benefits = true
+      break
+    endif
+  endfor
+-%}
+
+{%- unless hide_product_benefits -%}
+
 <section
   class="product-how-to product-how-to--card-{{ section.settings.card_position }}"
   aria-labelledby="ProductHowToHeading-{{ section.id }}"
@@ -211,6 +225,8 @@
     }
   }
 </style>
+
+{% endunless %}
 
 {% schema %}
 {
