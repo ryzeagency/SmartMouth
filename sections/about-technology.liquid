@@ -34,6 +34,7 @@
             alt="{{ section.settings.image.alt | default: technology_alt | escape }}"
             loading="lazy"
           >
+          {% render 'image-text-equivalent', image: section.settings.image, fallback: technology_alt %}
         {%- else -%}
           <img
             class="about-technology__image"

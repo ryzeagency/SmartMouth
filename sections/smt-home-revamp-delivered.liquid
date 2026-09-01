@@ -32,6 +32,9 @@
 
     <div class="hr-delivered__image">
       {% if section.settings.image != blank %}
+        {% liquid
+          assign delivered_alt = section.settings.image.alt | default: section.settings.image_alt | strip
+        %}
         {{
           section.settings.image
           | image_url: width: 2200
@@ -39,8 +42,9 @@
             widths: '750, 1000, 1250, 1500, 1800, 2200',
             sizes: '(min-width: 750px) 48.83vw, 100vw',
             loading: 'lazy',
-            alt: section.settings.image_alt
+            alt: delivered_alt
         }}
+        {% render 'image-text-equivalent', image: section.settings.image, fallback: section.settings.image_alt %}
       {% else %}
         <img
           src="{{ 'smartmouth-girl-delivered.webp' | asset_url }}"
@@ -49,6 +53,7 @@
           height="939"
           loading="lazy"
         >
+        {% render 'image-text-equivalent', fallback: section.settings.image_alt %}
       {% endif %}
     </div>
   </div>

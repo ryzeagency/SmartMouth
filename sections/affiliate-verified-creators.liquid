@@ -10,6 +10,9 @@
             class="hr-influencers__creator-media{% if section.settings.creator_image != blank %} hr-influencers__creator-media--custom{% else %} hr-influencers__creator-media--fallback{% endif %}"
           >
             {% if section.settings.creator_image != blank %}
+              {% liquid
+                assign creator_alt = section.settings.creator_image.alt | default: section.settings.creator_image_alt | strip
+              %}
               {{
                 section.settings.creator_image
                 | image_url: width: 1000
@@ -18,8 +21,9 @@
                   sizes: '(min-width: 750px) 18.07vw, 58vw',
                   loading: 'lazy',
                   class: 'hr-influencers__creator-image',
-                  alt: section.settings.creator_image_alt
+                  alt: creator_alt
               }}
+              {% render 'image-text-equivalent', image: section.settings.creator_image, fallback: section.settings.creator_image_alt %}
             {% else %}
               <img
                 class="hr-influencers__creator-fallback"

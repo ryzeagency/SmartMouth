@@ -38,6 +38,7 @@
           alt="{{ section.settings.image.alt | default: section.settings.image_alt | escape }}"
           loading="lazy"
         >
+        {% render 'image-text-equivalent', image: section.settings.image, fallback: section.settings.image_alt %}
       {%- endif -%}
     </div>
 
