@@ -14,13 +14,6 @@
     "announcement-bar": {
       "type": "announcement-bar",
       "blocks": {
-        "announcement_Ax3tFW": {
-          "type": "announcement",
-          "settings": {
-            "text": "LABOR DAY SALE | Save 10% on $50+ · 15% on $75+ · 20% on $100+ | Automatically applied at checkout.",
-            "link": ""
-          }
-        },
         "announcement-bar-0": {
           "type": "announcement",
           "disabled": true,
@@ -31,7 +24,6 @@
         }
       },
       "block_order": [
-        "announcement_Ax3tFW",
         "announcement-bar-0"
       ],
       "settings": {
