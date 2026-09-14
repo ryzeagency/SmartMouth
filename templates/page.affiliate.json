@@ -221,7 +221,7 @@
           "type": "product",
           "settings": {
             "product": "smartmouthtm-dry-mouth-activated-mouthwash-16oz",
-            "image": "shopify://shop_images/bedb46dd-11db-400b-ada4-fead8e117f1f.webp",
+            "image": "shopify://shop_images/drymouthkit.webp",
             "custom_title": "SmartMouth™ Dry Mouth Activated Mouthwash",
             "custom_link": "https://smartmouth.com/collections/all?sort_by=manual&filter.p.m.custom.benefits_filter=Dry+Mouth+Support&filter.v.price.gte=&filter.v.price.lte=",
             "badge_text": "DRY MOUTH",
@@ -361,7 +361,7 @@
         "card_gap": 7,
         "stars_image": "shopify://shop_images/reviews-stars.png",
         "stars_image_width": 11,
-        "background_color": "#F1E1A9",
+        "background_color": "#f1e1a9",
         "heading_background": "#205085",
         "heading_top_color": "#ffffff",
         "heading_bottom_color": "#a9d7ee",
