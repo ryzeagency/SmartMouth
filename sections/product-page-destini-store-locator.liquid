@@ -1,0 +1,239 @@
+{%- comment -%}
+  Destini locator section
+
+  Renders the Destini store locator preloaded to a single UPC, and only on the
+  products chosen in the theme editor. On every other product the section
+  outputs nothing.
+
+  The locator embed reads PROD and MM from the page query string, so the
+  parameters are written to the URL before the Destini script is injected.
+{%- endcomment -%}
+
+{%- liquid
+  assign destini_upc = ''
+  assign matched = false
+
+  if product != blank
+    if section.settings.product_1 != blank and section.settings.product_1.id == product.id
+      assign destini_upc = section.settings.upc_1 | strip
+      assign matched = true
+    elsif section.settings.product_2 != blank and section.settings.product_2.id == product.id
+      assign destini_upc = section.settings.upc_2 | strip
+      assign matched = true
+    endif
+  endif
+-%}
+
+{%- if matched and destini_upc != blank -%}
+
+  <div
+    class="destini-section"
+    id="destini-section-{{ section.id }}"
+    style="
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    "
+  >
+    <div class="destini-section__inner page-width">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="destini-section__heading">{{ section.settings.heading | escape }}</h2>
+      {%- endif -%}
+
+      {%- if section.settings.subtext != blank -%}
+        <div class="destini-section__subtext rte">{{ section.settings.subtext }}</div>
+      {%- endif -%}
+
+      <div
+        id="destini-locator-{{ section.settings.locator_id }}"
+        class="destini-locator-class"
+        data-locator-id="{{ section.settings.locator_id }}"
+        data-alpha-code="{{ section.settings.alpha_code }}"
+      ></div>
+    </div>
+  </div>
+
+  <style>
+    #destini-section-{{ section.id }} .destini-section__heading {
+      margin: 0 0 0.5rem;
+    }
+
+    #destini-section-{{ section.id }} .destini-section__subtext {
+      margin: 0 0 1.5rem;
+    }
+
+    #destini-section-{{ section.id }} .destini-locator-class {
+      min-height: 300px;
+    }
+  </style>
+
+  <script>
+    (function () {
+      var upc = {{ destini_upc | json }};
+      var src = 'https://lets.shop/productFirstSnippet.js';
+
+      function setParams() {
+        var params = new URLSearchParams(window.location.search);
+
+        if (!upc) return;
+        if (params.get('PROD') === upc) return;
+
+        params.set('PROD', upc);
+        params.set('MM', 'panel2');
+
+        window.history.replaceState(
+          window.history.state,
+          '',
+          window.location.pathname + '?' + params.toString() + window.location.hash
+        );
+      }
+
+      function loadScript() {
+        if (document.querySelector('script[src="' + src + '"]')) return;
+
+        var script = document.createElement('script');
+        script.src = src;
+        script.charset = 'utf-8';
+        script.async = false;
+        document.body.appendChild(script);
+      }
+
+      setParams();
+      loadScript();
+
+      {%- if request.design_mode -%}
+        document.addEventListener('shopify:section:load', function (event) {
+          if (event.detail.sectionId !== {{ section.id | json }}) return;
+          setParams();
+          window.location.reload();
+        });
+      {%- endif -%}
+    })();
+  </script>
+
+{%- elsif request.design_mode -%}
+
+  {%- comment -%}
+    Editor only notice, so the section is visible while it is being configured.
+    Never rendered on the live storefront.
+  {%- endcomment -%}
+  <div
+    class="destini-section destini-section--setup page-width"
+    style="
+      padding: 2rem;
+      border: 1px dashed currentColor;
+      opacity: 0.7;
+      text-align: center;
+    "
+  >
+    {%- if matched -%}
+      Add the UPC for this product in the section settings to show the locator.
+    {%- else -%}
+      Choose up to two products in the section settings, and give each one a UPC.
+      The locator shows on those products only.
+    {%- endif -%}
+  </div>
+
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Destini locator",
+  "tag": "section",
+  "class": "section-destini-locator",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Shows the Destini store locator preloaded to one product. Pick the products below and enter the UPC exactly as it appears in the Destini CMS, including any leading zeros."
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Find this in a store near you"
+    },
+    {
+      "type": "richtext",
+      "id": "subtext",
+      "label": "Text below heading"
+    },
+    {
+      "type": "header",
+      "content": "First product"
+    },
+    {
+      "type": "product",
+      "id": "product_1",
+      "label": "Product"
+    },
+    {
+      "type": "text",
+      "id": "upc_1",
+      "label": "UPC",
+      "info": "Digits only, no spaces."
+    },
+    {
+      "type": "header",
+      "content": "Second product"
+    },
+    {
+      "type": "product",
+      "id": "product_2",
+      "label": "Product"
+    },
+    {
+      "type": "text",
+      "id": "upc_2",
+      "label": "UPC",
+      "info": "Digits only, no spaces."
+    },
+    {
+      "type": "header",
+      "content": "Destini account"
+    },
+    {
+      "type": "text",
+      "id": "locator_id",
+      "label": "Locator ID",
+      "default": "4178"
+    },
+    {
+      "type": "text",
+      "id": "alpha_code",
+      "label": "Alpha code",
+      "default": "1052"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    }
+  ],
+  "presets": [
+    {
+      "name": "Destini locator"
+    }
+  ],
+  "enabled_on": {
+    "templates": ["product"]
+  }
+}
+{% endschema %}
