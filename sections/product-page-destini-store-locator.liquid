@@ -61,7 +61,9 @@
       margin: 0 0 1.5rem;
     }
 
-    #destini-section-{{ section.id }} .destini-locator-class {
+    #destini-locator-{{ section.settings.locator_id }}.destini-locator-class,
+    #destini-locator-{{ section.settings.locator_id }}.destini-locator-class:empty {
+      display: block;
       min-height: 300px;
     }
   </style>
