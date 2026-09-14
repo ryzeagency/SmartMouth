@@ -474,16 +474,24 @@
       "type": "product-page-destini-store-locator",
       "name": "Destini locator",
       "settings": {
-        "heading": "Find this in a store near you",
-        "subtext": "",
         "product_1": "smartmouthtm-original-activated-mouthwash-16oz",
         "upc_1": "697366000609",
-        "product_2": "",
-        "upc_2": "",
+        "product_2": "smartmouthtm-clinical-activated-mouthwash-16oz",
+        "upc_2": "697366002306",
+        "eyebrow": "WHERE TO BUY",
+        "heading": "Find this in a store near you",
+        "heading_highlight": "near you.",
+        "subheading": "<p>Enter your ZIP code to see which nearby stores carry this product.</p>",
+        "embed_width": 70,
+        "min_height": 30,
+        "mobile_min_height": 110,
+        "mobile_padding_top": 12,
+        "mobile_padding_bottom": 12,
+        "background_color": "#ffffff",
+        "text_color": "#092847",
+        "highlight_color": "#80d3c9",
         "locator_id": "4178",
-        "alpha_code": "1052",
-        "padding_top": 40,
-        "padding_bottom": 40
+        "alpha_code": "1052"
       }
     }
   },
