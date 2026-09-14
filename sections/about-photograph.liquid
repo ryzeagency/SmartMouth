@@ -24,6 +24,7 @@
             alt="{{ section.settings.image.alt | default: photograph_alt | escape }}"
             loading="lazy"
           >
+          {% render 'image-text-equivalent', image: section.settings.image, fallback: photograph_alt %}
         {%- else -%}
           <img
             class="about-photograph__image"

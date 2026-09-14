@@ -34,7 +34,7 @@
             assign card_link = shop_all_link
           endif
 
-          assign fallback_alt = card_title | default: block.settings.badge_text
+          assign fallback_alt = card_image.alt | default: card_title | default: block.settings.badge_text
         %}
 
         <article class="hr-reasons__card" role="listitem" {{ block.shopify_attributes }}>
@@ -50,6 +50,7 @@
                     loading: 'lazy',
                     alt: fallback_alt
                 }}
+                {% render 'image-text-equivalent', image: card_image, fallback: fallback_alt %}
                 {% if block.settings.badge_text != blank %}
                   <span
                     class="hr-reasons__badge"

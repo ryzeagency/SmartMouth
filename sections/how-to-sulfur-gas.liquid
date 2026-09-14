@@ -51,6 +51,9 @@
         </div>
 
         {% if section.settings.virus_image != blank %}
+          {% liquid
+            assign virus_alt = section.settings.virus_image.alt | default: section.settings.virus_alt | strip
+          %}
           <div class="how-to-sulfur__virus">
             {{
               section.settings.virus_image
@@ -59,8 +62,9 @@
                 widths: '300, 450, 600, 750, 900',
                 sizes: '(min-width: 750px) 18vw, 45vw',
                 loading: 'lazy',
-                alt: section.settings.virus_alt
+                alt: virus_alt
             }}
+            {% render 'image-text-equivalent', image: section.settings.virus_image, fallback: section.settings.virus_alt %}
           </div>
         {% endif %}
       </article>

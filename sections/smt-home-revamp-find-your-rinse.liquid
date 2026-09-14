@@ -5,9 +5,12 @@
 <section class="hr-find" aria-labelledby="FindHeading-{{ section.id }}">
   <div class="hr-find__band">
     <div class="hr-find__container">
-      <div class="hr-find__visual" aria-hidden="true">
+      <div class="hr-find__visual">
         {% if section.settings.image != blank %}
-          <span class="hr-find__circle-mask">
+          {% liquid
+            assign find_image_alt = section.settings.image.alt | default: section.settings.image_alt | strip
+          %}
+          <span class="hr-find__circle-mask" aria-hidden="true">
             <span class="hr-find__circle"></span>
           </span>
           {{
@@ -17,8 +20,9 @@
               widths: '600, 900, 1200, 1500, 1800',
               sizes: '(min-width: 750px) 42.5vw, 85vw',
               loading: 'lazy',
-              alt: section.settings.image_alt
+              alt: find_image_alt
           }}
+          {% render 'image-text-equivalent', image: section.settings.image, fallback: section.settings.image_alt %}
         {% else %}
           <span class="hr-find__fallback"></span>
         {% endif %}

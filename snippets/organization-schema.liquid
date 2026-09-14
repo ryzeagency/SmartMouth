@@ -1,0 +1,76 @@
+{%- comment -%}
+  Organization JSON-LD for brand, knowledge-panel, and answer-engine results.
+  Social URLs fall back to SmartMouth's published profiles when theme settings are blank.
+  Contact details match the Contact Us and Cancellation Policy pages.
+{%- endcomment -%}
+{%- liquid
+  assign org_url = request.origin | append: routes.root_url
+  assign org_description = shop.brand.short_description | default: shop.description | strip
+  if org_description == blank
+    assign org_description = 'SmartMouth is the only mouthwash scientifically proven to eliminate and prevent bad breath for 24 hours with just two rinses a day.'
+  endif
+
+  assign org_email = 'cservice@smartmouth.com'
+  assign org_telephone = '+1-314-995-3090'
+
+  assign contact_path = pages['contact-us'].url
+  if contact_path == blank
+    assign contact_path = pages.contact.url
+  endif
+  if contact_path == blank
+    assign contact_path = '/pages/contact-us'
+  endif
+  assign contact_url = request.origin | append: contact_path
+
+  assign social_facebook = settings.social_facebook_link | default: 'https://www.facebook.com/smartmouth'
+  assign social_instagram = settings.social_instagram_link | default: 'https://www.instagram.com/smartmouthwash/'
+  assign social_tiktok = settings.social_tiktok_link | default: 'https://www.tiktok.com/@smartmouthwash'
+  assign social_linkedin = 'https://www.linkedin.com/company/smartmouth-oral-health-labs/'
+-%}
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": {{ org_url | append: '#organization' | json }},
+    "name": {{ shop.name | json }},
+    "legalName": "Triumph Pharmaceuticals Inc.",
+    "alternateName": "SmartMouth Oral Health Laboratories",
+    "url": {{ org_url | json }},
+    "description": {{ org_description | json }},
+    "email": {{ org_email | json }},
+    "telephone": {{ org_telephone | json }}
+    {%- if settings.logo != blank -%}
+      ,"logo": {{ settings.logo | image_url: width: 500 | prepend: 'https:' | json }}
+      ,"image": {{ settings.logo | image_url: width: 500 | prepend: 'https:' | json }}
+    {%- endif -%}
+    ,"sameAs": [
+      {{ social_facebook | json }},
+      {{ social_instagram | json }},
+      {{ social_tiktok | json }},
+      {{ social_linkedin | json }}
+      {%- if settings.social_twitter_link != blank -%},{{ settings.social_twitter_link | json }}{%- endif -%}
+      {%- if settings.social_pinterest_link != blank -%},{{ settings.social_pinterest_link | json }}{%- endif -%}
+      {%- if settings.social_youtube_link != blank -%},{{ settings.social_youtube_link | json }}{%- endif -%}
+      {%- if settings.social_tumblr_link != blank -%},{{ settings.social_tumblr_link | json }}{%- endif -%}
+      {%- if settings.social_snapchat_link != blank -%},{{ settings.social_snapchat_link | json }}{%- endif -%}
+      {%- if settings.social_vimeo_link != blank -%},{{ settings.social_vimeo_link | json }}{%- endif -%}
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "12312 Olive Blvd., Ste. 250",
+      "addressLocality": "Saint Louis",
+      "addressRegion": "MO",
+      "postalCode": "63141",
+      "addressCountry": "US"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "customer service",
+      "email": {{ org_email | json }},
+      "telephone": {{ org_telephone | json }},
+      "url": {{ contact_url | json }},
+      "areaServed": "US",
+      "availableLanguage": "English"
+    }
+  }
+</script>

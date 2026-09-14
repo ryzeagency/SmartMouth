@@ -1,0 +1,293 @@
+{%- comment -%}
+  Product JSON-LD with ratings, GTIN, and structured product attributes.
+  aggregateRating is emitted only when a review source has a count greater than 0.
+{%- endcomment -%}
+{%- liquid
+  if product.selected_or_first_available_variant.featured_media
+    assign seo_media = product.selected_or_first_available_variant.featured_media
+  else
+    assign seo_media = product.featured_media
+  endif
+
+  assign current_variant = product.selected_or_first_available_variant
+  assign product_url = request.origin | append: product.url
+  assign org_id = request.origin | append: routes.root_url | append: '#organization'
+
+  assign review_value = blank
+  assign review_count = 0
+  assign review_best = 5
+
+  if product.metafields.reviews.rating_count.value != blank
+    assign review_count = product.metafields.reviews.rating_count.value | plus: 0
+  elsif product.metafields.reviews.rating_count != blank
+    assign review_count = product.metafields.reviews.rating_count | plus: 0
+  endif
+  if review_count > 0 and product.metafields.reviews.rating.value.rating != blank
+    assign review_value = product.metafields.reviews.rating.value.rating
+    assign review_best = product.metafields.reviews.rating.value.scale_max | default: 5
+  endif
+
+  if review_count == 0 or review_value == blank
+    assign yotpo_count = product.metafields.yotpo.reviews_count.value | default: product.metafields.yotpo.reviews_count | plus: 0
+    assign yotpo_rating = product.metafields.yotpo.reviews_average.value | default: product.metafields.yotpo.reviews_average
+    if yotpo_count > 0 and yotpo_rating != blank
+      assign review_count = yotpo_count
+      assign review_value = yotpo_rating
+    endif
+  endif
+
+  if review_count == 0 or review_value == blank
+    assign loox_count = product.metafields.loox.num_reviews.value | default: product.metafields.loox.num_reviews | plus: 0
+    assign loox_rating = product.metafields.loox.avg_rating.value | default: product.metafields.loox.avg_rating
+    if loox_count > 0 and loox_rating != blank
+      assign review_count = loox_count
+      assign review_value = loox_rating
+    endif
+  endif
+
+  if review_count == 0 or review_value == blank
+    assign stamped_count = product.metafields.stamped.reviews_count.value | default: product.metafields.stamped.reviews_count | plus: 0
+    assign stamped_rating = product.metafields.stamped.reviews_average.value | default: product.metafields.stamped.reviews_average
+    if stamped_count > 0 and stamped_rating != blank
+      assign review_count = stamped_count
+      assign review_value = stamped_rating
+    endif
+  endif
+
+  if review_count == 0 or review_value == blank
+    assign okendo_count = product.metafields.okendo.summaryData.value.reviewCount | default: product.metafields.okendo.ReviewCount.value | plus: 0
+    assign okendo_rating = product.metafields.okendo.summaryData.value.reviewAverageValue | default: product.metafields.okendo.StarRating.value
+    if okendo_count > 0 and okendo_rating != blank
+      assign review_count = okendo_count
+      assign review_value = okendo_rating
+    endif
+  endif
+
+  if review_count == 0 or review_value == blank
+    assign custom_count = product.metafields.custom.review_count.value | default: product.metafields.custom.amazon_review_count.value | plus: 0
+    assign custom_rating = product.metafields.custom.review_rating.value | default: product.metafields.custom.amazon_rating.value
+    if custom_count > 0 and custom_rating != blank
+      assign review_count = custom_count
+      assign review_value = custom_rating
+    endif
+  endif
+
+  assign ingredients_text = product.metafields.custom.product_ingredients | metafield_text | strip_html | strip
+  assign active_ingredients = product.metafields.custom.active_ingredients | metafield_text | strip_html | strip
+  if active_ingredients == blank
+    assign active_ingredients = product.metafields.custom.active_ingredient | metafield_text | strip_html | strip
+  endif
+  assign inactive_ingredients = product.metafields.custom.inactive_ingredients | metafield_text | strip_html | strip
+  if inactive_ingredients == blank
+    assign inactive_ingredients = product.metafields.custom.inactive_ingredient | metafield_text | strip_html | strip
+  endif
+
+  if active_ingredients == blank and ingredients_text contains 'Active Ingredient'
+    assign ingredients_after_active = ingredients_text | split: 'Active Ingredient:' | last
+    if ingredients_after_active contains 'Solution 1:'
+      assign active_ingredients = ingredients_after_active | split: 'Solution 1:' | first | strip
+      assign inactive_ingredients = ingredients_after_active | split: 'Solution 1:' | last | prepend: 'Solution 1: ' | strip
+    elsif ingredients_after_active contains 'Inactive'
+      assign active_ingredients = ingredients_after_active | split: 'Inactive' | first | strip
+      assign inactive_ingredients = ingredients_after_active | split: 'Inactive' | last | remove: ' ingredients:' | remove: ' Ingredients:' | remove: ' ingredient:' | strip
+    else
+      assign active_ingredients = ingredients_after_active | strip
+    endif
+  endif
+
+  assign alcohol_free_value = blank
+  if product.metafields.custom.alcohol_free.value == true or product.metafields.custom.alcohol_free.value == false
+    if product.metafields.custom.alcohol_free.value
+      assign alcohol_free_value = 'True'
+    else
+      assign alcohol_free_value = 'False'
+    endif
+  else
+    assign ingredients_down = ingredients_text | downcase
+    assign tags_down = product.tags | join: ' ' | downcase
+    if ingredients_down contains 'no alcohol' or ingredients_down contains 'alcohol-free' or ingredients_down contains 'alcohol free' or ingredients_down contains 'zero alcohol' or ingredients_down contains '100% alcohol free' or tags_down contains 'alcohol-free' or tags_down contains 'alcohol free'
+      assign alcohol_free_value = 'True'
+    endif
+  endif
+
+  assign product_format = product.metafields.custom.format.value | default: product.metafields.custom.product_format.value | strip
+  if product_format == blank
+    assign product_format = product.type | strip
+  endif
+
+  assign usage_text = product.metafields.custom.usage | metafield_text | strip_html | strip
+  if usage_text == blank
+    assign usage_text = product.metafields.custom.product_usage | metafield_text | strip_html | strip
+  endif
+  if usage_text == blank
+    assign usage_text = product.metafields.custom.product_directions | metafield_text | strip_html | strip
+  endif
+  if usage_text == blank
+    capture usage_text
+      if product.metafields.custom.how_to_use_1.value != blank
+        echo '1. ' | append: product.metafields.custom.how_to_use_1.value | append: '. '
+        echo product.metafields.custom.how_to_use_1_description | metafield_text | strip_html | append: ' '
+      endif
+      if product.metafields.custom.how_to_use_2.value != blank
+        echo '2. ' | append: product.metafields.custom.how_to_use_2.value | append: '. '
+        echo product.metafields.custom.how_to_use_2_description | metafield_text | strip_html | append: ' '
+      endif
+      if product.metafields.custom.how_to_use_3.value != blank
+        echo '3. ' | append: product.metafields.custom.how_to_use_3.value | append: '. '
+        echo product.metafields.custom.how_to_use_3_description | metafield_text | strip_html | append: ' '
+      endif
+      if product.metafields.custom.how_to_use_4.value != blank
+        echo '4. ' | append: product.metafields.custom.how_to_use_4.value | append: '. '
+        echo product.metafields.custom.how_to_use_4_description | metafield_text | strip_html | append: ' '
+      endif
+    endcapture
+    assign usage_text = usage_text | strip_html | strip
+  endif
+-%}
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "@id": {{ product_url | append: '#product' | json }},
+    "name": {{ product.title | json }},
+    "url": {{ product_url | json }},
+    "description": {{ product.description | strip_html | strip | json }},
+    "brand": {
+      "@type": "Brand",
+      "name": {{ product.vendor | json }}
+    },
+    "manufacturer": {
+      "@id": {{ org_id | json }}
+    }
+    {%- if product.type != blank -%}
+      ,"category": {{ product.type | json }}
+    {%- endif -%}
+    {%- if current_variant.sku != blank -%}
+      ,"sku": {{ current_variant.sku | json }}
+      ,"mpn": {{ current_variant.sku | json }}
+    {%- endif -%}
+    {%- if current_variant.barcode.size == 12 -%}
+      ,"gtin12": {{ current_variant.barcode | json }}
+    {%- elsif current_variant.barcode.size == 13 -%}
+      ,"gtin13": {{ current_variant.barcode | json }}
+    {%- elsif current_variant.barcode.size == 14 -%}
+      ,"gtin14": {{ current_variant.barcode | json }}
+    {%- elsif current_variant.barcode.size == 8 -%}
+      ,"gtin8": {{ current_variant.barcode | json }}
+    {%- elsif current_variant.barcode != blank -%}
+      ,"gtin": {{ current_variant.barcode | json }}
+    {%- endif -%}
+    {%- if seo_media -%}
+      ,"image": [
+        {%- assign image_first = true -%}
+        {%- if seo_media.media_type == 'image' or seo_media.preview_image -%}
+          {%- assign image_first = false -%}
+          {{ seo_media | image_url: width: 1920 | prepend: 'https:' | json }}
+        {%- endif -%}
+        {%- for media in product.media -%}
+          {%- if media.media_type == 'image' and media.id != seo_media.id -%}
+            {%- unless image_first -%},{%- endunless -%}
+            {%- assign image_first = false -%}
+            {{ media | image_url: width: 1920 | prepend: 'https:' | json }}
+          {%- endif -%}
+        {%- endfor -%}
+      ]
+    {%- endif -%}
+    {%- if review_count > 0 and review_value != blank -%}
+      ,"aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": {{ review_value | json }},
+        "reviewCount": {{ review_count | json }},
+        "bestRating": {{ review_best | json }},
+        "worstRating": 1
+      }
+    {%- endif -%}
+    ,"offers": [
+      {%- for variant in product.variants -%}
+        {
+          "@type": "Offer",
+          "@id": {{ request.origin | append: variant.url | append: '#offer' | json }},
+          "url": {{ request.origin | append: variant.url | json }},
+          "priceCurrency": {{ cart.currency.iso_code | json }},
+          "price": {{ variant.price | divided_by: 100.0 | json }},
+          "availability": "{% if variant.available %}https://schema.org/InStock{% else %}https://schema.org/OutOfStock{% endif %}",
+          "itemCondition": "https://schema.org/NewCondition",
+          "seller": {
+            "@id": {{ org_id | json }}
+          }
+          {%- if variant.sku != blank -%}
+            ,"sku": {{ variant.sku | json }}
+          {%- endif -%}
+          {%- if variant.barcode.size == 12 -%}
+            ,"gtin12": {{ variant.barcode | json }}
+          {%- elsif variant.barcode.size == 13 -%}
+            ,"gtin13": {{ variant.barcode | json }}
+          {%- elsif variant.barcode.size == 14 -%}
+            ,"gtin14": {{ variant.barcode | json }}
+          {%- elsif variant.barcode.size == 8 -%}
+            ,"gtin8": {{ variant.barcode | json }}
+          {%- elsif variant.barcode != blank -%}
+            ,"gtin": {{ variant.barcode | json }}
+          {%- endif -%}
+          {%- if variant.compare_at_price > variant.price -%}
+            ,"priceValidUntil": {{ 'now' | date: '%Y-12-31' | json }}
+          {%- endif -%}
+        }{%- unless forloop.last -%},{%- endunless -%}
+      {%- endfor -%}
+    ]
+    {%- liquid
+      assign has_additional_property = false
+      if active_ingredients != blank or inactive_ingredients != blank or alcohol_free_value != blank or product_format != blank or usage_text != blank
+        assign has_additional_property = true
+      endif
+    -%}
+    {%- if has_additional_property -%}
+      ,"additionalProperty": [
+        {%- assign prop_first = true -%}
+        {%- if active_ingredients != blank -%}
+          {%- assign prop_first = false -%}
+          {
+            "@type": "PropertyValue",
+            "name": "Active ingredients",
+            "value": {{ active_ingredients | json }}
+          }
+        {%- endif -%}
+        {%- if inactive_ingredients != blank -%}
+          {%- unless prop_first -%},{%- endunless -%}
+          {%- assign prop_first = false -%}
+          {
+            "@type": "PropertyValue",
+            "name": "Inactive ingredients",
+            "value": {{ inactive_ingredients | json }}
+          }
+        {%- endif -%}
+        {%- if alcohol_free_value != blank -%}
+          {%- unless prop_first -%},{%- endunless -%}
+          {%- assign prop_first = false -%}
+          {
+            "@type": "PropertyValue",
+            "name": "Alcohol-free",
+            "value": {{ alcohol_free_value | json }}
+          }
+        {%- endif -%}
+        {%- if product_format != blank -%}
+          {%- unless prop_first -%},{%- endunless -%}
+          {%- assign prop_first = false -%}
+          {
+            "@type": "PropertyValue",
+            "name": "Format",
+            "value": {{ product_format | json }}
+          }
+        {%- endif -%}
+        {%- if usage_text != blank -%}
+          {%- unless prop_first -%},{%- endunless -%}
+          {
+            "@type": "PropertyValue",
+            "name": "Usage",
+            "value": {{ usage_text | json }}
+          }
+        {%- endif -%}
+      ]
+    {%- endif -%}
+  }
+</script>

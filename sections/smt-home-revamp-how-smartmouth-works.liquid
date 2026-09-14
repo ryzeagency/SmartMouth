@@ -90,6 +90,9 @@
 
       <div class="hr-science__product">
         {% if section.settings.product_image != blank %}
+          {% liquid
+            assign science_image_alt = section.settings.product_image.alt | default: section.settings.image_alt | strip
+          %}
           {{
             section.settings.product_image
             | image_url: width: 1600
@@ -97,8 +100,9 @@
               widths: '500, 750, 1000, 1200, 1400, 1600',
               sizes: '(min-width: 750px) 25.15vw, 60vw',
               loading: 'lazy',
-              alt: section.settings.image_alt
+              alt: science_image_alt
           }}
+          {% render 'image-text-equivalent', image: section.settings.product_image, fallback: section.settings.image_alt %}
         {% else %}
           <img
             src="{{ 'howsmart-img.webp' | asset_url }}"
@@ -107,6 +111,7 @@
             height="598"
             loading="lazy"
           >
+          {% render 'image-text-equivalent', fallback: section.settings.image_alt %}
         {% endif %}
       </div>
     </div>

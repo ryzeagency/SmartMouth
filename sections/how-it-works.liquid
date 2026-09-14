@@ -5,10 +5,11 @@
     <div class="how-it-works__bg">
       <img
         src="{{ section.settings.background_image | image_url: width: 1920 }}"
-        alt=""
+        alt="{{ section.settings.background_image.alt | escape }}"
         loading="lazy"
         class="how-it-works__bg-image"
       >
+      {% render 'image-text-equivalent', image: section.settings.background_image %}
     </div>
   {% endif %}
 

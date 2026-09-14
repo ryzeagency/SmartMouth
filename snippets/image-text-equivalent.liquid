@@ -1,0 +1,16 @@
+{%- comment -%}
+  Text equivalent for image-locked content (charts, diagrams, infographics).
+  Uses the Shopify file alt when set, otherwise the theme fallback.
+{%- endcomment -%}
+{%- liquid
+  assign equivalent = ''
+  if image != blank and image.alt != blank
+    assign equivalent = image.alt
+  elsif fallback != blank
+    assign equivalent = fallback
+  endif
+  assign equivalent = equivalent | strip
+-%}
+{%- if equivalent != blank -%}
+  <span class="visually-hidden">{{ equivalent | escape }}</span>
+{%- endif -%}

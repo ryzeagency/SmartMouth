@@ -8,7 +8,7 @@
         <div class="hr-marquee__group"{% if copy == 2 %} aria-hidden="true"{% endif %}>
           {% for block in section.blocks %}
             {% liquid
-              assign logo_alt = block.settings.alt | default: block.settings.logo_text
+              assign logo_alt = block.settings.image.alt | default: block.settings.alt | default: block.settings.logo_text | strip
             %}
             <div
               class="hr-marquee__item"

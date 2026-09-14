@@ -18,6 +18,9 @@
 
     <div class="how-to-indicator__visual{% if section.settings.indicator_image != blank %} how-to-indicator__visual--has-image{% endif %}">
       {% if section.settings.indicator_image != blank %}
+        {% liquid
+          assign indicator_alt = section.settings.indicator_image.alt | default: section.settings.image_alt | strip
+        %}
         <div class="how-to-indicator__art">
           {{
             section.settings.indicator_image
@@ -26,8 +29,9 @@
               widths: '600, 900, 1200, 1600, 2000',
               sizes: '(min-width: 750px) 41vw, 85vw',
               loading: 'lazy',
-              alt: section.settings.image_alt
+              alt: indicator_alt
           }}
+          {% render 'image-text-equivalent', image: section.settings.indicator_image, fallback: section.settings.image_alt %}
         </div>
       {% endif %}
 
@@ -39,15 +43,20 @@
             {{ block.shopify_attributes }}
           >
             {% if block.settings.image != blank %}
+              {% liquid
+                assign card_image_alt = block.settings.image.alt | default: block.settings.heading | strip
+              %}
               <div class="how-to-indicator__card-image">
-                {{ 
-                  block.settings.image 
-                  | image_url: width: 800 
-                  | image_tag: 
+                {{
+                  block.settings.image
+                  | image_url: width: 800
+                  | image_tag:
                     widths: '400, 600, 800',
                     sizes: '(min-width: 750px) 20vw, 40vw',
-                    loading: 'lazy'
+                    loading: 'lazy',
+                    alt: card_image_alt
                 }}
+                {% render 'image-text-equivalent', image: block.settings.image, fallback: block.settings.heading %}
               </div>
             {% endif %}
 

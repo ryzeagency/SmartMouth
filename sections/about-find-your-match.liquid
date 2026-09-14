@@ -21,6 +21,7 @@
           alt="{{ section.settings.image.alt | default: bottle_alt | escape }}"
           loading="lazy"
         >
+        {% render 'image-text-equivalent', image: section.settings.image, fallback: bottle_alt %}
       {%- else -%}
         <img
           class="about-match__bottle"

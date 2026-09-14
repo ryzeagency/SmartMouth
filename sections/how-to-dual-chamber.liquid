@@ -28,6 +28,9 @@
         >
           <div class="how-to-chamber__solution-inner">
             {% if block.settings.side == 'green' and block.settings.virus_image != blank %}
+              {% liquid
+                assign virus_alt = block.settings.virus_image.alt | default: block.settings.virus_alt | strip
+              %}
               <div class="how-to-chamber__virus">
                 {{
                   block.settings.virus_image
@@ -36,8 +39,9 @@
                     widths: '150, 250, 350, 500',
                     sizes: '(min-width: 750px) 6vw, 18vw',
                     loading: 'lazy',
-                    alt: block.settings.virus_alt
+                    alt: virus_alt
                 }}
+                {% render 'image-text-equivalent', image: block.settings.virus_image, fallback: block.settings.virus_alt %}
               </div>
             {% endif %}
 
@@ -52,6 +56,9 @@
             </div>
 
             {% if block.settings.side == 'blue' and block.settings.virus_image != blank %}
+              {% liquid
+                assign virus_alt = block.settings.virus_image.alt | default: block.settings.virus_alt | strip
+              %}
               <div class="how-to-chamber__virus">
                 {{
                   block.settings.virus_image
@@ -60,8 +67,9 @@
                     widths: '150, 250, 350, 500',
                     sizes: '(min-width: 750px) 6vw, 18vw',
                     loading: 'lazy',
-                    alt: block.settings.virus_alt
+                    alt: virus_alt
                 }}
+                {% render 'image-text-equivalent', image: block.settings.virus_image, fallback: block.settings.virus_alt %}
               </div>
             {% endif %}
           </div>
@@ -69,6 +77,9 @@
       {% endfor %}
 
       {% if chamber_image != blank %}
+        {% liquid
+          assign illustration_alt = chamber_image.alt | default: section.settings.desktop_illustration.alt | default: section.settings.mobile_illustration.alt | default: section.settings.illustration_alt | strip
+        %}
         <picture class="how-to-chamber__illustration">
           {% if section.settings.mobile_illustration != blank %}
             <source
@@ -83,9 +94,10 @@
               widths: '700, 1000, 1400, 1800, 2400',
               sizes: '(min-width: 750px) 32vw, 85vw',
               loading: 'lazy',
-              alt: section.settings.illustration_alt
+              alt: illustration_alt
           }}
         </picture>
+        {% render 'image-text-equivalent', image: chamber_image, fallback: section.settings.illustration_alt %}
       {% endif %}
     </div>
   </div>
