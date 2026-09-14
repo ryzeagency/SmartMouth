@@ -7,6 +7,8 @@
 
   The locator embed reads PROD and MM from the page query string, so the
   parameters are written to the URL before the Destini script is injected.
+
+  Type scale and mobile behaviour follow the Product Smart-Zinc section.
 {%- endcomment -%}
 
 {%- liquid
@@ -25,24 +27,28 @@
 -%}
 
 {%- if matched and destini_upc != blank -%}
-
-  <div
-    class="destini-section"
-    id="destini-section-{{ section.id }}"
-    style="
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
-    "
-  >
-    <div class="destini-section__inner page-width">
-      {%- if section.settings.heading != blank -%}
-        <h2 class="destini-section__heading">{{ section.settings.heading | escape }}</h2>
+<section
+  class="destini-locator"
+  aria-labelledby="DestiniLocatorHeading-{{ section.id }}"
+>
+  <div class="destini-locator__inner">
+    <header class="destini-locator__header">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="destini-locator__eyebrow">{{ section.settings.eyebrow | escape }}</p>
       {%- endif -%}
 
-      {%- if section.settings.subtext != blank -%}
-        <div class="destini-section__subtext rte">{{ section.settings.subtext }}</div>
-      {%- endif -%}
+      <h2 class="destini-locator__heading" id="DestiniLocatorHeading-{{ section.id }}">
+        {{ section.settings.heading | escape }}{% if section.settings.heading_highlight != blank %}
+          <em>{{ section.settings.heading_highlight | escape }}</em>
+        {% endif %}
+      </h2>
 
+      {%- if section.settings.subheading != blank -%}
+        <div class="destini-locator__subheading rte">{{ section.settings.subheading }}</div>
+      {%- endif -%}
+    </header>
+
+    <div class="destini-locator__embed">
       <div
         id="destini-locator-{{ section.settings.locator_id }}"
         class="destini-locator-class"
@@ -51,142 +57,328 @@
       ></div>
     </div>
   </div>
+</section>
 
-  <style>
-    #destini-section-{{ section.id }} .destini-section__heading {
-      margin: 0 0 0.5rem;
-    }
+<style>
+  #shopify-section-{{ section.id }} {
+    --destini-body-size: 1vw;
+    --destini-body-size-mobile: 3.5vw;
+    --destini-background: {{ section.settings.background_color }};
+    --destini-text: {{ section.settings.text_color }};
+    --destini-highlight: {{ section.settings.highlight_color }};
+  }
 
-    #destini-section-{{ section.id }} .destini-section__subtext {
-      margin: 0 0 1.5rem;
-    }
+  #shopify-section-{{ section.id }} .destini-locator {
+    padding: 3.8vw 0 5.5vw;
+    color: var(--destini-text);
+    background-color: var(--destini-background);
+  }
 
-    #destini-locator-{{ section.settings.locator_id }}.destini-locator-class,
-    #destini-locator-{{ section.settings.locator_id }}.destini-locator-class:empty {
-      display: block;
-      min-height: 300px;
-    }
-  </style>
+  #shopify-section-{{ section.id }} .destini-locator__inner {
+    width: 85vw;
+    margin-inline: auto;
+  }
 
-  <script>
-    (function () {
-      var upc = {{ destini_upc | json }};
-      var src = 'https://lets.shop/productFirstSnippet.js';
+  #shopify-section-{{ section.id }} .destini-locator__header {
+    text-align: center;
+  }
 
-      function setParams() {
-        var params = new URLSearchParams(window.location.search);
+  #shopify-section-{{ section.id }} .destini-locator__eyebrow {
+    margin: 0 0 0.7vw;
+    color: inherit;
+    font-family: var(--font-body-family);
+    font-size: 1.45vw;
+    font-style: var(--font-body-style);
+    font-weight: 500;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
 
-        if (!upc) return;
-        if (params.get('PROD') === upc) return;
+  #shopify-section-{{ section.id }} .destini-locator__heading {
+    margin: 0;
+    color: inherit;
+    font-family: var(--font-heading-family);
+    font-size: 2.55vw;
+    font-style: var(--font-heading-style);
+    font-weight: var(--font-heading-weight);
+    letter-spacing: 0;
+    line-height: 1.05;
+  }
 
-        params.set('PROD', upc);
-        params.set('MM', 'panel2');
+  #shopify-section-{{ section.id }} .destini-locator__heading em {
+    color: var(--destini-highlight);
+    font-style: inherit;
+  }
 
-        window.history.replaceState(
-          window.history.state,
-          '',
-          window.location.pathname + '?' + params.toString() + window.location.hash
-        );
-      }
+  #shopify-section-{{ section.id }} .destini-locator__subheading {
+    max-width: 70vw;
+    margin: 1.25vw auto 0;
+    color: inherit;
+    font-family: var(--font-body-family);
+    font-size: 1.1vw;
+    font-style: italic;
+    font-weight: 700;
+    line-height: 1.4;
+  }
 
-      function loadScript() {
-        if (document.querySelector('script[src="' + src + '"]')) return;
+  #shopify-section-{{ section.id }} .destini-locator__subheading p {
+    margin: 0;
+  }
 
-        var script = document.createElement('script');
-        script.src = src;
-        script.charset = 'utf-8';
-        script.async = false;
-        document.body.appendChild(script);
-      }
-
-      setParams();
-      loadScript();
-
-      {%- if request.design_mode -%}
-        document.addEventListener('shopify:section:load', function (event) {
-          if (event.detail.sectionId !== {{ section.id | json }}) return;
-          setParams();
-          window.location.reload();
-        });
-      {%- endif -%}
-    })();
-  </script>
-
-{%- elsif request.design_mode -%}
+  #shopify-section-{{ section.id }} .destini-locator__embed {
+    width: {{ section.settings.embed_width }}vw;
+    margin: 3vw auto 0;
+  }
 
   {%- comment -%}
-    Editor only notice, so the section is visible while it is being configured.
-    Never rendered on the live storefront.
+    Destini renders into a shadow root, so the container still matches :empty
+    and gets hidden by the theme's base.css reset. One ID plus one class
+    outranks that rule.
   {%- endcomment -%}
-  <div
-    class="destini-section destini-section--setup page-width"
-    style="
-      padding: 2rem;
-      border: 1px dashed currentColor;
-      opacity: 0.7;
-      text-align: center;
-    "
-  >
+  #shopify-section-{{ section.id }} .destini-locator-class,
+  #shopify-section-{{ section.id }} .destini-locator-class:empty {
+    display: block;
+    width: 100%;
+    min-height: {{ section.settings.min_height }}vw;
+  }
+
+  @media screen and (max-width: 749px) {
+
+    #shopify-section-{{ section.id }} .destini-locator {
+      padding: {{ section.settings.mobile_padding_top }}vw 0 {{ section.settings.mobile_padding_bottom }}vw;
+    }
+
+    #shopify-section-{{ section.id }} .destini-locator__header {
+      text-align: left;
+    }
+
+    #shopify-section-{{ section.id }} .destini-locator__eyebrow {
+      margin-bottom: 3vw;
+      font-size: 4vw;
+    }
+
+    #shopify-section-{{ section.id }} .destini-locator__heading {
+      font-size: 6.5vw;
+    }
+
+    #shopify-section-{{ section.id }} .destini-locator__subheading {
+      max-width: none;
+      margin-top: 5vw;
+      font-size: var(--destini-body-size-mobile);
+      line-height: 1.45;
+    }
+
+    #shopify-section-{{ section.id }} .destini-locator__embed {
+      width: 85vw;
+      margin-top: 10vw;
+    }
+
+    #shopify-section-{{ section.id }} .destini-locator-class,
+    #shopify-section-{{ section.id }} .destini-locator-class:empty {
+      min-height: {{ section.settings.mobile_min_height }}vw;
+    }
+  }
+</style>
+
+<script>
+  (function () {
+    var upc = {{ destini_upc | json }};
+    var src = 'https://lets.shop/productFirstSnippet.js';
+
+    function setParams() {
+      var params = new URLSearchParams(window.location.search);
+
+      if (!upc) return;
+      if (params.get('PROD') === upc) return;
+
+      params.set('PROD', upc);
+      params.set('MM', 'panel2');
+
+      window.history.replaceState(
+        window.history.state,
+        '',
+        window.location.pathname + '?' + params.toString() + window.location.hash
+      );
+    }
+
+    function loadScript() {
+      if (document.querySelector('script[src="' + src + '"]')) return;
+
+      var script = document.createElement('script');
+      script.src = src;
+      script.charset = 'utf-8';
+      script.async = false;
+      document.body.appendChild(script);
+    }
+
+    setParams();
+    loadScript();
+
+    {%- if request.design_mode -%}
+      document.addEventListener('shopify:section:load', function (event) {
+        if (event.detail.sectionId !== {{ section.id | json }}) return;
+        setParams();
+        window.location.reload();
+      });
+    {%- endif -%}
+  })();
+</script>
+
+{%- elsif request.design_mode -%}
+  <div style="width: 85vw; margin: 1vw auto; padding: 1vw 1.5vw; border: 1px dashed #b0813a; border-radius: .5vw; background: #fff8ec; color: #7a5200; font-family: var(--font-body-family, sans-serif); font-size: 14px; line-height: 1.5;">
     {%- if matched -%}
-      Add the UPC for this product in the section settings to show the locator.
+      <strong>"Store locator" is missing a UPC for this product</strong><br>
+      Add the UPC in the section settings to show the locator. This notice is only visible in the theme editor.
     {%- else -%}
-      Choose up to two products in the section settings, and give each one a UPC.
-      The locator shows on those products only.
+      <strong>"Store locator" is hidden on this product</strong><br>
+      It only shows on the two products chosen in the section settings, and each one needs a UPC. This notice is only visible in the theme editor.
     {%- endif -%}
   </div>
-
 {%- endif -%}
 
 {% schema %}
 {
-  "name": "Destini locator",
+  "name": "Store locator",
   "tag": "section",
-  "class": "section-destini-locator",
+  "class": "section section-destini-locator",
   "settings": [
     {
+      "type": "header",
+      "content": "Visibility"
+    },
+    {
       "type": "paragraph",
-      "content": "Shows the Destini store locator preloaded to one product. Pick the products below and enter the UPC exactly as it appears in the Destini CMS, including any leading zeros."
+      "content": "The locator shows only on the products chosen below. Enter each UPC exactly as it appears in the Destini CMS, including any leading zeros."
+    },
+    {
+      "type": "product",
+      "id": "product_1",
+      "label": "First product"
+    },
+    {
+      "type": "text",
+      "id": "upc_1",
+      "label": "First product UPC",
+      "info": "Digits only, no spaces."
+    },
+    {
+      "type": "product",
+      "id": "product_2",
+      "label": "Second product"
+    },
+    {
+      "type": "text",
+      "id": "upc_2",
+      "label": "Second product UPC",
+      "info": "Digits only, no spaces."
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "WHERE TO BUY"
     },
     {
       "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "Find this in a store near you"
+      "default": "Find this in a store"
+    },
+    {
+      "type": "text",
+      "id": "heading_highlight",
+      "label": "Highlighted heading text",
+      "default": "near you."
     },
     {
       "type": "richtext",
-      "id": "subtext",
-      "label": "Text below heading"
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "<p>Enter your ZIP code to see which nearby stores carry this product.</p>"
     },
     {
       "type": "header",
-      "content": "First product"
+      "content": "Locator size"
     },
     {
-      "type": "product",
-      "id": "product_1",
-      "label": "Product"
+      "type": "range",
+      "id": "embed_width",
+      "min": 40,
+      "max": 85,
+      "step": 1,
+      "unit": "vw",
+      "label": "Desktop width",
+      "default": 70
     },
     {
-      "type": "text",
-      "id": "upc_1",
-      "label": "UPC",
-      "info": "Digits only, no spaces."
+      "type": "range",
+      "id": "min_height",
+      "min": 10,
+      "max": 60,
+      "step": 1,
+      "unit": "vw",
+      "label": "Desktop minimum height",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "mobile_min_height",
+      "min": 40,
+      "max": 180,
+      "step": 5,
+      "unit": "vw",
+      "label": "Mobile minimum height",
+      "default": 110
     },
     {
       "type": "header",
-      "content": "Second product"
+      "content": "Mobile spacing"
     },
     {
-      "type": "product",
-      "id": "product_2",
-      "label": "Product"
+      "type": "range",
+      "id": "mobile_padding_top",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "vw",
+      "label": "Top spacing",
+      "default": 12
     },
     {
-      "type": "text",
-      "id": "upc_2",
-      "label": "UPC",
-      "info": "Digits only, no spaces."
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "vw",
+      "label": "Bottom spacing",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#092847"
+    },
+    {
+      "type": "color",
+      "id": "highlight_color",
+      "label": "Highlighted heading",
+      "default": "#80D3C9"
     },
     {
       "type": "header",
@@ -203,35 +395,12 @@
       "id": "alpha_code",
       "label": "Alpha code",
       "default": "1052"
-    },
-    {
-      "type": "header",
-      "content": "Spacing"
-    },
-    {
-      "type": "range",
-      "id": "padding_top",
-      "label": "Top padding",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "default": 40
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "label": "Bottom padding",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "default": 40
     }
   ],
   "presets": [
     {
-      "name": "Destini locator"
+      "name": "Store locator",
+      "category": "Product Revamp"
     }
   ],
   "enabled_on": {
