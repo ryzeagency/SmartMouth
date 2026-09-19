@@ -27,7 +27,8 @@
         "right_heading": "Bad Breath",
         "right_text": "<p>Anywhere from <a href=\"https://pubmed.ncbi.nlm.nih.gov/25525639/\">22 to 50 percent</a> of the population has bad breath. It can negatively impact your relationships and cause shame, humiliation, depression, and anxiety. But you don’t have to live with it. The first step to improving your oral health is learning more about it.</p>",
         "padding_top": 56,
-        "padding_bottom": 56
+        "padding_bottom": 56,
+        "right_heading_tag": "h1"
       }
     },
     "faqs_accordion_qErFTD": {

@@ -27,7 +27,8 @@
         "right_heading": "Oral Health",
         "right_text": "<p>Oral health encompasses the health of the teeth, gums, mouth, throat, and oral cavity. It plays a significant role in your ability to smile, speak clearly, chew, and swallow — and it influences your overall health and quality of life. A substantial percentage of the American population faces oral health challenges with 90 percent of adults experiencing tooth decay and 50 percent dealing with gum disease.</p>",
         "padding_top": 56,
-        "padding_bottom": 56
+        "padding_bottom": 56,
+        "right_heading_tag": "h1"
       }
     },
     "learn_more_products_9j7QMq": {

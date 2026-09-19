@@ -27,7 +27,8 @@
         "right_heading": "Gum Disease",
         "right_text": "<p>Gum disease is an infection of the gums. It impacts <a href=\"https://www.cdc.gov/oralhealth/conditions/periodontal-disease.html\">nearly half</a> of people older than 30, as well as 70 percent of people older than 65. When untreated, it can cause gum recession and tooth loss. We can help you understand the symptoms of gum disease and learn how to prevent it to improve your oral health.</p>",
         "padding_top": 56,
-        "padding_bottom": 56
+        "padding_bottom": 56,
+        "right_heading_tag": "h1"
       }
     },
     "faqs_accordion_qErFTD": {

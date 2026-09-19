@@ -136,7 +136,7 @@
     <div class="grid__item split-text-column">
       <div class="split-text-content-{{ section.id }}">
         {%- if section.settings.right_heading != blank -%}
-          <h2 class="h2">{{ section.settings.right_heading }}</h2>
+          {%- assign rh_tag = section.settings.right_heading_tag | default: "h2" -%}<{{ rh_tag }} class="h2">{{ section.settings.right_heading }}</{{ rh_tag }}>
         {%- endif -%}
         
         {%- if section.settings.right_text != blank -%}
@@ -202,6 +202,14 @@
     {
       "type": "header",
       "content": "Text Content"
+    },
+    {
+      "type": "select",
+      "id": "right_heading_tag",
+      "label": "Right heading HTML tag",
+      "info": "Use H1 when this is the page's main headline (SEO).",
+      "options": [{ "value": "h2", "label": "H2 (default)" }, { "value": "h1", "label": "H1" }],
+      "default": "h2"
     },
     {
       "type": "text",

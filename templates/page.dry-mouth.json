@@ -27,7 +27,8 @@
         "right_heading": "Dry Mouth",
         "right_text": "<p>As many as <a href=\"https://www.aaom.com/index.php%3Foption=com_content&view=article&id=107:xerostomia&catid=22:patient-condition-information&Itemid=120\">65 percent</a> of people experience dry mouth. It’s not just uncomfortable; it can make it difficult to taste, chew, swallow, and speak. Plus, it can increase your risk of developing cavities, gum disease, and other dental problems.</p>",
         "padding_top": 56,
-        "padding_bottom": 56
+        "padding_bottom": 56,
+        "right_heading_tag": "h1"
       }
     },
     "faqs_accordion_qErFTD": {

@@ -27,7 +27,8 @@
         "right_heading": "Mouth Sores",
         "right_text": "<p>Recurring mouth sores are one of the most common oral ailments worldwide, impacting 20 to 25 percent of the overall population. They usually appear as swollen, painful ulcers, and while they’re not contagious, they can be caused by a variety of factors.</p>",
         "padding_top": 56,
-        "padding_bottom": 56
+        "padding_bottom": 56,
+        "right_heading_tag": "h1"
       }
     },
     "faqs_accordion_qErFTD": {
