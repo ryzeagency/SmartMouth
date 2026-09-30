@@ -7,7 +7,7 @@
     <meta name="theme-color" content="">
     <link rel="canonical" href="{{ canonical_url }}">
     {% render 'inf-header-scripts' %}
-    <script src=https://cdn.userway.org/widget.js data-account="OHJiv8nliU"></script>
+    <script src="https://cdn.userway.org/widget.js" data-account="OHJiv8nliU" defer></script>
     {%- if settings.favicon != blank -%}
       <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
     {%- endif -%}
@@ -28,6 +28,7 @@
     {% endif %}
 
     {% render 'meta-tags' %}
+    {% render 'breadcrumb-schema' %}
 
     <script src="{{ 'constants.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'pubsub.js' | asset_url }}" defer="defer"></script>
