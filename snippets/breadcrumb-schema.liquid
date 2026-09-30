@@ -1,32 +1,31 @@
 {%- comment -%}
-  BreadcrumbList JSON-LD for collections, articles and pages. Product pages carry their own
+  BreadcrumbList JSON-LD for collections, blogs, articles and pages. Product pages carry their own
   BreadcrumbList in sections/main-product.liquid, so they are skipped here. Added 2026-09-30 (Ryze).
 {%- endcomment -%}
-{%- liquid
-  assign bc_items = ''
-  assign home_url = request.origin | append: routes.root_url
-  case request.page_type
-    when 'collection'
-      if collection.handle != blank
-        assign bc_items = bc_items | append: '{"@type":"ListItem","position":2,"name":' | append: collection.title | json | append: ',"item":"' | append: request.origin | append: collection.url | append: '"}'
-      endif
-    when 'article'
-      if article.handle != blank
-        assign bc_items = bc_items | append: '{"@type":"ListItem","position":2,"name":' | append: blog.title | json | append: ',"item":"' | append: request.origin | append: blog.url | append: '"},'
-        assign bc_items = bc_items | append: '{"@type":"ListItem","position":3,"name":' | append: article.title | json | append: ',"item":"' | append: request.origin | append: article.url | append: '"}'
-      endif
-    when 'blog'
-      if blog.handle != blank
-        assign bc_items = bc_items | append: '{"@type":"ListItem","position":2,"name":' | append: blog.title | json | append: ',"item":"' | append: request.origin | append: blog.url | append: '"}'
-      endif
-    when 'page'
-      if page.handle != blank
-        assign bc_items = bc_items | append: '{"@type":"ListItem","position":2,"name":' | append: page.title | json | append: ',"item":"' | append: request.origin | append: page.url | append: '"}'
-      endif
-  endcase
--%}
+{%- capture bc_items -%}
+  {%- case request.page_type -%}
+    {%- when 'collection' -%}
+      {%- if collection.handle != blank -%}
+        {"@type":"ListItem","position":2,"name":{{ collection.title | json }},"item":{{ request.origin | append: collection.url | json }}}
+      {%- endif -%}
+    {%- when 'article' -%}
+      {%- if article.handle != blank -%}
+        {"@type":"ListItem","position":2,"name":{{ blog.title | json }},"item":{{ request.origin | append: blog.url | json }}},
+        {"@type":"ListItem","position":3,"name":{{ article.title | json }},"item":{{ request.origin | append: article.url | json }}}
+      {%- endif -%}
+    {%- when 'blog' -%}
+      {%- if blog.handle != blank -%}
+        {"@type":"ListItem","position":2,"name":{{ blog.title | json }},"item":{{ request.origin | append: blog.url | json }}}
+      {%- endif -%}
+    {%- when 'page' -%}
+      {%- if page.handle != blank -%}
+        {"@type":"ListItem","position":2,"name":{{ page.title | json }},"item":{{ request.origin | append: page.url | json }}}
+      {%- endif -%}
+  {%- endcase -%}
+{%- endcapture -%}
+{%- assign bc_items = bc_items | strip -%}
 {%- if bc_items != blank -%}
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":{{ home_url | json }}},{{ bc_items }}]}
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":{{ request.origin | append: routes.root_url | json }}},{{ bc_items }}]}
 </script>
 {%- endif -%}
