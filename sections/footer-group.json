@@ -59,15 +59,15 @@
         "text": "Purchase SmartMouth™ mouthwash and oral care products from regional and national retailers near you. So you can be sure – no matter where you go – bad breath doesn’t follow.",
         "text_color": "#555555",
         "button_label_1": "WHERE TO BUY",
-        "button_url_1": "shopify://pages/store-locator",
+        "button_url_1": "shopify:\/\/pages\/store-locator",
         "button_bg_1": "#0072ce",
         "button_text_1": "#ffffff",
         "show_amazon_icon": true,
         "button_label_2": "BUY ON AMAZON",
-        "button_url_2": "https://pattern.current.tech/amazon/SmartMouth-SMWebsite-AllProducts",
+        "button_url_2": "https:\/\/pattern.current.tech\/amazon\/SmartMouth-SMWebsite-AllProducts",
         "button_bg_2": "#008035",
         "button_text_2": "#ffffff",
-        "image": "shopify://shop_images/smartmouth-groupproduct-img.png"
+        "image": "shopify:\/\/shop_images\/smartmouth-groupproduct-img.png"
       }
     },
     "newsletter_bar_WMzUjf": {
@@ -88,10 +88,10 @@
         "brand_VxXYHm": {
           "type": "brand",
           "settings": {
-            "logo": "shopify://shop_images/smartmouth-logo.png",
+            "logo": "shopify:\/\/shop_images\/smartmouth-logo.png",
             "logo_width": 250,
             "logo_width_mobile": 62,
-            "text": "<p>Results may vary. 24-hour bad breath protection results associated with twice daily use. SmartMouth products are not intended to diagnose, treat, cure, or prevent any disease. All SmartMouth products come with our guarantee that ensures SmartMouth will work exactly as described on this website or your money back. Always consult your healthcare professional.</p>"
+            "text": "<p>Results may vary. 24-hour bad breath protection results associated with twice daily use. SmartMouth products are not intended to diagnose, treat, cure, or prevent any disease. All SmartMouth products come with our 60-day Money-Back Satisfaction Guarantee: SmartMouth will work exactly as described on this website, or your money back. Always consult your healthcare professional.<\/p>"
           }
         },
         "multi_menu_nW48Yn": {
@@ -112,17 +112,17 @@
       "settings": {
         "bg_color": "#ffffff",
         "text_color": "#121212",
-        "social_facebook": "https://www.facebook.com/smartmouth",
-        "social_linkedin": "https://www.linkedin.com/company/smartmouth-oral-health-labs/",
-        "social_instagram": "https://www.instagram.com/smartmouthwash/",
-        "social_tiktok": "https://www.tiktok.com/@smartmouthwash",
+        "social_facebook": "https:\/\/www.facebook.com\/smartmouth",
+        "social_linkedin": "https:\/\/www.linkedin.com\/company\/smartmouth-oral-health-labs\/",
+        "social_instagram": "https:\/\/www.instagram.com\/smartmouthwash\/",
+        "social_tiktok": "https:\/\/www.tiktok.com\/@smartmouthwash",
         "copyright_name": "SmartMouth™",
         "copyright_text": "All Rights Reserved.",
         "show_brand_copyright": false,
         "show_bottom_bar": true,
         "credit_prefix": "Built by",
         "credit_name": "Ryze Agency",
-        "credit_url": "https://ryzeagency.com/",
+        "credit_url": "https:\/\/ryzeagency.com\/",
         "bar_bg_color": "#205085",
         "bar_text_color": "#ffffff",
         "bar_padding_top": 14,
@@ -137,7 +137,7 @@
         "image_hKGcfK": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/smartmouth-logo.png",
+            "image": "shopify:\/\/shop_images\/smartmouth-logo.png",
             "image_width": 150,
             "alignment": ""
           }
@@ -160,7 +160,7 @@
           "type": "text",
           "settings": {
             "heading": "Our mission",
-            "subtext": "<p>Results may vary. 24-hour bad breath protection results associated with twice daily use. SmartMouth products are not intended to diagnose, treat, cure, or prevent any disease. All SmartMouth products come with our guarantee that ensures SmartMouth will work exactly as described on this website or your money back. Always consult your healthcare professional.</p>"
+            "subtext": "<p>Results may vary. 24-hour bad breath protection results associated with twice daily use. SmartMouth products are not intended to diagnose, treat, cure, or prevent any disease. All SmartMouth products come with our 60-day Money-Back Satisfaction Guarantee: SmartMouth will work exactly as described on this website, or your money back. Always consult your healthcare professional.<\/p>"
           }
         }
       },
