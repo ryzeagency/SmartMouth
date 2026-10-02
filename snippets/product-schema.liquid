@@ -307,6 +307,7 @@
             {%- if fld != blank -%}
               {%- assign fv = fld.value | default: fld -%}
               {%- if fv.size and fv.first -%}{%- assign fv = fv | join: ', ' -%}{%- endif -%}
+              {%- unless fv contains ' ' -%}{%- assign fv = fv | replace: '_', ' ' | capitalize -%}{%- endunless -%}
               {%- if fv != blank -%}
                 {%- unless prop_first -%},{%- endunless -%}
                 {%- assign prop_first = false -%}

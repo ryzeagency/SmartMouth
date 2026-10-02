@@ -46,6 +46,9 @@
             assign v = v | join: ', '
           endif
           assign v = v | strip
+          unless v contains ' '
+            assign v = v | replace: '_', ' ' | capitalize
+          endunless
         -%}
         {%- if k != blank and v != blank -%}
         <tr {{ block.shopify_attributes }}>
