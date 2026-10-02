@@ -14,8 +14,23 @@
   elsif product.metafields.custom.bad_breath_prevention.value != blank
     assign facts = product.metafields.custom.bad_breath_prevention.value
   endif
+  assign agent_mfs = product.metafields.agent
+  assign has_agent = false
+  if agent_mfs.product_form.value != blank or agent_mfs.intended_use.value != blank or agent_mfs.claims.value != blank
+    assign has_agent = true
+  endif
 -%}
-{%- if facts != blank -%}
+{%- comment -%} FAQPage JSON-LD from agent.faqs (list of {question, answer}) {%- endcomment -%}
+{%- if agent_mfs.faqs.value != blank -%}
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{%- for f in agent_mfs.faqs.value -%}
+{"@type":"Question","name":{{ f.question | json }},"acceptedAnswer":{"@type":"Answer","text":{{ f.answer | json }}}}{%- unless forloop.last -%},{%- endunless -%}
+{%- endfor -%}
+]}
+</script>
+{%- endif -%}
+{%- if facts != blank or has_agent -%}
 {%- style -%}
   #shopify-section-{{ section.id }} .pf { background: {{ section.settings.background_color }}; color: {{ section.settings.text_color }}; padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px; }
   #shopify-section-{{ section.id }} .pf__inner { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
@@ -37,10 +52,18 @@
       {%- for block in section.blocks -%}
         {%- liquid
           assign k = block.settings.key | strip
-          assign field = facts[k]
           assign v = blank
-          if field != blank
-            assign v = field.value | default: field
+          if facts != blank
+            assign field = facts[k]
+            if field != blank
+              assign v = field.value | default: field
+            endif
+          endif
+          if v == blank and k != blank
+            assign amf = agent_mfs[k]
+            if amf != blank and amf.value != blank
+              assign v = amf.value
+            endif
           endif
           if v.size and v.first
             assign v = v | join: ', '
@@ -127,6 +150,9 @@
         { "type": "fact", "settings": { "label": "Sensitivity", "key": "sensitivity_profile" } },
         { "type": "fact", "settings": { "label": "Flavor", "key": "flavor_profile" } },
         { "type": "fact", "settings": { "label": "Oral health support", "key": "oral_health_support" } },
+        { "type": "fact", "settings": { "label": "Best for", "key": "use_case_callout" } },
+        { "type": "fact", "settings": { "label": "Key benefits", "key": "key_benefits" } },
+        { "type": "fact", "settings": { "label": "Formula facts", "key": "claims" } },
         { "type": "fact", "settings": { "label": "Full ingredient list", "key": "ingredient_list" } },
         { "type": "fact", "settings": { "label": "UPC", "key": "gtin" } }
       ]

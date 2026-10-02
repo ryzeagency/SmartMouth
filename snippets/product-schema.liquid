@@ -299,6 +299,27 @@
           endif
           assign pf_keys = 'intended_use|Intended use,product_form|Product form,mechanism|Mechanism,odor_control_mechanism|Mechanism,moisturizing_mechanism|Mechanism,duration|Effect duration,odor_control_duration|Effect duration,relief_duration|Effect duration,evidence_strength|Evidence strength,clinical_evidence_strength|Evidence strength,hasCertification|Certification,has_certification|Certification,alcohol_status|Alcohol,alcohol_content|Alcohol,sugar_status|Sugar,sugarContent|Sugar,sugar_content|Sugar,fluoride_status|Fluoride,audience|Audience,flavor_profile|Flavor,application_frequency|Application frequency' | split: ','
         -%}
+        {%- if pf == blank -%}
+          {%- liquid
+            assign ag = product.metafields.agent
+            assign ag_keys = 'intended_use|Intended use,product_form|Product form,alcohol_status|Alcohol,fluoride_status|Fluoride,flavor_profile|Flavor,application_frequency|Application frequency,claims|Formula facts,key_benefits|Key benefits,use_case_callout|Best for' | split: ','
+          -%}
+          {%- for pair in ag_keys -%}
+            {%- assign kk = pair | split: '|' | first -%}
+            {%- assign kl = pair | split: '|' | last -%}
+            {%- assign amf = ag[kk] -%}
+            {%- if amf != blank and amf.value != blank -%}
+              {%- assign fv = amf.value -%}
+              {%- if fv.size and fv.first -%}{%- assign fv = fv | join: ', ' -%}{%- endif -%}
+              {%- unless fv contains ' ' -%}{%- assign fv = fv | replace: '_', ' ' | capitalize -%}{%- endunless -%}
+              {%- if fv != blank -%}
+                {%- unless prop_first -%},{%- endunless -%}
+                {%- assign prop_first = false -%}
+                { "@type": "PropertyValue", "name": {{ kl | json }}, "value": {{ fv | strip | json }} }
+              {%- endif -%}
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endif -%}
         {%- if pf != blank -%}
           {%- for pair in pf_keys -%}
             {%- assign kk = pair | split: '|' | first -%}

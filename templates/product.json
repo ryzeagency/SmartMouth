@@ -748,6 +748,27 @@
             "label": "UPC",
             "key": "gtin"
           }
+        },
+        "fact_37_use_case_callout": {
+          "type": "fact",
+          "settings": {
+            "label": "Best for",
+            "key": "use_case_callout"
+          }
+        },
+        "fact_38_key_benefits": {
+          "type": "fact",
+          "settings": {
+            "label": "Key benefits",
+            "key": "key_benefits"
+          }
+        },
+        "fact_39_claims": {
+          "type": "fact",
+          "settings": {
+            "label": "Formula facts",
+            "key": "claims"
+          }
         }
       },
       "block_order": [
@@ -785,6 +806,9 @@
         "fact_32_sensitivity_profil",
         "fact_33_flavor_profile",
         "fact_34_oral_health_suppor",
+        "fact_37_use_case_callout",
+        "fact_38_key_benefits",
+        "fact_39_claims",
         "fact_35_ingredient_list",
         "fact_36_gtin"
       ],
