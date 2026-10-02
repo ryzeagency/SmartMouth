@@ -287,6 +287,34 @@
             "value": {{ usage_text | json }}
           }
         {%- endif -%}
+        {%- comment -%} Agent facts metaobject -> PropertyValue (added 2026-10-02, Ryze) {%- endcomment -%}
+        {%- liquid
+          assign pf = blank
+          if product.metafields.custom.agent_facts.value != blank
+            assign pf = product.metafields.custom.agent_facts.value
+          elsif product.metafields.custom.dry_mouth_treatment.value != blank
+            assign pf = product.metafields.custom.dry_mouth_treatment.value
+          elsif product.metafields.custom.bad_breath_prevention.value != blank
+            assign pf = product.metafields.custom.bad_breath_prevention.value
+          endif
+          assign pf_keys = 'intended_use|Intended use,product_form|Product form,mechanism|Mechanism,odor_control_mechanism|Mechanism,moisturizing_mechanism|Mechanism,duration|Effect duration,odor_control_duration|Effect duration,relief_duration|Effect duration,evidence_strength|Evidence strength,clinical_evidence_strength|Evidence strength,hasCertification|Certification,has_certification|Certification,alcohol_status|Alcohol,alcohol_content|Alcohol,sugar_status|Sugar,sugarContent|Sugar,sugar_content|Sugar,fluoride_status|Fluoride,audience|Audience,flavor_profile|Flavor,application_frequency|Application frequency' | split: ','
+        -%}
+        {%- if pf != blank -%}
+          {%- for pair in pf_keys -%}
+            {%- assign kk = pair | split: '|' | first -%}
+            {%- assign kl = pair | split: '|' | last -%}
+            {%- assign fld = pf[kk] -%}
+            {%- if fld != blank -%}
+              {%- assign fv = fld.value | default: fld -%}
+              {%- if fv.size and fv.first -%}{%- assign fv = fv | join: ', ' -%}{%- endif -%}
+              {%- if fv != blank -%}
+                {%- unless prop_first -%},{%- endunless -%}
+                {%- assign prop_first = false -%}
+                { "@type": "PropertyValue", "name": {{ kl | json }}, "value": {{ fv | strip | json }} }
+              {%- endif -%}
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endif -%}
       ]
     {%- endif -%}
   }

@@ -1,0 +1,133 @@
+{%- comment -%}
+  Product facts (agent attributes). Added 2026-10-02 (Ryze).
+  Renders the structured facts metaobject attached to the product so that people, Google and
+  shopping agents all read the same data. Looks for custom.agent_facts first (consolidated
+  definition), then the two original per-intent references. Renders nothing when none is set.
+  Each block names one field: label + metaobject field key. Empty fields are skipped.
+{%- endcomment -%}
+{%- liquid
+  assign facts = blank
+  if product.metafields.custom.agent_facts.value != blank
+    assign facts = product.metafields.custom.agent_facts.value
+  elsif product.metafields.custom.dry_mouth_treatment.value != blank
+    assign facts = product.metafields.custom.dry_mouth_treatment.value
+  elsif product.metafields.custom.bad_breath_prevention.value != blank
+    assign facts = product.metafields.custom.bad_breath_prevention.value
+  endif
+-%}
+{%- if facts != blank -%}
+{%- style -%}
+  #shopify-section-{{ section.id }} .pf { background: {{ section.settings.background_color }}; color: {{ section.settings.text_color }}; padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px; }
+  #shopify-section-{{ section.id }} .pf__inner { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+  #shopify-section-{{ section.id }} .pf__eyebrow { font-size: 1.2rem; letter-spacing: .12em; text-transform: uppercase; opacity: .7; margin: 0 0 .6rem; }
+  #shopify-section-{{ section.id }} .pf__heading { font-size: 2.8rem; line-height: 1.15; margin: 0 0 .6rem; }
+  #shopify-section-{{ section.id }} .pf__intro { font-size: 1.5rem; max-width: 60ch; margin: 0 0 2rem; opacity: .85; }
+  #shopify-section-{{ section.id }} .pf__table { width: 100%; border-collapse: collapse; font-size: 1.5rem; }
+  #shopify-section-{{ section.id }} .pf__table th, #shopify-section-{{ section.id }} .pf__table td { text-align: left; vertical-align: top; padding: 1rem 1.2rem; border-bottom: 1px solid {{ section.settings.rule_color }}; }
+  #shopify-section-{{ section.id }} .pf__table th { width: 30%; font-weight: 600; }
+  @media screen and (max-width: 749px) { #shopify-section-{{ section.id }} .pf__table th { width: 42%; } #shopify-section-{{ section.id }} .pf__heading { font-size: 2.2rem; } }
+{%- endstyle -%}
+<div class="pf">
+  <div class="pf__inner">
+    {%- if section.settings.eyebrow != blank -%}<p class="pf__eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+    {%- if section.settings.heading != blank -%}<h2 class="pf__heading">{{ section.settings.heading | escape }}</h2>{%- endif -%}
+    {%- if section.settings.intro != blank -%}<p class="pf__intro">{{ section.settings.intro | escape }}</p>{%- endif -%}
+    <table class="pf__table">
+      <tbody>
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign k = block.settings.key | strip
+          assign field = facts[k]
+          assign v = blank
+          if field != blank
+            assign v = field.value | default: field
+          endif
+          if v.size and v.first
+            assign v = v | join: ', '
+          endif
+          assign v = v | strip
+        -%}
+        {%- if k != blank and v != blank -%}
+        <tr {{ block.shopify_attributes }}>
+          <th scope="row">{{ block.settings.label | escape }}</th>
+          <td>{{ v | escape | newline_to_br }}</td>
+        </tr>
+        {%- endif -%}
+      {%- endfor -%}
+      </tbody>
+    </table>
+  </div>
+</div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Product facts",
+  "tag": "section",
+  "class": "section",
+  "templates": ["product"],
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "PRODUCT FACTS" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "The facts, in one place" },
+    { "type": "text", "id": "intro", "label": "Intro", "default": "What is in it, what it does, how long it lasts and the evidence behind it." },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#ffffff" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#092847" },
+    { "type": "color", "id": "rule_color", "label": "Row rule", "default": "#dceff1" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Padding top", "default": 48 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Padding bottom", "default": 48 }
+  ],
+  "blocks": [
+    {
+      "type": "fact",
+      "name": "Fact",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label" },
+        { "type": "text", "id": "key", "label": "Metaobject field key", "info": "Key on the facts metaobject, e.g. intended_use. Rows with no value are hidden." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product facts",
+      "blocks": [
+        { "type": "fact", "settings": { "label": "Intended use", "key": "intended_use" } },
+        { "type": "fact", "settings": { "label": "Product form", "key": "product_form" } },
+        { "type": "fact", "settings": { "label": "Active ingredients", "key": "active_ingredient_list" } },
+        { "type": "fact", "settings": { "label": "Active ingredient concentration", "key": "active_ingredient_concentration" } },
+        { "type": "fact", "settings": { "label": "Active ingredient concentration", "key": "ingredient_concentration" } },
+        { "type": "fact", "settings": { "label": "How it works", "key": "mechanism" } },
+        { "type": "fact", "settings": { "label": "How it works", "key": "odor_control_mechanism" } },
+        { "type": "fact", "settings": { "label": "How it works", "key": "moisturizing_mechanism" } },
+        { "type": "fact", "settings": { "label": "How long it lasts", "key": "duration" } },
+        { "type": "fact", "settings": { "label": "How long it lasts", "key": "odor_control_duration" } },
+        { "type": "fact", "settings": { "label": "How long it lasts", "key": "relief_duration" } },
+        { "type": "fact", "settings": { "label": "Evidence", "key": "evidence" } },
+        { "type": "fact", "settings": { "label": "Evidence", "key": "odor_control_evidence" } },
+        { "type": "fact", "settings": { "label": "Evidence", "key": "saliva_stimulation_evidence" } },
+        { "type": "fact", "settings": { "label": "Evidence strength", "key": "evidence_strength" } },
+        { "type": "fact", "settings": { "label": "Evidence strength", "key": "clinical_evidence_strength" } },
+        { "type": "fact", "settings": { "label": "Certification", "key": "hasCertification" } },
+        { "type": "fact", "settings": { "label": "Certification", "key": "has_certification" } },
+        { "type": "fact", "settings": { "label": "How to use", "key": "format_usability" } },
+        { "type": "fact", "settings": { "label": "How to use", "key": "application_convenience" } },
+        { "type": "fact", "settings": { "label": "How often", "key": "application_frequency" } },
+        { "type": "fact", "settings": { "label": "Who it is for", "key": "audience" } },
+        { "type": "fact", "settings": { "label": "Use restrictions", "key": "use_restrictions" } },
+        { "type": "fact", "settings": { "label": "Alcohol", "key": "alcohol_status" } },
+        { "type": "fact", "settings": { "label": "Alcohol", "key": "alcohol_content" } },
+        { "type": "fact", "settings": { "label": "Sugar", "key": "sugar_status" } },
+        { "type": "fact", "settings": { "label": "Sugar", "key": "sugarContent" } },
+        { "type": "fact", "settings": { "label": "Sugar", "key": "sugar_content" } },
+        { "type": "fact", "settings": { "label": "Fluoride", "key": "fluoride_status" } },
+        { "type": "fact", "settings": { "label": "Free from", "key": "allergen_free_status" } },
+        { "type": "fact", "settings": { "label": "Free from", "key": "ingredient_exclusion_status" } },
+        { "type": "fact", "settings": { "label": "Sensitivity", "key": "sensitivity_profile" } },
+        { "type": "fact", "settings": { "label": "Flavor", "key": "flavor_profile" } },
+        { "type": "fact", "settings": { "label": "Oral health support", "key": "oral_health_support" } },
+        { "type": "fact", "settings": { "label": "Full ingredient list", "key": "ingredient_list" } },
+        { "type": "fact", "settings": { "label": "UPC", "key": "gtin" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

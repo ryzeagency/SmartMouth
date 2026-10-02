@@ -493,6 +493,311 @@
         "locator_id": "4178",
         "alpha_code": "1052"
       }
+    },
+    "product_facts": {
+      "type": "product-facts",
+      "blocks": {
+        "fact_01_intended_use": {
+          "type": "fact",
+          "settings": {
+            "label": "Intended use",
+            "key": "intended_use"
+          }
+        },
+        "fact_02_product_form": {
+          "type": "fact",
+          "settings": {
+            "label": "Product form",
+            "key": "product_form"
+          }
+        },
+        "fact_03_active_ingredient_": {
+          "type": "fact",
+          "settings": {
+            "label": "Active ingredients",
+            "key": "active_ingredient_list"
+          }
+        },
+        "fact_04_active_ingredient_": {
+          "type": "fact",
+          "settings": {
+            "label": "Active ingredient concentration",
+            "key": "active_ingredient_concentration"
+          }
+        },
+        "fact_05_ingredient_concent": {
+          "type": "fact",
+          "settings": {
+            "label": "Active ingredient concentration",
+            "key": "ingredient_concentration"
+          }
+        },
+        "fact_06_mechanism": {
+          "type": "fact",
+          "settings": {
+            "label": "How it works",
+            "key": "mechanism"
+          }
+        },
+        "fact_07_odor_control_mecha": {
+          "type": "fact",
+          "settings": {
+            "label": "How it works",
+            "key": "odor_control_mechanism"
+          }
+        },
+        "fact_08_moisturizing_mecha": {
+          "type": "fact",
+          "settings": {
+            "label": "How it works",
+            "key": "moisturizing_mechanism"
+          }
+        },
+        "fact_09_duration": {
+          "type": "fact",
+          "settings": {
+            "label": "How long it lasts",
+            "key": "duration"
+          }
+        },
+        "fact_10_odor_control_durat": {
+          "type": "fact",
+          "settings": {
+            "label": "How long it lasts",
+            "key": "odor_control_duration"
+          }
+        },
+        "fact_11_relief_duration": {
+          "type": "fact",
+          "settings": {
+            "label": "How long it lasts",
+            "key": "relief_duration"
+          }
+        },
+        "fact_12_evidence": {
+          "type": "fact",
+          "settings": {
+            "label": "Evidence",
+            "key": "evidence"
+          }
+        },
+        "fact_13_odor_control_evide": {
+          "type": "fact",
+          "settings": {
+            "label": "Evidence",
+            "key": "odor_control_evidence"
+          }
+        },
+        "fact_14_saliva_stimulation": {
+          "type": "fact",
+          "settings": {
+            "label": "Evidence",
+            "key": "saliva_stimulation_evidence"
+          }
+        },
+        "fact_15_evidence_strength": {
+          "type": "fact",
+          "settings": {
+            "label": "Evidence strength",
+            "key": "evidence_strength"
+          }
+        },
+        "fact_16_clinical_evidence_": {
+          "type": "fact",
+          "settings": {
+            "label": "Evidence strength",
+            "key": "clinical_evidence_strength"
+          }
+        },
+        "fact_17_hasCertification": {
+          "type": "fact",
+          "settings": {
+            "label": "Certification",
+            "key": "hasCertification"
+          }
+        },
+        "fact_18_has_certification": {
+          "type": "fact",
+          "settings": {
+            "label": "Certification",
+            "key": "has_certification"
+          }
+        },
+        "fact_19_format_usability": {
+          "type": "fact",
+          "settings": {
+            "label": "How to use",
+            "key": "format_usability"
+          }
+        },
+        "fact_20_application_conven": {
+          "type": "fact",
+          "settings": {
+            "label": "How to use",
+            "key": "application_convenience"
+          }
+        },
+        "fact_21_application_freque": {
+          "type": "fact",
+          "settings": {
+            "label": "How often",
+            "key": "application_frequency"
+          }
+        },
+        "fact_22_audience": {
+          "type": "fact",
+          "settings": {
+            "label": "Who it is for",
+            "key": "audience"
+          }
+        },
+        "fact_23_use_restrictions": {
+          "type": "fact",
+          "settings": {
+            "label": "Use restrictions",
+            "key": "use_restrictions"
+          }
+        },
+        "fact_24_alcohol_status": {
+          "type": "fact",
+          "settings": {
+            "label": "Alcohol",
+            "key": "alcohol_status"
+          }
+        },
+        "fact_25_alcohol_content": {
+          "type": "fact",
+          "settings": {
+            "label": "Alcohol",
+            "key": "alcohol_content"
+          }
+        },
+        "fact_26_sugar_status": {
+          "type": "fact",
+          "settings": {
+            "label": "Sugar",
+            "key": "sugar_status"
+          }
+        },
+        "fact_27_sugarContent": {
+          "type": "fact",
+          "settings": {
+            "label": "Sugar",
+            "key": "sugarContent"
+          }
+        },
+        "fact_28_sugar_content": {
+          "type": "fact",
+          "settings": {
+            "label": "Sugar",
+            "key": "sugar_content"
+          }
+        },
+        "fact_29_fluoride_status": {
+          "type": "fact",
+          "settings": {
+            "label": "Fluoride",
+            "key": "fluoride_status"
+          }
+        },
+        "fact_30_allergen_free_stat": {
+          "type": "fact",
+          "settings": {
+            "label": "Free from",
+            "key": "allergen_free_status"
+          }
+        },
+        "fact_31_ingredient_exclusi": {
+          "type": "fact",
+          "settings": {
+            "label": "Free from",
+            "key": "ingredient_exclusion_status"
+          }
+        },
+        "fact_32_sensitivity_profil": {
+          "type": "fact",
+          "settings": {
+            "label": "Sensitivity",
+            "key": "sensitivity_profile"
+          }
+        },
+        "fact_33_flavor_profile": {
+          "type": "fact",
+          "settings": {
+            "label": "Flavor",
+            "key": "flavor_profile"
+          }
+        },
+        "fact_34_oral_health_suppor": {
+          "type": "fact",
+          "settings": {
+            "label": "Oral health support",
+            "key": "oral_health_support"
+          }
+        },
+        "fact_35_ingredient_list": {
+          "type": "fact",
+          "settings": {
+            "label": "Full ingredient list",
+            "key": "ingredient_list"
+          }
+        },
+        "fact_36_gtin": {
+          "type": "fact",
+          "settings": {
+            "label": "UPC",
+            "key": "gtin"
+          }
+        }
+      },
+      "block_order": [
+        "fact_01_intended_use",
+        "fact_02_product_form",
+        "fact_03_active_ingredient_",
+        "fact_04_active_ingredient_",
+        "fact_05_ingredient_concent",
+        "fact_06_mechanism",
+        "fact_07_odor_control_mecha",
+        "fact_08_moisturizing_mecha",
+        "fact_09_duration",
+        "fact_10_odor_control_durat",
+        "fact_11_relief_duration",
+        "fact_12_evidence",
+        "fact_13_odor_control_evide",
+        "fact_14_saliva_stimulation",
+        "fact_15_evidence_strength",
+        "fact_16_clinical_evidence_",
+        "fact_17_hasCertification",
+        "fact_18_has_certification",
+        "fact_19_format_usability",
+        "fact_20_application_conven",
+        "fact_21_application_freque",
+        "fact_22_audience",
+        "fact_23_use_restrictions",
+        "fact_24_alcohol_status",
+        "fact_25_alcohol_content",
+        "fact_26_sugar_status",
+        "fact_27_sugarContent",
+        "fact_28_sugar_content",
+        "fact_29_fluoride_status",
+        "fact_30_allergen_free_stat",
+        "fact_31_ingredient_exclusi",
+        "fact_32_sensitivity_profil",
+        "fact_33_flavor_profile",
+        "fact_34_oral_health_suppor",
+        "fact_35_ingredient_list",
+        "fact_36_gtin"
+      ],
+      "settings": {
+        "eyebrow": "PRODUCT FACTS",
+        "heading": "The facts, in one place",
+        "intro": "What is in it, what it does, how long it lasts and the evidence behind it.",
+        "background_color": "#ffffff",
+        "text_color": "#092847",
+        "rule_color": "#dceff1",
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
     }
   },
   "order": [
@@ -502,6 +807,7 @@
     "product_revamp_what_it_does_XV9NWG",
     "product_revamp_smart_zinc_technology_zfVPVw",
     "product_revamp_how_to_use_8Efi3M",
+    "product_facts",
     "product_customer_review_zzHYdM",
     "smt_home_revamp_available_q7eJxW",
     "product_page_destini_store_locator_VC44Je"
