@@ -49,6 +49,7 @@
     {%- if section.settings.intro != blank -%}<p class="pf__intro">{{ section.settings.intro | escape }}</p>{%- endif -%}
     <table class="pf__table">
       <tbody>
+      {%- assign done_labels = '' -%}
       {%- for block in section.blocks -%}
         {%- liquid
           assign k = block.settings.key | strip
@@ -73,7 +74,12 @@
             assign v = v | replace: '_', ' ' | capitalize
           endunless
         -%}
+        {%- assign label_key = '|' | append: block.settings.label | append: '|' -%}
+        {%- if k != blank and v != blank and done_labels contains label_key -%}
+          {%- assign v = blank -%}
+        {%- endif -%}
         {%- if k != blank and v != blank -%}
+        {%- assign done_labels = done_labels | append: label_key -%}
         <tr {{ block.shopify_attributes }}>
           <th scope="row">{{ block.settings.label | escape }}</th>
           <td>{{ v | escape | newline_to_br }}</td>
