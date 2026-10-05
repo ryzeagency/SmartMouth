@@ -42,16 +42,17 @@
           "type": "quantity_selector",
           "settings": {}
         },
-        "loop_subscriptions_loop_widget_ndmjpf": {
-          "type": "shopify://apps/loop-subscriptions/blocks/loop_widget/267a7c64-5cb3-4552-b817-5485165f0a0b",
-          "settings": {}
-        },
         "dates_rates_pdp_promise_J36xKc": {
           "type": "shopify://apps/dates-rates/blocks/pdp_promise/019b7179-2976-776c-b361-368f075c66eb",
           "settings": {
             "product": "{{product}}",
             "colour": "#333333"
           }
+        },
+        "loop_subscriptions_loop_widget_ndmjpf": {
+          "type": "shopify://apps/loop-subscriptions/blocks/loop_widget/267a7c64-5cb3-4552-b817-5485165f0a0b",
+          "disabled": true,
+          "settings": {}
         },
         "buy_buttons": {
           "type": "buy_buttons",
@@ -164,8 +165,8 @@
         "price",
         "variant_picker",
         "quantity_selector",
-        "loop_subscriptions_loop_widget_ndmjpf",
         "dates_rates_pdp_promise_J36xKc",
+        "loop_subscriptions_loop_widget_ndmjpf",
         "buy_buttons",
         "retailer_availability_egaAwT",
         "description",
@@ -398,100 +399,6 @@
         "number_background": "#20588f",
         "number_text_color": "#ffffff",
         "background_color": "#dceff1"
-      }
-    },
-    "product_customer_review_zzHYdM": {
-      "type": "product-customer-review",
-      "name": "Amazon Reviews",
-      "settings": {
-        "heading": "Customer Reviews",
-        "text_alignment": "center",
-        "background_color": "#ffffff",
-        "padding_top": 48,
-        "padding_bottom": 48
-      }
-    },
-    "smt_home_revamp_available_q7eJxW": {
-      "type": "smt-home-revamp-available",
-      "blocks": {
-        "retailer_TmgHrA": {
-          "type": "retailer",
-          "settings": {
-            "image": "shopify://shop_images/walmart.png",
-            "logo_style": "walmart",
-            "text": "Walmart",
-            "alt": "Walmart",
-            "logo_width": 14,
-            "logo_color": "#0071ce",
-            "link": ""
-          }
-        },
-        "retailer_r79K6Y": {
-          "type": "retailer",
-          "settings": {
-            "image": "shopify://shop_images/walgreens.png",
-            "logo_style": "walgreens",
-            "text": "Walgreens",
-            "alt": "Walgreens",
-            "logo_width": 15,
-            "logo_color": "#e31837",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "retailer_TmgHrA",
-        "retailer_r79K6Y"
-      ],
-      "disabled": true,
-      "name": "Available Nationwide",
-      "settings": {
-        "background_image": "shopify://shop_images/ChatGPT_Image_Jul_13_2026_04_03_58_PM.webp",
-        "mobile_content_margin_top": 80,
-        "mobile_content_margin_bottom": 0,
-        "heading_prefix": "Available at",
-        "heading_accent": "40,000+",
-        "heading_suffix": "stores nationwide",
-        "body": "<p>Available at Walmart · Walgreens.<br/><strong>Or skip the trip and subscribe online.</strong></p>",
-        "store_label": "FIND A STORE NEAR ME",
-        "store_link": "",
-        "amazon_label": "SHOP ON AMAZON",
-        "amazon_link": "",
-        "shop_label": "SHOP ONLINE",
-        "shop_link": "",
-        "background_color": "#9a96bc",
-        "glass_color": "#e2dcfa",
-        "glass_opacity": 22,
-        "text_color": "#ffffff",
-        "heading_background": "#865ce6",
-        "heading_color": "#ffffff",
-        "heading_accent_color": "#c8b7ff",
-        "button_color": "#ff7701",
-        "button_text_color": "#ffffff"
-      }
-    },
-    "product_page_destini_store_locator_VC44Je": {
-      "type": "product-page-destini-store-locator",
-      "name": "Destini locator",
-      "settings": {
-        "product_1": "smartmouthtm-original-activated-mouthwash-16oz",
-        "upc_1": "697366000609",
-        "product_2": "smartmouthtm-clinical-activated-mouthwash-16oz",
-        "upc_2": "697366002306",
-        "eyebrow": "WHERE TO BUY",
-        "heading": "Find this in a store",
-        "heading_highlight": "near you.",
-        "subheading": "<p>Enter your ZIP code to see which nearby stores carry this product.</p>",
-        "embed_width": 70,
-        "min_height": 30,
-        "mobile_min_height": 110,
-        "mobile_padding_top": 12,
-        "mobile_padding_bottom": 12,
-        "background_color": "#ffffff",
-        "text_color": "#092847",
-        "highlight_color": "#80d3c9",
-        "locator_id": "4178",
-        "alpha_code": "1052"
       }
     },
     "product_facts": {
@@ -735,20 +642,6 @@
             "key": "oral_health_support"
           }
         },
-        "fact_35_ingredient_list": {
-          "type": "fact",
-          "settings": {
-            "label": "Full ingredient list",
-            "key": "ingredient_list"
-          }
-        },
-        "fact_36_gtin": {
-          "type": "fact",
-          "settings": {
-            "label": "UPC",
-            "key": "gtin"
-          }
-        },
         "fact_37_use_case_callout": {
           "type": "fact",
           "settings": {
@@ -768,6 +661,20 @@
           "settings": {
             "label": "Formula facts",
             "key": "claims"
+          }
+        },
+        "fact_35_ingredient_list": {
+          "type": "fact",
+          "settings": {
+            "label": "Full ingredient list",
+            "key": "ingredient_list"
+          }
+        },
+        "fact_36_gtin": {
+          "type": "fact",
+          "settings": {
+            "label": "UPC",
+            "key": "gtin"
           }
         }
       },
@@ -821,6 +728,100 @@
         "rule_color": "#dceff1",
         "padding_top": 48,
         "padding_bottom": 48
+      }
+    },
+    "product_customer_review_zzHYdM": {
+      "type": "product-customer-review",
+      "name": "Amazon Reviews",
+      "settings": {
+        "heading": "Customer Reviews",
+        "text_alignment": "center",
+        "background_color": "#ffffff",
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    "smt_home_revamp_available_q7eJxW": {
+      "type": "smt-home-revamp-available",
+      "blocks": {
+        "retailer_TmgHrA": {
+          "type": "retailer",
+          "settings": {
+            "image": "shopify://shop_images/walmart.png",
+            "logo_style": "walmart",
+            "text": "Walmart",
+            "alt": "Walmart",
+            "logo_width": 14,
+            "logo_color": "#0071ce",
+            "link": ""
+          }
+        },
+        "retailer_r79K6Y": {
+          "type": "retailer",
+          "settings": {
+            "image": "shopify://shop_images/walgreens.png",
+            "logo_style": "walgreens",
+            "text": "Walgreens",
+            "alt": "Walgreens",
+            "logo_width": 15,
+            "logo_color": "#e31837",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "retailer_TmgHrA",
+        "retailer_r79K6Y"
+      ],
+      "disabled": true,
+      "name": "Available Nationwide",
+      "settings": {
+        "background_image": "shopify://shop_images/ChatGPT_Image_Jul_13_2026_04_03_58_PM.webp",
+        "mobile_content_margin_top": 80,
+        "mobile_content_margin_bottom": 0,
+        "heading_prefix": "Available at",
+        "heading_accent": "40,000+",
+        "heading_suffix": "stores nationwide",
+        "body": "<p>Available at Walmart · Walgreens.<br/><strong>Or skip the trip and subscribe online.</strong></p>",
+        "store_label": "FIND A STORE NEAR ME",
+        "store_link": "",
+        "amazon_label": "SHOP ON AMAZON",
+        "amazon_link": "",
+        "shop_label": "SHOP ONLINE",
+        "shop_link": "",
+        "background_color": "#9a96bc",
+        "glass_color": "#e2dcfa",
+        "glass_opacity": 22,
+        "text_color": "#ffffff",
+        "heading_background": "#865ce6",
+        "heading_color": "#ffffff",
+        "heading_accent_color": "#c8b7ff",
+        "button_color": "#ff7701",
+        "button_text_color": "#ffffff"
+      }
+    },
+    "product_page_destini_store_locator_VC44Je": {
+      "type": "product-page-destini-store-locator",
+      "name": "Destini locator",
+      "settings": {
+        "product_1": "smartmouthtm-original-activated-mouthwash-16oz",
+        "upc_1": "697366000609",
+        "product_2": "smartmouthtm-clinical-activated-mouthwash-16oz",
+        "upc_2": "697366002306",
+        "eyebrow": "WHERE TO BUY",
+        "heading": "Find this in a store",
+        "heading_highlight": "near you.",
+        "subheading": "<p>Enter your ZIP code to see which nearby stores carry this product.</p>",
+        "embed_width": 70,
+        "min_height": 30,
+        "mobile_min_height": 110,
+        "mobile_padding_top": 12,
+        "mobile_padding_bottom": 12,
+        "background_color": "#ffffff",
+        "text_color": "#092847",
+        "highlight_color": "#80d3c9",
+        "locator_id": "4178",
+        "alpha_code": "1052"
       }
     }
   },
