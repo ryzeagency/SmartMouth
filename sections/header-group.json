@@ -16,7 +16,6 @@
       "blocks": {
         "announcement-bar-0": {
           "type": "announcement",
-          "disabled": true,
           "settings": {
             "text": "🎃 HALLOWEEN TREAT: Spend $50 & Get 1 FREE Gift! Ends Oct 31 🎁",
             "link": "shopify://collections/all"
