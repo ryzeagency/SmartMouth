@@ -9,6 +9,12 @@
  */
 {
   "sections": {
+    "smt_home_promo_banner_Pb7Qx2": {
+      "type": "smt-home-promo-banner",
+      "settings": {
+        "link": "shopify://collections/all"
+      }
+    },
     "smt_home_revamp_hero_WND8LW": {
       "type": "smt-home-revamp-hero",
       "name": "Home Revamp Hero",
@@ -667,6 +673,7 @@
     }
   },
   "order": [
+    "smt_home_promo_banner_Pb7Qx2",
     "smt_home_revamp_hero_WND8LW",
     "smt_home_revamp_logo_marquee_k3xkz8",
     "home_revamp_full_system_YQg9DH",
