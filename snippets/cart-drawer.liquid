@@ -31,6 +31,30 @@
   assign labor_bar_animation = true
 -%}
 
+{%- comment -%}
+  ================================================================
+  CART AUTO-ADD
+  Automatically adds this product to the cart once the subtotal
+  reaches the threshold (in cents: 5000 = $50.00), and removes it if
+  the subtotal drops back below. Logic lives in assets/cart-auto-add.js.
+  ================================================================
+{%- endcomment -%}
+{%- liquid
+  assign auto_add_product_handle = 'smartmouthtm-anti-cavity-zinc-toothpaste-34oz'
+  assign auto_add_threshold = 5000
+
+  assign auto_add_variant = all_products[auto_add_product_handle].selected_or_first_available_variant
+-%}
+{%- if auto_add_variant and auto_add_variant.available -%}
+  <script>
+    window.cartAutoAdd = {
+      variantId: {{ auto_add_variant.id | json }},
+      threshold: {{ auto_add_threshold | json }},
+    };
+  </script>
+  <script src="{{ 'cart-auto-add.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
 <script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
 
