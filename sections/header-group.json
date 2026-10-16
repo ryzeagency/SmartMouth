@@ -18,8 +18,8 @@
           "type": "announcement",
           "disabled": true,
           "settings": {
-            "text": "FREE SHIPPING ON ORDERS over $50 · SUBSCRIBE & SAVE 10% + NEVER RUN OUT",
-            "link": ""
+            "text": "🎃 HALLOWEEN TREAT: Spend $50 & Get 1 FREE Gift! Ends Oct 31 🎁",
+            "link": "shopify://collections/all"
           }
         }
       },
