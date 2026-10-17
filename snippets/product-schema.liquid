@@ -10,6 +10,7 @@
   endif
 
   assign current_variant = product.selected_or_first_available_variant
+  assign nv = product.metafields.custom.novi_pdp.value
   assign product_url = request.origin | append: product.url
   assign org_id = request.origin | append: routes.root_url | append: '#organization'
 
@@ -151,7 +152,7 @@
     "@id": {{ product_url | append: '#product' | json }},
     "name": {{ product.title | json }},
     "url": {{ product_url | json }},
-    "description": {{ product.description | strip_html | strip | json }},
+    "description": {% if nv.description != blank %}{{ nv.description | json }}{% else %}{{ product.description | strip_html | strip | json }}{% endif %},
     "brand": {
       "@type": "Brand",
       "name": {{ product.vendor | json }}
@@ -160,11 +161,11 @@
       "@id": {{ org_id | json }}
     }
     {%- if product.type != blank -%}
-      ,"category": {{ product.type | json }}
+      ,"category": {% if nv.category != blank %}{{ nv.category | json }}{% else %}{{ product.type | json }}{% endif %}
     {%- endif -%}
     {%- if current_variant.sku != blank -%}
       ,"sku": {{ current_variant.sku | json }}
-      ,"mpn": {{ current_variant.sku | json }}
+      ,"mpn": {% if nv != blank and current_variant.barcode != blank %}{{ current_variant.barcode | json }}{% else %}{{ current_variant.sku | json }}{% endif %}
     {%- endif -%}
     {%- if current_variant.barcode.size == 12 -%}
       ,"gtin12": {{ current_variant.barcode | json }}
@@ -175,6 +176,9 @@
     {%- elsif current_variant.barcode.size == 8 -%}
       ,"gtin8": {{ current_variant.barcode | json }}
     {%- elsif current_variant.barcode != blank -%}
+      ,"gtin": {{ current_variant.barcode | json }}
+    {%- endif -%}
+    {%- if nv != blank and current_variant.barcode.size == 12 -%}
       ,"gtin": {{ current_variant.barcode | json }}
     {%- endif -%}
     {%- if seo_media -%}
@@ -202,6 +206,16 @@
         "worstRating": 1
       }
     {%- endif -%}
+    {%- if nv.min_age != blank or nv.audience_type != blank -%}
+      ,"audience": {"@type": "PeopleAudience"{% if nv.audience_type != blank %}, "audienceType": {{ nv.audience_type | json }}{% endif %}{% if nv.min_age != blank %}, "suggestedMinAge": {{ nv.min_age | json }}{% endif %}}
+    {%- endif -%}
+    {%- if nv.subject_of != blank -%}
+      ,"subjectOf": [
+        {%- for s in nv.subject_of -%}
+          {"@type": {{ s.type | default: 'CreativeWork' | json }}, "name": {{ s.name | json }}, "url": {{ s.url | json }}}{%- unless forloop.last -%},{%- endunless -%}
+        {%- endfor -%}
+      ]
+    {%- endif -%}
     ,"offers": [
       {%- for variant in product.variants -%}
         {
@@ -212,6 +226,7 @@
           "price": {{ variant.price | divided_by: 100.0 | json }},
           "availability": "{% if variant.available %}https://schema.org/InStock{% else %}https://schema.org/OutOfStock{% endif %}",
           "itemCondition": "https://schema.org/NewCondition",
+          {%- if nv != blank -%}"priceSpecification": {"@type": "UnitPriceSpecification", "price": {{ variant.price | divided_by: 100.0 | json }}, "priceCurrency": {{ cart.currency.iso_code | json }}},{%- endif -%}
           "seller": {
             "@id": {{ org_id | json }}
           }
@@ -241,7 +256,13 @@
         assign has_additional_property = true
       endif
     -%}
-    {%- if has_additional_property -%}
+    {%- if nv.properties != blank -%}
+      ,"additionalProperty": [
+        {%- for p in nv.properties -%}
+          {"@type": "PropertyValue", "propertyID": {{ p.id | json }}, "name": {{ p.name | json }}, "value": {{ p.value | json }}}{%- unless forloop.last -%},{%- endunless -%}
+        {%- endfor -%}
+      ]
+    {%- elsif has_additional_property -%}
       ,"additionalProperty": [
         {%- assign prop_first = true -%}
         {%- if active_ingredients != blank -%}

@@ -15,16 +15,21 @@
     assign facts = product.metafields.custom.bad_breath_prevention.value
   endif
   assign agent_mfs = product.metafields.agent
+  assign nv = product.metafields.custom.novi_pdp.value
+  assign faq_list = agent_mfs.faqs.value
+  if nv.faqs != blank
+    assign faq_list = nv.faqs
+  endif
   assign has_agent = false
   if agent_mfs.product_form.value != blank or agent_mfs.intended_use.value != blank or agent_mfs.claims.value != blank
     assign has_agent = true
   endif
 -%}
 {%- comment -%} FAQPage JSON-LD from agent.faqs (list of {question, answer}) {%- endcomment -%}
-{%- if agent_mfs.faqs.value != blank -%}
+{%- if faq_list != blank -%}
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-{%- for f in agent_mfs.faqs.value -%}
+{%- for f in faq_list -%}
 {"@type":"Question","name":{{ f.question | json }},"acceptedAnswer":{"@type":"Answer","text":{{ f.answer | json }}}}{%- unless forloop.last -%},{%- endunless -%}
 {%- endfor -%}
 ]}
@@ -41,12 +46,18 @@
   #shopify-section-{{ section.id }} .pf__table th, #shopify-section-{{ section.id }} .pf__table td { text-align: left; vertical-align: top; padding: 1rem 1.2rem; border-bottom: 1px solid {{ section.settings.rule_color }}; }
   #shopify-section-{{ section.id }} .pf__table th { width: 30%; font-weight: 600; }
   @media screen and (max-width: 749px) { #shopify-section-{{ section.id }} .pf__table th { width: 42%; } #shopify-section-{{ section.id }} .pf__heading { font-size: 2.2rem; } }
+  #shopify-section-{{ section.id }} .pf__hero { font-size: 1.8rem; line-height: 1.4; font-weight: 600; max-width: 70ch; margin: 0 0 1.2rem; }
+  #shopify-section-{{ section.id }} .pf__overview { margin: 0 0 2.4rem; border: 1px solid {{ section.settings.rule_color }}; border-radius: 8px; padding: 1.2rem 1.6rem; }
+  #shopify-section-{{ section.id }} .pf__overview summary { cursor: pointer; font-weight: 600; font-size: 1.6rem; }
+  #shopify-section-{{ section.id }} .pf__overview p { font-size: 1.5rem; line-height: 1.6; margin: 1rem 0 0; }
 {%- endstyle -%}
 <div class="pf">
   <div class="pf__inner">
     {%- if section.settings.eyebrow != blank -%}<p class="pf__eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
     {%- if section.settings.heading != blank -%}<h2 class="pf__heading">{{ section.settings.heading | escape }}</h2>{%- endif -%}
     {%- if section.settings.intro != blank -%}<p class="pf__intro">{{ section.settings.intro | escape }}</p>{%- endif -%}
+    {%- if nv.hero != blank -%}<p class="pf__hero">{{ nv.hero | escape }}</p>{%- endif -%}
+    {%- if nv.description != blank -%}<details class="pf__overview"><summary>Product Overview</summary><p>{{ nv.description | escape }}</p></details>{%- endif -%}
     <table class="pf__table">
       <tbody>
       {%- assign done_labels = '' -%}
@@ -66,6 +77,9 @@
               assign v = amf.value
             endif
           endif
+          if nv.facts_override[k] != blank
+            assign v = nv.facts_override[k]
+          endif
           if v.size and v.first
             assign v = v | join: ', '
           endif
@@ -75,13 +89,14 @@
           endunless
         -%}
         {%- assign label_key = '|' | append: block.settings.label | append: '|' -%}
+        {%- assign lbl = block.settings.label -%}{%- if nv.labels[k] != blank -%}{%- assign lbl = nv.labels[k] -%}{%- endif -%}
         {%- if k != blank and v != blank and done_labels contains label_key -%}
           {%- assign v = blank -%}
         {%- endif -%}
         {%- if k != blank and v != blank -%}
         {%- assign done_labels = done_labels | append: label_key -%}
         <tr {{ block.shopify_attributes }}>
-          <th scope="row">{{ block.settings.label | escape }}</th>
+          <th scope="row">{{ lbl | escape }}</th>
           <td>{{ v | escape | newline_to_br }}</td>
         </tr>
         {%- endif -%}
