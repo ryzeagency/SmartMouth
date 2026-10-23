@@ -9,6 +9,13 @@
  */
 {
   "sections": {
+    "smt_promo_hero_Hx4Tq9": {
+      "type": "smt-promo-hero",
+      "disabled": true,
+      "settings": {
+        "link": "shopify://collections/all"
+      }
+    },
     "smt_home_promo_banner_Pb7Qx2": {
       "type": "smt-home-promo-banner",
       "settings": {
@@ -674,6 +681,7 @@
     }
   },
   "order": [
+    "smt_promo_hero_Hx4Tq9",
     "smt_home_promo_banner_Pb7Qx2",
     "smt_home_revamp_hero_bgbExK",
     "smt_home_revamp_logo_marquee_k3xkz8",

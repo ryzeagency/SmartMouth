@@ -1,0 +1,436 @@
+{% comment %}
+  Promo hero banner with live, editable text over separate desktop and mobile
+  background images. Upload background art WITHOUT baked-in text; every word,
+  color and highlight below is set in the theme editor.
+{% endcomment %}
+{% liquid
+  assign banner_link = section.settings.link | default: routes.all_products_collection_url
+  assign desktop_image = section.settings.desktop_image
+  assign mobile_image = section.settings.mobile_image | default: desktop_image
+
+  assign desktop_ratio = 3.2
+  if desktop_image != blank
+    assign desktop_ratio = desktop_image.aspect_ratio
+  endif
+  assign mobile_ratio = 0.8333
+  if mobile_image != blank
+    assign mobile_ratio = mobile_image.aspect_ratio
+  endif
+
+  assign desktop_scale = section.settings.desktop_text_scale | divided_by: 100.0
+  assign mobile_scale = section.settings.mobile_text_scale | divided_by: 100.0
+%}
+
+<style>
+  #shopify-section-{{ section.id }} .promo-hero {
+    --promo-ratio: {{ desktop_ratio }};
+    --promo-scale: {{ desktop_scale }};
+    position: relative;
+    display: block;
+    width: 100%;
+    aspect-ratio: var(--promo-ratio);
+    overflow: hidden;
+    color: {{ section.settings.heading_color }};
+    background: {{ section.settings.background_color }};
+    text-decoration: none;
+  }
+
+  #shopify-section-{{ section.id }} .promo-hero__media,
+  #shopify-section-{{ section.id }} .promo-hero__media img {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  #shopify-section-{{ section.id }} .promo-hero__content {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: {{ section.settings.desktop_alignment }};
+    padding: 4.4vw 2.9vw 4.4vw;
+    text-align: {% case section.settings.desktop_alignment %}{% when 'center' %}center{% when 'flex-end' %}right{% else %}left{% endcase %};
+    box-sizing: border-box;
+  }
+
+  #shopify-section-{{ section.id }} .promo-hero__text {
+    display: flex;
+    flex-direction: column;
+    align-items: inherit;
+  }
+
+  #shopify-section-{{ section.id }} .promo-hero__heading,
+  #shopify-section-{{ section.id }} .promo-hero__subheading {
+    display: inline-block;
+    margin: 0;
+    font-family: var(--font-heading-family);
+    font-style: var(--font-heading-style);
+    font-weight: 700;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+
+  #shopify-section-{{ section.id }} .promo-hero__heading {
+    padding: .03em .37em;
+    color: {{ section.settings.heading_color }};
+    font-size: calc(5.25vw * var(--promo-scale));
+    line-height: 1.1;
+    {%- if section.settings.show_heading_highlight %}
+      background: {{ section.settings.heading_highlight_color }};
+    {%- endif %}
+  }
+
+  #shopify-section-{{ section.id }} .promo-hero__accent {
+    color: {{ section.settings.accent_color }};
+  }
+
+  #shopify-section-{{ section.id }} .promo-hero__subheading {
+    padding: .2em .62em;
+    color: {{ section.settings.subheading_color }};
+    font-size: calc(2.85vw * var(--promo-scale));
+    line-height: 1.2;
+    {%- if section.settings.show_subheading_highlight %}
+      background: {{ section.settings.subheading_highlight_color }};
+    {%- endif %}
+  }
+
+  #shopify-section-{{ section.id }} .promo-hero__caption {
+    margin: 1.6vw 0 0;
+    padding: 0 1.95vw;
+    color: {{ section.settings.caption_color }};
+    font-family: var(--font-body-family);
+    font-size: calc(1.2vw * var(--promo-scale));
+    line-height: 1.3;
+  }
+
+  #shopify-section-{{ section.id }} .promo-hero__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(4.2vw * var(--promo-scale));
+    margin: 0 1.1vw;
+    padding: 0 calc(3.9vw * var(--promo-scale));
+    border-radius: 999px;
+    color: {{ section.settings.button_text_color }};
+    background: {{ section.settings.button_background_color }};
+    font-family: var(--font-heading-family);
+    font-size: calc(1.65vw * var(--promo-scale));
+    font-weight: 700;
+    letter-spacing: .02em;
+    line-height: 1;
+    text-transform: uppercase;
+    transition: transform 150ms ease;
+  }
+
+  #shopify-section-{{ section.id }} .promo-hero:hover .promo-hero__button {
+    transform: translateY(-1px);
+  }
+
+  #shopify-section-{{ section.id }} .promo-hero:focus-visible {
+    outline: 2px solid {{ section.settings.button_background_color }};
+    outline-offset: -4px;
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .promo-hero {
+      --promo-ratio: {{ mobile_ratio }};
+      --promo-scale: {{ mobile_scale }};
+    }
+
+    #shopify-section-{{ section.id }} .promo-hero__content {
+      align-items: {{ section.settings.mobile_alignment }};
+      padding: 6vw 4vw 6.5vw;
+      text-align: {% case section.settings.mobile_alignment %}{% when 'center' %}center{% when 'flex-end' %}right{% else %}left{% endcase %};
+    }
+
+    #shopify-section-{{ section.id }} .promo-hero__heading {
+      padding: .04em .15em;
+      font-size: calc(9.4vw * var(--promo-scale));
+    }
+
+    #shopify-section-{{ section.id }} .promo-hero__subheading {
+      padding: .2em .35em;
+      font-size: calc(5.2vw * var(--promo-scale));
+    }
+
+    #shopify-section-{{ section.id }} .promo-hero__caption {
+      margin-top: 3vw;
+      padding: 0;
+      font-size: calc(3.4vw * var(--promo-scale));
+    }
+
+    #shopify-section-{{ section.id }} .promo-hero__button {
+      min-height: calc(10.5vw * var(--promo-scale));
+      margin: 0;
+      padding: 0 calc(12vw * var(--promo-scale));
+      font-size: calc(4.6vw * var(--promo-scale));
+    }
+  }
+</style>
+
+<a href="{{ banner_link }}" class="promo-hero">
+  {% if desktop_image != blank or mobile_image != blank %}
+    <picture class="promo-hero__media">
+      {% if mobile_image != blank %}
+        <source
+          media="(max-width: 749px)"
+          srcset="
+            {{ mobile_image | image_url: width: 750 }} 750w,
+            {{ mobile_image | image_url: width: 1100 }} 1100w,
+            {{ mobile_image | image_url: width: 1500 }} 1500w
+          "
+          sizes="100vw"
+        >
+      {% endif %}
+      {% if desktop_image != blank %}
+        {{
+          desktop_image
+          | image_url: width: 3840
+          | image_tag:
+            widths: '750, 1100, 1500, 1920, 2560, 3840',
+            sizes: '100vw',
+            loading: 'eager',
+            fetchpriority: 'high',
+            alt: ''
+        }}
+      {% else %}
+        {{ mobile_image | image_url: width: 1500 | image_tag: loading: 'eager', alt: '' }}
+      {% endif %}
+    </picture>
+  {% endif %}
+
+  <div class="promo-hero__content">
+    <div class="promo-hero__text">
+      {% if section.settings.heading_before != blank or section.settings.heading_accent != blank or section.settings.heading_after != blank %}
+        <h2 class="promo-hero__heading">
+          {{- section.settings.heading_before | escape -}}
+          {%- if section.settings.heading_before != blank and section.settings.heading_accent != blank %} {% endif -%}
+          {%- if section.settings.heading_accent != blank -%}
+            <span class="promo-hero__accent">{{ section.settings.heading_accent | escape }}</span>
+          {%- endif -%}
+          {%- if section.settings.heading_after != blank %} {{ section.settings.heading_after | escape }}{% endif -%}
+        </h2>
+      {% endif %}
+
+      {% if section.settings.subheading != blank %}
+        <p class="promo-hero__subheading">{{ section.settings.subheading | escape }}</p>
+      {% endif %}
+
+      {% if section.settings.caption != blank %}
+        <p class="promo-hero__caption">{{ section.settings.caption | escape }}</p>
+      {% endif %}
+    </div>
+
+    {% if section.settings.button_label != blank %}
+      <span class="promo-hero__button">{{ section.settings.button_label | escape }}</span>
+    {% endif %}
+  </div>
+</a>
+
+{% schema %}
+{
+  "name": "Promo Hero Banner",
+  "tag": "section",
+  "class": "section section-smt-promo-hero",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_image",
+      "label": "Desktop background image",
+      "info": "Use art without text. Recommended: 1920 x 600px"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile background image",
+      "info": "Shown below 750px wide. Use art without text. Recommended: 750 x 900px"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "info": "Shown when no image is set.",
+      "default": "#3B1F6B"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Banner link",
+      "default": "/collections/all"
+    },
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "heading_before",
+      "label": "Heading text",
+      "default": "FREE"
+    },
+    {
+      "type": "text",
+      "id": "heading_accent",
+      "label": "Heading accent word",
+      "default": "TOOTHPASTE"
+    },
+    {
+      "type": "text",
+      "id": "heading_after",
+      "label": "Heading text after accent"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent word color",
+      "default": "#8CD1C4"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_heading_highlight",
+      "label": "Show heading highlight",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "heading_highlight_color",
+      "label": "Heading highlight color",
+      "default": "#2B5689"
+    },
+    {
+      "type": "header",
+      "content": "Subheading"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "WITH YOUR $50+ PURCHASE"
+    },
+    {
+      "type": "color",
+      "id": "subheading_color",
+      "label": "Subheading color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_subheading_highlight",
+      "label": "Show subheading highlight",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "subheading_highlight_color",
+      "label": "Subheading highlight color",
+      "default": "#0D2C4F"
+    },
+    {
+      "type": "header",
+      "content": "Fine print"
+    },
+    {
+      "type": "text",
+      "id": "caption",
+      "label": "Fine print",
+      "default": "*3.4oz Anti-Cavity Toothpaste"
+    },
+    {
+      "type": "color",
+      "id": "caption_color",
+      "label": "Fine print color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "SHOP NOW"
+    },
+    {
+      "type": "color",
+      "id": "button_background_color",
+      "label": "Button color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#E4572E"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "desktop_alignment",
+      "label": "Desktop text alignment",
+      "options": [
+        { "value": "flex-start", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "flex-end", "label": "Right" }
+      ],
+      "default": "flex-start"
+    },
+    {
+      "type": "select",
+      "id": "mobile_alignment",
+      "label": "Mobile text alignment",
+      "options": [
+        { "value": "flex-start", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "flex-end", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "desktop_text_scale",
+      "label": "Desktop text size",
+      "min": 70,
+      "max": 130,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "mobile_text_scale",
+      "label": "Mobile text size",
+      "min": 70,
+      "max": 130,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    }
+  ],
+  "presets": [
+    {
+      "name": "Promo Hero Banner"
+    }
+  ]
+}
+{% endschema %}
