@@ -211,11 +211,11 @@
       {% if section.settings.heading_before != blank or section.settings.heading_accent != blank or section.settings.heading_after != blank %}
         <h2 class="promo-hero__heading">
           {{- section.settings.heading_before | escape -}}
-          {%- if section.settings.heading_before != blank and section.settings.heading_accent != blank %} {% endif -%}
+          {%- if section.settings.heading_before != blank and section.settings.heading_accent != blank -%}{{ ' ' }}{%- endif -%}
           {%- if section.settings.heading_accent != blank -%}
             <span class="promo-hero__accent">{{ section.settings.heading_accent | escape }}</span>
           {%- endif -%}
-          {%- if section.settings.heading_after != blank %} {{ section.settings.heading_after | escape }}{% endif -%}
+          {%- if section.settings.heading_after != blank -%}{{ ' ' }}{{ section.settings.heading_after | escape }}{%- endif -%}
         </h2>
       {% endif %}
 
