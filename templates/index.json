@@ -15,8 +15,9 @@
         "link": "shopify://collections/all"
       }
     },
-    "smt_home_revamp_hero_WND8LW": {
+    "smt_home_revamp_hero_bgbExK": {
       "type": "smt-home-revamp-hero",
+      "disabled": true,
       "name": "Home Revamp Hero",
       "settings": {
         "image": "shopify://shop_images/smt-revamp-hero-bg.webp",
@@ -674,7 +675,7 @@
   },
   "order": [
     "smt_home_promo_banner_Pb7Qx2",
-    "smt_home_revamp_hero_WND8LW",
+    "smt_home_revamp_hero_bgbExK",
     "smt_home_revamp_logo_marquee_k3xkz8",
     "home_revamp_full_system_YQg9DH",
     "smt_home_revamp_reason_to_pour_ifexUk",
