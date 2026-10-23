@@ -37,45 +37,33 @@
           </div>
 
           <div class="hr-influencers__creator-content">
-            <blockquote class="hr-influencers__quote">
-              {% if section.settings.quote_line_1 != blank %}
-                <span class="hr-influencers__quote-line">
-                  {{ section.settings.quote_line_1 | escape }}
-                </span>
-              {% endif %}
+            {% if section.settings.card_heading != blank %}
+              <h3 class="hr-influencers__card-heading">
+                {{ section.settings.card_heading | escape }}
+              </h3>
+            {% endif %}
 
-              {% if section.settings.quote_line_2_prefix != blank or section.settings.quote_accent != blank %}
-                <span class="hr-influencers__quote-line">
-                  {{ section.settings.quote_line_2_prefix | escape }}
-                  {% if section.settings.quote_line_2_prefix != blank and section.settings.quote_accent != blank %} {% endif %}
-                  {% if section.settings.quote_accent != blank %}
-                    <span class="hr-influencers__quote-accent">
-                      {{- section.settings.quote_accent | escape -}}
-                    </span>
-                  {% endif %}
-                </span>
-              {% endif %}
+            {% if section.settings.card_body != blank %}
+              <p class="hr-influencers__card-body">
+                {{ section.settings.card_body | escape }}
+              </p>
+            {% endif %}
 
-              {% if section.settings.quote_line_3 != blank %}
-                <span class="hr-influencers__quote-line">
-                  {{ section.settings.quote_line_3 | escape }}
-                </span>
-              {% endif %}
-            </blockquote>
+            {% if section.settings.badge_text != blank or section.settings.badge_body != blank %}
+              <div class="hr-influencers__creator-credit">
+                {% if section.settings.badge_text != blank %}
+                  <span class="hr-influencers__username">
+                    {{ section.settings.badge_text | escape }}
+                  </span>
+                {% endif %}
 
-            <footer class="hr-influencers__creator-credit">
-              {% if section.settings.username != blank %}
-                <span class="hr-influencers__username">
-                  {{ section.settings.username | escape }}
-                </span>
-              {% endif %}
-
-              {% if section.settings.creator_type != blank %}
-                <span class="hr-influencers__creator-type">
-                  {{ section.settings.creator_type | escape }}
-                </span>
-              {% endif %}
-            </footer>
+                {% if section.settings.badge_body != blank %}
+                  <p class="hr-influencers__badge-body">
+                    {{ section.settings.badge_body | escape }}
+                  </p>
+                {% endif %}
+              </div>
+            {% endif %}
           </div>
         </article>
       </div>
@@ -119,11 +107,15 @@
     </div>
 
     {%- comment -%}
-      New section instances receive the two CTA blocks through the preset.
+      New section instances receive the CTA block through the preset.
 
       Existing section instances do not automatically receive newly-added
-      preset blocks in Shopify, so the two editable section-setting CTAs below
-      are used as a fallback whenever no blocks exist.
+      preset blocks in Shopify, so the editable section-setting CTA below
+      is used as a fallback whenever no blocks exist.
+
+      CTAs link to the catalog by default. data-carry-params passes the
+      visitor's landing query string (Everflow oid, utm_campaign, infclid,
+      sub1-5, etc.) through to the destination so affiliate tracking carries over.
     {%- endcomment -%}
 
     <div class="hr-influencers__actions">
@@ -137,38 +129,23 @@
             "
             {{ block.shopify_attributes }}
           >
-            {% if block.settings.link != blank %}
-              <a
-                class="button hr-influencers__button"
-                href="{{ block.settings.link }}"
-              >
-                {% if block.settings.strong_text_before != blank %}
-                  <strong>{{ block.settings.strong_text_before | escape }}</strong>
-                {% endif %}
+            <a
+              class="button hr-influencers__button"
+              href="{{ block.settings.link | default: routes.all_products_collection_url }}"
+              data-carry-params
+            >
+              {% if block.settings.strong_text_before != blank %}
+                <strong>{{ block.settings.strong_text_before | escape }}</strong>
+              {% endif %}
 
-                {% if block.settings.regular_text != blank %}
-                  <span>{{ block.settings.regular_text | escape }}</span>
-                {% endif %}
+              {% if block.settings.regular_text != blank %}
+                <span>{{ block.settings.regular_text | escape }}</span>
+              {% endif %}
 
-                {% if block.settings.strong_text_after != blank %}
-                  <strong>{{ block.settings.strong_text_after | escape }}</strong>
-                {% endif %}
-              </a>
-            {% else %}
-              <span class="button hr-influencers__button">
-                {% if block.settings.strong_text_before != blank %}
-                  <strong>{{ block.settings.strong_text_before | escape }}</strong>
-                {% endif %}
-
-                {% if block.settings.regular_text != blank %}
-                  <span>{{ block.settings.regular_text | escape }}</span>
-                {% endif %}
-
-                {% if block.settings.strong_text_after != blank %}
-                  <strong>{{ block.settings.strong_text_after | escape }}</strong>
-                {% endif %}
-              </span>
-            {% endif %}
+              {% if block.settings.strong_text_after != blank %}
+                <strong>{{ block.settings.strong_text_after | escape }}</strong>
+              {% endif %}
+            </a>
           </div>
         {% endfor %}
 
@@ -176,95 +153,57 @@
         <div
           class="hr-influencers__action"
           style="
-            --action-background: {{ section.settings.cta_1_background }};
-            --action-text: {{ section.settings.cta_1_text_color }};
-          "
-        >
-          {% if section.settings.cta_1_link != blank %}
-            <a
-              class="button hr-influencers__button"
-              href="{{ section.settings.cta_1_link }}"
-            >
-              {% if section.settings.cta_1_bold_before != blank %}
-                <strong>{{ section.settings.cta_1_bold_before | escape }}</strong>
-              {% endif %}
-
-              {% if section.settings.cta_1_regular != blank %}
-                <span>{{ section.settings.cta_1_regular | escape }}</span>
-              {% endif %}
-
-              {% if section.settings.cta_1_bold_after != blank %}
-                <strong>{{ section.settings.cta_1_bold_after | escape }}</strong>
-              {% endif %}
-            </a>
-          {% else %}
-            <span class="button hr-influencers__button">
-              {% if section.settings.cta_1_bold_before != blank %}
-                <strong>{{ section.settings.cta_1_bold_before | escape }}</strong>
-              {% endif %}
-
-              {% if section.settings.cta_1_regular != blank %}
-                <span>{{ section.settings.cta_1_regular | escape }}</span>
-              {% endif %}
-
-              {% if section.settings.cta_1_bold_after != blank %}
-                <strong>{{ section.settings.cta_1_bold_after | escape }}</strong>
-              {% endif %}
-            </span>
-          {% endif %}
-        </div>
-
-        <div
-          class="hr-influencers__action"
-          style="
             --action-background: {{ section.settings.cta_2_background }};
             --action-text: {{ section.settings.cta_2_text_color }};
           "
         >
-          {% if section.settings.cta_2_link != blank %}
-            <a
-              class="button hr-influencers__button"
-              href="{{ section.settings.cta_2_link }}"
-            >
-              {% if section.settings.cta_2_bold_before != blank %}
-                <strong>{{ section.settings.cta_2_bold_before | escape }}</strong>
-              {% endif %}
+          <a
+            class="button hr-influencers__button"
+            href="{{ section.settings.cta_2_link | default: routes.all_products_collection_url }}"
+            data-carry-params
+          >
+            {% if section.settings.cta_2_bold_before != blank %}
+              <strong>{{ section.settings.cta_2_bold_before | escape }}</strong>
+            {% endif %}
 
-              {% if section.settings.cta_2_regular != blank %}
-                <span>{{ section.settings.cta_2_regular | escape }}</span>
-              {% endif %}
+            {% if section.settings.cta_2_regular != blank %}
+              <span>{{ section.settings.cta_2_regular | escape }}</span>
+            {% endif %}
 
-              {% if section.settings.cta_2_bold_after != blank %}
-                <strong>{{ section.settings.cta_2_bold_after | escape }}</strong>
-              {% endif %}
-            </a>
-          {% else %}
-            <span class="button hr-influencers__button">
-              {% if section.settings.cta_2_bold_before != blank %}
-                <strong>{{ section.settings.cta_2_bold_before | escape }}</strong>
-              {% endif %}
-
-              {% if section.settings.cta_2_regular != blank %}
-                <span>{{ section.settings.cta_2_regular | escape }}</span>
-              {% endif %}
-
-              {% if section.settings.cta_2_bold_after != blank %}
-                <strong>{{ section.settings.cta_2_bold_after | escape }}</strong>
-              {% endif %}
-            </span>
-          {% endif %}
+            {% if section.settings.cta_2_bold_after != blank %}
+              <strong>{{ section.settings.cta_2_bold_after | escape }}</strong>
+            {% endif %}
+          </a>
         </div>
       {% endif %}
     </div>
   </div>
 </section>
 
+<script>
+  (function () {
+    var landingParams = new URLSearchParams(window.location.search);
+    if (!landingParams.toString()) return;
+
+    document
+      .querySelectorAll('#shopify-section-{{ section.id }} a[data-carry-params]')
+      .forEach(function (link) {
+        var url = new URL(link.getAttribute('href'), window.location.origin);
+        if (url.origin !== window.location.origin) return;
+
+        landingParams.forEach(function (value, key) {
+          if (!url.searchParams.has(key)) url.searchParams.set(key, value);
+        });
+        link.setAttribute('href', url.pathname + url.search + url.hash);
+      });
+  })();
+</script>
+
 <style>
   #shopify-section-{{ section.id }} {
     --hr-influencers-background: {{ section.settings.background_color }};
     --hr-influencers-text: {{ section.settings.text_color }};
     --hr-influencers-card: {{ section.settings.card_background_color }};
-    --hr-influencers-quote-accent: {{ section.settings.quote_accent_color }};
     --hr-influencers-heading-underline: {{ section.settings.heading_underline_color }};
     --hr-influencers-badge: {{ section.settings.badge_background_color }};
   }
@@ -295,7 +234,7 @@
   #shopify-section-{{ section.id }} .hr-influencers__creator-card {
     position: relative;
     width: calc(100% + 2.8125vw);
-    height: 17.82vw;
+    min-height: 17.82vw;
     margin-left: -2.8125vw;
     overflow: visible;
     border-radius: 1.45vw;
@@ -338,43 +277,40 @@
     position: relative;
     z-index: 3;
     height: 100%;
-    padding: 3.32vw 2.2vw 0 21.48vw;
+    padding: 2.6vw 2.2vw 2.4vw 21.48vw;
     box-sizing: border-box;
   }
 
-  #shopify-section-{{ section.id }} .hr-influencers__quote {
+  #shopify-section-{{ section.id }} .hr-influencers__card-heading {
     margin: 0;
-    padding: 0;
     color: inherit;
     font-family: var(--font-heading-family);
-    font-size: 1.55vw;
+    font-size: 1.85vw;
     font-style: var(--font-heading-style);
     font-weight: var(--font-heading-weight);
     letter-spacing: 0;
-    line-height: 1.42;
-    border-left: 0;
+    line-height: 1.2;
   }
 
-  #shopify-section-{{ section.id }} .hr-influencers__quote-line {
-    display: block;
-    white-space: nowrap;
-  }
-
-  #shopify-section-{{ section.id }} .hr-influencers__quote-accent {
-    color: var(--hr-influencers-quote-accent);
+  #shopify-section-{{ section.id }} .hr-influencers__card-body {
+    margin: .7vw 0 0;
+    font-family: var(--font-body-family);
+    font-size: 1.15vw;
+    font-style: var(--font-body-style);
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1.4;
   }
 
   #shopify-section-{{ section.id }} .hr-influencers__creator-credit {
-    margin-top: 1.95vw;
-    margin-left: -.88vw;
+    margin-top: 1.4vw;
   }
 
   #shopify-section-{{ section.id }} .hr-influencers__username {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    width: 9.5vw;
     min-height: 2.25vw;
-    padding: 0 .9vw;
+    padding: .4vw 1.1vw;
     border-radius: 999px;
     color: var(--hr-influencers-text);
     background: var(--hr-influencers-badge);
@@ -386,16 +322,13 @@
     line-height: 1;
   }
 
-  #shopify-section-{{ section.id }} .hr-influencers__creator-type {
-    display: block;
-    margin-top: .48vw;
-    margin-left: .88vw;
+  #shopify-section-{{ section.id }} .hr-influencers__badge-body {
+    margin: .6vw 0 0;
     font-family: var(--font-body-family);
-    font-size: .8vw;
+    font-size: .95vw;
     font-style: var(--font-body-style);
     font-weight: 400;
-    line-height: 1.1;
-    text-transform: uppercase;
+    line-height: 1.4;
   }
 
   #shopify-section-{{ section.id }} .hr-influencers__intro {
@@ -459,12 +392,12 @@
   }
 
   /*
-    CTA row from the reference:
-    585px + 498px with a 37px gap at 1920px.
+    CTA row from the reference: 498px buttons with a 37px gap at 1920px,
+    centered in the row.
   */
   #shopify-section-{{ section.id }} .hr-influencers__actions {
-    display: grid;
-    grid-template-columns: 30.47vw 25.94vw;
+    display: flex;
+    flex-wrap: wrap;
     gap: 1.93vw;
     justify-content: center;
     width: 100%;
@@ -473,6 +406,7 @@
 
   #shopify-section-{{ section.id }} .hr-influencers__action {
     display: flex;
+    width: 25.94vw;
     min-width: 0;
   }
 
@@ -573,32 +507,29 @@
       padding-top: 55vw;
     }
 
-    #shopify-section-{{ section.id }} .hr-influencers__quote {
-      font-size: 5.3vw;
-      line-height: 1.35;
+    #shopify-section-{{ section.id }} .hr-influencers__card-heading {
+      font-size: 6vw;
     }
 
-    #shopify-section-{{ section.id }} .hr-influencers__quote-line {
-      white-space: normal;
+    #shopify-section-{{ section.id }} .hr-influencers__card-body {
+      margin-top: 2.5vw;
+      font-size: 4.2vw;
     }
 
     #shopify-section-{{ section.id }} .hr-influencers__creator-credit {
       margin-top: 6vw;
-      margin-left: 0;
     }
 
     #shopify-section-{{ section.id }} .hr-influencers__username {
-      width: auto;
-      min-width: 38vw;
       min-height: 11vw;
-      padding: 0 5vw;
-      font-size: 4.6vw;
+      padding: 2vw 5vw;
+      font-size: 4vw;
+      line-height: 1.2;
     }
 
-    #shopify-section-{{ section.id }} .hr-influencers__creator-type {
+    #shopify-section-{{ section.id }} .hr-influencers__badge-body {
       margin-top: 2.5vw;
-      margin-left: 5vw;
-      font-size: 3.3vw;
+      font-size: 3.8vw;
     }
 
     #shopify-section-{{ section.id }} .hr-influencers__intro {
@@ -627,10 +558,13 @@
     }
 
     #shopify-section-{{ section.id }} .hr-influencers__actions {
-      grid-template-columns: 1fr;
       gap: 4vw;
       width: 85vw;
       margin: 10vw auto 0;
+    }
+
+    #shopify-section-{{ section.id }} .hr-influencers__action {
+      width: 100%;
     }
 
     #shopify-section-{{ section.id }} .hr-influencers__button.button {
@@ -669,39 +603,27 @@
     },
     {
       "type": "text",
-      "id": "quote_line_1",
-      "label": "Quote line 1",
-      "default": "“I used to worry about bad breath."
+      "id": "card_heading",
+      "label": "Card heading",
+      "default": "Fresh breath that lasts all day"
+    },
+    {
+      "type": "textarea",
+      "id": "card_body",
+      "label": "Card text",
+      "default": "SmartMouth eliminates and prevents bad breath for 24 hours, with just 2 rinses a day."
     },
     {
       "type": "text",
-      "id": "quote_line_2_prefix",
-      "label": "Quote line 2",
-      "default": "SmartMouth gives me"
+      "id": "badge_text",
+      "label": "Pill text",
+      "default": "Why [Affiliate Name] recommends SmartMouth"
     },
     {
-      "type": "text",
-      "id": "quote_accent",
-      "label": "Quote accent",
-      "default": "24-hour confidence"
-    },
-    {
-      "type": "text",
-      "id": "quote_line_3",
-      "label": "Quote line 3",
-      "default": "with just two rinses a day.”"
-    },
-    {
-      "type": "text",
-      "id": "username",
-      "label": "Creator username",
-      "default": "@username"
-    },
-    {
-      "type": "text",
-      "id": "creator_type",
-      "label": "Creator type",
-      "default": "LIFESTYLE CREATOR"
+      "type": "textarea",
+      "id": "badge_body",
+      "label": "Text below pill",
+      "default": "Dentist developed, zero alcohol, and 24-hour fresh breath with just 2 rinses a day."
     },
     {
       "type": "header",
@@ -739,46 +661,7 @@
     },
     {
       "type": "header",
-      "content": "Default button 1"
-    },
-    {
-      "type": "text",
-      "id": "cta_1_bold_before",
-      "label": "Bold text before",
-      "default": "10% OFF + FREE SHIPPING →"
-    },
-    {
-      "type": "text",
-      "id": "cta_1_regular",
-      "label": "Regular text",
-      "default": "USE CODE"
-    },
-    {
-      "type": "text",
-      "id": "cta_1_bold_after",
-      "label": "Bold text after",
-      "default": "XXX"
-    },
-    {
-      "type": "url",
-      "id": "cta_1_link",
-      "label": "Link"
-    },
-    {
-      "type": "color",
-      "id": "cta_1_background",
-      "label": "Background",
-      "default": "#FF7701"
-    },
-    {
-      "type": "color",
-      "id": "cta_1_text_color",
-      "label": "Text",
-      "default": "#FFFFFF"
-    },
-    {
-      "type": "header",
-      "content": "Default button 2"
+      "content": "Default button"
     },
     {
       "type": "text",
@@ -799,7 +682,9 @@
     {
       "type": "url",
       "id": "cta_2_link",
-      "label": "Link"
+      "label": "Link",
+      "default": "/collections/all",
+      "info": "Visitor tracking parameters (Everflow) are carried through automatically."
     },
     {
       "type": "color",
@@ -834,12 +719,6 @@
       "id": "card_background_color",
       "label": "Testimonial background",
       "default": "#FBF5E3"
-    },
-    {
-      "type": "color",
-      "id": "quote_accent_color",
-      "label": "Quote accent",
-      "default": "#8CD1C4"
     },
     {
       "type": "color",
@@ -878,7 +757,8 @@
         {
           "type": "url",
           "id": "link",
-          "label": "Link"
+          "label": "Link",
+          "default": "/collections/all"
         },
         {
           "type": "color",
@@ -900,16 +780,6 @@
       "name": "Verified Influencers",
       "category": "Home Revamp",
       "blocks": [
-        {
-          "type": "action",
-          "settings": {
-            "strong_text_before": "10% OFF + FREE SHIPPING →",
-            "regular_text": "USE CODE",
-            "strong_text_after": "XXX",
-            "background_color": "#FF7701",
-            "text_color": "#FFFFFF"
-          }
-        },
         {
           "type": "action",
           "settings": {
