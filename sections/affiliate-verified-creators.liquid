@@ -205,7 +205,6 @@
     --hr-influencers-text: {{ section.settings.text_color }};
     --hr-influencers-card: {{ section.settings.card_background_color }};
     --hr-influencers-heading-underline: {{ section.settings.heading_underline_color }};
-    --hr-influencers-badge: {{ section.settings.badge_background_color }};
   }
 
   #shopify-section-{{ section.id }} .hr-influencers {
@@ -307,19 +306,13 @@
   }
 
   #shopify-section-{{ section.id }} .hr-influencers__username {
-    display: inline-flex;
-    align-items: center;
-    min-height: 2.25vw;
-    padding: .4vw 1.1vw;
-    border-radius: 999px;
+    display: block;
     color: var(--hr-influencers-text);
-    background: var(--hr-influencers-badge);
-    box-sizing: border-box;
     font-family: var(--font-body-family);
     font-size: 1.08vw;
     font-style: var(--font-body-style);
     font-weight: 700;
-    line-height: 1;
+    line-height: 1.3;
   }
 
   #shopify-section-{{ section.id }} .hr-influencers__badge-body {
@@ -521,14 +514,11 @@
     }
 
     #shopify-section-{{ section.id }} .hr-influencers__username {
-      min-height: 11vw;
-      padding: 2vw 5vw;
-      font-size: 4vw;
-      line-height: 1.2;
+      font-size: 4.2vw;
     }
 
     #shopify-section-{{ section.id }} .hr-influencers__badge-body {
-      margin-top: 2.5vw;
+      margin-top: 1.5vw;
       font-size: 3.8vw;
     }
 
@@ -616,13 +606,13 @@
     {
       "type": "text",
       "id": "badge_text",
-      "label": "Pill text",
+      "label": "Recommendation heading",
       "default": "Why [Affiliate Name] recommends SmartMouth"
     },
     {
       "type": "textarea",
       "id": "badge_body",
-      "label": "Text below pill",
+      "label": "Recommendation text",
       "default": "Dentist developed, zero alcohol, and 24-hour fresh breath with just 2 rinses a day."
     },
     {
@@ -725,12 +715,6 @@
       "id": "heading_underline_color",
       "label": "Heading underline",
       "default": "#B0E0D7"
-    },
-    {
-      "type": "color",
-      "id": "badge_background_color",
-      "label": "Username badge",
-      "default": "#D6EAD9"
     }
   ],
   "blocks": [
