@@ -37,17 +37,22 @@
   Automatically adds this product to the cart once the subtotal
   reaches the threshold (in cents: 5000 = $50.00), and removes it if
   the subtotal drops back below. Logic lives in assets/cart-auto-add.js.
+
+  Set auto_add_enabled to false to turn it off. While off, nothing is
+  added, and any item the script added earlier is removed from carts.
   ================================================================
 {%- endcomment -%}
 {%- liquid
+  assign auto_add_enabled = false
   assign auto_add_product_handle = 'smartmouthtm-anti-cavity-zinc-toothpaste-34oz'
   assign auto_add_threshold = 5000
 
   assign auto_add_variant = all_products[auto_add_product_handle].selected_or_first_available_variant
 -%}
-{%- if auto_add_variant and auto_add_variant.available -%}
+{%- if auto_add_variant -%}
   <script>
     window.cartAutoAdd = {
+      enabled: {% if auto_add_enabled and auto_add_variant.available %}true{% else %}false{% endif %},
       variantId: {{ auto_add_variant.id | json }},
       threshold: {{ auto_add_threshold | json }},
     };

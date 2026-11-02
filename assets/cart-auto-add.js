@@ -8,6 +8,8 @@
   from the same product added by the customer, and so it never counts toward the threshold.
   If the customer removes the auto-added item while above the threshold, it is not re-added
   until the subtotal drops below the threshold and crosses it again.
+
+  With `enabled: false` nothing is added, and previously auto-added lines are removed.
 */
 (() => {
   const config = window.cartAutoAdd;
@@ -97,7 +99,7 @@
       const autoLines = cart.items.filter(isAutoAddedLine);
       const autoLinesTotal = autoLines.reduce((sum, item) => sum + item.final_line_price, 0);
       const qualifyingSubtotal = cart.items_subtotal_price - autoLinesTotal;
-      const qualifies = qualifyingSubtotal >= getThreshold();
+      const qualifies = config.enabled !== false && qualifyingSubtotal >= getThreshold();
       const state = getState();
       let changed = false;
 
