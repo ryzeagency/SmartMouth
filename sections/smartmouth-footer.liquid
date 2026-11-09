@@ -98,6 +98,17 @@
     fill: currentColor;
   }
 
+  #shopify-section-{{ section.id }} .sm-footer__seal {
+    margin-top: 1.6vw;
+    line-height: 0;
+  }
+
+  #shopify-section-{{ section.id }} .sm-footer__seal img {
+    display: block;
+    width: clamp(120px, 8.33vw, 200px);
+    height: auto;
+  }
+
   #shopify-section-{{ section.id }} .sm-footer__copyright {
     margin: 1.55vw 0 0;
     color: var(--sm-footer-foreground);
@@ -230,6 +241,10 @@
       width: 3.6vw;
     }
 
+    #shopify-section-{{ section.id }} .sm-footer__seal {
+      margin-top: 5vw;
+    }
+
     #shopify-section-{{ section.id }} .sm-footer__copyright {
       margin-top: 3.5vw;
       font-size: 2.2vw;
@@ -295,6 +310,14 @@
 
     #shopify-section-{{ section.id }} .sm-footer__social-link svg {
       height: 100%;
+    }
+
+    #shopify-section-{{ section.id }} .sm-footer__seal {
+      margin-top: 7vw;
+    }
+
+    #shopify-section-{{ section.id }} .sm-footer__seal img {
+      width: 140px;
     }
 
     #shopify-section-{{ section.id }} .sm-footer__copyright {
@@ -415,6 +438,18 @@
               </ul>
             {%- endif -%}
 
+            {%- if section.settings.show_pci_seal -%}
+              {%- comment -%}
+                PCI compliance seal (CompliAssure / RapidScan). The vendor script uses
+                document.write, so it must stay a plain inline script at this spot.
+              {%- endcomment -%}
+              <div class="sm-footer__seal">
+                {% # theme-check-disable ParserBlockingScript %}
+                <script type="text/javascript" src="https://rapidscansecure.com/siteseal/siteseal.js?code=158,FEBC79C23D770AE32EBDCE9326A3BF4A95BC5862"></script>
+                {% # theme-check-enable ParserBlockingScript %}
+              </div>
+            {%- endif -%}
+
             {%- if section.settings.show_brand_copyright -%}
               <p class="sm-footer__copyright">
                 &copy; {{ 'now' | date: '%Y' }} {{ section.settings.copyright_name | default: shop.name | escape }}. {{ section.settings.copyright_text | escape }}
@@ -525,6 +560,17 @@
       "type": "url",
       "id": "social_tiktok",
       "label": "TikTok URL"
+    },
+    {
+      "type": "header",
+      "content": "Trust seal"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_pci_seal",
+      "label": "Show PCI compliance seal",
+      "default": true,
+      "info": "CompliAssure seal under the social icons. Links to the seal's verification page."
     },
     {
       "type": "header",
