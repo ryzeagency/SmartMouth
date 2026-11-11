@@ -1,0 +1,1342 @@
+{% comment %}
+  Black Friday / Cyber Monday 2026 landing page.
+  Built from the "SmartMouth - BFCM" design mockup. Images live in assets/bfcm-2026-*.
+  Rinse prices and links come from the products themselves.
+{% endcomment %}
+{%- liquid
+  assign bf_font = settings.type_header_font
+  assign rinse_handles = 'smartmouthtm-original-activated-mouthwash-16oz,smartmouthtm-clinical-activated-mouthwash-16oz,smartmouthtm-dry-mouth-activated-mouthwash-16oz,smartmouthtm-gum-health-activated-mouthwash-16oz,smartmouthtm-mouth-sore-activated-mouthwash-16oz,smartmouthtm-advanced-liposomal-morning-mouthwash-16oz' | split: ','
+  assign rinse_titles = 'Original Activated Mouthwash|Clinical Activated Mouthwash|Dry Mouth Activated Mouthwash|Gum Health Activated Mouthwash|Mouth Sore Activated Mouthwash|Advanced Liposomal Morning Mouthwash' | split: '|'
+  assign rinse_copy = 'Clinically proven to prevent bad breath for 24 hours with two rinses a day.|Adds anti-plaque and anti-gingivitis protection to 24-hour fresh breath.|Moisturizes dry mouth while preventing bad breath.|Made for gums that bleed when you brush.|Soothes mouth sores, canker sores and cheek bites.|Smart-Zinc technology, built for the start of your day.' | split: '|'
+-%}
+
+<style>
+  {{ bf_font | font_modify: 'weight', '400' | font_face: font_display: 'swap' }}
+  {{ bf_font | font_modify: 'weight', '600' | font_face: font_display: 'swap' }}
+  {{ bf_font | font_modify: 'weight', '700' | font_face: font_display: 'swap' }}
+  {{ bf_font | font_modify: 'weight', '800' | font_face: font_display: 'swap' }}
+
+  .bf26 {
+    --bf-font: {{ bf_font.family }}, 'Helvetica Neue', Arial, sans-serif;
+    --bf-purple: #2E1D55;
+    --bf-deep: #210645;
+    --bf-blue: #1F4E85;
+    --bf-link: #205085;
+    --bf-orange: #FF7602;
+    --bf-green: #008244;
+    --bf-mint: #8BD1C4;
+    --bf-yellow: #F9C80E;
+    --bf-line: #DCE6F2;
+    font-family: var(--bf-font);
+    color: #121212;
+    background: #FFFFFF;
+    font-size: 17px;
+    line-height: 1.55;
+    overflow-x: hidden;
+  }
+
+  .bf26 *,
+  .bf26 *::before,
+  .bf26 *::after {
+    box-sizing: border-box;
+  }
+
+  .bf26 a {
+    color: var(--bf-link);
+  }
+
+  .bf26 a:hover {
+    opacity: .9;
+  }
+
+  .bf26 h1,
+  .bf26 h2,
+  .bf26 h3,
+  .bf26 p {
+    margin: 0;
+    color: inherit;
+    font-family: var(--bf-font);
+  }
+
+  .bf26-wrap {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding-inline: 24px;
+  }
+
+  .bf26-h2 {
+    font-weight: 800;
+    letter-spacing: -.01em;
+    font-size: clamp(32px, 3.6vw, 44.8px);
+    line-height: 1.08;
+    max-width: 16em;
+  }
+
+  .bf26-intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  .bf26-intro p {
+    max-width: 28em;
+    opacity: .85;
+  }
+
+  .bf26-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 52px;
+    padding: 0 26px;
+    border-radius: 999px;
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 1.2;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .bf26 .bf26-btn--orange {
+    background: var(--bf-orange);
+    color: #FFFFFF;
+  }
+
+  .bf26 .bf26-btn--outline {
+    border: 2px solid #FFFFFF;
+    color: #FFFFFF;
+  }
+
+  /* Promo strip */
+  .bf26-strip {
+    color: #FFFFFF;
+    font-size: 14px;
+    background: var(--bf-purple);
+  }
+
+  .bf26-strip .bf26-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px 18px;
+    padding-block: 11px;
+    text-align: center;
+  }
+
+  /* Hero */
+  .bf26-hero {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 620px;
+    overflow: hidden;
+    color: #FFFFFF;
+    background: var(--bf-deep);
+  }
+
+  .bf26-hero__art {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 92%;
+    aspect-ratio: 1852 / 849;
+  }
+
+  .bf26-hero__art img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .bf26-hero__art::before,
+  .bf26-hero__art::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .bf26-hero__art::before {
+    background: linear-gradient(90deg, #210645 0%, rgba(33, 6, 69, .85) 6%, rgba(33, 6, 69, 0) 18%);
+  }
+
+  .bf26-hero__art::after {
+    background: linear-gradient(180deg, #210645 0%, rgba(33, 6, 69, 0) 16%);
+  }
+
+  .bf26-hero__in {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding-block: 56px;
+  }
+
+  .bf26-hero__txt {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    max-width: 400px;
+  }
+
+  .bf26-pill {
+    padding: 6px 16px;
+    border: 1.5px solid currentColor;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .bf26-hero h1 {
+    font-weight: 800;
+    letter-spacing: -.02em;
+    font-size: clamp(35.2px, 3.9vw, 49.6px);
+    line-height: 1.08;
+    text-shadow: 0 4px 24px rgba(10, 0, 30, .45);
+  }
+
+  .bf26-hero__btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  /* How the deal works */
+  .bf26-offer {
+    position: relative;
+    padding: 80px 0;
+    color: #FFFFFF;
+    background: var(--bf-purple);
+  }
+
+  .bf26-offer__in {
+    position: relative;
+  }
+
+  .bf26-offer__lead {
+    max-width: 820px;
+    margin: 0 auto 44px !important;
+    font-size: 19px;
+    line-height: 1.55;
+    text-align: center;
+    opacity: .9;
+  }
+
+  .bf26-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+    gap: 16px;
+  }
+
+  .bf26-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    text-align: center;
+    transition: transform .35s cubic-bezier(.2, .8, .2, 1);
+  }
+
+  .bf26-step:hover {
+    transform: translateY(-6px);
+  }
+
+  .bf26-step h3 {
+    font-weight: 800;
+    letter-spacing: -.01em;
+    font-size: 22px;
+    line-height: 1.15;
+  }
+
+  .bf26-step p {
+    font-size: 15px;
+    line-height: 1.5;
+    opacity: .85;
+  }
+
+  .bf26-ico {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+    border-radius: 30px;
+    transition: transform .35s cubic-bezier(.2, .8, .2, 1);
+  }
+
+  .bf26-ico.c1 { background: #C9C1EE; box-shadow: 0 10px 26px rgba(139, 92, 240, .45); }
+  .bf26-ico.c2 { background: #F2C792; box-shadow: 0 10px 26px rgba(255, 122, 15, .35); }
+  .bf26-ico.c3 { background: #97D7C7; box-shadow: 0 10px 26px rgba(143, 211, 196, .35); }
+
+  .bf26-step:hover .bf26-ico {
+    transform: scale(1.08) rotate(-4deg);
+  }
+
+  .bf26-ico__n {
+    position: absolute;
+    top: -10px;
+    right: -14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    height: 32px;
+    padding: 0 8px;
+    border: 3px solid var(--bf-purple);
+    border-radius: 999px;
+    color: var(--bf-blue);
+    background: var(--bf-yellow);
+    box-shadow: 0 4px 10px rgba(31, 78, 133, .18);
+    font-weight: 800;
+    font-size: 13px;
+    line-height: 1;
+  }
+
+  .bf26 .sh-b { animation: bf26Bob 1.8s ease-in-out infinite; }
+  .bf26 .sh-b.d2 { animation-delay: -.9s; }
+  .bf26 .sh-liq { transform-box: fill-box; transform-origin: 50% 100%; animation: bf26Fill 1.8s ease-in-out infinite; }
+  .bf26 .sh-liq.d2 { animation-delay: -.9s; }
+  .bf26 .sh-pop { transform-box: fill-box; transform-origin: center; animation: bf26Pop 2.4s ease-in-out infinite; }
+  .bf26 .sh-pop.d2 { animation-delay: 1.2s; }
+  .bf26 .sh-plus { transform-box: fill-box; transform-origin: center; animation: bf26Spin 2.4s cubic-bezier(.6, 0, .3, 1) infinite; }
+  .bf26 .sh-coin { animation: bf26Drop 2.2s ease-in infinite; }
+  .bf26 .sh-cart { animation: bf26Cart 2.2s ease-in-out infinite; }
+
+  @keyframes bf26Bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+  @keyframes bf26Fill { 0%, 100% { transform: scaleY(.5); } 50% { transform: scaleY(1); } }
+  @keyframes bf26Pop { 0%, 100% { transform: scale(1); } 18% { transform: scale(1.16); } 36% { transform: scale(1); } }
+  @keyframes bf26Spin { 0%, 35% { transform: rotate(0); } 60%, 100% { transform: rotate(180deg); } }
+  @keyframes bf26Drop { 0% { transform: translateY(-9px); opacity: 0; } 15% { opacity: 1; } 55% { transform: translateY(9px); opacity: 1; } 70%, 100% { transform: translateY(10px); opacity: 0; } }
+  @keyframes bf26Cart { 0%, 52%, 100% { transform: translateY(0); } 60% { transform: translateY(1.6px); } 70% { transform: translateY(0); } }
+
+  /* $10 bubble badge */
+  .bf26-badge {
+    position: absolute;
+    left: 375px;
+    top: -200px;
+    z-index: 3;
+    width: 184px;
+    height: 184px;
+    color: #FFFFFF;
+    transform: rotate(-6deg);
+  }
+
+  .bf26-bub {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 1.5px solid rgba(255, 255, 255, .65);
+    border-radius: 50%;
+    text-align: center;
+    background: radial-gradient(circle at 32% 26%, rgba(255, 255, 255, .5) 0%, rgba(255, 255, 255, .12) 16%, rgba(140, 200, 255, .06) 42%, rgba(58, 164, 255, .16) 70%, rgba(190, 235, 255, .4) 96%);
+    -webkit-backdrop-filter: blur(5px) saturate(1.3);
+    backdrop-filter: blur(5px) saturate(1.3);
+    box-shadow: inset 0 0 24px rgba(255, 255, 255, .22), inset -12px -16px 30px rgba(47, 214, 142, .34), inset 12px 12px 26px rgba(58, 164, 255, .26), 0 0 36px rgba(58, 164, 255, .42), 0 18px 40px rgba(10, 0, 30, .4);
+  }
+
+  .bf26-bub::before {
+    content: "";
+    position: absolute;
+    left: 20%;
+    top: 11%;
+    z-index: 3;
+    width: 32%;
+    height: 15%;
+    border-radius: 50%;
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, .92) 0%, rgba(255, 255, 255, 0) 72%);
+    transform: rotate(-28deg);
+    pointer-events: none;
+  }
+
+  .bf26-bub::after {
+    content: "";
+    position: absolute;
+    right: 17%;
+    bottom: 13%;
+    z-index: 3;
+    width: 8%;
+    height: 8%;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .6);
+    filter: blur(.5px);
+  }
+
+  .bf26-bub__txt {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 0 20px;
+    text-shadow: 0 2px 12px rgba(20, 0, 50, .6);
+  }
+
+  .bf26-bub__big {
+    font-weight: 800;
+    letter-spacing: -.02em;
+    font-size: 46px;
+    line-height: 1;
+  }
+
+  .bf26-bub__small {
+    max-width: 120px;
+    font-size: 12.5px;
+    font-weight: 800;
+    line-height: 1.2;
+  }
+
+  .bf26-drop {
+    position: absolute;
+    border: 1px solid rgba(255, 255, 255, .7);
+    border-radius: 50%;
+    background: radial-gradient(circle at 32% 28%, rgba(255, 255, 255, .8), rgba(120, 200, 255, .15) 45%, rgba(47, 214, 142, .2));
+    box-shadow: 0 0 12px rgba(58, 164, 255, .45);
+  }
+
+  .bf26-drop.d1 { width: 26px; height: 26px; right: -18px; top: 6px; }
+  .bf26-drop.d2 { width: 14px; height: 14px; right: -30px; top: 44px; }
+  .bf26-drop.d3 { width: 18px; height: 18px; left: -14px; bottom: 18px; }
+
+  /* Step 1: rinse grid */
+  .bf26-shop {
+    padding: 88px 0;
+  }
+
+  .bf26-shop .bf26-intro p {
+    font-weight: 700;
+  }
+
+  .bf26-mint {
+    color: var(--bf-mint);
+  }
+
+  .bf26-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+    gap: 22px;
+  }
+
+  .bf26-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1.5px solid var(--bf-line);
+    border-radius: 14px;
+    background: #FFFFFF;
+  }
+
+  .bf26 .bf26-sp {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-image: url({{ 'bfcm-2026-products-sprite.jpg' | asset_url }});
+    background-size: 900% 100%;
+    background-repeat: no-repeat;
+  }
+
+  .bf26-sp.t0 { background-position: 0% 0; }
+  .bf26-sp.t1 { background-position: 12.5% 0; }
+  .bf26-sp.t2 { background-position: 25% 0; }
+  .bf26-sp.t3 { background-position: 37.5% 0; }
+  .bf26-sp.t4 { background-position: 50% 0; }
+  .bf26-sp.t5 { background-position: 62.5% 0; }
+
+  .bf26-card__body {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: 8px;
+    padding: 20px;
+  }
+
+  .bf26-card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  .bf26-card__copy {
+    flex-grow: 1;
+    font-size: 15px;
+    line-height: 1.5;
+    opacity: .8;
+  }
+
+  .bf26-card__foot {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-top: 8px;
+  }
+
+  .bf26-card__price {
+    font-weight: 700;
+    font-size: 18px;
+  }
+
+  .bf26 .bf26-card__cta {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 20px;
+    border-radius: 999px;
+    color: #FFFFFF;
+    background: var(--bf-green);
+    font-weight: 700;
+    font-size: 14px;
+    text-decoration: none;
+  }
+
+  /* Step 2: $10 add-on carousel */
+  .bf26-smc {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+    gap: 56px;
+    align-items: center;
+    margin-top: 56px;
+    padding: 52px 64px 44px;
+    overflow: hidden;
+    border-radius: 32px;
+    background: #C9C1EE;
+  }
+
+  .bf26-smc::before {
+    content: "";
+    position: absolute;
+    left: -170px;
+    bottom: -230px;
+    width: 460px;
+    height: 460px;
+    border-radius: 50%;
+    background: #FFFFFF;
+    opacity: .28;
+  }
+
+  .bf26-smc::after {
+    content: "";
+    position: absolute;
+    right: -90px;
+    top: -110px;
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    background: #8B5CF0;
+    opacity: .14;
+  }
+
+  .bf26-smc__txt {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    text-align: left;
+  }
+
+  .bf26 .bf26-smc__h {
+    font-weight: 800;
+    font-size: 36px;
+    line-height: 1.1;
+    letter-spacing: -.02em;
+    color: var(--bf-blue);
+  }
+
+  .bf26-smc__p {
+    font-size: 17px;
+    line-height: 1.6;
+    color: #121212;
+    opacity: .85;
+  }
+
+  .bf26-smc__price {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 4px;
+  }
+
+  .bf26-smc__big {
+    padding: 10px 20px 8px;
+    border-radius: 22px;
+    color: var(--bf-blue);
+    background: var(--bf-yellow);
+    box-shadow: 0 10px 22px rgba(31, 78, 133, .18);
+    font-weight: 800;
+    font-size: 64px;
+    line-height: 1;
+    transform: rotate(-3deg);
+  }
+
+  .bf26-smc__sub {
+    max-width: 7em;
+    color: var(--bf-blue);
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+  }
+
+  .bf26-smc__thumbs {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+  }
+
+  .bf26-smc__th {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    padding: 8px;
+    border: 3px solid transparent;
+    border-radius: 20px;
+    box-shadow: 0 6px 14px rgba(31, 78, 133, .12);
+    cursor: pointer;
+    transition: transform .25s, border-color .25s;
+  }
+
+  .bf26-smc__th:hover {
+    transform: translateY(-3px);
+  }
+
+  .bf26-smc__th[aria-current="true"] {
+    border-color: var(--bf-blue);
+  }
+
+  .bf26-smc__th img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  .bf26-smc__stage {
+    position: relative;
+    z-index: 1;
+  }
+
+  .bf26-smc__view {
+    overflow: hidden;
+    border-radius: 28px;
+    box-shadow: 0 26px 54px rgba(31, 78, 133, .22);
+  }
+
+  .bf26-smc__track {
+    display: flex;
+    transition: transform .65s cubic-bezier(.7, 0, .2, 1);
+  }
+
+  .bf26-smc__slide {
+    position: relative;
+    display: flex;
+    flex: 0 0 100%;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+  }
+
+  .bf26-smc__ring {
+    position: absolute;
+    width: 74%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .42);
+  }
+
+  .bf26-smc__slide::after {
+    content: "";
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    width: 44%;
+    height: 5%;
+    border-radius: 50%;
+    background: rgba(31, 78, 133, .28);
+    filter: blur(10px);
+    transform: translateX(-50%);
+  }
+
+  .bf26-smc__slide img {
+    position: relative;
+    z-index: 1;
+    width: auto;
+    max-width: 78%;
+    height: 74%;
+    object-fit: contain;
+    filter: drop-shadow(0 18px 18px rgba(31, 78, 133, .22));
+  }
+
+  .bf26-smc__tag {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    z-index: 2;
+    padding: 9px 16px;
+    border-radius: 999px;
+    color: var(--bf-blue);
+    background: #FFFFFF;
+    box-shadow: 0 6px 14px rgba(31, 78, 133, .14);
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.2;
+  }
+
+  .bf26-smc__arr {
+    position: absolute;
+    top: calc(50% - 21px);
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 54px;
+    height: 54px;
+    padding: 0;
+    border: 3px solid #FFFFFF;
+    border-radius: 50%;
+    color: #FFFFFF;
+    background: var(--bf-blue);
+    box-shadow: 0 10px 22px rgba(31, 78, 133, .3);
+    cursor: pointer;
+    transform: translateY(-50%);
+    transition: transform .2s, background .2s;
+  }
+
+  .bf26-smc__arr:hover {
+    background: #8B5CF0;
+    transform: translateY(-50%) scale(1.06);
+  }
+
+  .bf26-smc__arr.l { left: -27px; }
+  .bf26-smc__arr.r { right: -27px; }
+
+  .bf26-smc__dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+  }
+
+  .bf26-smc__dot {
+    width: 10px;
+    height: 10px;
+    padding: 0;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(31, 78, 133, .28);
+    cursor: pointer;
+    transition: width .3s, background .3s;
+  }
+
+  .bf26-smc__dot[aria-current="true"] {
+    width: 30px;
+    background: var(--bf-blue);
+  }
+
+  .bf26-shop__all {
+    display: flex;
+    justify-content: center;
+    margin-top: 44px;
+  }
+
+  .bf26 .bf26-shop__all a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 52px;
+    padding: 0 30px;
+    border-radius: 999px;
+    color: #FFFFFF;
+    background: var(--bf-link);
+    font-weight: 700;
+    font-size: 16px;
+    text-decoration: none;
+  }
+
+  /* Lifestyle */
+  .bf26-life {
+    color: #FFFFFF;
+    background: var(--bf-purple);
+  }
+
+  .bf26-life__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
+    align-items: stretch;
+  }
+
+  .bf26-life__media {
+    position: relative;
+    min-height: 380px;
+    overflow: hidden;
+  }
+
+  .bf26-life__media img {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 22%;
+  }
+
+  .bf26-life__txt {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 640px;
+    padding: 80px clamp(24px, 5vw, 72px);
+  }
+
+  .bf26-life h2 {
+    max-width: 18em;
+    margin-bottom: 36px;
+    font-weight: 800;
+    letter-spacing: -.01em;
+    font-size: clamp(30.4px, 3.2vw, 40px);
+    line-height: 1.1;
+  }
+
+  .bf26-life__hl {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 4px 14px 2px;
+    color: #FFFFFF;
+    background: var(--bf-orange);
+  }
+
+  .bf26-life__list {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .bf26-life__item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .bf26-life h3 {
+    font-weight: 800;
+    letter-spacing: -.01em;
+    font-size: 22px;
+  }
+
+  .bf26-life__item p {
+    line-height: 1.55;
+    opacity: .85;
+  }
+
+  /* Offer details */
+  .bf26-faq {
+    padding: 88px 0;
+  }
+
+  .bf26-faq .bf26-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 24px 56px;
+  }
+
+  .bf26-faq h2 {
+    flex: 0 0 auto;
+    font-weight: 800;
+    letter-spacing: -.01em;
+    font-size: clamp(30.4px, 3.2vw, 40px);
+    line-height: 1.1;
+    text-align: end;
+  }
+
+  .bf26-faq__list {
+    flex: 1 1 300px;
+    min-width: 0;
+    max-width: 520px;
+    border-bottom: 1.5px solid var(--bf-line);
+  }
+
+  .bf26-faq__item {
+    border-top: 1.5px solid var(--bf-line);
+  }
+
+  .bf26-faq__item summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    min-height: 44px;
+    padding: 20px 0;
+    font-size: 17px;
+    font-weight: 700;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .bf26-faq__item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .bf26-faq__icon {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--bf-orange);
+    box-shadow: 0 0 0 3px rgba(255, 118, 2, .22);
+    transition: transform .35s cubic-bezier(.2, .8, .2, 1);
+  }
+
+  .bf26-faq__item[open] .bf26-faq__icon {
+    transform: rotate(180deg);
+  }
+
+  .bf26-faq__item p {
+    padding-bottom: 20px;
+    line-height: 1.55;
+    opacity: .85;
+  }
+
+  /* Closing CTA */
+  .bf26-end {
+    padding: 80px 0;
+    color: #121212;
+    text-align: center;
+    background: #CDE8E3;
+  }
+
+  .bf26-end .bf26-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .bf26 .bf26-end h2 {
+    max-width: 100%;
+    padding: 18px 36px 16px;
+    color: #FFFFFF;
+    background: var(--bf-green);
+    font-weight: 800;
+    letter-spacing: -.01em;
+    font-size: clamp(35.2px, 4.4vw, 54.4px);
+    line-height: 1.05;
+  }
+
+  .bf26-end p {
+    max-width: 36em;
+    font-weight: 700;
+    opacity: .88;
+  }
+
+  .bf26-note {
+    padding: 28px 0 36px;
+    border-top: 1px solid rgba(127, 127, 127, .3);
+    color: #FFFFFF;
+    background: #1F5085;
+    font-size: 13px;
+    line-height: 1.5;
+    text-align: center;
+  }
+
+  .bf26-note p {
+    max-width: 760px;
+    margin: 0 auto 6px;
+    font-weight: 700;
+    opacity: .75;
+  }
+
+  @media (max-width: 900px) {
+    .bf26-hero {
+      flex-direction: column;
+      align-items: stretch;
+      min-height: 0;
+    }
+
+    .bf26-hero__in {
+      order: 0;
+      padding: 40px 0 8px;
+    }
+
+    .bf26-hero__txt {
+      max-width: none;
+    }
+
+    .bf26-hero__art {
+      position: relative;
+      order: 2;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+    }
+
+    .bf26-hero__art::before {
+      display: none;
+    }
+
+    .bf26-hero__art img {
+      object-position: 64% center;
+    }
+
+    .bf26-badge {
+      position: relative;
+      left: auto;
+      top: auto;
+      margin: 8px auto 32px;
+    }
+
+    .bf26-smc {
+      grid-template-columns: 1fr;
+      gap: 30px;
+      padding: 32px 22px 28px;
+      border-radius: 24px;
+    }
+
+    .bf26-smc__arr {
+      width: 46px;
+      height: 46px;
+    }
+
+    .bf26-smc__arr.l { left: 10px; }
+    .bf26-smc__arr.r { right: 10px; }
+
+    .bf26 .bf26-smc__h {
+      font-size: 28px;
+    }
+
+    .bf26-smc__big {
+      font-size: 52px;
+    }
+
+    .bf26-smc__th {
+      width: 68px;
+      height: 68px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bf26 .sh-b,
+    .bf26 .sh-liq,
+    .bf26 .sh-pop,
+    .bf26 .sh-plus,
+    .bf26 .sh-coin,
+    .bf26 .sh-cart {
+      animation: none !important;
+    }
+
+    .bf26-step,
+    .bf26-ico,
+    .bf26-smc__track,
+    .bf26-smc__th,
+    .bf26-smc__arr,
+    .bf26-faq__icon {
+      transition: none;
+    }
+  }
+</style>
+
+<div class="bf26">
+  <div class="bf26-strip">
+    <div class="bf26-wrap">
+      <strong>Black Friday / Cyber Monday</strong>
+      <span>Buy any 2 rinses, add toothpaste, mints and a travel pack for $10. Nov 16-30.</span>
+    </div>
+  </div>
+
+  <section class="bf26-hero">
+    <div class="bf26-hero__art">
+      <img
+        src="{{ 'bfcm-2026-hero.jpg' | asset_url }}"
+        alt="SmartMouth activated mouthwash lineup"
+        width="1852"
+        height="849"
+        fetchpriority="high"
+      >
+    </div>
+    <div class="bf26-hero__in">
+      <div class="bf26-wrap">
+        <div class="bf26-hero__txt">
+          <span class="bf26-pill">Nov 16-30</span>
+          <h1>Buy any 2 rinses. Add the extras for $10.</h1>
+          <div class="bf26-hero__btns">
+            <a href="#bf26-shop" class="bf26-btn bf26-btn--orange">Pick your rinses</a>
+            <a href="#bf26-offer" class="bf26-btn bf26-btn--outline">See the offer</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bf26-offer" id="bf26-offer">
+    <div class="bf26-wrap bf26-offer__in">
+      <div class="bf26-badge" aria-hidden="true">
+        <span class="bf26-drop d1"></span>
+        <span class="bf26-drop d2"></span>
+        <span class="bf26-drop d3"></span>
+        <span class="bf26-bub">
+          <span class="bf26-bub__txt">
+            <span class="bf26-bub__big">$10</span>
+            <span class="bf26-bub__small">toothpaste, mints and travel pack</span>
+          </span>
+        </span>
+      </div>
+
+      <p class="bf26-offer__lead">
+        Pick any two SmartMouth activated mouthwashes, then add<br>
+        Anti-Cavity + Zinc Toothpaste, Dry Mouth Mints and a travel pack for just $10.
+      </p>
+
+      <div class="bf26-intro">
+        <h2 class="bf26-h2">How the deal works.</h2>
+        <p>Three steps from cart to checkout.</p>
+      </div>
+
+      <div class="bf26-steps">
+        <div class="bf26-step">
+          <span class="bf26-ico c1">
+            <svg width="74" height="74" viewBox="0 0 48 48" fill="none" stroke="#1F4E85" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g><g class="sh-b"><path d="M11 11 h8 l2 4 v22 a2 2 0 0 1 -2 2 h-8 a2 2 0 0 1 -2 -2 v-22 z" fill="#FFFFFF"></path><rect class="sh-liq" x="10.6" y="23" width="8.8" height="14.6" rx="1.4" fill="#8B5CF0" stroke="none"></rect><path d="M11 11 h8 l2 4 v22 a2 2 0 0 1 -2 2 h-8 a2 2 0 0 1 -2 -2 v-22 z"></path><rect x="12" y="6.5" width="6" height="4.5" rx="1" fill="#2F6B3F"></rect></g></g><g transform="translate(18 0)"><g class="sh-b d2"><path d="M11 11 h8 l2 4 v22 a2 2 0 0 1 -2 2 h-8 a2 2 0 0 1 -2 -2 v-22 z" fill="#FFFFFF"></path><rect class="sh-liq d2" x="10.6" y="23" width="8.8" height="14.6" rx="1.4" fill="#FF7A0F" stroke="none"></rect><path d="M11 11 h8 l2 4 v22 a2 2 0 0 1 -2 2 h-8 a2 2 0 0 1 -2 -2 v-22 z"></path><rect x="12" y="6.5" width="6" height="4.5" rx="1" fill="#1F4E85"></rect></g></g></svg>
+            <span class="bf26-ico__n">1</span>
+          </span>
+          <h3>Pick 2 rinses</h3>
+          <p>Any two SmartMouth activated mouthwashes.</p>
+        </div>
+
+        <div class="bf26-step">
+          <span class="bf26-ico c2">
+            <svg width="74" height="74" viewBox="0 0 48 48" fill="none" stroke="#1F4E85" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g class="sh-pop"><path d="M5 11.5 h10"></path><path d="M5.5 14 h9 v15 l-3 4 h-3 l-3 -4 z" fill="#FFFFFF"></path><rect x="7.5" y="33" width="5" height="4" rx="1" fill="#1F4E85"></rect></g><path class="sh-plus" d="M24 20 v8 M20 24 h8" stroke="#FF7A0F" stroke-width="3.4"></path><g class="sh-pop d2"><circle cx="37" cy="24" r="7" fill="#FFFFFF"></circle><circle cx="37" cy="24" r="3.2" fill="#8FD3C4" stroke="#2F6B3F" stroke-width="1.6"></circle></g></svg>
+            <span class="bf26-ico__n">2</span>
+          </span>
+          <h3>Add the extras</h3>
+          <p>Toothpaste, Dry Mouth Mints and a travel pack.</p>
+        </div>
+
+        <div class="bf26-step">
+          <span class="bf26-ico c3">
+            <svg width="74" height="74" viewBox="0 0 48 48" fill="none" stroke="#1F4E85" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g class="sh-coin"><circle cx="26" cy="14" r="5.6" fill="#F9C80E" stroke="#1F4E85" stroke-width="1.6"></circle><text x="26" y="17.3" text-anchor="middle" font-size="9" font-weight="800" fill="#1F4E85" stroke="none" font-family="Poppins, Arial, sans-serif">$</text></g><g class="sh-cart"><path d="M5 9 h5 l4.5 21 h21 l4.5 -15 H11.3"></path><circle cx="18" cy="36" r="2.6" fill="#FFFFFF"></circle><circle cx="32" cy="36" r="2.6" fill="#FFFFFF"></circle></g></svg>
+            <span class="bf26-ico__n">$10</span>
+          </span>
+          <h3>Pay $10 for all three</h3>
+          <p>The add-on bundle is $10 with your 2 rinses.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bf26-shop" id="bf26-shop">
+    <div class="bf26-wrap">
+      <div class="bf26-intro">
+        <h2 class="bf26-h2">Step 1: pick any <span class="bf26-mint">2 rinses</span></h2>
+        <p>Every rinse counts toward the deal.</p>
+      </div>
+
+      <div class="bf26-grid">
+        {%- for handle in rinse_handles -%}
+          {%- liquid
+            assign i = forloop.index0
+            assign rinse = all_products[handle]
+            assign rinse_url = '/products/' | append: handle
+            if rinse != blank
+              assign rinse_url = rinse.url
+            endif
+          -%}
+          <article class="bf26-card">
+            <div class="bf26-sp t{{ i }}" role="img" aria-label="{{ rinse_titles[i] | escape }}"></div>
+            <div class="bf26-card__body">
+              <h3>{{ rinse_titles[i] }}</h3>
+              <p class="bf26-card__copy">{{ rinse_copy[i] }}</p>
+              <div class="bf26-card__foot">
+                {%- if rinse != blank -%}
+                  <span class="bf26-card__price">{{ rinse.price | money }}</span>
+                {%- endif -%}
+                <a href="{{ rinse_url }}" class="bf26-card__cta">Shop now</a>
+              </div>
+            </div>
+          </article>
+        {%- endfor -%}
+      </div>
+
+      <div class="bf26-smc" data-bf26-carousel>
+        <div class="bf26-smc__txt">
+          <h3 class="bf26-smc__h">Step 2: the $10 <span style="white-space: nowrap">add-on</span> bundle</h3>
+          <p class="bf26-smc__p">
+            Anti-Cavity + Zinc Toothpaste (3.4 oz), Dry Mouth Dual-Action Mints and Original Single Packs (10 ct). $20.97 if bought separately.
+          </p>
+          <div class="bf26-smc__price">
+            <span class="bf26-smc__big">$10</span>
+            <span class="bf26-smc__sub">with any 2 rinses</span>
+          </div>
+          <div class="bf26-smc__thumbs">
+            <button type="button" class="bf26-smc__th" data-go="0" aria-label="Show Anti-Cavity + Zinc Toothpaste" aria-current="true" style="background: #97D7C7">
+              <img src="{{ 'bfcm-2026-toothpaste.webp' | asset_url }}" alt="" width="445" height="1000" loading="lazy">
+            </button>
+            <button type="button" class="bf26-smc__th" data-go="1" aria-label="Show Dry Mouth Dual-Action Mints" aria-current="false" style="background: #F6E7A9">
+              <img src="{{ 'bfcm-2026-mints.webp' | asset_url }}" alt="" width="560" height="1000" loading="lazy">
+            </button>
+            <button type="button" class="bf26-smc__th" data-go="2" aria-label="Show Original Single Packs" aria-current="false" style="background: #F2C792">
+              <img src="{{ 'bfcm-2026-travel-pack.webp' | asset_url }}" alt="" width="692" height="1000" loading="lazy">
+            </button>
+          </div>
+        </div>
+
+        <div class="bf26-smc__stage" role="region" aria-roledescription="carousel" aria-label="Step 2 bundle">
+          <div class="bf26-smc__view">
+            <div class="bf26-smc__track">
+              <div class="bf26-smc__slide" role="group" aria-roledescription="slide" aria-label="1 of 3: Anti-Cavity + Zinc Toothpaste" style="background: #97D7C7">
+                <span class="bf26-smc__ring"></span>
+                <span class="bf26-smc__tag">Anti-Cavity + Zinc Toothpaste</span>
+                <img src="{{ 'bfcm-2026-toothpaste.webp' | asset_url }}" alt="Anti-Cavity + Zinc Toothpaste" width="445" height="1000" loading="lazy">
+              </div>
+              <div class="bf26-smc__slide" role="group" aria-roledescription="slide" aria-label="2 of 3: Dry Mouth Dual-Action Mints" style="background: #F6E7A9">
+                <span class="bf26-smc__ring"></span>
+                <span class="bf26-smc__tag">Dry Mouth Dual-Action Mints</span>
+                <img src="{{ 'bfcm-2026-mints.webp' | asset_url }}" alt="Dry Mouth Dual-Action Mints" width="560" height="1000" loading="lazy">
+              </div>
+              <div class="bf26-smc__slide" role="group" aria-roledescription="slide" aria-label="3 of 3: Original Single Packs" style="background: #F2C792">
+                <span class="bf26-smc__ring"></span>
+                <span class="bf26-smc__tag">Original Single Packs</span>
+                <img src="{{ 'bfcm-2026-travel-pack.webp' | asset_url }}" alt="Original Single Packs" width="692" height="1000" loading="lazy">
+              </div>
+            </div>
+          </div>
+          <button type="button" class="bf26-smc__arr l" data-step="-1" aria-label="Previous">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg>
+          </button>
+          <button type="button" class="bf26-smc__arr r" data-step="1" aria-label="Next">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"></path></svg>
+          </button>
+          <div class="bf26-smc__dots">
+            <button type="button" class="bf26-smc__dot" data-go="0" aria-label="Go to slide 1" aria-current="true"></button>
+            <button type="button" class="bf26-smc__dot" data-go="1" aria-label="Go to slide 2" aria-current="false"></button>
+            <button type="button" class="bf26-smc__dot" data-go="2" aria-label="Go to slide 3" aria-current="false"></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="bf26-shop__all">
+        <a href="{{ routes.all_products_collection_url }}">Shop all SmartMouth</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bf26-life">
+    <div class="bf26-life__grid">
+      <div class="bf26-life__media">
+        <img
+          src="{{ 'bfcm-2026-lifestyle.jpg' | asset_url }}"
+          alt="Man smiling in his bathroom, holding a glass of SmartMouth rinse"
+          width="1122"
+          height="1402"
+          loading="lazy"
+        >
+      </div>
+      <div class="bf26-life__txt">
+        <h2>Fresh breath that <br><span class="bf26-life__hl">lasts all day.</span></h2>
+        <div class="bf26-life__list">
+          <div class="bf26-life__item">
+            <h3>24-hour protection</h3>
+            <p>Two rinses a day prevent bad breath around the clock.</p>
+          </div>
+          <div class="bf26-life__item">
+            <h3>A rinse for every need</h3>
+            <p>Clinical, dry mouth, gum health, mouth sore and more.</p>
+          </div>
+          <div class="bf26-life__item">
+            <h3>Ready for travel</h3>
+            <p>Single packs and travel-size toothpaste go where you go.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bf26-faq">
+    <div class="bf26-wrap">
+      <h2>Offer details</h2>
+      <div class="bf26-faq__list">
+        {%- capture faq_icon -%}
+          <span class="bf26-faq__icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg></span>
+        {%- endcapture -%}
+        <details class="bf26-faq__item" open>
+          <summary><span>When does the deal run?</span>{{ faq_icon }}</summary>
+          <p>November 16 through November 30.</p>
+        </details>
+        <details class="bf26-faq__item" open>
+          <summary><span>Which rinses qualify?</span>{{ faq_icon }}</summary>
+          <p>Any two SmartMouth activated mouthwashes.</p>
+        </details>
+        <details class="bf26-faq__item" open>
+          <summary><span>What's in the $10 bundle?</span>{{ faq_icon }}</summary>
+          <p>Anti-Cavity + Zinc Toothpaste (3.4 oz), Dry Mouth Dual-Action Mints and a travel pack.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="bf26-end">
+    <div class="bf26-wrap">
+      <h2>Deal ends November 30.</h2>
+      <p>Two rinses and a full kit of extras, for $10 more.</p>
+      <a href="#bf26-shop" class="bf26-btn bf26-btn--orange">Pick your rinses</a>
+    </div>
+  </section>
+
+  <div class="bf26-note">
+    <div class="bf26-wrap">
+      <p>Offer valid November 16-30, 2026.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    document.querySelectorAll('#shopify-section-{{ section.id }} [data-bf26-carousel]').forEach(function (root) {
+      var track = root.querySelector('.bf26-smc__track');
+      var slides = root.querySelectorAll('.bf26-smc__slide');
+      var current = 0;
+
+      function go(index) {
+        current = (index + slides.length) % slides.length;
+        track.style.transform = 'translateX(' + current * -100 + '%)';
+        root.querySelectorAll('[data-go]').forEach(function (el) {
+          el.setAttribute('aria-current', Number(el.dataset.go) === current ? 'true' : 'false');
+        });
+      }
+
+      root.addEventListener('click', function (event) {
+        var target = event.target.closest('[data-go], [data-step]');
+        if (!target) return;
+        if (target.dataset.go !== undefined) go(Number(target.dataset.go));
+        if (target.dataset.step !== undefined) go(current + Number(target.dataset.step));
+      });
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "BFCM 2026 Landing",
+  "tag": "section",
+  "class": "section section-bfcm-2026-landing",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "bfcm_2026_landing": {
+      "type": "bfcm-2026-landing",
+      "settings": {}
+    }
+  },
+  "order": [
+    "bfcm_2026_landing"
+  ]
+}
