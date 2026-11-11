@@ -16,8 +16,9 @@
   {{ bf_font | font_modify: 'weight', '700' | font_face: font_display: 'swap' }}
   {{ bf_font | font_modify: 'weight', '800' | font_face: font_display: 'swap' }}
 
-  /* Hide the app-injected banner on this landing page only. */
-  div#inf-banner {
+  /* Hide the app-injected banner and the site announcement bar on this landing page only. */
+  div#inf-banner,
+  .announcement-bar-section {
     display: none !important;
   }
 
