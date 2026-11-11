@@ -131,17 +131,23 @@
     position: relative;
     display: flex;
     align-items: center;
-    min-height: 620px;
+    /* Tall enough for the art at any width: art width is 50vw + 538px above 1280px. */
+    min-height: max(620px, calc((50vw + 538px) * 849 / 1852));
     overflow: hidden;
     color: #FFFFFF;
     background: var(--bf-deep);
   }
 
+  /*
+    The art starts 42px inside the 1160px content column (8% at the 1280px
+    design width), so on wide screens it grows to the right instead of
+    sliding under the headline.
+  */
   .bf26-hero__art {
     position: absolute;
+    left: max(8%, calc(50% - 538px));
     right: 0;
     bottom: 0;
-    width: 92%;
     aspect-ratio: 1852 / 849;
   }
 
@@ -985,6 +991,8 @@
 
     .bf26-hero__art {
       position: relative;
+      left: auto;
+      right: auto;
       order: 2;
       width: 100%;
       aspect-ratio: 4 / 3;
