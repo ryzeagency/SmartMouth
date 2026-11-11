@@ -11,7 +11,6 @@
   "sections": {
     "smt_promo_hero_4NAt96": {
       "type": "smt-promo-hero",
-      "disabled": true,
       "name": "Promo Hero Banner",
       "settings": {
         "desktop_image": "shopify://shop_images/SMT_-_11.11_Flash_Sale_-_Hero_Banner_-_Desktop_Banner_-_BOF_-_1920x600_-_10.28.2026.jpg",
@@ -22,7 +21,7 @@
         "heading_accent": "",
         "heading_after": "",
         "heading_color": "#ffffff",
-        "accent_color": "#FFFFFF",
+        "accent_color": "#ffffff",
         "show_heading_highlight": true,
         "heading_highlight_color": "#2b5689",
         "subheading": "",
