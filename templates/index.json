@@ -13,8 +13,8 @@
       "type": "smt-promo-hero",
       "name": "Promo Hero Banner",
       "settings": {
-        "desktop_image": "shopify://shop_images/SMT_-_11.11_Flash_Sale_-_Hero_Banner_-_Desktop_Banner_-_BOF_-_1920x600_-_10.28.2026.jpg",
-        "mobile_image": "shopify://shop_images/SMT_-_11.11_Flash_Sale_-_Hero_Banner_-_Mobile_Banner_-_BOF_-_750x900_-_10.28.2026.jpg",
+        "desktop_image": "shopify://shop_images/Banner_MOB_1.webp",
+        "mobile_image": "shopify://shop_images/Banner_DESK_1.webp",
         "background_color": "#3b1f6b",
         "link": "shopify://collections/all",
         "heading_before": "",
@@ -44,6 +44,7 @@
     },
     "smt_home_revamp_hero_bgbExK": {
       "type": "smt-home-revamp-hero",
+      "disabled": true,
       "name": "Home Revamp Hero",
       "settings": {
         "image": "shopify://shop_images/smt-revamp-hero-bg.webp",
