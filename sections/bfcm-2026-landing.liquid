@@ -16,6 +16,11 @@
   {{ bf_font | font_modify: 'weight', '700' | font_face: font_display: 'swap' }}
   {{ bf_font | font_modify: 'weight', '800' | font_face: font_display: 'swap' }}
 
+  /* Hide the app-injected banner on this landing page only. */
+  div#inf-banner {
+    display: none !important;
+  }
+
   .bf26 {
     --bf-font: {{ bf_font.family }}, 'Helvetica Neue', Arial, sans-serif;
     --bf-purple: #2E1D55;
