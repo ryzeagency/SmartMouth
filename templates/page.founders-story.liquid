@@ -1,0 +1,832 @@
+{%- comment -%}
+  Founders / Our Story page.
+  Built from smartmouth-founders-page (optimized) index.html. Images live in assets/founders-*.webp.
+  The page's own nav was removed because the theme header is used.
+  To add a photo later (Anna, Haley, or the two together), upload it as assets/founders-<name>.webp
+  and uncomment the matching block below.
+{%- endcomment -%}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital@1&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+.smf {
+  --smf-navy: #062342;
+  --smf-blue: #0073c8;
+  --smf-green: #007a33;
+  --smf-orange: #ff7600;
+  --smf-ink: #243247;
+  --smf-sky: #dcedfa;
+  --smf-sky-deep: #c1def3;
+  --smf-mint: #dff3e6;
+  --smf-lilac: #ebe5f8;
+  --smf-cream: #fbf4e3;
+  --smf-paper: #fffdf7;
+  --smf-violet: #6246aa;
+  --smf-year: #8fd0ff;
+  --smf-line: rgba(6, 35, 66, .1);
+  font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--smf-ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.smf *, .smf *::before, .smf *::after { box-sizing: border-box; }
+.smf :where(img) { display: block; max-width: 100%; height: auto; }
+.smf :where(h1, h2, h3, p, ul, ol, figure, blockquote) { margin: 0; }
+.smf :where(h1, h2, h3) { letter-spacing: 0; }
+.smf :where(ul, ol) { padding: 0; list-style: none; }
+.smf :where(a) { color: inherit; }
+.smf a:focus-visible, .smf summary:focus-visible {
+  outline: 3px solid var(--smf-blue);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+/* ---------- Layout ---------- */
+.smf-wrap { max-width: 1112px; margin: 0 auto; padding: 0 24px; }
+.smf-sec { position: relative; padding: 96px 0 104px; scroll-margin-top: 90px; }
+.smf-sec--mint { background: var(--smf-mint); }
+.smf-sec--sky { background: var(--smf-sky); }
+.smf-sec--lilac { background: var(--smf-lilac); }
+.smf-sec--cream { background: var(--smf-cream); }
+.smf-sec--white { background: #fff; }
+.smf-split { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
+.smf-center { max-width: 720px; margin: 0 auto; text-align: center; }
+
+/* ---------- Type ---------- */
+.smf-eyebrow {
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--smf-green);
+  line-height: 1.4;
+  margin-bottom: 14px;
+}
+.smf-h1 {
+  font-size: clamp(40px, 5.2vw, 68px);
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -.015em;
+  color: var(--smf-navy);
+  max-width: 540px;
+}
+.smf-h1 span { color: var(--smf-blue); }
+.smf-h2 {
+  font-size: clamp(30px, 3.3vw, 42px);
+  line-height: 1.12;
+  font-weight: 700;
+  letter-spacing: -.01em;
+  color: var(--smf-navy);
+}
+.smf-num {
+  font-size: clamp(72px, 7.6vw, 100px);
+  line-height: .9;
+  font-weight: 800;
+  letter-spacing: -.02em;
+  color: rgba(6, 35, 66, .085);
+  margin-bottom: 14px;
+}
+.smf-lead { font-size: 18.5px; line-height: 1.7; margin-top: 22px; }
+.smf-copy { margin-top: 22px; }
+.smf-copy p + p { margin-top: 16px; }
+.smf-copy--narrow { max-width: 720px; }
+.smf-center .smf-copy { margin-left: auto; margin-right: auto; }
+.smf-note {
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--smf-navy);
+  margin-top: 20px;
+}
+
+/* ---------- Buttons and links ---------- */
+.smf-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 54px;
+  padding: 0 32px;
+  border-radius: 999px;
+  background: var(--smf-orange);
+  color: var(--smf-navy);
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 5px 0 rgba(6, 35, 66, .16);
+}
+.smf-btn:hover { box-shadow: 0 7px 0 rgba(6, 35, 66, .16); transform: translateY(-2px); }
+.smf-btn:active { box-shadow: 0 2px 0 rgba(6, 35, 66, .16); transform: translateY(3px); }
+.smf-link {
+  display: inline-block;
+  color: var(--smf-blue);
+  font-size: 15.5px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 7px;
+}
+.smf-link:hover { color: var(--smf-navy); }
+
+/* ---------- Hero ---------- */
+.smf-hero { position: relative; overflow: hidden; background: var(--smf-sky); padding: 100px 0 110px; }
+.smf-hero::before, .smf-hero::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.smf-hero::before { width: 780px; height: 780px; top: -330px; right: -250px; background: var(--smf-mint); }
+.smf-hero::after { width: 600px; height: 600px; left: -230px; bottom: -340px; background: var(--smf-sky-deep); }
+.smf-hero__grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1.04fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+.smf-hero .smf-btn { margin-top: 34px; }
+.smf-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 26px; }
+.smf-chips li {
+  background: #fff;
+  border: 1px solid var(--smf-line);
+  border-radius: 999px;
+  padding: 7px 15px;
+  font-size: 13.5px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--smf-navy);
+}
+
+/* ---------- Photo with polaroid overlay ---------- */
+.smf-media { position: relative; padding-bottom: 92px; }
+.smf-photo {
+  border-radius: 26px;
+  overflow: hidden;
+  background: #cfdbe6;
+  box-shadow: 0 30px 60px -28px rgba(6, 35, 66, .45);
+}
+.smf-photo img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+.smf-media__cap,
+.smf-caption { font-size: 13.5px; line-height: 1.5; color: var(--smf-ink); margin-top: 14px; }
+.smf-media__cap { padding-left: 222px; }
+.smf-media .smf-polaroid { position: absolute; left: -36px; bottom: 0; width: 236px; transform: rotate(-4deg); }
+
+.smf-polaroid {
+  background: var(--smf-paper);
+  padding: 10px 10px 14px;
+  border-radius: 3px;
+  box-shadow: 0 16px 30px -12px rgba(6, 35, 66, .4), 0 2px 6px rgba(6, 35, 66, .08);
+}
+.smf-polaroid img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.smf-polaroid figcaption {
+  font-family: 'Lora', Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  font-size: 13px;
+  line-height: 1.35;
+  color: #3b3427;
+  margin-top: 10px;
+}
+
+/* ---------- Timeline band ---------- */
+.smf-band { background: var(--smf-navy); color: #e6eef7; padding: 46px 0 50px; }
+.smf-band ol { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; text-align: center; }
+.smf-band__year { display: block; font-size: 44px; line-height: 1.15; font-weight: 700; color: var(--smf-year); }
+.smf-band__text { display: block; max-width: 250px; margin: 6px auto 0; font-size: 15.5px; line-height: 1.6; }
+
+/* ---------- 01 Dr. Cohen ---------- */
+.smf-facts { display: grid; gap: 10px; margin-top: 26px; }
+.smf-facts li {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #fff;
+  border: 1px solid var(--smf-line);
+  border-radius: 12px;
+  padding: 14px 20px;
+  font-size: 15.5px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--smf-navy);
+}
+.smf-facts li::before {
+  content: "";
+  flex: none;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--smf-green);
+}
+.smf-portrait { margin-top: 56px; }
+.smf-portrait .smf-photo img { object-position: 50% 25%; }
+
+.smf-album { margin-top: 76px; }
+.smf-album__grid {
+  display: grid;
+  grid-template-columns: 1.45fr 1fr 1fr 1fr;
+  gap: 28px;
+  align-items: start;
+  margin-top: 4px;
+}
+.smf-album__grid .smf-polaroid img { aspect-ratio: 4 / 5; object-position: 50% 15%; }
+.smf-album__grid .smf-polaroid:first-child img { aspect-ratio: 4 / 3; object-position: 50% 50%; }
+.smf-album__grid .smf-polaroid:nth-child(1) { transform: rotate(-2deg); }
+.smf-album__grid .smf-polaroid:nth-child(2) { transform: rotate(2deg); margin-top: 8px; }
+.smf-album__grid .smf-polaroid:nth-child(3) { transform: rotate(-1.5deg); }
+.smf-album__grid .smf-polaroid:nth-child(4) { transform: rotate(1.5deg); margin-top: 6px; }
+
+/* ---------- 02 Andy ---------- */
+.smf-andy .smf-media { margin-top: 26px; }
+.smf-andy .smf-photo img { object-position: 62% 40%; }
+
+/* ---------- 03 Anna and Haley ---------- */
+.smf-sec--lilac .smf-num { color: rgba(98, 70, 170, .11); }
+.smf-sisters { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 44px; }
+.smf-person {
+  background: #fff;
+  border: 1px solid rgba(98, 70, 170, .14);
+  border-radius: 24px;
+  padding: 24px 24px 30px;
+}
+.smf-person__photo {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 4 / 3;
+  border-radius: 20px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #f9f7fd 0%, #f3effb 55%, #e9e2f8 100%);
+  border: 1px solid rgba(98, 70, 170, .12);
+}
+.smf-person__photo img { width: 100%; height: 100%; object-fit: cover; }
+.smf-monogram {
+  display: grid;
+  place-items: center;
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  border: 2px solid #d6cbef;
+  background: #fff;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--smf-violet);
+}
+.smf-person__name { font-size: 22px; line-height: 1.3; font-weight: 700; color: var(--smf-navy); margin-top: 22px; }
+.smf-person__role { font-size: 15px; font-weight: 600; color: var(--smf-green); margin-top: 4px; }
+.smf-person__quote {
+  border-left: 4px solid var(--smf-blue);
+  padding: 4px 0 4px 16px;
+  margin-top: 18px;
+  font-size: 16px;
+  font-style: italic;
+}
+.smf-together { margin-top: 28px; border-radius: 24px; overflow: hidden; }
+.smf-together img { width: 100%; aspect-ratio: 3 / 1; object-fit: cover; }
+.smf-cta-row { margin-top: 48px; text-align: center; }
+
+/* ---------- Cards (science, studies, record) ---------- */
+.smf-grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.smf-card {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid var(--smf-line);
+  border-radius: 20px;
+  padding: 26px 24px 28px;
+}
+.smf-card h3 { font-size: 18.5px; line-height: 1.3; font-weight: 700; color: var(--smf-navy); }
+.smf-card p { font-size: 16px; line-height: 1.6; margin-top: 8px; }
+.smf-card .smf-link { margin-top: auto; padding-top: 22px; align-self: flex-start; }
+
+.smf-steps { margin-top: 40px; }
+.smf-step__n {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  margin-bottom: 16px;
+  border-radius: 50%;
+  background: var(--smf-blue);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+}
+.smf-steps li:nth-child(3) .smf-step__n { background: var(--smf-green); }
+
+.smf-banner { margin-top: 32px; border-radius: 20px; overflow: hidden; }
+.smf-banner img { width: 100%; }
+
+.smf-studies { margin-top: 24px; }
+.smf-study { border-top: 6px solid var(--smf-blue); }
+.smf-study:nth-child(2) { border-top-color: var(--smf-green); }
+.smf-study:nth-child(3) { border-top-color: var(--smf-navy); }
+.smf-card .smf-study__kicker {
+  margin-top: 0;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--smf-green);
+  margin-bottom: 8px;
+}
+
+.smf-record { margin-top: 34px; }
+
+/* ---------- Video (hidden until a video exists) ---------- */
+.smf-video {
+  position: relative;
+  margin-top: 36px;
+  aspect-ratio: 16 / 9;
+  border-radius: 24px;
+  overflow: hidden;
+  background: var(--smf-navy);
+}
+.smf-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+/* ---------- Range ---------- */
+.smf-bottles {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 4px;
+  margin: 24px auto 26px;
+}
+.smf-bottles img { width: 112px; filter: drop-shadow(0 18px 16px rgba(6, 35, 66, .18)); }
+.smf-bottles img.is-main { width: 132px; }
+.smf-range p { max-width: 460px; margin: 0 auto; }
+.smf-range .smf-btn { margin-top: 30px; }
+
+/* ---------- Closing ---------- */
+.smf-close { position: relative; overflow: hidden; background: var(--smf-green); color: #f0faf3; padding: 96px 0; }
+.smf-close::before {
+  content: "";
+  position: absolute;
+  width: 720px;
+  height: 720px;
+  top: -250px;
+  right: -420px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .075);
+  pointer-events: none;
+}
+.smf-close__grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1.45fr 1fr;
+  gap: 72px;
+  align-items: center;
+}
+.smf-close .smf-h2 { color: #fff; }
+.smf-close .smf-copy { font-size: 18px; line-height: 1.7; }
+.smf-close .smf-btn { margin-top: 32px; box-shadow: 0 5px 0 rgba(0, 0, 0, .18); }
+.smf-close__img { border-radius: 20px; overflow: hidden; }
+.smf-close__img img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 60%; }
+.smf-close figcaption { margin-top: 12px; font-size: 13.5px; line-height: 1.5; font-weight: 600; color: #fff; }
+.smf-close figcaption span { font-weight: 400; opacity: .8; }
+
+/* ---------- FAQ ---------- */
+.smf-faq { max-width: 790px; margin: 40px auto 0; display: grid; gap: 12px; }
+.smf-faq details { background: #fff; border: 1px solid var(--smf-line); border-radius: 16px; }
+.smf-faq summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 22px 26px;
+  list-style: none;
+  cursor: pointer;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--smf-navy);
+}
+.smf-faq summary::-webkit-details-marker { display: none; }
+.smf-plus { position: relative; flex: none; width: 16px; height: 16px; }
+.smf-plus::before, .smf-plus::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 16px;
+  height: 2.5px;
+  border-radius: 2px;
+  background: var(--smf-blue);
+}
+.smf-plus::after { transform: rotate(90deg); }
+.smf-faq details[open] .smf-plus::after { transform: rotate(0deg); }
+.smf-faq__a { padding: 0 26px 24px; font-size: 16px; line-height: 1.7; }
+
+/* ---------- Motion (only where the visitor acts) ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .smf-btn { transition: transform .15s ease, box-shadow .15s ease; }
+  .smf-plus::after { transition: transform .2s ease; }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 960px) {
+  .smf-sec { padding: 80px 0 88px; }
+  .smf-hero { padding: 72px 0 88px; }
+  .smf-hero__grid, .smf-split, .smf-close__grid { grid-template-columns: 1fr; gap: 56px; }
+  .smf-hero__media, .smf-portrait, .smf-andy .smf-media { max-width: 520px; width: 100%; margin-left: auto; margin-right: auto; }
+  .smf-portrait { margin-top: 0; }
+  .smf-album__grid { grid-template-columns: 1fr 1fr; gap: 32px 24px; }
+  .smf-album__grid .smf-polaroid:first-child img { aspect-ratio: 4 / 5; }
+  .smf-grid3 { grid-template-columns: 1fr; }
+  .smf-band ol { grid-template-columns: 1fr 1fr; row-gap: 32px; }
+  .smf-close__img { max-width: 520px; }
+}
+@media (max-width: 720px) {
+  .smf-sisters { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .smf { font-size: 16px; }
+  .smf-wrap { padding: 0 20px; }
+  .smf-sec { padding: 64px 0 72px; }
+  .smf-hero { padding: 56px 0 72px; }
+  .smf-lead { font-size: 17px; }
+  .smf-media { padding-bottom: 80px; }
+  .smf-media .smf-polaroid { left: -6px; width: 170px; }
+  .smf-media__cap { padding-left: 176px; }
+  .smf-band__year { font-size: 36px; }
+  .smf-band__text { font-size: 14.5px; }
+  .smf-album__grid { gap: 26px 18px; }
+  .smf-person { padding: 18px 18px 24px; }
+  .smf-bottles img { width: 86px; }
+  .smf-bottles img.is-main { width: 102px; }
+  .smf-faq summary { padding: 18px 20px; font-size: 16px; }
+  .smf-faq__a { padding: 0 20px 20px; }
+}
+</style>
+
+<div class="smf">
+
+  <div class="smf-main">
+
+    <!-- ========== Hero ========== -->
+    <section class="smf-hero" aria-labelledby="smf-hero-title">
+      <div class="smf-wrap smf-hero__grid">
+        <div>
+          <p class="smf-eyebrow">Our story</p>
+          <h1 class="smf-h1" id="smf-hero-title">SmartMouth: a family story, <span>built on science</span></h1>
+          <p class="smf-lead">Most fresh-breath products only cover up bad breath for a little while. Dr. Marvin Cohen wanted to do better. Three generations later, SmartMouth is still a family company, still guided by the same commitment to science, and still making rinses that give you fresh breath for 24 hours with twice-daily use.</p>
+          <a class="smf-btn" href="#dr-cohen">Meet the family</a>
+          <ul class="smf-chips">
+            <li>Family-run, St. Louis</li>
+            <li>Clinically tested</li>
+            <li>Three generations</li>
+          </ul>
+        </div>
+
+        <div class="smf-media smf-hero__media">
+          <figure>
+            <div class="smf-photo">
+              <img src="{{ 'founders-hero-haley-andy-anna.webp' | asset_url }}" alt="Haley, Andy and Anna smiling together" width="768" height="1024" fetchpriority="high">
+            </div>
+            <figcaption class="smf-media__cap">Haley, Andy and Anna.</figcaption>
+          </figure>
+          <figure class="smf-polaroid">
+            <img src="{{ 'founders-cohen-anna.webp' | asset_url }}" alt="Young Anna and Dr. Cohen in matching SmartMouth T-shirts" width="900" height="683">
+            <figcaption>Anna with her grandfather, Dr. Cohen.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== Timeline ========== -->
+    <section class="smf-band" aria-label="SmartMouth timeline">
+      <div class="smf-wrap">
+        <ol>
+          <li><span class="smf-band__year">1965</span><span class="smf-band__text">Dr. Cohen opens his dental practice</span></li>
+          <li><span class="smf-band__year">1993</span><span class="smf-band__text">Goes after the cause of bad breath</span></li>
+          <li><span class="smf-band__year">2003</span><span class="smf-band__text">Andy joins the SmartMouth team</span></li>
+          <li><span class="smf-band__year">Today</span><span class="smf-band__text">Anna and Haley carry it forward</span></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ========== 01 Dr. Cohen ========== -->
+    <section class="smf-sec smf-sec--mint" id="dr-cohen" aria-labelledby="smf-cohen-title">
+      <div class="smf-wrap">
+        <div class="smf-split">
+          <div>
+            <p class="smf-num" aria-hidden="true">01</p>
+            <p class="smf-eyebrow">Dr. Marvin Cohen: where it started</p>
+            <h2 class="smf-h2" id="smf-cohen-title">A dentist who went after the cause</h2>
+            <div class="smf-copy">
+              <p>In 1993, Dr. Marvin Cohen, a dentist and bad-breath researcher, set out to go after the cause of bad breath instead of masking it. He developed SmartMouth’s patented zinc ion system, a two-solution formula that targets the sulfur compounds behind bad breath.</p>
+            </div>
+            <ul class="smf-facts">
+              <li>Bachelor of Science and Doctor of Dental Surgery, Washington University in St. Louis (DDS 1965)</li>
+              <li>Practiced for nearly 50 years, until shortly before he passed away in November 2014</li>
+              <li>Presented on breath disorders across the U.S., Canada and Puerto Rico, and at the 2nd International Workshop on Oral Malodour in Leuven, Belgium</li>
+              <li>Author of an article in the Encyclopaedia Britannica Medical and Health Annual 1998</li>
+            </ul>
+          </div>
+
+          <figure class="smf-portrait">
+            <div class="smf-photo">
+              <img src="{{ 'founders-cohen-portrait.webp' | asset_url }}" alt="Portrait of Dr. Marvin Cohen" width="933" height="1400" loading="lazy">
+            </div>
+            <figcaption class="smf-caption">Dr. Marvin Cohen.</figcaption>
+          </figure>
+        </div>
+
+        <div class="smf-album">
+          <p class="smf-eyebrow">From the family album</p>
+          <div class="smf-album__grid">
+            <figure class="smf-polaroid">
+              <img src="{{ 'founders-cohen-anna.webp' | asset_url }}" alt="Anna as a child with her grandfather, Dr. Cohen" width="900" height="683" loading="lazy">
+              <figcaption>Anna and her grandfather, Dr. Cohen.</figcaption>
+            </figure>
+            <figure class="smf-polaroid">
+              <img src="{{ 'founders-album-1965.webp' | asset_url }}" alt="Dr. Cohen in graduation robes, June 1965" width="720" height="715" loading="lazy">
+              <figcaption>June 1965.</figcaption>
+            </figure>
+            <figure class="smf-polaroid">
+              <img src="{{ 'founders-album-portrait.webp' | asset_url }}" alt="Black and white portrait of a young Dr. Cohen" width="620" height="793" loading="lazy">
+              <figcaption>From the family album.</figcaption>
+            </figure>
+            <figure class="smf-polaroid">
+              <img src="{{ 'founders-album-office.webp' | asset_url }}" alt="Dr. Cohen at work in his office" width="620" height="867" loading="lazy">
+              <figcaption>From the family album.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 02 Andy ========== -->
+    <section class="smf-sec smf-sec--sky smf-andy" id="andy" aria-labelledby="smf-andy-title">
+      <div class="smf-wrap smf-split">
+        <div>
+          <p class="smf-num" aria-hidden="true">02</p>
+          <p class="smf-eyebrow">Andy Burch: building the company</p>
+          <h2 class="smf-h2" id="smf-andy-title">He believed in it before anyone knew it</h2>
+          <div class="smf-copy">
+            <p>While Dr. Marvin Cohen pioneered the science behind SmartMouth, his son-in-law, Andrew “Andy” Burch, shared his belief that this groundbreaking innovation had the power to change lives.</p>
+            <p>Working side by side, Andy and Dr. Cohen grew SmartMouth from a direct-to-dental product into a nationally recognized oral care brand, united by a shared mission to make effective, science-backed oral care solutions accessible to everyone.</p>
+            <p>Andy led with kindness, valued his employees, and cared deeply about the people around him. Although he passed away in December 2020, his spirit remains a part of SmartMouth, in the company he helped grow and the family who proudly carries his vision forward.</p>
+          </div>
+          <p class="smf-note">Part of the SmartMouth team 2003 to 2020. CEO 2013 to 2020.</p>
+        </div>
+
+        <div class="smf-media">
+          <figure>
+            <div class="smf-photo">
+              <img src="{{ 'founders-andy-portrait.webp' | asset_url }}" alt="Andy Burch smiling at a dental trade show" width="1048" height="990" loading="lazy">
+            </div>
+            <figcaption class="smf-media__cap">Andy Burch, at a dental trade show.</figcaption>
+          </figure>
+          <figure class="smf-polaroid">
+            <img src="{{ 'founders-andy-and-cohen.webp' | asset_url }}" alt="Andy and Dr. Cohen holding up their catch by a lake" width="720" height="489" loading="lazy">
+            <figcaption>Andy and Dr. Cohen.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 03 Anna and Haley ========== -->
+    <section class="smf-sec smf-sec--lilac" id="family" aria-labelledby="smf-family-title">
+      <div class="smf-wrap">
+        <div class="smf-center">
+          <p class="smf-num" aria-hidden="true">03</p>
+          <p class="smf-eyebrow">Anna and Haley: the next chapter</p>
+          <h2 class="smf-h2" id="smf-family-title">Two sisters carrying it forward</h2>
+          <div class="smf-copy smf-copy--narrow">
+            <p>Today, Andy’s daughters carry the family’s vision forward. Both grew up hearing the SmartMouth story at the family table, and both are proud to help write its next chapter.</p>
+          </div>
+        </div>
+
+        <div class="smf-sisters">
+          <article class="smf-person">
+            <div class="smf-person__photo">
+              <!-- When Anna's portrait arrives, replace the span below with:
+                   <img src="{{ 'founders-anna-portrait.webp' | asset_url }}" alt="Portrait of Anna Timm" loading="lazy"> -->
+              <span class="smf-monogram" aria-hidden="true">AT</span>
+            </div>
+            <h3 class="smf-person__name">Anna Timm, CPA</h3>
+            <p class="smf-person__role">Director of Integrated Marketing</p>
+            <!-- When Anna's quote is approved, uncomment:
+            <blockquote class="smf-person__quote"><p>“Quote from Anna.”</p></blockquote>
+            -->
+          </article>
+
+          <article class="smf-person">
+            <div class="smf-person__photo">
+              <!-- When Haley's portrait arrives, replace the span below with:
+                   <img src="{{ 'founders-haley-portrait.webp' | asset_url }}" alt="Portrait of Haley Smith" loading="lazy"> -->
+              <span class="smf-monogram" aria-hidden="true">HS</span>
+            </div>
+            <h3 class="smf-person__name">Haley (Burch) Smith</h3>
+            <p class="smf-person__role">Director of FP&amp;A</p>
+            <!-- When Haley's quote is approved, uncomment:
+            <blockquote class="smf-person__quote"><p>“Quote from Haley.”</p></blockquote>
+            -->
+          </article>
+        </div>
+
+        <!-- When the photo of Anna and Haley together arrives, uncomment:
+        <figure class="smf-together">
+          <img src="{{ 'founders-anna-and-haley.webp' | asset_url }}" alt="Anna and Haley together" loading="lazy">
+        </figure>
+        -->
+
+        <div class="smf-cta-row">
+          <a class="smf-btn" href="/collections/all">Shop the range</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== The science ========== -->
+    <section class="smf-sec smf-sec--mint" id="science" aria-labelledby="smf-science-title">
+      <div class="smf-wrap">
+        <p class="smf-eyebrow">The science</p>
+        <h2 class="smf-h2" id="smf-science-title">Read the research yourself</h2>
+        <div class="smf-copy smf-copy--narrow">
+          <p>Everything here traces back to Dr. Marvin Cohen, a dentist who practiced for nearly 50 years and studied bad breath throughout his career. The research that followed is public, so you can read it for yourself.</p>
+        </div>
+
+        <ol class="smf-grid3 smf-steps">
+          <li class="smf-card">
+            <span class="smf-step__n" aria-hidden="true">1</span>
+            <h3>Germs plus protein</h3>
+            <p>Bacteria in the mouth break down protein and release sulfur gas. That gas is the smell.</p>
+          </li>
+          <li class="smf-card">
+            <span class="smf-step__n" aria-hidden="true">2</span>
+            <h3>Two solutions</h3>
+            <p>Two solutions stay apart in the bottle until you pour, so the formula is fresh and active when it reaches your mouth.</p>
+          </li>
+          <li class="smf-card">
+            <span class="smf-step__n" aria-hidden="true">3</span>
+            <h3>Zinc blocks the gas</h3>
+            <p>Zinc ions bind the sulfur compounds, for fresh breath for 24 hours with two rinses a day.</p>
+          </li>
+        </ol>
+
+        <figure class="smf-banner">
+          <picture>
+            <!-- Optional mobile version of the banner:
+            <source media="(max-width: 560px)" srcset="{{ 'founders-kept-apart-until-you-pour-mobile.webp' | asset_url }}"> -->
+            <img src="{{ 'founders-kept-apart-until-you-pour.webp' | asset_url }}" alt="Smart-Zinc technology: kept apart until you pour. Two chambers, one pour. Solution A and Solution B combine in the cup to activate the zinc ion system." width="2022" height="778" loading="lazy">
+          </picture>
+        </figure>
+
+        <div class="smf-grid3 smf-studies">
+          <article class="smf-card smf-study">
+            <p class="smf-study__kicker">12-hour study</p>
+            <h3>Peer-reviewed</h3>
+            <p>A peer-reviewed study of SmartMouth’s zinc-activated technology.</p>
+            <!-- TODO: add the PubMed link for the 12-hour study -->
+            <a class="smf-link" href="#" target="_blank" rel="noopener">Read the study on PubMed</a>
+          </article>
+          <article class="smf-card smf-study">
+            <p class="smf-study__kicker">2019 clinical trial</p>
+            <h3>Randomized controlled trial</h3>
+            <p>A randomized controlled trial of SmartMouth Clinical, published in Oral Health &amp; Preventive Dentistry in 2019.</p>
+            <a class="smf-link" href="https://pubmed.ncbi.nlm.nih.gov/31093613/" target="_blank" rel="noopener">Read the study on PubMed</a>
+          </article>
+          <article class="smf-card smf-study">
+            <p class="smf-study__kicker">White paper</p>
+            <h3>12-hour fresh breath evaluation</h3>
+            <p>The full evaluation, available on SmartMouth.com.</p>
+            <!-- TODO: add the white paper link -->
+            <a class="smf-link" href="#" target="_blank" rel="noopener">Read the white paper</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== On the record ========== -->
+    <section class="smf-sec smf-sec--cream" aria-labelledby="smf-record-title">
+      <div class="smf-wrap">
+        <p class="smf-eyebrow">In the news and on the record</p>
+        <h2 class="smf-h2" id="smf-record-title">On the record</h2>
+        <div class="smf-grid3 smf-record">
+          <article class="smf-card">
+            <h3>Britannica</h3>
+            <p>Dr. Cohen’s article in the Encyclopaedia Britannica Medical and Health Annual 1998, pp. 311–313.</p>
+          </article>
+          <article class="smf-card">
+            <h3>Washington University</h3>
+            <p>Dr. Cohen’s background at the Washington University School of Dentistry.</p>
+          </article>
+          <article class="smf-card">
+            <h3>DentistryIQ</h3>
+            <p>“Mouthwash is an answer to keeping breath fresh,” coverage of Dr. Cohen and SmartMouth.</p>
+            <a class="smf-link" href="https://www.dentistryiq.com/dentistry/pharmacology/article/16371728/mouthwash-is-an-answer-to-keeping-breath-fresh" target="_blank" rel="noopener">Read the article</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== Founder video: hidden until a video exists ==========
+         To show it: uncomment this section and replace VIDEO_ID with the YouTube ID.
+    <section class="smf-sec smf-sec--sky" id="video" aria-labelledby="smf-video-title">
+      <div class="smf-wrap">
+        <div class="smf-center">
+          <p class="smf-eyebrow">New</p>
+          <h2 class="smf-h2" id="smf-video-title">Hear it from Anna and Haley</h2>
+        </div>
+        <div class="smf-video">
+          <iframe src="https://www.youtube-nocookie.com/embed/VIDEO_ID" title="Hear it from Anna and Haley" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
+    </section>
+    -->
+
+    <!-- ========== Find your rinse ========== -->
+    <section class="smf-sec smf-sec--white smf-range" id="range" aria-labelledby="smf-range-title">
+      <div class="smf-wrap smf-center">
+        <p class="smf-eyebrow">The range</p>
+        <h2 class="smf-h2" id="smf-range-title">Find your rinse</h2>
+        <div class="smf-bottles">
+          <img src="{{ 'founders-original.webp' | asset_url }}" alt="SmartMouth Original" width="300" height="841" loading="lazy">
+          <img class="is-main" src="{{ 'founders-clinical.webp' | asset_url }}" alt="SmartMouth Clinical" width="300" height="841" loading="lazy">
+          <img src="{{ 'founders-drymouth.webp' | asset_url }}" alt="SmartMouth Dry Mouth" width="300" height="841" loading="lazy">
+        </div>
+        <p>Original, Clinical and Dry Mouth. Five quick questions and we will point you to the right one.</p>
+        <a class="smf-btn" href="/pages/find-your-rinse">Find your rinse</a>
+      </div>
+    </section>
+
+    <!-- ========== Closing ========== -->
+    <section class="smf-close" aria-labelledby="smf-close-title">
+      <div class="smf-wrap smf-close__grid">
+        <div>
+          <h2 class="smf-h2" id="smf-close-title">We hope you feel the family behind every bottle</h2>
+          <div class="smf-copy">
+            <p>SmartMouth Oral Health Laboratories is based in St. Louis, Missouri, and remains a family company. It started with one dentist’s curiosity, grew through a son-in-law’s belief, and continues with two daughters who care about getting it right.</p>
+            <p>Thank you for letting us be part of your routine.</p>
+          </div>
+          <a class="smf-btn" href="/pages/find-your-rinse">Find your rinse</a>
+        </div>
+        <figure>
+          <div class="smf-close__img">
+            <img src="{{ 'founders-summit-shelf.webp' | asset_url }}" alt="SmartMouth Original, Clinical and Dry Mouth products on a shelf" width="933" height="1400" loading="lazy">
+          </div>
+          <figcaption>SmartMouth on the shelf at the Men’s Grooming Summit, October 2026. <span>Photo: Eryc Perez de Tagle.</span></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ========== FAQ ========== -->
+    <section class="smf-sec smf-sec--lilac" id="questions" aria-labelledby="smf-faq-title">
+      <div class="smf-wrap">
+        <div class="smf-center">
+          <p class="smf-eyebrow">Questions</p>
+          <h2 class="smf-h2" id="smf-faq-title">Good questions</h2>
+        </div>
+        <div class="smf-faq">
+          <details>
+            <summary>Who founded SmartMouth?<span class="smf-plus" aria-hidden="true"></span></summary>
+            <div class="smf-faq__a">
+              <p>SmartMouth was founded by Dr. Marvin Cohen, a St. Louis dentist and bad-breath researcher who practiced for nearly 50 years. His son-in-law, Andy Burch, helped grow it into a national brand, and today Andy’s daughters, Anna and Haley, carry it forward.</p>
+            </div>
+          </details>
+          <details>
+            <summary>When did Dr. Cohen start SmartMouth, and what is the zinc ion system?<span class="smf-plus" aria-hidden="true"></span></summary>
+            <div class="smf-faq__a">
+              <p>Dr. Cohen set out to go after the cause of bad breath in 1993. The result was SmartMouth’s patented zinc ion system: two solutions that stay apart in the bottle until you pour. Once combined, the zinc ions bind the sulfur compounds that cause bad breath.</p>
+            </div>
+          </details>
+          <details>
+            <summary>How long does SmartMouth give fresh breath?<span class="smf-plus" aria-hidden="true"></span></summary>
+            <div class="smf-faq__a">
+              <p>Fresh breath for 24 hours when you rinse twice a day.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<!-- FAQ structured data. Keep these answers in sync with the FAQ above. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Who founded SmartMouth?",
+      "acceptedAnswer": { "@type": "Answer", "text": "SmartMouth was founded by Dr. Marvin Cohen, a St. Louis dentist and bad-breath researcher who practiced for nearly 50 years. His son-in-law, Andy Burch, helped grow it into a national brand, and today Andy’s daughters, Anna and Haley, carry it forward." }
+    },
+    {
+      "@type": "Question",
+      "name": "When did Dr. Cohen start SmartMouth, and what is the zinc ion system?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Dr. Cohen set out to go after the cause of bad breath in 1993. The result was SmartMouth’s patented zinc ion system: two solutions that stay apart in the bottle until you pour. Once combined, the zinc ions bind the sulfur compounds that cause bad breath." }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does SmartMouth give fresh breath?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Fresh breath for 24 hours when you rinse twice a day." }
+    }
+  ]
+}
+</script>
