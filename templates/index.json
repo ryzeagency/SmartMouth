@@ -11,6 +11,7 @@
   "sections": {
     "smt_promo_hero_4NAt96": {
       "type": "smt-promo-hero",
+      "disabled": true,
       "name": "Promo Hero Banner",
       "settings": {
         "desktop_image": "shopify://shop_images/Banner_MOB_1.webp",
@@ -44,7 +45,6 @@
     },
     "smt_home_revamp_hero_bgbExK": {
       "type": "smt-home-revamp-hero",
-      "disabled": true,
       "name": "Home Revamp Hero",
       "settings": {
         "image": "shopify://shop_images/smt-revamp-hero-bg.webp",
