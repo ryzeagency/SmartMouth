@@ -133,28 +133,32 @@
   }
 
   /* Hero */
+  /*
+    The art and the text share one grid cell. The art sits at the bottom at its
+    natural 2000x853 ratio (capped at 2000px wide, centred on the matching sky
+    blue). The text sits top-right, and its bottom padding reserves the lower
+    42% of the art, where "Send extras." is, so the headline never covers it.
+    If the text is taller than the space above that, the hero grows and the
+    extra height is plain sky blue above the art.
+  */
   .bf26-hero {
-    position: relative;
-    display: flex;
-    align-items: center;
-    /* Tall enough for the art at any width: art width is 50vw + 538px above 1280px. */
-    min-height: max(620px, calc((50vw + 538px) * 849 / 1852));
+    display: grid;
     overflow: hidden;
-    color: #FFFFFF;
-    background: var(--bf-deep);
+    color: #062342;
+    background: #9ED0F6;
   }
 
-  /*
-    The art starts 42px inside the 1160px content column (8% at the 1280px
-    design width), so on wide screens it grows to the right instead of
-    sliding under the headline.
-  */
+  .bf26-hero__art,
+  .bf26-hero__in {
+    grid-area: 1 / 1;
+  }
+
   .bf26-hero__art {
-    position: absolute;
-    left: max(8%, calc(50% - 538px));
-    right: 0;
-    bottom: 0;
-    aspect-ratio: 1852 / 849;
+    align-self: end;
+    justify-self: center;
+    width: 100%;
+    max-width: 2000px;
+    aspect-ratio: 2000 / 853;
   }
 
   .bf26-hero__art img {
@@ -164,35 +168,31 @@
     object-fit: cover;
   }
 
-  .bf26-hero__art::before,
-  .bf26-hero__art::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-  }
-
-  .bf26-hero__art::before {
-    background: linear-gradient(90deg, #210645 0%, rgba(33, 6, 69, .85) 6%, rgba(33, 6, 69, 0) 18%);
-  }
-
-  .bf26-hero__art::after {
-    background: linear-gradient(180deg, #210645 0%, rgba(33, 6, 69, 0) 16%);
+  /* Wider than the art: fade its side edges into the matching background. */
+  @media (min-width: 2001px) {
+    .bf26-hero__art {
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+      mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+    }
   }
 
   .bf26-hero__in {
     position: relative;
     z-index: 2;
+    align-self: start;
     width: 100%;
-    padding-block: 56px;
+    padding-top: clamp(32px, 3.5vw, 56px);
+    padding-bottom: calc(min(100%, 2000px) * .19);
   }
 
   .bf26-hero__txt {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: flex-end;
     gap: 20px;
-    max-width: 400px;
+    max-width: min(400px, 40vw);
+    margin-left: auto;
+    text-align: right;
   }
 
   .bf26-pill {
@@ -208,13 +208,18 @@
     letter-spacing: -.02em;
     font-size: clamp(35.2px, 3.9vw, 49.6px);
     line-height: 1.08;
-    text-shadow: 0 4px 24px rgba(10, 0, 30, .45);
   }
 
   .bf26-hero__btns {
     display: flex;
     flex-wrap: wrap;
+    justify-content: flex-end;
     gap: 12px;
+  }
+
+  .bf26 .bf26-hero .bf26-btn--outline {
+    border-color: #062342;
+    color: #062342;
   }
 
   /* How the deal works */
@@ -329,10 +334,11 @@
   @keyframes bf26Cart { 0%, 52%, 100% { transform: translateY(0); } 60% { transform: translateY(1.6px); } 70% { transform: translateY(0); } }
 
   /* $10 bubble badge */
+  /* Bottom-right of the hero, in the clear sky below "Send extras." */
   .bf26-badge {
     position: absolute;
-    left: 375px;
-    top: -200px;
+    right: 0;
+    top: -56px;
     z-index: 3;
     width: 184px;
     height: 184px;
@@ -979,37 +985,29 @@
     opacity: .75;
   }
 
+  /* Too narrow for the badge beside the intro text: centre it above instead. */
+  @media (max-width: 1240px) {
+    .bf26-badge {
+      position: relative;
+      right: auto;
+      top: auto;
+      margin: 8px auto 32px;
+    }
+  }
+
   @media (max-width: 900px) {
-    .bf26-hero {
-      flex-direction: column;
-      align-items: stretch;
-      min-height: 0;
+    /* Phones and small tablets: text on top, full art below it. */
+    .bf26-hero__in {
+      grid-area: 1 / 1;
+      padding: 40px 0 16px;
     }
 
-    .bf26-hero__in {
-      order: 0;
-      padding: 40px 0 8px;
+    .bf26-hero__art {
+      grid-area: 2 / 1;
     }
 
     .bf26-hero__txt {
       max-width: none;
-    }
-
-    .bf26-hero__art {
-      position: relative;
-      left: auto;
-      right: auto;
-      order: 2;
-      width: 100%;
-      aspect-ratio: 4 / 3;
-    }
-
-    .bf26-hero__art::before {
-      display: none;
-    }
-
-    .bf26-hero__art img {
-      object-position: 64% center;
     }
 
     .bf26-badge {
@@ -1080,10 +1078,10 @@
   <section class="bf26-hero">
     <div class="bf26-hero__art">
       <img
-        src="{{ 'bfcm-2026-hero.jpg' | asset_url }}"
-        alt="SmartMouth activated mouthwash lineup"
-        width="1852"
-        height="849"
+        src="{{ 'bfcm-2026-hero-extras.webp' | asset_url }}"
+        alt="SmartMouth Dry Mouth mints, toothpaste and Original Single Packs with the words Send extras."
+        width="2000"
+        height="853"
         fetchpriority="high"
       >
     </div>
