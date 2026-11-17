@@ -6,7 +6,7 @@
   for $10:
   - a popup, once per browser session, right after the cart changes
     (assets/bf-addon-offer.js), and
-  - a card with an "Add" button in the cart drawer, for as long as they qualify
+  - a card with an "Add" button at the top of the cart drawer, for as long as they qualify
     and the add-on is not in the cart.
 
   The price drop itself comes from the automatic "Black Friday Promotion"
@@ -16,7 +16,7 @@
 
   Rendered twice from snippets/cart-drawer.liquid:
   - part: 'setup'  -> config, popup markup and script (outside the drawer)
-  - part: 'drawer' -> the offer card in the drawer footer
+  - part: 'drawer' -> the offer card, under the drawer heading
 
   Set bf_enabled to false to turn everything off.
 {%- endcomment -%}
@@ -193,7 +193,8 @@
       grid-template-columns: 64px 1fr;
       gap: 4px 12px;
       align-items: center;
-      margin-bottom: 16px;
+      flex-shrink: 0;
+      margin-bottom: 12px;
       padding: 12px;
       border: 1.5px solid #008244;
       border-radius: 12px;
@@ -219,6 +220,16 @@
       display: block;
     }
 
+    .cart-drawer__bf-addon-eyebrow {
+      display: block;
+      margin-bottom: 2px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #008244;
+    }
+
     .cart-drawer__bf-addon-text s {
       opacity: .6;
     }
@@ -236,7 +247,8 @@
     }
 
     .cart-drawer__bf-addon-note {
-      margin: 0 0 16px;
+      flex-shrink: 0;
+      margin: 0 0 12px;
       padding: 10px 12px;
       border-radius: 10px;
       font-size: 14px;
@@ -321,6 +333,7 @@
         }}
       {%- endif -%}
       <p class="cart-drawer__bf-addon-text">
+        <span class="cart-drawer__bf-addon-eyebrow">{{ bf_eyebrow }}</span>
         <strong>{{ bf_heading }}</strong>
         <s><span class="visually-hidden">Regular price </span>{{ bf_variant.price | money }}</s>
         {{ bf_body }}
