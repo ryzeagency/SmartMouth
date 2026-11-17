@@ -17,7 +17,7 @@
         "announcement-bar-0": {
           "type": "announcement",
           "settings": {
-            "text": "🎃 Halloween Treat! Spend $50 and get a FREE SmartMouth Anti-Cavity Toothpaste (3.4oz)! Add it to your cart to claim your gift. Ends Oct 31!",
+            "text": "Black Friday / Cyber Monday: Buy any 2 rinses, add toothpaste, mints and a travel pack for $10.",
             "link": "shopify://collections/all"
           }
         }
@@ -25,7 +25,6 @@
       "block_order": [
         "announcement-bar-0"
       ],
-      "disabled": true,
       "settings": {
         "auto_rotate": false,
         "change_slides_speed": 5,
