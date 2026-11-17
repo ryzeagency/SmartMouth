@@ -9,9 +9,14 @@
  */
 {
   "sections": {
+    "bf_2026_home_hero": {
+      "type": "bf-2026-home-hero",
+      "settings": {}
+    },
     "smt_promo_hero_4NAt96": {
       "type": "smt-promo-hero",
       "name": "Promo Hero Banner",
+      "disabled": true,
       "settings": {
         "desktop_image": "shopify://shop_images/ChatGPT_Image_Nov_12_2026_12_00_15_PM.webp",
         "mobile_image": "shopify://shop_images/image_8.webp",
@@ -701,6 +706,7 @@
     }
   },
   "order": [
+    "bf_2026_home_hero",
     "smt_promo_hero_4NAt96",
     "smt_home_revamp_hero_bgbExK",
     "smt_home_revamp_logo_marquee_k3xkz8",

@@ -1,0 +1,547 @@
+{%- comment -%}
+  Black Friday 2026 homepage hero.
+  A scrolling text strip on top, the product scene, and an offer card
+  ("SAVE OVER 50% ON EXTRAS") with the mint tablet standing in for the 0.
+
+  Desktop: the card sits over the scene's open sky on the right, and every
+  size is in container units (cqw), so it scales with the section width.
+  Below 750px: the scene runs full width and the card sits above or below it.
+
+  Without uploaded images the section falls back to the theme assets
+  bf-hero-2026-scene.webp (+ -960 for phones) and bf-hero-2026-mint.webp.
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+
+  assign link = s.button_link
+  if link == blank
+    assign link = collections['rinses'].url | default: routes.all_products_collection_url
+  endif
+
+  assign marquee_text = s.marquee_text | strip
+  assign marquee_separator = s.marquee_separator | strip
+
+  case s.font
+    when 'theme'
+      assign font_stack = 'var(--font-heading-family)'
+    else
+      assign font_stack = "'Helvetica Neue', Helvetica, Arial, sans-serif"
+  endcase
+-%}
+
+<style>
+  #shopify-section-{{ section.id }} .bfh {
+    --bfh-bg: {{ s.background_color }};
+    --bfh-card-bg: {{ s.card_color }};
+    --bfh-card-text: {{ s.card_text_color }};
+    --bfh-btn-bg: {{ s.button_color }};
+    --bfh-btn-text: {{ s.button_text_color }};
+    --bfh-strip-bg: {{ s.marquee_color }};
+    --bfh-strip-text: {{ s.marquee_text_color }};
+    --bfh-scale: {{ s.text_scale | divided_by: 100.0 }};
+    --bfh-mobile-scale: {{ s.mobile_text_scale | divided_by: 100.0 }};
+    position: relative;
+    container-type: inline-size;
+    overflow: hidden;
+    font-family: {{ font_stack }};
+    background: var(--bfh-bg);
+  }
+
+  /* Scrolling strip */
+  .bfh__strip {
+    overflow: hidden;
+    color: var(--bfh-strip-text);
+    background: var(--bfh-strip-bg);
+  }
+
+  .bfh__track {
+    display: flex;
+    width: max-content;
+    animation: bfh-marquee {{ s.marquee_speed }}s linear infinite;
+  }
+
+  .bfh__group {
+    display: flex;
+    flex-shrink: 0;
+  }
+
+  .bfh__item {
+    padding: .95cqw 0;
+    font-size: max(18px, 2.4cqw);
+    line-height: 1.2;
+    font-weight: 400;
+    white-space: nowrap;
+    text-transform: uppercase;
+  }
+
+  .bfh__sep {
+    padding: 0 .55em;
+  }
+
+  @keyframes bfh-marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bfh__track {
+      animation: none;
+    }
+  }
+
+  /* Scene + card */
+  .bfh__stage {
+    position: relative;
+    display: block;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .bfh__scene {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .bfh__card {
+    position: absolute;
+    top: {{ s.card_top }}%;
+    right: 3.8%;
+    box-sizing: border-box;
+    width: 30.6%;
+    padding: 3.1cqw 1.6cqw 2.6cqw;
+    border-radius: 2.1cqw;
+    text-align: center;
+    color: var(--bfh-card-text);
+    background: var(--bfh-card-bg);
+  }
+
+  .bfh .bfh__line {
+    margin: 0;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: calc(3.1cqw * var(--bfh-scale));
+    line-height: 1;
+    letter-spacing: -.01em;
+    text-transform: uppercase;
+    color: inherit;
+  }
+
+  .bfh .bfh__big {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: -.4cqw 0 -.9cqw;
+    font-weight: 700;
+    font-size: calc(12.4cqw * var(--bfh-scale));
+    line-height: .9;
+    letter-spacing: -.04em;
+  }
+
+  .bfh__mint {
+    position: relative;
+    z-index: 0;
+    flex-shrink: 0;
+    width: .62em;
+    height: auto;
+    margin: 0 -.06em 0 .02em;
+  }
+
+  /* The % sits over the mint's edge, as in the mockup. */
+  .bfh__big span[aria-hidden] {
+    position: relative;
+    z-index: 1;
+  }
+
+  .bfh .bfh__sub {
+    margin: 1.1cqw 0 0;
+    color: inherit;
+    font-size: max(13px, calc(1.25cqw * var(--bfh-scale)));
+    line-height: 1.35;
+  }
+
+  .bfh__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 68%;
+    min-height: max(44px, calc(4.2cqw * var(--bfh-scale)));
+    margin-top: 1.7cqw;
+    padding: 0 2.4cqw;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: max(15px, calc(1.75cqw * var(--bfh-scale)));
+    letter-spacing: .01em;
+    text-transform: uppercase;
+    color: var(--bfh-btn-text);
+    background: var(--bfh-btn-bg);
+    transition: transform .15s ease;
+  }
+
+  .bfh__stage:hover .bfh__btn,
+  .bfh__stage:focus-visible .bfh__btn {
+    transform: translateY(-2px);
+  }
+
+  .bfh__stage:focus-visible {
+    outline: 3px solid var(--bfh-btn-bg);
+    outline-offset: -3px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .bfh__item {
+      padding: 2.2cqw 0;
+      font-size: 5.6cqw;
+    }
+
+    .bfh__stage {
+      display: flex;
+      flex-direction: column;
+      padding-bottom: {% if s.mobile_card_position == 'below' %}5cqw{% else %}0{% endif %};
+    }
+
+    .bfh__card {
+      position: relative;
+      top: auto;
+      right: auto;
+      order: {% if s.mobile_card_position == 'below' %}2{% else %}-1{% endif %};
+      width: auto;
+      margin: 5cqw 4.3cqw{% if s.mobile_card_position != 'below' %} 0{% endif %};
+      padding: 7cqw 5cqw 6cqw;
+      border-radius: 5.5cqw;
+    }
+
+    .bfh .bfh__line {
+      font-size: calc(8.4cqw * var(--bfh-mobile-scale));
+    }
+
+    .bfh .bfh__big {
+      margin: -1cqw 0 -2.4cqw;
+      font-size: calc(33cqw * var(--bfh-mobile-scale));
+    }
+
+    .bfh .bfh__sub {
+      margin-top: 3cqw;
+      font-size: calc(3.8cqw * var(--bfh-mobile-scale));
+    }
+
+    .bfh__btn {
+      min-height: 12cqw;
+      margin-top: 4.5cqw;
+      padding: 0 8cqw;
+      font-size: calc(4.6cqw * var(--bfh-mobile-scale));
+    }
+  }
+</style>
+
+<section class="bfh">
+  {%- if s.show_marquee and marquee_text != blank -%}
+    {%- capture marquee_group -%}
+      {%- for i in (1..8) -%}
+        <span class="bfh__item">{{ marquee_text }}<span class="bfh__sep">{{ marquee_separator }}</span></span>
+      {%- endfor -%}
+    {%- endcapture -%}
+    <div class="bfh__strip" aria-hidden="true">
+      <div class="bfh__track">
+        <div class="bfh__group">{{ marquee_group }}</div>
+        <div class="bfh__group">{{ marquee_group }}</div>
+      </div>
+    </div>
+  {%- endif -%}
+
+  <a class="bfh__stage" href="{{ link }}">
+    <picture>
+      {%- if s.mobile_image != blank -%}
+        <source
+          media="(max-width: 749px)"
+          srcset="{{ s.mobile_image | image_url: width: 750 }} 750w, {{ s.mobile_image | image_url: width: 1100 }} 1100w"
+          sizes="100vw"
+        >
+      {%- endif -%}
+      {%- if s.image != blank -%}
+        <img
+          class="bfh__scene"
+          src="{{ s.image | image_url: width: 1920 }}"
+          srcset="{{ s.image | image_url: width: 960 }} 960w, {{ s.image | image_url: width: 1440 }} 1440w, {{ s.image | image_url: width: 1920 }} 1920w, {{ s.image | image_url: width: 2560 }} 2560w"
+          sizes="100vw"
+          width="{{ s.image.width }}"
+          height="{{ s.image.height }}"
+          alt="{{ s.image.alt | default: s.image_alt | escape }}"
+          fetchpriority="high"
+        >
+      {%- else -%}
+        <img
+          class="bfh__scene"
+          src="{{ 'bf-hero-2026-scene.webp' | asset_url }}"
+          srcset="{{ 'bf-hero-2026-scene-960.webp' | asset_url }} 960w, {{ 'bf-hero-2026-scene.webp' | asset_url }} 1920w"
+          sizes="100vw"
+          width="1920"
+          height="921"
+          alt="{{ s.image_alt | escape }}"
+          fetchpriority="high"
+        >
+      {%- endif -%}
+    </picture>
+
+    <div class="bfh__card">
+      {%- if s.heading_line_1 != blank -%}
+        <p class="bfh__line">{{ s.heading_line_1 | escape }}</p>
+      {%- endif -%}
+      <p class="bfh__line bfh__big">
+        <span class="visually-hidden">{{ s.big_before | append: s.big_middle_fallback | append: s.big_after | escape }}</span>
+        {%- if s.big_before != blank -%}<span aria-hidden="true">{{ s.big_before | escape }}</span>{%- endif -%}
+        {%- if s.big_image != blank -%}
+          {{ s.big_image | image_url: width: 376 | image_tag: class: 'bfh__mint', alt: '', width: 188, loading: 'eager' }}
+        {%- elsif s.use_default_mint -%}
+          <img class="bfh__mint" src="{{ 'bf-hero-2026-mint.webp' | asset_url }}" alt="" width="188" height="192">
+        {%- else -%}
+          <span aria-hidden="true">{{ s.big_middle_fallback | escape }}</span>
+        {%- endif -%}
+        {%- if s.big_after != blank -%}<span aria-hidden="true">{{ s.big_after | escape }}</span>{%- endif -%}
+      </p>
+      {%- if s.heading_line_2 != blank -%}
+        <p class="bfh__line">{{ s.heading_line_2 | escape }}</p>
+      {%- endif -%}
+      {%- if s.subheading != blank -%}
+        <p class="bfh__sub">{{ s.subheading | escape }}</p>
+      {%- endif -%}
+      {%- if s.button_label != blank -%}
+        <span class="bfh__btn">{{ s.button_label | escape }}</span>
+      {%- endif -%}
+    </div>
+  </a>
+</section>
+
+{% schema %}
+{
+  "name": "Black Friday Hero",
+  "tag": "div",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Scrolling strip"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_marquee",
+      "label": "Show scrolling strip",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "marquee_text",
+      "label": "Text",
+      "default": "Black Friday"
+    },
+    {
+      "type": "text",
+      "id": "marquee_separator",
+      "label": "Separator",
+      "default": "•"
+    },
+    {
+      "type": "range",
+      "id": "marquee_speed",
+      "label": "Seconds per loop",
+      "info": "Higher is slower.",
+      "min": 10,
+      "max": 80,
+      "step": 2,
+      "unit": "s",
+      "default": 36
+    },
+    {
+      "type": "color",
+      "id": "marquee_color",
+      "label": "Strip color",
+      "default": "#FF7801"
+    },
+    {
+      "type": "color",
+      "id": "marquee_text_color",
+      "label": "Strip text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Scene image",
+      "info": "Leave empty to use the Send extras scene. Keep the right third clear for the card. 1920 x 921 px recommended."
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile scene image",
+      "info": "Optional. Defaults to the scene image."
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Scene image alt text",
+      "default": "SmartMouth Dry Mouth mints, toothpaste and Original Single Packs with the words Send extras."
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "info": "Match the image background.",
+      "default": "#A0D0F6"
+    },
+    {
+      "type": "header",
+      "content": "Offer card"
+    },
+    {
+      "type": "text",
+      "id": "heading_line_1",
+      "label": "Top line",
+      "default": "Save over"
+    },
+    {
+      "type": "text",
+      "id": "big_before",
+      "label": "Big text before image",
+      "default": "5"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_default_mint",
+      "label": "Use the mint tablet for the middle character",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "big_image",
+      "label": "Custom middle image",
+      "info": "Optional. Replaces the mint tablet. Transparent PNG or WebP."
+    },
+    {
+      "type": "text",
+      "id": "big_middle_fallback",
+      "label": "Middle character",
+      "info": "Shown when no image is used. Also read out by screen readers.",
+      "default": "0"
+    },
+    {
+      "type": "text",
+      "id": "big_after",
+      "label": "Big text after image",
+      "default": "%"
+    },
+    {
+      "type": "text",
+      "id": "heading_line_2",
+      "label": "Bottom line",
+      "default": "On extras"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Buy 2 rinses. Add the $21 bundle for $10."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Shop now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Link",
+      "info": "The whole banner links here. Defaults to the Rinses collection."
+    },
+    {
+      "type": "select",
+      "id": "font",
+      "label": "Font",
+      "options": [
+        { "value": "helvetica", "label": "Helvetica (mockup)" },
+        { "value": "theme", "label": "Theme heading font" }
+      ],
+      "default": "helvetica"
+    },
+    {
+      "type": "color",
+      "id": "card_color",
+      "label": "Card color",
+      "default": "#FF7801"
+    },
+    {
+      "type": "color",
+      "id": "card_text_color",
+      "label": "Card text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button color",
+      "default": "#5504A8"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "card_top",
+      "label": "Card distance from top (desktop)",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "%",
+      "default": 6
+    },
+    {
+      "type": "range",
+      "id": "text_scale",
+      "label": "Card text size (desktop)",
+      "min": 70,
+      "max": 130,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "select",
+      "id": "mobile_card_position",
+      "label": "Card position on mobile",
+      "options": [
+        { "value": "above", "label": "Above the image" },
+        { "value": "below", "label": "Below the image" }
+      ],
+      "default": "below"
+    },
+    {
+      "type": "range",
+      "id": "mobile_text_scale",
+      "label": "Card text size (mobile)",
+      "min": 70,
+      "max": 130,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    }
+  ],
+  "presets": [
+    {
+      "name": "Black Friday Hero"
+    }
+  ]
+}
+{% endschema %}
