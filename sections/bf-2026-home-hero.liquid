@@ -95,6 +95,7 @@
   .bfh__stage {
     position: relative;
     display: block;
+    padding-top: {{ s.top_space }}cqw;
     color: inherit;
     text-decoration: none;
   }
@@ -107,7 +108,7 @@
 
   .bfh__card {
     position: absolute;
-    top: {{ s.card_top }}%;
+    top: {{ s.card_top }}cqw;
     right: 3.8%;
     box-sizing: border-box;
     width: 30.6%;
@@ -131,7 +132,7 @@
 
   .bfh .bfh__big {
     display: flex;
-    align-items: center;
+    align-items: baseline;
     justify-content: center;
     margin: -.4cqw 0 -.9cqw;
     font-weight: 700;
@@ -140,13 +141,17 @@
     letter-spacing: -.04em;
   }
 
+  /*
+    Same height as the digits: Helvetica/Arial figures are about .7em tall
+    and sit on the baseline, like the image's bottom edge.
+  */
   .bfh__mint {
     position: relative;
     z-index: 0;
     flex-shrink: 0;
-    width: .62em;
-    height: auto;
-    margin: 0 -.06em 0 .02em;
+    width: auto;
+    height: .7em;
+    margin: 0 -.07em 0 .02em;
   }
 
   /* The % sits over the mint's edge, as in the mockup. */
@@ -199,6 +204,7 @@
     .bfh__stage {
       display: flex;
       flex-direction: column;
+      padding-top: 0;
       padding-bottom: {% if s.mobile_card_position == 'below' %}5cqw{% else %}0{% endif %};
     }
 
@@ -499,13 +505,25 @@
     },
     {
       "type": "range",
+      "id": "top_space",
+      "label": "Space above the image (desktop)",
+      "info": "Moves the scene down so the card doesn't cover Send extras. In % of the page width.",
+      "min": 0,
+      "max": 15,
+      "step": 0.5,
+      "unit": "%",
+      "default": 7
+    },
+    {
+      "type": "range",
       "id": "card_top",
       "label": "Card distance from top (desktop)",
+      "info": "In % of the page width.",
       "min": 0,
-      "max": 30,
-      "step": 1,
+      "max": 10,
+      "step": 0.5,
       "unit": "%",
-      "default": 6
+      "default": 3
     },
     {
       "type": "range",
