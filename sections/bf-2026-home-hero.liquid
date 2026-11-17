@@ -96,8 +96,6 @@
     position: relative;
     display: block;
     padding-top: {{ s.top_space }}cqw;
-    color: inherit;
-    text-decoration: none;
   }
 
   .bfh__scene {
@@ -180,19 +178,21 @@
     font-size: max(15px, calc(1.75cqw * var(--bfh-scale)));
     letter-spacing: .01em;
     text-transform: uppercase;
+    text-decoration: none;
     color: var(--bfh-btn-text);
     background: var(--bfh-btn-bg);
     transition: transform .15s ease;
   }
 
-  .bfh__stage:hover .bfh__btn,
-  .bfh__stage:focus-visible .bfh__btn {
+  .bfh .bfh__btn:hover,
+  .bfh .bfh__btn:focus-visible {
+    color: var(--bfh-btn-text);
     transform: translateY(-2px);
   }
 
-  .bfh__stage:focus-visible {
-    outline: 3px solid var(--bfh-btn-bg);
-    outline-offset: -3px;
+  .bfh .bfh__btn:focus-visible {
+    outline: 3px solid var(--bfh-card-text);
+    outline-offset: 3px;
   }
 
   @media screen and (max-width: 749px) {
@@ -278,7 +278,7 @@
     </div>
   {%- endif -%}
 
-  <a class="bfh__stage" href="{{ link }}">
+  <div class="bfh__stage">
     <picture>
       {%- if s.mobile_image != blank -%}
         <source
@@ -345,10 +345,10 @@
         <p class="bfh__sub">{{ s.subheading | escape }}</p>
       {%- endif -%}
       {%- if s.button_label != blank -%}
-        <span class="bfh__btn">{{ s.button_label | escape }}</span>
+        <a class="bfh__btn" href="{{ link }}">{{ s.button_label | escape }}</a>
       {%- endif -%}
     </div>
-  </a>
+  </div>
 </section>
 
 {% schema %}
@@ -493,8 +493,8 @@
     {
       "type": "url",
       "id": "button_link",
-      "label": "Link",
-      "info": "The whole banner links here. Defaults to the Rinses collection."
+      "label": "Button link",
+      "info": "Where the button goes. Defaults to the Rinses collection."
     },
     {
       "type": "select",
