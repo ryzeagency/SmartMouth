@@ -193,6 +193,8 @@
   }
 </style>
 
+{%- render 'bf-addon-offer', part: 'setup' -%}
+
 <cart-drawer class="drawer{% if cart == empty %} is-empty{% endif %}">
   <div id="CartDrawer" class="cart-drawer">
     <div id="CartDrawer-Overlay" class="cart-drawer__overlay"></div>
@@ -722,6 +724,8 @@
               assign labor_amount_to_next = labor_next_threshold | minus: labor_subtotal
             endif
           -%}
+
+          {%- render 'bf-addon-offer', part: 'drawer' -%}
 
           <div class="cart-drawer__labor-tiers" aria-live="polite" style="display:none">
             <p class="cart-drawer__labor-eyebrow">{{ labor_promo_title }}</p>
