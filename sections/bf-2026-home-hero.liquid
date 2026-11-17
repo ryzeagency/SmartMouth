@@ -201,43 +201,64 @@
       font-size: 5.6cqw;
     }
 
-    .bfh__stage {
-      display: flex;
-      flex-direction: column;
-      padding-top: 0;
-      padding-bottom: {% if s.mobile_card_position == 'below' %}5cqw{% else %}0{% endif %};
+    #shopify-section-{{ section.id }} .bfh {
+      background: {{ s.mobile_background_color }};
     }
 
+    {%- if s.mobile_card_position == 'overlay' %}
+      /* The card sits in the open sky at the top of the portrait phone image. */
+      .bfh__stage {
+        padding-top: {{ s.mobile_top_space }}cqw;
+      }
+
+      .bfh__card {
+        top: {{ s.mobile_card_top }}cqw;
+        right: 4.3cqw;
+        left: 4.3cqw;
+        width: auto;
+      }
+    {%- else %}
+      .bfh__stage {
+        display: flex;
+        flex-direction: column;
+        padding-top: 0;
+        padding-bottom: {% if s.mobile_card_position == 'below' %}5cqw{% else %}0{% endif %};
+      }
+
+      .bfh__card {
+        position: relative;
+        top: auto;
+        right: auto;
+        order: {% if s.mobile_card_position == 'below' %}2{% else %}-1{% endif %};
+        width: auto;
+        margin: 5cqw 4.3cqw{% if s.mobile_card_position != 'below' %} 0{% endif %};
+      }
+    {%- endif %}
+
     .bfh__card {
-      position: relative;
-      top: auto;
-      right: auto;
-      order: {% if s.mobile_card_position == 'below' %}2{% else %}-1{% endif %};
-      width: auto;
-      margin: 5cqw 4.3cqw{% if s.mobile_card_position != 'below' %} 0{% endif %};
-      padding: 7cqw 5cqw 6cqw;
+      padding: 5.5cqw 5cqw 5cqw;
       border-radius: 5.5cqw;
     }
 
     .bfh .bfh__line {
-      font-size: calc(8.4cqw * var(--bfh-mobile-scale));
+      font-size: calc(7.4cqw * var(--bfh-mobile-scale));
     }
 
     .bfh .bfh__big {
-      margin: -1cqw 0 -2.4cqw;
-      font-size: calc(33cqw * var(--bfh-mobile-scale));
+      margin: -.8cqw 0 -2cqw;
+      font-size: calc(28cqw * var(--bfh-mobile-scale));
     }
 
     .bfh .bfh__sub {
-      margin-top: 3cqw;
-      font-size: calc(3.8cqw * var(--bfh-mobile-scale));
+      margin-top: 2.6cqw;
+      font-size: calc(3.6cqw * var(--bfh-mobile-scale));
     }
 
     .bfh__btn {
-      min-height: 12cqw;
-      margin-top: 4.5cqw;
+      min-height: 10.5cqw;
+      margin-top: 3.4cqw;
       padding: 0 8cqw;
-      font-size: calc(4.6cqw * var(--bfh-mobile-scale));
+      font-size: calc(4.2cqw * var(--bfh-mobile-scale));
     }
   }
 </style>
@@ -264,6 +285,16 @@
           media="(max-width: 749px)"
           srcset="{{ s.mobile_image | image_url: width: 750 }} 750w, {{ s.mobile_image | image_url: width: 1100 }} 1100w"
           sizes="100vw"
+          width="{{ s.mobile_image.width }}"
+          height="{{ s.mobile_image.height }}"
+        >
+      {%- elsif s.image == blank -%}
+        <source
+          media="(max-width: 749px)"
+          srcset="{{ 'bf-hero-2026-scene-mobile-750.webp' | asset_url }} 750w, {{ 'bf-hero-2026-scene-mobile.webp' | asset_url }} 1086w"
+          sizes="100vw"
+          width="1086"
+          height="1631"
         >
       {%- endif -%}
       {%- if s.image != blank -%}
@@ -299,9 +330,9 @@
         <span class="visually-hidden">{{ s.big_before | append: s.big_middle_fallback | append: s.big_after | escape }}</span>
         {%- if s.big_before != blank -%}<span aria-hidden="true">{{ s.big_before | escape }}</span>{%- endif -%}
         {%- if s.big_image != blank -%}
-          {{ s.big_image | image_url: width: 376 | image_tag: class: 'bfh__mint', alt: '', width: 188, loading: 'eager' }}
+          {{ s.big_image | image_url: width: 376 | image_tag: class: 'bfh__mint', alt: '', loading: 'eager' }}
         {%- elsif s.use_default_mint -%}
-          <img class="bfh__mint" src="{{ 'bf-hero-2026-mint.webp' | asset_url }}" alt="" width="188" height="192">
+          <img class="bfh__mint" src="{{ 'bf-hero-2026-mint.webp' | asset_url }}" alt="" width="153" height="184">
         {%- else -%}
           <span aria-hidden="true">{{ s.big_middle_fallback | escape }}</span>
         {%- endif -%}
@@ -385,7 +416,7 @@
       "type": "image_picker",
       "id": "mobile_image",
       "label": "Mobile scene image",
-      "info": "Optional. Defaults to the scene image."
+      "info": "Optional. Leave empty to use the tall Send extras phone image (or the scene image if you uploaded one). 1086 x 1631 px recommended."
     },
     {
       "type": "text",
@@ -539,11 +570,41 @@
       "type": "select",
       "id": "mobile_card_position",
       "label": "Card position on mobile",
+      "info": "'On the image' needs a tall phone image with open sky at the top, like the default one.",
       "options": [
+        { "value": "overlay", "label": "On the image, at the top" },
         { "value": "above", "label": "Above the image" },
         { "value": "below", "label": "Below the image" }
       ],
-      "default": "below"
+      "default": "overlay"
+    },
+    {
+      "type": "range",
+      "id": "mobile_card_top",
+      "label": "Card distance from top (mobile)",
+      "info": "When the card is on the image. In % of the screen width.",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "%",
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "mobile_top_space",
+      "label": "Space above the image (mobile)",
+      "info": "When the card is on the image. Raise it if the card covers the products.",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "%",
+      "default": 7
+    },
+    {
+      "type": "color",
+      "id": "mobile_background_color",
+      "label": "Background color (mobile)",
+      "default": "#9BD1FC"
     },
     {
       "type": "range",
