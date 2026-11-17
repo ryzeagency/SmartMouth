@@ -18,7 +18,7 @@
           "type": "announcement",
           "settings": {
             "text": "Black Friday / Cyber Monday: Buy any 2 rinses, add toothpaste, mints and a travel pack for $10.",
-            "link": "shopify://collections/all"
+            "link": "shopify://collections/rinses"
           }
         }
       },
