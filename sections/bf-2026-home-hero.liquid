@@ -22,15 +22,22 @@
   assign marquee_text = s.marquee_text | strip
   assign marquee_separator = s.marquee_separator | strip
 
+  # Poppins comes from the theme's heading font (Theme settings > Typography).
+  assign hero_font = settings.type_header_font
   case s.font
-    when 'theme'
-      assign font_stack = 'var(--font-heading-family)'
-    else
+    when 'helvetica'
       assign font_stack = "'Helvetica Neue', Helvetica, Arial, sans-serif"
+    else
+      assign font_stack = hero_font.family | append: ', ' | append: hero_font.fallback_families
   endcase
 -%}
 
 <style>
+  {%- if s.font != 'helvetica' -%}
+    {{ hero_font | font_modify: 'weight', '400' | font_face: font_display: 'swap' }}
+    {{ hero_font | font_modify: 'weight', '700' | font_face: font_display: 'swap' }}
+  {%- endif -%}
+
   #shopify-section-{{ section.id }} .bfh {
     --bfh-bg: {{ s.background_color }};
     --bfh-card-bg: {{ s.card_color }};
@@ -501,10 +508,10 @@
       "id": "font",
       "label": "Font",
       "options": [
-        { "value": "helvetica", "label": "Helvetica (mockup)" },
-        { "value": "theme", "label": "Theme heading font" }
+        { "value": "poppins", "label": "Poppins (theme heading font)" },
+        { "value": "helvetica", "label": "Helvetica" }
       ],
-      "default": "helvetica"
+      "default": "poppins"
     },
     {
       "type": "color",
