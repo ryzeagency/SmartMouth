@@ -49,6 +49,8 @@
     --bfh-strip-text: {{ s.marquee_text_color }};
     --bfh-scale: {{ s.text_scale | divided_by: 100.0 }};
     --bfh-mobile-scale: {{ s.mobile_text_scale | divided_by: 100.0 }};
+    /* Desktop card contents scale with the card width (30.6% is the original layout). */
+    --bfh-card-k: {{ s.card_width | default: 30.5 | divided_by: 30.6 }};
     position: relative;
     container-type: inline-size;
     overflow: hidden;
@@ -115,11 +117,11 @@
   .bfh__card {
     position: absolute;
     top: {{ s.card_top }}cqw;
-    right: 3.8%;
+    right: {{ s.card_right | default: 3.8 }}%;
     box-sizing: border-box;
-    width: 30.6%;
-    padding: 3.1cqw 1.6cqw 2.6cqw;
-    border-radius: 2.1cqw;
+    width: {{ s.card_width | default: 30.5 }}%;
+    padding: calc(3.1cqw * var(--bfh-card-k)) calc(1.6cqw * var(--bfh-card-k)) calc(2.6cqw * var(--bfh-card-k));
+    border-radius: calc(2.1cqw * var(--bfh-card-k));
     text-align: center;
     color: var(--bfh-card-text);
     background: var(--bfh-card-bg);
@@ -129,7 +131,7 @@
     margin: 0;
     font-family: inherit;
     font-weight: 700;
-    font-size: calc(3.1cqw * var(--bfh-scale));
+    font-size: calc(3.1cqw * var(--bfh-scale) * var(--bfh-card-k));
     line-height: 1;
     letter-spacing: -.01em;
     text-transform: uppercase;
@@ -140,9 +142,9 @@
     display: flex;
     align-items: baseline;
     justify-content: center;
-    margin: -.4cqw 0 -.9cqw;
+    margin: calc(-.4cqw * var(--bfh-card-k)) 0 calc(-.9cqw * var(--bfh-card-k));
     font-weight: 700;
-    font-size: calc(12.4cqw * var(--bfh-scale));
+    font-size: calc(12.4cqw * var(--bfh-scale) * var(--bfh-card-k));
     line-height: .9;
     letter-spacing: -.04em;
   }
@@ -167,9 +169,9 @@
   }
 
   .bfh .bfh__sub {
-    margin: 1.1cqw 0 0;
+    margin: calc(1.1cqw * var(--bfh-card-k)) 0 0;
     color: inherit;
-    font-size: max(13px, calc(1.25cqw * var(--bfh-scale)));
+    font-size: max(13px, calc(1.25cqw * var(--bfh-scale) * var(--bfh-card-k)));
     line-height: 1.35;
   }
 
@@ -178,12 +180,12 @@
     align-items: center;
     justify-content: center;
     min-width: 68%;
-    min-height: max(44px, calc(4.2cqw * var(--bfh-scale)));
-    margin-top: 1.7cqw;
-    padding: 0 2.4cqw;
+    min-height: max(44px, calc(4.2cqw * var(--bfh-scale) * var(--bfh-card-k)));
+    margin-top: calc(1.7cqw * var(--bfh-card-k));
+    padding: 0 calc(2.4cqw * var(--bfh-card-k));
     border-radius: 999px;
     font-weight: 700;
-    font-size: max(15px, calc(1.75cqw * var(--bfh-scale)));
+    font-size: max(15px, calc(1.75cqw * var(--bfh-scale) * var(--bfh-card-k)));
     letter-spacing: .01em;
     text-transform: uppercase;
     text-decoration: none;
@@ -296,7 +298,7 @@
           width="{{ s.mobile_image.width }}"
           height="{{ s.mobile_image.height }}"
         >
-      {%- elsif s.image == blank -%}
+      {%- else -%}
         <source
           media="(max-width: 749px)"
           srcset="{{ 'bf-hero-2026-scene-mobile-750.webp' | asset_url }} 750w, {{ 'bf-hero-2026-scene-mobile.webp' | asset_url }} 1086w"
@@ -418,13 +420,13 @@
       "type": "image_picker",
       "id": "image",
       "label": "Scene image",
-      "info": "Leave empty to use the Send extras scene. Keep the right third clear for the card. 1920 x 921 px recommended."
+      "info": "Desktop only. Leave empty to use the Send extras scene. Keep the right side clear for the card, then adjust Card width and Card distance from right so it doesn't cover the image text."
     },
     {
       "type": "image_picker",
       "id": "mobile_image",
       "label": "Mobile scene image",
-      "info": "Optional. Leave empty to use the tall Send extras phone image (or the scene image if you uploaded one). 1086 x 1631 px recommended."
+      "info": "Optional. Leave empty to use the tall Send extras phone image. The desktop scene image is never shown on phones. 1086 x 1631 px recommended."
     },
     {
       "type": "text",
@@ -563,6 +565,27 @@
       "step": 0.5,
       "unit": "%",
       "default": 3
+    },
+    {
+      "type": "range",
+      "id": "card_width",
+      "label": "Card width (desktop)",
+      "info": "The card's text scales with it. Narrow it if the card covers text in the image.",
+      "min": 15,
+      "max": 35,
+      "step": 0.5,
+      "unit": "%",
+      "default": 30.5
+    },
+    {
+      "type": "range",
+      "id": "card_right",
+      "label": "Card distance from right (desktop)",
+      "min": 0,
+      "max": 10,
+      "step": 0.5,
+      "unit": "%",
+      "default": 4
     },
     {
       "type": "range",
