@@ -50,7 +50,7 @@
     --bfh-scale: {{ s.text_scale | divided_by: 100.0 }};
     --bfh-mobile-scale: {{ s.mobile_text_scale | divided_by: 100.0 }};
     /* Desktop card contents scale with the card width (30.6% is the original layout). */
-    --bfh-card-k: {{ s.card_width | default: 30.5 | divided_by: 30.6 }};
+    --bfh-card-k: {{ s.card_width | default: 19 | divided_by: 30.6 }};
     position: relative;
     container-type: inline-size;
     overflow: hidden;
@@ -117,9 +117,9 @@
   .bfh__card {
     position: absolute;
     top: {{ s.card_top }}cqw;
-    right: {{ s.card_right | default: 3.8 }}%;
+    right: {{ s.card_right | default: 2.5 }}%;
     box-sizing: border-box;
-    width: {{ s.card_width | default: 30.5 }}%;
+    width: {{ s.card_width | default: 19 }}%;
     padding: calc(3.1cqw * var(--bfh-card-k)) calc(1.6cqw * var(--bfh-card-k)) calc(2.6cqw * var(--bfh-card-k));
     border-radius: calc(2.1cqw * var(--bfh-card-k));
     text-align: center;
@@ -575,7 +575,7 @@
       "max": 35,
       "step": 0.5,
       "unit": "%",
-      "default": 30.5
+      "default": 19
     },
     {
       "type": "range",
@@ -585,7 +585,7 @@
       "max": 10,
       "step": 0.5,
       "unit": "%",
-      "default": 4
+      "default": 2.5
     },
     {
       "type": "range",
