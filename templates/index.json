@@ -11,12 +11,44 @@
   "sections": {
     "bf_2026_home_hero": {
       "type": "bf-2026-home-hero",
-      "settings": {}
+      "settings": {
+        "show_marquee": true,
+        "marquee_text": "Black Friday",
+        "marquee_separator": "•",
+        "marquee_speed": 36,
+        "marquee_color": "#ff7801",
+        "marquee_text_color": "#ffffff",
+        "image": "shopify://shop_images/BANNER_SMT_1.png",
+        "image_alt": "SmartMouth Dry Mouth mints, toothpaste and Original Single Packs with the words Send extras.",
+        "background_color": "#a0d0f6",
+        "heading_line_1": "Save over",
+        "big_before": "5",
+        "use_default_mint": true,
+        "big_middle_fallback": "0",
+        "big_after": "%",
+        "heading_line_2": "On extras",
+        "subheading": "Buy 2 rinses. Add the $21 bundle for $10.",
+        "button_label": "Shop now",
+        "button_link": "",
+        "font": "poppins",
+        "card_color": "#ff7801",
+        "card_text_color": "#ffffff",
+        "button_color": "#5504a8",
+        "button_text_color": "#ffffff",
+        "top_space": 7,
+        "card_top": 3,
+        "text_scale": 100,
+        "mobile_card_position": "overlay",
+        "mobile_card_top": 5,
+        "mobile_top_space": 7,
+        "mobile_background_color": "#9bd1fc",
+        "mobile_text_scale": 100
+      }
     },
     "smt_promo_hero_4NAt96": {
       "type": "smt-promo-hero",
-      "name": "Promo Hero Banner",
       "disabled": true,
+      "name": "Promo Hero Banner",
       "settings": {
         "desktop_image": "shopify://shop_images/ChatGPT_Image_Nov_12_2026_12_00_15_PM.webp",
         "mobile_image": "shopify://shop_images/image_8.webp",
