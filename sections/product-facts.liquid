@@ -24,7 +24,7 @@
   if agent_mfs.product_form.value != blank or agent_mfs.intended_use.value != blank or agent_mfs.claims.value != blank
     assign has_agent = true
   endif
--%}
+-%} {%- if nv.faqs_v2 != blank -%}{%- assign faq_list = nv.faqs_v2 -%}{%- endif -%}
 {%- comment -%} FAQPage JSON-LD from agent.faqs (list of {question, answer}) {%- endcomment -%}
 {%- if faq_list != blank -%}
 <script type="application/ld+json">
@@ -34,12 +34,12 @@
 {%- endfor -%}
 ]}
 </script>
-{%- endif -%}
+{%- endif -%} {%- if nv.faqs_v2 != blank -%}<section class="smt-faq"><h2 class="smt-faq__heading">FAQs</h2>{%- for f in nv.faqs_v2 -%}<details class="smt-faq__item"><summary class="smt-faq__q">{{ f.question | escape }}</summary><p class="smt-faq__a">{{ f.answer | escape }}</p></details>{%- endfor -%}</section>{%- endif -%}
 {%- if facts != blank or has_agent -%}
 {%- style -%}
   #shopify-section-{{ section.id }} .pf { background: {{ section.settings.background_color }}; color: {{ section.settings.text_color }}; padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px; }
   #shopify-section-{{ section.id }} .pf__inner { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
-  #shopify-section-{{ section.id }} .pf__eyebrow { font-size: 1.2rem; letter-spacing: .12em; text-transform: uppercase; opacity: .7; margin: 0 0 .6rem; }
+  #shopify-section-{{ section.id }} .smt-faq { max-width: 1200px; margin: 0 auto; padding: 4rem 1.5rem 2rem; } #shopify-section-{{ section.id }} .smt-faq__heading { font-size: 2.8rem; line-height: 1.15; margin: 0 0 1.6rem; } #shopify-section-{{ section.id }} .smt-faq__item { border-top: 1px solid rgba(0,0,0,.15); padding: 1.6rem 0; } #shopify-section-{{ section.id }} .smt-faq__q { cursor: pointer; font-size: 1.8rem; font-weight: 600; line-height: 1.4; } #shopify-section-{{ section.id }} .smt-faq__a { font-size: 1.5rem; line-height: 1.8; margin: .8rem 0 0; } #shopify-section-{{ section.id }} .pf__eyebrow { font-size: 1.2rem; letter-spacing: .12em; text-transform: uppercase; opacity: .7; margin: 0 0 .6rem; }
   #shopify-section-{{ section.id }} .pf__heading { font-size: 2.8rem; line-height: 1.15; margin: 0 0 .6rem; }
   #shopify-section-{{ section.id }} .pf__intro { font-size: 1.5rem; max-width: 60ch; margin: 0 0 2rem; opacity: .85; }
   #shopify-section-{{ section.id }} .pf__table { width: 100%; border-collapse: collapse; font-size: 1.5rem; }
