@@ -36,6 +36,7 @@
   {%- if s.font != 'helvetica' -%}
     {{ hero_font | font_modify: 'weight', '400' | font_face: font_display: 'swap' }}
     {{ hero_font | font_modify: 'weight', '700' | font_face: font_display: 'swap' }}
+    {{ hero_font | font_modify: 'weight', '800' | font_face: font_display: 'swap' }}
   {%- endif -%}
 
   #shopify-section-{{ section.id }} .bfh {
@@ -77,7 +78,7 @@
     padding: .95cqw 0;
     font-size: max(18px, 2.4cqw);
     line-height: 1.2;
-    font-weight: 400;
+    font-weight: 800;
     white-space: nowrap;
     text-transform: uppercase;
   }
