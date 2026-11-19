@@ -177,6 +177,9 @@
       ],
       "settings": {
         "enable_sticky_info": true,
+        "benefits_hidden_products": [
+          "smartmouthtm-anti-cavity-zinc-toothpaste-34oz"
+        ],
         "color_scheme": "",
         "media_size": "medium",
         "constrain_to_viewport": true,
@@ -722,6 +725,7 @@
         "eyebrow": "PRODUCT FACTS",
         "heading": "The facts, in one place",
         "intro": "What is in it, what it does, how long it lasts and the evidence behind it.",
+        "intro_by_product": "smartmouthtm-anti-cavity-zinc-toothpaste-34oz | What is in it, what it does and how to use it.",
         "background_color": "#ffffff",
         "text_color": "#092847",
         "rule_color": "#dceff1",

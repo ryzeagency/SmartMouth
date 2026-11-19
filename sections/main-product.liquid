@@ -380,6 +380,17 @@
                 </div>
               {%- when 'benefit_item' -%}
                 {%- liquid
+                  # The benefit icons are about rinsing, so they can be hidden on products like toothpaste.
+                  assign benefits_hidden = false
+                  for hidden_product in section.settings.benefits_hidden_products
+                    if hidden_product.id == product.id
+                      assign benefits_hidden = true
+                      break
+                    endif
+                  endfor
+                -%}
+                {%- unless benefits_hidden -%}
+                {%- liquid
                   assign prev_i = forloop.index0 | minus: 1
                   assign next_i = forloop.index0 | plus: 1
 
@@ -420,7 +431,8 @@
                 </div>
                 {%- if close_row -%}
                   </div>
-                {%- endif -%}  
+                {%- endif -%}
+                {%- endunless -%}
               {%- when 'retailer_availability' -%}
                 {%- liquid
                   assign retailer_background = 'transparent'
@@ -2892,6 +2904,13 @@
       "id": "enable_sticky_info",
       "default": true,
       "label": "t:sections.main-product.settings.enable_sticky_info.label"
+    },
+    {
+      "type": "product_list",
+      "id": "benefits_hidden_products",
+      "label": "Hide benefit icons on these products",
+      "info": "The Benefit item row (2 rinses a day, 24-hour protection) is not shown on these products.",
+      "limit": 50
     },
     {
       "type": "color_scheme",

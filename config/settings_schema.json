@@ -1451,5 +1451,89 @@
         "default": "scheme-1"
       }
     ]
+  },
+  {
+    "name": "Product schema (Google)",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Shipping and return details added to every product's structured data for Google. Keep them in step with the Shipping and Refund policies."
+      },
+      {
+        "type": "header",
+        "content": "Shipping"
+      },
+      {
+        "type": "checkbox",
+        "id": "schema_ship_contiguous_us",
+        "label": "Ship to the 48 contiguous states only",
+        "info": "Off: all of the United States.",
+        "default": true
+      },
+      {
+        "type": "number",
+        "id": "schema_free_shipping_threshold",
+        "label": "Free shipping from (USD)",
+        "info": "Products at or above this price show free shipping. 0 turns it off.",
+        "default": 50
+      },
+      {
+        "type": "text",
+        "id": "schema_standard_shipping_rate",
+        "label": "Standard shipping rate below that (USD)",
+        "info": "Optional, e.g. 7.95. Leave empty if the carrier rate varies; Google then shows no shipping cost for those products."
+      },
+      {
+        "type": "number",
+        "id": "schema_handling_days_min",
+        "label": "Handling days, min",
+        "default": 0
+      },
+      {
+        "type": "number",
+        "id": "schema_handling_days_max",
+        "label": "Handling days, max",
+        "default": 1
+      },
+      {
+        "type": "number",
+        "id": "schema_transit_days_min",
+        "label": "Transit business days, min",
+        "default": 5
+      },
+      {
+        "type": "number",
+        "id": "schema_transit_days_max",
+        "label": "Transit business days, max",
+        "default": 7
+      },
+      {
+        "type": "header",
+        "content": "Returns"
+      },
+      {
+        "type": "number",
+        "id": "schema_return_days",
+        "label": "Return window (days)",
+        "info": "0 means returns are not accepted.",
+        "default": 15
+      },
+      {
+        "type": "select",
+        "id": "schema_return_fees",
+        "label": "Return shipping",
+        "options": [
+          {
+            "value": "customer",
+            "label": "Paid by the customer"
+          },
+          {
+            "value": "free",
+            "label": "Free"
+          }
+        ],
+        "default": "customer"
+      }
+    ]
   }
 ]

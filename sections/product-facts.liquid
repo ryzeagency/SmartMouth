@@ -55,7 +55,26 @@
   <div class="pf__inner">
     {%- if section.settings.eyebrow != blank -%}<p class="pf__eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
     {%- if section.settings.heading != blank -%}<h2 class="pf__heading">{{ section.settings.heading | escape }}</h2>{%- endif -%}
-    {%- if section.settings.intro != blank -%}<p class="pf__intro">{{ section.settings.intro | escape }}</p>{%- endif -%}
+    {%- liquid
+      # Subheading per product. First match wins: product metafield custom.product_facts_intro,
+      # novi_pdp "facts_intro", a "handle | text" line in the section's per-product setting,
+      # then the shared Intro.
+      assign pf_intro = product.metafields.custom.product_facts_intro.value | default: nv.facts_intro
+      if pf_intro == blank and section.settings.intro_by_product != blank
+        assign pf_intro_lines = section.settings.intro_by_product | newline_to_br | split: '<br />'
+        for pf_line in pf_intro_lines
+          assign pf_line_handle = pf_line | split: '|' | first | strip
+          if pf_line_handle == product.handle and pf_line contains '|'
+            assign pf_intro = pf_line | remove_first: pf_line_handle | remove_first: '|' | strip
+            break
+          endif
+        endfor
+      endif
+      if pf_intro == blank
+        assign pf_intro = section.settings.intro
+      endif
+    -%}
+    {%- if pf_intro != blank -%}<p class="pf__intro">{{ pf_intro | escape }}</p>{%- endif -%}
     {%- if nv.hero != blank -%}<p class="pf__hero">{{ nv.hero | escape }}</p>{%- endif -%}
     {%- if nv.description != blank -%}<details class="pf__overview"><summary>Product Overview</summary><p>{{ nv.description | escape }}</p></details>{%- endif -%}
     <table class="pf__table">
@@ -116,7 +135,8 @@
   "settings": [
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "PRODUCT FACTS" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "The facts, in one place" },
-    { "type": "text", "id": "intro", "label": "Intro", "default": "What is in it, what it does, how long it lasts and the evidence behind it." },
+    { "type": "text", "id": "intro", "label": "Intro", "info": "Shared subheading. Products listed below, or with the product_facts_intro metafield, show their own.", "default": "What is in it, what it does, how long it lasts and the evidence behind it." },
+    { "type": "textarea", "id": "intro_by_product", "label": "Intro per product", "info": "One product per line: product-handle | Subheading text" },
     { "type": "color", "id": "background_color", "label": "Background", "default": "#ffffff" },
     { "type": "color", "id": "text_color", "label": "Text", "default": "#092847" },
     { "type": "color", "id": "rule_color", "label": "Row rule", "default": "#dceff1" },

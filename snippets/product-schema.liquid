@@ -144,7 +144,65 @@
     endcapture
     assign usage_text = usage_text | strip_html | strip
   endif
+
+  # Size: novi_pdp "product_size", a "Size" variant option, else the "(16oz)" part of the title.
+  # (Not nv.size: on a JSON value that is the number of keys.)
+  assign schema_size = nv.product_size
+  if schema_size == blank
+    for option in product.options_with_values
+      assign option_name = option.name | downcase
+      if option_name == 'size'
+        assign schema_size = current_variant.options[forloop.index0]
+        break
+      endif
+    endfor
+  endif
+  if schema_size == blank and product.title contains '('
+    assign schema_size = product.title | split: '(' | last | split: ')' | first | strip
+  endif
+
+  # Certifications: novi_pdp "certifications" (objects with name, issued_by, id, url, or plain names),
+  # else the list metafield custom.certifications with lines like "Name | Issuer".
+  assign schema_certs = nv.certifications
+  if schema_certs == blank
+    assign schema_certs = product.metafields.custom.certifications.value
+  endif
+
+  # Shipping and returns come from Theme settings > Product schema (Google).
+  assign ship_threshold_cents = settings.schema_free_shipping_threshold | default: 0 | times: 100
+  assign ship_rate = settings.schema_standard_shipping_rate | strip | remove: '$'
+  assign return_days = settings.schema_return_days | default: 0
 -%}
+{%- capture schema_shipping_rest -%}
+  "shippingDestination": {
+    "@type": "DefinedRegion",
+    "addressCountry": "US"
+    {%- if settings.schema_ship_contiguous_us -%}
+      ,"addressRegion": ["AL","AZ","AR","CA","CO","CT","DE","DC","FL","GA","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY"]
+    {%- endif -%}
+  },
+  "deliveryTime": {
+    "@type": "ShippingDeliveryTime",
+    "handlingTime": {"@type": "QuantitativeValue", "minValue": {{ settings.schema_handling_days_min | default: 0 }}, "maxValue": {{ settings.schema_handling_days_max | default: 1 }}, "unitCode": "DAY"},
+    "transitTime": {"@type": "QuantitativeValue", "minValue": {{ settings.schema_transit_days_min | default: 5 }}, "maxValue": {{ settings.schema_transit_days_max | default: 7 }}, "unitCode": "DAY"}
+  }
+{%- endcapture -%}
+{%- capture schema_return_policy -%}
+  {
+    "@type": "MerchantReturnPolicy",
+    "applicableCountry": "US",
+    {%- if return_days > 0 -%}
+      "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+      "merchantReturnDays": {{ return_days }},
+      "returnMethod": "https://schema.org/ReturnByMail",
+      "returnFees": "{% if settings.schema_return_fees == 'free' %}https://schema.org/FreeReturn{% else %}https://schema.org/ReturnFeesCustomerResponsibility{% endif %}",
+      "itemCondition": "https://schema.org/NewCondition",
+      "refundType": "https://schema.org/FullRefund"
+    {%- else -%}
+      "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
+    {%- endif -%}
+  }
+{%- endcapture -%}
 <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -162,6 +220,36 @@
     }
     {%- if product.type != blank -%}
       ,"category": {% if nv.category != blank %}{{ nv.category | json }}{% else %}{{ product.type | json }}{% endif %}
+    {%- endif -%}
+    {%- if schema_size != blank -%}
+      ,"size": {{ schema_size | json }}
+    {%- endif -%}
+    {%- if schema_certs != blank -%}
+      ,"hasCertification": [
+        {%- for cert in schema_certs -%}
+          {%- liquid
+            if cert.name != blank
+              assign cert_name = cert.name
+              assign cert_issuer = cert.issued_by | default: cert.issuedBy
+              assign cert_id = cert.id | default: cert.identifier
+              assign cert_url = cert.url
+            else
+              assign cert_name = cert | split: '|' | first | strip
+              assign cert_issuer = blank
+              if cert contains '|'
+                assign cert_issuer = cert | split: '|' | last | strip
+              endif
+              assign cert_id = blank
+              assign cert_url = blank
+            endif
+          -%}
+          {"@type": "Certification", "name": {{ cert_name | json }}
+            {%- if cert_issuer != blank -%}, "issuedBy": {"@type": "Organization", "name": {{ cert_issuer | json }}}{%- endif -%}
+            {%- if cert_id != blank -%}, "certificationIdentification": {{ cert_id | json }}{%- endif -%}
+            {%- if cert_url != blank -%}, "url": {{ cert_url | json }}{%- endif -%}
+          }{%- unless forloop.last -%},{%- endunless -%}
+        {%- endfor -%}
+      ]
     {%- endif -%}
     {%- if current_variant.sku != blank -%}
       ,"sku": {{ current_variant.sku | json }}
@@ -229,7 +317,17 @@
           {%- if nv != blank -%}"priceSpecification": {"@type": "UnitPriceSpecification", "price": {{ variant.price | divided_by: 100.0 | json }}, "priceCurrency": {{ cart.currency.iso_code | json }}},{%- endif -%}
           "seller": {
             "@id": {{ org_id | json }}
-          }
+          },
+          "shippingDetails": {
+            "@type": "OfferShippingDetails",
+            {%- if ship_threshold_cents > 0 and variant.price >= ship_threshold_cents -%}
+              "shippingRate": {"@type": "MonetaryAmount", "value": 0, "currency": "USD"},
+            {%- elsif ship_rate != blank -%}
+              "shippingRate": {"@type": "MonetaryAmount", "value": {{ ship_rate | plus: 0 | json }}, "currency": "USD"},
+            {%- endif -%}
+            {{ schema_shipping_rest }}
+          },
+          "hasMerchantReturnPolicy": {{ schema_return_policy }}
           {%- if variant.sku != blank -%}
             ,"sku": {{ variant.sku | json }}
           {%- endif -%}
