@@ -96,20 +96,6 @@
     endif
   endif
 
-  assign alcohol_free_value = blank
-  if product.metafields.custom.alcohol_free.value == true or product.metafields.custom.alcohol_free.value == false
-    if product.metafields.custom.alcohol_free.value
-      assign alcohol_free_value = 'True'
-    else
-      assign alcohol_free_value = 'False'
-    endif
-  else
-    assign ingredients_down = ingredients_text | downcase
-    assign tags_down = product.tags | join: ' ' | downcase
-    if ingredients_down contains 'no alcohol' or ingredients_down contains 'alcohol-free' or ingredients_down contains 'alcohol free' or ingredients_down contains 'zero alcohol' or ingredients_down contains '100% alcohol free' or tags_down contains 'alcohol-free' or tags_down contains 'alcohol free'
-      assign alcohol_free_value = 'True'
-    endif
-  endif
 
   assign product_format = product.metafields.custom.format.value | default: product.metafields.custom.product_format.value | strip
   if product_format == blank
@@ -252,7 +238,7 @@
     ]
     {%- liquid
       assign has_additional_property = false
-      if active_ingredients != blank or inactive_ingredients != blank or alcohol_free_value != blank or product_format != blank or usage_text != blank
+      if active_ingredients != blank or inactive_ingredients != blank or product_format != blank or usage_text != blank
         assign has_additional_property = true
       endif
     -%}
@@ -282,15 +268,6 @@
             "value": {{ inactive_ingredients | json }}
           }
         {%- endif -%}
-        {%- if alcohol_free_value != blank -%}
-          {%- unless prop_first -%},{%- endunless -%}
-          {%- assign prop_first = false -%}
-          {
-            "@type": "PropertyValue",
-            "name": "Alcohol-free",
-            "value": {{ alcohol_free_value | json }}
-          }
-        {%- endif -%}
         {%- if product_format != blank -%}
           {%- unless prop_first -%},{%- endunless -%}
           {%- assign prop_first = false -%}
@@ -318,12 +295,12 @@
           elsif product.metafields.custom.bad_breath_prevention.value != blank
             assign pf = product.metafields.custom.bad_breath_prevention.value
           endif
-          assign pf_keys = 'intended_use|Intended use,product_form|Product form,mechanism|Mechanism,odor_control_mechanism|Mechanism,moisturizing_mechanism|Mechanism,duration|Effect duration,odor_control_duration|Effect duration,relief_duration|Effect duration,evidence_strength|Evidence strength,clinical_evidence_strength|Evidence strength,hasCertification|Certification,has_certification|Certification,alcohol_status|Alcohol,alcohol_content|Alcohol,sugar_status|Sugar,sugarContent|Sugar,sugar_content|Sugar,fluoride_status|Fluoride,audience|Audience,flavor_profile|Flavor,application_frequency|Application frequency' | split: ','
+          assign pf_keys = 'intended_use|Intended use,product_form|Product form,mechanism|Mechanism,odor_control_mechanism|Mechanism,moisturizing_mechanism|Mechanism,duration|Effect duration,odor_control_duration|Effect duration,relief_duration|Effect duration,evidence_strength|Evidence strength,clinical_evidence_strength|Evidence strength,hasCertification|Certification,has_certification|Certification,sugar_status|Sugar,sugarContent|Sugar,sugar_content|Sugar,fluoride_status|Fluoride,audience|Audience,flavor_profile|Flavor,application_frequency|Application frequency' | split: ','
         -%}
         {%- if pf == blank -%}
           {%- liquid
             assign ag = product.metafields.agent
-            assign ag_keys = 'intended_use|Intended use,product_form|Product form,alcohol_status|Alcohol,fluoride_status|Fluoride,flavor_profile|Flavor,application_frequency|Application frequency,claims|Formula facts,key_benefits|Key benefits,use_case_callout|Best for' | split: ','
+            assign ag_keys = 'intended_use|Intended use,product_form|Product form,fluoride_status|Fluoride,flavor_profile|Flavor,application_frequency|Application frequency,claims|Formula facts,key_benefits|Key benefits,use_case_callout|Best for' | split: ','
           -%}
           {%- for pair in ag_keys -%}
             {%- assign kk = pair | split: '|' | first -%}
