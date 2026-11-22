@@ -23,14 +23,14 @@
       "settings": {
         "eyebrow": "SMART-ZINC™ TECHNOLOGY",
         "heading": "How SmartMouth™ Works",
-        "body": "<p>SmartMouth™’s patented formula combines a sulfur eliminating solution with a zinc ion activating solution — kept separate until you pour. The result: bad breath eliminated instantly and prevented for 24 hours with just two rinses a day.</p>",
+        "body": "<p>SmartMouth™’s patented formula combines a sulfur eliminating solution with a zinc ion activating solution — kept separate until you pour. The result: bad breath eliminated instantly and prevented for 24 hours with just two rinses a day.<\/p>",
         "card_position": "right",
         "card_width": 42,
         "padding_top": 14,
         "padding_bottom": 10,
-        "background_video": "shopify://files/videos/hf_20260714_220232_83ba8b3b-7c7f-467e-b2ca-7f367a8ca4e9.mp4",
+        "background_video": "shopify:\/\/files\/videos\/hf_20260714_220232_83ba8b3b-7c7f-467e-b2ca-7f367a8ca4e9.mp4",
         "mobile_use_image": false,
-        "desktop_background": "shopify://shop_images/how-to-smartmouth-img.webp",
+        "desktop_background": "shopify:\/\/shop_images\/how-to-smartmouth-img.webp",
         "desktop_background_position": "center center",
         "mobile_background_position": "left center",
         "mobile_padding_top": 80,
@@ -47,14 +47,14 @@
       "settings": {
         "eyebrow": "See it in action",
         "heading": "Watch how the zinc ions activate.",
-        "subheading": "<p>Most mouthwashes mask the symptom. SmartMouth™ eliminates the cause — then prevents it from coming back for 24 hours.</p>",
+        "subheading": "<p>Most mouthwashes mask the symptom. SmartMouth™ eliminates the cause — then prevents it from coming back for 24 hours.<\/p>",
         "media_type": "external",
-        "video_url": "https://www.youtube.com/watch?v=U_MK_PQkT0M",
+        "video_url": "https:\/\/www.youtube.com\/watch?v=U_MK_PQkT0M",
         "external_autoplay": false,
         "image_alt": "SmartMouth bad breath prevention demonstration",
         "placeholder_text": "VIDEO",
         "media_width": 61,
-        "aspect_ratio": "2.5 / 1",
+        "aspect_ratio": "2.5 \/ 1",
         "padding_top": 3,
         "padding_bottom": 3,
         "background_color": "#ffffff",
@@ -73,7 +73,7 @@
           "settings": {
             "heading": "The problem",
             "lead": "Germs + protein = sulfur gas",
-            "body": "<p>Bacteria in your mouth eat protein from saliva and release stinky sulfur gas. That’s bad breath — and normal mouthwash just covers it up.</p>",
+            "body": "<p>Bacteria in your mouth eat protein from saliva and release stinky sulfur gas. That’s bad breath — and normal mouthwash just covers it up.<\/p>",
             "full_width": false,
             "background_color": "#bde3dd"
           }
@@ -83,7 +83,7 @@
           "settings": {
             "heading": "The solution",
             "lead": "Zinc ions block the gas at the source",
-            "body": "<p>When our two solutions combine, they activate billions of zinc ions that block germs from producing sulfur — preventing bad breath for a full 24 hours.</p>",
+            "body": "<p>When our two solutions combine, they activate billions of zinc ions that block germs from producing sulfur — preventing bad breath for a full 24 hours.<\/p>",
             "full_width": false,
             "background_color": "#cfe2f4"
           }
@@ -93,7 +93,7 @@
           "settings": {
             "heading": "Why sulfur gas smells so bad",
             "lead": "",
-            "body": "<p>The compounds bacteria produce — specifically hydrogen sulfide and methyl mercaptan — are among the most odorous substances known. Even at concentrations of just a few parts per billion, they’re immediately detectable by the human nose. That’s why bad breath can feel so persistent: the source is microscopic, but the smell is instant.</p>",
+            "body": "<p>The compounds bacteria produce — specifically hydrogen sulfide and methyl mercaptan — are among the most odorous substances known. Even at concentrations of just a few parts per billion, they’re immediately detectable by the human nose. That’s why bad breath can feel so persistent: the source is microscopic, but the smell is instant.<\/p>",
             "full_width": true,
             "background_color": "#f8efd4"
           }
@@ -111,9 +111,9 @@
         "heading_accent": "bad breath.",
         "subheading": "Most mouthwashes mask it. SmartMouth eliminates it — for 24 hours — with just 2 rinses.",
         "show_virus": true,
-        "virus_image": "shopify://shop_images/sulfur-virus.webp",
+        "virus_image": "shopify:\/\/shop_images\/sulfur-virus.webp",
         "show_virus_2": true,
-        "virus_image_2": "shopify://shop_images/sulfur-gas0virus.webp",
+        "virus_image_2": "shopify:\/\/shop_images\/sulfur-gas0virus.webp",
         "background_color": "#ffffff",
         "text_color": "#062342",
         "accent_color": "#8fd7cd"
@@ -127,7 +127,7 @@
           "settings": {
             "heading": "The problem",
             "emphasis": "Germs + Protein in Your Saliva = Sulfur Gas",
-            "body": "<p>Bacteria in your mouth break down protein particles in your saliva — producing sulfur compounds that are detectable by the human nose even at a few parts per billion. That’s bad breath. And it’s a process that never stops on its own.</p>",
+            "body": "<p>Bacteria in your mouth break down protein particles in your saliva — producing sulfur compounds that are detectable by the human nose even at a few parts per billion. That’s bad breath. And it’s a process that never stops on its own.<\/p>",
             "background_color": "#bfe5de"
           }
         },
@@ -136,7 +136,7 @@
           "settings": {
             "heading": "The Solution",
             "emphasis": "Germs + SmartMouth™ Zinc Ions = No More Bad Breath",
-            "body": "<p>When SmartMouth™’s two solutions combine, billions of zinc ions are released. They bond to germs and block them from producing sulfur gas entirely — eliminating bad breath instantly and preventing it from returning for 24 hours.</p>",
+            "body": "<p>When SmartMouth™’s two solutions combine, billions of zinc ions are released. They bond to germs and block them from producing sulfur gas entirely — eliminating bad breath instantly and preventing it from returning for 24 hours.<\/p>",
             "background_color": "#d2e4f5"
           }
         }
@@ -150,10 +150,10 @@
       "settings": {
         "eyebrow": "ALL-DAY BAD BREATH PREVENTION",
         "heading": "Sulfur gas is the real cause of bad breath.",
-        "subheading": "<p>Most mouthwashes mask the symptom. SmartMouth™ eliminates the cause — then prevents it from coming back for 24 hours.</p>",
+        "subheading": "<p>Most mouthwashes mask the symptom. SmartMouth™ eliminates the cause — then prevents it from coming back for 24 hours.<\/p>",
         "detail_heading": "Why sulfur gas smells so bad",
-        "detail_body": "<p>The compounds bacteria produce — specifically hydrogen sulfide and methyl mercaptan — are among the most odorous substances known. Even at concentrations of just a few parts per billion, they’re immediately detectable by the human nose. That’s why bad breath can feel so persistent: the source is microscopic, but the smell is instant.</p>",
-        "virus_image": "shopify://shop_images/sulfur-gas0virus.webp",
+        "detail_body": "<p>The compounds bacteria produce — specifically hydrogen sulfide and methyl mercaptan — are among the most odorous substances known. Even at concentrations of just a few parts per billion, they’re immediately detectable by the human nose. That’s why bad breath can feel so persistent: the source is microscopic, but the smell is instant.<\/p>",
+        "virus_image": "shopify:\/\/shop_images\/sulfur-gas0virus.webp",
         "virus_alt": "Illustration representing odor-producing sulfur gas",
         "virus_width": 16,
         "virus_right_offset": 0,
@@ -173,28 +173,28 @@
           "type": "step",
           "settings": {
             "heading": "You pour the two solutions together",
-            "body": "<p>SmartMouth™’s dual-chamber bottle keeps the Sulfur Eliminating Solution and the Zinc Ion Activating Solution completely separate until the moment you pour them into the cup.</p>"
+            "body": "<p>SmartMouth™’s dual-chamber bottle keeps the Sulfur Eliminating Solution and the Zinc Ion Activating Solution completely separate until the moment you pour them into the cup.<\/p>"
           }
         },
         "step_Anm97Q": {
           "type": "step",
           "settings": {
             "heading": "A chemical reaction releases billions of zinc ions",
-            "body": "<p>When the two solutions combine in the cup, a chemical reaction occurs that instantly activates billions of zinc ions. The solution turns green — that’s your signal that it’s freshly activated and ready to work.</p>"
+            "body": "<p>When the two solutions combine in the cup, a chemical reaction occurs that instantly activates billions of zinc ions. The solution turns green — that’s your signal that it’s freshly activated and ready to work.<\/p>"
           }
         },
         "step_QLTicL": {
           "type": "step",
           "settings": {
             "heading": "The Sulfur Eliminator destroys existing bad breath",
-            "body": "<p>The Sulfur Eliminating Solution immediately destroys any sulfur gas already present in your mouth — giving you instant fresh breath from the first rinse.</p>"
+            "body": "<p>The Sulfur Eliminating Solution immediately destroys any sulfur gas already present in your mouth — giving you instant fresh breath from the first rinse.<\/p>"
           }
         },
         "step_eqUjgM": {
           "type": "step",
           "settings": {
             "heading": "Zinc ions block germs from producing more",
-            "body": "<p>The billions of activated zinc ions bond to the germs in your mouth and prevent them from consuming protein particles. No protein consumption means no sulfur gas production — and no bad breath returning for 12 hours per rinse, 24 hours with two rinses a day.</p>"
+            "body": "<p>The billions of activated zinc ions bond to the germs in your mouth and prevent them from consuming protein particles. No protein consumption means no sulfur gas production — and no bad breath returning for 12 hours per rinse, 24 hours with two rinses a day.<\/p>"
           }
         }
       },
@@ -208,8 +208,8 @@
       "settings": {
         "eyebrow": "HOW IT WORKS, STEP BY STEP",
         "heading": "Two rinses a day. 24 hours of fresh breath.",
-        "intro": "<p>SmartMouth™ works in two ways: elimination and prevention. Every time you pour.</p>",
-        "desktop_background": "shopify://shop_images/how-it-works-bg.webp",
+        "intro": "<p>SmartMouth™ works in two ways: elimination and prevention. Every time you pour.<\/p>",
+        "desktop_background": "shopify:\/\/shop_images\/how-it-works-bg.webp",
         "desktop_background_position": "center center",
         "mobile_background_position": "center center",
         "background_color": "#55546f",
@@ -234,8 +234,8 @@
           "settings": {
             "side": "blue",
             "heading": "Zinc Rich Activator (blue cap)",
-            "body": "<p>Releases billions of zinc ions when poured — bonds to germs and prevents sulfur gas production for 12 hours per rinse.</p>",
-            "virus_image": "shopify://shop_images/blue-cap-virus.webp",
+            "body": "<p>Releases billions of zinc ions when poured — bonds to germs and prevents sulfur gas production for 12 hours per rinse.<\/p>",
+            "virus_image": "shopify:\/\/shop_images\/blue-cap-virus.webp",
             "virus_alt": "Solution molecule illustration",
             "virus_width": 4,
             "background_color": "#285b91",
@@ -247,8 +247,8 @@
           "settings": {
             "side": "green",
             "heading": "Sulfur Eliminator (green cap)",
-            "body": "<p>Destroys existing sulfur gas in your mouth on contact — instant fresh breath from the first rinse.</p>",
-            "virus_image": "shopify://shop_images/green-cap-virus.webp",
+            "body": "<p>Destroys existing sulfur gas in your mouth on contact — instant fresh breath from the first rinse.<\/p>",
+            "virus_image": "shopify:\/\/shop_images\/green-cap-virus.webp",
             "virus_alt": "Solution molecule illustration",
             "virus_width": 4,
             "background_color": "#008641",
@@ -264,8 +264,8 @@
       "settings": {
         "eyebrow": "THE DUAL-CHAMBER BOTTLE",
         "heading": "Scientifically designed to keep the power of zinc ion activation in your hands — every pour.",
-        "desktop_illustration": "shopify://shop_images/dual-chamber-bottle-img.webp",
-        "mobile_illustration": "shopify://shop_images/dual-chamber-bottle-mobile.webp",
+        "desktop_illustration": "shopify:\/\/shop_images\/dual-chamber-bottle-img.webp",
+        "mobile_illustration": "shopify:\/\/shop_images\/dual-chamber-bottle-mobile.webp",
         "illustration_alt": "SmartMouth dual-chamber bottle pouring both solutions",
         "desktop_image_width": 29,
         "mobile_image_width": 85,
@@ -283,9 +283,9 @@
         "indicator_88dbPi": {
           "type": "indicator",
           "settings": {
-            "image": "shopify://shop_images/green-ready.webp",
+            "image": "shopify:\/\/shop_images\/green-ready.webp",
             "heading": "Green = Ready",
-            "body": "<p>The solution is freshly activated and the zinc ions are ready to bind to germs. This is when SmartMouth™ is at full potency — rinse immediately.</p>",
+            "body": "<p>The solution is freshly activated and the zinc ions are ready to bind to germs. This is when SmartMouth™ is at full potency — rinse immediately.<\/p>",
             "background_color": "#ddf9f2",
             "text_color": "#047840"
           }
@@ -293,9 +293,9 @@
         "indicator_xm7Vdk": {
           "type": "indicator",
           "settings": {
-            "image": "shopify://shop_images/blue-pour.webp",
+            "image": "shopify:\/\/shop_images\/blue-pour.webp",
             "heading": "Blue = pour again",
-            "body": "<p>If you wait 5 minutes after pouring, the solution turns blue — meaning the zinc ions are no longer as effective at preventing bad breath. Pour a fresh cup.</p>",
+            "body": "<p>If you wait 5 minutes after pouring, the solution turns blue — meaning the zinc ions are no longer as effective at preventing bad breath. Pour a fresh cup.<\/p>",
             "background_color": "#cde5f8",
             "text_color": "#205085"
           }
@@ -309,7 +309,7 @@
       "settings": {
         "eyebrow": "THE COLOR INDICATOR",
         "heading": "You activate the zinc ions.",
-        "body": "<p>When the two solutions come together, a chemical reaction occurs that instantly releases billions of zinc ions. Here’s what the color tells you.</p>",
+        "body": "<p>When the two solutions come together, a chemical reaction occurs that instantly releases billions of zinc ions. Here’s what the color tells you.<\/p>",
         "image_alt": "Green ready cup and blue pour-again cup indicators",
         "visual_width": 41,
         "image_width": 41,
@@ -328,7 +328,7 @@
           "type": "faq_item",
           "settings": {
             "question": "Which SmartMouth™ rinse is right for me?",
-            "answer": "<p>Compare all SmartMouth™ rinses in the chart below to find the right formula for your needs.</p>",
+            "answer": "<p>Compare all SmartMouth™ rinses in the chart below to find the right formula for your needs.<\/p>",
             "answer_image_alt": "SmartMouth rinse comparison chart"
           }
         },
@@ -336,7 +336,7 @@
           "type": "faq_item",
           "settings": {
             "question": "Why does SmartMouth™ use 2 solutions?",
-            "answer": "<p>SmartMouth™ Mouthwash uses a patented, dual-solution technology that requires 2 key solutions to be kept separate until just prior to rinsing. This ensures that SmartMouth™ is freshly activated with each use to provide unmatched, all day fresh breath.</p>",
+            "answer": "<p>SmartMouth™ Mouthwash uses a patented, dual-solution technology that requires 2 key solutions to be kept separate until just prior to rinsing. This ensures that SmartMouth™ is freshly activated with each use to provide unmatched, all day fresh breath.<\/p>",
             "answer_image_alt": ""
           }
         },
@@ -344,7 +344,7 @@
           "type": "faq_item",
           "settings": {
             "question": "Can I travel with SmartMouth™?",
-            "answer": "<p>With the FAA liquid carry-on limitations, don't forget to pack the new SmartMouth™ Single Use Packs. These individual-use mouthwash packets fall well under the FAA liquid carry-on limit and fit easily into your purse, briefcase, or carry-on for fresh breath anytime, anywhere.</p><p>You can also pack an unopened package of SmartMouth™ Mouthwash into your checked baggage. Please note that you should not travel with previously opened mouthwash bottles.</p>",
+            "answer": "<p>With the FAA liquid carry-on limitations, don't forget to pack the new SmartMouth™ Single Use Packs. These individual-use mouthwash packets fall well under the FAA liquid carry-on limit and fit easily into your purse, briefcase, or carry-on for fresh breath anytime, anywhere.<\/p><p>You can also pack an unopened package of SmartMouth™ Mouthwash into your checked baggage. Please note that you should not travel with previously opened mouthwash bottles.<\/p>",
             "answer_image_alt": ""
           }
         },
@@ -352,15 +352,15 @@
           "type": "faq_item",
           "settings": {
             "question": "Why is SmartMouth™ better than other mouthwashes at preventing bad breath?",
-            "answer": "<p>SmartMouth™ provides fresh breath 12 times longer than any other leading mouthwash because it works in 2 ways: elimination* and prevention. (1) It eliminates existing bad breath when you rinse with it. (2) It prevents new bad breath from forming. The result is 12 hours of fresh breath after each rinse. No other leading mouthwash has been clinically proven to provide fresh breath longer than 1 hour.</p>",
+            "answer": "<p>SmartMouth™ provides fresh breath 12 times longer than any other leading mouthwash because it works in 2 ways: elimination* and prevention. (1) It eliminates existing bad breath when you rinse with it. (2) It prevents new bad breath from forming. The result is 12 hours of fresh breath after each rinse. No other leading mouthwash has been clinically proven to provide fresh breath longer than 1 hour.<\/p>",
             "answer_image_alt": ""
           }
         },
         "faq_item_kmQ46x": {
           "type": "faq_item",
           "settings": {
-            "question": "What will I experience/feel when I use SmartMouth™?",
-            "answer": "<p>Your taste buds will be thrilled with the delicious, mint taste of SmartMouth™. Unlike most mouthwashes, SmartMouth™ does not contain alcohol so it does not burn or dry out the mouth. After rinsing with SmartMouth™, your mouth and teeth will feel smooth and uniquely clean. In fact, within one week, you can wake up with your teeth feeling smooth and clean (no fuzzy feeling).</p>",
+            "question": "What will I experience\/feel when I use SmartMouth™?",
+            "answer": "<p>Your taste buds will be thrilled with the delicious, mint taste of SmartMouth™. Unlike most mouthwashes, SmartMouth™ does not burn. After rinsing with SmartMouth™, your mouth and teeth will feel smooth and uniquely clean. In fact, within one week, you can wake up with your teeth feeling smooth and clean (no fuzzy feeling).<\/p>",
             "answer_image_alt": ""
           }
         },
@@ -368,7 +368,7 @@
           "type": "faq_item",
           "settings": {
             "question": "Can you eat or drink right after using SmartMouth™?",
-            "answer": "<p>SmartMouth™ is immediately effective upon rinsing, and you can drink or eat at any time. However, when rinsing with any flavored mouthwash, you may want to wait a few moments before eating or drinking. This allows time for your palate to naturally become flavor neutral.</p>",
+            "answer": "<p>SmartMouth™ is immediately effective upon rinsing, and you can drink or eat at any time. However, when rinsing with any flavored mouthwash, you may want to wait a few moments before eating or drinking. This allows time for your palate to naturally become flavor neutral.<\/p>",
             "answer_image_alt": ""
           }
         },
@@ -376,7 +376,7 @@
           "type": "faq_item",
           "settings": {
             "question": "Do I have to rinse after eating?",
-            "answer": "<p>SmartMouth™ Mouthwash is effective at maintaining fresh breath even after eating most foods, so additional rinsing is not required. If you do introduce a very strong, food-based odor like onion or garlic into your mouth, you may need to re-rinse to eliminate that new odor.</p>",
+            "answer": "<p>SmartMouth™ Mouthwash is effective at maintaining fresh breath even after eating most foods, so additional rinsing is not required. If you do introduce a very strong, food-based odor like onion or garlic into your mouth, you may need to re-rinse to eliminate that new odor.<\/p>",
             "answer_image_alt": ""
           }
         },
@@ -384,7 +384,7 @@
           "type": "faq_item",
           "settings": {
             "question": "Does SmartMouth work on smoker's breath?",
-            "answer": "<p>SmartMouth™ is effective in eliminating smoker's breath, including cigar breath. As smoking re-introduces strong odor back into the mouth, you may want to re-rinse after smoking.</p>",
+            "answer": "<p>SmartMouth™ is effective in eliminating smoker's breath, including cigar breath. As smoking re-introduces strong odor back into the mouth, you may want to re-rinse after smoking.<\/p>",
             "answer_image_alt": ""
           }
         },
@@ -392,15 +392,7 @@
           "type": "faq_item",
           "settings": {
             "question": "Does SmartMouth™ work on post-nasal drip?",
-            "answer": "<p>Post-nasal drip provides a natural food supply (protein) for bacteria to consume and produce bad breath gases. SmartMouth™ is effective in eliminating and preventing the bad breath caused by typical post-nasal drip.</p>",
-            "answer_image_alt": ""
-          }
-        },
-        "faq_item_cPFFcq": {
-          "type": "faq_item",
-          "settings": {
-            "question": "Is SmartMouth™ alcohol free?",
-            "answer": "<p>SmartMouth™ Mouthwash is 100% alcohol free. Alcohol is a drying agent, and a dry mouth can cause or worsen bad breath. In fact, there are many challenges to alcohol containing mouthwashes.</p>",
+            "answer": "<p>Post-nasal drip provides a natural food supply (protein) for bacteria to consume and produce bad breath gases. SmartMouth™ is effective in eliminating and preventing the bad breath caused by typical post-nasal drip.<\/p>",
             "answer_image_alt": ""
           }
         },
@@ -408,7 +400,7 @@
           "type": "faq_item",
           "settings": {
             "question": "Does SmartMouth™ have fluoride?",
-            "answer": "<p>All SmartMouth™ oral rinses are fluoride free.</p>",
+            "answer": "<p>All SmartMouth™ oral rinses are fluoride free.<\/p>",
             "answer_image_alt": ""
           }
         },
@@ -416,7 +408,7 @@
           "type": "faq_item",
           "settings": {
             "question": "Can SmartMouth™ prevent gingivitis?",
-            "answer": "<p>While proper oral hygiene is essential to preventing gingivitis, there are many other factors that can influence whether or not you'll get gingivitis. These include age, nutrition, tobacco use, infections, diabetes, and more. Use SmartMouth™ Clinical mouthwash twice a day. Other than improving your oral hygiene and diet, this is one of the best ways to eliminate germs and sulfur production in your mouth.</p>",
+            "answer": "<p>While proper oral hygiene is essential to preventing gingivitis, there are many other factors that can influence whether or not you'll get gingivitis. These include age, nutrition, tobacco use, infections, diabetes, and more. Use SmartMouth™ Clinical mouthwash twice a day. Other than improving your oral hygiene and diet, this is one of the best ways to eliminate germs and sulfur production in your mouth.<\/p>",
             "answer_image_alt": ""
           }
         },
@@ -424,7 +416,7 @@
           "type": "faq_item",
           "settings": {
             "question": "Does SmartMouth™ work for dry mouth?",
-            "answer": "<p>Yes, SmartMouth™ <a href=\"/products/smartmouth-dry-mouth-activated-mouthwash-16oz\">Dry Mouth formula</a> combines dry mouth relief and bad breath prevention in a never-before-seen way.</p>",
+            "answer": "<p>Yes, SmartMouth™ <a href=\"\/products\/smartmouth-dry-mouth-activated-mouthwash-16oz\">Dry Mouth formula<\/a> combines dry mouth relief and bad breath prevention in a never-before-seen way.<\/p>",
             "answer_image_alt": ""
           }
         },
@@ -432,7 +424,7 @@
           "type": "faq_item",
           "settings": {
             "question": "Where can I buy SmartMouth™?",
-            "answer": "<p>You can buy SmartMouth™ toothpaste, oral rinses, mints, and travel packs at over 60,000 national and regional <a href=\"/pages/where-to-buy\">retail locations</a> as well as purchase them on Amazon.</p>",
+            "answer": "<p>You can buy SmartMouth™ toothpaste, oral rinses, mints, and travel packs at over 60,000 national and regional <a href=\"\/pages\/where-to-buy\">retail locations<\/a> as well as purchase them on Amazon.<\/p>",
             "answer_image_alt": ""
           }
         },
@@ -440,7 +432,7 @@
           "type": "faq_item",
           "settings": {
             "question": "Is SmartMouth™ safe for kids?",
-            "answer": "<p>Yes! SmartMouth™ is safe and recommended for children 6 years and older. All the ingredients used in SmartMouth™ products have been established by the FDA as \"GRAS\" (Generally Recognized As Safe) and considered safe for use in non-prescription, over-the-counter, oral care products.</p>",
+            "answer": "<p>Yes! SmartMouth™ is safe and recommended for children 6 years and older. All the ingredients used in SmartMouth™ products have been established by the FDA as \"GRAS\" (Generally Recognized As Safe) and considered safe for use in non-prescription, over-the-counter, oral care products.<\/p>",
             "answer_image_alt": ""
           }
         },
@@ -448,7 +440,7 @@
           "type": "faq_item",
           "settings": {
             "question": "Is SmartMouth™ safe for diabetics?",
-            "answer": "<p>Yes! SmartMouth™ is safe for Diabetics. All the ingredients used in SmartMouth™ products have been established by the FDA as \"GRAS\" (Generally Recognized As Safe) and considered safe for use in non-prescription, over-the-counter, oral care products.</p>",
+            "answer": "<p>Yes! SmartMouth™ is safe for Diabetics. All the ingredients used in SmartMouth™ products have been established by the FDA as \"GRAS\" (Generally Recognized As Safe) and considered safe for use in non-prescription, over-the-counter, oral care products.<\/p>",
             "answer_image_alt": ""
           }
         },
@@ -456,7 +448,7 @@
           "type": "faq_item",
           "settings": {
             "question": "Is SmartMouth™ safe to use if I'm pregnant?",
-            "answer": "<p>While we are unaware of any known health concerns with the use of SmartMouth™ while pregnant, it is recommended that you consult your doctor before using this or any other over-the-counter or prescription mouthwash. All the ingredients used in SmartMouth™ products have been established by the FDA as \"GRAS\" (Generally Recognized As Safe) and considered safe for use in non-prescription, over-the-counter, oral care products.</p>",
+            "answer": "<p>While we are unaware of any known health concerns with the use of SmartMouth™ while pregnant, it is recommended that you consult your doctor before using this or any other over-the-counter or prescription mouthwash. All the ingredients used in SmartMouth™ products have been established by the FDA as \"GRAS\" (Generally Recognized As Safe) and considered safe for use in non-prescription, over-the-counter, oral care products.<\/p>",
             "answer_image_alt": ""
           }
         },
@@ -464,7 +456,7 @@
           "type": "faq_item",
           "settings": {
             "question": "What toothpaste is good for gum disease?",
-            "answer": "<p>When looking to prevent gum disease and gingivitis, you should look for a toothpaste with proven oral health benefits, like SmartMouth™ Premium toothpaste. Products like SmartMouth™ Premium toothpaste provides enamel strengthening, anti plaque, anti cavity, as well as sensitive whitening benefits.</p>",
+            "answer": "<p>When looking to prevent gum disease and gingivitis, you should look for a toothpaste with proven oral health benefits, like SmartMouth™ Premium toothpaste. Products like SmartMouth™ Premium toothpaste provides enamel strengthening, anti plaque, anti cavity, as well as sensitive whitening benefits.<\/p>",
             "answer_image_alt": ""
           }
         },
@@ -472,7 +464,7 @@
           "type": "faq_item",
           "settings": {
             "question": "Which toothpaste kills the most bacteria?",
-            "answer": "<p>SmartMouth™ Premium Toothpaste uses zinc ion technology in conjunction with other premium features to provide enamel strengthening, anti-plaque, anti-cavity, sensitive whitening. An effective toothpaste needs to work subgingivally, meaning it can reach the difficult area between your gums and teeth.</p>",
+            "answer": "<p>SmartMouth™ Premium Toothpaste uses zinc ion technology in conjunction with other premium features to provide enamel strengthening, anti-plaque, anti-cavity, sensitive whitening. An effective toothpaste needs to work subgingivally, meaning it can reach the difficult area between your gums and teeth.<\/p>",
             "answer_image_alt": ""
           }
         },
@@ -480,7 +472,7 @@
           "type": "faq_item",
           "settings": {
             "question": "What mouthwash is good for bleeding gums?",
-            "answer": "<p>SmartMouth™ Clinical DDS provides optimal oral and general health without sacrificing any of SmartMouth™'s elite anti-bad-breath-technology. However, you should consult a dentist if you experience the following symptoms after use: bleeding gums, gums that are tender or swollen, persistent bad breath.</p>",
+            "answer": "<p>SmartMouth™ Clinical DDS provides optimal oral and general health without sacrificing any of SmartMouth™'s elite anti-bad-breath-technology. However, you should consult a dentist if you experience the following symptoms after use: bleeding gums, gums that are tender or swollen, persistent bad breath.<\/p>",
             "answer_image_alt": ""
           }
         }
@@ -495,7 +487,6 @@
         "faq_item_6ptCHb",
         "faq_item_fX8ywt",
         "faq_item_mtHMbM",
-        "faq_item_cPFFcq",
         "faq_item_XagwYn",
         "faq_item_zUzHpX",
         "faq_item_MjDTUG",
@@ -611,7 +602,7 @@
         "autoplay_interval": 3,
         "card_width": 31,
         "card_gap": 7,
-        "stars_image": "shopify://shop_images/reviews-stars.png",
+        "stars_image": "shopify:\/\/shop_images\/reviews-stars.png",
         "stars_image_width": 11,
         "background_color": "#e7e5f6",
         "heading_background": "#5503a7",
@@ -625,19 +616,10 @@
     "about_product_standards_mPpk7H": {
       "type": "about-product-standards",
       "blocks": {
-        "standard_XYErDA": {
-          "type": "standard",
-          "settings": {
-            "icon": "shopify://shop_images/zero-alcohol-blue.png",
-            "icon_width": 5.5,
-            "title": "Zero alcohol",
-            "description": "No burn, no dryness — in every formula"
-          }
-        },
         "standard_6ip6gf": {
           "type": "standard",
           "settings": {
-            "icon": "shopify://shop_images/paraben-free-blue.png",
+            "icon": "shopify:\/\/shop_images\/paraben-free-blue.png",
             "icon_width": 5.5,
             "title": "Paraben-free",
             "description": "Clean formulas you can use every day"
@@ -646,7 +628,7 @@
         "standard_wn6HFD": {
           "type": "standard",
           "settings": {
-            "icon": "shopify://shop_images/safe-for-kids-blue.png",
+            "icon": "shopify:\/\/shop_images\/safe-for-kids-blue.png",
             "icon_width": 5.5,
             "title": "Safe for kids 12+",
             "description": "Safe for the whole family"
@@ -655,7 +637,7 @@
         "standard_tB8n6E": {
           "type": "standard",
           "settings": {
-            "icon": "shopify://shop_images/dentist-developed-blue.png",
+            "icon": "shopify:\/\/shop_images\/dentist-developed-blue.png",
             "icon_width": 5.5,
             "title": "Dentist developed",
             "description": "Recommended by dental professionals nationwide"
@@ -663,7 +645,6 @@
         }
       },
       "block_order": [
-        "standard_XYErDA",
         "standard_6ip6gf",
         "standard_wn6HFD",
         "standard_tB8n6E"
@@ -683,10 +664,10 @@
       "settings": {
         "heading_first_line": "Every mouth is different.",
         "heading_second_line": "Find your match.",
-        "body": "<p>Mouthwash, toothpaste, mints and travel packs — all built on the same Smart-Zinc™ Technology. Find the right one for you.</p>",
+        "body": "<p>Mouthwash, toothpaste, mints and travel packs — all built on the same Smart-Zinc™ Technology. Find the right one for you.<\/p>",
         "button_label": "TAKE THE QUIZ",
-        "button_link": "shopify://pages/find-your-rinse",
-        "image": "shopify://shop_images/smart-mout-original.webp",
+        "button_link": "shopify:\/\/pages\/find-your-rinse",
+        "image": "shopify:\/\/shop_images\/smart-mout-original.webp",
         "image_alt": "SmartMouth Original mouthwash bottle",
         "bottle_width": 20.5,
         "bottle_offset": 1.5,

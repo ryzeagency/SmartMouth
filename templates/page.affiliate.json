@@ -13,9 +13,9 @@
       "type": "smt-home-revamp-hero",
       "name": "Home Revamp Hero",
       "settings": {
-        "image": "shopify://shop_images/smt-revamp-hero-bg.webp",
-        "video": "shopify://files/videos/hf_20260622_194813_3b0a0eaa-1282-40f5-9411-1877191ef375.mp4",
-        "mobile_video": "shopify://files/videos/mobile bannerlarge.mp4",
+        "image": "shopify:\/\/shop_images\/smt-revamp-hero-bg.webp",
+        "video": "shopify:\/\/files\/videos\/hf_20260622_194813_3b0a0eaa-1282-40f5-9411-1877191ef375.mp4",
+        "mobile_video": "shopify:\/\/files\/videos\/mobile bannerlarge.mp4",
         "media_position": "center center",
         "mobile_position": "center center",
         "mobile_space_above": 55,
@@ -23,13 +23,13 @@
         "panel_position": "left",
         "review_text": "4.5 avg. | 8.8K+ Trusted Reviews",
         "heading": "Never Have \nBad Breath",
-        "copy": "<p><strong>The only mouthwash scientifically proven to eliminate & prevent bad breath for 24 hours — </strong><em><strong>with just 2 rinses a day.</strong></em></p>",
-        "icon_1": "shopify://shop_images/smt-revamp-hero-icon-1.png",
+        "copy": "<p><strong>The only mouthwash scientifically proven to eliminate & prevent bad breath for 24 hours — <\/strong><em><strong>with just 2 rinses a day.<\/strong><\/em><\/p>",
+        "icon_1": "shopify:\/\/shop_images\/smt-revamp-hero-icon-1.png",
         "benefit_1": "2 RINSES\nA DAY",
-        "icon_2": "shopify://shop_images/smt-revamp-hero-icon-2.png",
+        "icon_2": "shopify:\/\/shop_images\/smt-revamp-hero-icon-2.png",
         "benefit_2": "24-HOUR\nPROTECTION",
         "button_label": "FIND YOUR RINSE",
-        "button_link": "shopify://pages/find-your-rinse",
+        "button_link": "shopify:\/\/pages\/find-your-rinse",
         "panel_color": "#24588d",
         "text_color": "#ffffff",
         "star_color": "#ffc857",
@@ -40,12 +40,12 @@
       "type": "affiliate-verified-creators",
       "name": "Affiliate Verified Creators",
       "settings": {
-        "creator_image": "shopify://shop_images/affiliate-image.webp",
+        "creator_image": "shopify:\/\/shop_images\/affiliate-image.webp",
         "creator_image_alt": "Creator holding a SmartMouth bottle",
         "card_heading": "Fresh breath that lasts all day",
         "card_body": "SmartMouth eliminates and prevents bad breath for 24 hours, with just 2 rinses a day.",
         "badge_text": "Why [Affiliate Name] recommends SmartMouth",
-        "badge_body": "Dentist developed, zero alcohol, and 24-hour fresh breath with just 2 rinses a day.",
+        "badge_body": "Dentist developed, with 24-hour fresh breath from just 2 rinses a day.",
         "eyebrow": "VERIFIED INFLUENCERS. REAL RESULTS.",
         "heading_line_1": "Trusted by creators",
         "heading_line_2_prefix": "who",
@@ -54,7 +54,7 @@
         "cta_2_bold_before": "SHOP [AFFILIATE NAME]’s PICKS →",
         "cta_2_regular": "",
         "cta_2_bold_after": "",
-        "cta_2_link": "shopify://collections/all",
+        "cta_2_link": "shopify:\/\/collections\/all",
         "cta_2_background": "#8cd1c4",
         "cta_2_text_color": "#06203c",
         "background_color": "#ffffff",
@@ -71,7 +71,7 @@
           "settings": {
             "heading": "The Problem",
             "lead": "Germs + protein = sulfur gas",
-            "body": "<p>Bacteria in your mouth eat protein from saliva and release stinky sulfur gas. That’s bad breath — and normal mouthwash just covers it up.</p>",
+            "body": "<p>Bacteria in your mouth eat protein from saliva and release stinky sulfur gas. That’s bad breath — and normal mouthwash just covers it up.<\/p>",
             "full_width": false,
             "background_color": "#bde3dd"
           }
@@ -81,7 +81,7 @@
           "settings": {
             "heading": "The Answer",
             "lead": "Zinc ions block the gas at the source",
-            "body": "<p>When our two solutions combine, they activate billions of zinc ions that block germs from producing sulfur — preventing bad breath for a full 24 hours.</p>",
+            "body": "<p>When our two solutions combine, they activate billions of zinc ions that block germs from producing sulfur — preventing bad breath for a full 24 hours.<\/p>",
             "full_width": false,
             "background_color": "#cfe2f4"
           }
@@ -98,9 +98,9 @@
         "heading_accent": "bad breath.",
         "subheading": "Most mouthwashes mask it. SmartMouth eliminates it — for 24 hours — with just 2 rinses.",
         "show_virus": true,
-        "virus_image": "shopify://shop_images/sulfur-virus.webp",
+        "virus_image": "shopify:\/\/shop_images\/sulfur-virus.webp",
         "show_virus_2": true,
-        "virus_image_2": "shopify://shop_images/sulfur-gas0virus.webp",
+        "virus_image_2": "shopify:\/\/shop_images\/sulfur-gas0virus.webp",
         "background_color": "#ffffff",
         "text_color": "#062342",
         "accent_color": "#8fd7cd"
@@ -112,21 +112,21 @@
         "bullet_VRP4Dt": {
           "type": "bullet",
           "settings": {
-            "icon": "shopify://shop_images/right-arrow-how-smt.png",
+            "icon": "shopify:\/\/shop_images\/right-arrow-how-smt.png",
             "text": "Two chambers, two solutions — kept apart until you pour"
           }
         },
         "bullet_BJi8wN": {
           "type": "bullet",
           "settings": {
-            "icon": "shopify://shop_images/right-arrow-how-smt.png",
+            "icon": "shopify:\/\/shop_images\/right-arrow-how-smt.png",
             "text": "Pouring combines them — activating zinc ions instantly"
           }
         },
         "bullet_DTYRkn": {
           "type": "bullet",
           "settings": {
-            "icon": "shopify://shop_images/right-arrow-how-smt.png",
+            "icon": "shopify:\/\/shop_images\/right-arrow-how-smt.png",
             "text": "Green means fresh and ready · blue means pour again"
           }
         },
@@ -176,10 +176,10 @@
         "heading_prefix": "How",
         "heading_accent": "SmartMouth",
         "heading_suffix": "works",
-        "intro": "<p>The two solutions have to be kept separate until the moment you pour — that’s what activates billions of zinc ions. Pour it in, use it fresh.</p>",
+        "intro": "<p>The two solutions have to be kept separate until the moment you pour — that’s what activates billions of zinc ions. Pour it in, use it fresh.<\/p>",
         "button_label": "EXPLORE THE SCIENCE",
-        "button_link": "shopify://pages/how-it-works",
-        "product_image": "shopify://shop_images/howsmart-img.webp",
+        "button_link": "shopify:\/\/pages\/how-it-works",
+        "product_image": "shopify:\/\/shop_images\/howsmart-img.webp",
         "image_alt": "SmartMouth two-solution bottle pouring into a cup",
         "background_color": "#fbf5e3",
         "text_color": "#06203c",
@@ -198,9 +198,9 @@
           "type": "product",
           "settings": {
             "product": "smartmouthtm-original-activated-mouthwash-16oz",
-            "image": "shopify://shop_images/reason-to-pour-original.webp",
+            "image": "shopify:\/\/shop_images\/reason-to-pour-original.webp",
             "custom_title": "SmartMouth™ Original Liposomal Evening Mouthwash",
-            "custom_link": "https://smartmouth.com/collections/all?sort_by=manual&filter.p.m.custom.benefits_filter=24HR+Bad+Breath+Prevention&filter.v.price.gte=&filter.v.price.lte=",
+            "custom_link": "https:\/\/smartmouth.com\/collections\/all?sort_by=manual&filter.p.m.custom.benefits_filter=24HR+Bad+Breath+Prevention&filter.v.price.gte=&filter.v.price.lte=",
             "badge_text": "BAD BREATH",
             "badge_color": "#008244",
             "badge_text_color": "#ffffff",
@@ -211,9 +211,9 @@
           "type": "product",
           "settings": {
             "product": "smartmouthtm-dry-mouth-activated-mouthwash-16oz",
-            "image": "shopify://shop_images/drymouthkit.webp",
+            "image": "shopify:\/\/shop_images\/drymouthkit.webp",
             "custom_title": "SmartMouth™ Dry Mouth Activated Mouthwash",
-            "custom_link": "https://smartmouth.com/collections/all?sort_by=manual&filter.p.m.custom.benefits_filter=Dry+Mouth+Support&filter.v.price.gte=&filter.v.price.lte=",
+            "custom_link": "https:\/\/smartmouth.com\/collections\/all?sort_by=manual&filter.p.m.custom.benefits_filter=Dry+Mouth+Support&filter.v.price.gte=&filter.v.price.lte=",
             "badge_text": "DRY MOUTH",
             "badge_color": "#5e00b8",
             "badge_text_color": "#ffffff",
@@ -224,9 +224,9 @@
           "type": "product",
           "settings": {
             "product": "smartmouthtm-clinical-activated-mouthwash-16oz",
-            "image": "shopify://shop_images/CLINICAL_SMT.png",
+            "image": "shopify:\/\/shop_images\/CLINICAL_SMT.png",
             "custom_title": "SmartMouth™ Clinical Activated Mouthwash",
-            "custom_link": "https://smartmouth.com/collections/all?sort_by=manual&filter.p.m.custom.benefits_filter=Anti-Gingivitis+%26+Anti-Plaque&filter.p.m.custom.benefits_filter=Canker+%26+Mouth+Sore+Relief&filter.p.m.custom.benefits_filter=Cavity+Protection&filter.v.price.gte=&filter.v.price.lte=",
+            "custom_link": "https:\/\/smartmouth.com\/collections\/all?sort_by=manual&filter.p.m.custom.benefits_filter=Anti-Gingivitis+%26+Anti-Plaque&filter.p.m.custom.benefits_filter=Canker+%26+Mouth+Sore+Relief&filter.p.m.custom.benefits_filter=Cavity+Protection&filter.v.price.gte=&filter.v.price.lte=",
             "badge_text": "ORAL HEALTH",
             "badge_color": "#245a8d",
             "badge_text_color": "#ffffff",
@@ -237,9 +237,9 @@
           "type": "product",
           "settings": {
             "product": "smartmouthtm-advanced-liposomal-evening-mouthwash-16oz",
-            "image": "shopify://shop_images/VIT_C.png",
+            "image": "shopify:\/\/shop_images\/VIT_C.png",
             "custom_title": "SmartMouth™ Advanced Liposomal Evening Mouthwash",
-            "custom_link": "https://smartmouth.com/collections/all?sort_by=manual&filter.p.m.custom.benefits_filter=Advanced+Liposomal+Technology&filter.v.price.gte=&filter.v.price.lte=",
+            "custom_link": "https:\/\/smartmouth.com\/collections\/all?sort_by=manual&filter.p.m.custom.benefits_filter=Advanced+Liposomal+Technology&filter.v.price.gte=&filter.v.price.lte=",
             "badge_text": "New",
             "badge_color": "#ff7701",
             "badge_text_color": "#ffffff",
@@ -260,7 +260,7 @@
         "heading_suffix": "to pour?",
         "heading": "What’s your reason to pour?",
         "button_label": "SHOP ALL PRODUCTS",
-        "button_link": "shopify://collections/all",
+        "button_link": "shopify:\/\/collections\/all",
         "background_color": "#ffffff",
         "text_color": "#062342",
         "accent_color": "#8fd7cd",
@@ -349,7 +349,7 @@
         "autoplay_interval": 3,
         "card_width": 31,
         "card_gap": 7,
-        "stars_image": "shopify://shop_images/reviews-stars.png",
+        "stars_image": "shopify:\/\/shop_images\/reviews-stars.png",
         "stars_image_width": 11,
         "background_color": "#f1e1a9",
         "heading_background": "#205085",
@@ -363,19 +363,10 @@
     "about_product_standards_iPY39d": {
       "type": "about-product-standards",
       "blocks": {
-        "standard_dWTmbW": {
-          "type": "standard",
-          "settings": {
-            "icon": "shopify://shop_images/zero-alcohol-blue.png",
-            "icon_width": 5.5,
-            "title": "Zero alcohol",
-            "description": "No burn, no dryness — in every formula"
-          }
-        },
         "standard_P6hBFe": {
           "type": "standard",
           "settings": {
-            "icon": "shopify://shop_images/paraben-free-blue.png",
+            "icon": "shopify:\/\/shop_images\/paraben-free-blue.png",
             "icon_width": 5.5,
             "title": "Paraben-free",
             "description": "Clean formulas you can use every day"
@@ -384,7 +375,7 @@
         "standard_wipgTt": {
           "type": "standard",
           "settings": {
-            "icon": "shopify://shop_images/safe-for-kids-blue.png",
+            "icon": "shopify:\/\/shop_images\/safe-for-kids-blue.png",
             "icon_width": 5.5,
             "title": "Safe for kids 12+",
             "description": "Safe for the whole family"
@@ -393,7 +384,7 @@
         "standard_eyzNBc": {
           "type": "standard",
           "settings": {
-            "icon": "shopify://shop_images/dentist-developed-blue.png",
+            "icon": "shopify:\/\/shop_images\/dentist-developed-blue.png",
             "icon_width": 5.5,
             "title": "Dentist developed",
             "description": "Recommended by dental professionals nationwide"
@@ -401,7 +392,6 @@
         }
       },
       "block_order": [
-        "standard_dWTmbW",
         "standard_P6hBFe",
         "standard_wipgTt",
         "standard_eyzNBc"

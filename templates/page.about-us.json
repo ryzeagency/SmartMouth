@@ -25,12 +25,12 @@
         "heading_first_line": "Saving you from bad breath",
         "heading_second_line": "since",
         "heading_highlight": "1993.",
-        "body": "<p>SmartMouth™ has done one thing since 1993 — and done it better than anyone: eliminate bad breath at the source and keep it gone, all day, every day.</p>",
+        "body": "<p>SmartMouth™ has done one thing since 1993 — and done it better than anyone: eliminate bad breath at the source and keep it gone, all day, every day.<\/p>",
         "image_position": "right",
         "image_width": 35,
-        "desktop_background": "shopify://shop_images/1793435f-7cd8-45c0-88c8-c8f98a19bc71_1.webp",
+        "desktop_background": "shopify:\/\/shop_images\/1793435f-7cd8-45c0-88c8-c8f98a19bc71_1.webp",
         "desktop_background_position": "center center",
-        "mobile_background": "shopify://shop_images/about-us-banner.webp",
+        "mobile_background": "shopify:\/\/shop_images\/about-us-banner.webp",
         "mobile_background_position": "center center",
         "background_color": "#24588e",
         "text_color": "#ffffff",
@@ -111,9 +111,9 @@
         "eyebrow": "WHERE IT BEGAN",
         "heading_first_line": "Bad breath had a real cause.",
         "heading_second_line": "Nobody was solving it.",
-        "body": "<p>In 1993, Dr. Marvin Cohen — a leading authority on the study of bad breath — recognized a problem no one was addressing: every product on the market only masked bad breath temporarily, because none of them eliminated the underlying cause.</p><p>The real cause of bad breath is sulfur gas, produced when bacteria in your mouth consume protein particles from your saliva. No amount of mint flavour or alcohol can stop that process. Dr. Cohen knew a smarter approach was needed.</p><p>Years of research led him to zinc ion technology — a patented system that activates when two solutions combine, releasing billions of zinc ions that block germs from producing sulfur gas entirely. Not for an hour. For 24 hours.</p>",
+        "body": "<p>In 1993, Dr. Marvin Cohen — a leading authority on the study of bad breath — recognized a problem no one was addressing: every product on the market only masked bad breath temporarily, because none of them eliminated the underlying cause.<\/p><p>The real cause of bad breath is sulfur gas, produced when bacteria in your mouth consume protein particles from your saliva. No amount of mint flavour can stop that process. Dr. Cohen knew a smarter approach was needed.<\/p><p>Years of research led him to zinc ion technology — a patented system that activates when two solutions combine, releasing billions of zinc ions that block germs from producing sulfur gas entirely. Not for an hour. For 24 hours.<\/p>",
         "quote": "Nothing on the market addressed the underlying issue. Preventing bad breath required a smarter approach.",
-        "image": "shopify://shop_images/photograph-man-about.webp",
+        "image": "shopify:\/\/shop_images\/photograph-man-about.webp",
         "image_alt": "Dr. Marvin Cohen holding an early SmartMouth bottle",
         "image_margin_top": -4,
         "image_margin_bottom": -4,
@@ -133,21 +133,21 @@
           "type": "technology_card",
           "settings": {
             "heading": "The problem",
-            "body": "<p>Germs + protein in your saliva = sulfur gas. That’s the real cause of bad breath — and what other mouthwashes ignore entirely.</p>"
+            "body": "<p>Germs + protein in your saliva = sulfur gas. That’s the real cause of bad breath — and what other mouthwashes ignore entirely.<\/p>"
           }
         },
         "technology_card_j9CJXM": {
           "type": "technology_card",
           "settings": {
             "heading": "The activation",
-            "body": "<p>Pouring Solution 1 (Sulfur Eliminator) and Solution 2 (Zinc Activator) together triggers a chemical reaction that releases billions of active zinc ions.</p>"
+            "body": "<p>Pouring Solution 1 (Sulfur Eliminator) and Solution 2 (Zinc Activator) together triggers a chemical reaction that releases billions of active zinc ions.<\/p>"
           }
         },
         "technology_card_XeB8k9": {
           "type": "technology_card",
           "settings": {
             "heading": "The result",
-            "body": "<p>Zinc ions block germs from producing sulfur gas — eliminating bad breath and preventing it from returning for a full 24 hours with just two rinses.</p>"
+            "body": "<p>Zinc ions block germs from producing sulfur gas — eliminating bad breath and preventing it from returning for a full 24 hours with just two rinses.<\/p>"
           }
         }
       },
@@ -160,8 +160,8 @@
       "settings": {
         "eyebrow": "THE TECHNOLOGY",
         "heading": "Smart-Zinc™ Technology —\nthe only mouthwash that\neliminates bad breath at its source.",
-        "body": "<p>When our two solutions combine in the cup, billions of zinc ions are released. These zinc ions block germs from consuming protein in your saliva — stopping sulfur gas production entirely. Not temporarily. For 24 hours.</p><p>It’s a genuinely different mechanism from every other mouthwash on the market — and it’s protected by multiple patents that no other brand can replicate.</p>",
-        "image": "shopify://shop_images/howsmart-img.webp",
+        "body": "<p>When our two solutions combine in the cup, billions of zinc ions are released. These zinc ions block germs from consuming protein in your saliva — stopping sulfur gas production entirely. Not temporarily. For 24 hours.<\/p><p>It’s a genuinely different mechanism from every other mouthwash on the market — and it’s protected by multiple patents that no other brand can replicate.<\/p>",
+        "image": "shopify:\/\/shop_images\/howsmart-img.webp",
         "image_alt": "SmartMouth dual-solution bottle pouring into a cup",
         "background_color": "#fbf6e6",
         "text_color": "#092847",
@@ -177,8 +177,8 @@
         "eyebrow": "OUR MISSION",
         "heading_first_line": "Making people healthier.",
         "heading_second_line": "One product at a time.",
-        "body": "<p>SmartMouth was never just about fresh breath. From the beginning, our founders believed that oral health is a gateway to overall health — and that a product that genuinely worked could change people’s lives, not just their morning routine.</p><p>The link between oral health and heart disease, diabetes and other systemic conditions is well established. That’s why SmartMouth is built to actually address the root cause — not paper over it.</p>",
-        "image": "shopify://shop_images/our-mission-image.webp",
+        "body": "<p>SmartMouth was never just about fresh breath. From the beginning, our founders believed that oral health is a gateway to overall health — and that a product that genuinely worked could change people’s lives, not just their morning routine.<\/p><p>The link between oral health and heart disease, diabetes and other systemic conditions is well established. That’s why SmartMouth is built to actually address the root cause — not paper over it.<\/p>",
+        "image": "shopify:\/\/shop_images\/our-mission-image.webp",
         "image_alt": "SmartMouth mission",
         "image_position": "first",
         "image_width": 43,
@@ -193,19 +193,10 @@
     "about_product_standards_iPY39d": {
       "type": "about-product-standards",
       "blocks": {
-        "standard_dWTmbW": {
-          "type": "standard",
-          "settings": {
-            "icon": "shopify://shop_images/zero-alcohol.png",
-            "icon_width": 5.5,
-            "title": "Zero alcohol",
-            "description": "No burn, no dryness — in every formula"
-          }
-        },
         "standard_P6hBFe": {
           "type": "standard",
           "settings": {
-            "icon": "shopify://shop_images/paraben-free.png",
+            "icon": "shopify:\/\/shop_images\/paraben-free.png",
             "icon_width": 5.5,
             "title": "Paraben-free",
             "description": "Clean formulas you can use every day"
@@ -214,7 +205,7 @@
         "standard_wipgTt": {
           "type": "standard",
           "settings": {
-            "icon": "shopify://shop_images/safe-for-lids.png",
+            "icon": "shopify:\/\/shop_images\/safe-for-lids.png",
             "icon_width": 5.5,
             "title": "Safe for kids 12+",
             "description": "Safe for the whole family"
@@ -223,7 +214,7 @@
         "standard_eyzNBc": {
           "type": "standard",
           "settings": {
-            "icon": "shopify://shop_images/dentist-developed.png",
+            "icon": "shopify:\/\/shop_images\/dentist-developed.png",
             "icon_width": 5.5,
             "title": "Dentist developed",
             "description": "Recommended by dental professionals nationwide"
@@ -231,7 +222,6 @@
         }
       },
       "block_order": [
-        "standard_dWTmbW",
         "standard_P6hBFe",
         "standard_wipgTt",
         "standard_eyzNBc"
@@ -251,7 +241,7 @@
         "logo_DzFJzh": {
           "type": "logo",
           "settings": {
-            "image": "shopify://shop_images/smt-revamp-yahoo.png",
+            "image": "shopify:\/\/shop_images\/smt-revamp-yahoo.png",
             "fallback_logo": "today",
             "logo_text": "TODAY",
             "alt": "",
@@ -262,7 +252,7 @@
         "logo_JTHt9w": {
           "type": "logo",
           "settings": {
-            "image": "shopify://shop_images/smt-revamp-today.png",
+            "image": "shopify:\/\/shop_images\/smt-revamp-today.png",
             "fallback_logo": "yahoo",
             "logo_text": "Yahoo!",
             "alt": "",
@@ -273,7 +263,7 @@
         "logo_YmfC48": {
           "type": "logo",
           "settings": {
-            "image": "shopify://shop_images/smt-revamp-gq.png",
+            "image": "shopify:\/\/shop_images\/smt-revamp-gq.png",
             "fallback_logo": "mens-journal",
             "logo_text": "MEN'S JOURNAL",
             "alt": "",
@@ -284,7 +274,7 @@
         "logo_gRmBHY": {
           "type": "logo",
           "settings": {
-            "image": "shopify://shop_images/smt-revamp-mens-journal.png",
+            "image": "shopify:\/\/shop_images\/smt-revamp-mens-journal.png",
             "fallback_logo": "gq",
             "logo_text": "GQ",
             "alt": "",
@@ -313,10 +303,10 @@
       "settings": {
         "heading_first_line": "Every mouth is different.",
         "heading_second_line": "Find your match.",
-        "body": "<p>Mouthwash, toothpaste, mints and travel packs — all built on the same Smart-Zinc™ Technology. Find the right one for you.</p>",
+        "body": "<p>Mouthwash, toothpaste, mints and travel packs — all built on the same Smart-Zinc™ Technology. Find the right one for you.<\/p>",
         "button_label": "TAKE THE QUIZ",
-        "button_link": "shopify://pages/find-your-rinse",
-        "image": "shopify://shop_images/smart-mout-original.webp",
+        "button_link": "shopify:\/\/pages\/find-your-rinse",
+        "image": "shopify:\/\/shop_images\/smart-mout-original.webp",
         "image_alt": "SmartMouth Original mouthwash bottle",
         "bottle_width": 20.5,
         "bottle_offset": 1.5,
