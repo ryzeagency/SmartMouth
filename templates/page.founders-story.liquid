@@ -339,16 +339,28 @@ html { scroll-behavior: smooth; }
 
 .smf-record { margin-top: 34px; }
 
-/* ---------- Video (hidden until a video exists) ---------- */
+/* ---------- Video (portrait 9:16, centred on a navy panel) ---------- */
 .smf-video {
-  position: relative;
+  display: flex;
+  justify-content: center;
   margin-top: 36px;
-  aspect-ratio: 16 / 9;
+  padding: 28px;
   border-radius: 24px;
-  overflow: hidden;
   background: var(--smf-navy);
 }
-.smf-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.smf-video video {
+  display: block;
+  width: auto;
+  height: min(72vh, 680px);
+  max-width: 100%;
+  aspect-ratio: 9 / 16;
+  border-radius: 16px;
+  background: #000;
+}
+@media (max-width: 560px) {
+  .smf-video { padding: 12px; }
+  .smf-video video { width: 100%; height: auto; }
+}
 
 /* ---------- Range ---------- */
 .smf-bottles {
@@ -614,9 +626,7 @@ html { scroll-behavior: smooth; }
             </div>
             <h3 class="smf-person__name">Anna Timm, CPA</h3>
             <p class="smf-person__role">Director of Integrated Marketing</p>
-            <!-- When Anna's quote is approved, uncomment:
-            <blockquote class="smf-person__quote"><p>“Quote from Anna.”</p></blockquote>
-            -->
+            <blockquote class="smf-person__quote"><p>“Growing up around SmartMouth, I’ve always admired the passion and hard work my grandpa and dad put into building this brand. Getting to carry on what my grandpa created, and my dad helped grow is something I’m incredibly proud of — even if it means we can never have a family dinner without talking about mouthwash.”</p></blockquote>
           </article>
 
           <article class="smf-person">
@@ -627,9 +637,7 @@ html { scroll-behavior: smooth; }
             </div>
             <h3 class="smf-person__name">Haley (Burch) Smith</h3>
             <p class="smf-person__role">Director of FP&amp;A</p>
-            <!-- When Haley's quote is approved, uncomment:
-            <blockquote class="smf-person__quote"><p>“Quote from Haley.”</p></blockquote>
-            -->
+            <blockquote class="smf-person__quote"><p>“My grandpa started SmartMouth to solve a problem no one else could, with a formula rooted in science and real efficacy. His dream was to get it into as many hands as possible. It grew into something he and my dad never imagined, and it was so special to witness the two of them build it together. I’m honored to now share that same experience with my sister, helping a brand that truly helps people keep growing and reach even more hands.”</p></blockquote>
           </article>
         </div>
 
@@ -728,8 +736,10 @@ html { scroll-behavior: smooth; }
       </div>
     </section>
 
-    <!-- ========== Founder video: hidden until a video exists ==========
-         To show it: uncomment this section and replace VIDEO_ID with the YouTube ID.
+    <!-- ========== Founder video ==========
+         Anna and Haley's intro video, streamed from Shopify's CDN (not stored in the theme).
+         Safari and iPhone play the adaptive stream (.m3u8); other browsers play the 720p MP4.
+         Both are Shopify's web copies of the original .mov upload (HEVC, which many browsers can't play). -->
     <section class="smf-sec smf-sec--sky" id="video" aria-labelledby="smf-video-title">
       <div class="smf-wrap">
         <div class="smf-center">
@@ -737,11 +747,22 @@ html { scroll-behavior: smooth; }
           <h2 class="smf-h2" id="smf-video-title">Hear it from Anna and Haley</h2>
         </div>
         <div class="smf-video">
-          <iframe src="https://www.youtube-nocookie.com/embed/VIDEO_ID" title="Hear it from Anna and Haley" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <video
+            controls
+            playsinline
+            preload="none"
+            width="1080"
+            height="1920"
+            poster="{{ 'founders-video-poster.webp' | asset_url }}"
+            aria-label="Anna and Haley introduce SmartMouth and its family story"
+          >
+            <source src="https://cdn.shopify.com/videos/c/vp/c1e28d3d8e7e4660b89eb35da5b51a6c/c1e28d3d8e7e4660b89eb35da5b51a6c.m3u8" type="application/vnd.apple.mpegurl">
+            <source src="https://cdn.shopify.com/videos/c/vp/c1e28d3d8e7e4660b89eb35da5b51a6c/c1e28d3d8e7e4660b89eb35da5b51a6c.HD-720p-4.5Mbps-102613667.mp4" type="video/mp4">
+            <p>Your browser can’t play this video. <a href="https://cdn.shopify.com/videos/c/vp/c1e28d3d8e7e4660b89eb35da5b51a6c/c1e28d3d8e7e4660b89eb35da5b51a6c.HD-720p-4.5Mbps-102613667.mp4">Watch it here</a>.</p>
+          </video>
         </div>
       </div>
     </section>
-    -->
 
     <!-- ========== Find your rinse ========== -->
     <section class="smf-sec smf-sec--white smf-range" id="range" aria-labelledby="smf-range-title">
@@ -771,7 +792,7 @@ html { scroll-behavior: smooth; }
         </div>
         <figure>
           <div class="smf-close__img">
-            <img src="{{ 'founders-summit-shelf.webp' | asset_url }}" alt="SmartMouth Original, Clinical and Dry Mouth products on a shelf" width="933" height="1400" loading="lazy">
+            <img src="{{ 'founders-summit-shelf.webp' | asset_url }}" alt="SmartMouth Original, Clinical and Dry Mouth products on a shelf" width="932" height="700" loading="lazy">
           </div>
           <figcaption>SmartMouth on the shelf at the Men’s Grooming Summit, October 2026. <span>Photo: Eryc Perez de Tagle.</span></figcaption>
         </figure>
