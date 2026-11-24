@@ -288,7 +288,11 @@ html { scroll-behavior: smooth; }
   font-style: italic;
 }
 .smf-together { margin-top: 28px; border-radius: 24px; overflow: hidden; }
-.smf-together img { width: 100%; aspect-ratio: 3 / 1; object-fit: cover; }
+.smf-together img { width: 100%; aspect-ratio: 2 / 1; object-fit: cover; object-position: 50% 30%; }
+/* Sisters' polaroids: each photo keeps its own shape (the album rules above crop to 4:5). */
+.smf-album--sisters { margin-top: 64px; }
+.smf-album--sisters .smf-album__grid { grid-template-columns: 1fr 1.35fr 1fr; }
+.smf-album--sisters .smf-album__grid .smf-polaroid:nth-child(n) img { aspect-ratio: auto; object-position: 50% 50%; }
 .smf-cta-row { margin-top: 48px; text-align: center; }
 
 /* ---------- Cards (science, studies, record) ---------- */
@@ -451,6 +455,9 @@ html { scroll-behavior: smooth; }
   .smf-portrait { margin-top: 0; }
   .smf-album__grid { grid-template-columns: 1fr 1fr; gap: 32px 24px; }
   .smf-album__grid .smf-polaroid:first-child img { aspect-ratio: 4 / 5; }
+  .smf-together img { aspect-ratio: 4 / 3; object-position: 45% 30%; }
+  .smf-album--sisters .smf-album__grid { grid-template-columns: 1fr 1fr; }
+  .smf-album--sisters .smf-polaroid:nth-child(2) { grid-column: 1 / -1; order: -1; }
   .smf-grid3 { grid-template-columns: 1fr; }
   .smf-band ol { grid-template-columns: 1fr 1fr; row-gap: 32px; }
   .smf-close__img { max-width: 520px; }
@@ -620,9 +627,7 @@ html { scroll-behavior: smooth; }
         <div class="smf-sisters">
           <article class="smf-person">
             <div class="smf-person__photo">
-              <!-- When Anna's portrait arrives, replace the span below with:
-                   <img src="{{ 'founders-anna-portrait.webp' | asset_url }}" alt="Portrait of Anna Timm" loading="lazy"> -->
-              <span class="smf-monogram" aria-hidden="true">AT</span>
+              <img src="{{ 'founders-anna-portrait.webp' | asset_url }}" alt="Portrait of Anna Timm" width="680" height="510" loading="lazy">
             </div>
             <h3 class="smf-person__name">Anna Timm, CPA</h3>
             <p class="smf-person__role">Director of Integrated Marketing</p>
@@ -631,9 +636,7 @@ html { scroll-behavior: smooth; }
 
           <article class="smf-person">
             <div class="smf-person__photo">
-              <!-- When Haley's portrait arrives, replace the span below with:
-                   <img src="{{ 'founders-haley-portrait.webp' | asset_url }}" alt="Portrait of Haley Smith" loading="lazy"> -->
-              <span class="smf-monogram" aria-hidden="true">HS</span>
+              <img src="{{ 'founders-haley-portrait.webp' | asset_url }}" alt="Portrait of Haley Smith" width="680" height="510" loading="lazy">
             </div>
             <h3 class="smf-person__name">Haley (Burch) Smith</h3>
             <p class="smf-person__role">Director of FP&amp;A</p>
@@ -641,11 +644,27 @@ html { scroll-behavior: smooth; }
           </article>
         </div>
 
-        <!-- When the photo of Anna and Haley together arrives, uncomment:
         <figure class="smf-together">
-          <img src="{{ 'founders-anna-and-haley.webp' | asset_url }}" alt="Anna and Haley together" loading="lazy">
+          <img src="{{ 'founders-anna-and-haley.webp' | asset_url }}" alt="Anna and Haley together" width="1124" height="562" loading="lazy">
         </figure>
-        -->
+
+        <div class="smf-album smf-album--sisters">
+          <p class="smf-eyebrow">Growing up</p>
+          <div class="smf-album__grid">
+            <figure class="smf-polaroid">
+              <img src="{{ 'founders-sisters-growing-up.webp' | asset_url }}" alt="Anna and Haley as little girls in matching red plaid dresses" width="634" height="794" loading="lazy">
+              <figcaption>Anna and Haley, growing up.</figcaption>
+            </figure>
+            <figure class="smf-polaroid">
+              <img src="{{ 'founders-sisters-1998.webp' | asset_url }}" alt="Anna and Haley as children, reading a book at bedtime" width="872" height="654" loading="lazy">
+              <figcaption>August 1998.</figcaption>
+            </figure>
+            <figure class="smf-polaroid">
+              <img src="{{ 'founders-sisters-london.webp' | asset_url }}" alt="Anna and Haley standing together by a fountain in a park" width="720" height="900" loading="lazy">
+              <figcaption>Anna and Haley.</figcaption>
+            </figure>
+          </div>
+        </div>
 
         <div class="smf-cta-row">
           <a class="smf-btn" href="/collections/all">Shop the range</a>
