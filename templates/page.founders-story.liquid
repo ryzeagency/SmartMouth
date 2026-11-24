@@ -249,7 +249,7 @@ html { scroll-behavior: smooth; }
 
 /* ---------- 03 Anna and Haley ---------- */
 .smf-sec--lilac .smf-num { color: rgba(98, 70, 170, .11); }
-.smf-sisters { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 44px; }
+.smf-sisters { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 28px; }
 .smf-person {
   background: #fff;
   border: 1px solid rgba(98, 70, 170, .14);
@@ -278,7 +278,7 @@ html { scroll-behavior: smooth; }
   font-weight: 700;
   color: var(--smf-violet);
 }
-.smf-person__name { font-size: 22px; line-height: 1.3; font-weight: 700; color: var(--smf-navy); margin-top: 22px; }
+.smf-person__name { font-size: 22px; line-height: 1.3; font-weight: 700; color: var(--smf-navy); margin-top: 6px; }
 .smf-person__role { font-size: 15px; font-weight: 600; color: var(--smf-green); margin-top: 4px; }
 .smf-person__quote {
   border-left: 4px solid var(--smf-blue);
@@ -287,7 +287,7 @@ html { scroll-behavior: smooth; }
   font-size: 16px;
   font-style: italic;
 }
-.smf-together { margin-top: 28px; border-radius: 24px; overflow: hidden; }
+.smf-together { margin-top: 44px; border-radius: 24px; overflow: hidden; }
 .smf-together img { width: 100%; aspect-ratio: 2 / 1; object-fit: cover; object-position: 50% 30%; }
 /* Sisters' polaroids: each photo keeps its own shape (the album rules above crop to 4:5). */
 .smf-album--sisters { margin-top: 64px; }
@@ -621,29 +621,24 @@ html { scroll-behavior: smooth; }
           </div>
         </div>
 
+        <!-- One photo of the two of them, with both quotes underneath. -->
+        <figure class="smf-together">
+          <img src="{{ 'founders-anna-and-haley.webp' | asset_url }}" alt="Anna and Haley together" width="1124" height="562" loading="lazy">
+        </figure>
+
         <div class="smf-sisters">
           <article class="smf-person">
-            <div class="smf-person__photo">
-              <img src="{{ 'founders-anna-portrait.webp' | asset_url }}" alt="Portrait of Anna Timm" width="680" height="510" loading="lazy">
-            </div>
             <h3 class="smf-person__name">Anna Timm, CPA</h3>
             <p class="smf-person__role">Director of Integrated Marketing</p>
             <blockquote class="smf-person__quote"><p>“Growing up around SmartMouth, I’ve always admired the passion and hard work my grandpa and dad put into building this brand. Getting to carry on what my grandpa created, and my dad helped grow is something I’m incredibly proud of — even if it means we can never have a family dinner without talking about mouthwash.”</p></blockquote>
           </article>
 
           <article class="smf-person">
-            <div class="smf-person__photo">
-              <img src="{{ 'founders-haley-portrait.webp' | asset_url }}" alt="Portrait of Haley Smith" width="680" height="510" loading="lazy">
-            </div>
             <h3 class="smf-person__name">Haley (Burch) Smith</h3>
             <p class="smf-person__role">Director of FP&amp;A</p>
             <blockquote class="smf-person__quote"><p>“My grandpa started SmartMouth to solve a problem no one else could, with a formula rooted in science and real efficacy. His dream was to get it into as many hands as possible. It grew into something he and my dad never imagined, and it was so special to witness the two of them build it together. I’m honored to now share that same experience with my sister, helping a brand that truly helps people keep growing and reach even more hands.”</p></blockquote>
           </article>
         </div>
-
-        <figure class="smf-together">
-          <img src="{{ 'founders-anna-and-haley.webp' | asset_url }}" alt="Anna and Haley together" width="1124" height="562" loading="lazy">
-        </figure>
 
         <div class="smf-album smf-album--sisters">
           <p class="smf-eyebrow">Growing up</p>
